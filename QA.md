@@ -261,7 +261,39 @@ lista de dados e o rodapé. Verificado no navegador, com a página já revelada:
 mandar uma mensagem real. O raciocínio sobre o dígito que faltava está em
 `PENDENCIAS.md`.
 
-## 12. Estados interativos
+## 12. Imagens de projeto
+
+Três renderizações 3D entraram na seção Projetos. A abertura e a faixa não foram
+tocadas: continuam vindo de `prepare-images.py`.
+
+**Seleção.** Medi definição e ruído nas cinco imagens recebidas antes de escolher.
+Variância do laplaciano: `3.jpg` 105,7 · `2.jpg` 103,0 · `5.jpg` 90,9 ·
+`6.jpg` 47,4 · `4.jpg` 26,8. As duas últimas ficaram de fora por moleza e por
+dominante amarela.
+
+**Tratamento e medição, antes → depois:**
+
+| Imagem | Definição | Contraste | Brilho |
+| --- | --- | --- | --- |
+| Closet | 76,0 → 211,5 | 38,3 → 50,3 | 104,1 → 109,7 |
+| Dormitório | 43,5 → 139,3 | 23,2 → 35,7 | 184,7 → 191,0 |
+| Banheiro | 128,9 → 356,1 | 44,6 → 51,9 | 127,9 → 129,4 |
+
+O brilho quase não se mexe de propósito: o acabamento devolve definição sem
+clarear a cena e sem desmanchar a atmosfera de cada render.
+
+**Dois erros meus, corrigidos no caminho.** A primeira curva somava o seno em vez
+de subtrair, o que achatava o contraste e levantava o brilho de 104 para 124.
+Depois de corrigir o sinal, a mesma dose endureceu o closet: o tecido ganhou
+crosta e a madeira saturou. A força passou a ser regulada por imagem — 0,55 no
+closet, 0,65 no banheiro, 1,00 no dormitório.
+
+**Verificado no navegador**, com a página rolada até o fim para vencer o
+carregamento adiado: as três carregam nas duas larguras, o navegador escolhe a
+variante certa (`closet-1540` no desktop, `closet-800` em 390 px), as três
+etiquetas "Projeto em 3D" aparecem e não há requisição falha.
+
+## 13. Estados interativos
 
 Hover no botão principal: preenchimento passa de `rgb(244,241,236)` para
 `rgb(217,162,104)` e a cor do texto permanece `rgb(25,23,20)`. Preenchimento e
@@ -269,7 +301,7 @@ cor de texto são declarados separadamente em cada estado — nenhum dos dois
 desaparece ao interagir. O botão desativado do encerramento não tem estado de
 hover que sugira ação.
 
-## 13. Estrutura do documento
+## 14. Estrutura do documento
 
 `lang="pt-BR"`. Um único `h1`. Hierarquia de títulos sem salto (h1 → h2 → h3).
 Marcos `header`, `main` e `footer` únicos; os três `nav` com rótulo próprio.
@@ -288,6 +320,6 @@ formulário.** O `viewport` não bloqueia o zoom. 31 elementos focáveis por tec
 | Toque real e gesto de arrastar | O Playwright emula toque, mas não substitui um aparelho. A faixa de ambientes usa rolagem nativa no celular, que é o caminho mais seguro. |
 | Desempenho em rede lenta e aparelho fraco | Sem medição de Core Web Vitals em campo. O peso e o número de requisições foram medidos; o resto, não. |
 | Impressão | Não há folha de estilo para impressão. |
-| Comportamento com a fotografia definitiva | As reservas ocupam o lugar das imagens, mas o ritmo final da página só pode ser avaliado com as fotos reais. |
+| Comportamento com a fotografia definitiva | Três quadros têm render; os outros seguem reservados. O ritmo final só pode ser avaliado com as fotos dos ambientes executados. |
 | Se o WhatsApp chega na Fratelli | O formato do link foi verificado; o destino real depende de mandar uma mensagem. Ver `PENDENCIAS.md`. |
 | Abertura do aplicativo do WhatsApp | O clique foi testado até o `href`. A troca para o aplicativo depende do sistema do visitante. |

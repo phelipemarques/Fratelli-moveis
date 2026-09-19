@@ -63,7 +63,8 @@ assets/fonts/              Newsreader e Inter, variáveis, SIL OFL 1.1
 assets/img/                imagens geradas por tools/prepare-images.py
 dist/                      versão em arquivo único (gerada)
 tools/
-  prepare-images.py        prepara as imagens a partir do material recebido
+  prepare-images.py        prepara as imagens da abertura
+  prepare-project-images.py  prepara as imagens dos projetos
   build-single-file.py     gera a versão em arquivo único
   source/1.jpg             material original enviado pelo cliente
 PENDENCIAS.md              o que falta pedir à empresa
@@ -118,8 +119,10 @@ python3 -m pip install pillow numpy opencv-python-headless
 python3 tools/prepare-images.py
 ```
 
-O script lê `tools/source/1.jpg` e grava os recortes em `assets/img/`.
-O que ele faz e por quê está documentado no próprio arquivo.
+`prepare-images.py` lê `tools/source/1.jpg` e gera as imagens da abertura.
+`prepare-project-images.py` lê os arquivos dos projetos e gera os recortes da
+seção Projetos, com a força do acabamento regulada por imagem. Os dois são
+independentes: mexer em um não altera as imagens do outro.
 
 ## Decisões técnicas
 

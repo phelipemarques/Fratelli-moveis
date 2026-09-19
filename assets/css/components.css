@@ -359,6 +359,9 @@ body.is-locked { overflow: hidden; }
   inset: clamp(0.5rem, 1.1vw, 0.85rem);
   border: 1px solid var(--rv-line);
 }
+/* Sobre fotografia a moldura interna nao tem funcao: ela marca area reservada.
+   Fica so a etiqueta, que diz a natureza da imagem. */
+.frame__note--image::before { display: none; }
 
 /* Tons das reservas. Ficam no quadro para que fundo e nota leiam do mesmo lugar. */
 .frame--tone-bone {

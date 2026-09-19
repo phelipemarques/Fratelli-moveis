@@ -49,26 +49,45 @@ no `<head>` — e as três de `(45) 99842-3488`.
 Os outros canais continuam pendentes: e-mail, endereço, horário de atendimento
 e Instagram aparecem marcados como "a confirmar", sem link.
 
-### 3. Fotografias dos projetos
+### 3. Fotografias dos ambientes executados
 
-Nenhuma foto de ambiente executado foi enviada. As seções Projetos e Ambientes
-estão com **reservas** — quadros na proporção prevista, com a etiqueta
-"A fotografar" e o formato indicado.
+Chegaram cinco imagens. Escolhi três e tratei; duas ficaram de fora:
 
-**O que pedir:** para cada ambiente, as fotos abaixo, em JPG, lado maior a
-partir de 2400 px, sem marca d'água e sem texto gravado.
+| Arquivo | Ambiente | Decisão |
+| --- | --- | --- |
+| `2.jpg` | Dormitório | **entrou** — a melhor do conjunto, e o tom bege com verde conversa com a paleta do site |
+| `5.jpg` | Closet | **entrou** — mostra gaveteiro, cabideiro, prateleira e luz interna, que é o que interessa em planejados |
+| `3.jpg` | Banheiro | **entrou** — recortei a parede branca vazia da esquerda, que ocupava 40% do quadro |
+| `4.jpg` | Dormitório com painel de TV | ficou de fora — definição de 26,8 contra 103 da melhor, e dominante amarela |
+| `6.jpg` | Dormitório menor | ficou de fora — mesma moleza e um amarelo no painel que briga com a paleta |
 
-| Seção | Reserva | Formato | Enquadramento sugerido |
-| --- | --- | --- | --- |
-| Projetos 01 | Cozinha | 16:9 | plano geral, ilha em primeiro plano |
-| Projetos 02 | Dormitório | 4:5 | painel de cabeceira e marcenaria de parede a parede |
-| Projetos 03 | Closet | 3:2 | detalhe de gavetas, divisórias e iluminação interna |
-| Projetos 04 | Home office | 3:2 | bancada contínua e passagem de fiação |
-| Ambientes 01–06 | um por categoria | 4:5 | plano médio, vertical |
-| Sobre | oficina ou equipe | 4:5 | vertical |
+**As três são renderizações 3D, não fotografias de ambientes construídos.** É assim
+que elas aparecem no site: cada uma leva a etiqueta "Projeto em 3D", e o texto da
+seção diz que as fotos dos ambientes executados continuam pendentes. Se alguma
+delas for foto de obra pronta, me avise que eu corrijo a etiqueta.
 
-Vale mais mandar poucos ambientes bem fotografados do que muitos ambientes com
-foto de celular em contraluz. O layout aceita menos projetos sem quebrar.
+O que fiz nelas foi acabamento, não invenção: limpeza de artefato de compressão,
+recuperação de definição no canal de luz, contraste local suave e uma curva em S
+discreta. Nenhuma foi ampliada além do tamanho original. O tratamento está em
+`tools/prepare-project-images.py`, com a força regulada por imagem — o closet é um
+render difuso, visto através do vidro das portas, e não aguenta a mesma dose do
+dormitório.
+
+**O que ainda falta:** fotografias dos ambientes depois de instalados. Render mostra
+a intenção; foto mostra o acabamento, a junção, a ferragem e o encaixe na parede
+real. É o que convence quem está decidindo.
+
+| Onde | Estado | Formato |
+| --- | --- | --- |
+| Projetos 01 — Closet | render 3D no lugar | 16:9 |
+| Projetos 02 — Dormitório | render 3D no lugar | 4:5 |
+| Projetos 03 — Banheiro | render 3D no lugar | 3:2 |
+| Projetos 04 — Home office | **reservado** | 3:2 |
+| Ambientes 01–06 | **reservados**, um por categoria | 4:5 |
+| Sobre — oficina ou equipe | **reservado** | 4:5 |
+
+Para as que faltam: JPG, lado maior a partir de 2400 px, sem marca d'água e sem
+texto gravado.
 
 ---
 

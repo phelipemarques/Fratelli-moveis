@@ -82,34 +82,25 @@ def build_html():
         'href="%s" type="image/svg+xml"' % data_uri("assets/img/favicon.svg", "image/svg+xml"),
     )
 
-    # Hero: mantem a direcao de arte (recorte vertical no celular), uma imagem cada.
-    hero = re.search(r"      <picture>.*?</picture>\n", html, re.S)
-    html = html.replace(
-        hero.group(0),
-        '      <picture>\n'
-        '        <source media="(max-width: 740px)" type="image/webp" srcset="%s">\n'
-        '        <img src="%s" width="1280" height="960"\n'
-        '             alt="Cozinha ampla com ilha central em pedra, banquetas de madeira e '
-        'paineis de marcenaria em tom nogueira."\n'
-        '             fetchpriority="high" decoding="async">\n'
-        '      </picture>\n'
-        % (
-            data_uri("assets/img/hero-portrait-640.webp", "image/webp"),
-            data_uri("assets/img/hero-wide-1280.webp", "image/webp"),
-        ),
-    )
+    # Cada <picture> vira uma imagem so, embutida. O conjunto responsivo nao
+    # cabe aqui: seriam varias copias do mesmo quadro dentro do arquivo.
+    # A excecao e a abertura, que mantem o recorte vertical do celular.
+    def inline_picture(match):
+        block = match.group(0)
+        img = re.search(r"<img\b[^>]*>", block, re.S).group(0)
+        jpg = re.search(r'src="assets/img/([^"]+)\.jpg"', img).group(1)
+        webp = "assets/img/%s.webp" % jpg
+        if not os.path.exists(os.path.join(ROOT, webp)):
+            sys.exit("sem WebP correspondente para %s" % jpg)
+        img = re.sub(r'src="assets/img/[^"]+"',
+                     lambda m: 'src="%s"' % data_uri(webp, "image/webp"), img)
+        extra = ""
+        if "hero-wide" in jpg:
+            extra = ('\n        <source media="(max-width: 740px)" type="image/webp" srcset="%s">'
+                     % data_uri("assets/img/hero-portrait-640.webp", "image/webp"))
+        return "<picture>%s\n        %s\n      </picture>" % (extra, img)
 
-    band = re.search(r'        <picture>\s*<source[^>]*detail-band.*?</picture>\n', html, re.S)
-    html = html.replace(
-        band.group(0),
-        '        <picture>\n'
-        '          <img class="frame__img" src="%s" width="1280" height="410" '
-        'loading="lazy" decoding="async"\n'
-        '               alt="Vista aproximada da marcenaria superior da cozinha, com '
-        'iluminacao linear embutida sob os armarios.">\n'
-        '        </picture>\n'
-        % data_uri("assets/img/detail-band-1280.webp", "image/webp"),
-    )
+    html = re.sub(r"<picture>.*?</picture>", inline_picture, html, flags=re.S)
 
     # Scripts embutidos, na mesma ordem. Sem src, `onerror` perde a funcao:
     # a rede de seguranca que resta e o tempo limite dentro do nav.js.
