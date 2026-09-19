@@ -1,0 +1,15 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Node, caso alguma ferramenta seja adicionada depois
+node_modules/
+npm-debug.log*
+
+# Saída intermediária do preparo de imagens
+tools/source/*-restaurada.png

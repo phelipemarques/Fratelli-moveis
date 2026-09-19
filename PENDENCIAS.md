@@ -1,0 +1,138 @@
+# Pendências — Fratelli Móveis
+
+Lista do que falta para a prévia virar site publicável. Cada item diz **o que
+pedir**, **em que formato** e **onde entra** na página.
+
+Legenda: 🔴 bloqueia a publicação · 🟡 substituível (há reserva no lugar) ·
+⚪ proposta minha, sujeita a aprovação.
+
+---
+
+## 🔴 Bloqueiam a publicação
+
+### 1. Origem e direito de uso da fotografia de abertura
+
+A única imagem recebida foi **uma captura de tela de um mockup** (1280 × 960 px),
+com a interface do site gravada por cima da fotografia. Removi esses textos por
+reconstrução digital e usei o resultado na abertura.
+
+Duas coisas precisam ser confirmadas antes de publicar:
+
+- **A fotografia é de um ambiente executado pela Fratelli?** Se não for, ela não
+  pode ficar na abertura como se fosse. A página hoje não atribui autoria nem
+  chama o ambiente de projeto entregue, justamente por isso.
+- **A Fratelli tem direito de uso da imagem?** Se veio de banco de imagens,
+  render de terceiros ou geração por IA, é preciso a licença ou a substituição.
+
+**O que pedir:** o arquivo original, em alta resolução, e a confirmação de origem.
+
+### 2. Canal de atendimento
+
+Nenhum telefone, WhatsApp, e-mail ou endereço foi informado.
+
+Na prévia, o botão principal do encerramento está **desativado** e marcado como
+"número a confirmar". Não há link falso em lugar nenhum da página. Um site
+institucional sem caminho de contato não cumpre a função, então isto bloqueia.
+
+**O que pedir:** número de WhatsApp com DDD, e-mail, endereço, horário de
+atendimento e perfil no Instagram.
+**Onde entra:** seção Contato (lista de dados e botão principal) e rodapé.
+
+### 3. Fotografias dos projetos
+
+Nenhuma foto de ambiente executado foi enviada. As seções Projetos e Ambientes
+estão com **reservas** — quadros na proporção prevista, com a etiqueta
+"A fotografar" e o formato indicado.
+
+**O que pedir:** para cada ambiente, as fotos abaixo, em JPG, lado maior a
+partir de 2400 px, sem marca d'água e sem texto gravado.
+
+| Seção | Reserva | Formato | Enquadramento sugerido |
+| --- | --- | --- | --- |
+| Projetos 01 | Cozinha | 16:9 | plano geral, ilha em primeiro plano |
+| Projetos 02 | Dormitório | 4:5 | painel de cabeceira e marcenaria de parede a parede |
+| Projetos 03 | Closet | 3:2 | detalhe de gavetas, divisórias e iluminação interna |
+| Projetos 04 | Home office | 3:2 | bancada contínua e passagem de fiação |
+| Ambientes 01–06 | um por categoria | 4:5 | plano médio, vertical |
+| Sobre | oficina ou equipe | 4:5 | vertical |
+
+Vale mais mandar poucos ambientes bem fotografados do que muitos ambientes com
+foto de celular em contraluz. O layout aceita menos projetos sem quebrar.
+
+---
+
+## 🟡 Substituíveis (a prévia já funciona sem)
+
+### 4. Texto institucional
+
+A seção Sobre traz apenas o que dá para afirmar com segurança: que a Fratelli
+trabalha com móveis planejados em Cascavel, no Paraná. **Não inventei** tempo de
+mercado, tamanho de equipe, número de projetos entregues nem posição no mercado
+regional. A própria seção declara que o texto completo está pendente.
+
+**O que pedir:** 2 a 3 parágrafos sobre história, equipe e estrutura, e a
+confirmação de qualquer número que a empresa queira exibir.
+
+### 5. Resolução das imagens
+
+O arquivo de origem tem 1280 px de largura. Em telas de 1440 px ou mais, e em
+celulares com tela de alta densidade, o navegador amplia a imagem e o resultado
+fica menos nítido. **Não ampliei o arquivo artificialmente** — isso não recupera
+detalhe, só inventa pixel.
+
+**O que pedir:** os originais da câmera, ou pelo menos 2400 px no lado maior.
+
+### 6. Imagem de compartilhamento e ícone
+
+`assets/img/og-cover.jpg` é um recorte da mesma fotografia de abertura, e o
+ícone (`favicon.svg`) é um monograma provisório que desenhei a partir do nome.
+
+**O que pedir:** o logotipo oficial em vetor (SVG, AI, EPS ou PDF). Ele muda a
+marca no cabeçalho, no rodapé e o ícone da aba.
+
+---
+
+## ⚪ Propostas minhas, sujeitas a aprovação
+
+### 7. Lista de ambientes
+
+Cozinha, Dormitório, Closet, Home office, Sala de estar e Área gourmet. É o
+escopo comum de uma marcenaria de planejados, **não uma lista confirmada pela
+Fratelli**. A seção exibe a marca "proposta a validar".
+
+**O que confirmar:** quais desses a empresa de fato atende, e o que falta.
+Trocar, remover ou acrescentar um ambiente é editar um `<li>` no `index.html`.
+
+### 8. Etapas do processo
+
+Conversa e medição → Projeto e detalhamento → Produção → Montagem e entrega.
+Também marcado como "proposta a validar".
+
+**O que confirmar:** se o atendimento funciona assim, se há visita técnica
+cobrada, prazo médio e se a montagem é feita por equipe própria.
+
+### 9. Textos de chamada
+
+Título de abertura, passagem editorial, descrições dos ambientes e o convite do
+encerramento foram escritos por mim, a partir do vocabulário de móveis planejados
+(medida, proporção, vão, prumo, circulação). Nenhum deles atribui à Fratelli uma
+característica que não foi informada.
+
+**O que confirmar:** se a voz está adequada e se "Móveis planejados para o seu
+jeito de morar." fica como frase de abertura. A alternativa presente no material
+recebido era "Móveis que pertencem ao espaço."
+
+---
+
+## Não há, e não haverá sem material
+
+Estes itens **não** foram colocados na página, por não haver base:
+
+- Depoimentos ou avaliações de clientes.
+- Nomes de clientes, condomínios ou obras.
+- Números de projetos entregues, anos de mercado ou tamanho de equipe.
+- Prêmios, certificações ou parcerias com fabricantes.
+- Prazo de garantia.
+- Formulário de orçamento — um formulário sem destino configurado dá ao visitante
+  a impressão de que a mensagem foi enviada. Quando houver e-mail ou serviço de
+  envio definido, ele pode entrar na seção Contato.
