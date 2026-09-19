@@ -24,6 +24,27 @@ Abrir o `index.html` direto pelo sistema de arquivos também funciona, mas o
 `file://` bloqueia o carregamento das fontes em alguns navegadores — prefira o
 servidor local.
 
+## Versão em arquivo único
+
+Para abrir com dois cliques, mandar por e-mail ou hospedar sem levar pasta:
+
+```bash
+python3 tools/build-single-file.py
+# gera dist/fratelli-moveis.html (~640 KB)
+```
+
+Tudo entra embutido: estilos, scripts, fontes e imagens. O arquivo funciona
+offline e não faz nenhuma requisição externa. Três diferenças em relação ao
+site da pasta, todas deliberadas e anotadas no próprio script:
+
+- só o subconjunto latino das fontes, que cobre o português;
+- só as imagens em WebP, sem a reserva em JPEG;
+- uma variante de imagem por enquadramento, em vez do conjunto responsivo
+  completo, e sem `og:image`, que precisa de endereço público para funcionar.
+
+Para publicar de verdade, prefira a pasta: ela serve a imagem no tamanho certo
+para cada tela e tem a imagem de compartilhamento.
+
 ## Estrutura
 
 ```
@@ -40,8 +61,10 @@ assets/js/
 assets/vendor/             GSAP 3.13 + ScrollTrigger (licença padrão, sem custo)
 assets/fonts/              Newsreader e Inter, variáveis, SIL OFL 1.1
 assets/img/                imagens geradas por tools/prepare-images.py
+dist/                      versão em arquivo único (gerada)
 tools/
   prepare-images.py        prepara as imagens a partir do material recebido
+  build-single-file.py     gera a versão em arquivo único
   source/1.jpg             material original enviado pelo cliente
 PENDENCIAS.md              o que falta pedir à empresa
 QA.md                      o que foi testado, como, e o que não foi
