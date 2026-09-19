@@ -241,7 +241,27 @@ eletrodomésticos.
 Zero erros de console, zero erros de página e zero requisições falhas, em todas
 as larguras e em todos os percursos de rolagem executados.
 
-## 11. Estados interativos
+## 11. WhatsApp
+
+Três links apontam para o mesmo destino: o botão do encerramento, a linha da
+lista de dados e o rodapé. Verificado no navegador, com a página já revelada:
+
+- Número discado: `5545998423488`.
+- Mensagem que chega decodificada: "Olá, vim pelo site da Fratelli Móveis e
+  gostaria de mais informações."
+- `target="_blank"` com `rel="noopener"` nos três.
+- O botão tem `aria-label` dizendo o número e avisando que abre em outra aba.
+- Contraste do link sublinhado sobre o carvão: 15,88:1, no desktop e no celular.
+- Nenhum elemento desativado restou na página.
+- Dados estruturados (`LocalBusiness`) declaram o mesmo telefone e a mesma
+  cidade que a página mostra. Nenhum campo inventado: sem endereço de rua, sem
+  horário, sem avaliação.
+
+**Não verificado:** se o número de fato atende na Fratelli. Isso depende de
+mandar uma mensagem real. O raciocínio sobre o dígito que faltava está em
+`PENDENCIAS.md`.
+
+## 12. Estados interativos
 
 Hover no botão principal: preenchimento passa de `rgb(244,241,236)` para
 `rgb(217,162,104)` e a cor do texto permanece `rgb(25,23,20)`. Preenchimento e
@@ -249,13 +269,13 @@ cor de texto são declarados separadamente em cada estado — nenhum dos dois
 desaparece ao interagir. O botão desativado do encerramento não tem estado de
 hover que sugira ação.
 
-## 12. Estrutura do documento
+## 13. Estrutura do documento
 
 `lang="pt-BR"`. Um único `h1`. Hierarquia de títulos sem salto (h1 → h2 → h3).
 Marcos `header`, `main` e `footer` únicos; os três `nav` com rótulo próprio.
 Todas as `section` rotuladas por `aria-labelledby`. Listas e listas de definição
 com filhos válidos. **Nenhum link `href="#"`, nenhuma âncora quebrada, nenhum
-formulário.** O `viewport` não bloqueia o zoom.
+formulário.** O `viewport` não bloqueia o zoom. 31 elementos focáveis por teclado.
 
 ---
 
@@ -269,3 +289,5 @@ formulário.** O `viewport` não bloqueia o zoom.
 | Desempenho em rede lenta e aparelho fraco | Sem medição de Core Web Vitals em campo. O peso e o número de requisições foram medidos; o resto, não. |
 | Impressão | Não há folha de estilo para impressão. |
 | Comportamento com a fotografia definitiva | As reservas ocupam o lugar das imagens, mas o ritmo final da página só pode ser avaliado com as fotos reais. |
+| Se o WhatsApp chega na Fratelli | O formato do link foi verificado; o destino real depende de mandar uma mensagem. Ver `PENDENCIAS.md`. |
+| Abertura do aplicativo do WhatsApp | O clique foi testado até o `href`. A troca para o aplicativo depende do sistema do visitante. |

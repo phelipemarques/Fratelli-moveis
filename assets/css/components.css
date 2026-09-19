@@ -280,18 +280,6 @@ body.is-locked { overflow: hidden; }
   border-color: var(--bone);
 }
 
-.btn[disabled] {
-  background-color: rgba(244, 241, 236, 0.14);
-  color: rgba(244, 241, 236, 0.74);
-  border-color: rgba(244, 241, 236, 0.26);
-  cursor: not-allowed;
-}
-.btn[disabled]:hover {
-  background-color: rgba(244, 241, 236, 0.14);
-  color: rgba(244, 241, 236, 0.74);
-  border-color: rgba(244, 241, 236, 0.26);
-}
-
 /* ==================== QUADROS DE IMAGEM ==================== */
 
 .frame {

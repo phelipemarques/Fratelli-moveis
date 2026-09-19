@@ -455,22 +455,6 @@
   margin-top: 0.25rem;
 }
 .contact__text { max-width: var(--measure-lead); font-size: var(--t-lead); }
-.contact__pending {
-  display: flex;
-  gap: 0.7rem;
-  align-items: flex-start;
-  max-width: var(--measure-text);
-  font-size: var(--t-small);
-  color: var(--slate-light);
-}
-.contact__pending .dot {
-  flex: 0 0 auto;
-  width: 6px;
-  height: 6px;
-  margin-top: 0.62em;
-  border-radius: 50%;
-  background: var(--accent-light);
-}
 .contact__actions {
   display: flex;
   flex-wrap: wrap;
@@ -505,6 +489,20 @@
 .contact__row dd { font-size: var(--t-small); color: var(--bone); text-align: right; }
 .contact__row--pending dd { color: var(--slate-light); font-style: italic; }
 
+/* Link de contato: o sublinhado fica sempre visível, porque em uma lista de
+   dados o que é clicável precisa se anunciar. */
+.contact__link {
+  color: var(--bone);
+  padding-bottom: 2px;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.contact__link:hover,
+.contact__link:focus-visible { color: var(--accent-light); }
+
 @media (max-width: 899px) {
   .contact__lead, .contact__data { grid-column: 1 / -1; }
 }
@@ -524,6 +522,9 @@
   align-items: flex-start;
   gap: var(--space-5) var(--space-7);
 }
+.site-footer__brand { display: grid; gap: var(--space-4); }
+.site-footer__wa { font-size: var(--t-small); }
+
 .site-footer__nav ul {
   display: flex;
   flex-wrap: wrap;

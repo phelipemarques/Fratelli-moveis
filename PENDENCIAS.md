@@ -26,17 +26,28 @@ Duas coisas precisam ser confirmadas antes de publicar:
 
 **O que pedir:** o arquivo original, em alta resolução, e a confirmação de origem.
 
-### 2. Canal de atendimento
+### 2. Conferir o número do WhatsApp
 
-Nenhum telefone, WhatsApp, e-mail ou endereço foi informado.
+O número informado foi **55 45 9842-3488**. Como `9842-3488` tem 8 dígitos e
+celular brasileiro tem 9 depois do DDD, sempre começando com 9, entendi que
+faltou um dígito e implementei como **(45) 99842-3488**, que é a única leitura
+que forma um celular válido.
 
-Na prévia, o botão principal do encerramento está **desativado** e marcado como
-"número a confirmar". Não há link falso em lugar nenhum da página. Um site
-institucional sem caminho de contato não cumpre a função, então isto bloqueia.
+No site ele está em três lugares: o botão do encerramento, a lista de dados do
+Contato e o rodapé. Todos apontam para o mesmo endereço, com a mensagem já
+escrita:
 
-**O que pedir:** número de WhatsApp com DDD, e-mail, endereço, horário de
-atendimento e perfil no Instagram.
-**Onde entra:** seção Contato (lista de dados e botão principal) e rodapé.
+```
+https://wa.me/5545998423488?text=Olá, vim pelo site da Fratelli Móveis e gostaria de mais informações.
+```
+
+**O que fazer:** mandar uma mensagem para o número pelo próprio site e ver se
+chega na Fratelli. Se o número for outro, é trocar as três ocorrências de
+`5545998423488` no `index.html` — inclusive a que está nos dados estruturados,
+no `<head>` — e as três de `(45) 99842-3488`.
+
+Os outros canais continuam pendentes: e-mail, endereço, horário de atendimento
+e Instagram aparecem marcados como "a confirmar", sem link.
 
 ### 3. Fotografias dos projetos
 

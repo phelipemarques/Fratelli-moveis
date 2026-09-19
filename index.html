@@ -20,6 +20,22 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Fratelli Móveis",
+  "description": "Móveis planejados sob medida em Cascavel, Paraná.",
+  "telephone": "+5545998423488",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cascavel",
+    "addressRegion": "PR",
+    "addressCountry": "BR"
+  }
+}
+</script>
 <link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/hero-wide-1280.webp" imagesrcset="assets/img/hero-wide-640.webp 640w, assets/img/hero-wide-960.webp 960w, assets/img/hero-wide-1280.webp 1280w" imagesizes="100vw" media="(min-width: 741px)">
@@ -388,16 +404,13 @@
             Conte em que ambiente você está pensando e quais medidas já tem em mãos.
             A partir daí combinamos a visita e o levantamento.
           </p>
-          <p class="contact__pending" data-reveal>
-            <span class="dot" aria-hidden="true"></span>
-            O canal de atendimento ainda não foi confirmado pela empresa. Nesta prévia,
-            o botão fica desativado em vez de apontar para um número provisório.
-          </p>
           <div class="contact__actions" data-reveal>
-            <button class="btn btn--solid" type="button" disabled aria-describedby="wa-pendente">
+            <a class="btn btn--solid" href="https://wa.me/5545998423488?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fratelli%20M%C3%B3veis%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+               target="_blank" rel="noopener"
+               aria-label="Chamar a Fratelli Móveis no WhatsApp, (45) 99842-3488. Abre em uma nova aba.">
               Chamar no WhatsApp
-            </button>
-            <span class="contact__flag" id="wa-pendente">número a confirmar</span>
+            </a>
+            <span class="contact__flag">(45) 99842-3488</span>
           </div>
         </div>
 
@@ -407,9 +420,9 @@
               <dt>Cidade</dt>
               <dd>Cascavel — Paraná</dd>
             </div>
-            <div class="contact__row contact__row--pending">
+            <div class="contact__row">
               <dt>WhatsApp</dt>
-              <dd>a confirmar</dd>
+              <dd><a class="contact__link" href="https://wa.me/5545998423488?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fratelli%20M%C3%B3veis%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">(45) 99842-3488</a></dd>
             </div>
             <div class="contact__row contact__row--pending">
               <dt>E-mail</dt>
@@ -437,10 +450,15 @@
 <footer class="site-footer" data-dark-zone>
   <div class="shell">
     <div class="site-footer__top">
-      <a class="wordmark wordmark--footer" href="#topo" aria-label="Fratelli Móveis, voltar ao topo">
-        <span class="wordmark__name">Fratelli</span>
-        <span class="wordmark__kind">Móveis</span>
-      </a>
+      <div class="site-footer__brand">
+        <a class="wordmark wordmark--footer" href="#topo" aria-label="Fratelli Móveis, voltar ao topo">
+          <span class="wordmark__name">Fratelli</span>
+          <span class="wordmark__kind">Móveis</span>
+        </a>
+        <p class="site-footer__wa">
+        <a class="contact__link" href="https://wa.me/5545998423488?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fratelli%20M%C3%B3veis%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">WhatsApp (45) 99842-3488</a>
+        </p>
+      </div>
       <nav class="site-footer__nav" aria-label="Navegação do rodapé">
         <ul>
           <li><a href="#projetos">Projetos</a></li>
@@ -454,7 +472,7 @@
     <div class="site-footer__bottom">
       <p class="site-footer__legal">© <span data-ano>2026</span> Fratelli Móveis · Cascavel, Paraná</p>
       <p class="site-footer__preview">
-        Prévia de aprovação. Fotografias, textos institucionais e canais de contato
+        Prévia de aprovação. As fotografias dos projetos e o texto institucional
         aguardam material definitivo da empresa.
       </p>
     </div>

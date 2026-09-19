@@ -4,8 +4,8 @@ Prévia de aprovação do site da Fratelli Móveis, marcenaria de móveis planej
 em Cascavel, Paraná.
 
 > **Status: prévia para aprovação.** O site ainda não está pronto para publicar.
-> As fotografias dos projetos e os canais de contato não foram fornecidos.
-> A lista completa está em [`PENDENCIAS.md`](PENDENCIAS.md).
+> As fotografias dos projetos não foram fornecidas e o número do WhatsApp
+> precisa ser conferido. A lista completa está em [`PENDENCIAS.md`](PENDENCIAS.md).
 
 ## Como rodar
 
@@ -56,6 +56,8 @@ QA.md                      o que foi testado, como, e o que não foi
 | Largura de um título ou parágrafo | `--measure-*` em `tokens.css` |
 | Duração e ritmo das animações | `assets/js/motion.js` |
 | Trocar uma reserva por foto real | veja abaixo |
+| Número do WhatsApp | `index.html` — 3 ocorrências de `5545998423488` e 3 de `(45) 99842-3488` |
+| Mensagem que abre no WhatsApp | `index.html` — o parâmetro `text=` dos links `wa.me` |
 
 ### Trocar uma reserva de imagem por uma fotografia
 
