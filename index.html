@@ -173,8 +173,8 @@
         <p class="eyebrow" data-reveal>Projetos</p>
         <h2 class="section-head__title" id="projetos-titulo" data-split>Ambientes desenhados peça a peça.</h2>
         <p class="section-head__note" data-reveal>
-          Três projetos como foram desenhados, em imagem 3D. As fotografias dos
-          ambientes já executados continuam pendentes de envio.
+          Cinco ambientes em imagem 3D, como foram desenhados, e uma fotografia de
+          obra entregue. As imagens de projeto vêm marcadas; a fotografia, não.
         </p>
       </header>
     </div>
@@ -248,17 +248,65 @@
       <article class="project project--offset" data-reveal-frame>
         <div class="project__meta project__meta--lead">
           <h3 class="project__title">Home office</h3>
-          <p class="project__line">Bancada contínua, apoio de monitor e passagem de fiação embutida.</p>
+          <p class="project__line">Bancada suspensa de parede a parede, painel de madeira com luz embutida e closet de vidro ao lado.</p>
         </div>
-        <div class="project__frame frame frame--32 frame--tone-bone" data-parallax-frame>
+        <div class="project__frame frame frame--32" data-parallax-frame>
           <div class="frame__veil" aria-hidden="true"></div>
-          <div class="frame__reserved" aria-hidden="true"></div>
-          <div class="frame__note">
-            <span class="reserved__index" aria-hidden="true">04</span>
-            <span class="reserved__tag">A fotografar · 3:2</span>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/projeto-home-office-640.webp 640w, assets/img/projeto-home-office-900.webp 900w, assets/img/projeto-home-office-1308.webp 1308w"
+                    sizes="(min-width: 900px) 56vw, 100vw">
+            <img class="frame__img" src="assets/img/projeto-home-office-1308.jpg" width="1308" height="872"
+                 loading="lazy" decoding="async"
+                 alt="Home office com bancada suspensa, painel de madeira iluminado por dentro e closet de portas de vidro ao lado.">
+          </picture>
+          <div class="frame__note frame__note--image">
+            <span class="reserved__tag">Projeto em 3D</span>
           </div>
         </div>
       </article>
+
+      <div class="project-pair">
+        <article class="project project--tall" data-reveal-frame>
+          <div class="project__frame frame frame--45" data-parallax-frame>
+            <div class="frame__veil" aria-hidden="true"></div>
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/img/projeto-painel-tv-480.webp 480w, assets/img/projeto-painel-tv-700.webp 700w, assets/img/projeto-painel-tv-1080.webp 1080w"
+                      sizes="(min-width: 900px) 40vw, 100vw">
+              <img class="frame__img" src="assets/img/projeto-painel-tv-1080.jpg" width="1080" height="1350"
+                   loading="lazy" decoding="async"
+                   alt="Painel de TV instalado, em lâmina de porcelanato branco com moldura laqueada, ripado lateral e bancada suspensa.">
+            </picture>
+          </div>
+          <div class="project__meta">
+            <h3 class="project__title">Painel de TV</h3>
+            <p class="project__line">Lâmina de porcelanato com moldura laqueada, ripado lateral e bancada suspensa.</p>
+          </div>
+        </article>
+
+        <article class="project project--short" data-reveal-frame>
+          <div class="project__frame frame frame--169" data-parallax-frame>
+            <div class="frame__veil" aria-hidden="true"></div>
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/img/projeto-sala-800.webp 800w, assets/img/projeto-sala-1200.webp 1200w, assets/img/projeto-sala-1554.webp 1554w"
+                      sizes="(min-width: 900px) 52vw, 100vw">
+              <img class="frame__img" src="assets/img/projeto-sala-1554.jpg" width="1554" height="874"
+                   loading="lazy" decoding="async"
+                   alt="Sala de estar em pé-direito duplo, com painel de TV em porcelanato, ripado de madeira e aparador suspenso.">
+            </picture>
+            <div class="frame__note frame__note--image">
+              <span class="reserved__tag">Projeto em 3D</span>
+            </div>
+          </div>
+          <div class="project__meta">
+            <h3 class="project__title">Sala de estar</h3>
+            <p class="project__line">Painel de TV em lâmina de porcelanato, ripado de madeira e aparador suspenso, no pé-direito duplo.</p>
+          </div>
+        </article>
+      </div>
+
     </div>
   </section>
 

@@ -27,6 +27,9 @@ SRC = os.path.join(ROOT, "tools", "source")
 OUT = os.path.join(ROOT, "assets", "img")
 
 # (arquivo, recorte (x0,y0,x1,y1), nome de saida, larguras, forca)
+#
+# Forca 0 significa so recortar e redimensionar, sem acabamento nenhum. E o caso
+# das imagens em que o cliente pediu para nao mexer na qualidade.
 # Os recortes tiram as bordas pretas do arquivo e ajustam para a proporcao que
 # o quadro usa na pagina, sem esticar a imagem.
 #
@@ -37,6 +40,11 @@ JOBS = [
     ("closet.jpg",     (60, 38, 1600, 904),  "projeto-closet",     [1540, 1200, 800], 0.55),  # 16:9
     ("dormitorio.jpg", (27, 0, 1061, 1293),  "projeto-dormitorio", [1034, 700, 480], 1.00),   # 4:5
     ("banheiro.jpg",   (288, 0, 1600, 875),  "projeto-banheiro",   [1312, 900, 640], 0.65),   # 3:2
+
+    # Entregues depois, com pedido de nao alterar a qualidade: so recorte.
+    ("home-office.jpg", (0, 0, 1308, 872),    "projeto-home-office", [1308, 900, 640], 0.0),   # 3:2
+    ("sala.jpg",        (23, 0, 1577, 874),   "projeto-sala",        [1554, 1200, 800], 0.0),  # 16:9
+    ("painel-tv.jpg",   (0, 60, 1080, 1410),  "projeto-painel-tv",   [1080, 700, 480], 0.0),   # 4:5
 ]
 
 
@@ -88,7 +96,8 @@ def main():
         img = cv2.imread(path)
         x0, y0, x1, y1 = box
         img = img[y0:y1, x0:x1]
-        img = restore(img, k)
+        if k > 0:
+            img = restore(img, k)
 
         pil = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
         native = pil.width

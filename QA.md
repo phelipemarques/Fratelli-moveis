@@ -288,10 +288,24 @@ Depois de corrigir o sinal, a mesma dose endureceu o closet: o tecido ganhou
 crosta e a madeira saturou. A força passou a ser regulada por imagem — 0,55 no
 closet, 0,65 no banheiro, 1,00 no dormitório.
 
+**Segunda remessa — só recorte.** Home office, sala de estar e painel de TV
+entraram sem acabamento nenhum, a pedido: apenas recorte para a proporção do
+quadro e redimensionamento. O script aceita força 0 exatamente para isso.
+
 **Verificado no navegador**, com a página rolada até o fim para vencer o
-carregamento adiado: as três carregam nas duas larguras, o navegador escolhe a
-variante certa (`closet-1540` no desktop, `closet-800` em 390 px), as três
-etiquetas "Projeto em 3D" aparecem e não há requisição falha.
+carregamento adiado: as **seis** carregam nas duas larguras, o navegador escolhe
+a variante certa (`closet-1540` no desktop, `closet-800` em 390 px;
+`painel-tv-1080` nos dois, por ser a única portrait) e não há requisição falha.
+Cinco levam a etiqueta "Projeto em 3D"; o painel de TV, que é fotografia, não
+leva nenhuma.
+
+**Um falso negativo corrigido no medidor.** Depois da segunda remessa a página
+cresceu e o amostrador de contraste passou a reprovar o rótulo "proposta a
+validar" em 3,84:1. Era artefato: ele checava a opacidade do próprio elemento,
+mas não a do bloco que ainda estava entrando, e media o texto contra um fundo
+que ainda não terminara a transição. Medido no estado assentado, o rótulo fica
+em 6,77:1 sobre `rgb(25,23,20)`. O amostrador passou a multiplicar a opacidade
+de todos os ancestrais.
 
 ## 13. Estados interativos
 

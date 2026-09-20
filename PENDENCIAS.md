@@ -51,43 +51,42 @@ e Instagram aparecem marcados como "a confirmar", sem link.
 
 ### 3. Fotografias dos ambientes executados
 
-Chegaram cinco imagens. Escolhi três e tratei; duas ficaram de fora:
+Chegaram dez imagens em duas remessas. Seis entraram na seção Projetos:
 
-| Arquivo | Ambiente | Decisão |
-| --- | --- | --- |
-| `2.jpg` | Dormitório | **entrou** — a melhor do conjunto, e o tom bege com verde conversa com a paleta do site |
-| `5.jpg` | Closet | **entrou** — mostra gaveteiro, cabideiro, prateleira e luz interna, que é o que interessa em planejados |
-| `3.jpg` | Banheiro | **entrou** — recortei a parede branca vazia da esquerda, que ocupava 40% do quadro |
-| `4.jpg` | Dormitório com painel de TV | ficou de fora — definição de 26,8 contra 103 da melhor, e dominante amarela |
-| `6.jpg` | Dormitório menor | ficou de fora — mesma moleza e um amarelo no painel que briga com a paleta |
+| Arquivo | Vira | Natureza | Tratamento |
+| --- | --- | --- | --- |
+| `2.jpg` | Dormitório | render 3D | acabamento, força 1,00 |
+| `5.jpg` | Closet | render 3D | acabamento, força 0,55 |
+| `3.jpg` | Banheiro | render 3D | acabamento, força 0,65 |
+| `9.jpg` | Home office | render 3D | só recorte |
+| `10.jpg` | Sala de estar | render 3D | só recorte |
+| `11.jpg` | Painel de TV | **fotografia** | só recorte |
 
-**As três são renderizações 3D, não fotografias de ambientes construídos.** É assim
-que elas aparecem no site: cada uma leva a etiqueta "Projeto em 3D", e o texto da
-seção diz que as fotos dos ambientes executados continuam pendentes. Se alguma
-delas for foto de obra pronta, me avise que eu corrijo a etiqueta.
+Quatro ficaram de fora: `4.jpg` e `6.jpg` por definição baixa (26,8 e 47,4 contra
+103 da melhor) e dominante amarela; `7.jpg` e `8.jpg` por repetirem closet e
+dormitório que já estão na página, sem acrescentar ângulo novo.
 
-O que fiz nelas foi acabamento, não invenção: limpeza de artefato de compressão,
-recuperação de definição no canal de luz, contraste local suave e uma curva em S
-discreta. Nenhuma foi ampliada além do tamanho original. O tratamento está em
-`tools/prepare-project-images.py`, com a força regulada por imagem — o closet é um
-render difuso, visto através do vidro das portas, e não aguenta a mesma dose do
-dormitório.
+**Um ponto para confirmar.** `11.jpg` é a única fotografia do conjunto: mostra um
+painel instalado, com sombra real, tomada, cabo aparente e a parede como ela é.
+Coloquei sem etiqueta, porque a etiqueta "Projeto em 3D" existe justamente para
+avisar quando a imagem é desenho. Numa seção de portfólio, uma foto sem aviso é
+lida como obra entregue pela Fratelli. **Se esse painel não for trabalho da
+Fratelli, me avise:** é retirar ou reetiquetar.
 
-**O que ainda falta:** fotografias dos ambientes depois de instalados. Render mostra
-a intenção; foto mostra o acabamento, a junção, a ferragem e o encaixe na parede
-real. É o que convence quem está decidindo.
+**O que ainda falta.** Cinco dos seis quadros são render. Render mostra a
+intenção; foto mostra o acabamento, a junção, a ferragem e o encaixe na parede
+real — é o que convence quem está decidindo. Vale fotografar os ambientes já
+instalados, como foi feito no painel de TV.
 
-| Onde | Estado | Formato |
-| --- | --- | --- |
-| Projetos 01 — Closet | render 3D no lugar | 16:9 |
-| Projetos 02 — Dormitório | render 3D no lugar | 4:5 |
-| Projetos 03 — Banheiro | render 3D no lugar | 3:2 |
-| Projetos 04 — Home office | **reservado** | 3:2 |
-| Ambientes 01–06 | **reservados**, um por categoria | 4:5 |
-| Sobre — oficina ou equipe | **reservado** | 4:5 |
+Quadros ainda reservados:
 
-Para as que faltam: JPG, lado maior a partir de 2400 px, sem marca d'água e sem
-texto gravado.
+| Onde | Formato |
+| --- | --- |
+| Ambientes 01–06 | 4:5, um por categoria |
+| Sobre — oficina ou equipe | 4:5 |
+
+Para essas: JPG, lado maior a partir de 2400 px, sem marca d'água e sem texto
+gravado.
 
 ---
 
