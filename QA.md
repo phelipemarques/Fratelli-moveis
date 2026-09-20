@@ -299,6 +299,19 @@ a variante certa (`closet-1540` no desktop, `closet-800` em 390 px;
 Cinco levam a etiqueta "Projeto em 3D"; o painel de TV, que é fotografia, não
 leva nenhuma.
 
+**Terceira remessa — faixa de ambientes.** Quatro cartões de 4:5 deixaram de ser
+reserva: cozinha (fotografia, 336 × 420 nativos), dormitório, closet e home
+office (render). Só recorte, sem acabamento. Verificado no navegador: os quatro
+carregam, exibidos a 352 px, sem requisição falha. Sala de estar e área gourmet
+seguem reservados.
+
+**Um bug meu, pego na revisão.** A primeira tentativa de trocar os cartões usou
+um padrão que ia do primeiro `<li>` até o título procurado, e o `re.sub` sem
+`count=1` trocou todos os quadros dentro desse trecho: os quatro ficaram com a
+imagem do home office. Peguei conferindo a contagem de etiquetas, que deu 9 em
+vez das 8 esperadas. Refeito cartão a cartão, com o padrão limitado a um `<li>`
+de cada vez, e conferido imagem por imagem antes de seguir.
+
 **Um falso negativo corrigido no medidor.** Depois da segunda remessa a página
 cresceu e o amostrador de contraste passou a reprovar o rótulo "proposta a
 validar" em 3,84:1. Era artefato: ele checava a opacidade do próprio elemento,

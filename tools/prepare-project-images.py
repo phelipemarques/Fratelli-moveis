@@ -45,6 +45,14 @@ JOBS = [
     ("home-office.jpg", (0, 0, 1308, 872),    "projeto-home-office", [1308, 900, 640], 0.0),   # 3:2
     ("sala.jpg",        (23, 0, 1577, 874),   "projeto-sala",        [1554, 1200, 800], 0.0),  # 16:9
     ("painel-tv.jpg",   (0, 60, 1080, 1410),  "projeto-painel-tv",   [1080, 700, 480], 0.0),   # 4:5
+
+    # Cartoes da faixa de ambientes: todos em 4:5, no maximo 352 px na tela.
+    ("amb-dormitorio.jpg",  (22, 0, 1058, 1295), "ambiente-dormitorio",  [1036, 704, 480], 0.0),
+    ("amb-closet.jpg",      (620, 0, 1359, 924), "ambiente-closet",      [739, 480], 0.0),
+    ("amb-home-office.jpg", (600, 0, 1302, 878), "ambiente-home-office", [702, 480], 0.0),
+    # Fotografia de cozinha executada. Chegou com 368x420: e o tamanho que ha,
+    # e nao ha o que ampliar. Serve para um cartao pequeno, nada maior.
+    ("amb-cozinha.jpg",     (0, 0, 336, 420),    "ambiente-cozinha",     [336], 0.0),
 ]
 
 

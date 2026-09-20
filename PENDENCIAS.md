@@ -51,42 +51,68 @@ e Instagram aparecem marcados como "a confirmar", sem link.
 
 ### 3. Fotografias dos ambientes executados
 
-Chegaram dez imagens em duas remessas. Seis entraram na seção Projetos:
+Chegaram quatorze imagens em três remessas. Dez estão no site.
 
-| Arquivo | Vira | Natureza | Tratamento |
-| --- | --- | --- | --- |
-| `2.jpg` | Dormitório | render 3D | acabamento, força 1,00 |
-| `5.jpg` | Closet | render 3D | acabamento, força 0,55 |
-| `3.jpg` | Banheiro | render 3D | acabamento, força 0,65 |
-| `9.jpg` | Home office | render 3D | só recorte |
-| `10.jpg` | Sala de estar | render 3D | só recorte |
-| `11.jpg` | Painel de TV | **fotografia** | só recorte |
+**Projetos — seis quadros, todos cheios:**
 
-Quatro ficaram de fora: `4.jpg` e `6.jpg` por definição baixa (26,8 e 47,4 contra
-103 da melhor) e dominante amarela; `7.jpg` e `8.jpg` por repetirem closet e
-dormitório que já estão na página, sem acrescentar ângulo novo.
+| Vira | Natureza | Tratamento |
+| --- | --- | --- |
+| Closet | render 3D | acabamento, força 0,55 |
+| Dormitório | render 3D | acabamento, força 1,00 |
+| Banheiro | render 3D | acabamento, força 0,65 |
+| Home office | render 3D | só recorte |
+| Sala de estar | render 3D | só recorte |
+| Painel de TV | **fotografia** | só recorte |
 
-**Um ponto para confirmar.** `11.jpg` é a única fotografia do conjunto: mostra um
-painel instalado, com sombra real, tomada, cabo aparente e a parede como ela é.
-Coloquei sem etiqueta, porque a etiqueta "Projeto em 3D" existe justamente para
-avisar quando a imagem é desenho. Numa seção de portfólio, uma foto sem aviso é
-lida como obra entregue pela Fratelli. **Se esse painel não for trabalho da
+**Ambientes — quatro de seis cheios:**
+
+| Vira | Natureza | Observação |
+| --- | --- | --- |
+| Cozinha | **fotografia** | ver o alerta de resolução abaixo |
+| Dormitório | render 3D | — |
+| Closet | render 3D | — |
+| Home office | render 3D | — |
+| Sala de estar | reservado | falta imagem |
+| Área gourmet | reservado | falta imagem |
+
+Fora: `4.jpg` e `6.jpg`, por definição baixa (26,8 e 47,4 contra 103 da melhor) e
+dominante amarela. `12.jpg` e `13.jpg` chegaram na terceira remessa e são byte a
+byte idênticas a `7.jpg` e `8.jpg` da segunda, que eu tinha deixado de fora por
+repetirem ambientes já presentes; com o pedido de incluir, foram para os cartões
+de Closet e Home office, onde o recorte vertical aproveita bem.
+
+### 3a. 🔴 Resolução da fotografia de cozinha
+
+A foto da cozinha chegou com **368 × 420 px**. É pequena para web.
+
+No site ela ocupa um cartão de 352 px de largura, que é o maior lugar onde ela
+cabe sem ampliar. Em tela comum fica correta. **Em celular e notebook de tela
+retina, que pedem o dobro de pixels, vai aparecer menos definida que as
+vizinhas.** Não ampliei: ampliar não recupera detalhe, só inventa pixel.
+
+**O que pedir:** o arquivo original dessa foto, direto da câmera ou do celular
+que a tirou, sem passar por aplicativo de mensagem — é a compressão do envio que
+costuma reduzir assim. Com 2000 px de lado maior ela serve inclusive para um
+quadro grande na seção Projetos, que é onde uma cozinha executada renderia mais.
+
+### 3b. Confirmar as duas fotografias
+
+Painel de TV e cozinha são as duas únicas fotografias do conjunto: sombra real,
+tomada, cabo aparente, parede como ela é. As outras oito são render.
+
+As duas estão **sem etiqueta**, porque a etiqueta "Projeto em 3D" existe para
+avisar quando a imagem é desenho. Numa seção de portfólio, foto sem aviso é lida
+como obra entregue pela Fratelli. **Se alguma das duas não for trabalho da
 Fratelli, me avise:** é retirar ou reetiquetar.
 
-**O que ainda falta.** Cinco dos seis quadros são render. Render mostra a
-intenção; foto mostra o acabamento, a junção, a ferragem e o encaixe na parede
-real — é o que convence quem está decidindo. Vale fotografar os ambientes já
-instalados, como foi feito no painel de TV.
+**O que ainda falta.** Oito das dez imagens são render. Render mostra a intenção;
+foto mostra o acabamento, a junção, a ferragem e o encaixe na parede real — é o
+que convence quem está decidindo. Vale fotografar os ambientes já instalados,
+como foi feito no painel de TV e na cozinha.
 
-Quadros ainda reservados:
-
-| Onde | Formato |
-| --- | --- |
-| Ambientes 01–06 | 4:5, um por categoria |
-| Sobre — oficina ou equipe | 4:5 |
-
-Para essas: JPG, lado maior a partir de 2400 px, sem marca d'água e sem texto
-gravado.
+Quadros ainda reservados: Ambientes 05 (sala de estar) e 06 (área gourmet), em
+4:5, e o de oficina ou equipe na seção Sobre. Para eles: JPG, lado maior a partir
+de 2400 px, sem marca d'água e sem texto gravado.
 
 ---
 
