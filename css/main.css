@@ -1,0 +1,1371 @@
+/* ============================================================
+   Fratelli Móveis — folha de estilo única
+   Cascavel, Paraná
+
+   Montada na ordem da cascata. Mexer fora de ordem quebra a herança
+   dos tokens, então mantenha os blocos onde estão.
+
+     1. TOKENS      cor, tipografia, medidas, espaçamento, movimento
+     2. BASE        @font-face, reset, tipografia, foco, utilitários
+     3. LAYOUT      composição de cada seção
+     4. COMPONENTES cabeçalho, menu, botões, quadros, rodapé
+     5. MOVIMENTO   estados iniciais e movimento reduzido
+   ============================================================ */
+
+
+/* ############################################################
+   1. TOKENS
+   ############################################################ */
+
+/* ============================================================
+   Fratelli Móveis — tokens
+   Todo valor reutilizado do projeto nasce aqui.
+   ============================================================ */
+
+:root {
+  /* ---------- Cor ----------
+     Base: off-white quente e carvão quente. O âmbar entra em doses pequenas —
+     um fio, um marcador, um destaque — nunca como área. */
+  --bone:          #F4F1EC;
+  --bone-3:        #E2DBD0;
+
+  --ink:           #191714;
+  --ink-3:         #2D2923;
+
+  --slate:         #575047;            /* texto de apoio sobre fundo claro */
+  --slate-light:   #A79E92;            /* texto de apoio sobre fundo escuro */
+
+  --accent:        #B27A42;            /* fio, marcador, detalhe */
+  --accent-ink:    #8A5628;            /* destaque legível sobre fundo claro */
+  --accent-light:  #D9A268;            /* destaque legível sobre fundo escuro */
+
+  --hairline:      rgba(25, 23, 20, 0.14);
+  --hairline-light:rgba(244, 241, 236, 0.20);
+
+  /* ---------- Superfície corrente ----------
+     Cada faixa da página redefine este par; os componentes leem só daqui. */
+  --surface:       var(--bone);
+  --on-surface:    var(--ink);
+  --on-surface-2:  var(--slate);
+  --rule:          var(--hairline);
+  --accent-on:     var(--accent-ink);
+
+  /* ---------- Tipografia ---------- */
+  --font-display: 'Newsreader', 'Newsreader Fallback', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-text:    'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --t-display: clamp(2.6rem, 1.40rem + 5.40vw, 6rem);
+  --t-h2:      clamp(2.00rem, 1.20rem + 3.40vw, 4rem);
+  --t-h3:      clamp(1.25rem, 1.05rem + 0.90vw, 1.75rem);
+  --t-lead:    clamp(1.0625rem, 0.99rem + 0.52vw, 1.375rem);
+  --t-body:    clamp(1rem, 0.97rem + 0.18vw, 1.0625rem);
+  --t-small:   0.875rem;
+  --t-label:   0.75rem;
+
+  --lh-display: 1.02;
+  --lh-title:   1.08;
+  --lh-text:    1.62;
+
+  --ls-display: -0.022em;
+  --ls-title:   -0.015em;
+  --ls-label:   0.16em;
+
+  /* ---------- Medidas de linha ----------
+     Aplicadas ao elemento de texto, nunca ao contêiner que também
+     carrega descrição e botões. `em` mantém a contagem de caracteres
+     estável em qualquer tamanho de tela. */
+  --measure-hero:  min(100%, 9.6em);
+  --measure-title: min(100%, 12em);
+  --measure-lead:  min(100%, 27em);
+  --measure-text:  min(100%, 33em);
+
+  /* ---------- Grid e ritmo ---------- */
+  --shell-max: 82.5rem;
+  --gutter:    clamp(1.25rem, 4.6vw, 5rem);
+  --section-y: clamp(4.5rem, 9vw, 10rem);
+  --header-h:  clamp(62px, 6.2vw, 84px);
+
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  /* ---------- Movimento ---------- */
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:   0.22s;
+  --dur:        0.42s;
+}
+
+/* Faixa escura: só troca o par de superfície. Nenhum componente sabe a cor. */
+.band-dark,
+.contact,
+.site-footer {
+  --surface:      var(--ink);
+  --on-surface:   var(--bone);
+  --on-surface-2: var(--slate-light);
+  --rule:         var(--hairline-light);
+  --accent-on:    var(--accent-light);
+}
+
+
+/* ############################################################
+   2. BASE
+   ############################################################ */
+
+/* ============================================================
+   Fratelli Móveis — fontes, reset e tipografia base
+   ============================================================ */
+
+/* ---------- Fontes locais ----------
+   Newsreader e Inter, ambas sob SIL Open Font License 1.1.
+   Arquivos variáveis servidos do próprio projeto: sem requisição externa. */
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url('../assets/fonts/newsreader-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url('../assets/fonts/newsreader-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+                 U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('../assets/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('../assets/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+                 U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Métricas aproximadas das fontes de sistema usadas enquanto as definitivas
+   carregam. Reduz o salto de layout na troca. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 107.12%;
+  ascent-override: 90.49%;
+  descent-override: 22.56%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Newsreader Fallback';
+  src: local('Times New Roman'), local('Liberation Serif'), local('Georgia');
+  size-adjust: 103%;
+  ascent-override: 92%;
+  descent-override: 26%;
+  line-gap-override: 0%;
+}
+
+/* ---------- Reset ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: var(--font-text);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: var(--lh-text);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, p, figure, dl, dd, ol, ul { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+img, picture, svg { display: block; max-width: 100%; }
+img { height: auto; }
+button { font: inherit; color: inherit; }
+
+/* ---------- Tipografia ---------- */
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: var(--ls-title);
+  line-height: var(--lh-title);
+  color: var(--on-surface);
+  /* Nenhuma palavra comum é partida no meio: a quebra acontece entre palavras. */
+  overflow-wrap: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+h1 {
+  font-size: var(--t-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+}
+h2 { font-size: var(--t-h2); }
+h3 { font-size: var(--t-h3); font-weight: 400; }
+
+p { color: var(--on-surface-2); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: #FFF8EF;
+}
+
+/* ---------- Utilitários ---------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.eyebrow {
+  font-family: var(--font-text);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--on-surface-2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.eyebrow--light { color: rgba(244, 241, 236, 0.90); }
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  padding: 0.7rem 1.1rem;
+  background: var(--ink);
+  color: var(--bone);
+  font-size: var(--t-small);
+  font-weight: 500;
+  transform: translateY(-160%);
+  transition: transform var(--dur) var(--ease-out);
+}
+/* Um atalho de conteúdo aparece em qualquer foco, inclusive por script. */
+.skip-link:focus,
+.skip-link:focus-visible { transform: translateY(0); }
+
+/* ---------- Foco ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--accent-on);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+.band-dark :focus-visible,
+.contact :focus-visible,
+.site-footer :focus-visible,
+.hero :focus-visible,
+.mobile-menu :focus-visible { outline-color: var(--accent-light); }
+
+/* Âncoras respeitam a altura do cabeçalho fixo. */
+[id] { scroll-margin-top: calc(var(--header-h) + 1.5rem); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+
+/* ############################################################
+   3. LAYOUT
+   ############################################################ */
+
+/* ============================================================
+   Fratelli Móveis — composição das seções
+   ============================================================ */
+
+/* ============================ HERO ============================ */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 34rem;
+  min-height: clamp(34rem, 100svh, 68rem);
+  padding-block: calc(var(--header-h) + var(--space-6)) clamp(1.1rem, 2.4vw, 2.25rem);
+  background: var(--ink);
+  overflow: clip;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 46%;
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Quatro camadas com funções distintas, em vez de um escurecimento geral:
+     a fotografia continua clara onde não há texto. */
+  background:
+    /* 1. faixa do cabeçalho */
+    linear-gradient(to bottom, rgba(16, 14, 12, 0.40) 0, rgba(16, 14, 12, 0) 150px),
+    /* 2. base, onde ficam a cidade e o aviso de rolagem */
+    linear-gradient(to top, rgba(16, 14, 12, 0.76) 0, rgba(16, 14, 12, 0.18) 28%,
+                            rgba(16, 14, 12, 0) 44%),
+    /* 3. sombra que abriga o texto, ancorada no canto inferior esquerdo —
+          é ela que segura o contraste do título sobre a bancada clara */
+    radial-gradient(112% 86% at -6% 82%,
+                    rgba(14, 12, 10, 0.95) 0%,  rgba(14, 12, 10, 0.89) 38%,
+                    rgba(14, 12, 10, 0.80) 58%, rgba(14, 12, 10, 0.54) 76%,
+                    rgba(14, 12, 10, 0.22) 90%, rgba(14, 12, 10, 0) 100%),
+    /* 4. queda suave da esquerda para a direita, para a cena ganhar profundidade */
+    linear-gradient(97deg, rgba(16, 14, 12, 0.40) 0%, rgba(16, 14, 12, 0.18) 40%,
+                           rgba(16, 14, 12, 0) 66%);
+}
+
+.hero__content,
+.hero__foot {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.hero__content {
+  align-self: end;
+  color: var(--bone);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Largura do título, do parágrafo e das ações controladas separadamente. */
+.hero__title {
+  max-width: var(--measure-hero);
+  margin-block: clamp(1.1rem, 2.2vw, 1.75rem) 0;
+  color: var(--bone);
+  font-weight: 250;
+  text-shadow: 0 1px 30px rgba(18, 16, 14, 0.35);
+}
+.hero__support {
+  max-width: min(100%, 24em);
+  margin-top: clamp(1.1rem, 2vw, 1.6rem);
+  font-size: var(--t-lead);
+  color: rgba(244, 241, 236, 0.88);
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-5);
+  margin-top: clamp(1.75rem, 3.2vw, 2.75rem);
+}
+/* Em telas estreitas as duas ações ficam do mesmo tamanho, empilhadas. */
+@media (max-width: 560px) {
+  .hero__actions { flex-direction: column; align-items: stretch; width: min(100%, 21rem); }
+}
+
+.hero__foot {
+  align-self: end;
+  margin-top: clamp(2rem, 5vw, 4rem);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(244, 241, 236, 0.18);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: rgba(244, 241, 236, 0.92);
+}
+.hero__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.hero__hint i {
+  display: block;
+  width: 3.25rem;
+  height: 1px;
+  background: rgba(244, 241, 236, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+.hero__hint i::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 40%;
+  background: var(--accent-light);
+  animation: hint-sweep 2.8s var(--ease-inout) infinite;
+}
+@keyframes hint-sweep {
+  0%, 12%   { transform: translateX(-110%); }
+  60%, 100% { transform: translateX(260%); }
+}
+
+@media (max-width: 740px) {
+  .hero__media img { object-position: 56% 50%; }
+  .hero__scrim {
+    /* No recorte vertical o texto ocupa a largura toda: a sombra sobe do pé
+       da imagem em vez de vir do lado. */
+    background:
+      linear-gradient(to bottom, rgba(16, 14, 12, 0.52) 0, rgba(16, 14, 12, 0) 170px),
+      linear-gradient(to top,    rgba(14, 12, 10, 0.94) 0%, rgba(14, 12, 10, 0.86) 28%,
+                                 rgba(14, 12, 10, 0.70) 48%, rgba(14, 12, 10, 0.44) 66%,
+                                 rgba(14, 12, 10, 0.16) 82%, rgba(14, 12, 10, 0) 94%);
+  }
+  .hero__foot { font-size: 0.6875rem; }
+  .hero__hint { display: none; }
+}
+
+/* Telas muito baixas: o hero não pode empurrar tudo para fora da dobra. */
+@media (max-height: 560px) and (min-width: 741px) {
+  .hero { min-height: 32rem; }
+  .hero__title { font-size: clamp(2rem, 4.4vw, 3rem); }
+  .hero__support { margin-top: 0.75rem; }
+  .hero__actions { margin-top: 1.25rem; }
+}
+
+/* ========================== ABERTURA ========================== */
+
+.opening { padding-block: var(--section-y) 0; }
+
+.opening__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--space-6);
+  row-gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: end;
+}
+.opening__grid > .eyebrow { grid-column: 1 / -1; }
+.opening__title {
+  grid-column: 1 / span 6;
+  max-width: var(--measure-title);
+}
+.opening__body {
+  grid-column: 8 / -1;
+  display: grid;
+  gap: var(--space-4);
+  padding-bottom: 0.35rem;
+}
+.opening__body p {
+  max-width: var(--measure-text);
+  font-size: var(--t-lead);
+}
+
+.band {
+  margin-top: clamp(3rem, 7vw, 6.5rem);
+  width: 100%;
+}
+.band__frame { aspect-ratio: 1280 / 410; }
+
+@media (max-width: 899px) {
+  .opening__title { grid-column: 1 / -1; }
+  .opening__body  { grid-column: 1 / -1; }
+  .band__frame { aspect-ratio: 16 / 10; }
+}
+
+/* ========================== PROJETOS ========================== */
+
+.projects { padding-block: var(--section-y); }
+
+.section-head {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+.section-head__title { max-width: var(--measure-title); }
+.section-head__note {
+  max-width: var(--measure-text);
+  font-size: var(--t-small);
+  color: var(--on-surface-2);
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--rule);
+}
+
+.project { display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
+.project + .project,
+.project + .project-pair,
+.project-pair + .project { margin-top: clamp(3rem, 8vw, 8rem); }
+
+.project__meta { display: grid; gap: 0.4rem; align-content: start; }
+.project__title { font-size: var(--t-h3); }
+.project__line {
+  max-width: min(100%, 30em);
+  font-size: var(--t-small);
+  color: var(--on-surface-2);
+}
+
+.project--wide .project__frame { width: 100%; }
+.project--wide .project__meta { max-width: min(100%, 34em); }
+
+.project-pair {
+  display: grid;
+  /* O quadro vertical (4:5) fica na coluna estreita e o horizontal (3:2) na
+     larga: invertido, o vertical vira um bloco alto demais. */
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(1.25rem, 3vw, 3rem);
+  align-items: start;
+}
+.project--short { margin-top: clamp(2.5rem, 9vw, 9rem); }
+
+.project--offset {
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--space-6);
+  row-gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: end;
+}
+.project--offset .project__meta--lead { grid-column: 1 / span 4; padding-bottom: 0.5rem; }
+.project--offset .project__frame      { grid-column: 6 / -1; }
+
+@media (max-width: 899px) {
+  .project-pair { grid-template-columns: 1fr; }
+  .project--short { margin-top: clamp(2.5rem, 8vw, 5rem); }
+  .project--offset { grid-template-columns: 1fr; }
+  .project--offset .project__meta--lead,
+  .project--offset .project__frame { grid-column: 1 / -1; }
+  .project--offset .project__meta--lead { order: 2; }
+  .project--offset .project__frame { order: 1; }
+}
+
+/* ===================== FAIXA ESCURA ===================== */
+
+.band-dark {
+  background: var(--surface);
+  color: var(--on-surface);
+}
+.section-head--inverted .section-head__title { color: var(--bone); }
+
+/* --------------------- Ambientes --------------------- */
+
+.rooms { padding-block: var(--section-y) clamp(2rem, 4vw, 3.5rem); }
+
+.rooms__viewport {
+  /* Base — e único comportamento sem JavaScript: rolagem horizontal nativa. */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  /* Sem isto o encaixe gruda o primeiro cartão na borda da tela e engole a
+     margem lateral da página. */
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(244, 241, 236, 0.28) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+.rooms__viewport::-webkit-scrollbar { height: 3px; }
+.rooms__viewport::-webkit-scrollbar-thumb { background: rgba(244, 241, 236, 0.28); }
+
+/* Com JavaScript e espaço suficiente, a faixa passa a ser conduzida pela
+   rolagem vertical; o transporte horizontal nativo é desligado. */
+.rooms__viewport.is-pinned {
+  overflow: hidden;
+  scroll-snap-type: none;
+}
+
+.rooms__track {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1.25rem, 2.6vw, 2.5rem);
+  padding-inline: var(--gutter);
+  padding-block: 0.5rem;
+  width: max-content;
+  max-width: none;
+}
+.rooms__track:focus-visible { outline-offset: -3px; }
+
+.room {
+  flex: 0 0 auto;
+  width: clamp(15rem, 27vw, 22rem);
+  scroll-snap-align: start;
+  display: grid;
+  gap: 0.75rem;
+  position: relative;
+}
+.room__index {
+  font-family: var(--font-text);
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  color: var(--accent-light);
+}
+.room__frame { width: 100%; }
+.room__title { font-size: var(--t-h3); color: var(--bone); margin-top: 0.35rem; }
+.room__line {
+  font-size: var(--t-small);
+  color: var(--slate-light);
+  max-width: min(100%, 28em);
+}
+
+.rooms__hint {
+  margin-top: var(--space-5);
+  padding-inline: var(--gutter);
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: rgba(244, 241, 236, 0.5);
+}
+.rooms__hint.is-hidden { display: none; }
+
+/* --------------------- Processo --------------------- */
+
+.process { padding-block: clamp(3rem, 7vw, 6rem) var(--section-y); }
+
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+.steps__rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--hairline-light);
+}
+.steps__rail-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--accent-light);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.step { position: relative; display: grid; gap: 0.55rem; align-content: start; }
+.step::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * clamp(2rem, 4vw, 3rem) - 3px);
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background: var(--ink);
+  border: 1px solid var(--slate-light);
+  border-radius: 50%;
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+.step.is-active::before { background: var(--accent-light); border-color: var(--accent-light); }
+
+.step__num {
+  font-family: var(--font-text);
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  color: var(--slate-light);
+  transition: color var(--dur) var(--ease-out);
+}
+.step.is-active .step__num { color: var(--accent-light); }
+.step__title { font-size: var(--t-h3); color: var(--bone); }
+.step__line { font-size: var(--t-small); color: var(--slate-light); }
+
+@media (max-width: 899px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 5vw, 2.5rem);
+    padding-top: 0;
+    padding-left: var(--space-6);
+  }
+  .steps__rail { top: 0.5rem; bottom: 0.5rem; left: 3px; right: auto; width: 1px; height: auto; }
+  .steps__rail-fill { width: 100%; height: 100%; transform: scaleY(0); transform-origin: top center; }
+  .step::before { top: 0.45rem; left: calc(-1 * var(--space-6)); }
+}
+
+/* ============================ SOBRE ============================ */
+
+.about {
+  background: var(--surface);
+  padding-block: var(--section-y);
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--space-6);
+  row-gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+.about__text { grid-column: 1 / span 7; display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
+.about__title { max-width: var(--measure-title); }
+.about__lead { max-width: var(--measure-lead); font-size: var(--t-lead); }
+.about__note {
+  max-width: var(--measure-text);
+  font-size: var(--t-small);
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--rule);
+}
+.about__aside { grid-column: 9 / -1; }
+
+@media (max-width: 899px) {
+  .about__text, .about__aside { grid-column: 1 / -1; }
+  .about__aside { max-width: 26rem; }
+}
+
+/* =========================== CONTATO =========================== */
+
+.contact {
+  background: var(--surface);
+  color: var(--on-surface);
+  padding-block: var(--section-y);
+}
+.contact__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--space-6);
+  row-gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: start;
+}
+.contact__lead { grid-column: 1 / span 7; display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
+
+/* O título do encerramento recebe largura própria e generosa: nunca empilha
+   uma palavra por linha. */
+.contact__title {
+  max-width: var(--measure-title);
+  color: var(--bone);
+  margin-top: 0.25rem;
+}
+.contact__text { max-width: var(--measure-lead); font-size: var(--t-lead); }
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  margin-top: var(--space-2);
+}
+.contact__flag {
+  font-size: var(--t-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate-light);
+}
+
+.contact__data { grid-column: 9 / -1; }
+.contact__list { display: grid; }
+.contact__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-block: 0.85rem;
+  border-top: 1px solid var(--rule);
+}
+.contact__row:last-child { border-bottom: 1px solid var(--rule); }
+.contact__row dt {
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--slate-light);
+}
+.contact__row dd { font-size: var(--t-small); color: var(--bone); text-align: right; }
+/* Link de contato: o sublinhado fica sempre visível, porque em uma lista de
+   dados o que é clicável precisa se anunciar. */
+.contact__link {
+  color: var(--bone);
+  padding-bottom: 2px;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.contact__link:hover,
+.contact__link:focus-visible { color: var(--accent-light); }
+
+@media (max-width: 899px) {
+  .contact__lead, .contact__data { grid-column: 1 / -1; }
+}
+
+.contact__map {
+  margin-top: clamp(3rem, 7vw, 5.5rem);
+  display: grid;
+  gap: var(--space-5);
+}
+.map-frame {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 21 / 7;
+  overflow: hidden;
+  background: var(--ink-3);
+  border: 1px solid var(--rule);
+}
+/* Bloco de endereço: é o que fica quando o mapa não pode entrar — extensão de
+   privacidade, rede que bloqueia o Google, modo offline. Nunca some da página,
+   só é coberto pelo mapa quando o mapa carrega. */
+.map-frame__place {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.4rem;
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: rgba(244, 241, 236, 0.62);
+}
+
+.map-frame iframe {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* Cinza e escurecido para assentar na paleta de carvão; volta ao normal
+     quando o visitante interage com ele. */
+  filter: grayscale(1) contrast(0.9) brightness(0.72);
+  transition: filter var(--dur) var(--ease-out);
+}
+.map-frame:hover iframe,
+.map-frame:focus-within iframe { filter: grayscale(0.15) contrast(1) brightness(1); }
+
+.contact__map-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.contact__map-address {
+  font-size: var(--t-small);
+  color: var(--slate-light);
+}
+
+@media (max-width: 740px) {
+  .map-frame { aspect-ratio: 4 / 3; }
+  .contact__map-foot .btn { width: 100%; }
+}
+
+/* =========================== RODAPÉ =========================== */
+
+.site-footer {
+  background: var(--surface);
+  color: var(--on-surface);
+  padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1.75rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--rule);
+}
+.site-footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-5) var(--space-7);
+}
+.site-footer__brand { display: grid; gap: var(--space-4); }
+.site-footer__address {
+  font-size: var(--t-small);
+  line-height: 1.5;
+  color: var(--slate-light);
+}
+.site-footer__contact {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  font-size: var(--t-small);
+}
+
+.site-footer__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+}
+.site-footer__nav a {
+  font-size: var(--t-small);
+  color: var(--slate-light);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.site-footer__nav a:hover,
+.site-footer__nav a:focus-visible { color: var(--bone); }
+
+.site-footer__bottom {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+}
+.site-footer__legal,
+.site-footer__preview {
+  font-size: var(--t-label);
+  letter-spacing: 0.04em;
+  color: var(--slate-light);
+}
+.site-footer__preview { max-width: min(100%, 44ch); text-align: right; }
+
+@media (max-width: 640px) {
+  .site-footer__preview { text-align: left; }
+}
+
+
+/* ############################################################
+   4. COMPONENTS
+   ############################################################ */
+
+/* ============================================================
+   Fratelli Móveis — componentes
+   ============================================================ */
+
+/* ========================== CABEÇALHO ========================== */
+
+.site-header {
+  position: fixed;
+  isolation: isolate;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--header-h);
+  background: rgba(244, 241, 236, 0.94);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink);
+  transition: background var(--dur) var(--ease-out),
+              color var(--dur) var(--ease-out),
+              border-color var(--dur) var(--ease-out);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .site-header { background: rgba(244, 241, 236, 0.80); backdrop-filter: blur(14px) saturate(1.3); }
+}
+
+/* Sobre a fotografia de abertura o cabeçalho fica sem fundo. O contraste do
+   texto vem do véu superior do hero, não da transparência. */
+html.at-top .site-header {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+  color: var(--bone);
+}
+/* Sem fundo, o contraste da marca e da navegação vem desta sombra própria,
+   que desce um pouco além da barra e não depende do que a foto mostra ali. */
+html.at-top .site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -3rem 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(16, 14, 12, 0.80) 0%,
+                                         rgba(16, 14, 12, 0.56) 56%,
+                                         rgba(16, 14, 12, 0) 100%);
+}
+
+.site-header__inner {
+  height: 100%;
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.wordmark {
+  display: grid;
+  gap: 0.18rem;
+  margin-right: auto;
+  line-height: 1;
+}
+.wordmark__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  font-weight: 350;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.wordmark__kind {
+  font-family: var(--font-text);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  opacity: 0.72;
+  padding-left: 0.2em;
+}
+.wordmark--footer { color: var(--bone); margin-right: 0; }
+
+.site-nav__list { display: flex; gap: clamp(1.25rem, 2.4vw, 2.5rem); }
+.site-nav a,
+.site-header__cta {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: currentColor;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.site-nav a::after,
+.site-header__cta::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--dur) var(--ease-out);
+}
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after,
+.site-header__cta:hover::after,
+.site-header__cta:focus-visible::after { transform: scaleX(1); transform-origin: left center; }
+
+.site-header__cta { margin-left: clamp(1.25rem, 2.4vw, 2.5rem); color: var(--accent-ink); }
+html.at-top .site-header__cta { color: var(--accent-light); }
+
+/* Sobre as faixas escuras o cabeçalho escurece junto. Uma barra clara e
+   opaca sobre o carvão cortaria a página ao meio. */
+html.on-dark:not(.at-top) .site-header {
+  background: rgba(22, 20, 17, 0.86);
+  border-bottom-color: rgba(244, 241, 236, 0.14);
+  color: var(--bone);
+}
+@supports (backdrop-filter: blur(1px)) {
+  html.on-dark:not(.at-top) .site-header {
+    background: rgba(22, 20, 17, 0.72);
+    backdrop-filter: blur(14px) saturate(1.2);
+  }
+}
+html.on-dark:not(.at-top) .site-header__cta { color: var(--accent-light); }
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: auto;
+  padding: 0.55rem 0.15rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: currentColor;
+}
+.menu-toggle__bars { display: grid; gap: 5px; width: 22px; }
+.menu-toggle__bars i {
+  display: block;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease-out), opacity var(--dur-fast) linear;
+}
+.menu-toggle[aria-expanded='true'] .menu-toggle__bars i:first-child { transform: translateY(3px) rotate(45deg); }
+.menu-toggle[aria-expanded='true'] .menu-toggle__bars i:last-child  { transform: translateY(-3px) rotate(-45deg); }
+
+@media (max-width: 899px) {
+  html.js .site-nav,
+  html.js .site-header__cta { display: none; }
+  html.js .menu-toggle { display: inline-flex; }
+}
+
+/* Sem JavaScript o menu sobreposto não teria como abrir. O cabeçalho deixa de
+   ser fixo e a navegação inteira fica visível, quebrando em várias linhas. */
+html.no-js .site-header { position: static; height: auto; }
+html.no-js .site-header__inner { height: auto; flex-wrap: wrap; padding-block: 1rem; row-gap: 0.75rem; }
+html.no-js .site-nav__list { flex-wrap: wrap; row-gap: 0.25rem; }
+html.no-js .site-header__cta { margin-left: 0; }
+html.no-js .hero { padding-block-start: var(--space-7); }
+html.no-js .mobile-menu,
+html.no-js .menu-toggle { display: none; }
+
+/* ======================= MENU EM CELULAR ======================= */
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(20, 18, 16, 0.96);
+  color: var(--bone);
+  display: grid;
+  align-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease-out), visibility 0s linear var(--dur);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .mobile-menu { background: rgba(20, 18, 16, 0.88); backdrop-filter: blur(18px); }
+}
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--dur) var(--ease-out), visibility 0s linear 0s;
+}
+
+.mobile-menu__panel { padding: var(--header-h) var(--gutter) var(--space-7); }
+.mobile-menu__list { display: grid; gap: clamp(0.5rem, 2vw, 1rem); }
+.mobile-menu__list a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 9vw, 2.75rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--bone);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+.mobile-menu.is-open .mobile-menu__list a { opacity: 1; transform: none; }
+.mobile-menu__list li:nth-child(1) a { transition-delay: 0.06s; }
+.mobile-menu__list li:nth-child(2) a { transition-delay: 0.10s; }
+.mobile-menu__list li:nth-child(3) a { transition-delay: 0.14s; }
+.mobile-menu__list li:nth-child(4) a { transition-delay: 0.18s; }
+.mobile-menu__list li:nth-child(5) a { transition-delay: 0.22s; }
+
+.mobile-menu__idx {
+  font-family: var(--font-text);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--accent-light);
+}
+.mobile-menu__foot {
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--hairline-light);
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--slate-light);
+}
+
+body.is-locked { overflow: hidden; }
+
+/* =========================== BOTÕES =========================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font-family: var(--font-text);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  /* Preenchimento e cor de texto declarados em cada estado, para que nenhum
+     dos dois desapareça ao interagir. */
+  transition: background-color var(--dur) var(--ease-out),
+              color var(--dur) var(--ease-out),
+              border-color var(--dur) var(--ease-out);
+}
+
+.btn--solid {
+  background-color: var(--bone);
+  color: var(--ink);
+  border-color: var(--bone);
+}
+.btn--solid:hover,
+.btn--solid:focus-visible {
+  background-color: var(--accent-light);
+  color: var(--ink);
+  border-color: var(--accent-light);
+}
+.btn--solid:active { background-color: #C68F55; color: var(--ink); border-color: #C68F55; }
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--bone);
+  border-color: rgba(244, 241, 236, 0.45);
+}
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background-color: rgba(244, 241, 236, 0.14);
+  color: var(--bone);
+  border-color: var(--bone);
+}
+
+/* ==================== QUADROS DE IMAGEM ==================== */
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--bone-3);
+  width: 100%;
+}
+.band-dark .frame { background: var(--ink-3); }
+
+.frame--169 { aspect-ratio: 16 / 9; }
+.frame--32  { aspect-ratio: 3 / 2; }
+.frame--45  { aspect-ratio: 4 / 5; }
+
+.frame__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.frame > picture { position: absolute; inset: 0; }
+
+/* Véu de revelação: cobre o quadro e recolhe para baixo. Só transform. */
+.frame__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--surface);
+  transform: scaleY(0);
+  transform-origin: center bottom;
+  pointer-events: none;
+}
+
+/* Nota sobre a imagem: diz a natureza do que esta no quadro. Fica parada
+   enquanto o fundo acompanha a rolagem, senao sairia pela borda. */
+.frame__note {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: clamp(0.9rem, 2vw, 1.5rem);
+  pointer-events: none;
+}
+
+/* Obra entregue recebe o âmbar; projeto em 3D fica no branco neutro. A
+   diferença é pequena de propósito — informa sem virar selo comercial. */
+.reserved__tag--built { color: var(--accent-light); }
+
+.reserved__tag {
+  position: relative;
+  margin-top: auto;
+  padding: 0.34rem 0.6rem;
+  background: rgba(20, 18, 16, 0.78);
+  color: #F4F1EC;
+  font-family: var(--font-text);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Parallax interno: o preenchimento é maior que o quadro para ter folga. */
+html.motion [data-parallax-frame] > picture {
+  height: 116%;
+  top: -8%;
+  bottom: auto;
+}
+
+
+/* ############################################################
+   5. MOTION
+   ############################################################ */
+
+/* ============================================================
+   Fratelli Móveis — estados de movimento
+
+   Regra da casa: o estado final é o estado escrito no HTML e no CSS
+   base. Os estados iniciais abaixo só existem quando há JavaScript
+   (html.js) e o visitante não pediu menos movimento (html.motion).
+   Se o JavaScript falhar, a classe `motion` é removida e tudo volta
+   ao estado final — sem conteúdo preso, sem quadro coberto.
+   ============================================================ */
+
+html.motion [data-hero-el],
+html.motion [data-split],
+html.motion [data-reveal] { opacity: 0; }
+
+html.motion .hero__media picture { opacity: 0; }
+
+html.motion [data-reveal-frame] .frame__veil { transform: scaleY(1); }
+
+/* Linhas produzidas pelo divisor de títulos: cada uma é uma janela. */
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;   /* espaço para descendentes (ç, p, ç) não serem cortados */
+  margin-bottom: -0.06em;
+}
+.line__i { display: block; }
+
+/* Hero: a fotografia recebe o deslocamento de rolagem; o elemento interno
+   recebe a entrada. Dois alvos separados, sem transformações concorrentes. */
+.hero__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* A caixa da fotografia é maior que o hero e fica centrada na folga: assim o
+   deslocamento de rolagem nunca descobre a borda de cima nem a de baixo. */
+html.motion .hero__media {
+  top: -9%;
+  bottom: auto;
+  height: 118%;
+  will-change: transform;
+}
+
+/* O fio que varre sob o aviso de rolagem para quando o hero sai de vista. */
+.hero.is-offscreen .hero__hint i::after { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Mesmo que a classe `motion` tenha sido aplicada antes da preferência
+     mudar, nada aqui depende de rolagem nem se desloca. */
+  html [data-hero-el],
+  html [data-split],
+  html [data-reveal],
+  html .hero__media picture { opacity: 1 !important; transform: none !important; }
+  html [data-reveal-frame] .frame__veil { transform: scaleY(0) !important; }
+  html .line__i { transform: none !important; }
+  .hero__hint i::after { animation: none; transform: translateX(0); width: 100%; opacity: 0.5; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

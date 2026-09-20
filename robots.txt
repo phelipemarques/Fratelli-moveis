@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# DEPOIS DO DEPLOY: troque SEU-DOMINIO pelo endereço real do site.
+# Sem isso o Google não encontra o sitemap.
+Sitemap: https://SEU-DOMINIO/sitemap.xml

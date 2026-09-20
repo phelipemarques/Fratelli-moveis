@@ -3,9 +3,10 @@
 Prévia de aprovação do site da Fratelli Móveis, marcenaria de móveis planejados
 em Cascavel, Paraná.
 
-> **Status: pronto para revisão final.** A página não exibe mais nenhum aviso de
-> obra: tudo que está nela é dado confirmado. Faltam três ajustes de publicação
-> e uma definição sobre duas imagens. Ver [`PENDENCIAS.md`](PENDENCIAS.md).
+> **Status: pronto para publicar.** Estrutura de produção, indexação liberada.
+> Depois do primeiro deploy, três arquivos precisam da URL real — ver
+> "Depois do primeiro deploy" abaixo. Pendências de conteúdo em
+> [`PENDENCIAS.md`](PENDENCIAS.md).
 
 ## Como rodar
 
@@ -19,68 +20,76 @@ python3 -m http.server 8123
 # abra http://127.0.0.1:8123
 ```
 
-Qualquer servidor estático serve (`npx serve`, `php -S`, Live Server do VS Code).
-Abrir o `index.html` direto pelo sistema de arquivos também funciona, mas o
-`file://` bloqueia o carregamento das fontes em alguns navegadores — prefira o
-servidor local.
-
-## Versão em arquivo único
-
-Para abrir com dois cliques, mandar por e-mail ou hospedar sem levar pasta:
-
-```bash
-python3 tools/build-single-file.py
-# gera dist/fratelli-moveis.html (~640 KB)
-```
-
-Tudo entra embutido: estilos, scripts, fontes e imagens. O arquivo funciona
-offline e não faz nenhuma requisição externa. Três diferenças em relação ao
-site da pasta, todas deliberadas e anotadas no próprio script:
-
-- só o subconjunto latino das fontes, que cobre o português;
-- só as imagens em WebP, sem a reserva em JPEG;
-- uma variante de imagem por enquadramento, em vez do conjunto responsivo
-  completo, e sem `og:image`, que precisa de endereço público para funcionar.
-
-Para publicar de verdade, prefira a pasta: ela serve a imagem no tamanho certo
-para cada tela e tem a imagem de compartilhamento.
+Qualquer servidor estático serve: `npx serve`, `php -S`, Live Server do VS Code.
 
 ## Estrutura
 
 ```
-index.html                 página única, com todas as seções
-assets/css/
-  tokens.css               cor, tipografia, medidas, espaçamento, movimento
-  base.css                 @font-face, reset, tipografia base, foco, utilitários
-  layout.css               composição de cada seção
-  components.css           cabeçalho, menu, botões, quadros de imagem, rodapé
-  motion.css               estados iniciais de animação e movimento reduzido
-assets/js/
-  nav.js                   cabeçalho, menu em celular, rede de segurança
-  motion.js                linha do tempo de abertura e cenas de rolagem
-assets/vendor/             GSAP 3.13 + ScrollTrigger (licença padrão, sem custo)
+index.html                 a página
+404.html                   página de erro, no mesmo sistema visual
+robots.txt                 libera a indexação, aponta o sitemap
+sitemap.xml                uma URL: a home
+_headers                   cache do Netlify (assets por um ano, HTML sempre revalidado)
+
+css/main.css               toda a folha de estilo, na ordem da cascata
+js/main.js                 GSAP + ScrollTrigger + o código do site
+
 assets/fonts/              Newsreader e Inter, variáveis, SIL OFL 1.1
-assets/img/                imagens geradas por tools/prepare-images.py
-dist/                      versão em arquivo único (gerada)
+assets/images/             as 62 imagens que a página usa
+
 tools/
-  prepare-images.py        prepara as imagens da abertura
-  prepare-project-images.py  prepara as imagens dos projetos
-  build-single-file.py     gera a versão em arquivo único
-  source/1.jpg             material original enviado pelo cliente
+  prepare-images.py        gera as imagens da abertura
+  prepare-project-images.py  gera as imagens dos projetos
+  make-zip.py              monta o pacote do Netlify
+  source/                  os arquivos originais enviados pelo cliente
+
 PENDENCIAS.md              o que falta pedir à empresa
 QA.md                      o que foi testado, como, e o que não foi
 ```
 
-## Onde editar o quê
+O `css/main.css` traz os cinco blocos na ordem em que precisam ser lidos —
+tokens, base, layout, componentes, movimento — cada um com uma faixa de
+comentário. Trocar a ordem quebra a herança dos tokens.
+
+O `js/main.js` tem duas metades. A primeira é a biblioteca de animação, que
+não se edita. Procure pela faixa `CÓDIGO DO SITE` para achar onde começa a
+parte editável.
+
+## Publicar no Netlify
+
+```bash
+python3 tools/make-zip.py
+```
+
+Gera `fratelli-moveis-netlify.zip` com apenas os arquivos que o site usa.
+Arraste o ZIP em <https://app.netlify.com/drop>. Não precisa de conta para
+o primeiro teste.
+
+### Depois do primeiro deploy
+
+O Netlify devolve um endereço, algo como `nome-aleatorio.netlify.app`. Com ele
+em mãos, três lugares precisam do endereço real:
+
+1. **`index.html`** — descomente as três linhas marcadas com
+   `<!-- DEPOIS DO DEPLOY:` e troque `SEU-DOMINIO`. São o `canonical`, o
+   `og:url` e o `og:image`. Sem o `og:image` absoluto, o link compartilhado no
+   WhatsApp sai sem imagem.
+2. **`robots.txt`** — troque `SEU-DOMINIO` na linha `Sitemap:`.
+3. **`sitemap.xml`** — troque `SEU-DOMINIO` na tag `<loc>`.
+
+Gere o ZIP de novo e publique. Se depois vier um domínio próprio, repita a
+troca nos mesmos três lugares.
+
+## Onde editar o quê## Onde editar o quê
 
 | Quero mudar | Arquivo |
 | --- | --- |
-| Cores, tamanhos de texto, espaçamentos | `assets/css/tokens.css` |
+| Cores, tamanhos de texto, espaçamentos | bloco `1. TOKENS` em `css/main.css` |')
 | Textos, seções, ordem da página | `index.html` |
-| Largura de um título ou parágrafo | `--measure-*` em `tokens.css` |
-| Duração e ritmo das animações | `assets/js/motion.js` |
+| Largura de um título ou parágrafo | `--measure-*`, no bloco `1. TOKENS` |
+| Duração e ritmo das animações | `js/main.js`, depois da faixa `CÓDIGO DO SITE` |
 | Trocar uma reserva por foto real | veja abaixo |
-| Número do WhatsApp | `index.html` — 3 ocorrências de `5545998423488` e 3 de `(45) 99842-3488` |
+| Número do WhatsApp | `index.html` e `404.html` |
 | Mensagem que abre no WhatsApp | `index.html` — o parâmetro `text=` dos links `wa.me` |
 
 ### Trocar ou acrescentar uma imagem

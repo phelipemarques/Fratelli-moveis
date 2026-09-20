@@ -21,7 +21,7 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "tools", "source", "1.jpg")
-OUT = os.path.join(ROOT, "assets", "img")
+OUT = os.path.join(ROOT, "assets", "images")
 
 # Caixas que contem texto de interface gravado na captura (x0, y0, x1, y1).
 UI_BOXES = [

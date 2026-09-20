@@ -7,22 +7,26 @@
 <meta name="description" content="Móveis planejados sob medida em Cascavel, Paraná. A Fratelli desenvolve projetos para cozinhas, dormitórios, closets e outros ambientes pensados para cada espaço.">
 <meta name="theme-color" content="#F4F1EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#191714" media="(prefers-color-scheme: dark)">
-<!-- PRODUÇÃO: apagar a linha abaixo ao publicar no domínio oficial. -->
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Fratelli Móveis">
 <meta property="og:title" content="Fratelli Móveis | Móveis Planejados em Cascavel — PR">
 <meta property="og:description" content="Móveis planejados sob medida em Cascavel, Paraná. A Fratelli desenvolve projetos para cozinhas, dormitórios, closets e outros ambientes pensados para cada espaço.">
-<!-- PRODUÇÃO: trocar por URL absoluta (https://dominio/assets/img/og-cover.jpg).
-     Caminho relativo não é resolvido pelos robôs do WhatsApp e das redes. -->
-<meta property="og:image" content="assets/img/og-cover.jpg">
+<!-- DEPOIS DO DEPLOY: as três linhas abaixo precisam da URL real do site.
+     Descomente e troque SEU-DOMINIO pelo endereço que o Netlify devolver
+     (ex.: fratelli-moveis.netlify.app) ou pelo domínio próprio. Sem isso o
+     link compartilhado no WhatsApp sai sem imagem e o Google não sabe qual
+     é o endereço canônico da página. -->
+<!-- <link rel="canonical" href="https://SEU-DOMINIO/"> -->
+<!-- <meta property="og:url" content="https://SEU-DOMINIO/"> -->
+<!-- <meta property="og:image" content="https://SEU-DOMINIO/assets/images/og-cover.jpg"> -->
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 
 <script type="application/ld+json">
 {
@@ -43,13 +47,9 @@
 </script>
 <link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/img/hero-wide-1280.webp" imagesrcset="assets/img/hero-wide-640.webp 640w, assets/img/hero-wide-960.webp 960w, assets/img/hero-wide-1280.webp 1280w" imagesizes="100vw" media="(min-width: 741px)">
+<link rel="preload" as="image" href="assets/images/hero-wide-1280.webp" imagesrcset="assets/images/hero-wide-640.webp 640w, assets/images/hero-wide-960.webp 960w, assets/images/hero-wide-1280.webp 1280w" imagesizes="100vw" media="(min-width: 741px)">
 
-<link rel="stylesheet" href="assets/css/tokens.css">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/layout.css">
-<link rel="stylesheet" href="assets/css/components.css">
-<link rel="stylesheet" href="assets/css/motion.css">
+<link rel="stylesheet" href="/css/main.css">
 
 <script>
   /* Marca o documento antes da primeira pintura: os estados iniciais de
@@ -64,6 +64,13 @@
       }
     } catch (e) { /* sem matchMedia: segue sem animação de entrada */ }
     if (window.scrollY < 8) { el.classList.add('at-top'); }
+
+    /* Se o script principal não carregar, os estados iniciais das animações
+       ficariam presos e o conteúdo não apareceria. Esta rede é inline de
+       propósito: roda mesmo que /js/main.js falhe. */
+    window.setTimeout(function () {
+      if (!window.__fratelliMotion) { el.classList.remove('motion'); }
+    }, 2500);
   })();
 </script>
 </head>
@@ -116,12 +123,12 @@
     <div class="hero__media" data-hero-media>
       <picture>
         <source media="(max-width: 740px)" type="image/webp"
-                srcset="assets/img/hero-portrait-480.webp 480w, assets/img/hero-portrait-640.webp 640w" sizes="100vw">
+                srcset="assets/images/hero-portrait-480.webp 480w, assets/images/hero-portrait-640.webp 640w" sizes="100vw">
         <source media="(max-width: 740px)" type="image/jpeg"
-                srcset="assets/img/hero-portrait-480.jpg 480w, assets/img/hero-portrait-640.jpg 640w" sizes="100vw">
+                srcset="assets/images/hero-portrait-480.jpg 480w, assets/images/hero-portrait-640.jpg 640w" sizes="100vw">
         <source type="image/webp"
-                srcset="assets/img/hero-wide-640.webp 640w, assets/img/hero-wide-960.webp 960w, assets/img/hero-wide-1280.webp 1280w" sizes="100vw">
-        <img src="assets/img/hero-wide-1280.jpg" width="1280" height="960"
+                srcset="assets/images/hero-wide-640.webp 640w, assets/images/hero-wide-960.webp 960w, assets/images/hero-wide-1280.webp 1280w" sizes="100vw">
+        <img src="assets/images/hero-wide-1280.jpg" width="1280" height="960"
              alt="Cozinha ampla com ilha central em pedra, banquetas de madeira e painéis de marcenaria em tom nogueira."
              fetchpriority="high" decoding="async">
       </picture>
@@ -163,8 +170,8 @@
       <div class="band__frame frame" data-parallax-frame>
         <div class="frame__veil" aria-hidden="true"></div>
         <picture>
-          <source type="image/webp" srcset="assets/img/detail-band-640.webp 640w, assets/img/detail-band-960.webp 960w, assets/img/detail-band-1280.webp 1280w" sizes="100vw">
-          <img class="frame__img" src="assets/img/detail-band-1280.jpg" width="1280" height="410" loading="lazy" decoding="async"
+          <source type="image/webp" srcset="assets/images/detail-band-640.webp 640w, assets/images/detail-band-960.webp 960w, assets/images/detail-band-1280.webp 1280w" sizes="100vw">
+          <img class="frame__img" src="assets/images/detail-band-1280.jpg" width="1280" height="410" loading="lazy" decoding="async"
                alt="Vista aproximada da marcenaria superior da cozinha, com iluminação linear embutida sob os armários.">
         </picture>
       </div>
@@ -190,9 +197,9 @@
           <div class="frame__veil" aria-hidden="true"></div>
           <picture>
             <source type="image/webp"
-                    srcset="assets/img/projeto-closet-800.webp 800w, assets/img/projeto-closet-1200.webp 1200w, assets/img/projeto-closet-1540.webp 1540w"
+                    srcset="assets/images/projeto-closet-800.webp 800w, assets/images/projeto-closet-1200.webp 1200w, assets/images/projeto-closet-1540.webp 1540w"
                     sizes="(min-width: 900px) min(92vw, 1320px), 100vw">
-            <img class="frame__img" src="assets/img/projeto-closet-1540.jpg" width="1540" height="866"
+            <img class="frame__img" src="assets/images/projeto-closet-1540.jpg" width="1540" height="866"
                  loading="lazy" decoding="async"
                  alt="Closet com portas de vidro, cabideiros, gaveteiros e prateleiras iluminadas por dentro.">
           </picture>
@@ -212,9 +219,9 @@
             <div class="frame__veil" aria-hidden="true"></div>
             <picture>
               <source type="image/webp"
-                      srcset="assets/img/projeto-dormitorio-480.webp 480w, assets/img/projeto-dormitorio-700.webp 700w, assets/img/projeto-dormitorio-1034.webp 1034w"
+                      srcset="assets/images/projeto-dormitorio-480.webp 480w, assets/images/projeto-dormitorio-700.webp 700w, assets/images/projeto-dormitorio-1034.webp 1034w"
                       sizes="(min-width: 900px) 40vw, 100vw">
-              <img class="frame__img" src="assets/img/projeto-dormitorio-1034.jpg" width="1034" height="1293"
+              <img class="frame__img" src="assets/images/projeto-dormitorio-1034.jpg" width="1034" height="1293"
                    loading="lazy" decoding="async"
                    alt="Dormitório com painel curvo de madeira clara na cabeceira e criados-mudos de duas gavetas.">
             </picture>
@@ -233,9 +240,9 @@
             <div class="frame__veil" aria-hidden="true"></div>
             <picture>
               <source type="image/webp"
-                      srcset="assets/img/projeto-banheiro-640.webp 640w, assets/img/projeto-banheiro-900.webp 900w, assets/img/projeto-banheiro-1312.webp 1312w"
+                      srcset="assets/images/projeto-banheiro-640.webp 640w, assets/images/projeto-banheiro-900.webp 900w, assets/images/projeto-banheiro-1312.webp 1312w"
                       sizes="(min-width: 900px) 52vw, 100vw">
-              <img class="frame__img" src="assets/img/projeto-banheiro-1312.jpg" width="1312" height="875"
+              <img class="frame__img" src="assets/images/projeto-banheiro-1312.jpg" width="1312" height="875"
                    loading="lazy" decoding="async"
                    alt="Banheiro com parede ripada em madeira, bancada suspensa e espelho com iluminação embutida.">
             </picture>
@@ -259,9 +266,9 @@
           <div class="frame__veil" aria-hidden="true"></div>
           <picture>
             <source type="image/webp"
-                    srcset="assets/img/projeto-home-office-640.webp 640w, assets/img/projeto-home-office-900.webp 900w, assets/img/projeto-home-office-1308.webp 1308w"
+                    srcset="assets/images/projeto-home-office-640.webp 640w, assets/images/projeto-home-office-900.webp 900w, assets/images/projeto-home-office-1308.webp 1308w"
                     sizes="(min-width: 900px) 56vw, 100vw">
-            <img class="frame__img" src="assets/img/projeto-home-office-1308.jpg" width="1308" height="872"
+            <img class="frame__img" src="assets/images/projeto-home-office-1308.jpg" width="1308" height="872"
                  loading="lazy" decoding="async"
                  alt="Home office com bancada suspensa, painel de madeira iluminado por dentro e closet de portas de vidro ao lado.">
           </picture>
@@ -277,9 +284,9 @@
             <div class="frame__veil" aria-hidden="true"></div>
             <picture>
               <source type="image/webp"
-                      srcset="assets/img/projeto-painel-tv-480.webp 480w, assets/img/projeto-painel-tv-700.webp 700w, assets/img/projeto-painel-tv-1080.webp 1080w"
+                      srcset="assets/images/projeto-painel-tv-480.webp 480w, assets/images/projeto-painel-tv-700.webp 700w, assets/images/projeto-painel-tv-1080.webp 1080w"
                       sizes="(min-width: 900px) 40vw, 100vw">
-              <img class="frame__img" src="assets/img/projeto-painel-tv-1080.jpg" width="1080" height="1350"
+              <img class="frame__img" src="assets/images/projeto-painel-tv-1080.jpg" width="1080" height="1350"
                    loading="lazy" decoding="async"
                    alt="Painel de TV instalado, em lâmina de porcelanato branco com moldura laqueada, ripado lateral e bancada suspensa.">
             </picture>
@@ -298,9 +305,9 @@
             <div class="frame__veil" aria-hidden="true"></div>
             <picture>
               <source type="image/webp"
-                      srcset="assets/img/projeto-sala-800.webp 800w, assets/img/projeto-sala-1200.webp 1200w, assets/img/projeto-sala-1554.webp 1554w"
+                      srcset="assets/images/projeto-sala-800.webp 800w, assets/images/projeto-sala-1200.webp 1200w, assets/images/projeto-sala-1554.webp 1554w"
                       sizes="(min-width: 900px) 52vw, 100vw">
-              <img class="frame__img" src="assets/img/projeto-sala-1554.jpg" width="1554" height="874"
+              <img class="frame__img" src="assets/images/projeto-sala-1554.jpg" width="1554" height="874"
                    loading="lazy" decoding="async"
                    alt="Sala de estar em pé-direito duplo, com painel de TV em porcelanato, ripado de madeira e aparador suspenso.">
             </picture>
@@ -336,9 +343,9 @@
             <span class="room__index" aria-hidden="true">01</span>
             <div class="room__frame frame frame--45">
               <picture>
-                <source type="image/webp" srcset="assets/img/ambiente-cozinha-336.webp 336w"
+                <source type="image/webp" srcset="assets/images/ambiente-cozinha-336.webp 336w"
                         sizes="(min-width: 900px) 22rem, 15rem">
-                <img class="frame__img" src="assets/img/ambiente-cozinha-336.jpg" width="336" height="420"
+                <img class="frame__img" src="assets/images/ambiente-cozinha-336.jpg" width="336" height="420"
                      loading="lazy" decoding="async" alt="Cozinha instalada, com ilha de borda ripada curva, torre de armários e armário superior de vidro.">
               </picture>
               <div class="frame__note frame__note--image">
@@ -352,9 +359,9 @@
             <span class="room__index" aria-hidden="true">02</span>
             <div class="room__frame frame frame--45">
               <picture>
-                <source type="image/webp" srcset="assets/img/ambiente-dormitorio-480.webp 480w, assets/img/ambiente-dormitorio-704.webp 704w, assets/img/ambiente-dormitorio-1036.webp 1036w"
+                <source type="image/webp" srcset="assets/images/ambiente-dormitorio-480.webp 480w, assets/images/ambiente-dormitorio-704.webp 704w, assets/images/ambiente-dormitorio-1036.webp 1036w"
                         sizes="(min-width: 900px) 22rem, 15rem">
-                <img class="frame__img" src="assets/img/ambiente-dormitorio-1036.jpg" width="1036" height="1295"
+                <img class="frame__img" src="assets/images/ambiente-dormitorio-1036.jpg" width="1036" height="1295"
                      loading="lazy" decoding="async" alt="Dormitório com parede verde, painel de TV, aparador suspenso de gavetas e guarda-roupa de piso a teto.">
               </picture>
               <div class="frame__note frame__note--image">
@@ -368,9 +375,9 @@
             <span class="room__index" aria-hidden="true">03</span>
             <div class="room__frame frame frame--45">
               <picture>
-                <source type="image/webp" srcset="assets/img/ambiente-closet-480.webp 480w, assets/img/ambiente-closet-739.webp 739w"
+                <source type="image/webp" srcset="assets/images/ambiente-closet-480.webp 480w, assets/images/ambiente-closet-739.webp 739w"
                         sizes="(min-width: 900px) 22rem, 15rem">
-                <img class="frame__img" src="assets/img/ambiente-closet-739.jpg" width="739" height="924"
+                <img class="frame__img" src="assets/images/ambiente-closet-739.jpg" width="739" height="924"
                      loading="lazy" decoding="async" alt="Closet de portas de vidro fumê, com prateleiras, cabideiro e gaveteiro iluminados por dentro.">
               </picture>
               <div class="frame__note frame__note--image">
@@ -384,9 +391,9 @@
             <span class="room__index" aria-hidden="true">04</span>
             <div class="room__frame frame frame--45">
               <picture>
-                <source type="image/webp" srcset="assets/img/ambiente-home-office-480.webp 480w, assets/img/ambiente-home-office-702.webp 702w"
+                <source type="image/webp" srcset="assets/images/ambiente-home-office-480.webp 480w, assets/images/ambiente-home-office-702.webp 702w"
                         sizes="(min-width: 900px) 22rem, 15rem">
-                <img class="frame__img" src="assets/img/ambiente-home-office-702.jpg" width="702" height="878"
+                <img class="frame__img" src="assets/images/ambiente-home-office-702.jpg" width="702" height="878"
                      loading="lazy" decoding="async" alt="Home office com bancada suspensa, painel de madeira com luz embutida e closet ao lado.">
               </picture>
               <div class="frame__note frame__note--image">
@@ -400,9 +407,9 @@
             <span class="room__index" aria-hidden="true">05</span>
             <div class="room__frame frame frame--45">
               <picture>
-                <source type="image/webp" srcset="assets/img/ambiente-sala-480.webp 480w, assets/img/ambiente-sala-704.webp 704w, assets/img/ambiente-sala-819.webp 819w"
+                <source type="image/webp" srcset="assets/images/ambiente-sala-480.webp 480w, assets/images/ambiente-sala-704.webp 704w, assets/images/ambiente-sala-819.webp 819w"
                         sizes="(min-width: 900px) 22rem, 15rem">
-                <img class="frame__img" src="assets/img/ambiente-sala-819.jpg" width="819" height="1024"
+                <img class="frame__img" src="assets/images/ambiente-sala-819.jpg" width="819" height="1024"
                      loading="lazy" decoding="async" alt="Sala de estar com painel claro de parede a parede, nicho iluminado, ripado de madeira e aparador suspenso.">
               </picture>
               <div class="frame__note frame__note--image">
@@ -416,9 +423,9 @@
             <span class="room__index" aria-hidden="true">06</span>
             <div class="room__frame frame frame--45">
               <picture>
-                <source type="image/webp" srcset="assets/img/ambiente-gourmet-480.webp 480w, assets/img/ambiente-gourmet-704.webp 704w, assets/img/ambiente-gourmet-819.webp 819w"
+                <source type="image/webp" srcset="assets/images/ambiente-gourmet-480.webp 480w, assets/images/ambiente-gourmet-704.webp 704w, assets/images/ambiente-gourmet-819.webp 819w"
                         sizes="(min-width: 900px) 22rem, 15rem">
-                <img class="frame__img" src="assets/img/ambiente-gourmet-819.jpg" width="819" height="1024"
+                <img class="frame__img" src="assets/images/ambiente-gourmet-819.jpg" width="819" height="1024"
                      loading="lazy" decoding="async" alt="Área gourmet com ilha de borda ripada curva, churrasqueira embutida e abertura para o jardim.">
               </picture>
               <div class="frame__note frame__note--image">
@@ -489,9 +496,9 @@
             <div class="frame__veil" aria-hidden="true"></div>
             <picture>
               <source type="image/webp"
-                      srcset="assets/img/sobre-showroom-500.webp 500w, assets/img/sobre-showroom-748.webp 748w, assets/img/sobre-showroom-1003.webp 1003w"
+                      srcset="assets/images/sobre-showroom-500.webp 500w, assets/images/sobre-showroom-748.webp 748w, assets/images/sobre-showroom-1003.webp 1003w"
                       sizes="(min-width: 900px) 28vw, 100vw">
-              <img class="frame__img" src="assets/img/sobre-showroom-1003.jpg" width="1003" height="1254"
+              <img class="frame__img" src="assets/images/sobre-showroom-1003.jpg" width="1003" height="1254"
                    loading="lazy" decoding="async"
                    alt="Atendimento da Fratelli Móveis: mesas de trabalho, mostruário de acabamentos e a marca aplicada na parede.">
             </picture>
@@ -593,9 +600,6 @@
   </div>
 </footer>
 
-<script src="assets/vendor/gsap.min.js" defer onerror="document.documentElement.classList.remove('motion')"></script>
-<script src="assets/vendor/ScrollTrigger.min.js" defer onerror="document.documentElement.classList.remove('motion')"></script>
-<script src="assets/js/nav.js" defer></script>
-<script src="assets/js/motion.js" defer></script>
+<script src="/js/main.js" defer onerror="document.documentElement.classList.remove('motion')"></script>
 </body>
 </html>

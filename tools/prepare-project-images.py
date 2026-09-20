@@ -24,7 +24,7 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "tools", "source")
-OUT = os.path.join(ROOT, "assets", "img")
+OUT = os.path.join(ROOT, "assets", "images")
 
 # (arquivo, recorte (x0,y0,x1,y1), nome de saida, larguras, forca)
 #

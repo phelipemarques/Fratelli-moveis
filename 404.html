@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Página não encontrada | Fratelli Móveis</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/main.css">
+<style>
+  /* A página de erro usa o mesmo sistema do site; só precisa de uma
+     centralização que nenhuma seção do site pedia. */
+  .erro {
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    gap: clamp(1.25rem, 3vw, 2rem);
+    padding-block: var(--section-y);
+  }
+  .erro__codigo {
+    font-family: var(--font-text);
+    font-size: var(--t-label);
+    font-weight: 500;
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    color: var(--on-surface-2);
+  }
+  .erro__titulo { max-width: var(--measure-title); }
+  .erro__texto { max-width: var(--measure-lead); font-size: var(--t-lead); }
+  .erro__acoes { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-5); margin-top: var(--space-3); }
+  .erro .btn--solid { background-color: var(--ink); color: var(--bone); border-color: var(--ink); }
+  .erro .btn--solid:hover,
+  .erro .btn--solid:focus-visible { background-color: var(--accent-ink); color: var(--bone); border-color: var(--accent-ink); }
+  .erro .btn--ghost { color: var(--ink); border-color: var(--hairline); }
+  .erro .btn--ghost:hover,
+  .erro .btn--ghost:focus-visible { background-color: rgba(25, 23, 20, 0.06); color: var(--ink); border-color: var(--ink); }
+</style>
+</head>
+<body>
+<main class="erro shell">
+  <p class="erro__codigo">Erro 404</p>
+  <h1 class="erro__titulo">Esta página não existe.</h1>
+  <p class="erro__texto">
+    O endereço digitado não corresponde a nenhuma página do site. Volte ao
+    início para ver os projetos, ou fale com a gente pelo WhatsApp.
+  </p>
+  <div class="erro__acoes">
+    <a class="btn btn--solid" href="/">Voltar ao início</a>
+    <a class="btn btn--ghost" href="https://wa.me/5545998423488?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fratelli%20M%C3%B3veis%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+       target="_blank" rel="noopener">Chamar no WhatsApp</a>
+  </div>
+</main>
+</body>
+</html>
