@@ -314,34 +314,8 @@ body.is-locked { overflow: hidden; }
   pointer-events: none;
 }
 
-/* Reserva de fotografia: lugar guardado, com a proporção definida.
-   Não é uma cena inventada — é o espaço que a imagem real vai ocupar.
-
-   Duas camadas separadas de propósito: o fundo acompanha o deslocamento de
-   rolagem, a nota fica parada. Se as duas se movessem juntas, o número e a
-   etiqueta sairiam pela borda do quadro. */
-.frame__reserved {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(142deg, var(--rv-1) 0%, var(--rv-2) 56%, var(--rv-3) 100%);
-}
-.frame__reserved::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: transparent;
-}
-.band-dark .frame__reserved::before { background: rgba(20, 18, 16, 0.42); }
-/* Hachura fina, do vocabulário de desenho técnico: marca a área reservada
-   sem fingir textura de material. */
-.frame__reserved::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    135deg, var(--rv-hatch) 0 1px, transparent 1px 15px);
-}
-
+/* Nota sobre a imagem: diz a natureza do que esta no quadro. Fica parada
+   enquanto o fundo acompanha a rolagem, senao sairia pela borda. */
 .frame__note {
   position: absolute;
   inset: 0;
@@ -353,42 +327,7 @@ body.is-locked { overflow: hidden; }
   padding: clamp(0.9rem, 2vw, 1.5rem);
   pointer-events: none;
 }
-.frame__note::before {
-  content: '';
-  position: absolute;
-  inset: clamp(0.5rem, 1.1vw, 0.85rem);
-  border: 1px solid var(--rv-line);
-}
-/* Sobre fotografia a moldura interna nao tem funcao: ela marca area reservada.
-   Fica so a etiqueta, que diz a natureza da imagem. */
-.frame__note--image::before { display: none; }
 
-/* Tons das reservas. Ficam no quadro para que fundo e nota leiam do mesmo lugar. */
-.frame--tone-bone {
-  --rv-1: #E9E2D7; --rv-2: #DBD2C4; --rv-3: #CDC2B2;
-  --rv-ink: rgba(25, 23, 20, 0.32); --rv-line: rgba(25, 23, 20, 0.16); --rv-hatch: rgba(25, 23, 20, 0.05);
-}
-.frame--tone-clay {
-  --rv-1: #C6AD93; --rv-2: #AC9073; --rv-3: #957A5E;
-  --rv-ink: rgba(25, 23, 20, 0.34); --rv-line: rgba(25, 23, 20, 0.17); --rv-hatch: rgba(25, 23, 20, 0.055);
-}
-.frame--tone-stone {
-  --rv-1: #CAC5BC; --rv-2: #B4ADA2; --rv-3: #9F978B;
-  --rv-ink: rgba(25, 23, 20, 0.32); --rv-line: rgba(25, 23, 20, 0.16); --rv-hatch: rgba(25, 23, 20, 0.05);
-}
-.frame--tone-walnut {
-  --rv-1: #8D6A4A; --rv-2: #6F5036; --rv-3: #563C28;
-  --rv-ink: rgba(244, 241, 236, 0.44); --rv-line: rgba(244, 241, 236, 0.20); --rv-hatch: rgba(244, 241, 236, 0.055);
-}
-
-.reserved__index {
-  position: relative;
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 300;
-  line-height: 1;
-  color: var(--rv-ink);
-}
 .reserved__tag {
   position: relative;
   margin-top: auto;
@@ -403,8 +342,7 @@ body.is-locked { overflow: hidden; }
 }
 
 /* Parallax interno: o preenchimento é maior que o quadro para ter folga. */
-html.motion [data-parallax-frame] > picture,
-html.motion [data-parallax-frame] > .frame__reserved {
+html.motion [data-parallax-frame] > picture {
   height: 116%;
   top: -8%;
   bottom: auto;

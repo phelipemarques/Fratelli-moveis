@@ -49,70 +49,65 @@ no `<head>` — e as três de `(45) 99842-3488`.
 Os outros canais continuam pendentes: e-mail, endereço, horário de atendimento
 e Instagram aparecem marcados como "a confirmar", sem link.
 
-### 3. Fotografias dos ambientes executados
+### 3. 🔴 Duas imagens da última remessa são geradas por IA
 
-Chegaram quatorze imagens em três remessas. Dez estão no site.
+As que você chamou de sala de estar e área gourmet **não são fotografia nem
+render da Fratelli.** Elas foram geradas por inteligência artificial. O que me
+levou a isso:
 
-**Projetos — seis quadros, todos cheios:**
+- **A geometria não fecha.** Nas banquetas da área gourmet, as travessas não
+  formam quadro, a perna traseira da banqueta do meio não conecta em nada, e as
+  três banquetas — que deveriam ser o mesmo produto repetido — têm proporções
+  diferentes entre si. Em render 3D a banqueta é um bloco instanciado: sai
+  idêntica em toda cópia. Em foto, a física resolve sozinha.
+- **O tamanho.** 1536 × 1024 px exatos, medida padrão de saída de geradores de
+  imagem. Câmera e render não entregam nesse formato por acaso.
+- **O traço destoa.** Todas as outras que você enviou têm a cara de render de
+  marcenaria, com iluminação mais dura e materiais mais simples. Essas duas têm
+  acabamento de fotografia editorial.
 
-| Vira | Natureza | Tratamento |
-| --- | --- | --- |
-| Closet | render 3D | acabamento, força 0,55 |
-| Dormitório | render 3D | acabamento, força 1,00 |
-| Banheiro | render 3D | acabamento, força 0,65 |
-| Home office | render 3D | só recorte |
-| Sala de estar | render 3D | só recorte |
-| Painel de TV | **fotografia** | só recorte |
+**Por que isso importa.** Uma seção de portfólio diz ao visitante: isto é o que
+a Fratelli faz. Se a pessoa contrata esperando aquela cozinha e ela nunca
+existiu, o problema é da Fratelli. Há ainda a questão de licença, se as imagens
+vieram de algum banco ou do portfólio de outro estúdio.
 
-**Ambientes — quatro de seis cheios:**
+**O que fiz.** Coloquei as duas nos cartões que faltavam, como você pediu, mas
+com a etiqueta **"Imagem de referência"** — que é verdade seja qual for a
+origem, e não atribui a obra à Fratelli.
 
-| Vira | Natureza | Observação |
-| --- | --- | --- |
-| Cozinha | **fotografia** | ver o alerta de resolução abaixo |
-| Dormitório | render 3D | — |
-| Closet | render 3D | — |
-| Home office | render 3D | — |
-| Sala de estar | reservado | falta imagem |
-| Área gourmet | reservado | falta imagem |
+**O que preciso de você, em uma linha:** essas duas imagens são da Fratelli?
 
-Fora: `4.jpg` e `6.jpg`, por definição baixa (26,8 e 47,4 contra 103 da melhor) e
-dominante amarela. `12.jpg` e `13.jpg` chegaram na terceira remessa e são byte a
-byte idênticas a `7.jpg` e `8.jpg` da segunda, que eu tinha deixado de fora por
-repetirem ambientes já presentes; com o pedido de incluir, foram para os cartões
-de Closet e Home office, onde o recorte vertical aproveita bem.
+- Se a Fratelli as gerou para apresentar uma proposta, troco a etiqueta.
+- Se vieram de outro lugar, o certo é tirar. Eu tiro e os dois cartões voltam a
+  ser reserva até chegar imagem própria.
 
-### 3a. 🔴 Resolução da fotografia de cozinha
+### 3a. As três fotografias reais
 
-A foto da cozinha chegou com **368 × 420 px**. É pequena para web.
+Painel de TV, cozinha e o atendimento da Fratelli são as únicas fotografias do
+conjunto. Vão sem etiqueta, porque a etiqueta existe para avisar quando a imagem
+é desenho. **Se alguma não for trabalho da Fratelli, me avise.**
 
-No site ela ocupa um cartão de 352 px de largura, que é o maior lugar onde ela
-cabe sem ampliar. Em tela comum fica correta. **Em celular e notebook de tela
-retina, que pedem o dobro de pixels, vai aparecer menos definida que as
-vizinhas.** Não ampliei: ampliar não recupera detalhe, só inventa pixel.
+A foto do atendimento fechou o quadro da seção Sobre e mostra a marca aplicada
+na parede, com o lema **"Estilo, Satisfação e Bom Gosto"**. Esse lema não está
+escrito em nenhum texto do site. Se a empresa quiser usá-lo, é só dizer onde.
 
-**O que pedir:** o arquivo original dessa foto, direto da câmera ou do celular
-que a tirou, sem passar por aplicativo de mensagem — é a compressão do envio que
-costuma reduzir assim. Com 2000 px de lado maior ela serve inclusive para um
-quadro grande na seção Projetos, que é onde uma cozinha executada renderia mais.
+### 3b. 🔴 Resolução da fotografia de cozinha
 
-### 3b. Confirmar as duas fotografias
+Chegou com **368 × 420 px**. Ocupa o maior lugar onde cabe sem ampliar, um cartão
+de 352 px. Em tela retina vai aparecer menos definida que as vizinhas. Não
+ampliei: ampliar não recupera detalhe.
 
-Painel de TV e cozinha são as duas únicas fotografias do conjunto: sombra real,
-tomada, cabo aparente, parede como ela é. As outras oito são render.
+**O que pedir:** o arquivo original, direto da câmera ou do celular, sem passar
+por aplicativo de mensagem — é a compressão do envio que encolhe assim.
 
-As duas estão **sem etiqueta**, porque a etiqueta "Projeto em 3D" existe para
-avisar quando a imagem é desenho. Numa seção de portfólio, foto sem aviso é lida
-como obra entregue pela Fratelli. **Se alguma das duas não for trabalho da
-Fratelli, me avise:** é retirar ou reetiquetar.
+### 3c. O balanço das imagens
 
-**O que ainda falta.** Oito das dez imagens são render. Render mostra a intenção;
-foto mostra o acabamento, a junção, a ferragem e o encaixe na parede real — é o
-que convence quem está decidindo. Vale fotografar os ambientes já instalados,
-como foi feito no painel de TV e na cozinha.
+Dezessete chegaram, treze estão no site: três fotografias, oito renders da
+Fratelli e duas imagens de referência. **Não há mais nenhum quadro reservado.**
 
-Quadros ainda reservados: Ambientes 05 (sala de estar) e 06 (área gourmet), em
-4:5, e o de oficina ou equipe na seção Sobre. Para eles: JPG, lado maior a partir
-de 2400 px, sem marca d'água e sem texto gravado.
+Oito das treze são render. Render mostra a intenção; foto mostra o acabamento, a
+junção, a ferragem e o encaixe na parede real — é o que convence quem está
+decidindo. Vale fotografar os ambientes já instalados.
 
 ---
 

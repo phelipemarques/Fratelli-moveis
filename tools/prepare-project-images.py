@@ -53,6 +53,12 @@ JOBS = [
     # Fotografia de cozinha executada. Chegou com 368x420: e o tamanho que ha,
     # e nao ha o que ampliar. Serve para um cartao pequeno, nada maior.
     ("amb-cozinha.jpg",     (0, 0, 336, 420),    "ambiente-cozinha",     [336], 0.0),
+
+    # Showroom da Fratelli: fotografia, com a placa da empresa na parede.
+    ("showroom.jpg",    (125, 0, 1128, 1254), "sobre-showroom",      [1003, 748, 500], 0.0),
+    # Imagens de referencia, nao documentacao de obra. Ver PENDENCIAS.md.
+    ("ref-sala.jpg",    (360, 0, 1179, 1024), "ambiente-sala",       [819, 704, 480], 0.0),
+    ("ref-gourmet.jpg", (380, 0, 1199, 1024), "ambiente-gourmet",    [819, 704, 480], 0.0),
 ]
 
 

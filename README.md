@@ -83,34 +83,12 @@ QA.md                      o que foi testado, como, e o que não foi
 | Número do WhatsApp | `index.html` — 3 ocorrências de `5545998423488` e 3 de `(45) 99842-3488` |
 | Mensagem que abre no WhatsApp | `index.html` — o parâmetro `text=` dos links `wa.me` |
 
-### Trocar uma reserva de imagem por uma fotografia
+### Trocar ou acrescentar uma imagem
 
-No `index.html`, cada quadro reservado tem esta forma:
-
-```html
-<div class="project__frame frame frame--169 frame--tone-bone" data-parallax-frame>
-  <div class="frame__veil" aria-hidden="true"></div>
-  <div class="frame__reserved" aria-hidden="true"></div>
-  <div class="frame__note"> … </div>
-</div>
-```
-
-Substitua as duas últimas `div` por um `<picture>`, mantendo a classe do quadro:
-
-```html
-<div class="project__frame frame frame--169" data-parallax-frame>
-  <div class="frame__veil" aria-hidden="true"></div>
-  <picture>
-    <source type="image/webp" srcset="assets/img/cozinha-640.webp 640w, assets/img/cozinha-1280.webp 1280w" sizes="100vw">
-    <img class="frame__img" src="assets/img/cozinha-1280.jpg" width="1280" height="720"
-         loading="lazy" decoding="async" alt="descreva o que aparece na foto">
-  </picture>
-</div>
-```
-
-A classe `frame--tone-*` pode sair junto: ela só define as cores da reserva.
-Mantenha `width` e `height` no `<img>` para a página não saltar durante o
-carregamento.
+Todos os quadros da página têm imagem; não há mais reservas. Para trocar uma,
+edite o `<picture>` correspondente no `index.html` e gere os arquivos com o
+script de imagens. Mantenha `width` e `height` no `<img>`: é o que impede a
+página de saltar durante o carregamento.
 
 ### Regerar as imagens
 

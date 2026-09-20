@@ -387,10 +387,15 @@
           </li>
           <li class="room" tabindex="0" data-room>
             <span class="room__index" aria-hidden="true">05</span>
-            <div class="room__frame frame frame--45 frame--tone-bone">
-              <div class="frame__reserved" aria-hidden="true"></div>
-              <div class="frame__note">
-                <span class="reserved__tag">A fotografar · 4:5</span>
+            <div class="room__frame frame frame--45">
+              <picture>
+                <source type="image/webp" srcset="assets/img/ambiente-sala-480.webp 480w, assets/img/ambiente-sala-704.webp 704w, assets/img/ambiente-sala-819.webp 819w"
+                        sizes="(min-width: 900px) 22rem, 15rem">
+                <img class="frame__img" src="assets/img/ambiente-sala-819.jpg" width="819" height="1024"
+                     loading="lazy" decoding="async" alt="Sala de estar com painel claro de parede a parede, nicho iluminado, ripado de madeira e aparador suspenso.">
+              </picture>
+              <div class="frame__note frame__note--image">
+                <span class="reserved__tag">Imagem de referência</span>
               </div>
             </div>
             <h3 class="room__title">Sala de estar</h3>
@@ -398,10 +403,15 @@
           </li>
           <li class="room" tabindex="0" data-room>
             <span class="room__index" aria-hidden="true">06</span>
-            <div class="room__frame frame frame--45 frame--tone-clay">
-              <div class="frame__reserved" aria-hidden="true"></div>
-              <div class="frame__note">
-                <span class="reserved__tag">A fotografar · 4:5</span>
+            <div class="room__frame frame frame--45">
+              <picture>
+                <source type="image/webp" srcset="assets/img/ambiente-gourmet-480.webp 480w, assets/img/ambiente-gourmet-704.webp 704w, assets/img/ambiente-gourmet-819.webp 819w"
+                        sizes="(min-width: 900px) 22rem, 15rem">
+                <img class="frame__img" src="assets/img/ambiente-gourmet-819.jpg" width="819" height="1024"
+                     loading="lazy" decoding="async" alt="Área gourmet com ilha de borda ripada curva, churrasqueira embutida e abertura para o jardim.">
+              </picture>
+              <div class="frame__note frame__note--image">
+                <span class="reserved__tag">Imagem de referência</span>
               </div>
             </div>
             <h3 class="room__title">Área gourmet</h3>
@@ -464,12 +474,16 @@
           </p>
         </div>
         <div class="about__aside" data-reveal-frame>
-          <div class="frame frame--45 frame--tone-clay" data-parallax-frame>
+          <div class="frame frame--45" data-parallax-frame>
             <div class="frame__veil" aria-hidden="true"></div>
-            <div class="frame__reserved" aria-hidden="true"></div>
-            <div class="frame__note">
-              <span class="reserved__tag">A fotografar · oficina ou equipe · 4:5</span>
-            </div>
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/img/sobre-showroom-500.webp 500w, assets/img/sobre-showroom-748.webp 748w, assets/img/sobre-showroom-1003.webp 1003w"
+                      sizes="(min-width: 900px) 28vw, 100vw">
+              <img class="frame__img" src="assets/img/sobre-showroom-1003.jpg" width="1003" height="1254"
+                   loading="lazy" decoding="async"
+                   alt="Atendimento da Fratelli Móveis: mesas de trabalho, mostruário de acabamentos e a marca aplicada na parede.">
+            </picture>
           </div>
         </div>
       </div>

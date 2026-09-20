@@ -6,9 +6,7 @@
 :root {
   /* ---------- Cor ----------
      Base: off-white quente e carvão quente. O âmbar entra em doses pequenas —
-     um fio, um marcador, um destaque — nunca como área.
-     Os tons de madeira e pedra das reservas de imagem ficam em
-     `components.css`, junto das classes `.frame--tone-*` que os usam. */
+     um fio, um marcador, um destaque — nunca como área. */
   --bone:          #F4F1EC;
   --bone-3:        #E2DBD0;
 

@@ -258,7 +258,7 @@
     /* ---------- Quadros: profundidade interna (só no desktop) ---------- */
     mm.add('(min-width: 900px)', function () {
       qa('[data-parallax-frame]').forEach(function (frame) {
-        var fill = frame.querySelector(':scope > picture, :scope > .frame__reserved');
+        var fill = frame.querySelector(':scope > picture');
         if (!fill) { return; }
         gsap.fromTo(fill, { yPercent: -5 }, {
           yPercent: 5, ease: 'none',

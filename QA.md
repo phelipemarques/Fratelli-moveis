@@ -312,6 +312,24 @@ imagem do home office. Peguei conferindo a contagem de etiquetas, que deu 9 em
 vez das 8 esperadas. Refeito cartão a cartão, com o padrão limitado a um `<li>`
 de cada vez, e conferido imagem por imagem antes de seguir.
 
+**Última remessa — os três quadros que faltavam.** Showroom na seção Sobre,
+sala de estar e área gourmet na faixa de ambientes. Não resta nenhuma reserva na
+página. Duas das três foram identificadas como geradas por IA e entraram com
+etiqueta própria; o raciocínio está em `PENDENCIAS.md`.
+
+**Limpeza depois do preenchimento.** Sem nenhuma reserva na página, as regras que
+as desenhavam ficaram órfãs. Saíram `.frame__reserved` e seus pseudoelementos,
+`.reserved__index`, a moldura interna de `.frame__note`, as quatro classes
+`.frame--tone-*` e os sete tokens `--rv-*`. O seletor de parallax no `motion.js`
+foi reduzido ao que sobrou. Conferido depois: nenhum token definido sem uso,
+nenhum usado sem definição, nenhum seletor de classe sem correspondência.
+
+**Carregamento adiado na faixa horizontal.** No celular, os dois últimos cartões
+de ambientes apareciam como não carregados. Não era defeito: eles ficam fora da
+tela na horizontal, e o navegador só busca a imagem quando a faixa é arrastada.
+Verificado arrastando a faixa até o fim — os seis carregam, na variante de
+480 px. O comportamento é o desejado: economiza dados de quem não rola a faixa.
+
 **Um falso negativo corrigido no medidor.** Depois da segunda remessa a página
 cresceu e o amostrador de contraste passou a reprovar o rótulo "proposta a
 validar" em 3,84:1. Era artefato: ele checava a opacidade do próprio elemento,
