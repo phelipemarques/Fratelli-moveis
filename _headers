@@ -1,16 +1,31 @@
 # Cabeçalhos do Netlify.
-# Imagens, fontes, CSS e JS têm nome estável e podem ficar no cache do
-# visitante por um ano. O HTML precisa ser sempre revalidado, senão uma
-# alteração publicada demora a aparecer.
+#
+# Política de cache por tipo de arquivo:
+#
+# - Fontes: arquivos fechados, que só mudariam numa troca de tipografia.
+#   Podem ficar um ano no cache, sem revalidar. Se um dia a família mudar,
+#   publique o .woff2 com outro nome — é o que invalida o cache aqui.
+# - CSS e JS: o nome é estável (main.css, main.js) e o conteúdo vai mudar
+#   em publicações futuras. Precisam ser revalidados a cada visita, senão
+#   o navegador continua servindo a versão antiga por tempo indefinido.
+# - Imagens: nome estável e substituição possível. Um dia de cache local
+#   e, depois disso, revalidação. Na troca de uma foto mantendo o nome, a
+#   nova aparece em no máximo 24 h; para efeito imediato, publique com
+#   outro nome de arquivo.
+# - HTML: sempre revalidado, senão uma alteração publicada demora a
+#   aparecer.
 
-/assets/*
+/assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
+
+/assets/images/*
+  Cache-Control: public, max-age=86400, must-revalidate
 
 /css/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=0, must-revalidate
 
 /js/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=0, must-revalidate
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate

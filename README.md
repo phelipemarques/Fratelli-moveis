@@ -29,7 +29,8 @@ index.html                 a página
 404.html                   página de erro, no mesmo sistema visual
 robots.txt                 libera a indexação, aponta o sitemap
 sitemap.xml                uma URL: a home
-_headers                   cache do Netlify (assets por um ano, HTML sempre revalidado)
+_headers                   cache do Netlify (fontes por um ano, imagens por um dia,
+                           CSS, JS e HTML sempre revalidados)
 
 css/main.css               toda a folha de estilo, na ordem da cascata
 js/main.js                 GSAP + ScrollTrigger + o código do site
