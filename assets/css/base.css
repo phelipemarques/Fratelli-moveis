@@ -153,17 +153,6 @@ a {
 }
 .eyebrow--light { color: rgba(244, 241, 236, 0.90); }
 
-.chip {
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  text-transform: none;
-  font-weight: 400;
-  padding: 0.25rem 0.55rem;
-  border: 1px solid var(--rule);
-  color: var(--on-surface-2);
-  white-space: nowrap;
-}
-
 .skip-link {
   position: fixed;
   top: 0.75rem;

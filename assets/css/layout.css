@@ -487,8 +487,6 @@
   color: var(--slate-light);
 }
 .contact__row dd { font-size: var(--t-small); color: var(--bone); text-align: right; }
-.contact__row--pending dd { color: var(--slate-light); font-style: italic; }
-
 /* Link de contato: o sublinhado fica sempre visível, porque em uma lista de
    dados o que é clicável precisa se anunciar. */
 .contact__link {
@@ -507,6 +505,68 @@
   .contact__lead, .contact__data { grid-column: 1 / -1; }
 }
 
+.contact__map {
+  margin-top: clamp(3rem, 7vw, 5.5rem);
+  display: grid;
+  gap: var(--space-5);
+}
+.map-frame {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 21 / 7;
+  overflow: hidden;
+  background: var(--ink-3);
+  border: 1px solid var(--rule);
+}
+/* Bloco de endereço: é o que fica quando o mapa não pode entrar — extensão de
+   privacidade, rede que bloqueia o Google, modo offline. Nunca some da página,
+   só é coberto pelo mapa quando o mapa carrega. */
+.map-frame__place {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.4rem;
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: rgba(244, 241, 236, 0.62);
+}
+
+.map-frame iframe {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* Cinza e escurecido para assentar na paleta de carvão; volta ao normal
+     quando o visitante interage com ele. */
+  filter: grayscale(1) contrast(0.9) brightness(0.72);
+  transition: filter var(--dur) var(--ease-out);
+}
+.map-frame:hover iframe,
+.map-frame:focus-within iframe { filter: grayscale(0.15) contrast(1) brightness(1); }
+
+.contact__map-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.contact__map-address {
+  font-size: var(--t-small);
+  color: var(--slate-light);
+}
+
+@media (max-width: 740px) {
+  .map-frame { aspect-ratio: 4 / 3; }
+  .contact__map-foot .btn { width: 100%; }
+}
+
 /* =========================== RODAPÉ =========================== */
 
 .site-footer {
@@ -523,7 +583,17 @@
   gap: var(--space-5) var(--space-7);
 }
 .site-footer__brand { display: grid; gap: var(--space-4); }
-.site-footer__wa { font-size: var(--t-small); }
+.site-footer__address {
+  font-size: var(--t-small);
+  line-height: 1.5;
+  color: var(--slate-light);
+}
+.site-footer__contact {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  font-size: var(--t-small);
+}
 
 .site-footer__nav ul {
   display: flex;

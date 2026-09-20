@@ -121,3 +121,40 @@
   if (wide.addEventListener) { wide.addEventListener('change', onWide); }
   else if (wide.addListener) { wide.addListener(onWide); }
 })();
+
+/* ============================================================
+   Mapa da seção Contato
+
+   O mapa só é montado depois que o Google responde. Extensão de privacidade,
+   rede corporativa que bloqueia terceiros e modo offline são comuns, e um
+   iframe bloqueado pinta a página de erro do navegador — um retângulo claro
+   no meio de uma seção escura. Sem resposta, fica o bloco de endereço, e o
+   botão "Como chegar" resolve do mesmo jeito.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var holder = document.querySelector('[data-map]');
+  if (!holder) { return; }
+
+  var resolvido = false;
+
+  function decidir(disponivel) {
+    if (resolvido) { return; }
+    resolvido = true;
+    if (!disponivel) { return; }
+
+    var frame = document.createElement('iframe');
+    frame.src = holder.getAttribute('data-map-src');
+    frame.title = holder.getAttribute('data-map-title');
+    frame.loading = 'lazy';
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+    holder.appendChild(frame);
+  }
+
+  var sonda = new Image();
+  sonda.onload = function () { decidir(true); };
+  sonda.onerror = function () { decidir(false); };
+  window.setTimeout(function () { decidir(false); }, 2500);
+  sonda.src = 'https://maps.gstatic.com/favicon.ico?' + Date.now();
+})();

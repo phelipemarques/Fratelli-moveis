@@ -3,17 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Fratelli Móveis — Móveis planejados em Cascavel, Paraná</title>
-<meta name="description" content="Fratelli Móveis trabalha com móveis planejados em Cascavel, no Paraná. Projetos sob medida para ambientes reais, desenhados na proporção de cada espaço.">
+<title>Fratelli Móveis | Móveis Planejados em Cascavel — PR</title>
+<meta name="description" content="Móveis planejados sob medida em Cascavel, Paraná. A Fratelli desenvolve projetos para cozinhas, dormitórios, closets e outros ambientes pensados para cada espaço.">
 <meta name="theme-color" content="#F4F1EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#191714" media="(prefers-color-scheme: dark)">
+<!-- PRODUÇÃO: apagar a linha abaixo ao publicar no domínio oficial. -->
 <meta name="robots" content="noindex, nofollow">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Fratelli Móveis">
-<meta property="og:title" content="Fratelli Móveis — Móveis planejados em Cascavel, Paraná">
-<meta property="og:description" content="Projetos sob medida para ambientes reais. Móveis planejados em Cascavel, no Paraná.">
+<meta property="og:title" content="Fratelli Móveis | Móveis Planejados em Cascavel — PR">
+<meta property="og:description" content="Móveis planejados sob medida em Cascavel, Paraná. A Fratelli desenvolve projetos para cozinhas, dormitórios, closets e outros ambientes pensados para cada espaço.">
+<!-- PRODUÇÃO: trocar por URL absoluta (https://dominio/assets/img/og-cover.jpg).
+     Caminho relativo não é resolvido pelos robôs do WhatsApp e das redes. -->
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJGcmF0ZWxsaSBNw7N2ZWlzIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiMxOTE3MTQiLz4KICA8ZyBmaWxsPSIjRjRGMUVDIj4KICAgIDxyZWN0IHg9IjIwIiB5PSIxNiIgd2lkdGg9IjUiIGhlaWdodD0iMzIiLz4KICAgIDxyZWN0IHg9IjIwIiB5PSIxNiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjUiLz4KICAgIDxyZWN0IHg9IjIwIiB5PSIyOSIgd2lkdGg9IjE3IiBoZWlnaHQ9IjUiLz4KICA8L2c+CiAgPHJlY3QgeD0iMjAiIHk9IjUyIiB3aWR0aD0iMjQiIGhlaWdodD0iMS41IiBmaWxsPSIjQjI3QTQyIi8+Cjwvc3ZnPgo=" type="image/svg+xml">
@@ -27,10 +30,12 @@
   "telephone": "+5545998423488",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "R. Cacequi, 492 — Canadá",
     "addressLocality": "Cascavel",
     "addressRegion": "PR",
     "addressCountry": "BR"
-  }
+  },
+  "sameAs": ["https://www.instagram.com/moveisplanejadosfratelli/"]
 }
 </script>
 
@@ -263,17 +268,6 @@ a {
   gap: 0.75rem;
 }
 .eyebrow--light { color: rgba(244, 241, 236, 0.90); }
-
-.chip {
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  text-transform: none;
-  font-weight: 400;
-  padding: 0.25rem 0.55rem;
-  border: 1px solid var(--rule);
-  color: var(--on-surface-2);
-  white-space: nowrap;
-}
 
 .skip-link {
   position: fixed;
@@ -802,8 +796,6 @@ a {
   color: var(--slate-light);
 }
 .contact__row dd { font-size: var(--t-small); color: var(--bone); text-align: right; }
-.contact__row--pending dd { color: var(--slate-light); font-style: italic; }
-
 /* Link de contato: o sublinhado fica sempre visível, porque em uma lista de
    dados o que é clicável precisa se anunciar. */
 .contact__link {
@@ -822,6 +814,68 @@ a {
   .contact__lead, .contact__data { grid-column: 1 / -1; }
 }
 
+.contact__map {
+  margin-top: clamp(3rem, 7vw, 5.5rem);
+  display: grid;
+  gap: var(--space-5);
+}
+.map-frame {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 21 / 7;
+  overflow: hidden;
+  background: var(--ink-3);
+  border: 1px solid var(--rule);
+}
+/* Bloco de endereço: é o que fica quando o mapa não pode entrar — extensão de
+   privacidade, rede que bloqueia o Google, modo offline. Nunca some da página,
+   só é coberto pelo mapa quando o mapa carrega. */
+.map-frame__place {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.4rem;
+  font-size: var(--t-label);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: rgba(244, 241, 236, 0.62);
+}
+
+.map-frame iframe {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* Cinza e escurecido para assentar na paleta de carvão; volta ao normal
+     quando o visitante interage com ele. */
+  filter: grayscale(1) contrast(0.9) brightness(0.72);
+  transition: filter var(--dur) var(--ease-out);
+}
+.map-frame:hover iframe,
+.map-frame:focus-within iframe { filter: grayscale(0.15) contrast(1) brightness(1); }
+
+.contact__map-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.contact__map-address {
+  font-size: var(--t-small);
+  color: var(--slate-light);
+}
+
+@media (max-width: 740px) {
+  .map-frame { aspect-ratio: 4 / 3; }
+  .contact__map-foot .btn { width: 100%; }
+}
+
 /* =========================== RODAPÉ =========================== */
 
 .site-footer {
@@ -838,7 +892,17 @@ a {
   gap: var(--space-5) var(--space-7);
 }
 .site-footer__brand { display: grid; gap: var(--space-4); }
-.site-footer__wa { font-size: var(--t-small); }
+.site-footer__address {
+  font-size: var(--t-small);
+  line-height: 1.5;
+  color: var(--slate-light);
+}
+.site-footer__contact {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  font-size: var(--t-small);
+}
 
 .site-footer__nav ul {
   display: flex;
@@ -1205,6 +1269,10 @@ body.is-locked { overflow: hidden; }
   pointer-events: none;
 }
 
+/* Obra entregue recebe o âmbar; projeto em 3D fica no branco neutro. A
+   diferença é pequena de propósito — informa sem virar selo comercial. */
+.reserved__tag--built { color: var(--accent-light); }
+
 .reserved__tag {
   position: relative;
   margin-top: auto;
@@ -1368,7 +1436,7 @@ html.motion .hero__media {
       <h1 class="hero__title" id="hero-titulo" data-split>Móveis planejados para o seu jeito de morar.</h1>
       <p class="hero__support" data-hero-el>Projetos sob medida para ambientes reais.</p>
       <div class="hero__actions" data-hero-el>
-        <a class="btn btn--solid" href="#contato">Fale com a Fratelli</a>
+        <a class="btn btn--solid" href="#contato">Conversar sobre meu projeto</a>
         <a class="btn btn--ghost" href="#projetos">Ver projetos</a>
       </div>
     </div>
@@ -1412,8 +1480,8 @@ html.motion .hero__media {
         <p class="eyebrow" data-reveal>Projetos</p>
         <h2 class="section-head__title" id="projetos-titulo" data-split>Ambientes desenhados peça a peça.</h2>
         <p class="section-head__note" data-reveal>
-          Cinco ambientes em imagem 3D, como foram desenhados, e uma fotografia de
-          obra entregue. As imagens de projeto vêm marcadas; a fotografia, não.
+          Do desenho em 3D ao ambiente instalado. Cada imagem indica em que
+          etapa foi registrada.
         </p>
       </header>
     </div>
@@ -1502,6 +1570,9 @@ html.motion .hero__media {
                    loading="lazy" decoding="async"
                    alt="Painel de TV instalado, em lâmina de porcelanato branco com moldura laqueada, ripado lateral e bancada suspensa.">
       </picture>
+            <div class="frame__note frame__note--image">
+              <span class="reserved__tag reserved__tag--built">Projeto executado</span>
+            </div>
           </div>
           <div class="project__meta">
             <h3 class="project__title">Painel de TV</h3>
@@ -1537,7 +1608,7 @@ html.motion .hero__media {
     <section class="rooms" id="ambientes" aria-labelledby="ambientes-titulo">
       <div class="shell">
         <header class="section-head section-head--inverted">
-          <p class="eyebrow eyebrow--light" data-reveal>Ambientes <span class="chip">proposta a validar</span></p>
+          <p class="eyebrow eyebrow--light" data-reveal>Ambientes</p>
           <h2 class="section-head__title" id="ambientes-titulo" data-split>Cada cômodo pede uma medida diferente.</h2>
         </header>
       </div>
@@ -1552,6 +1623,9 @@ html.motion .hero__media {
         <img class="frame__img" src="data:image/webp;base64,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" width="336" height="420"
                      loading="lazy" decoding="async" alt="Cozinha instalada, com ilha de borda ripada curva, torre de armários e armário superior de vidro.">
       </picture>
+              <div class="frame__note frame__note--image">
+                <span class="reserved__tag reserved__tag--built">Projeto executado</span>
+              </div>
             </div>
             <h3 class="room__title">Cozinha</h3>
             <p class="room__line">Bancada, torre quente e circulação livre entre a ilha e os armários.</p>
@@ -1634,7 +1708,7 @@ html.motion .hero__media {
     <section class="process" id="processo" aria-labelledby="processo-titulo">
       <div class="shell">
         <header class="section-head section-head--inverted">
-          <p class="eyebrow eyebrow--light" data-reveal>Processo <span class="chip">proposta a validar</span></p>
+          <p class="eyebrow eyebrow--light" data-reveal>Processo</p>
           <h2 class="section-head__title" id="processo-titulo" data-split>Da primeira medida à montagem.</h2>
         </header>
 
@@ -1678,8 +1752,8 @@ html.motion .hero__media {
             sob medida para o espaço de cada cliente.
           </p>
           <p class="about__note" data-reveal>
-            O texto institucional completo — história, equipe e estrutura — está pendente de
-            envio pela empresa. Nada aqui foi presumido.
+            Atendimento na R. Cacequi, 492 — Canadá, em Cascavel. O projeto começa
+            com uma conversa e a medição do espaço.
           </p>
         </div>
         <div class="about__aside" data-reveal-frame>
@@ -1727,23 +1801,30 @@ html.motion .hero__media {
               <dt>WhatsApp</dt>
               <dd><a class="contact__link" href="https://wa.me/5545998423488?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fratelli%20M%C3%B3veis%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">(45) 99842-3488</a></dd>
             </div>
-            <div class="contact__row contact__row--pending">
-              <dt>E-mail</dt>
-              <dd>a confirmar</dd>
-            </div>
-            <div class="contact__row contact__row--pending">
+            <div class="contact__row">
               <dt>Endereço</dt>
-              <dd>a confirmar</dd>
+              <dd><a class="contact__link" href="https://www.google.com/maps/dir/?api=1&destination=R.%20Cacequi%2C%20492%20-%20Canad%C3%A1%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener">R. Cacequi, 492 — Canadá</a></dd>
             </div>
-            <div class="contact__row contact__row--pending">
-              <dt>Atendimento</dt>
-              <dd>a confirmar</dd>
-            </div>
-            <div class="contact__row contact__row--pending">
+            <div class="contact__row">
               <dt>Instagram</dt>
-              <dd>a confirmar</dd>
+              <dd><a class="contact__link" href="https://www.instagram.com/moveisplanejadosfratelli/" target="_blank" rel="noopener">@moveisplanejadosfratelli</a></dd>
             </div>
           </dl>
+        </div>
+      </div>
+
+      <div class="contact__map" data-reveal>
+        <div class="map-frame" data-map
+             data-map-src="https://www.google.com/maps?q=R.%20Cacequi%2C%20492%20-%20Canad%C3%A1%2C%20Cascavel%20-%20PR&output=embed"
+             data-map-title="Mapa com a localização da Fratelli Móveis, na R. Cacequi, 492, bairro Canadá, em Cascavel">
+          <p class="map-frame__place">
+            <span>Cascavel</span>
+            <span>Paraná</span>
+          </p>
+        </div>
+        <div class="contact__map-foot">
+          <p class="contact__map-address">R. Cacequi, 492 — Canadá · Cascavel, Paraná</p>
+          <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&destination=R.%20Cacequi%2C%20492%20-%20Canad%C3%A1%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener">Como chegar</a>
         </div>
       </div>
     </div>
@@ -1758,9 +1839,12 @@ html.motion .hero__media {
           <span class="wordmark__name">Fratelli</span>
           <span class="wordmark__kind">Móveis</span>
         </a>
-        <p class="site-footer__wa">
+        <p class="site-footer__address">R. Cacequi, 492 — Canadá<br>Cascavel — Paraná</p>
+      </div>
+
+      <div class="site-footer__contact">
         <a class="contact__link" href="https://wa.me/5545998423488?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fratelli%20M%C3%B3veis%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">WhatsApp (45) 99842-3488</a>
-        </p>
+        <a class="contact__link" href="https://www.instagram.com/moveisplanejadosfratelli/" target="_blank" rel="noopener">@moveisplanejadosfratelli</a>
       </div>
       <nav class="site-footer__nav" aria-label="Navegação do rodapé">
         <ul>
@@ -1774,10 +1858,6 @@ html.motion .hero__media {
     </div>
     <div class="site-footer__bottom">
       <p class="site-footer__legal">© <span data-ano>2026</span> Fratelli Móveis · Cascavel, Paraná</p>
-      <p class="site-footer__preview">
-        Prévia de aprovação. As fotografias dos projetos e o texto institucional
-        aguardam material definitivo da empresa.
-      </p>
     </div>
   </div>
 </footer>
@@ -1929,6 +2009,43 @@ html.motion .hero__media {
   var onWide = function (event) { if (event.matches) { closeMenu(false); } };
   if (wide.addEventListener) { wide.addEventListener('change', onWide); }
   else if (wide.addListener) { wide.addListener(onWide); }
+})();
+
+/* ============================================================
+   Mapa da seção Contato
+
+   O mapa só é montado depois que o Google responde. Extensão de privacidade,
+   rede corporativa que bloqueia terceiros e modo offline são comuns, e um
+   iframe bloqueado pinta a página de erro do navegador — um retângulo claro
+   no meio de uma seção escura. Sem resposta, fica o bloco de endereço, e o
+   botão "Como chegar" resolve do mesmo jeito.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var holder = document.querySelector('[data-map]');
+  if (!holder) { return; }
+
+  var resolvido = false;
+
+  function decidir(disponivel) {
+    if (resolvido) { return; }
+    resolvido = true;
+    if (!disponivel) { return; }
+
+    var frame = document.createElement('iframe');
+    frame.src = holder.getAttribute('data-map-src');
+    frame.title = holder.getAttribute('data-map-title');
+    frame.loading = 'lazy';
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+    holder.appendChild(frame);
+  }
+
+  var sonda = new Image();
+  sonda.onload = function () { decidir(true); };
+  sonda.onerror = function () { decidir(false); };
+  window.setTimeout(function () { decidir(false); }, 2500);
+  sonda.src = 'https://maps.gstatic.com/favicon.ico?' + Date.now();
 })();
 </script>
 <script>

@@ -346,7 +346,68 @@ cor de texto são declarados separadamente em cada estado — nenhum dos dois
 desaparece ao interagir. O botão desativado do encerramento não tem estado de
 hover que sugira ação.
 
-## 14. Estrutura do documento
+## 14. Passe de refinamento — auditoria final
+
+Revisão seção a seção para tirar o que ainda denunciava protótipo, sem tocar em
+paleta, tipografia, estrutura, ritmo nem composição do hero.
+
+**Linguagem de obra, removida do site.** Oito ocorrências saíram: os dois
+rótulos "proposta a validar" em Ambientes e Processo, o aviso de texto
+institucional pendente em Sobre, quatro linhas "a confirmar" na lista de contato
+e o aviso de prévia no rodapé. Conferido por varredura: nenhuma ocorrência de
+"a confirmar", "pendente", "provisório", "placeholder", "a validar" ou "prévia"
+restou no `index.html`. Essas anotações continuam existindo, mas em
+`PENDENCIAS.md`, que é documento interno.
+
+**Campos sem dado foram ocultados, não preenchidos.** E-mail e horário de
+atendimento simplesmente não aparecem. Endereço, Instagram, WhatsApp e cidade
+estão com dado real e link ativo.
+
+**Ação principal do hero.** "Fale com a Fratelli" virou "Conversar sobre meu
+projeto". Medido nas três larguras: uma linha em 390 px (336 × 50) e em 1440 px
+(319 × 50); duas linhas em 320 px (280 × 71), onde o botão ocupa a largura toda
+e a altura continua confortável para o toque.
+
+**Etiquetas de projeto.** As duas fotografias de obra entregue passaram a levar
+"Projeto executado", em âmbar, contra o branco neutro do "Projeto em 3D". A
+seção fica preparada para mostrar desenho e resultado lado a lado quando chegar
+a foto de um ambiente que já tem render.
+
+**Mapa, e o que acontece quando ele não carrega.** A primeira versão usava um
+iframe direto. Neste ambiente o Google está bloqueado, e o iframe pintou a
+página de erro do navegador: um retângulo cinza claro rasgando a seção escura.
+Isso não é só do ambiente de teste — extensão de privacidade, rede corporativa
+e modo offline produzem o mesmo. Tentei corrigir com um véu em multiplicação;
+melhorou o tom mas o ícone de erro continuou lá.
+
+A solução foi inverter: o mapa só é inserido depois que uma sonda confirma que
+o Google responde. Sem resposta, fica um bloco de endereço na paleta do site, e
+o botão "Como chegar" resolve do mesmo jeito. Verificado nos dois caminhos —
+aqui a sonda falha e o bloco aparece; o iframe nunca chega a ser criado.
+
+**Contraste do bloco de endereço, corrigido.** Entrou a 3,94:1, abaixo do mínimo
+de 4,5:1 para texto normal. A opacidade subiu de 0,46 para 0,62 e ele passou a
+5,89:1.
+
+**Metadados.** Título e descrição reescritos. Dados estruturados ganharam
+`streetAddress` e `sameAs` com o Instagram oficial. Três linhas que precisam
+mudar na publicação — `robots`, `og:image` e canonical — estão marcadas no
+próprio HTML com comentário `<!-- PRODUÇÃO: ... -->` e detalhadas em
+`PENDENCIAS.md`.
+
+**Limpeza.** Saíram `.chip`, `.contact__row--pending` e `.site-footer__wa`, que
+ficaram sem uso. Conferido: nenhum token definido sem uso, nenhum usado sem
+definição.
+
+**Larguras verificadas neste passe:** 320, 360, 390, 430, 768, 1024, 1440, 1920
+e 1280 × 600. Rolagem horizontal acidental: **0 px em todas**. Contraste: 70
+amostras, nenhuma abaixo do mínimo. Funcionais: 32 checagens, nenhuma falha.
+
+**Um erro de console esperado.** Quando o host do mapa está inacessível, a sonda
+registra `ERR_TUNNEL_CONNECTION_FAILED` no console. É a detecção funcionando —
+o site trata o caso e segue. Com o Google acessível, a sonda carrega em silêncio.
+
+## 15. Estrutura do documento
 
 `lang="pt-BR"`. Um único `h1`. Hierarquia de títulos sem salto (h1 → h2 → h3).
 Marcos `header`, `main` e `footer` únicos; os três `nav` com rótulo próprio.
@@ -367,4 +428,5 @@ formulário.** O `viewport` não bloqueia o zoom. 31 elementos focáveis por tec
 | Impressão | Não há folha de estilo para impressão. |
 | Comportamento com a fotografia definitiva | Três quadros têm render; os outros seguem reservados. O ritmo final só pode ser avaliado com as fotos dos ambientes executados. |
 | Se o WhatsApp chega na Fratelli | O formato do link foi verificado; o destino real depende de mandar uma mensagem. Ver `PENDENCIAS.md`. |
+| Se o mapa do Google renderiza | O ambiente de teste bloqueia o Google. Verifiquei o caminho de falha, que é o que importa: o bloco de endereço aparece e o botão funciona. O mapa em si precisa ser visto numa rede sem bloqueio. |
 | Abertura do aplicativo do WhatsApp | O clique foi testado até o `href`. A troca para o aplicativo depende do sistema do visitante. |

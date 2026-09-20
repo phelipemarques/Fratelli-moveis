@@ -3,9 +3,9 @@
 Prévia de aprovação do site da Fratelli Móveis, marcenaria de móveis planejados
 em Cascavel, Paraná.
 
-> **Status: prévia para aprovação.** O site ainda não está pronto para publicar.
-> As fotografias dos projetos não foram fornecidas e o número do WhatsApp
-> precisa ser conferido. A lista completa está em [`PENDENCIAS.md`](PENDENCIAS.md).
+> **Status: pronto para revisão final.** A página não exibe mais nenhum aviso de
+> obra: tudo que está nela é dado confirmado. Faltam três ajustes de publicação
+> e uma definição sobre duas imagens. Ver [`PENDENCIAS.md`](PENDENCIAS.md).
 
 ## Como rodar
 
@@ -120,9 +120,15 @@ independentes: mexer em um não altera as imagens do outro.
 
 ## Publicação
 
-Ainda não autorizada. Quando for:
+Ainda não autorizada. Três linhas do `index.html` precisam mudar, todas
+marcadas no arquivo com o comentário `<!-- PRODUÇÃO: ... -->`:
 
-1. Resolver os itens marcados como bloqueio em `PENDENCIAS.md`.
-2. Remover `<meta name="robots" content="noindex, nofollow">` do `index.html`.
-3. Trocar o caminho relativo de `og:image` pela URL absoluta do domínio.
-4. Subir a pasta inteira em qualquer hospedagem estática.
+1. **Apagar** `<meta name="robots" content="noindex, nofollow">`. Sem isso o
+   site não aparece em busca nenhuma.
+2. **Trocar** o `og:image` relativo pela URL absoluta do domínio. Caminho
+   relativo faz o link compartilhado no WhatsApp sair sem imagem.
+3. **Acrescentar** `canonical`, `og:url` e a chave `url` nos dados
+   estruturados, com o domínio definitivo.
+
+Depois: subir a pasta inteira em qualquer hospedagem estática. O resto dos itens
+em aberto está em `PENDENCIAS.md`.

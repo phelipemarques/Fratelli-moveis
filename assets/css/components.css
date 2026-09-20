@@ -328,6 +328,10 @@ body.is-locked { overflow: hidden; }
   pointer-events: none;
 }
 
+/* Obra entregue recebe o âmbar; projeto em 3D fica no branco neutro. A
+   diferença é pequena de propósito — informa sem virar selo comercial. */
+.reserved__tag--built { color: var(--accent-light); }
+
 .reserved__tag {
   position: relative;
   margin-top: auto;
