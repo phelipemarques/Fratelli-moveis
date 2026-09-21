@@ -14,3 +14,6 @@ npm-debug.log*
 # Saída intermediária do preparo de imagens
 tools/source/*-restaurada.png
 fratelli-moveis-netlify.zip
+
+# Cache do Python nas ferramentas
+__pycache__/

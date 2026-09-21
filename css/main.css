@@ -757,6 +757,114 @@ a {
   .about__aside { max-width: 26rem; }
 }
 
+/* ========================= AVALIAÇÕES ========================= */
+
+/* As avaliações são capturas de tela: o conteúdo é uma imagem, não texto
+   desta folha. O que o CSS faz aqui é construir o ambiente ao redor —
+   cartão, fio, sombra e ritmo — para que a interface capturada pouse
+   dentro do sistema visual do site sem parecer colada por cima.
+
+   O cartão é branco, e não osso, porque a captura já traz o próprio
+   fundo branco: qualquer outro tom criaria uma emenda visível na borda
+   da imagem. */
+
+.reviews {
+  background: var(--surface);
+  padding-block: var(--section-y);
+}
+
+/* ---------- Nota geral ----------
+   Cinco estrelas cheias e o número. A quantidade total de avaliações não
+   aparece: só entra aqui o que está confirmado. */
+.reviews__score {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--t-small);
+  color: var(--on-surface-2);
+}
+.reviews__stars {
+  display: flex;
+  gap: 0.12rem;
+  color: var(--accent-on);
+}
+.reviews__stars svg {
+  display: block;
+  width: 0.95em;
+  height: 0.95em;
+  fill: currentColor;
+}
+.reviews__score b {
+  color: var(--on-surface);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Duas colunas equilibradas ----------
+   As capturas têm alturas muito diferentes: uma avaliação longa ocupa
+   quatro vezes a altura de uma curta. Um grid de 2 × 3 deixaria um vão
+   embaixo da coluna mais curta, então a distribuição é feita no momento
+   de gerar a página (tools/prepare-review-images.py), que reparte os
+   cartões entre as duas colunas pela altura real de cada imagem.
+   Resultado: duas colunas que terminam quase juntas, sem JavaScript e
+   sem multicol — que não convive bem com as transformações da entrada. */
+.reviews__cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(1.25rem, 2.6vw, 2.25rem);
+  align-items: start;
+}
+.reviews__col {
+  display: grid;
+  gap: clamp(1.25rem, 2.6vw, 2.25rem);
+  align-content: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- O cartão ----------
+   A entrada (opacidade e deslocamento) mora no <li>, que é quem carrega
+   data-reveal. O leve levantar do ponteiro mora no cartão de dentro.
+   Dois elementos separados: nunca duas transformações no mesmo alvo. */
+.review { margin: 0; }
+
+.review__card {
+  display: block;
+  margin: 0;
+  background: #FFFFFF;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: clamp(0.5rem, 1.4vw, 0.9rem);
+  box-shadow: 0 1px 2px rgba(25, 23, 20, 0.04),
+              0 14px 30px -20px rgba(25, 23, 20, 0.30);
+  transition: transform var(--dur) var(--ease-out),
+              box-shadow var(--dur) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .review__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1px 2px rgba(25, 23, 20, 0.05),
+                0 22px 44px -22px rgba(25, 23, 20, 0.34);
+  }
+}
+
+/* A captura ocupa a largura do cartão e guarda a própria proporção. Sem
+   object-fit e sem altura fixa: recortar aqui esconderia estrela, nome,
+   data ou um bloco de "Aspectos positivos". */
+.review__shot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Celular ----------
+   Uma coluna só. As duas listas viram uma sequência contínua. */
+@media (max-width: 767px) {
+  .reviews__cols { grid-template-columns: 1fr; row-gap: clamp(1.25rem, 4vw, 1.75rem); }
+}
+
 /* =========================== CONTATO =========================== */
 
 .contact {

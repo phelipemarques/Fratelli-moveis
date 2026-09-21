@@ -117,11 +117,38 @@ A foto do atendimento mostra, na parede, **"Estilo, Satisfação e Bom Gosto"**.
 Esse lema não está em nenhum texto do site. Se a empresa quiser usá-lo, é só
 dizer onde — abaixo da marca no rodapé é o lugar natural.
 
-### Avaliações de clientes
+### Avaliações de clientes — falta o arquivo de seis capturas
 
-Não há seção de prova social, porque não há avaliação real disponível. Não
-inventei nenhuma. Se a Fratelli tiver avaliações no Google ou no Instagram,
-elas podem virar uma seção curta entre Processo e Sobre, com nome e texto reais.
+A seção de avaliações está construída e verificada: o estilo está em
+`css/main.css` e o gerador em `tools/prepare-reviews.py`, que trata as
+capturas, monta o HTML e o insere entre Sobre e Contato.
+
+O que falta são as imagens. Cinco avaliações foram enviadas na conversa —
+Joseane Terraplanagem 2019, Wagner Santos, Maicon Costa, Paula Susana e
+Rafael Livinali — mas chegaram só como visualização, sem arquivo no
+projeto, e a sexta não foi enviada. O texto verbatim das cinco está
+registrado em `tools/prepare-reviews.py`, na tabela `AVALIACOES`, e é de
+lá que sai o `alt` de cada imagem.
+
+Para fechar:
+
+1. colocar as seis capturas em `tools/source/` com os nomes
+   `avaliacao-1` a `avaliacao-6` (png, jpg ou webp);
+2. acrescentar a sexta à tabela `AVALIACOES`, no formato das outras;
+3. `python3 tools/prepare-reviews.py`.
+
+Duas coisas continuam sem confirmação e por isso não aparecem no site:
+
+- **A plataforma.** As capturas têm a aparência das avaliações do Google
+  Meu Negócio, mas isso é leitura minha da interface, não confirmação da
+  empresa. O site diz "na avaliação dos clientes", sem citar o Google.
+- **O total de avaliações.** A nota 5,0 foi confirmada pela empresa e
+  aparece. Quantas avaliações existem ao todo, não — e por isso nenhum
+  número de total é exibido, nem entra `aggregateRating` nos dados
+  estruturados, que exige uma contagem verdadeira.
+
+As datas ficam dentro das capturas e são relativas ("3 anos atrás"), então
+envelhecem junto com a imagem, sem envelhecer sozinhas na tela.
 
 ### O mapa carrega conteúdo do Google
 
