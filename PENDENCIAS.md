@@ -117,25 +117,27 @@ A foto do atendimento mostra, na parede, **"Estilo, Satisfação e Bom Gosto"**.
 Esse lema não está em nenhum texto do site. Se a empresa quiser usá-lo, é só
 dizer onde — abaixo da marca no rodapé é o lugar natural.
 
-### Avaliações de clientes — falta o arquivo de seis capturas
+### Avaliações de clientes — falta a sexta captura
 
-A seção de avaliações está construída e verificada: o estilo está em
-`css/main.css` e o gerador em `tools/prepare-reviews.py`, que trata as
-capturas, monta o HTML e o insere entre Sobre e Contato.
+A seção está no ar com **cinco** avaliações: Maicon Costa, Paula Susana,
+Rafael Livinali, Wagner Santos e marcio batista.
 
-O que falta são as imagens. Cinco avaliações foram enviadas na conversa —
-Joseane Terraplanagem 2019, Wagner Santos, Maicon Costa, Paula Susana e
-Rafael Livinali — mas chegaram só como visualização, sem arquivo no
-projeto, e a sexta não foi enviada. O texto verbatim das cinco está
-registrado em `tools/prepare-reviews.py`, na tabela `AVALIACOES`, e é de
-lá que sai o `alt` de cada imagem.
+Falta a sexta, de **Joseane Terraplanagem 2019** — a mais longa, com os
+blocos de "Aspectos positivos" e "Serviços". O texto dela já está
+registrado em `tools/prepare-reviews.py`, na tabela `AVALIACOES`, como
+`avaliacao-1`; só o arquivo de imagem não chegou.
 
-Para fechar:
+Para incluí-la:
 
-1. colocar as seis capturas em `tools/source/` com os nomes
-   `avaliacao-1` a `avaliacao-6` (png, jpg ou webp);
-2. acrescentar a sexta à tabela `AVALIACOES`, no formato das outras;
-3. `python3 tools/prepare-reviews.py`.
+1. salvar a captura como `tools/source/avaliacao-1.png` (ou .jpg);
+2. `python3 tools/prepare-reviews.py`;
+3. `python3 tools/make-zip.py`.
+
+O gerador refaz a seção inteira e redistribui os cartões entre as duas
+colunas. Hoje, com cinco avaliações de altura parecida, a coluna da
+esquerda termina cerca de 200px abaixo da direita — não há divisão de
+cinco que equilibre melhor. Com a sexta, que é bem mais alta, as duas
+colunas passam a terminar praticamente juntas.
 
 Duas coisas continuam sem confirmação e por isso não aparecem no site:
 
@@ -147,8 +149,8 @@ Duas coisas continuam sem confirmação e por isso não aparecem no site:
   número de total é exibido, nem entra `aggregateRating` nos dados
   estruturados, que exige uma contagem verdadeira.
 
-As datas ficam dentro das capturas e são relativas ("3 anos atrás"), então
-envelhecem junto com a imagem, sem envelhecer sozinhas na tela.
+A seção não está no menu do topo. Incluí-la mexeria no cabeçalho, que
+ficou fora do escopo; é uma linha, se a empresa quiser.
 
 ### O mapa carrega conteúdo do Google
 

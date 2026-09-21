@@ -100,7 +100,16 @@ AVALIACOES = [
             '\u201cTOP NOTA 10 O PESSOAL, FIZ TODA MINHA CASA COM ELES FICOU MUITO LINDO\u201d.'
         ),
     },
-    # A sexta avaliação entra aqui, no mesmo formato, assim que chegar.
+    {
+        'arquivo': 'avaliacao-6',
+        'slug': 'marcio',
+        'nome': 'marcio batista',
+        'alt': (
+            'Avaliação de marcio batista, cinco estrelas, há três anos: '
+            '\u201cMaravilhoso\u201d. Aspectos positivos: Receptividade, Pontualidade, '
+            'Qualidade, Profissionalismo e Valor.'
+        ),
+    },
 ]
 
 
@@ -214,13 +223,22 @@ def equilibrar(cartoes):
     # O valor e a soma disso dividida pela largura tipica de uma coluna.
     SOBRECARGA = 0.10
 
-    colunas = [[], []]
+    pesos = [c['altura'] / float(c['largura']) + SOBRECARGA for c in cartoes]
+
+    # Distribui do cartao mais alto para o mais baixo, sempre na coluna mais
+    # curta no momento. Decidir na ordem de leitura faz o ultimo cartao cair
+    # sempre na mesma coluna e desequilibrar; decidir por altura evita isso.
+    ordem = sorted(range(len(cartoes)), key=lambda i: -pesos[i])
+    escolha = [0] * len(cartoes)
     somas = [0.0, 0.0]
-    for c in cartoes:
-        peso = c['altura'] / float(c['largura']) + SOBRECARGA
-        i = 0 if somas[0] <= somas[1] else 1
-        colunas[i].append(c)
-        somas[i] += peso
+    for i in ordem:
+        c = 0 if somas[0] <= somas[1] else 1
+        escolha[i] = c
+        somas[c] += pesos[i]
+
+    # A ordem de leitura volta ao normal dentro de cada coluna.
+    colunas = [[cartoes[i] for i in range(len(cartoes)) if escolha[i] == c]
+               for c in (0, 1)]
     return colunas, somas
 
 
