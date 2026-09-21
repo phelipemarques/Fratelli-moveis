@@ -17,3 +17,6 @@ fratelli-moveis-netlify.zip
 
 # Cache do Python nas ferramentas
 __pycache__/
+
+# Versão de arquivo único (gerada por tools/build-single-file.py)
+fratelli-moveis-visualizacao.html
