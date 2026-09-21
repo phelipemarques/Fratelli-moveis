@@ -49,7 +49,7 @@
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/images/hero-wide-1280.webp" imagesrcset="assets/images/hero-wide-640.webp 640w, assets/images/hero-wide-960.webp 960w, assets/images/hero-wide-1280.webp 1280w" imagesizes="100vw" media="(min-width: 741px)">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="css/main.css">
 
 <script>
   /* Marca o documento antes da primeira pintura: os estados iniciais de
@@ -67,7 +67,7 @@
 
     /* Se o script principal não carregar, os estados iniciais das animações
        ficariam presos e o conteúdo não apareceria. Esta rede é inline de
-       propósito: roda mesmo que /js/main.js falhe. */
+       propósito: roda mesmo que js/main.js falhe. */
     window.setTimeout(function () {
       if (!window.__fratelliMotion) { el.classList.remove('motion'); }
     }, 2500);
@@ -690,6 +690,6 @@
   </div>
 </footer>
 
-<script src="/js/main.js" defer onerror="document.documentElement.classList.remove('motion')"></script>
+<script src="js/main.js" defer onerror="document.documentElement.classList.remove('motion')"></script>
 </body>
 </html>

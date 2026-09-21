@@ -6,6 +6,10 @@
 <title>Página não encontrada | Fratelli Móveis</title>
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+<!-- Os caminhos aqui são absolutos de propósito, ao contrário dos do
+     index.html. O Netlify serve esta página em qualquer endereço que
+     não exista — inclusive /a/b/c — e um caminho relativo procuraria
+     o CSS dentro de /a/b/. Por isso ela não abre direto do disco. -->
 <link rel="preload" href="/assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css">
