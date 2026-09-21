@@ -117,37 +117,35 @@ A foto do atendimento mostra, na parede, **"Estilo, Satisfação e Bom Gosto"**.
 Esse lema não está em nenhum texto do site. Se a empresa quiser usá-lo, é só
 dizer onde — abaixo da marca no rodapé é o lugar natural.
 
-### Avaliações de clientes — falta a sexta captura
+### Avaliações de clientes — o que não está confirmado
 
-A seção está no ar com **cinco** avaliações: Maicon Costa, Paula Susana,
-Rafael Livinali, Wagner Santos e marcio batista.
-
-Falta a sexta, de **Joseane Terraplanagem 2019** — a mais longa, com os
-blocos de "Aspectos positivos" e "Serviços". O texto dela já está
-registrado em `tools/prepare-reviews.py`, na tabela `AVALIACOES`, como
-`avaliacao-1`; só o arquivo de imagem não chegou.
-
-Para incluí-la:
-
-1. salvar a captura como `tools/source/avaliacao-1.png` (ou .jpg);
-2. `python3 tools/prepare-reviews.py`;
-3. `python3 tools/make-zip.py`.
-
-O gerador refaz a seção inteira e redistribui os cartões entre as duas
-colunas. Hoje, com cinco avaliações de altura parecida, a coluna da
-esquerda termina cerca de 200px abaixo da direita — não há divisão de
-cinco que equilibre melhor. Com a sexta, que é bem mais alta, as duas
-colunas passam a terminar praticamente juntas.
+A seção está completa, com as seis avaliações: Joseane Terraplanagem
+2019, Wagner Santos, Maicon Costa, Paula Susana, Rafael Livinali e
+marcio batista. São capturas de tela reais, exibidas como imagem, e o
+texto de cada uma está repetido no `alt` palavra por palavra.
 
 Duas coisas continuam sem confirmação e por isso não aparecem no site:
 
 - **A plataforma.** As capturas têm a aparência das avaliações do Google
   Meu Negócio, mas isso é leitura minha da interface, não confirmação da
   empresa. O site diz "na avaliação dos clientes", sem citar o Google.
+  Confirmado que é o Google, dá para nomear a fonte — o que aumenta o
+  peso da prova social.
 - **O total de avaliações.** A nota 5,0 foi confirmada pela empresa e
   aparece. Quantas avaliações existem ao todo, não — e por isso nenhum
   número de total é exibido, nem entra `aggregateRating` nos dados
   estruturados, que exige uma contagem verdadeira.
+
+Duas observações sobre envelhecimento:
+
+- As datas ficam dentro das capturas e são relativas ("3 anos atrás"),
+  então envelhecem junto com a imagem. Refazer as capturas daqui a algum
+  tempo vale a pena.
+- Para trocar ou acrescentar avaliações: a captura vai para
+  `tools/source/` como `avaliacao-N`, o texto entra na tabela
+  `AVALIACOES` de `tools/prepare-reviews.py`, e `python3
+  tools/prepare-reviews.py` refaz a seção inteira e redistribui as
+  colunas sozinho.
 
 A seção não está no menu do topo. Incluí-la mexeria no cabeçalho, que
 ficou fora do escopo; é uma linha, se a empresa quiser.
