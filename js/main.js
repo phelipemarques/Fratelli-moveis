@@ -609,3 +609,92 @@
     });
   }
 })();
+
+/* ============================================================
+   Fratelli Móveis — filme institucional
+
+   Três responsabilidades, todas locais a esta seção:
+
+   1. Não disputar banda com o hero. O <video> nasce com
+      preload="metadata", então o navegador busca só o cabeçalho. O
+      corpo do arquivo só começa a descer quando a seção chega perto da
+      tela — é o play() que puxa o resto.
+   2. Respeitar quem pediu menos movimento: nesse caso não toca nunca, e
+      o que fica na tela é o poster, que é o primeiro quadro do filme.
+   3. Costurar a emenda do loop. O filme termina numa parede clara e
+      recomeça na sala, bem mais escura. Meio segundo de fusão, com uma
+      classe no quadro — a transição mora no CSS.
+
+   Sem biblioteca: nem GSAP nem ScrollTrigger entram aqui. Se algo disto
+   falhar, o poster continua na tela e a página segue inteira.
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  var quadro = document.querySelector('[data-film]');
+  if (!quadro) { return; }
+
+  var video = quadro.querySelector('video');
+  if (!video || typeof video.play !== 'function') { return; }
+
+  function menosMovimento() {
+    try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+    catch (e) { return false; }
+  }
+
+  if (menosMovimento()) { return; }
+
+  // O atributo já está no HTML; repetir aqui garante que o navegador
+  // permita a reprodução automática mesmo se algo tiver mexido nele.
+  video.muted = true;
+
+  var tocando = false;
+
+  function tocar() {
+    if (tocando) { return; }
+    tocando = true;
+    var p = video.play();
+    // Navegador que recusa a reprodução automática devolve uma promessa
+    // rejeitada. Não é erro: o poster fica, e é isso que se quer.
+    if (p && typeof p.catch === 'function') {
+      p.catch(function () { tocando = false; });
+    }
+  }
+
+  function parar() {
+    if (!tocando) { return; }
+    tocando = false;
+    video.pause();
+  }
+
+  /* ---------- Só carrega e toca perto da tela ---------- */
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entradas) {
+      for (var i = 0; i < entradas.length; i++) {
+        if (entradas[i].isIntersecting) { tocar(); } else { parar(); }
+      }
+    }, { rootMargin: '200px 0px' }).observe(quadro);
+  } else {
+    // Sem IntersectionObserver, espera a página terminar de carregar:
+    // tarde o bastante para não atrapalhar o hero.
+    window.addEventListener('load', tocar);
+  }
+
+  /* ---------- Emenda do loop ----------
+     A janela precisa ser maior que a duracao da transicao no CSS (0,45s),
+     senao a imagem ainda esta apagando quando o tempo zera e o ponto mais
+     escuro cai depois da volta — que e justamente onde nao se quer.
+     Com 0,8s a imagem chega a zero uns tres decimos antes do fim, segura,
+     e so volta a aparecer ja na cena nova.
+
+     Um unico toggle da conta: assim que o tempo zera, o que falta volta a
+     ser dez segundos e a classe sai sozinha. */
+  var SAIDA = 0.8;
+
+  video.addEventListener('timeupdate', function () {
+    var total = video.duration;
+    if (!total || !isFinite(total)) { return; }
+    quadro.classList.toggle('is-wrapping', total - video.currentTime <= SAIDA);
+  });
+})();

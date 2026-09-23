@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SAIDA = os.path.join(ROOT, "fratelli-moveis-netlify.zip")
 
 ARQUIVOS = ["index.html", "404.html", "robots.txt", "sitemap.xml", "_headers"]
-PASTAS = ["css", "js", "assets/fonts", "assets/images"]
+PASTAS = ["css", "js", "assets/fonts", "assets/images", "assets/video"]
 
 
 def main():

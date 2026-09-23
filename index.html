@@ -178,6 +178,39 @@
     </figure>
   </section>
 
+  <!-- ============================ FILME ============================ -->
+  <!-- O vídeo entra como peça editorial: sem controles, sem texto por
+       cima, sem logo aplicada. Ele não carrega junto com o hero — quem
+       manda tocar é o IntersectionObserver em js/main.js, e só quando a
+       seção se aproxima da tela e o visitante não pediu menos movimento.
+       Se isso não acontecer, o que fica é o poster, que é o primeiro
+       quadro do próprio filme. -->
+  <section class="film" aria-labelledby="filme-titulo">
+    <div class="shell">
+      <header class="section-head">
+        <p class="eyebrow" data-reveal>Fratelli Móveis</p>
+        <h2 class="section-head__title" id="filme-titulo" data-split>Ambientes pensados nos detalhes.</h2>
+        <p class="section-head__note" data-reveal>
+          Marcenaria sob medida, proporção, luz e acabamento em cada escolha.
+        </p>
+      </header>
+    </div>
+
+    <div class="shell">
+      <div class="film__rule" data-reveal aria-hidden="true"></div>
+      <figure class="film__frame frame frame--169" data-reveal-frame data-film>
+        <div class="frame__veil" aria-hidden="true"></div>
+        <video class="frame__img film__video"
+               poster="assets/images/fratelli-film-poster.webp"
+               width="1280" height="720"
+               muted loop playsinline preload="metadata"
+               aria-label="Filme visual da Fratelli Móveis mostrando ambientes planejados, marcenaria, cozinhas, dormitórios e closets.">
+          <source src="assets/video/fratelli-brand-film.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </div>
+  </section>
+
   <!-- ========================== PROJETOS ========================== -->
   <section class="projects" id="projetos" aria-labelledby="projetos-titulo">
     <div class="shell">

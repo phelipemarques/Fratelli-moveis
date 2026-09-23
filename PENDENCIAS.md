@@ -150,6 +150,32 @@ Duas observações sobre envelhecimento:
 A seção não está no menu do topo. Incluí-la mexeria no cabeçalho, que
 ficou fora do escopo; é uma linha, se a empresa quiser.
 
+### O filme institucional
+
+O vídeo em `assets/video/fratelli-brand-film.mp4` entra como peça
+editorial na seção "Ambientes pensados nos detalhes.", entre a abertura
+e os projetos. São 10 segundos, 1280×720, 3,1 MB, sem áudio e sem corte
+interno — as cenas se dissolvem.
+
+Dois pontos que dependem da empresa:
+
+- **A natureza das imagens.** O filme mostra sala, cozinha, dormitório e
+  closet. Não sei quais cenas são projeto executado e quais são
+  renderização. Por isso o texto da seção fala de marcenaria, proporção,
+  luz e acabamento, e não de obra entregue: nada ali afirma que são
+  ambientes construídos. Se a empresa confirmar a origem de cada cena, o
+  texto pode ganhar força sem deixar de ser verdadeiro.
+- **O direito de uso.** Vale confirmar que a Fratelli tem os direitos do
+  filme, como de qualquer peça publicada no site.
+
+Uma observação técnica: o filme termina numa parede clara e recomeça na
+sala, 36 pontos de luminância abaixo. Como o vídeo não tem nenhum corte
+interno, esse salto seria a única emenda visível da peça. A seção apaga a
+imagem nos últimos oito décimos e a traz de volta já na cena nova — o
+arquivo não foi tocado. Se um dia existir uma versão do filme que termine
+perto de onde começa, dá para remover essa costura: é uma linha de CSS e
+um bloco curto em `js/main.js`.
+
 ### O mapa carrega conteúdo do Google
 
 A seção Contato monta um mapa do Google. Ele só é inserido depois que o

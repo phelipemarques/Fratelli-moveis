@@ -35,6 +35,7 @@ _headers                   cache do Netlify (fontes por um ano, imagens por um d
 css/main.css               toda a folha de estilo, na ordem da cascata
 js/main.js                 GSAP + ScrollTrigger + o código do site
 
+assets/video/              o filme institucional, em MP4
 assets/fonts/              Newsreader e Inter, variáveis, SIL OFL 1.1
 assets/images/             as 62 imagens que a página usa
 

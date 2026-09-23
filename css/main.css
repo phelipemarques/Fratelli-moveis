@@ -515,6 +515,51 @@ a {
   .band__frame { aspect-ratio: 16 / 10; }
 }
 
+/* ============================ FILME ============================ */
+
+/* Só a folga de cima: a de baixo é a que a faixa de projetos já traz,
+   igual ao que a abertura faz. Assim o ritmo vertical não muda. */
+.film { padding-block: var(--section-y) 0; }
+
+/* A mesma medida das fotografias grandes de projeto — o filme entra na
+   coluna da página, não numa faixa própria. O teto é o mesmo teto do
+   shell, então na prática ele nunca passa da largura do site. */
+.film__frame {
+  width: min(100%, var(--shell-max));
+  margin-inline: auto;
+}
+
+/* Fio âmbar curto entre o texto e o filme. É o único detalhe gráfico da
+   seção: sem moldura, sem sombra, sem canto arredondado. */
+.film__rule {
+  width: clamp(2.5rem, 7vw, 5rem);
+  height: 1px;
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+  background: var(--accent-on);
+}
+
+/* O vídeo ocupa o quadro como qualquer fotografia do site: mesma classe
+   .frame__img, mesmo recorte, mesma revelação com véu. */
+.film__video {
+  display: block;
+  background: var(--bone-3);
+}
+
+/* Emenda do loop. O filme não tem um único corte interno — as cenas se
+   dissolvem — mas termina numa parede clara e recomeça na sala, 36
+   pontos de luminância abaixo. Sem tratamento, esse salto seria a única
+   emenda visível da peça. Meia dúzia de décimos de fusão resolve, sem
+   tocar no arquivo de vídeo. */
+.film__video {
+  transition: opacity 0.45s var(--ease-inout);
+}
+.film__frame.is-wrapping .film__video { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Sem autoplay, o que aparece é o poster. Nada aqui se mexe. */
+  .film__video { transition: none; opacity: 1 !important; }
+}
+
 /* ========================== PROJETOS ========================== */
 
 .projects { padding-block: var(--section-y); }

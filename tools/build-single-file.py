@@ -99,6 +99,16 @@ def main():
 
     html = re.sub(r'<picture>.*?</picture>', limpa_picture, html, flags=re.S)
 
+    # ---- video ----
+    # O filme tambem entra embutido, senao este arquivo deixaria de ser
+    # autossuficiente, que e a unica razao de ele existir. Isso vale so
+    # aqui: no pacote de publicacao o video e um arquivo separado, para o
+    # navegador poder buscar o pedaco que precisa e so quando precisa.
+    video = os.path.join(RAIZ, 'assets', 'video', 'fratelli-brand-film.mp4')
+    if os.path.exists(video):
+        html = html.replace('src="assets/video/fratelli-brand-film.mp4"',
+                            'src="%s"' % uri(video))
+
     # ---- icone ----
     html = html.replace('href="assets/images/favicon.svg"',
                         'href="%s"' % uri(os.path.join(RAIZ, 'assets', 'images', 'favicon.svg')))
