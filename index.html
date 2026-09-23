@@ -47,7 +47,7 @@
 </script>
 <link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/images/hero-wide-1280.webp" imagesrcset="assets/images/hero-wide-640.webp 640w, assets/images/hero-wide-960.webp 960w, assets/images/hero-wide-1280.webp 1280w" imagesizes="100vw" media="(min-width: 741px)">
+<link rel="preload" as="image" href="assets/images/hero-sala-1536.webp" imagesrcset="assets/images/hero-sala-640.webp 640w, assets/images/hero-sala-960.webp 960w, assets/images/hero-sala-1200.webp 1200w, assets/images/hero-sala-1536.webp 1536w" imagesizes="100vw" media="(min-width: 741px)">
 
 <link rel="stylesheet" href="css/main.css">
 
@@ -94,7 +94,13 @@
       </ul>
     </nav>
 
-    <a class="site-header__cta" href="#contato">Contato</a>
+    <a class="btn btn--outline site-header__cta" href="#contato">
+      Fale com a Fratelli
+      <svg class="btn__seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-movel">
       <span class="menu-toggle__bars" aria-hidden="true"><i></i><i></i></span>
@@ -119,35 +125,69 @@
 <main id="conteudo">
 
   <!-- ============================ HERO ============================ -->
+  <!-- A fotografia ocupa a tela inteira e começa atrás do cabeçalho, que é
+       transparente no topo. O texto mora no quadrante esquerdo; o véu
+       horizontal carrega o contraste desse lado e deixa a marcenaria da
+       direita acesa. -->
   <section class="hero" id="inicio" aria-labelledby="hero-titulo">
     <div class="hero__media" data-hero-media>
       <picture>
         <source media="(max-width: 740px)" type="image/webp"
-                srcset="assets/images/hero-portrait-480.webp 480w, assets/images/hero-portrait-640.webp 640w" sizes="100vw">
+                srcset="assets/images/hero-sala-retrato-480.webp 480w, assets/images/hero-sala-retrato-600.webp 600w, assets/images/hero-sala-retrato-780.webp 780w"
+                sizes="100vw">
         <source media="(max-width: 740px)" type="image/jpeg"
-                srcset="assets/images/hero-portrait-480.jpg 480w, assets/images/hero-portrait-640.jpg 640w" sizes="100vw">
+                srcset="assets/images/hero-sala-retrato-780.jpg 780w" sizes="100vw">
         <source type="image/webp"
-                srcset="assets/images/hero-wide-640.webp 640w, assets/images/hero-wide-960.webp 960w, assets/images/hero-wide-1280.webp 1280w" sizes="100vw">
-        <img src="assets/images/hero-wide-1280.jpg" width="1280" height="960"
-             alt="Cozinha ampla com ilha central em pedra, banquetas de madeira e painéis de marcenaria em tom nogueira."
+                srcset="assets/images/hero-sala-640.webp 640w, assets/images/hero-sala-960.webp 960w, assets/images/hero-sala-1200.webp 1200w, assets/images/hero-sala-1536.webp 1536w"
+                sizes="100vw">
+        <img src="assets/images/hero-sala-1536.jpg" width="1536" height="1024"
+             alt="Sala de estar com painel de TV, nichos iluminados, ripado de madeira e aparador suspenso com iluminação embutida."
              fetchpriority="high" decoding="async">
       </picture>
     </div>
     <div class="hero__scrim" aria-hidden="true"></div>
 
     <div class="hero__content" data-hero-content>
-      <p class="eyebrow eyebrow--light" data-hero-el>Fratelli Móveis · Cascavel, PR</p>
-      <h1 class="hero__title" id="hero-titulo" data-split>Móveis planejados para o seu jeito de morar.</h1>
-      <p class="hero__support" data-hero-el>Projetos sob medida para ambientes reais.</p>
+      <p class="hero__eyebrow" data-hero-el>
+        <span class="hero__eyebrow-rule" aria-hidden="true"></span>
+        Ambientes que contam histórias
+      </p>
+
+      <!-- As linhas vêm escritas à mão porque a segunda carrega o trecho em
+           âmbar e itálico, e o divisor automático trabalha só com texto
+           puro. O efeito de revelação é o mesmo dos outros títulos. -->
+      <h1 class="hero__title" id="hero-titulo" data-split>
+        <span class="line"><span class="line__i">Móveis planejados</span></span>
+        <span class="line"><span class="line__i">para o <em class="hero__accent">seu jeito de morar.</em></span></span>
+      </h1>
+
+      <p class="hero__support" data-hero-el>
+        Projetos sob medida, com design, funcionalidade
+        e acabamento impecável.
+      </p>
+
       <div class="hero__actions" data-hero-el>
-        <a class="btn btn--solid" href="#contato">Conversar sobre meu projeto</a>
-        <a class="btn btn--ghost" href="#projetos">Ver projetos</a>
+        <a class="btn btn--amber" href="#contato">
+          Falar sobre meu projeto
+          <svg class="btn__seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="btn btn--outline" href="#projetos">Ver projetos</a>
       </div>
     </div>
 
     <div class="hero__foot" data-hero-el>
-      <span class="hero__place">Cascavel — Paraná</span>
-      <span class="hero__hint"><span>Role para ver os projetos</span><i aria-hidden="true"></i></span>
+      <span class="hero__scroll">
+        <svg class="hero__mouse" viewBox="0 0 16 26" aria-hidden="true" focusable="false">
+          <rect x="0.8" y="0.8" width="14.4" height="24.4" rx="7.2"
+                fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <circle class="hero__mouse-dot" cx="8" cy="7" r="1.6" fill="currentColor"/>
+        </svg>
+        <span class="hero__scroll-text">Role para explorar</span>
+      </span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
     </div>
   </section>
 

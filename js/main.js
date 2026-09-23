@@ -245,6 +245,17 @@
      ============================================================ */
 
   function splitLines(el) {
+    /* Titulo com as linhas ja escritas no HTML. Acontece quando a quebra e
+       parte da composicao e a linha carrega marcacao propria — um trecho em
+       outra cor, um italico — que o divisor automatico, que trabalha so com
+       texto puro, apagaria. Nesse caso nao ha o que medir: as janelas ja
+       existem e so precisam ser devolvidas. */
+    var prontas = el.querySelectorAll(':scope > .line > .line__i');
+    if (prontas.length) {
+      el.style.opacity = '1';
+      return Array.prototype.slice.call(prontas);
+    }
+
     var source = el.getAttribute('data-text');
     if (source === null) {
       source = el.textContent.replace(/\s+/g, ' ').trim();
@@ -394,7 +405,7 @@
     }
 
     mm.add('(min-width: 741px)', function () {
-      heroDepth(7);
+      heroDepth(4);
       gsap.to(content, {
         yPercent: -14, opacity: 0.12, ease: 'none',
         scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom 45%', scrub: 0.4 }
@@ -403,7 +414,7 @@
 
     // No celular o recorte é vertical e o desempenho importa mais:
     // a amplitude cai para um terço e o texto não se desloca.
-    mm.add('(max-width: 740px)', function () { heroDepth(2.5); });
+    mm.add('(max-width: 740px)', function () { heroDepth(2); });
 
     // A varredura do fio de rolagem para quando o hero sai de vista.
     if (hero) {

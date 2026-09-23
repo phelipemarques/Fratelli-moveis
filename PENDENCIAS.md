@@ -150,6 +150,29 @@ Duas observações sobre envelhecimento:
 A seção não está no menu do topo. Incluí-la mexeria no cabeçalho, que
 ficou fora do escopo; é uma linha, se a empresa quiser.
 
+### A fotografia do hero é uma das de origem não confirmada
+
+O hero passou a usar a sala com painel de TV, ripado e iluminação quente
+(`assets/images/hero-sala-*`, gerada de `tools/source/ref-sala.jpg`). É a
+mesma imagem que aparece na faixa de ambientes rotulada como "Imagem de
+referência" — justamente porque a empresa nunca confirmou se é um projeto
+da Fratelli.
+
+No hero ela aparece sem rótulo nenhum, como a cara do site. Isso precisa
+de confirmação: se for um projeto da Fratelli, ótimo e o rótulo da outra
+seção também muda; se for uma imagem de banco ou de terceiro, é preciso
+verificar a licença antes de publicar.
+
+Duas notas menores, na mesma linha:
+
+- A imagem de compartilhamento (`og-cover.jpg`) ainda sai da fotografia
+  de cozinha que era o hero antigo. Não está errada, mas hoje não é mais
+  a primeira imagem do site. Vale trocar quando o domínio for definido e
+  as linhas de `og:` forem descomentadas.
+- O arquivo tem 1536×1024. Em telas de 1920 ele é ampliado cerca de 25%,
+  o que é pouco e passa despercebido, mas uma versão maior da mesma cena
+  renderizaria mais nítida.
+
 ### O filme institucional
 
 O vídeo em `assets/video/fratelli-brand-film.mp4` é o **fundo** da faixa

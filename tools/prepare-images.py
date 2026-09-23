@@ -145,12 +145,9 @@ def main():
 
     rgb = Image.fromarray(cv2.cvtColor(master, cv2.COLOR_BGR2RGB))
 
-    # Desktop: quadro completo, sem ampliacao alem do tamanho nativo (1280 px).
-    write_set(rgb, "hero-wide", [1280, 960, 640])
-
-    # Celular: recorte vertical sobre a ilha e as banquetas, nao sobre o teto.
-    portrait = rgb.crop((300, 170, 940, 960))          # 640x790
-    write_set(portrait, "hero-portrait", [640, 480])
+    # O hero passou a usar a sala com painel de TV, gerada por
+    # tools/prepare-hero.py. Desta fotografia sobrou so a imagem de
+    # compartilhamento, abaixo.
 
     # Open Graph: 1200x630 sobre o mesmo enquadramento do desktop.
     og = rgb.crop((40, 150, 1240, 780)).resize((1200, 630), Image.LANCZOS)
