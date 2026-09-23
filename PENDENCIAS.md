@@ -152,10 +152,11 @@ ficou fora do escopo; é uma linha, se a empresa quiser.
 
 ### O filme institucional
 
-O vídeo em `assets/video/fratelli-brand-film.mp4` entra como peça
-editorial na seção "Ambientes pensados nos detalhes.", entre a abertura
-e os projetos. São 10 segundos, 1280×720, 3,1 MB, sem áudio e sem corte
-interno — as cenas se dissolvem.
+O vídeo em `assets/video/fratelli-brand-film.mp4` é o **fundo** da faixa
+"Ambientes pensados nos detalhes.", entre a abertura e os projetos. São
+10 segundos, 1280×720, 3,1 MB, sem áudio e sem corte interno — as cenas
+se dissolvem. A faixa ocupa 80vh no desktop e 60vh no celular, com o
+texto por cima, à esquerda.
 
 Dois pontos que dependem da empresa:
 

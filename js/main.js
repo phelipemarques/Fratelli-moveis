@@ -623,7 +623,7 @@
       o que fica na tela é o poster, que é o primeiro quadro do filme.
    3. Costurar a emenda do loop. O filme termina numa parede clara e
       recomeça na sala, bem mais escura. Meio segundo de fusão, com uma
-      classe no quadro — a transição mora no CSS.
+      classe na seção — a transição mora no CSS.
 
    Sem biblioteca: nem GSAP nem ScrollTrigger entram aqui. Se algo disto
    falhar, o poster continua na tela e a página segue inteira.
@@ -632,10 +632,10 @@
 (function () {
   'use strict';
 
-  var quadro = document.querySelector('[data-film]');
-  if (!quadro) { return; }
+  var faixa = document.querySelector('[data-film]');
+  if (!faixa) { return; }
 
-  var video = quadro.querySelector('video');
+  var video = faixa.querySelector('video');
   if (!video || typeof video.play !== 'function') { return; }
 
   function menosMovimento() {
@@ -674,7 +674,7 @@
       for (var i = 0; i < entradas.length; i++) {
         if (entradas[i].isIntersecting) { tocar(); } else { parar(); }
       }
-    }, { rootMargin: '200px 0px' }).observe(quadro);
+    }, { rootMargin: '300px 0px' }).observe(faixa);
   } else {
     // Sem IntersectionObserver, espera a página terminar de carregar:
     // tarde o bastante para não atrapalhar o hero.
@@ -695,6 +695,6 @@
   video.addEventListener('timeupdate', function () {
     var total = video.duration;
     if (!total || !isFinite(total)) { return; }
-    quadro.classList.toggle('is-wrapping', total - video.currentTime <= SAIDA);
+    faixa.classList.toggle('is-wrapping', total - video.currentTime <= SAIDA);
   });
 })();
