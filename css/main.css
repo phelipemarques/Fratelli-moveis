@@ -472,7 +472,7 @@ a {
 
 /* ========================== ABERTURA ========================== */
 
-.opening { padding-block: var(--section-y) 0; }
+.opening { padding-block: var(--section-y); }
 
 .opening__grid {
   display: grid;
@@ -497,11 +497,6 @@ a {
   font-size: var(--t-lead);
 }
 
-.band {
-  margin-top: clamp(3rem, 7vw, 6.5rem);
-  width: 100%;
-}
-.band__frame { aspect-ratio: 1280 / 410; }
 
 @media (max-width: 899px) {
   /* Uma coluna só. Com as doze faixas, os onze vãos de 2rem somam 352px
@@ -512,7 +507,6 @@ a {
   .opening__grid { grid-template-columns: 1fr; }
   .opening__title { grid-column: 1 / -1; }
   .opening__body  { grid-column: 1 / -1; }
-  .band__frame { aspect-ratio: 16 / 10; }
 }
 
 /* ============================ FILME ============================ */

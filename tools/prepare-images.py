@@ -152,11 +152,6 @@ def main():
     portrait = rgb.crop((300, 170, 940, 960))          # 640x790
     write_set(portrait, "hero-portrait", [640, 480])
 
-    # Faixa atmosferica: outro enquadramento do mesmo ambiente, sem legenda de
-    # projeto. Nao representa um trabalho distinto.
-    band = rgb.crop((0, 150, 1280, 560))               # 1280x410
-    write_set(band, "detail-band", [1280, 960, 640])
-
     # Open Graph: 1200x630 sobre o mesmo enquadramento do desktop.
     og = rgb.crop((40, 150, 1240, 780)).resize((1200, 630), Image.LANCZOS)
     og.save(os.path.join(OUT, "og-cover.jpg"), quality=84, optimize=True, progressive=True)
