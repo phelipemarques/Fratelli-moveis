@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 104" role="img" aria-label="GRO">
+  <g fill="none" stroke="#fff" stroke-width="24" transform="translate(28 2) skewX(-14)">
+    <path d="M84 12H36Q12 12 12 36V64Q12 88 36 88H62Q84 88 84 66V52H50"/>
+    <path d="M116 100V12H160Q186 12 186 36Q186 58 160 58H136M156 58L190 100"/>
+    <path d="M244 12H266Q290 12 290 36V64Q290 88 266 88H244Q220 88 220 64V36Q220 12 244 12Z"/>
+  </g>
+</svg>
