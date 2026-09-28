@@ -1,0 +1,12 @@
+{
+  "name": "GRO Cascavel — Medicina e Segurança do Trabalho",
+  "short_name": "GRO Cascavel",
+  "icons": [
+    { "src": "assets/images/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "assets/images/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#0A3324",
+  "background_color": "#F4F6F1",
+  "display": "browser",
+  "lang": "pt-BR"
+}

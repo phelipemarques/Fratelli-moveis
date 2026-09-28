@@ -3,27 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.google.com; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
   <title>GRO Cascavel | Medicina e Segurança do Trabalho</title>
-  <meta name="description" content="Medicina e Segurança do Trabalho em Cascavel, Paraná. Conheça a GRO e fale com nossa equipe.">
+  <meta name="description" content="GRO Cascavel — Medicina e Segurança do Trabalho. Soluções em saúde ocupacional, segurança, prevenção e assessoria para empresas em Cascavel e região.">
   <link rel="canonical" href="https://www.grocascavel.com.br/">
-  <meta name="theme-color" content="#06241A">
+  <meta name="theme-color" content="#0A3324">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="GRO Cascavel">
   <meta property="og:title" content="GRO Cascavel | Medicina e Segurança do Trabalho">
-  <meta property="og:description" content="Medicina e Segurança do Trabalho em Cascavel, Paraná. Conheça a GRO e fale com nossa equipe.">
+  <meta property="og:description" content="Saúde ocupacional, segurança, prevenção e assessoria para empresas em Cascavel e região.">
   <meta property="og:url" content="https://www.grocascavel.com.br/">
   <meta property="og:image" content="https://www.grocascavel.com.br/assets/images/og-gro-cascavel.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="GRO Cascavel — Medicina e Segurança do Trabalho">
+  <meta property="og:image:alt" content="GRO Cascavel — Você produz. A GRO protege.">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
-  <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/barlow-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/main.css">
   <script>document.documentElement.classList.add('js')</script>
 
@@ -31,13 +35,14 @@
   {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
+    "@id": "https://www.grocascavel.com.br/#empresa",
     "name": "GRO Cascavel — Medicina e Segurança do Trabalho",
     "alternateName": "GRO Cascavel",
-    "description": "Medicina e Segurança do Trabalho em Cascavel, Paraná: exames ocupacionais, gerenciamento de riscos, treinamentos conforme as NRs e assessoria para o eSocial.",
+    "description": "Medicina e segurança do trabalho em Cascavel, Paraná: exames ocupacionais, PCMSO, PGR, LTCAT, treinamentos conforme as NRs e assessoria para o eSocial.",
     "url": "https://www.grocascavel.com.br/",
     "logo": "https://www.grocascavel.com.br/assets/images/apple-touch-icon.png",
     "image": "https://www.grocascavel.com.br/assets/images/og-gro-cascavel.jpg",
-    "telephone": ["+55-45-99106-8333", "+55-45-3097-0777"],
+    "telephone": "+55-45-99106-8333",
     "email": "grosolucoescascavel@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -54,12 +59,13 @@
       "closes": "17:30"
     }],
     "areaServed": { "@type": "City", "name": "Cascavel" },
+    "knowsAbout": ["Medicina do Trabalho", "Segurança do Trabalho", "Saúde Ocupacional", "SST", "PCMSO", "PGR", "LTCAT", "eSocial", "CIPA"],
     "sameAs": ["https://www.instagram.com/grocascavel/"]
   }
   </script>
 </head>
 <body>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <svg class="sprite" aria-hidden="true" focusable="false">
     <defs>
       <linearGradient id="gro-grad" gradientUnits="userSpaceOnUse" x1="40" y1="440" x2="440" y2="20">
         <stop offset="0" stop-color="#D4DE3A"/>
@@ -81,398 +87,477 @@
           <path d="M244 12H266Q290 12 290 36V64Q290 88 266 88H244Q220 88 220 64V36Q220 12 244 12Z"/>
         </g>
       </symbol>
-      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></symbol>
       <symbol id="i-chat" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 9.2c.2 2.6 3 5.4 5.7 5.7l1-1.3-1.8-.9-.8.8c-.9-.4-1.9-1.4-2.3-2.3l.8-.8-.9-1.8Z" fill="currentColor"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
     </defs>
   </svg>
 
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="site-header" data-header>
-    <div class="site-header__inner">
-      <a class="brand" href="#inicio" aria-label="GRO Cascavel — início">
-        <svg class="brand__mark" aria-hidden="true"><use href="#gro-mark"/></svg>
-        <svg class="brand__word" aria-hidden="true"><use href="#gro-word"/></svg>
-        <span class="brand__sub">Cascavel<br>Medicina e Segurança do Trabalho</span>
+  <header class="hd" data-header>
+    <div class="hd__in">
+      <a class="logo" href="#inicio" aria-label="GRO Cascavel, Medicina e Segurança do Trabalho — início">
+        <svg class="logo__mark" aria-hidden="true"><use href="#gro-mark"/></svg>
+        <svg class="logo__word" aria-hidden="true"><use href="#gro-word"/></svg>
       </a>
 
       <nav class="nav" aria-label="Principal">
-        <ul class="nav__list">
+        <ul>
           <li><a href="#inicio">Início</a></li>
-          <li><a href="#solucoes">Serviços</a></li>
-          <li><a href="#empresas">Empresas</a></li>
+          <li><a href="#solucoes">Soluções</a></li>
+          <li><a href="#empresas">Para empresas</a></li>
           <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#conteudos">Conteúdos</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
 
-      <a class="btn btn--header" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20GRO%20Cascavel." target="_blank" rel="noopener">Fale com a GRO</a>
+      <a class="btn btn--line hd__cta" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20GRO%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer">Falar com a GRO</a>
 
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-mobile" data-menu-toggle>
-        <span class="visually-hidden" data-menu-label>Abrir menu</span>
-        <span class="menu-toggle__bars" aria-hidden="true"></span>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+        <span class="sr" data-menu-label>Abrir menu</span>
+        <span class="burger__lines" aria-hidden="true"></span>
       </button>
     </div>
   </header>
 
-  <div class="menu-mobile" id="menu-mobile" data-menu hidden>
-    <nav aria-label="Menu móvel">
-      <ol class="menu-mobile__list">
-        <li><a href="#inicio"><span>01</span>Início</a></li>
-        <li><a href="#solucoes"><span>02</span>Serviços</a></li>
-        <li><a href="#empresas"><span>03</span>Empresas</a></li>
-        <li><a href="#sobre"><span>04</span>Sobre</a></li>
-        <li><a href="#contato"><span>05</span>Contato</a></li>
-      </ol>
+  <div class="menu" id="menu" data-menu hidden>
+    <nav aria-label="Menu">
+      <ul class="menu__list">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#solucoes">Soluções</a></li>
+        <li><a href="#empresas">Para empresas</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#conteudos">Conteúdos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
     </nav>
-    <div class="menu-mobile__foot">
-      <a class="btn btn--lime btn--block" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20GRO%20Cascavel." target="_blank" rel="noopener">Fale com a GRO</a>
-      <p>Rua Maranhão, 539 — Centro, Cascavel/PR<br>Seg. a sex. · 07:30 às 17:30</p>
+    <div class="menu__foot">
+      <a class="btn btn--lime btn--full" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20GRO%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer">
+        <svg class="btn__ic" aria-hidden="true"><use href="#i-chat"/></svg>Falar com a GRO
+      </a>
+      <p>Rua Maranhão, 539, Centro, Cascavel<br>Segunda a sexta, das 7h30 às 17h30</p>
     </div>
   </div>
 
   <main id="conteudo">
 
     <!-- HERO -->
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
-      <div class="hero__grid" aria-hidden="true"></div>
+    <section class="hero" id="inicio" aria-labelledby="hero-t">
+      <svg class="hero__arc" viewBox="0 0 1000 1000" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
+        <path class="arc arc--band" d="M300 1000A700 700 0 0 1 1000 300"/>
+        <path class="arc arc--lime" pathLength="1" d="M190 1000A810 810 0 0 1 1000 190"/>
+        <path class="arc arc--thin" pathLength="1" d="M120 1000A880 880 0 0 1 1000 120"/>
+      </svg>
 
-      <div class="hero__content">
-        <h1 class="hero__title" id="hero-title">
-          <span class="hero__eyebrow" data-reveal>Medicina e Segurança do Trabalho em Cascavel — PR</span>
-          <span class="hero__display">
-            <span class="line"><span data-reveal="line">Você produz.</span></span>
-            <span class="line"><span data-reveal="line" style="--i:1">A GRO <em>protege.</em></span></span>
-          </span>
+      <div class="hero__in wrap">
+        <h1 class="hero__t" id="hero-t">
+          <span class="hero__what rv">Medicina e Segurança do Trabalho em Cascavel</span>
+          <span class="ln"><span class="ln__i">Você produz.</span></span>
+          <span class="ln"><span class="ln__i ln__i--2">A <em>GRO</em> protege.</span></span>
         </h1>
-        <p class="hero__lead" data-reveal style="--i:2">
-          Exames ocupacionais, gestão de riscos, treinamentos conforme as NRs e assessoria para o eSocial. Uma equipe que acompanha a sua empresa de perto, do primeiro exame ao documento em dia.
-        </p>
-        <div class="hero__actions" data-reveal style="--i:3">
-          <a class="btn btn--lime" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20GRO%20Cascavel." target="_blank" rel="noopener">
-            <svg class="btn__icon" aria-hidden="true"><use href="#i-chat"/></svg>
-            Falar no WhatsApp
-          </a>
-          <a class="link-arrow link-arrow--light" href="#solucoes">
-            Conhecer as soluções
-            <svg aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
+
+        <div class="hero__body">
+          <p class="hero__lead rv" data-d="1">
+            Medicina e segurança do trabalho para empresas de Cascavel e região. Exames ocupacionais, gestão de riscos, treinamentos e assessoria, com uma equipe que acompanha a sua empresa de perto.
+          </p>
+          <div class="hero__cta rv" data-d="2">
+            <a class="btn btn--lime" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20GRO%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer">
+              <svg class="btn__ic" aria-hidden="true"><use href="#i-chat"/></svg>Falar com a GRO
+            </a>
+            <a class="btn btn--ghost" href="#solucoes">Conhecer soluções</a>
+          </div>
         </div>
 
-        <ul class="hero__meta" data-reveal style="--i:4">
-          <li><span>Endereço</span>Rua Maranhão, 539 — Centro</li>
-          <li><span>Atendimento</span>Seg. a sex. · 07:30–17:30</li>
-          <li><span>WhatsApp</span><a href="tel:+5545991068333">(45) 99106-8333</a></li>
-        </ul>
+        <dl class="hero__facts rv" data-d="3">
+          <div><dt>Atendimento</dt><dd>Segunda a sexta, 7h30 às 17h30</dd></div>
+          <div><dt>Endereço</dt><dd>Rua Maranhão, 539, Centro</dd></div>
+          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20GRO%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer">(45) 99106-8333</a></dd></div>
+        </dl>
       </div>
-
-      <figure class="hero__media" data-reveal="clip">
-        <div class="ph ph--dark" data-parallax role="img" aria-label="Espaço reservado para a fotografia da fachada da GRO, na Rua Maranhão, 539">
-          <span class="ph__marks" aria-hidden="true"></span>
-          <span class="ph__label" aria-hidden="true">
-            <b>Foto a produzir</b>
-            Fachada com o totem GRO<br>Rua Maranhão, 539 · luz da manhã
-            <i>4:5 · mín. 2000 px</i>
-          </span>
-        </div>
-      </figure>
     </section>
 
-    <!-- POSICIONAMENTO / DIFERENCIAIS -->
-    <section class="section section--paper" id="posicionamento" aria-labelledby="pos-title">
-      <div class="container">
-        <p class="kicker" data-reveal><span>01</span>Posicionamento</p>
-        <div class="split">
-          <h2 class="h2 split__title" id="pos-title" data-reveal>
-            Documento em dia é o ponto de partida. <span class="muted">Acompanhar a sua empresa é o trabalho.</span>
-          </h2>
-          <p class="split__text" data-reveal style="--i:1">
-            A GRO atua em medicina e segurança do trabalho com foco em prevenção de acidentes, cumprimento da legislação e cuidado com a saúde de quem trabalha. Na prática: menos pendência, respostas claras e um parceiro que conhece a rotina da sua empresa.
-          </p>
+    <!-- POSICIONAMENTO -->
+    <section class="sec sec--paper pos" aria-labelledby="pos-t">
+      <div class="wrap">
+        <div class="pos__head">
+          <h2 class="pos__t rv" id="pos-t">Mais do que cumprir obrigações.</h2>
+          <p class="pos__sub rv" data-d="1">Uma parceria para cuidar da saúde e da segurança de quem trabalha na sua empresa, com foco em prevenção.</p>
         </div>
 
-        <ol class="pillars">
-          <li class="pillar" data-reveal style="--i:0">
-            <span class="pillar__n">A</span>
-            <h3>Atendimento personalizado</h3>
-            <p>Cada empresa tem atividade, riscos e rotina diferentes. O atendimento começa por entender isso.</p>
+        <ul class="fronts">
+          <li class="rv" data-d="1">
+            <h3>Prevenção</h3>
+            <p>Riscos identificados e controlados antes de virarem acidente.</p>
           </li>
-          <li class="pillar" data-reveal style="--i:1">
-            <span class="pillar__n">B</span>
-            <h3>Exames e laudos com agilidade</h3>
-            <p>Processos organizados para que exames e documentos não travem a rotina da sua equipe.</p>
+          <li class="rv" data-d="2">
+            <h3>Legislação em dia</h3>
+            <p>Programas, exames e informações ao eSocial de acordo com as normas.</p>
           </li>
-          <li class="pillar" data-reveal style="--i:2">
-            <span class="pillar__n">C</span>
-            <h3>Documentação em ordem</h3>
-            <p>PGR, PCMSO e LTCAT elaborados com acompanhamento técnico e linguagem clara.</p>
+          <li class="rv" data-d="3">
+            <h3>Saúde de quem trabalha</h3>
+            <p>Cuidado com o bem-estar dos colaboradores, com acompanhamento médico.</p>
           </li>
-          <li class="pillar" data-reveal style="--i:3">
-            <span class="pillar__n">D</span>
-            <h3>Assessoria contínua</h3>
-            <p>Orientação sobre eSocial, NRs e mudanças na legislação que afetam a sua operação.</p>
-          </li>
-        </ol>
+        </ul>
       </div>
     </section>
 
     <!-- SOLUÇÕES -->
-    <section class="section section--white" id="solucoes" aria-labelledby="sol-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="kicker" data-reveal><span>02</span>Soluções</p>
-          <h2 class="h2" id="sol-title" data-reveal>Nossas soluções</h2>
-          <p class="section-head__text" data-reveal style="--i:1">Saúde ocupacional e segurança do trabalho em um só contato: da avaliação dos riscos ao envio das informações ao eSocial.</p>
+    <section class="sec sec--white sol" id="solucoes" aria-labelledby="sol-t">
+      <div class="wrap sol__grid">
+        <div class="sol__head">
+          <h2 class="h2 rv" id="sol-t">Nossas soluções</h2>
+          <p class="sol__intro rv" data-d="1">Saúde ocupacional e segurança do trabalho no mesmo lugar, da avaliação dos riscos às informações enviadas ao eSocial.</p>
         </div>
 
-        <ol class="services">
-          <li class="service" data-reveal>
-            <span class="service__n">01</span>
-            <h3 class="service__title">Medicina do Trabalho</h3>
-            <div class="service__body">
-              <p>Exames ocupacionais e o programa de controle médico da sua empresa, sob direção técnica de médico do trabalho.</p>
-              <ul class="tags"><li>Exames ocupacionais</li><li>PCMSO</li><li>Laudos</li></ul>
+        <div class="acc" data-acc>
+          <article class="acc__item rv">
+            <h3 class="acc__h">
+              <button class="acc__btn" type="button" aria-expanded="false" aria-controls="sol-1" id="sol-1-b">
+                <span class="acc__name">Medicina do Trabalho</span>
+                <span class="acc__sum">Exames ocupacionais e acompanhamento médico dos colaboradores.</span>
+                <svg class="acc__ic" aria-hidden="true"><use href="#i-plus"/></svg>
+              </button>
+            </h3>
+            <div class="acc__panel" id="sol-1" role="region" aria-labelledby="sol-1-b">
+              <div class="acc__body">
+                <ul class="incl">
+                  <li>Exames ocupacionais</li>
+                  <li><abbr title="Programa de Controle Médico de Saúde Ocupacional">PCMSO</abbr>, o programa de controle médico da empresa</li>
+                  <li>Laudos</li>
+                  <li>Direção técnica de médico do trabalho</li>
+                </ul>
+                <a class="more" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20Medicina%20do%20Trabalho%20na%20GRO." target="_blank" rel="noopener noreferrer">Falar sobre medicina do trabalho</a>
+              </div>
             </div>
-            <a class="service__cta" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20Medicina%20do%20Trabalho%20na%20GRO%20Cascavel." target="_blank" rel="noopener" aria-label="Consultar a GRO sobre Medicina do Trabalho pelo WhatsApp">
-              Consultar <svg aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
-          </li>
-          <li class="service" data-reveal>
-            <span class="service__n">02</span>
-            <h3 class="service__title">Segurança do Trabalho</h3>
-            <div class="service__body">
-              <p>Identificação e gerenciamento dos riscos do ambiente de trabalho, com a documentação que as normas exigem.</p>
-              <ul class="tags"><li>PGR</li><li>Gerenciamento de riscos</li><li>LTCAT</li></ul>
+          </article>
+
+          <article class="acc__item rv">
+            <h3 class="acc__h">
+              <button class="acc__btn" type="button" aria-expanded="false" aria-controls="sol-2" id="sol-2-b">
+                <span class="acc__name">Segurança do Trabalho</span>
+                <span class="acc__sum">Identificação, avaliação e controle dos riscos do ambiente de trabalho.</span>
+                <svg class="acc__ic" aria-hidden="true"><use href="#i-plus"/></svg>
+              </button>
+            </h3>
+            <div class="acc__panel" id="sol-2" role="region" aria-labelledby="sol-2-b">
+              <div class="acc__body">
+                <ul class="incl">
+                  <li><abbr title="Programa de Gerenciamento de Riscos">PGR</abbr>, o programa de gerenciamento de riscos</li>
+                  <li>Levantamento dos fatores de risco, conforme a NR-01</li>
+                  <li><abbr title="Laudo Técnico das Condições Ambientais do Trabalho">LTCAT</abbr></li>
+                </ul>
+                <a class="more" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20Seguran%C3%A7a%20do%20Trabalho%20na%20GRO." target="_blank" rel="noopener noreferrer">Falar sobre segurança do trabalho</a>
+              </div>
             </div>
-            <a class="service__cta" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20Seguran%C3%A7a%20do%20Trabalho%20na%20GRO%20Cascavel." target="_blank" rel="noopener" aria-label="Consultar a GRO sobre Segurança do Trabalho pelo WhatsApp">
-              Consultar <svg aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
-          </li>
-          <li class="service" data-reveal>
-            <span class="service__n">03</span>
-            <h3 class="service__title">Treinamentos</h3>
-            <div class="service__body">
-              <p>Capacitações conforme as Normas Regulamentadoras, para que a equipe saiba prevenir riscos e agir com segurança.</p>
-              <ul class="tags"><li>Treinamentos em NRs</li><li>CIPA</li><li>NR-12</li></ul>
+          </article>
+
+          <article class="acc__item rv">
+            <h3 class="acc__h">
+              <button class="acc__btn" type="button" aria-expanded="false" aria-controls="sol-3" id="sol-3-b">
+                <span class="acc__name">Treinamentos</span>
+                <span class="acc__sum">Capacitações conforme as Normas Regulamentadoras, com teoria e prática.</span>
+                <svg class="acc__ic" aria-hidden="true"><use href="#i-plus"/></svg>
+              </button>
+            </h3>
+            <div class="acc__panel" id="sol-3" role="region" aria-labelledby="sol-3-b">
+              <div class="acc__body">
+                <ul class="incl">
+                  <li>Treinamentos conforme as NRs</li>
+                  <li>Curso de CIPA: legislação, combate a incêndio, primeiros socorros, práticas e simulações</li>
+                  <li>NR-12, segurança em máquinas e equipamentos</li>
+                </ul>
+                <a class="more" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20treinamentos%20da%20GRO." target="_blank" rel="noopener noreferrer">Falar sobre treinamentos</a>
+              </div>
             </div>
-            <a class="service__cta" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20treinamentos%20da%20GRO%20Cascavel." target="_blank" rel="noopener" aria-label="Consultar a GRO sobre Treinamentos pelo WhatsApp">
-              Consultar <svg aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
-          </li>
-          <li class="service" data-reveal>
-            <span class="service__n">04</span>
-            <h3 class="service__title">Assessoria e eSocial</h3>
-            <div class="service__body">
-              <p>Apoio completo para as informações de saúde e segurança no eSocial e orientação sobre as exigências legais.</p>
-              <ul class="tags"><li>eSocial</li><li>Orientação legal</li><li>Acompanhamento</li></ul>
+          </article>
+
+          <article class="acc__item rv">
+            <h3 class="acc__h">
+              <button class="acc__btn" type="button" aria-expanded="false" aria-controls="sol-4" id="sol-4-b">
+                <span class="acc__name">Assessoria e eSocial</span>
+                <span class="acc__sum">Orientação contínua para a empresa cumprir as exigências com segurança.</span>
+                <svg class="acc__ic" aria-hidden="true"><use href="#i-plus"/></svg>
+              </button>
+            </h3>
+            <div class="acc__panel" id="sol-4" role="region" aria-labelledby="sol-4-b">
+              <div class="acc__body">
+                <ul class="incl">
+                  <li>Assessoria completa para o eSocial</li>
+                  <li>Orientação sobre normas e mudanças na legislação</li>
+                  <li>Apoio ao RH e ao departamento pessoal</li>
+                </ul>
+                <a class="more" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20assessoria%20e%20o%20eSocial%20na%20GRO." target="_blank" rel="noopener noreferrer">Falar sobre assessoria e eSocial</a>
+              </div>
             </div>
-            <a class="service__cta" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20assessoria%20para%20o%20eSocial%20da%20GRO%20Cascavel." target="_blank" rel="noopener" aria-label="Consultar a GRO sobre Assessoria e eSocial pelo WhatsApp">
-              Consultar <svg aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
-          </li>
-        </ol>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- FAIXA FOTOGRÁFICA -->
-    <figure class="band" data-reveal="clip">
-      <div class="ph ph--band" data-parallax role="img" aria-label="Espaço reservado para fotografia da equipe da GRO em atendimento ou treinamento">
-        <span class="ph__marks" aria-hidden="true"></span>
-        <span class="ph__label" aria-hidden="true">
-          <b>Foto a produzir</b>
-          Equipe GRO em treinamento ou atendimento em empresa
-          <i>21:9 · mín. 2400 px</i>
-        </span>
-      </div>
-    </figure>
+    <!-- PARA EMPRESAS + COMO AJUDAMOS -->
+    <section class="sec sec--green emp" id="empresas" aria-labelledby="emp-t">
+      <div class="wrap">
+        <h2 class="h2 h2--xl emp__t rv" id="emp-t">Você cuida do negócio. <span>A GRO cuida da saúde e segurança ocupacional.</span></h2>
 
-    <!-- PARA EMPRESAS + COMO FUNCIONA -->
-    <section class="section section--dark" id="empresas" aria-labelledby="emp-title">
-      <div class="container">
-        <p class="kicker kicker--light" data-reveal><span>03</span>Para empresas</p>
-        <h2 class="h2 h2--wide" id="emp-title" data-reveal>
-          Sua empresa cuida do negócio. <em>A GRO cuida para que saúde e segurança não virem pendência.</em>
-        </h2>
-
-        <div class="audience">
-          <p class="audience__intro" data-reveal>Trabalhamos lado a lado com quem responde pela rotina ocupacional da empresa.</p>
-          <ul class="audience__list">
-            <li data-reveal style="--i:0"><h3>Empresários e gestores</h3><p>Uma visão clara do que está em dia e do que precisa de atenção.</p></li>
-            <li data-reveal style="--i:1"><h3>RH e departamento pessoal</h3><p>Exames, prazos e documentos resolvidos com um único contato.</p></li>
-            <li data-reveal style="--i:2"><h3>Contabilidade</h3><p>Informações de saúde e segurança organizadas para o eSocial.</p></li>
-            <li data-reveal style="--i:3"><h3>Responsáveis por SST</h3><p>Apoio técnico na gestão de riscos, nos programas e nos treinamentos.</p></li>
+        <div class="emp__grid">
+          <p class="emp__intro rv">Trabalhamos com quem responde pela rotina ocupacional de empresas de diferentes segmentos.</p>
+          <ul class="roles">
+            <li class="rv" data-d="1"><h3>Empresários e gestores</h3><p>Orientação para decidir, com segurança, o que a empresa precisa fazer e quando.</p></li>
+            <li class="rv" data-d="2"><h3>RH e departamento pessoal</h3><p>Exames, prazos e documentos organizados em um só contato.</p></li>
+            <li class="rv" data-d="3"><h3>Contadores</h3><p>Informações de saúde e segurança organizadas para o eSocial.</p></li>
+            <li class="rv" data-d="4"><h3>Responsáveis por SST</h3><p>Suporte técnico em gestão de riscos, programas e treinamentos.</p></li>
           </ul>
         </div>
 
-        <div class="process" data-reveal="process">
-          <div class="process__head">
-            <h3 class="process__title">Como funciona</h3>
-            <p>Quatro etapas, sem burocracia no caminho.</p>
+        <div class="how" id="como-ajudamos" data-how>
+          <h3 class="how__t rv">Como ajudamos sua empresa</h3>
+          <div class="how__track">
+            <svg class="how__arc" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path class="how__base" d="M0 150C300 150 520 20 1200 10"/>
+              <path class="how__line" pathLength="1" d="M0 150C300 150 520 20 1200 10"/>
+            </svg>
+            <ol class="steps">
+              <li class="step">
+                <span class="step__n">01</span>
+                <h4>Entender</h4>
+                <p>Conversamos sobre a atividade da empresa, o número de colaboradores e o que está pendente.</p>
+              </li>
+              <li class="step">
+                <span class="step__n">02</span>
+                <h4>Organizar</h4>
+                <p>Definimos os exames, programas e treinamentos necessários, com prazos claros.</p>
+              </li>
+              <li class="step">
+                <span class="step__n">03</span>
+                <h4>Orientar</h4>
+                <p>Explicamos cada exigência e o que muda na rotina, em linguagem direta.</p>
+              </li>
+              <li class="step">
+                <span class="step__n">04</span>
+                <h4>Acompanhar</h4>
+                <p>Seguimos ao lado da empresa nas atualizações das normas e nas dúvidas do dia a dia.</p>
+              </li>
+            </ol>
           </div>
-          <div class="process__track" aria-hidden="true"><span class="process__line"></span></div>
-          <ol class="process__steps">
-            <li class="step" style="--i:0">
-              <span class="step__n">01</span>
-              <h4>Contato</h4>
-              <p>Você fala com a GRO pelo WhatsApp, por telefone ou pessoalmente, na Rua Maranhão.</p>
-            </li>
-            <li class="step" style="--i:1">
-              <span class="step__n">02</span>
-              <h4>Entendemos a demanda</h4>
-              <p>Atividade da empresa, número de colaboradores e o que está pendente.</p>
-            </li>
-            <li class="step" style="--i:2">
-              <span class="step__n">03</span>
-              <h4>Definimos o atendimento</h4>
-              <p>Exames, documentos e treinamentos necessários, com próximos passos claros.</p>
-            </li>
-            <li class="step" style="--i:3">
-              <span class="step__n">04</span>
-              <h4>Rotina organizada</h4>
-              <p>A GRO segue acompanhando a sua empresa nas atualizações e dúvidas do dia a dia.</p>
-            </li>
-          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFERENCIAL -->
+    <section class="sec sec--paper dif" aria-labelledby="dif-t">
+      <div class="wrap">
+        <h2 class="h2 h2--xl dif__t rv" id="dif-t">Não é só documentação.</h2>
+        <p class="dif__lead rv" data-d="1">Todo programa exigido por lei chega com o que o faz funcionar na prática.</p>
+
+        <div class="dif__grid">
+          <div class="dif__law rv" data-d="1">
+            <h3>O que a legislação exige</h3>
+            <ul>
+              <li>PGR</li>
+              <li>PCMSO</li>
+              <li>LTCAT</li>
+              <li>Exames ocupacionais</li>
+              <li>Informações ao eSocial</li>
+            </ul>
+          </div>
+          <div class="dif__plus">
+            <h3 class="rv">O que a GRO entrega junto</h3>
+            <dl>
+              <div class="rv" data-d="1"><dt>Orientação</dt><dd>O que cada documento significa para a sua operação, explicado sem jargão.</dd></div>
+              <div class="rv" data-d="2"><dt>Prevenção</dt><dd>Riscos mapeados para agir antes do acidente, não depois.</dd></div>
+              <div class="rv" data-d="3"><dt>Acompanhamento</dt><dd>Presença contínua, não só na hora de renovar um documento.</dd></div>
+              <div class="rv" data-d="4"><dt>Conhecimento técnico</dt><dd>Direção técnica de médico do trabalho e atenção às mudanças nas normas.</dd></div>
+            </dl>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- SOBRE -->
-    <section class="section section--paper" id="sobre" aria-labelledby="sobre-title">
-      <div class="container about">
-        <figure class="about__media" data-reveal="clip">
-          <div class="ph ph--light" data-parallax role="img" aria-label="Espaço reservado para fotografia do ambiente interno ou da equipe da GRO">
-            <span class="ph__marks" aria-hidden="true"></span>
-            <span class="ph__label" aria-hidden="true">
-              <b>Foto a produzir</b>
-              Recepção ou equipe GRO<br>no ambiente interno
-              <i>4:5 · mín. 1800 px</i>
-            </span>
-          </div>
-        </figure>
-
+    <section class="sec sec--white about" id="sobre" aria-labelledby="sobre-t">
+      <div class="wrap about__grid">
         <div class="about__text">
-          <p class="kicker" data-reveal><span>04</span>Sobre a GRO</p>
-          <h2 class="h2" id="sobre-title" data-reveal>Saúde ocupacional feita de perto, no Centro de Cascavel.</h2>
-          <p data-reveal style="--i:1">A GRO Cascavel é uma empresa de Medicina e Segurança do Trabalho. Reúne exames ocupacionais, gestão de riscos, treinamentos e assessoria em um só lugar.</p>
-          <p data-reveal style="--i:2">A abordagem é simples: entender a rotina de cada cliente e manter a saúde e a segurança dos colaboradores em dia, com prevenção em primeiro lugar.</p>
-
-          <dl class="specs" data-reveal style="--i:3">
-            <div>
-              <dt>Direção técnica</dt>
-              <dd>Dr. Miguel Farah Filho<br><small>Médico do Trabalho · CRM/PR 6467 · RQE 14420</small></dd>
-            </div>
-            <div>
-              <dt>Endereço</dt>
-              <dd>Rua Maranhão, 539 — Centro<br><small>Cascavel — Paraná · 85802-002</small></dd>
-            </div>
-            <div>
-              <dt>Atendimento</dt>
-              <dd>Segunda a sexta<br><small>07:30 às 17:30</small></dd>
-            </div>
-          </dl>
+          <h2 class="h2 rv" id="sobre-t">Saúde e segurança do trabalho, no Centro de Cascavel.</h2>
+          <p class="rv" data-d="1">A GRO Cascavel é especializada em saúde e segurança do trabalho. Reúne medicina ocupacional, gestão de riscos, treinamentos e assessoria para o eSocial em um só lugar, com foco em prevenção.</p>
+          <p class="rv" data-d="2">O jeito de trabalhar é próximo: entender a rotina de cada empresa antes de propor qualquer coisa, e continuar por perto depois.</p>
         </div>
+
+        <dl class="facts rv" data-d="2">
+          <div>
+            <dt>Direção técnica</dt>
+            <dd>Dr. Miguel Farah Filho<span>Médico do Trabalho, CRM/PR 6467, RQE 14420</span></dd>
+          </div>
+          <div>
+            <dt>Endereço</dt>
+            <dd>Rua Maranhão, 539, Centro<span>Cascavel, Paraná, 85802-002</span></dd>
+          </div>
+          <div>
+            <dt>Atendimento</dt>
+            <dd>Segunda a sexta<span>Das 7h30 às 17h30</span></dd>
+          </div>
+          <div>
+            <dt>Instagram</dt>
+            <dd><a href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener noreferrer">@grocascavel</a><span>Orientações sobre normas e prevenção</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- CONTEÚDOS -->
+    <section class="sec sec--paper posts" id="conteudos" aria-labelledby="posts-t">
+      <div class="wrap">
+        <div class="posts__head">
+          <h2 class="h2 rv" id="posts-t">Conteúdo para sua empresa</h2>
+          <p class="rv" data-d="1">A GRO publica orientações sobre normas, prevenção e rotina de SST. Alguns temas recentes do nosso Instagram:</p>
+        </div>
+
+        <ul class="feed">
+          <li class="feed__item feed__item--lead rv">
+            <a href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener noreferrer">
+              <span class="feed__tag">Normas</span>
+              <span class="feed__title">Riscos psicossociais passam a fazer parte do gerenciamento de riscos da NR-01</span>
+              <svg class="feed__ic" aria-hidden="true"><use href="#i-out"/></svg>
+            </a>
+          </li>
+          <li class="feed__item rv" data-d="1">
+            <a href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener noreferrer">
+              <span class="feed__tag">CIPA</span>
+              <span class="feed__title">Você sabe se a CIPA da sua empresa foi instituída corretamente?</span>
+              <svg class="feed__ic" aria-hidden="true"><use href="#i-out"/></svg>
+            </a>
+          </li>
+          <li class="feed__item rv" data-d="2">
+            <a href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener noreferrer">
+              <span class="feed__tag">Prevenção</span>
+              <span class="feed__title">Análise preliminar de riscos: identificar, avaliar e controlar antes de começar</span>
+              <svg class="feed__ic" aria-hidden="true"><use href="#i-out"/></svg>
+            </a>
+          </li>
+          <li class="feed__item rv" data-d="3">
+            <a href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener noreferrer">
+              <span class="feed__tag">Rotina de SST</span>
+              <span class="feed__title">Quais documentos preencher depois do atendimento a um acidente de trabalho</span>
+              <svg class="feed__ic" aria-hidden="true"><use href="#i-out"/></svg>
+            </a>
+          </li>
+          <li class="feed__item rv" data-d="4">
+            <a href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener noreferrer">
+              <span class="feed__tag">Atualizações</span>
+              <span class="feed__title">Atualizado o valor das multas referentes ao PPP e ao LTCAT</span>
+              <svg class="feed__ic" aria-hidden="true"><use href="#i-out"/></svg>
+            </a>
+          </li>
+        </ul>
+
+        <a class="btn btn--dark posts__cta rv" href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener noreferrer">Acompanhar no Instagram</a>
       </div>
     </section>
 
     <!-- CONTATO -->
-    <section class="section section--dark contact" id="contato" aria-labelledby="contato-title">
-      <div class="container">
-        <p class="kicker kicker--light" data-reveal><span>05</span>Contato</p>
-        <div class="contact__cta">
-          <h2 class="h2 h2--xl" id="contato-title" data-reveal>Vamos cuidar da saúde ocupacional da sua empresa?</h2>
-          <div class="contact__action" data-reveal style="--i:1">
-            <p>Fale com a GRO e conte o que a sua empresa precisa. A equipe indica o próximo passo.</p>
-            <a class="btn btn--lime btn--lg" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20GRO%20Cascavel." target="_blank" rel="noopener">
-              <svg class="btn__icon" aria-hidden="true"><use href="#i-chat"/></svg>
-              Fale com a GRO
+    <section class="sec sec--green contact" id="contato" aria-labelledby="contato-t">
+      <div class="wrap">
+        <div class="contact__head">
+          <h2 class="h2 h2--xl rv" id="contato-t">Vamos cuidar da segurança da sua empresa?</h2>
+          <div class="contact__go rv" data-d="1">
+            <p>Conte o que a sua empresa precisa. A equipe da GRO indica o próximo passo.</p>
+            <a class="btn btn--lime btn--lg" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20GRO%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer">
+              <svg class="btn__ic" aria-hidden="true"><use href="#i-chat"/></svg>Falar com a GRO
             </a>
           </div>
         </div>
 
         <div class="contact__grid">
-          <address class="contact__info" data-reveal>
+          <address class="channels rv">
             <div>
-              <span class="label">WhatsApp</span>
-              <a href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20GRO%20Cascavel." target="_blank" rel="noopener">(45) 99106-8333</a>
+              <span class="lbl">WhatsApp</span>
+              <a href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20GRO%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer">(45) 99106-8333</a>
             </div>
             <div>
-              <span class="label">Telefone</span>
+              <span class="lbl">Telefone</span>
               <a href="tel:+554530970777">(45) 3097-0777</a>
             </div>
-            <div>
-              <span class="label">E-mail</span>
+            <div class="channels__wide">
+              <span class="lbl">E-mail</span>
               <a href="mailto:grosolucoescascavel@gmail.com">grosolucoescascavel@gmail.com</a>
             </div>
             <div>
-              <span class="label">Endereço</span>
-              <p>Rua Maranhão, 539<br>Centro — Cascavel/PR<br>85802-002</p>
+              <span class="lbl">Endereço</span>
+              <p>Rua Maranhão, 539<br>Centro, Cascavel/PR<br>85802-002</p>
             </div>
             <div>
-              <span class="label">Horário</span>
-              <p>Segunda a sexta<br>07:30 — 17:30</p>
+              <span class="lbl">Horário</span>
+              <p>Segunda a sexta<br>7h30 às 17h30</p>
             </div>
-            <p class="contact__note">Vai realizar um exame? O atendimento é na Rua Maranhão, 539. Em caso de dúvida, confirme pelo WhatsApp antes de ir.</p>
           </address>
 
-          <div class="map" data-reveal="clip">
-            <p class="map__fallback" aria-hidden="true"><strong>Rua Maranhão, 539 — Centro</strong>Cascavel — PR · 85802-002</p>
-            <iframe
-              title="Mapa: GRO Cascavel, Rua Maranhão, 539 — Centro, Cascavel/PR"
-              src="https://www.google.com/maps?q=Rua%20Maranh%C3%A3o%2C%20539%20-%20Centro%2C%20Cascavel%20-%20PR%2C%2085802-002&amp;output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <a class="btn btn--paper map__btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Rua%20Maranh%C3%A3o%2C%20539%20-%20Centro%2C%20Cascavel%20-%20PR%2C%2085802-002" target="_blank" rel="noopener">
-              Como chegar <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
+          <div class="map rv" data-d="1" data-map>
+            <div class="map__cover">
+              <svg class="map__arc" viewBox="0 0 1000 1000" aria-hidden="true" focusable="false">
+                <path class="arc arc--band" d="M300 0A700 700 0 0 0 1000 700"/>
+                <path class="arc arc--lime" pathLength="1" d="M190 0A810 810 0 0 0 1000 810"/>
+              </svg>
+              <svg class="map__mark" aria-hidden="true"><use href="#gro-mark"/></svg>
+              <p class="map__addr">Rua Maranhão, 539<span>Centro, Cascavel, Paraná</span></p>
+              <p class="map__note">Vai fazer exame na GRO? O atendimento é neste endereço, de segunda a sexta, das 7h30 às 17h30.</p>
+              <div class="map__actions">
+                <a class="btn btn--lime" href="https://www.google.com/maps/dir/?api=1&amp;destination=Rua%20Maranh%C3%A3o%2C%20539%20-%20Centro%2C%20Cascavel%20-%20PR%2C%2085802-002" target="_blank" rel="noopener noreferrer">Como chegar</a>
+                <button class="btn btn--ghost" type="button" data-map-load>Ver mapa aqui</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="site-footer__top">
-        <div class="site-footer__brand">
-          <a class="brand brand--footer" href="#inicio" aria-label="GRO Cascavel — voltar ao início">
-            <svg class="brand__mark" aria-hidden="true"><use href="#gro-mark"/></svg>
-            <svg class="brand__word" aria-hidden="true"><use href="#gro-word"/></svg>
+  <footer class="ft">
+    <div class="wrap">
+      <div class="ft__top">
+        <div class="ft__brand">
+          <a class="logo logo--ft" href="#inicio" aria-label="GRO Cascavel — voltar ao início">
+            <svg class="logo__mark" aria-hidden="true"><use href="#gro-mark"/></svg>
+            <svg class="logo__word" aria-hidden="true"><use href="#gro-word"/></svg>
           </a>
-          <p><strong>GRO Cascavel</strong><br>Medicina e Segurança do Trabalho</p>
+          <p><strong>GRO Cascavel</strong>Medicina e Segurança do Trabalho</p>
         </div>
 
-        <div class="site-footer__col">
-          <p class="label">Endereço</p>
-          <p>Rua Maranhão, 539<br>Centro — Cascavel/PR</p>
+        <div class="ft__col">
+          <p class="lbl">Endereço</p>
+          <p>Rua Maranhão, 539<br>Centro, Cascavel/PR</p>
         </div>
 
-        <div class="site-footer__col">
-          <p class="label">Contato</p>
-          <p><a href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20GRO%20Cascavel." target="_blank" rel="noopener">(45) 99106-8333</a><br><a href="tel:+554530970777">(45) 3097-0777</a><br><a href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener">Instagram @grocascavel</a></p>
+        <div class="ft__col">
+          <p class="lbl">Contato</p>
+          <ul>
+            <li><a href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20GRO%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer">(45) 99106-8333</a></li>
+            <li><a href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener noreferrer">Instagram @grocascavel</a></li>
+          </ul>
         </div>
 
-        <nav class="site-footer__col" aria-label="Rodapé">
-          <p class="label">Navegação</p>
+        <nav class="ft__col" aria-label="Rodapé">
+          <p class="lbl">Navegação</p>
           <ul>
             <li><a href="#inicio">Início</a></li>
-            <li><a href="#solucoes">Serviços</a></li>
-            <li><a href="#empresas">Empresas</a></li>
+            <li><a href="#solucoes">Soluções</a></li>
+            <li><a href="#empresas">Para empresas</a></li>
             <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#conteudos">Conteúdos</a></li>
             <li><a href="#contato">Contato</a></li>
           </ul>
         </nav>
       </div>
 
-      <div class="site-footer__bottom">
-        <p>Diretor técnico: Dr. Miguel Farah Filho — Médico do Trabalho · CRM/PR 6467 · RQE 14420</p>
+      <div class="ft__bottom">
+        <p>Diretor técnico: Dr. Miguel Farah Filho, Médico do Trabalho, CRM/PR 6467, RQE 14420</p>
         <p>© <span data-year>2026</span> GRO Cascavel. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
-  <a class="wa-float" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20GRO%20Cascavel." target="_blank" rel="noopener" data-wa-float aria-label="Conversar com a GRO pelo WhatsApp">
+  <a class="wa" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20GRO%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer" data-wa aria-label="Falar com a GRO pelo WhatsApp">
     <svg aria-hidden="true"><use href="#i-chat"/></svg>
-    <span>WhatsApp</span>
   </a>
 
   <script src="assets/js/main.js" defer></script>

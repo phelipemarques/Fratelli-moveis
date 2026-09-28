@@ -1,31 +1,31 @@
-/* GRO Cascavel — interações do site.
-   Sem bibliotecas: IntersectionObserver para as entradas, requestAnimationFrame
-   para o parallax, e só transform/opacity nas animações. */
+/* GRO Cascavel — interações.
+   Sem bibliotecas. Só transform, opacity e stroke-dashoffset animados. */
 (function () {
   'use strict';
 
   var root = document.documentElement;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var header = document.querySelector('[data-header]');
-  var waFloat = document.querySelector('[data-wa-float]');
   var hero = document.getElementById('inicio');
+  var wa = document.querySelector('[data-wa]');
 
-  /* ---------- Header: transparente sobre o hero, sólido no scroll ---------- */
+  /* ---------- Header e botão flutuante ---------- */
   var lastY = window.scrollY;
   var ticking = false;
 
   function onScroll() {
     var y = window.scrollY;
-    var heroH = hero ? hero.offsetHeight : 600;
+    var heroH = hero ? hero.offsetHeight : 700;
+    var menuOpen = root.classList.contains('menu-open');
 
-    header.classList.toggle('is-scrolled', y > 24);
-    // Esconde o header ao descer bem abaixo do hero; reaparece ao subir.
-    header.classList.toggle('is-hidden', y > heroH && y > lastY + 4 && !root.classList.contains('menu-open'));
-    if (y < lastY - 4 || y <= heroH) header.classList.remove('is-hidden');
+    header.classList.toggle('is-solid', y > 32);
+    if (!menuOpen) {
+      if (y > heroH && y > lastY + 6) header.classList.add('is-hidden');
+      else if (y < lastY - 6 || y <= heroH) header.classList.remove('is-hidden');
+    }
+    if (wa) wa.classList.toggle('is-on', y > heroH * 0.6);
 
-    if (waFloat) waFloat.classList.toggle('is-visible', y > heroH * 0.55);
-
-    parallax();
+    drawProcess();
     lastY = y;
     ticking = false;
   }
@@ -34,57 +34,83 @@
     if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
   }, { passive: true });
 
-  /* ---------- Parallax discreto nas imagens ---------- */
-  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+  /* ---------- Entradas por viewport (fora do hero) ---------- */
+  var rvs = Array.prototype.filter.call(document.querySelectorAll('.rv'), function (el) {
+    return !el.closest('.hero');
+  });
 
-  function parallax() {
-    if (reduceMotion.matches) return;
-    var vh = window.innerHeight;
-    parallaxEls.forEach(function (el) {
-      var frame = el.parentElement;
-      if (!frame.classList.contains('is-in')) return;
-      var r = frame.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh) return;
-      // -1 (entrando por baixo) a 1 (saindo por cima). A escala de 1.06 dá
-      // margem para deslocar até 2,5% sem mostrar a borda.
-      var p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2)));
-      el.style.transform = 'translate3d(0,' + (p * 2.5).toFixed(2) + '%,0) scale(1.06)';
-    });
-  }
-
-  /* ---------- Entradas no scroll ---------- */
-  var revealEls = document.querySelectorAll('[data-reveal]');
-
-  function reveal(el) {
-    el.classList.add('is-in');
-    if (el.getAttribute('data-reveal') === 'clip') {
-      // Libera o parallax só depois que o reveal termina.
-      var ph = el.querySelector('[data-parallax]');
-      if (ph) window.setTimeout(function () { ph.style.transition = 'transform 240ms linear'; parallax(); }, 1800);
-    }
-  }
-
-  if ('IntersectionObserver' in window && !reduceMotion.matches) {
+  if ('IntersectionObserver' in window && !reduce.matches) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          reveal(entry.target._revealTarget || entry.target);
-          io.unobserve(entry.target);
-        }
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
-    revealEls.forEach(function (el) {
-      // Linhas do título ficam fora do pai (overflow: hidden) até entrar:
-      // observa o pai, que está sempre visível.
-      if (el.getAttribute('data-reveal') === 'line') {
-        el.parentElement._revealTarget = el;
-        io.observe(el.parentElement);
-      } else {
-        io.observe(el);
-      }
-    });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+    rvs.forEach(function (el) { io.observe(el); });
   } else {
-    revealEls.forEach(function (el) { el.classList.add('is-in'); });
+    rvs.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* ---------- Acordeão das soluções ---------- */
+  var accButtons = document.querySelectorAll('.acc__btn');
+  function setAcc(btn, open) {
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    btn.setAttribute('aria-expanded', String(open));
+    panel.classList.toggle('is-open', open);
+  }
+  accButtons.forEach(function (btn, i) {
+    setAcc(btn, i === 0); // a primeira solução começa aberta, como exemplo do que há dentro
+    btn.addEventListener('click', function () {
+      var willOpen = btn.getAttribute('aria-expanded') !== 'true';
+      accButtons.forEach(function (b) { if (b !== btn) setAcc(b, false); });
+      setAcc(btn, willOpen);
+    });
+  });
+
+  /* ---------- "Como ajudamos": a curva se desenha com o scroll ---------- */
+  var how = document.querySelector('[data-how]');
+  var howSvg = how && how.querySelector('.how__arc');
+  var howLine = how && how.querySelector('.how__line');
+  var steps = how ? Array.prototype.slice.call(how.querySelectorAll('.step')) : [];
+  var stepAt = []; // fração da curva em que cada passo fica
+
+  function placeNodes() {
+    stepAt = [];
+    if (!howSvg || getComputedStyle(howSvg).display === 'none') {
+      steps.forEach(function (s) { s.style.removeProperty('--node-x'); s.style.removeProperty('--node-y'); });
+      return;
+    }
+    var box = howSvg.getBoundingClientRect();
+    var sx = box.width / 1200;
+    var sy = box.height / 160;
+    var total = howLine.getTotalLength();
+    steps.forEach(function (step) {
+      var sb = step.getBoundingClientRect();
+      var targetX = (sb.left - box.left + 8) / sx; // nó alinhado ao início do texto
+      // busca binária do ponto da curva com esse x
+      var lo = 0, hi = total, pt;
+      for (var k = 0; k < 24; k++) {
+        var mid = (lo + hi) / 2;
+        pt = howLine.getPointAtLength(mid);
+        if (pt.x < targetX) lo = mid; else hi = mid;
+      }
+      stepAt.push(lo / total);
+      step.style.setProperty('--node-x', (pt.x * sx - (sb.left - box.left)) + 'px');
+      step.style.setProperty('--node-y', (pt.y * sy - (sb.top - box.top)) + 'px');
+    });
+  }
+
+  function drawProcess() {
+    if (!how) return;
+    var r = how.getBoundingClientRect();
+    var vh = window.innerHeight;
+    // 0 quando o bloco entra pela base; 1 quando o topo chega a 35% da tela
+    var p = reduce.matches ? 1 : Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.65 + 120)));
+    how.style.setProperty('--p', p.toFixed(3));
+    var mobile = !stepAt.length;
+    steps.forEach(function (s, i) {
+      var threshold = mobile ? (i + 0.5) / steps.length : stepAt[i];
+      s.classList.toggle('is-on', p >= threshold);
+    });
   }
 
   /* ---------- Menu móvel ---------- */
@@ -101,63 +127,83 @@
     document.body.style.overflow = open ? 'hidden' : '';
     if (open) {
       menu.hidden = false;
-      // Força o reflow para a transição de opacidade acontecer.
-      void menu.offsetWidth;
+      void menu.offsetWidth; // garante a transição de opacidade
       menu.classList.add('is-open');
       menu.querySelector('a').focus({ preventScroll: true });
     } else {
       menu.classList.remove('is-open');
-      closeTimer = window.setTimeout(function () { menu.hidden = true; }, reduceMotion.matches ? 0 : 400);
+      closeTimer = window.setTimeout(function () { menu.hidden = true; }, reduce.matches ? 0 : 360);
     }
   }
 
   if (toggle && menu) {
-    toggle.addEventListener('click', function () {
-      setMenu(toggle.getAttribute('aria-expanded') !== 'true');
-    });
-    menu.addEventListener('click', function (e) {
-      if (e.target.closest('a')) setMenu(false);
-    });
+    toggle.addEventListener('click', function () { setMenu(toggle.getAttribute('aria-expanded') !== 'true'); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-        setMenu(false);
-        toggle.focus();
-      }
-      // Mantém o foco dentro do menu aberto (menu + botão de fechar).
-      if (e.key === 'Tab' && toggle.getAttribute('aria-expanded') === 'true') {
-        var focusables = [toggle].concat(Array.prototype.slice.call(menu.querySelectorAll('a')));
-        var first = focusables[0];
-        var last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      if (toggle.getAttribute('aria-expanded') !== 'true') return;
+      if (e.key === 'Escape') { setMenu(false); toggle.focus(); return; }
+      if (e.key === 'Tab') { // foco preso entre o botão e os links do menu
+        var f = [toggle].concat(Array.prototype.slice.call(menu.querySelectorAll('a')));
+        if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
       }
     });
-    window.matchMedia('(min-width: 1024px)').addEventListener('change', function (mq) {
-      if (mq.matches) setMenu(false);
-    });
+    window.matchMedia('(min-width: 1100px)').addEventListener('change', function (mq) { if (mq.matches) setMenu(false); });
   }
 
   /* ---------- Seção ativa no menu ---------- */
-  var navLinks = document.querySelectorAll('.nav__list a');
+  var navLinks = document.querySelectorAll('.nav a');
   if ('IntersectionObserver' in window && navLinks.length) {
-    var sections = ['inicio', 'solucoes', 'empresas', 'sobre', 'contato']
-      .map(function (id) { return document.getElementById(id); })
-      .filter(Boolean);
     var navIo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
         navLinks.forEach(function (a) {
-          if (a.getAttribute('href') === '#' + entry.target.id) a.setAttribute('aria-current', 'true');
+          if (a.getAttribute('href') === '#' + e.target.id) a.setAttribute('aria-current', 'true');
           else a.removeAttribute('aria-current');
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(function (s) { navIo.observe(s); });
+    ['inicio', 'solucoes', 'empresas', 'sobre', 'conteudos', 'contato'].forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) navIo.observe(s);
+    });
+  }
+
+  /* ---------- Mapa sob demanda ----------
+     O iframe do Google só carrega quando a pessoa pede: página mais leve e
+     nenhum cookie de terceiros antes disso. */
+  var map = document.querySelector('[data-map]');
+  var mapBtn = document.querySelector('[data-map-load]');
+  if (map && mapBtn) {
+    mapBtn.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.google.com/maps?q=' + encodeURIComponent('Rua Maranhão, 539 - Centro, Cascavel - PR, 85802-002') + '&output=embed';
+      f.title = 'Mapa: GRO Cascavel, Rua Maranhão, 539, Centro, Cascavel/PR';
+      f.loading = 'lazy';
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox');
+      var close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'btn map__close';
+      close.textContent = 'Fechar mapa';
+      close.addEventListener('click', function () {
+        f.remove(); close.remove();
+        map.classList.remove('is-loaded');
+        mapBtn.focus();
+      });
+      map.appendChild(f);
+      map.appendChild(close);
+      map.classList.add('is-loaded');
+      close.focus();
+    });
   }
 
   /* ---------- Ano no rodapé ---------- */
   var year = document.querySelector('[data-year]');
-  if (year) year.textContent = new Date().getFullYear();
+  if (year) year.textContent = String(new Date().getFullYear());
 
+  window.addEventListener('resize', function () { placeNodes(); drawProcess(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placeNodes(); drawProcess(); });
+  placeNodes();
   onScroll();
 })();
