@@ -33,20 +33,32 @@ Nada além disso aparece no site como fato.
 
 ## 🟡 Confirmar ou melhorar
 
-3. **Fotografias reais.** O vídeo é uma gravação de tela do Instagram: não há foto
-   da empresa em resolução utilizável, parte das imagens do feed está marcada como
-   "Conteúdo de IA", e os bancos de imagem não estavam acessíveis. Por isso o site
-   foi desenhado com a tipografia e as curvas da marca, sem depender de foto, e
-   sem nenhuma imagem falsa. Fotos reais deixariam o site mais humano. Lista de
-   produção (fotógrafo, luz natural, pessoas reais da equipe com autorização de
-   uso de imagem, nenhum dado de paciente visível):
+3. **Fotos originais (a pendência que mais melhora o site).** A V2 já usa 9 fotos
+   reais da GRO, recortadas dos posts do Instagram que aparecem no vídeo. Como
+   elas existem ali só como miniaturas (115 a 225 px), aparecem no máximo no tamanho
+   do arquivo, sem ampliar. Com as originais (do celular ou do computador de quem
+   fotografou, ou baixadas do Instagram em tamanho cheio, 1080 px ou mais), cada
+   espaço passa a mostrar a foto grande. Mesmo nome de arquivo = troca direta:
 
-   | Cena | Onde entra | Formato |
+   | Arquivo em `assets/images/registros/` | Cena (post de origem) | Onde aparece |
    |---|---|---|
-   | Equipe em treinamento de CIPA ou NR, com EPI | Faixa entre Soluções e Para empresas, ou ao lado de "Como ajudamos" | Horizontal 3:2, mín. 2400 px |
-   | Fachada com o totem GRO | Sobre a GRO | Vertical 4:5, mín. 1800 px |
-   | Recepção ou atendimento | Sobre a GRO | 4:5 ou 3:2 |
-   | Técnico em campo (avaliação de riscos) | Segurança do Trabalho, no acordeão | 3:2 |
+   | `nr12-equipe` | Equipe agachada em frente aos banheiros químicos (post "Treinamento NR-12, Sanivel Locações") | Hero; Soluções, Segurança |
+   | `cipa-incendio` | Participante usando extintor (post "Curso de CIPA realizado") | Hero; Soluções, Treinamentos |
+   | `cipa-turma` | Turma com certificados na sala laranja (mesmo post) | Hero; Soluções, Assessoria |
+   | `cipa-externo` | Grupo em área externa com extintores (mesmo post) | Soluções, Treinamentos |
+   | `cipa-primeiros-socorros` | Manequim de reanimação (mesmo post) | Soluções, Medicina |
+   | `nr12-roda` | Grupo ao redor da mesa em área coberta (post do NR-12) | Soluções, Segurança |
+   | `campo` | Dois colaboradores de uniforme sentados (reel no mesmo local do NR-12) | Para empresas |
+   | `sala-treinamento` | Sala com projeção e palestrante (reel) | Soluções, Assessoria |
+   | `fachada` | Fachada com o totem (post "Estamos aqui!") | Sobre; Soluções, Medicina |
+
+   Ainda não há nenhuma foto de **exame ou atendimento médico**. Se a GRO tiver
+   (sem rosto de paciente, sem ficha legível), é a que falta para Medicina do Trabalho.
+   Também servem: recepção, equipe da GRO, técnico em campo avaliando riscos.
+
+   **Autorização de imagem:** as pessoas nas fotos são participantes dos treinamentos
+   (colaboradores de clientes). A GRO já as publicou no Instagram, mas confirme que
+   pode usá-las também no site.
 
 4. **Endereço.** Briefing e bio dizem Rua Maranhão, 539. Alguns posts mostram
    **Av. Brasil, 5577, Centro**. O site usa Rua Maranhão; confirmar que Av. Brasil

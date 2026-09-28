@@ -32,6 +32,14 @@ css = re.sub(
     css,
 )
 
+# Fotos: no arquivo único vai só o JPG, embutido (o WebP dobraria o tamanho)
+html = re.sub(r'<source type="image/webp" srcset="assets/images/registros/[^"]+">', "", html)
+html = re.sub(
+    r'src="assets/images/registros/([^"]+\.jpg)"',
+    lambda m: f'src="{data_uri(ROOT / "assets/images/registros" / m.group(1), "image/jpeg")}"',
+    html,
+)
+
 html = re.sub(r'\s*<meta http-equiv="Content-Security-Policy"[^>]*>', "", html)
 html = re.sub(r'\s*<link rel="preload"[^>]*>', "", html)
 html = re.sub(r'\s*<link rel="manifest"[^>]*>', "", html)

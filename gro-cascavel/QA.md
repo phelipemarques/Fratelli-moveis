@@ -1,4 +1,27 @@
-# QA — GRO Cascavel (redesign)
+# QA — GRO Cascavel
+
+## V2 visual (fotografia)
+
+| Verificação | Resultado |
+|---|---|
+| Fotos reais | 9, recortadas do vídeo (posts de NR-12, CIPA, "Estamos aqui!" e 2 reels); exibidas no máximo no tamanho do arquivo (2× a origem) |
+| Momentos fotográficos | Hero (3 fotos), Soluções (par de fotos por solução, troca ao abrir), Para empresas, Sobre; Conteúdos com capas no idioma visual do Instagram |
+| Ritmo | foto → tipografia → foto + interação → foto → processo → tipografia → foto → capas → CTA |
+| Movimento das fotos | máscara verde-lima sobe e revela; escala 1,08 → 1; troca com fade nas soluções; parallax de até 14 px na foto de Para empresas |
+| Hero no celular e tablet (até 1279 px) | ordem título → fotos → texto → contatos, para as pessoas aparecerem na primeira tela |
+| Lighthouse 13 | mobile 97 / 100 / 100 / 100 / 100 (LCP 2,4 s); desktop 100 em todas |
+| 6 larguras | sem rolagem horizontal, sem erros de console |
+| Interações | as mesmas da versão anterior, repetidas: todas passaram |
+| Movimento reduzido | 49/49 blocos visíveis, máscaras desligadas |
+
+Problemas encontrados e corrigidos na V2: tratamento com desfoque das miniaturas
+(parecia visão noturna, descartado); foto pequena em painel grande nas Soluções
+(virou par de fotos com bloco verde); curva solta em Para empresas; curva cruzando o
+subtítulo das capas; palco lateral do hero invadindo o texto em 1024 px (o hero
+lateral só entra a partir de 1280 px); curva cruzando legendas no celular; painel do
+Sobre repetia o do Contato (virou "Estamos aqui.").
+
+## Versão anterior (redesign)
 
 Data: 28/09/2026. Ferramentas: Chromium headless (Playwright 1.56),
 Lighthouse 13.5, servidor local `python3 -m http.server`. Capturas em

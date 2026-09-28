@@ -38,7 +38,7 @@
   /* Tipografia */
   --display: "Barlow Condensed", "Barlow Condensed Fallback", "Arial Narrow", sans-serif;
   --text: "Barlow", "Barlow Fallback", system-ui, sans-serif;
-  --t-hero: clamp(5rem, 1.4rem + 9.4vw, 11rem);
+  --t-hero: clamp(4.5rem, 1.4rem + 7.2vw, 9.25rem);
   --t-xl:   clamp(2.75rem, 1.3rem + 5vw, 6.5rem);
   --t-h2:   clamp(2.25rem, 1.4rem + 3vw, 4.25rem);
   --t-h3:   clamp(1.5rem, 1.25rem + 0.8vw, 2rem);
@@ -245,18 +245,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   overflow: hidden;
   isolation: isolate;
 }
-/* A curva fica sempre fora da coluna de texto. No celular ela fecha o hero,
-   abaixo dos contatos; do tablet em diante ocupa o lado direito. */
-.hero__arc {
-  position: absolute; z-index: var(--z-arc);
-  right: -44vw; bottom: -44vw;
-  width: 120vw; height: auto;
-}
 .hero__in {
   position: relative; z-index: var(--z-content);
   display: grid; align-content: end; gap: var(--sp-2xl);
   padding-top: calc(var(--hd-h) + var(--sp-2xl));
-  padding-bottom: 36vw;
+  padding-bottom: var(--sp-2xl);
 }
 .hero__t {
   font-family: var(--display);
@@ -413,29 +406,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* Conteúdos */
 .posts__head { display: grid; gap: var(--sp-lg); margin-bottom: var(--sp-3xl); }
 .posts__head p { font-size: 1.125rem; color: var(--ink-2); max-width: 32em; }
-.feed { display: grid; border-top: 1px solid var(--ink); }
-.feed__item { border-bottom: 1px solid var(--line); }
-.feed__item a {
-  position: relative;
-  display: grid; gap: var(--sp-xs);
-  padding: var(--sp-lg) 3rem var(--sp-lg) 0;
-  height: 100%;
-}
-.feed__tag { font-size: var(--t-sm); font-weight: 500; color: var(--green-700); }
-.feed__title {
-  font-family: var(--display); font-weight: 600; font-size: 1.625rem; line-height: 1.12;
-  text-wrap: balance;
-  background: linear-gradient(currentColor, currentColor) left 100% / 0 1px no-repeat;
-  transition: background-size var(--dur) var(--ease-out);
-}
-.feed__item--lead .feed__title { font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.25rem); line-height: 1; text-transform: uppercase; }
-.feed__ic {
-  position: absolute; right: 0; top: var(--sp-lg);
-  width: 1.75rem; height: 1.75rem; color: var(--stone);
-  transition: transform var(--dur) var(--ease-out), color var(--dur-quick);
-}
-.feed__item a:hover .feed__title { background-size: 100% 1px; }
-.feed__item a:hover .feed__ic { transform: translate(3px, -3px); color: var(--green-700); }
 .posts__cta { margin-top: var(--sp-2xl); }
 
 /* Contato */
@@ -516,9 +486,9 @@ html:not(.js) .wa { opacity: 1; transform: none; pointer-events: auto; }
 
 .js .ln__i { animation: line-in 1000ms var(--ease-out) 120ms both; }
 .js .ln__i--2 { animation-delay: 210ms; }
-.js .hero .arc--band { animation: band-in 1400ms var(--ease-out) 200ms both; }
-.js .hero .arc--lime { animation: draw 1600ms var(--ease-io) 420ms both; }
-.js .hero .arc--thin { animation: draw 1900ms var(--ease-io) 560ms both; }
+.js .stage__fill { animation: band-in 1400ms var(--ease-out) 200ms both; }
+.js .stage__lime { animation: draw 1600ms var(--ease-io) 380ms both; }
+.js .stage__thin { animation: draw 1900ms var(--ease-io) 520ms both; }
 .js .hero .rv { animation: rise var(--dur-slow) var(--ease-out) both; animation-delay: calc(560ms + var(--d, 0) * 90ms); }
 .js .hero .hero__what { animation-delay: 40ms; }
 
@@ -566,8 +536,6 @@ html:not(.js) .wa { opacity: 1; transform: none; pointer-events: auto; }
 }
 
 @media (min-width: 560px) {
-  .hero__arc { right: -30vw; bottom: -44vw; width: 86vw; }
-  .hero__in { padding-bottom: 30vw; align-content: center; }
   .hero__facts { grid-template-columns: repeat(3, minmax(0, max-content)); column-gap: var(--sp-2xl); }
   .roles { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--sp-xl); }
   .ft__top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -576,9 +544,6 @@ html:not(.js) .wa { opacity: 1; transform: none; pointer-events: auto; }
 
 @media (min-width: 768px) {
   .fronts { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--sp-xl); }
-  .feed { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--sp-xl); }
-  .feed__item--lead { grid-column: 1 / -1; }
-  .feed__item--lead a { padding-block: var(--sp-xl); }
   .contact__head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--sp-3xl); }
   .dif__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--sp-3xl); }
   .pos__head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; gap: var(--sp-3xl); }
@@ -591,18 +556,13 @@ html:not(.js) .wa { opacity: 1; transform: none; pointer-events: auto; }
 }
 
 @media (min-width: 1024px) {
-  .hero__arc { right: -18vw; bottom: -20vh; width: 70vw; }
   .hero__in { padding-bottom: var(--sp-2xl); align-content: end; }
-  .hero__facts { max-width: 58%; }
   .hero__body { grid-template-columns: minmax(0, 1fr); }
-  .sol__grid { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--sp-3xl); }
-  .sol__head { position: sticky; top: 7rem; align-self: start; }
   .acc__btn { grid-template-columns: minmax(0, 1fr) auto; }
   .acc__sum { grid-column: 1; }
   .acc__ic { grid-column: 2; grid-row: 1 / span 2; }
   .acc__body { grid-template-columns: minmax(0, 1fr); }
   .incl, .more { grid-column: 1; }
-  .emp__grid { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--sp-3xl); }
   .roles { row-gap: var(--sp-2xl); }
 
   .how__arc { display: block; width: 100%; height: 160px; overflow: visible; }
@@ -612,7 +572,6 @@ html:not(.js) .wa { opacity: 1; transform: none; pointer-events: auto; }
   .step { padding: 0; }
   .step::before { display: none; }
   .step::after { left: var(--node-x, 0); top: var(--node-y, 0); transform: translate(-50%, -50%); }
-  .about__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--sp-4xl); }
   .contact__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--sp-3xl); }
   .map { min-height: 32rem; }
   .map__arc { width: min(62%, 26rem); }
@@ -622,15 +581,265 @@ html:not(.js) .wa { opacity: 1; transform: none; pointer-events: auto; }
 }
 
 @media (min-width: 1280px) {
-  .hero__arc { right: -15vw; bottom: -18vh; width: 70vw; }
   .hero__facts { max-width: 52%; }
 }
 
 @media (min-width: 1440px) {
-  .hero__arc { right: -7vw; }
 }
 
 @media (min-width: 1920px) {
   :root { --max: 1600px; }
-  .hero__arc { right: -9vw; bottom: -22vh; width: 60vw; }
+}
+
+/* =============================================================
+   V2 — fotografia
+   Fotos reais dos treinamentos da GRO. Enquanto não chegam os
+   originais, cada foto aparece no tamanho natural do arquivo
+   (nunca ampliada além dele), sobre painéis verdes com a curva.
+   ============================================================= */
+
+/* Foto com máscara verde-lima: a máscara sobe e revela a imagem */
+.reg { margin: 0; }
+.reg__img { position: relative; display: inline-block; max-width: 100%; overflow: hidden; background: var(--green-800); vertical-align: top; }
+.reg__img img { display: block; max-width: 100%; height: auto; transform-origin: 50% 60%; }
+.reg figcaption, .shot figcaption, .emp__photo figcaption {
+  margin-top: var(--sp-xs);
+  font-size: 0.8125rem; line-height: 1.35; color: var(--on-green-2);
+}
+.js .reg__img::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: var(--lime);
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+}
+@keyframes wipe { from { transform: scaleY(1); } }
+@keyframes settle { from { transform: scale(1.08); } }
+
+/* ---------- Hero: palco fotográfico ---------- */
+.hero { flex-direction: column; }
+.stage {
+  position: relative; z-index: var(--z-content);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-md);
+  margin: 0 var(--gutter) var(--sp-xl);
+  padding: var(--sp-xl) var(--sp-md) var(--sp-md);
+  border-radius: var(--radius);
+  background: var(--green-900);
+  overflow: hidden;
+}
+.stage::before { /* a curva da marca atravessando o canto do painel */
+  content: ""; position: absolute; right: -9rem; top: -9rem;
+  width: 18rem; aspect-ratio: 1; border-radius: 50%;
+  border: 6px solid var(--lime); opacity: 0.9;
+  pointer-events: none;
+}
+.stage__shape { display: none; }
+.stage .reg { position: relative; }
+.reg--3 { display: none; }
+.js .hero .reg { animation: rise var(--dur-slow) var(--ease-out) both; }
+.js .hero .reg__img::after { animation: wipe 900ms var(--ease-io) both; }
+.js .hero .reg__img img { animation: settle 1400ms var(--ease-out) both; }
+.js .hero .reg--1, .js .hero .reg--1 .reg__img::after, .js .hero .reg--1 img { animation-delay: 380ms; }
+.js .hero .reg--2, .js .hero .reg--2 .reg__img::after, .js .hero .reg--2 img { animation-delay: 500ms; }
+.js .hero .reg--3, .js .hero .reg--3 .reg__img::after, .js .hero .reg--3 img { animation-delay: 620ms; }
+
+/* ---------- Soluções: foto que muda com a solução ---------- */
+.sol__head { display: grid; gap: var(--sp-lg); margin-bottom: var(--sp-3xl); }
+.sol__intro { margin-top: 0; }
+.sol__grid { display: grid; gap: var(--sp-2xl); align-items: start; }
+/* Sem moldura vazia: a foto aparece como uma cópia impressa sobre a curva
+   verde, com um bloco da marca deslocado atrás. */
+.sol__stage {
+  position: relative;
+  min-height: 24rem;
+  isolation: isolate;
+}
+.sol__arc { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; display: none; }
+.sol__arc .arc--lime { stroke-width: 3; stroke-dasharray: none; vector-effect: non-scaling-stroke; }
+.emp__photo .reg__img, .about__place .reg__img { box-shadow: 18px 18px 0 var(--green-700); }
+/* Par de fotos: a principal com o bloco verde atrás, a segunda sobreposta */
+.shot__pair { position: relative; display: grid; justify-items: start; padding: 0 0 var(--sp-2xl); }
+.shot__a { box-shadow: 18px 18px 0 var(--green-950); }
+.shot__b {
+  position: absolute; right: 0; bottom: 0; z-index: 2;
+  box-shadow: 0 0 0 6px var(--white);
+}
+.shot__b img { max-width: min(11rem, 40vw); }
+.js .sol__stage.is-in .shot.is-on .shot__b::after { animation-delay: 260ms; }
+.js .sol__stage.is-in .shot.is-on .shot__b img { animation-delay: 260ms; }
+.shot {
+  position: absolute; inset: 0; margin: 0;
+  display: grid; place-content: center; justify-items: stretch;
+  padding: var(--sp-lg) var(--sp-md) var(--sp-lg) 0;
+  opacity: 0; visibility: hidden;
+  transition: opacity 240ms var(--ease-in), visibility 0s linear 240ms;
+}
+.shot.is-on { opacity: 1; visibility: visible; transition: opacity var(--dur) var(--ease-out); }
+.shot__a img { max-height: min(22rem, 90vw); width: auto; }
+.shot figcaption { color: var(--stone); margin-top: var(--sp-lg); }
+.js .sol__stage.is-in .shot.is-on .reg__img::after { animation: wipe 900ms var(--ease-io) 80ms both; }
+.js .sol__stage.is-in .shot.is-on img { animation: settle 1300ms var(--ease-out) 80ms both; }
+.js .sol__stage:not(.is-in) .reg__img::after { transform: scaleY(1); }
+
+/* ---------- Para empresas: foto documental ---------- */
+.emp__grid { display: grid; gap: var(--sp-2xl); margin-top: var(--sp-3xl); padding-top: var(--sp-xl); border-top: 1px solid var(--line-green); }
+.emp__photo { margin: 0; }
+.emp__frame {
+  position: relative;
+  display: grid; place-items: center;
+  padding: var(--sp-xl) var(--sp-md);
+  border-radius: var(--radius);
+  background: var(--green-900);
+  overflow: hidden;
+}
+.emp__arc { position: absolute; inset: 0; width: 100%; height: 100%; }
+.emp__arc .arc--band { stroke: var(--green-800); stroke-width: 110; }
+.emp__arc .arc--lime { stroke-width: 8; stroke-dasharray: none; }
+.emp__photo .reg__img { z-index: 1; }
+.emp__text { display: grid; gap: var(--sp-xl); align-content: start; }
+.js .emp__photo:not(.is-in) .reg__img::after { transform: scaleY(1); }
+.js .emp__photo.is-in .reg__img::after { animation: wipe 1000ms var(--ease-io) 200ms both; }
+.js .emp__photo.is-in .reg__img img { animation: settle 1500ms var(--ease-out) 200ms both; }
+
+/* ---------- Sobre: o lugar ---------- */
+.about__grid { display: grid; gap: var(--sp-3xl); align-items: center; }
+.about__place {
+  position: relative; margin: 0;
+  display: grid; align-content: end; gap: var(--sp-lg);
+  min-height: 30rem;
+  padding: var(--sp-xl);
+  border-radius: var(--radius);
+  background: var(--green-950);
+  color: var(--on-green);
+  overflow: hidden;
+  isolation: isolate;
+}
+.about__arc { position: absolute; top: 0; left: 0; width: 100%; height: auto; z-index: -1; }
+.about__arc .arc--band { stroke: var(--green-900); stroke-width: 90; }
+.about__arc .arc--lime { stroke-width: 8; stroke-dasharray: none; }
+.about__place .reg__img { justify-self: end; margin: 0 18px 18px 0; }
+.about__place figcaption { color: var(--on-green-2); font-size: 1.0625rem; }
+.about__place figcaption strong {
+  display: block; margin-bottom: var(--sp-2xs);
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem); line-height: 0.95; color: var(--on-green);
+}
+.about__text > .facts { margin-top: var(--sp-lg); }
+.js .about__place:not(.is-in) .reg__img::after { transform: scaleY(1); }
+.js .about__place.is-in .reg__img::after { animation: wipe 1000ms var(--ease-io) 250ms both; }
+.js .about__place.is-in .reg__img img { animation: settle 1500ms var(--ease-out) 250ms both; }
+
+/* ---------- Conteúdos: capas no idioma visual das peças da GRO ---------- */
+.feed { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-xl) var(--sp-md); }
+.feed__item--lead { grid-column: 1 / -1; }
+.feed__item a { position: relative; display: grid; gap: var(--sp-xs); align-content: start; }
+.capa {
+  position: relative; display: block;
+  aspect-ratio: 4 / 5;
+  margin-bottom: var(--sp-xs);
+  padding: var(--sp-md);
+  border-radius: var(--radius);
+  overflow: hidden;
+  isolation: isolate;
+}
+.feed__item--lead .capa { aspect-ratio: 16 / 10; }
+.capa--dark { background: var(--green-950); color: var(--on-green); }
+.capa--mid { background: var(--green-700); color: var(--white); }
+.capa--lime { background: var(--lime); color: var(--green-950); }
+.capa--light { background: var(--white); color: var(--green-950); box-shadow: inset 0 0 0 1px var(--line); }
+.capa__arc { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; transition: transform var(--dur-slow) var(--ease-out); }
+.capa__arc path { fill: none; stroke: var(--lime); stroke-width: 5; }
+.capa--lime .capa__arc path, .capa--light .capa__arc path { stroke: var(--green-700); }
+.capa__txt { display: grid; gap: var(--sp-xs); }
+.capa__txt b {
+  font-family: var(--display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem); line-height: 0.92;
+}
+.feed__item--lead .capa__txt b { font-size: clamp(2.5rem, 1.6rem + 3vw, 4rem); }
+.capa__txt i { font-style: normal; font-size: 0.875rem; line-height: 1.3; max-width: 14em; }
+.capa__mark { position: absolute; left: var(--sp-md); bottom: var(--sp-md); width: 1.75rem; height: 1.75rem; }
+.feed__title {
+  font-family: var(--display); font-weight: 600; font-size: 1.375rem; line-height: 1.12;
+  text-wrap: balance;
+  background: linear-gradient(currentColor, currentColor) left 100% / 0 1px no-repeat;
+  transition: background-size var(--dur) var(--ease-out);
+}
+.feed__ic {
+  position: absolute; top: var(--sp-sm); right: var(--sp-sm);
+  width: 2rem; height: 2rem; padding: 0.375rem;
+  border-radius: 50%; background: var(--paper); color: var(--ink);
+  transition: transform var(--dur) var(--ease-out);
+}
+.feed__item a:hover .feed__title { background-size: 100% 1px; }
+.feed__item a:hover .feed__ic { transform: translate(2px, -2px); }
+.feed__item a:hover .capa__arc { transform: translate(-4%, 3%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reg__img::after { display: none; }
+}
+
+@media (min-width: 560px) {
+  .stage { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .reg--3 { display: block; }
+}
+
+@media (min-width: 768px) {
+  .sol__head { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: end; gap: var(--sp-3xl); }
+  .feed { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .feed__item--lead { grid-column: 1 / -1; }
+}
+
+@media (min-width: 1024px) {
+  .sol__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--sp-3xl); }
+  .sol__stage { position: sticky; top: 6.5rem; min-height: 34rem; }
+  .sol__arc { display: block; }
+  .shot__a img { max-height: 25rem; }
+  .shot__pair { min-width: 26rem; }
+
+  .emp__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--sp-3xl); align-items: start; }
+  .emp__frame { min-height: 34rem; padding: var(--sp-2xl); }
+
+  .about__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--sp-4xl); }
+  .about__place { min-height: 36rem; }
+
+  .feed { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .feed__item--lead { grid-column: span 2; grid-row: span 2; }
+  .feed__item:not(.feed__item--lead) { grid-column: span 2; }
+  .feed__item--lead .capa { aspect-ratio: 4 / 5; }
+}
+
+@media (min-width: 1280px) {
+  /* Hero: o palco ocupa o lado direito, do topo à base */
+  .hero__in { width: 100%; }
+  .stage {
+    position: absolute; top: 0; right: 0; bottom: 0;
+    display: block; margin: 0; padding: 0;
+    height: 100%; aspect-ratio: 2 / 3;
+    border-radius: 0; background: none; overflow: visible;
+  }
+  .stage::before { display: none; }
+  .stage__shape { display: block; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .stage__fill { fill: var(--green-900); }
+  .stage__lime { fill: none; stroke: var(--lime); stroke-width: 10; stroke-dasharray: 1; }
+  .stage__thin { fill: none; stroke: var(--leaf); stroke-width: 1.5; stroke-dasharray: 1; opacity: 0.55; }
+  .stage .reg { position: absolute; }
+  .reg--1 { left: 53%; top: 24%; width: 43%; }
+  .reg--2 { left: 22%; top: 57%; width: 35%; }
+  .reg--3 { left: 61%; top: 67%; width: 37%; }
+  .stage .reg__img { display: block; }
+  .stage .reg__img img { width: 100%; }
+
+  .feed { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .feed__item--lead { grid-column: span 1; grid-row: auto; }
+  .feed__item:not(.feed__item--lead) { grid-column: span 1; }
+  .feed__item--lead .capa__txt b { font-size: clamp(2rem, 1.4rem + 1.6vw, 3rem); }
+}
+
+/* Hero no celular e tablet: título, fotos, texto, contatos.
+   As pessoas reais aparecem já na primeira tela. */
+@media (max-width: 1279.98px) {
+  .hero__in { display: contents; }
+  .hero__t { order: 1; padding: calc(var(--hd-h) + var(--sp-xl)) var(--gutter) 0; }
+  .stage { order: 2; margin: var(--sp-xl) var(--gutter) var(--sp-xl); }
+  .hero__body { order: 3; padding-inline: var(--gutter); max-width: 44rem; }
+  .hero__facts { order: 4; margin: var(--sp-2xl) var(--gutter) var(--sp-xl); }
 }

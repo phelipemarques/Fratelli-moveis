@@ -80,20 +80,19 @@ printf "%s" "document.documentElement.classList.add('js')" | openssl dgst -sha25
 
 Não use atributos `style="..."` no HTML: a CSP bloqueia.
 
-## Quando chegarem as fotos reais
+## Fotos
 
-O layout foi desenhado para funcionar sem foto (não havia foto utilizável no
-material recebido) e para receber fotos sem refazer nada. Lugares sugeridos em
-`PENDENCIAS.md`. Formato recomendado para cada foto:
+As fotos ficam em `assets/images/registros/`, cada uma em JPG e WebP, com o mesmo
+nome. Hoje são recortes das miniaturas do Instagram (ver `PENDENCIAS.md`); por isso
+o CSS nunca as amplia além do tamanho do arquivo.
 
-```html
-<picture>
-  <source type="image/avif" srcset="assets/images/equipe-900.avif 900w, assets/images/equipe-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw">
-  <source type="image/webp" srcset="assets/images/equipe-900.webp 900w, assets/images/equipe-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw">
-  <img src="assets/images/equipe-1600.jpg" width="1600" height="1200" loading="lazy" decoding="async"
-       alt="Descrição real da cena, sem exagero">
-</picture>
-```
+**Trocar por uma original:** salve a foto com o mesmo nome em JPG e WebP (lado maior
+entre 1200 e 1600 px, qualidade 80–85) e atualize `width` e `height` do `<img>`
+correspondente no `index.html`. Para a foto crescer no layout, aumente o limite de
+tamanho do bloco dela no CSS (`.reg--1`, `.shot__a img`, `.emp__photo`...).
+
+Cada foto tem uma máscara verde-lima que sobe e a revela quando entra na tela
+(`.reg__img::after`). Não é preciso fazer nada para a foto nova ganhar esse efeito.
 
 ## Publicação
 
