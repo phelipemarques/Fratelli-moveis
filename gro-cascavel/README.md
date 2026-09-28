@@ -20,6 +20,20 @@ python3 -m http.server 8131
 # abra http://127.0.0.1:8131
 ```
 
+## Ver sem servidor
+
+`visualizacao/index.html` é o site inteiro num arquivo só (CSS, JS e fontes
+embutidos): abre com dois cliques e pode ser enviado ao cliente para aprovação.
+Depois de qualquer alteração, gere de novo:
+
+```bash
+python3 tools/gerar-visualizacao.py
+```
+
+Esse arquivo não é para publicar (fica sem a política de segurança). Para publicar,
+use a pasta inteira. As animações em funcionamento estão gravadas em
+`docs/animacoes-desktop.mp4`.
+
 ## Estrutura
 
 ```
