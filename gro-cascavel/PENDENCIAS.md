@@ -20,13 +20,6 @@ Nada além disso aparece no site como fato.
 
 ## 🔴 Bloqueiam a publicação
 
-0. **Baixar as 6 fotos ilustrativas do Canva.** Foram geradas na conta Canva
-   conectada, mas este ambiente não consegue baixá-las (o domínio media.canva.com
-   está bloqueado na rede). Baixe cada uma pelos links em `fotos-originais/LEIA.md`,
-   salve com o nome indicado e rode `python3 tools/importar-fotos.py`. Enquanto
-   isso, os espaços das fotos aparecem verdes.
-
-
 1. **Arquivo oficial do logotipo** (SVG, AI, EPS ou PDF vetorial). O símbolo de
    quatro folhas e o "GRO" do site foram **redesenhados a partir do vídeo**. Estão
    próximos, mas não são o arquivo oficial. Entra no header, rodapé, favicon,
@@ -40,32 +33,13 @@ Nada além disso aparece no site como fato.
 
 ## 🟡 Confirmar ou melhorar
 
-3. **Fotos originais (a pendência que mais melhora o site).** O site usa 7 fotos
-   reais da GRO, recortadas dos posts do Instagram que aparecem no vídeo. Como
-   elas existem ali só como miniaturas (84 a 206 px), aparecem pequenas, como
-   registros, e o hero ficou sem foto. Com as originais (do celular ou do computador de quem
-   fotografou, ou baixadas do Instagram em tamanho cheio, 1080 px ou mais), cada
-   espaço passa a mostrar a foto grande. Mesmo nome de arquivo = troca direta:
-
-   | Arquivo em `assets/images/registros/` | Cena (post de origem) | Onde aparece |
-   |---|---|---|
-   | `nr12-equipe` | Equipe agachada em frente aos banheiros químicos (post "Treinamento NR-12, Sanivel Locações") | Sobre (registros) |
-   | `cipa-incendio` | Participante usando extintor (post "Curso de CIPA realizado") | Soluções, Treinamentos |
-   | `cipa-turma` | Turma com certificados na sala laranja (mesmo post) | Sobre (registros) |
-   | `cipa-externo` | Grupo em área externa com extintores (mesmo post) | Sobre (registros) |
-   | `nr12-roda` | Grupo ao redor da mesa em área coberta (post do NR-12) | Soluções, Segurança |
-   | `campo` | Dois colaboradores de uniforme sentados (reel no mesmo local do NR-12) | Para empresas |
-   | `fachada` | Fachada com o totem (post "Estamos aqui!") | Soluções, Medicina; Sobre (registros) |
-
-   **Para o hero:** uma foto horizontal, com pelo menos 2000 px, de gente real da
-   GRO trabalhando (treinamento, avaliação em campo com EPI, equipe) e espaço livre
-   à esquerda para o título. Ainda não há nenhuma foto de **exame ou atendimento médico**. Se a GRO tiver
-   (sem rosto de paciente, sem ficha legível), é a que falta para Medicina do Trabalho.
-   Também servem: recepção, equipe da GRO, técnico em campo avaliando riscos.
-
-   **Autorização de imagem:** as pessoas nas fotos são participantes dos treinamentos
-   (colaboradores de clientes). A GRO já as publicou no Instagram, mas confirme que
-   pode usá-las também no site.
+3. **Fotos reais (a pendência que mais melhora o site).** Hoje o site é
+   tipográfico: as miniaturas do Instagram (84 a 206 px) e as imagens de IA foram
+   retiradas. Pedir à GRO fotos reais, feitas por fotógrafo ou com celular bom e luz
+   natural. Lista, formatos e onde entra cada uma: `fotos-originais/LEIA.md`.
+   Prioridade: (1) hero, equipe em treinamento ou avaliação em campo, horizontal,
+   mín. 2400 px; (2) fachada com o totem; (3) uma por solução. Pessoas de empresas
+   clientes só com autorização de uso de imagem.
 
 4. **Endereço.** Briefing e bio dizem Rua Maranhão, 539. Alguns posts mostram
    **Av. Brasil, 5577, Centro**. O site usa Rua Maranhão; confirmar que Av. Brasil
@@ -92,12 +66,6 @@ Nada além disso aparece no site como fato.
 
 ## ⚪ Propostas nossas, sujeitas a aprovação
 
-- **Fotos geradas por IA** (pedido do cliente nesta versão). Usadas só em cenas
-  genéricas (exame, avaliação de riscos, treinamento, assessoria, reunião), sem marca
-  da GRO e com a legenda "Imagem ilustrativa". Não representam a equipe nem o
-  espaço da GRO. Recomendação: trocar por fotos reais assim que possível; o Conselho
-  de Medicina tem regras para publicidade médica, e imagens de atendimento que não
-  são do próprio estabelecimento devem ficar claramente identificadas.
 
 14. **Título principal "Você produz. A GRO protege."**: é o slogan que a GRO já usa.
 15. **Direção visual**: evolução da identidade do Instagram (verde profundo,

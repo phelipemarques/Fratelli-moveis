@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Prepara as fotos do site a partir dos arquivos originais.
 
+Só fotos reais da GRO (equipe, estrutura, treinamentos, atendimento).
 Coloque os originais em fotos-originais/ com estes nomes (qualquer extensão
-de imagem): hero, exame, avaliacao, treinamento, assessoria, reuniao.
+de imagem): hero, fachada, medicina, seguranca, treinamentos, assessoria, empresas.
+Não precisa ter todos: o script processa os que existirem.
 O script gera, em assets/images/fotos/, cada foto em duas larguras e três
 formatos (AVIF, WebP, JPG). Nunca amplia: se o original for menor que a
 largura pedida, usa o tamanho original.
@@ -21,12 +23,13 @@ OUT = ROOT / "assets" / "images" / "fotos"
 
 # nome: larguras usadas no srcset do index.html
 FOTOS = {
-    "hero": (960, 1920),
-    "exame": (640, 1200),
-    "avaliacao": (640, 1200),
-    "treinamento": (640, 1200),
-    "assessoria": (640, 1200),
-    "reuniao": (800, 1600),
+    "hero": (1200, 2400),
+    "fachada": (800, 1600),
+    "medicina": (800, 1400),
+    "seguranca": (800, 1400),
+    "treinamentos": (800, 1400),
+    "assessoria": (800, 1400),
+    "empresas": (1000, 2000),
 }
 
 OUT.mkdir(parents=True, exist_ok=True)
@@ -49,5 +52,4 @@ for nome, larguras in FOTOS.items():
         print(f"{nome}-{w}: {alvo}x{h}{aviso}")
 
 if faltando:
-    print("Faltando em fotos-originais/:", ", ".join(faltando), file=sys.stderr)
-    sys.exit(1)
+    print("Sem original (tudo bem, o site funciona sem):", ", ".join(faltando))

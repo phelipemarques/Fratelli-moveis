@@ -1,15 +1,17 @@
 # Fotos originais
 
-Coloque aqui os arquivos originais, com estes nomes (qualquer extensão de imagem):
+Só **fotos reais da GRO**: equipe, estrutura, treinamentos, atendimento. Nada de
+banco de imagens nem imagem gerada por IA representando a empresa.
 
-| Nome | Onde entra | Imagem gerada no Canva |
+| Nome do arquivo | Onde entra | O que fotografar |
 |---|---|---|
-| `hero` | Topo do site | https://www.canva.com/M/MAHWnCrHNro |
-| `exame` | Soluções: Medicina do Trabalho | https://www.canva.com/M/MAHWnOZhnuk |
-| `avaliacao` | Soluções: Segurança do Trabalho | https://www.canva.com/M/MAHWnOR32ak |
-| `treinamento` | Soluções: Treinamentos | https://www.canva.com/M/MAHWnGMBlv8 |
-| `assessoria` | Soluções: Assessoria e eSocial | https://www.canva.com/M/MAHWnAJH0FE |
-| `reuniao` | Para empresas | https://www.canva.com/M/MAHWnC-WOxY |
+| `hero` | Topo do site (tela cheia) | Equipe da GRO em treinamento ou avaliação em campo, horizontal, com espaço livre à esquerda. Mín. 2400 px de largura |
+| `fachada` | Sobre, no painel "Onde estamos" | Fachada com o totem, luz da manhã. Mín. 1600 px |
+| `medicina` | Soluções: Medicina do Trabalho | Consultório ou exame, sem rosto de paciente, sem ficha legível |
+| `seguranca` | Soluções: Segurança do Trabalho | Técnico da GRO avaliando riscos numa empresa cliente (com autorização) |
+| `treinamentos` | Soluções: Treinamentos | Curso de CIPA ou NR em andamento, prática com extintor |
+| `assessoria` | Soluções: Assessoria e eSocial | Equipe da GRO atendendo, reunião |
+| `empresas` | Para empresas | Equipe da GRO dentro de uma empresa cliente |
 
 Depois rode, na pasta `gro-cascavel`:
 
@@ -17,5 +19,5 @@ Depois rode, na pasta `gro-cascavel`:
 python3 tools/importar-fotos.py
 ```
 
-Os originais não vão para o Git (são pesados). O que vai são as versões
-otimizadas em `assets/images/fotos/`.
+E insira a foto no ponto indicado pelo comentário no `index.html` (cada seção
+tem um). Os originais não vão para o Git.

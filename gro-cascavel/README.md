@@ -80,19 +80,21 @@ Não use atributos `style="..."` no HTML: a CSP bloqueia.
 
 ## Fotos
 
-Dois tipos, com papéis diferentes:
+O site **não usa fotos** hoje: só entram fotos reais da GRO com qualidade (equipe,
+estrutura, treinamentos, atendimento). As miniaturas dos posts do Instagram e as
+imagens geradas por IA foram retiradas.
 
-- **Fotos ilustrativas** (`assets/images/fotos/`): 6 cenas geradas por IA no Canva
-  (hero, 4 soluções, Para empresas). Não mostram a equipe nem a estrutura da GRO,
-  não têm marca da GRO e aparecem com a legenda "Imagem ilustrativa".
-- **Registros reais** (`assets/images/registros/`): miniaturas dos posts da GRO no
-  Instagram, na resolução original, só na seção Sobre.
+Para colocar uma foto real:
 
-Para colocar ou trocar uma foto ilustrativa (ou substituí-la por uma real, o que é
-melhor): salve o original em `fotos-originais/` com o nome certo (ver
-`fotos-originais/LEIA.md`) e rode `python3 tools/importar-fotos.py`. O script gera
-AVIF, WebP e JPG em duas larguras, sem nunca ampliar. Enquanto um arquivo não
-existe, o espaço da foto aparece verde, sem ícone de imagem quebrada.
+1. Salve o original em `fotos-originais/` com o nome da tabela em
+   `fotos-originais/LEIA.md` (hero, fachada, medicina, seguranca, treinamentos,
+   assessoria, empresas).
+2. Rode `python3 tools/importar-fotos.py`: gera AVIF, WebP e JPG em duas larguras em
+   `assets/images/fotos/`, sem ampliar.
+3. Insira o `<picture>` no ponto indicado pelo comentário da seção no `index.html`
+   (hero, soluções e sobre já têm o CSS pronto: `.hero--foto`, `.view__foto`,
+   `.about__foto`), com `srcset`, `sizes`, `width`/`height` e `loading="lazy"`
+   (exceto no hero).
 
 ## Publicação
 

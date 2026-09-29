@@ -1,5 +1,36 @@
 # QA — GRO Cascavel
 
+## V5 — refinamento institucional (sem fotos)
+
+- **Fotografia:** retiradas as imagens de IA (V4) e as miniaturas do Instagram.
+  Regra: só foto real e boa. Cada seção tem um ponto preparado (comentário no
+  HTML + CSS pronto) para receber a foto real.
+- **Hero:** tipográfico, em caixa normal, uma frase, um CTA; faixa discreta com
+  endereço e horário; curva da marca como única peça gráfica.
+- **Credenciais** (nova, no lugar de "Mais do que cumprir obrigações", que repetia o
+  Diferencial): responsável técnico com CRM/RQE, atendimento presencial, escopo.
+- **Soluções:** índice à esquerda, painel à direita com número grande, nome, frase e
+  CTA contextual; troca com fade no número e recorte no texto.
+- **Para empresas:** título "Sua operação não para. A saúde e a segurança dela também
+  não.", uma frase de parceria, três valores curtos, processo e CTA.
+- **Diferencial:** "Documento entregue." (o mínimo) x "Documento entendido, risco
+  prevenido, empresa acompanhada." (o que a GRO agrega).
+- **Sobre:** texto + lista de fatos (endereço, horário, responsável técnico,
+  Instagram); o endereço grande fica só no Contato, com o mapa.
+- **Temas:** índice editorial sem cartões.
+- **Código:** CSS reescrito sem as regras das versões anteriores (613 linhas, sem
+  seletores duplicados); JS sem o tratamento de fotos ausentes; nenhuma imagem no
+  HTML.
+
+| | Desempenho | Acessib. | Boas práticas | SEO | Agentic | LCP | CLS | Peso |
+|---|---|---|---|---|---|---|---|---|
+| Mobile | 99 | 100 | 100 | 100 | 100 | 2,1 s | 0 | 160 KB |
+| Desktop | 100 | 100 | 100 | 100 | 100 | 0,5 s | 0,001 | 160 KB |
+
+6 larguras sem rolagem horizontal e com console limpo; header, menu, acordeão,
+processo, mapa e movimento reduzido (35/35 blocos visíveis) testados.
+
+
 ## V4 — fotografia ilustrativa e hero com foto
 
 - 6 fotos geradas por IA no Canva (a pedido): hero 16:9, 4 retratos 4:5 para as
