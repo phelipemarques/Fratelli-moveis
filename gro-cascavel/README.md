@@ -20,6 +20,17 @@ python3 -m http.server 8131
 # abra http://127.0.0.1:8131
 ```
 
+## Ver sem servidor
+
+```bash
+python3 tools/gerar-visualizacao.py
+```
+
+Gera `visualizacao/index.html`, o site num arquivo só (CSS, JS, fontes e os
+registros pequenos embutidos), que abre com dois cliques para aprovação. Não é para
+publicar: fica sem a política de segurança. A pasta `visualizacao/` não vai para o
+Git.
+
 ## Estrutura
 
 ```

@@ -20,3 +20,6 @@ __pycache__/
 
 # Versão de arquivo único (gerada por tools/build-single-file.py)
 fratelli-moveis-visualizacao.html
+
+# Visualização em arquivo único da GRO (gerada por gro-cascavel/tools/gerar-visualizacao.py)
+gro-cascavel/visualizacao/
