@@ -26,7 +26,6 @@
     if (wa) wa.classList.toggle('is-on', y > heroH * 0.6);
 
     drawProcess();
-    parallax();
     lastY = y;
     ticking = false;
   }
@@ -34,19 +33,6 @@
   window.addEventListener('scroll', function () {
     if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
   }, { passive: true });
-
-  /* ---------- Parallax quase imperceptível na foto documental ---------- */
-  var drifting = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
-  function parallax() {
-    if (reduce.matches) return;
-    var vh = window.innerHeight;
-    drifting.forEach(function (el) {
-      var r = el.parentElement.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh) return;
-      var p = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2); // -1 a 1
-      el.style.transform = 'translate3d(0,' + (Math.max(-1, Math.min(1, p)) * 14).toFixed(1) + 'px,0)';
-    });
-  }
 
   /* ---------- Entradas por viewport (fora do hero) ---------- */
   var rvs = Array.prototype.filter.call(document.querySelectorAll('.rv'), function (el) {
@@ -66,16 +52,16 @@
 
   /* ---------- Acordeão das soluções ---------- */
   var accButtons = document.querySelectorAll('.acc__btn');
-  var shots = document.querySelectorAll('[data-shot]');
-  // Cada solução tem uma foto; ao abrir a solução, a foto do palco troca junto.
-  function showShot(id) {
-    shots.forEach(function (s) { s.classList.toggle('is-on', s.getAttribute('data-shot') === id); });
+  var views = document.querySelectorAll('[data-view]');
+  // No desktop, o painel ao lado mostra a solução aberta: nome, frase, CTA e registro.
+  function showView(id) {
+    views.forEach(function (v) { v.classList.toggle('is-on', v.getAttribute('data-view') === id); });
   }
   function setAcc(btn, open) {
     var panel = document.getElementById(btn.getAttribute('aria-controls'));
     btn.setAttribute('aria-expanded', String(open));
     panel.classList.toggle('is-open', open);
-    if (open) showShot(btn.getAttribute('aria-controls'));
+    if (open) showView(btn.getAttribute('aria-controls'));
   }
   accButtons.forEach(function (btn, i) {
     setAcc(btn, i === 0); // a primeira solução começa aberta, como exemplo do que há dentro

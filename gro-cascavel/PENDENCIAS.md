@@ -33,26 +33,26 @@ Nada além disso aparece no site como fato.
 
 ## 🟡 Confirmar ou melhorar
 
-3. **Fotos originais (a pendência que mais melhora o site).** A V2 já usa 9 fotos
+3. **Fotos originais (a pendência que mais melhora o site).** O site usa 7 fotos
    reais da GRO, recortadas dos posts do Instagram que aparecem no vídeo. Como
-   elas existem ali só como miniaturas (115 a 225 px), aparecem no máximo no tamanho
-   do arquivo, sem ampliar. Com as originais (do celular ou do computador de quem
+   elas existem ali só como miniaturas (84 a 206 px), aparecem pequenas, como
+   registros, e o hero ficou sem foto. Com as originais (do celular ou do computador de quem
    fotografou, ou baixadas do Instagram em tamanho cheio, 1080 px ou mais), cada
    espaço passa a mostrar a foto grande. Mesmo nome de arquivo = troca direta:
 
    | Arquivo em `assets/images/registros/` | Cena (post de origem) | Onde aparece |
    |---|---|---|
-   | `nr12-equipe` | Equipe agachada em frente aos banheiros químicos (post "Treinamento NR-12, Sanivel Locações") | Hero; Soluções, Segurança |
-   | `cipa-incendio` | Participante usando extintor (post "Curso de CIPA realizado") | Hero; Soluções, Treinamentos |
-   | `cipa-turma` | Turma com certificados na sala laranja (mesmo post) | Hero; Soluções, Assessoria |
-   | `cipa-externo` | Grupo em área externa com extintores (mesmo post) | Soluções, Treinamentos |
-   | `cipa-primeiros-socorros` | Manequim de reanimação (mesmo post) | Soluções, Medicina |
+   | `nr12-equipe` | Equipe agachada em frente aos banheiros químicos (post "Treinamento NR-12, Sanivel Locações") | Sobre (registros) |
+   | `cipa-incendio` | Participante usando extintor (post "Curso de CIPA realizado") | Soluções, Treinamentos |
+   | `cipa-turma` | Turma com certificados na sala laranja (mesmo post) | Sobre (registros) |
+   | `cipa-externo` | Grupo em área externa com extintores (mesmo post) | Sobre (registros) |
    | `nr12-roda` | Grupo ao redor da mesa em área coberta (post do NR-12) | Soluções, Segurança |
    | `campo` | Dois colaboradores de uniforme sentados (reel no mesmo local do NR-12) | Para empresas |
-   | `sala-treinamento` | Sala com projeção e palestrante (reel) | Soluções, Assessoria |
-   | `fachada` | Fachada com o totem (post "Estamos aqui!") | Sobre; Soluções, Medicina |
+   | `fachada` | Fachada com o totem (post "Estamos aqui!") | Soluções, Medicina; Sobre (registros) |
 
-   Ainda não há nenhuma foto de **exame ou atendimento médico**. Se a GRO tiver
+   **Para o hero:** uma foto horizontal, com pelo menos 2000 px, de gente real da
+   GRO trabalhando (treinamento, avaliação em campo com EPI, equipe) e espaço livre
+   à esquerda para o título. Ainda não há nenhuma foto de **exame ou atendimento médico**. Se a GRO tiver
    (sem rosto de paciente, sem ficha legível), é a que falta para Medicina do Trabalho.
    Também servem: recepção, equipe da GRO, técnico em campo avaliando riscos.
 

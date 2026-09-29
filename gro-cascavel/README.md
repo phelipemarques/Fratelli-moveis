@@ -20,20 +20,6 @@ python3 -m http.server 8131
 # abra http://127.0.0.1:8131
 ```
 
-## Ver sem servidor
-
-`visualizacao/index.html` é o site inteiro num arquivo só (CSS, JS e fontes
-embutidos): abre com dois cliques e pode ser enviado ao cliente para aprovação.
-Depois de qualquer alteração, gere de novo:
-
-```bash
-python3 tools/gerar-visualizacao.py
-```
-
-Esse arquivo não é para publicar (fica sem a política de segurança). Para publicar,
-use a pasta inteira. As animações em funcionamento estão gravadas em
-`docs/animacoes-desktop.mp4`.
-
 ## Estrutura
 
 ```
@@ -52,6 +38,7 @@ assets/fonts/           Barlow e Barlow Condensed (SIL OFL 1.1), subconjunto lat
 assets/images/          símbolo e logotipo em SVG (reconstruídos, provisórios),
                         favicon, ícone Apple, imagem de compartilhamento
 docs/capturas/          capturas usadas na aprovação
+docs/animacoes-desktop.mp4  gravação das animações
 ```
 
 ## Como editar
@@ -82,17 +69,22 @@ Não use atributos `style="..."` no HTML: a CSP bloqueia.
 
 ## Fotos
 
-As fotos ficam em `assets/images/registros/`, cada uma em JPG e WebP, com o mesmo
-nome. Hoje são recortes das miniaturas do Instagram (ver `PENDENCIAS.md`); por isso
-o CSS nunca as amplia além do tamanho do arquivo.
+`assets/images/registros/` tem 7 fotos reais da GRO, recortadas das miniaturas dos
+posts do Instagram, cada uma em AVIF, WebP e JPG. Estão na **resolução original**
+(84 a 206 px): o site nunca as amplia. Por isso aparecem pequenas, como registros,
+e o hero não tem foto.
 
-**Trocar por uma original:** salve a foto com o mesmo nome em JPG e WebP (lado maior
-entre 1200 e 1600 px, qualidade 80–85) e atualize `width` e `height` do `<img>`
-correspondente no `index.html`. Para a foto crescer no layout, aumente o limite de
-tamanho do bloco dela no CSS (`.reg--1`, `.shot__a img`, `.emp__photo`...).
+**Quando chegarem as originais:**
 
-Cada foto tem uma máscara verde-lima que sobe e a revela quando entra na tela
-(`.reg__img::after`). Não é preciso fazer nada para a foto nova ganhar esse efeito.
+- **Hero:** foto com pelo menos 2000 px no lado maior. Instruções no comentário
+  `<!-- HERO -->` do `index.html`; o CSS da variante com foto (`.hero--foto`,
+  `.hero__foto`) já existe.
+- **Registros:** salve com o mesmo nome nos três formatos (lado maior entre 1200 e
+  1600 px) e atualize `width` e `height` no `<img>`. Aí vale acrescentar `srcset` e
+  `sizes` com duas larguras (ex.: 800w e 1600w).
+
+Toda foto entra com um recorte de baixo para cima e escala 1,02 → 1, sem nenhuma
+configuração extra.
 
 ## Publicação
 

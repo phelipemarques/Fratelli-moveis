@@ -1,5 +1,51 @@
 # QA — GRO Cascavel
 
+## V3 — refinamento de direção de arte
+
+Decisões:
+
+- **Fotos na resolução original, sem ampliar.** Na V2 as miniaturas eram exibidas
+  a 2×; na V3 voltaram ao tamanho real (84–206 px); a foto da sala de treinamento saiu (não acrescentava informação) e só aparecem como registros
+  pequenos: no painel de cada solução, ao lado do texto de Para empresas e numa
+  faixa "Registros da GRO" no Sobre, com a fonte indicada.
+- **Hero sem foto.** Nenhuma foto real passa no critério (alta resolução, espaço
+  para texto). Hierarquia: título → texto → um CTA → dados de confiança; a curva
+  da marca fica atrás. A variante com foto está pronta no CSS.
+- **Decoração cortada (~60%).** Saíram: 3 curvas SVG (Soluções, Para empresas,
+  painel do mapa), o arco do painel do hero, blocos verdes deslocados atrás das
+  fotos, molduras, o grafismo das capas, o símbolo repetido nas capas e no mapa,
+  o parallax. A curva ficou em 2 lugares: hero e "Como ajudamos".
+- **Tipografia.** Caixa-alta só no título do hero; todos os outros títulos em
+  caixa normal. Escala reduzida (h2 máx. 52 px, destaque máx. 80 px).
+- **Soluções.** Painel à esquerda com número, nome, frase própria, CTA e registro;
+  troca com fade + recorte + escala. No celular, o registro e o link entram dentro
+  do acordeão. O painel vem depois do acordeão no HTML (ordem de leitura e foco) e
+  é posicionado à esquerda por CSS.
+- **Para empresas.** Um título grande, um parágrafo com os públicos, o processo e
+  um CTA. Os 4 blocos de texto por público viraram uma frase.
+- **Diferencial.** Duas metades: claro ("a legislação exige", em cinza) e verde
+  ("a GRO agrega", em lima).
+- **Conteúdos → "Temas que orientamos".** Sem títulos de post nem ícones de link
+  individuais; um link para o Instagram.
+- **Mapa.** Estado inicial com rótulo "Localização", endereço completo, "Como
+  chegar" e "Mostrar o mapa aqui", avisando que carrega do Google Maps.
+- **CTAs.** "Falar com a GRO" em todos os botões principais (hero, cada solução,
+  Para empresas, contato, header, flutuante). "Ver soluções" virou link simples.
+- **Performance.** Removidos a versão em arquivo único com Base64, o gerador dela,
+  o parallax e cerca de 30% do CSS. Fotos em AVIF → WebP → JPG.
+
+Resultados (Chromium, Lighthouse 13, servidor local):
+
+| | Desempenho | Acessib. | Boas práticas | SEO | Agentic | LCP | CLS | Peso |
+|---|---|---|---|---|---|---|---|---|
+| Mobile | 99 | 100 | 100 | 100 | 100 | 2,0 s | 0 | 165 KB |
+| Desktop | 100 | 100 | 100 | 100 | 100 | 0,5 s | 0,02 | 180 KB |
+
+- 6 larguras (390–1920): sem rolagem horizontal, console limpo.
+- Header, menu móvel, acordeão por teclado, processo, mapa sob demanda e movimento
+  reduzido (39/39 blocos visíveis): todos passaram.
+
+
 ## V2 visual (fotografia)
 
 | Verificação | Resultado |
