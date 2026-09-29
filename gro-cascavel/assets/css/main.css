@@ -285,6 +285,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* Foto que ainda não chegou: o espaço fica verde, sem ícone de imagem quebrada */
 .foto { display: block; background: var(--green-900); }
 .foto.is-missing img { visibility: hidden; }
+.hero__foto:has(.is-missing) figcaption, .emp__foto:has(.is-missing) figcaption,
+.sol__view:has(.view.is-on .is-missing) .sol__note { display: none; }
 
 /* =============================================================
    SEÇÕES

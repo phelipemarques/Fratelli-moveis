@@ -32,14 +32,35 @@ css = re.sub(
     css,
 )
 
-# Fotos: no arquivo único vai só o JPG, embutido. São os registros pequenos
-# (84 a 206 px); fotos grandes não devem ser embutidas assim.
+# Registros reais: vai só o JPG, embutido (são pequenos, 84 a 206 px).
 html = re.sub(r'<source type="image/(?:avif|webp)" srcset="assets/images/registros/[^"]+">', "", html)
 html = re.sub(
     r'src="assets/images/registros/([^"]+\.jpg)"',
     lambda m: f'src="{data_uri(ROOT / "assets/images/registros" / m.group(1), "image/jpeg")}"',
     html,
 )
+
+# Comentários do HTML não servem para a visualização
+html = re.sub(r"\s*<!--(?!\s*Versão de visualização).*?-->", "", html, flags=re.S)
+
+# Fotos ilustrativas: embute o JPG maior de cada uma, se já foi importado
+# (tools/importar-fotos.py). Se ainda não existe, o espaço fica verde.
+def embutir_foto(m):
+    classe, nome, largura, resto = m.group(1), m.group(2), m.group(3), m.group(4)
+    alt = re.search(r'alt="([^"]*)"', resto).group(1)
+    dims = re.search(r'width="(\d+)" height="(\d+)"', resto)
+    maiores = sorted((ROOT / "assets/images/fotos").glob(f"{nome}-*.jpg"),
+                     key=lambda p: int(p.stem.rsplit("-", 1)[1]))
+    if maiores:
+        src = data_uri(maiores[-1], "image/jpeg")
+        return (f'<picture class="{classe}"><img src="{src}" width="{dims.group(1)}" '
+                f'height="{dims.group(2)}" alt="{alt}" decoding="async"></picture>')
+    return (f'<picture class="{classe} is-missing"><img width="{dims.group(1)}" '
+            f'height="{dims.group(2)}" alt="{alt}"></picture>')
+
+html = re.sub(
+    r'<picture class="([^"]*foto[^"]*)"><source[^>]*srcset="assets/images/fotos/([a-z]+)-(\d+)\.avif[^>]*>.*?(<img [^>]*>)</picture>',
+    embutir_foto, html, flags=re.S)
 
 html = re.sub(r'\s*<meta http-equiv="Content-Security-Policy"[^>]*>', "", html)
 html = re.sub(r'\s*<link rel="preload"[^>]*>', "", html)
