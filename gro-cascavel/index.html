@@ -144,13 +144,14 @@
   <main id="conteudo">
 
     <!-- HERO
-         Sem foto por enquanto: nenhuma foto real da GRO tem resolução para o hero.
-         Quando houver (mín. 2000 px no lado maior), inserir antes de .hero__in:
-         <figure class="hero__foto"><picture>...</picture></figure>
-         e acrescentar a classe hero--foto na section. O CSS já está pronto. -->
+         Foto ilustrativa (gerada por IA), sem marca da GRO. Quando houver foto real em
+         alta resolução, trocar os arquivos hero-*.* em assets/images/fotos/. -->
     <section class="hero" id="inicio" aria-labelledby="hero-t">
+      <figure class="hero__foto">
+        <picture class="foto"><source type="image/avif" srcset="assets/images/fotos/hero-960.avif 960w, assets/images/fotos/hero-1920.avif 1920w" sizes="100vw"><source type="image/webp" srcset="assets/images/fotos/hero-960.webp 960w, assets/images/fotos/hero-1920.webp 1920w" sizes="100vw"><img src="assets/images/fotos/hero-960.jpg" srcset="assets/images/fotos/hero-960.jpg 960w, assets/images/fotos/hero-1920.jpg 1920w" sizes="100vw" width="1920" height="1080" alt="Técnico de segurança do trabalho com capacete e colete refletivo conferindo uma lista de verificação dentro de um galpão" fetchpriority="high" decoding="async" data-foto></picture>
+        <figcaption>Imagem ilustrativa</figcaption>
+      </figure>
       <svg class="hero__curve" viewBox="0 0 1000 1000" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
-        <path class="hero__band" d="M300 1000A700 700 0 0 1 1000 300"/>
         <path class="hero__line" pathLength="1" d="M190 1000A810 810 0 0 1 1000 190"/>
       </svg>
 
@@ -160,20 +161,12 @@
           <span class="ln"><span class="ln__i">Você produz.</span></span>
           <span class="ln"><span class="ln__i ln__i--2">A <em>GRO</em> protege.</span></span>
         </h1>
-
         <div class="hero__body">
-          <p class="hero__lead hi" data-d="1">Exames ocupacionais, gestão de riscos, treinamentos e assessoria para empresas de Cascavel e região, com uma equipe que acompanha a sua rotina de perto.</p>
+          <p class="hero__lead hi" data-d="1">Exames ocupacionais, gestão de riscos, treinamentos e assessoria para empresas de Cascavel e região.</p>
           <div class="hero__cta hi" data-d="2">
             <a class="btn btn--lime btn--lg" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20da%20GRO%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer"><svg class="btn__ic" aria-hidden="true"><use href="#i-chat"/></svg>Falar com a GRO</a>
-            <a class="link" href="#solucoes">Ver soluções</a>
           </div>
         </div>
-
-        <dl class="hero__facts hi" data-d="3">
-          <div><dt>Endereço</dt><dd>Rua Maranhão, 539, Centro</dd></div>
-          <div><dt>Atendimento</dt><dd>Segunda a sexta, 7h30 às 17h30</dd></div>
-          <div><dt>Médico do trabalho responsável</dt><dd>Dr. Miguel Farah Filho</dd></div>
-        </dl>
       </div>
     </section>
 
@@ -214,7 +207,7 @@
             <div class="acc__panel" id="sol-1" role="region" aria-labelledby="sol-1-b">
               <div class="acc__body">
                 <ul class="incl"><li>Exames ocupacionais</li><li><abbr title="Programa de Controle Médico de Saúde Ocupacional">PCMSO</abbr>, o programa de controle médico da empresa</li><li>Laudos</li><li>Direção técnica de médico do trabalho</li></ul>
-                <figure class="reg acc__reg"><picture><source type="image/avif" srcset="assets/images/registros/fachada.avif"><source type="image/webp" srcset="assets/images/registros/fachada.webp"><img src="assets/images/registros/fachada.jpg" width="130" height="90" alt="Fachada da GRO Cascavel, com o letreiro e o totem verde" loading="lazy" decoding="async"></picture><figcaption>Atendimento na Rua Maranhão, 539</figcaption></figure>
+                <picture class="foto acc__foto"><source type="image/avif" srcset="assets/images/fotos/exame-640.avif 640w, assets/images/fotos/exame-1200.avif 1200w" sizes="(min-width: 1024px) 1px, 100vw"><source type="image/webp" srcset="assets/images/fotos/exame-640.webp 640w, assets/images/fotos/exame-1200.webp 1200w" sizes="(min-width: 1024px) 1px, 100vw"><img src="assets/images/fotos/exame-640.jpg" srcset="assets/images/fotos/exame-640.jpg 640w, assets/images/fotos/exame-1200.jpg 1200w" sizes="(min-width: 1024px) 1px, 100vw" width="1200" height="1500" alt="Médica do trabalho medindo a pressão arterial de um trabalhador em um consultório" loading="lazy" decoding="async" data-foto></picture>
                 <a class="more" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20Medicina%20do%20Trabalho%20na%20GRO." target="_blank" rel="noopener noreferrer">Falar com a GRO sobre medicina do trabalho</a>
               </div>
             </div>
@@ -231,7 +224,7 @@
             <div class="acc__panel" id="sol-2" role="region" aria-labelledby="sol-2-b">
               <div class="acc__body">
                 <ul class="incl"><li><abbr title="Programa de Gerenciamento de Riscos">PGR</abbr>, o programa de gerenciamento de riscos</li><li>Levantamento dos fatores de risco, conforme a NR-01</li><li><abbr title="Laudo Técnico das Condições Ambientais do Trabalho">LTCAT</abbr></li></ul>
-                <figure class="reg acc__reg"><picture><source type="image/avif" srcset="assets/images/registros/nr12-roda.avif"><source type="image/webp" srcset="assets/images/registros/nr12-roda.webp"><img src="assets/images/registros/nr12-roda.jpg" width="155" height="118" alt="Colaboradores ao redor de uma mesa durante o treinamento de NR-12, em área coberta" loading="lazy" decoding="async"></picture><figcaption>Treinamento de NR-12, Sanivel Locações</figcaption></figure>
+                <picture class="foto acc__foto"><source type="image/avif" srcset="assets/images/fotos/avaliacao-640.avif 640w, assets/images/fotos/avaliacao-1200.avif 1200w" sizes="(min-width: 1024px) 1px, 100vw"><source type="image/webp" srcset="assets/images/fotos/avaliacao-640.webp 640w, assets/images/fotos/avaliacao-1200.webp 1200w" sizes="(min-width: 1024px) 1px, 100vw"><img src="assets/images/fotos/avaliacao-640.jpg" srcset="assets/images/fotos/avaliacao-640.jpg 640w, assets/images/fotos/avaliacao-1200.jpg 1200w" sizes="(min-width: 1024px) 1px, 100vw" width="1200" height="1500" alt="Consultor de segurança com capacete e colete refletivo apontando a proteção de uma máquina para um gestor, no chão de fábrica" loading="lazy" decoding="async" data-foto></picture>
                 <a class="more" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20Seguran%C3%A7a%20do%20Trabalho%20na%20GRO." target="_blank" rel="noopener noreferrer">Falar com a GRO sobre segurança do trabalho</a>
               </div>
             </div>
@@ -248,7 +241,7 @@
             <div class="acc__panel" id="sol-3" role="region" aria-labelledby="sol-3-b">
               <div class="acc__body">
                 <ul class="incl"><li>Treinamentos conforme as NRs</li><li>Curso de CIPA: legislação, combate a incêndio, primeiros socorros, práticas e simulações</li><li>NR-12, segurança em máquinas e equipamentos</li></ul>
-                <figure class="reg acc__reg"><picture><source type="image/avif" srcset="assets/images/registros/cipa-incendio.avif"><source type="image/webp" srcset="assets/images/registros/cipa-incendio.webp"><img src="assets/images/registros/cipa-incendio.jpg" width="105" height="93" alt="Participante do curso de CIPA usando um extintor em treinamento prático" loading="lazy" decoding="async"></picture><figcaption>Curso de CIPA: combate a incêndio</figcaption></figure>
+                <picture class="foto acc__foto"><source type="image/avif" srcset="assets/images/fotos/treinamento-640.avif 640w, assets/images/fotos/treinamento-1200.avif 1200w" sizes="(min-width: 1024px) 1px, 100vw"><source type="image/webp" srcset="assets/images/fotos/treinamento-640.webp 640w, assets/images/fotos/treinamento-1200.webp 1200w" sizes="(min-width: 1024px) 1px, 100vw"><img src="assets/images/fotos/treinamento-640.jpg" srcset="assets/images/fotos/treinamento-640.jpg 640w, assets/images/fotos/treinamento-1200.jpg 1200w" sizes="(min-width: 1024px) 1px, 100vw" width="1200" height="1500" alt="Participante de treinamento usando um extintor em um fogo controlado, orientada por um instrutor" loading="lazy" decoding="async" data-foto></picture>
                 <a class="more" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20treinamentos%20da%20GRO." target="_blank" rel="noopener noreferrer">Falar com a GRO sobre treinamentos</a>
               </div>
             </div>
@@ -265,6 +258,7 @@
             <div class="acc__panel" id="sol-4" role="region" aria-labelledby="sol-4-b">
               <div class="acc__body">
                 <ul class="incl"><li>Assessoria completa para o eSocial</li><li>Orientação sobre normas e mudanças na legislação</li><li>Apoio ao RH e ao departamento pessoal</li></ul>
+                <picture class="foto acc__foto"><source type="image/avif" srcset="assets/images/fotos/assessoria-640.avif 640w, assets/images/fotos/assessoria-1200.avif 1200w" sizes="(min-width: 1024px) 1px, 100vw"><source type="image/webp" srcset="assets/images/fotos/assessoria-640.webp 640w, assets/images/fotos/assessoria-1200.webp 1200w" sizes="(min-width: 1024px) 1px, 100vw"><img src="assets/images/fotos/assessoria-640.jpg" srcset="assets/images/fotos/assessoria-640.jpg 640w, assets/images/fotos/assessoria-1200.jpg 1200w" sizes="(min-width: 1024px) 1px, 100vw" width="1200" height="1500" alt="Consultora apontando a tela do notebook para uma profissional de RH em um escritório" loading="lazy" decoding="async" data-foto></picture>
                 <a class="more" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20assessoria%20e%20o%20eSocial%20na%20GRO." target="_blank" rel="noopener noreferrer">Falar com a GRO sobre assessoria e eSocial</a>
               </div>
             </div>
@@ -272,28 +266,30 @@
           </div>
 
           <div class="sol__view rv" data-views>
+            <p class="sol__note">Imagens ilustrativas</p>
             <div class="view is-on" data-view="sol-1">
-              <figure class="reg view__reg"><picture><source type="image/avif" srcset="assets/images/registros/fachada.avif"><source type="image/webp" srcset="assets/images/registros/fachada.webp"><img src="assets/images/registros/fachada.jpg" width="130" height="90" alt="Fachada da GRO Cascavel, com o letreiro e o totem verde" loading="lazy" decoding="async"></picture><figcaption>Atendimento na Rua Maranhão, 539</figcaption></figure>
+              <picture class="foto view__foto"><source type="image/avif" srcset="assets/images/fotos/exame-640.avif 640w, assets/images/fotos/exame-1200.avif 1200w" sizes="(min-width: 1024px) 40vw, 1px"><source type="image/webp" srcset="assets/images/fotos/exame-640.webp 640w, assets/images/fotos/exame-1200.webp 1200w" sizes="(min-width: 1024px) 40vw, 1px"><img src="assets/images/fotos/exame-640.jpg" srcset="assets/images/fotos/exame-640.jpg 640w, assets/images/fotos/exame-1200.jpg 1200w" sizes="(min-width: 1024px) 40vw, 1px" width="1200" height="1500" alt="Médica do trabalho medindo a pressão arterial de um trabalhador em um consultório" loading="lazy" decoding="async" data-foto></picture>
               <p class="view__n">01</p>
               <p class="view__name">Medicina do Trabalho</p>
               <p class="view__copy">Exames ocupacionais e o programa de controle médico da empresa, sob direção técnica de médico do trabalho.</p>
               <a class="btn btn--lime" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20Medicina%20do%20Trabalho%20na%20GRO." target="_blank" rel="noopener noreferrer"><svg class="btn__ic" aria-hidden="true"><use href="#i-chat"/></svg>Falar com a GRO</a>
             </div>
             <div class="view" data-view="sol-2">
-              <figure class="reg view__reg"><picture><source type="image/avif" srcset="assets/images/registros/nr12-roda.avif"><source type="image/webp" srcset="assets/images/registros/nr12-roda.webp"><img src="assets/images/registros/nr12-roda.jpg" width="155" height="118" alt="Colaboradores ao redor de uma mesa durante o treinamento de NR-12, em área coberta" loading="lazy" decoding="async"></picture><figcaption>Treinamento de NR-12, Sanivel Locações</figcaption></figure>
+              <picture class="foto view__foto"><source type="image/avif" srcset="assets/images/fotos/avaliacao-640.avif 640w, assets/images/fotos/avaliacao-1200.avif 1200w" sizes="(min-width: 1024px) 40vw, 1px"><source type="image/webp" srcset="assets/images/fotos/avaliacao-640.webp 640w, assets/images/fotos/avaliacao-1200.webp 1200w" sizes="(min-width: 1024px) 40vw, 1px"><img src="assets/images/fotos/avaliacao-640.jpg" srcset="assets/images/fotos/avaliacao-640.jpg 640w, assets/images/fotos/avaliacao-1200.jpg 1200w" sizes="(min-width: 1024px) 40vw, 1px" width="1200" height="1500" alt="Consultor de segurança com capacete e colete refletivo apontando a proteção de uma máquina para um gestor, no chão de fábrica" loading="lazy" decoding="async" data-foto></picture>
               <p class="view__n">02</p>
               <p class="view__name">Segurança do Trabalho</p>
               <p class="view__copy">Riscos identificados, avaliados e controlados, com a documentação que as normas exigem.</p>
               <a class="btn btn--lime" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20Seguran%C3%A7a%20do%20Trabalho%20na%20GRO." target="_blank" rel="noopener noreferrer"><svg class="btn__ic" aria-hidden="true"><use href="#i-chat"/></svg>Falar com a GRO</a>
             </div>
             <div class="view" data-view="sol-3">
-              <figure class="reg view__reg"><picture><source type="image/avif" srcset="assets/images/registros/cipa-incendio.avif"><source type="image/webp" srcset="assets/images/registros/cipa-incendio.webp"><img src="assets/images/registros/cipa-incendio.jpg" width="105" height="93" alt="Participante do curso de CIPA usando um extintor em treinamento prático" loading="lazy" decoding="async"></picture><figcaption>Curso de CIPA: combate a incêndio</figcaption></figure>
+              <picture class="foto view__foto"><source type="image/avif" srcset="assets/images/fotos/treinamento-640.avif 640w, assets/images/fotos/treinamento-1200.avif 1200w" sizes="(min-width: 1024px) 40vw, 1px"><source type="image/webp" srcset="assets/images/fotos/treinamento-640.webp 640w, assets/images/fotos/treinamento-1200.webp 1200w" sizes="(min-width: 1024px) 40vw, 1px"><img src="assets/images/fotos/treinamento-640.jpg" srcset="assets/images/fotos/treinamento-640.jpg 640w, assets/images/fotos/treinamento-1200.jpg 1200w" sizes="(min-width: 1024px) 40vw, 1px" width="1200" height="1500" alt="Participante de treinamento usando um extintor em um fogo controlado, orientada por um instrutor" loading="lazy" decoding="async" data-foto></picture>
               <p class="view__n">03</p>
               <p class="view__name">Treinamentos</p>
               <p class="view__copy">Capacitações conforme as Normas Regulamentadoras, com prática: extintor na mão, manequim de primeiros socorros, simulação.</p>
               <a class="btn btn--lime" href="https://wa.me/5545991068333?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20treinamentos%20da%20GRO." target="_blank" rel="noopener noreferrer"><svg class="btn__ic" aria-hidden="true"><use href="#i-chat"/></svg>Falar com a GRO</a>
             </div>
             <div class="view" data-view="sol-4">
+              <picture class="foto view__foto"><source type="image/avif" srcset="assets/images/fotos/assessoria-640.avif 640w, assets/images/fotos/assessoria-1200.avif 1200w" sizes="(min-width: 1024px) 40vw, 1px"><source type="image/webp" srcset="assets/images/fotos/assessoria-640.webp 640w, assets/images/fotos/assessoria-1200.webp 1200w" sizes="(min-width: 1024px) 40vw, 1px"><img src="assets/images/fotos/assessoria-640.jpg" srcset="assets/images/fotos/assessoria-640.jpg 640w, assets/images/fotos/assessoria-1200.jpg 1200w" sizes="(min-width: 1024px) 40vw, 1px" width="1200" height="1500" alt="Consultora apontando a tela do notebook para uma profissional de RH em um escritório" loading="lazy" decoding="async" data-foto></picture>
               <p class="view__n">04</p>
               <p class="view__name">Assessoria e eSocial</p>
               <p class="view__copy">Orientação contínua: eSocial, mudanças nas normas e apoio a quem cuida da rotina de pessoal.</p>
@@ -309,9 +305,21 @@
       <div class="wrap">
         <div class="emp__head">
           <h2 class="h2 h2--xl rv" id="emp-t">Sua empresa cuida do negócio. <span>A GRO cuida da saúde e da segurança ocupacional.</span></h2>
-          <div class="emp__side rv" data-d="1">
-            <p>Trabalhamos com empresários, gestores, RH, departamento pessoal, contadores e responsáveis por SST de empresas de diferentes segmentos.</p>
-            <figure class="reg emp__reg"><picture><source type="image/avif" srcset="assets/images/registros/campo.avif"><source type="image/webp" srcset="assets/images/registros/campo.webp"><img src="assets/images/registros/campo.jpg" width="206" height="202" alt="Dois colaboradores de uniforme sentados em área externa durante o treinamento de NR-12" loading="lazy" decoding="async"></picture><figcaption>Treinamento de NR-12 em campo, Sanivel Locações</figcaption></figure>
+        </div>
+
+        <div class="emp__grid">
+          <figure class="emp__foto rv">
+            <picture class="foto"><source type="image/avif" srcset="assets/images/fotos/reuniao-800.avif 800w, assets/images/fotos/reuniao-1600.avif 1600w" sizes="(min-width: 1024px) 58vw, 100vw"><source type="image/webp" srcset="assets/images/fotos/reuniao-800.webp 800w, assets/images/fotos/reuniao-1600.webp 1600w" sizes="(min-width: 1024px) 58vw, 100vw"><img src="assets/images/fotos/reuniao-800.jpg" srcset="assets/images/fotos/reuniao-800.jpg 800w, assets/images/fotos/reuniao-1600.jpg 1600w" sizes="(min-width: 1024px) 58vw, 100vw" width="1600" height="1067" alt="Gestora de RH, empresário e consultor revisando documentos de segurança do trabalho em uma mesa de escritório" loading="lazy" decoding="async" data-foto></picture>
+            <figcaption>Imagem ilustrativa</figcaption>
+          </figure>
+          <div class="emp__side">
+            <p class="emp__lead rv">Um parceiro que conhece a rotina da sua empresa e fala a língua de quem decide.</p>
+            <ul class="emp__who rv" data-d="1" aria-label="Com quem trabalhamos">
+              <li>Empresários e gestores</li>
+              <li>RH e departamento pessoal</li>
+              <li>Contadores</li>
+              <li>Responsáveis por SST</li>
+            </ul>
           </div>
         </div>
 
@@ -394,11 +402,11 @@
           <p class="rv" data-d="1">Normas, prevenção e rotina de SST. A GRO publica orientações sobre esses e outros assuntos no Instagram.</p>
         </div>
         <ul class="themes">
-          <li class="theme theme--dark rv"><b>NR-01</b><span>Riscos psicossociais no gerenciamento de riscos</span></li>
-          <li class="theme theme--lime rv" data-d="1"><b>CIPA</b><span>Como a comissão deve ser instituída</span></li>
-          <li class="theme theme--mid rv" data-d="2"><b>APR</b><span>Análise preliminar de riscos antes de iniciar a atividade</span></li>
-          <li class="theme theme--light rv" data-d="3"><b>Acidente de trabalho</b><span>Documentos depois do atendimento</span></li>
-          <li class="theme theme--dark rv" data-d="4"><b>PPP e LTCAT</b><span>Obrigações e multas</span></li>
+          <li class="theme rv"><b>NR-01</b><span>Riscos psicossociais no gerenciamento de riscos</span></li>
+          <li class="theme rv" data-d="1"><b>CIPA</b><span>Como a comissão deve ser instituída</span></li>
+          <li class="theme rv" data-d="2"><b>APR</b><span>Análise preliminar de riscos antes de iniciar a atividade</span></li>
+          <li class="theme rv" data-d="3"><b>Acidente de trabalho</b><span>Documentos depois do atendimento</span></li>
+          <li class="theme rv" data-d="4"><b>PPP e LTCAT</b><span>Obrigações e multas</span></li>
         </ul>
         <a class="btn btn--dark posts__cta rv" href="https://www.instagram.com/grocascavel/" target="_blank" rel="noopener noreferrer">Ver orientações no Instagram</a>
       </div>

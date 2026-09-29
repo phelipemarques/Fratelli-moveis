@@ -20,6 +20,13 @@ Nada além disso aparece no site como fato.
 
 ## 🔴 Bloqueiam a publicação
 
+0. **Baixar as 6 fotos ilustrativas do Canva.** Foram geradas na conta Canva
+   conectada, mas este ambiente não consegue baixá-las (o domínio media.canva.com
+   está bloqueado na rede). Baixe cada uma pelos links em `fotos-originais/LEIA.md`,
+   salve com o nome indicado e rode `python3 tools/importar-fotos.py`. Enquanto
+   isso, os espaços das fotos aparecem verdes.
+
+
 1. **Arquivo oficial do logotipo** (SVG, AI, EPS ou PDF vetorial). O símbolo de
    quatro folhas e o "GRO" do site foram **redesenhados a partir do vídeo**. Estão
    próximos, mas não são o arquivo oficial. Entra no header, rodapé, favicon,
@@ -84,6 +91,13 @@ Nada além disso aparece no site como fato.
     perfil batem com o site (consistência ajuda a busca local).
 
 ## ⚪ Propostas nossas, sujeitas a aprovação
+
+- **Fotos geradas por IA** (pedido do cliente nesta versão). Usadas só em cenas
+  genéricas (exame, avaliação de riscos, treinamento, assessoria, reunião), sem marca
+  da GRO e com a legenda "Imagem ilustrativa". Não representam a equipe nem o
+  espaço da GRO. Recomendação: trocar por fotos reais assim que possível; o Conselho
+  de Medicina tem regras para publicidade médica, e imagens de atendimento que não
+  são do próprio estabelecimento devem ficar claramente identificadas.
 
 14. **Título principal "Você produz. A GRO protege."**: é o slogan que a GRO já usa.
 15. **Direção visual**: evolução da identidade do Instagram (verde profundo,

@@ -1,5 +1,26 @@
 # QA — GRO Cascavel
 
+## V4 — fotografia ilustrativa e hero com foto
+
+- 6 fotos geradas por IA no Canva (a pedido): hero 16:9, 4 retratos 4:5 para as
+  soluções, 1 horizontal 3:2 para Para empresas. Sem marca da GRO, com legenda
+  "Imagem ilustrativa". O Sobre continua só com registros reais.
+- **Arquivos ainda não baixados:** o Canva só entrega uma prévia de 200 px por aqui
+  e o domínio de download está bloqueado. O layout foi testado numa cópia de teste
+  (fora do repositório) com as prévias no lugar, só para validar composição.
+- Hero: foto em tela cheia (desktop) ou no topo (celular), título em caixa normal,
+  uma frase, um CTA; a curva da marca virou uma linha sobre a foto. Saíram o link
+  "Ver soluções" e a faixa de dados.
+- Soluções: a foto ocupa o painel inteiro, com nome, frase e CTA sobre degradê; no
+  celular a foto entra dentro do acordeão.
+- Para empresas: foto grande + uma frase de parceria + lista de públicos.
+- Temas: um só estilo de cartão (antes 4 cores).
+- Testes (cópia de teste): 6 larguras sem rolagem horizontal, console limpo,
+  interações e movimento reduzido OK. Lighthouse: mobile 99/100/96*/100/100,
+  desktop 100/100/96*/100/100 (*manifesto não copiado para a cópia de teste; no
+  site real é 100). O peso final depende das fotos reais.
+
+
 ## V3 — refinamento de direção de arte
 
 Decisões:

@@ -204,6 +204,13 @@
     });
   }
 
+  /* ---------- Foto que ainda não está na pasta: esconde o ícone quebrado ---------- */
+  document.querySelectorAll('img[data-foto]').forEach(function (img) {
+    function missing() { img.closest('.foto').classList.add('is-missing'); }
+    if (img.complete && img.naturalWidth === 0) missing();
+    else img.addEventListener('error', missing);
+  });
+
   /* ---------- Ano no rodapé ---------- */
   var year = document.querySelector('[data-year]');
   if (year) year.textContent = String(new Date().getFullYear());

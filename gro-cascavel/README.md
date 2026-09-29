@@ -80,22 +80,19 @@ Não use atributos `style="..."` no HTML: a CSP bloqueia.
 
 ## Fotos
 
-`assets/images/registros/` tem 7 fotos reais da GRO, recortadas das miniaturas dos
-posts do Instagram, cada uma em AVIF, WebP e JPG. Estão na **resolução original**
-(84 a 206 px): o site nunca as amplia. Por isso aparecem pequenas, como registros,
-e o hero não tem foto.
+Dois tipos, com papéis diferentes:
 
-**Quando chegarem as originais:**
+- **Fotos ilustrativas** (`assets/images/fotos/`): 6 cenas geradas por IA no Canva
+  (hero, 4 soluções, Para empresas). Não mostram a equipe nem a estrutura da GRO,
+  não têm marca da GRO e aparecem com a legenda "Imagem ilustrativa".
+- **Registros reais** (`assets/images/registros/`): miniaturas dos posts da GRO no
+  Instagram, na resolução original, só na seção Sobre.
 
-- **Hero:** foto com pelo menos 2000 px no lado maior. Instruções no comentário
-  `<!-- HERO -->` do `index.html`; o CSS da variante com foto (`.hero--foto`,
-  `.hero__foto`) já existe.
-- **Registros:** salve com o mesmo nome nos três formatos (lado maior entre 1200 e
-  1600 px) e atualize `width` e `height` no `<img>`. Aí vale acrescentar `srcset` e
-  `sizes` com duas larguras (ex.: 800w e 1600w).
-
-Toda foto entra com um recorte de baixo para cima e escala 1,02 → 1, sem nenhuma
-configuração extra.
+Para colocar ou trocar uma foto ilustrativa (ou substituí-la por uma real, o que é
+melhor): salve o original em `fotos-originais/` com o nome certo (ver
+`fotos-originais/LEIA.md`) e rode `python3 tools/importar-fotos.py`. O script gera
+AVIF, WebP e JPG em duas larguras, sem nunca ampliar. Enquanto um arquivo não
+existe, o espaço da foto aparece verde, sem ícone de imagem quebrada.
 
 ## Publicação
 

@@ -23,3 +23,7 @@ fratelli-moveis-visualizacao.html
 
 # Visualização em arquivo único da GRO (gerada por gro-cascavel/tools/gerar-visualizacao.py)
 gro-cascavel/visualizacao/
+
+# Originais das fotos da GRO (pesados); o site usa as versões geradas em assets/images/fotos/
+gro-cascavel/fotos-originais/*
+!gro-cascavel/fotos-originais/LEIA.md
