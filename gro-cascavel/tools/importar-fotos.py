@@ -3,7 +3,7 @@
 
 Só fotos reais da GRO (equipe, estrutura, treinamentos, atendimento).
 Coloque os originais em fotos-originais/ com estes nomes (qualquer extensão
-de imagem): hero, fachada, medicina, seguranca, treinamentos, assessoria, empresas.
+de imagem): hero, empresas, sobre.
 Não precisa ter todos: o script processa os que existirem.
 O script gera, em assets/images/fotos/, cada foto em duas larguras e três
 formatos (AVIF, WebP, JPG). Nunca amplia: se o original for menor que a
@@ -23,13 +23,9 @@ OUT = ROOT / "assets" / "images" / "fotos"
 
 # nome: larguras usadas no srcset do index.html
 FOTOS = {
-    "hero": (1200, 2400),
-    "fachada": (800, 1600),
-    "medicina": (800, 1400),
-    "seguranca": (800, 1400),
-    "treinamentos": (800, 1400),
-    "assessoria": (800, 1400),
-    "empresas": (1000, 2000),
+    "hero": (800, 1600),      # vertical 4:5, painel à direita do hero
+    "empresas": (1000, 2000), # horizontal 16:9, seção Empresas
+    "sobre": (1000, 2000),    # horizontal, fachada ou equipe, seção Sobre
 }
 
 OUT.mkdir(parents=True, exist_ok=True)

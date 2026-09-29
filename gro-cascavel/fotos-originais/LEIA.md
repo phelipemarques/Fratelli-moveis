@@ -1,17 +1,13 @@
 # Fotos originais
 
-Só **fotos reais da GRO**: equipe, estrutura, treinamentos, atendimento. Nada de
-banco de imagens nem imagem gerada por IA representando a empresa.
+No máximo **3 fotografias**, todas **reais da GRO**. Nada de banco de imagens nem
+imagem gerada por IA representando a empresa.
 
 | Nome do arquivo | Onde entra | O que fotografar |
 |---|---|---|
-| `hero` | Topo do site (tela cheia) | Equipe da GRO em treinamento ou avaliação em campo, horizontal, com espaço livre à esquerda. Mín. 2400 px de largura |
-| `fachada` | Sobre, no painel "Onde estamos" | Fachada com o totem, luz da manhã. Mín. 1600 px |
-| `medicina` | Soluções: Medicina do Trabalho | Consultório ou exame, sem rosto de paciente, sem ficha legível |
-| `seguranca` | Soluções: Segurança do Trabalho | Técnico da GRO avaliando riscos numa empresa cliente (com autorização) |
-| `treinamentos` | Soluções: Treinamentos | Curso de CIPA ou NR em andamento, prática com extintor |
-| `assessoria` | Soluções: Assessoria e eSocial | Equipe da GRO atendendo, reunião |
-| `empresas` | Para empresas | Equipe da GRO dentro de uma empresa cliente |
+| `hero` | Painel verde à direita do topo | Equipe da GRO em treinamento ou avaliação em campo, com EPI. **Vertical 4:5**, mín. 1600 px de largura |
+| `empresas` | Seção Empresas | A GRO dentro de uma empresa cliente (com autorização de imagem). Horizontal 16:9, mín. 2000 px |
+| `sobre` | Seção Sobre, ao lado do "539" | Fachada com o totem ou a equipe na recepção. Horizontal, mín. 2000 px |
 
 Depois rode, na pasta `gro-cascavel`:
 
@@ -19,5 +15,5 @@ Depois rode, na pasta `gro-cascavel`:
 python3 tools/importar-fotos.py
 ```
 
-E insira a foto no ponto indicado pelo comentário no `index.html` (cada seção
-tem um). Os originais não vão para o Git.
+E insira a foto no ponto indicado pelo comentário de cada seção no `index.html`.
+Os originais não vão para o Git.

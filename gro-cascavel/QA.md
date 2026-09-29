@@ -1,5 +1,42 @@
 # QA — GRO Cascavel
 
+## V6 — redesign de direção de arte
+
+Problemas da versão anterior e o que mudou:
+
+| Problema | Mudança |
+|---|---|
+| Página quase toda verde | Superfícies claras dominam; verde escuro em hero (painel), soluções (número), Empresas, diferencial, contato e rodapé; lima só como acento |
+| Condensada em tudo | Barlow Condensed só em títulos e números; texto em Hanken Grotesk |
+| Hero só tipográfico sobre verde | Hero claro em duas colunas: texto + painel visual (curva, símbolo, endereço) preparado para a foto |
+| Credenciais como lista | Faixa de 4 afirmações com divisórias verticais |
+| Soluções como FAQ | Navegação: lista numerada à esquerda, solução ativa à direita (nome, frase, 3 itens, CTA) e número grande; no celular, acordeão |
+| Empresas: texto + etapas | Título grande, 3 benefícios editoriais, processo com trilho fixo: a linha da marca e o contador (01/04) acompanham o scroll |
+| Diferencial como comparação | "Não é só documentação." + bloco verde: "O documento é o começo. A orientação é o que faz ele funcionar." |
+| Sobre frio | Quem é (texto + citação real da GRO), prova física ("539" + endereço + como chegar), depois dados |
+| Temas | Índice editorial numerado com seta e linha no hover |
+| Contato | CTA primeiro (título grande, botão grande), depois canais, depois localização e mapa |
+| Header | Silencioso, menu junto ao logo, "Contato" saiu do menu (o CTA cumpre) |
+| Curvas por toda parte | Curva só em hero, processo e contato |
+| 3+ estilos de botão | Dois: principal (verde escuro no claro, lima no verde) e secundário (contorno) |
+
+Testes:
+
+| | Desempenho | Acessib. | Boas práticas | SEO | Agentic | LCP | CLS | Peso |
+|---|---|---|---|---|---|---|---|---|
+| Mobile | 99 | 100 | 100 | 100 | 100 | 2,0 s | 0 | 152 KB |
+| Desktop | 100 | 100 | 100 | 100 | 100 | 0,5 s | 0 | 152 KB |
+
+- 6 larguras sem rolagem horizontal e com console limpo.
+- Soluções: no desktop sempre há uma aberta e clicar na ativa não fecha; no celular
+  abre e fecha; teclado leva do item ao CTA do painel.
+- Header, menu móvel, processo, mapa sob demanda e movimento reduzido (34/34) OK.
+- Contraste: os passos inativos do processo usavam opacidade 35% e falhavam; agora
+  usam cor (verde claro) e passam.
+- Segurança: links externos com noopener, sem sinks de DOM, sem estilo inline,
+  CSP com hash do único script inline.
+
+
 ## V5 — refinamento institucional (sem fotos)
 
 - **Fotografia:** retiradas as imagens de IA (V4) e as miniaturas do Instagram.

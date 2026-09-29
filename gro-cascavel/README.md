@@ -12,7 +12,7 @@ Centro, Cascavel/PR).
 
 Site estático: HTML, CSS e JavaScript, sem build e sem bibliotecas. As fontes
 estão no projeto; nada é carregado de terceiros, exceto o mapa do Google, e só
-quando a pessoa clica em "Ver mapa aqui".
+quando a pessoa clica em "Mostrar o mapa aqui".
 
 ```bash
 cd gro-cascavel
@@ -26,8 +26,8 @@ python3 -m http.server 8131
 python3 tools/gerar-visualizacao.py
 ```
 
-Gera `visualizacao/index.html`, o site num arquivo só (CSS, JS, fontes e os
-registros pequenos embutidos), que abre com dois cliques para aprovação. Não é para
+Gera `visualizacao/index.html`, o site num arquivo só (CSS, JS e fontes
+embutidos), que abre com dois cliques para aprovação. Não é para
 publicar: fica sem a política de segurança. A pasta `visualizacao/` não vai para o
 Git.
 
@@ -45,7 +45,7 @@ assets/css/main.css     tokens (cor OKLCH, tipo, espaço, movimento), componente
                         seções, movimento e responsivo, nesta ordem
 assets/js/main.js       header, menu móvel, acordeão, entradas no scroll, curva
                         do "Como ajudamos", mapa sob demanda
-assets/fonts/           Barlow e Barlow Condensed (SIL OFL 1.1), subconjunto latino
+assets/fonts/           Barlow Condensed e Hanken Grotesk (SIL OFL 1.1), subconjunto latino
 assets/images/          símbolo e logotipo em SVG (reconstruídos, provisórios),
                         favicon, ícone Apple, imagem de compartilhamento
 docs/capturas/          capturas usadas na aprovação
@@ -63,7 +63,7 @@ docs/animacoes-desktop.mp4  gravação das animações
 **WhatsApp**: links `https://wa.me/5545991068333?text=...`. Para trocar o número,
 substitua `5545991068333` em `index.html` e `404.html`.
 
-**Conteúdos**: os itens da seção "Conteúdo para sua empresa" apontam para o perfil
+**Conteúdos**: os itens da seção "Temas que orientamos" apontam para o perfil
 do Instagram. Quando houver o link de cada post (ou um blog), troque o `href` de
 cada item.
 
@@ -80,21 +80,14 @@ Não use atributos `style="..."` no HTML: a CSP bloqueia.
 
 ## Fotos
 
-O site **não usa fotos** hoje: só entram fotos reais da GRO com qualidade (equipe,
-estrutura, treinamentos, atendimento). As miniaturas dos posts do Instagram e as
-imagens geradas por IA foram retiradas.
+O site foi desenhado para **no máximo 3 fotografias reais** (hero, Empresas, Sobre)
+e funciona sem elas: o painel do hero é verde com a curva da marca e o endereço;
+Sobre usa o "539" como composição.
 
-Para colocar uma foto real:
-
-1. Salve o original em `fotos-originais/` com o nome da tabela em
-   `fotos-originais/LEIA.md` (hero, fachada, medicina, seguranca, treinamentos,
-   assessoria, empresas).
-2. Rode `python3 tools/importar-fotos.py`: gera AVIF, WebP e JPG em duas larguras em
-   `assets/images/fotos/`, sem ampliar.
-3. Insira o `<picture>` no ponto indicado pelo comentário da seção no `index.html`
-   (hero, soluções e sobre já têm o CSS pronto: `.hero--foto`, `.view__foto`,
-   `.about__foto`), com `srcset`, `sizes`, `width`/`height` e `loading="lazy"`
-   (exceto no hero).
+Para colocar uma foto: salve o original em `fotos-originais/` (ver `LEIA.md` lá),
+rode `python3 tools/importar-fotos.py` e insira o `<picture>` no ponto indicado pelo
+comentário da seção no `index.html`. O CSS de cada área já existe (`.hero__foto`,
+`.emp__foto`, `.about__foto` + classe `about--foto` na seção).
 
 ## Publicação
 

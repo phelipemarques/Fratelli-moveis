@@ -13,7 +13,7 @@ Legenda: 🔴 bloqueia a publicação · 🟡 confirmar ou melhorar · ⚪ propo
 | Vídeo: story "Nosso compromisso..." | E-mail grosolucoescascavel@gmail.com, site www.grocascavel.com.br, slogan "Você produz, a GRO protege", ideia de assessoria em vez de só documentos |
 | Vídeo: post "Portfólio" | Gerenciamento de riscos, exames ocupacionais, treinamentos conforme as NRs, assessoria completa para o eSocial; foco em prevenção, legislação e saúde dos colaboradores |
 | Vídeo: posts do feed | PGR, LTCAT e PCMSO; curso de CIPA realizado (legislação, combate a incêndio, primeiros socorros, práticas e simulações); treinamento de NR-12 realizado; levantamento dos fatores de risco NR-01 realizado para cliente; "exames e laudos com agilidade" |
-| Vídeo: temas educativos | Os 5 temas da seção "Conteúdo para sua empresa" |
+| Vídeo: temas educativos | Os 5 temas da seção "Temas que orientamos" |
 | Vídeo: identidade | Verde profundo, verde da folha, verde-lima, curvas largas nas peças, títulos condensados em caixa-alta, símbolo de quatro folhas |
 
 Nada além disso aparece no site como fato.
@@ -25,21 +25,19 @@ Nada além disso aparece no site como fato.
    próximos, mas não são o arquivo oficial. Entra no header, rodapé, favicon,
    ícone Apple e imagem de compartilhamento.
 2. **Aprovação dos textos pela GRO**, em especial:
-   - as quatro etapas de "Como ajudamos sua empresa" (Entender, Organizar,
-     Orientar, Acompanhar): foram escritas a partir do posicionamento da GRO, mas
-     só a empresa pode confirmar que o atendimento acontece assim;
-   - "O que a GRO entrega junto" (Orientação, Prevenção, Acompanhamento,
-     Conhecimento técnico).
+   - as quatro etapas de "Como ajudamos" (Entender, Organizar, Orientar,
+     Acompanhar): foram escritas a partir do posicionamento da GRO, mas só a
+     empresa pode confirmar que o atendimento acontece assim;
+   - os três benefícios de "Empresas" (Um só contato, Prazos à vista, Resposta
+     direta) e a frase "O documento é o começo. A orientação é o que faz ele
+     funcionar."
 
 ## 🟡 Confirmar ou melhorar
 
-3. **Fotos reais (a pendência que mais melhora o site).** Hoje o site é
-   tipográfico: as miniaturas do Instagram (84 a 206 px) e as imagens de IA foram
-   retiradas. Pedir à GRO fotos reais, feitas por fotógrafo ou com celular bom e luz
-   natural. Lista, formatos e onde entra cada uma: `fotos-originais/LEIA.md`.
-   Prioridade: (1) hero, equipe em treinamento ou avaliação em campo, horizontal,
-   mín. 2400 px; (2) fachada com o totem; (3) uma por solução. Pessoas de empresas
-   clientes só com autorização de uso de imagem.
+3. **Fotos reais (até 3).** O site funciona sem foto, mas com elas fica mais humano.
+   Lista e formatos em `fotos-originais/LEIA.md`: hero (vertical 4:5, equipe em
+   ação), Empresas (a GRO dentro de uma empresa cliente) e Sobre (fachada ou
+   equipe). Pessoas de empresas clientes só com autorização de uso de imagem.
 
 4. **Endereço.** Briefing e bio dizem Rua Maranhão, 539. Alguns posts mostram
    **Av. Brasil, 5577, Centro**. O site usa Rua Maranhão; confirmar que Av. Brasil
@@ -66,11 +64,10 @@ Nada além disso aparece no site como fato.
 
 ## ⚪ Propostas nossas, sujeitas a aprovação
 
-
 14. **Título principal "Você produz. A GRO protege."**: é o slogan que a GRO já usa.
 15. **Direção visual**: evolução da identidade do Instagram (verde profundo,
-    verde-lima, curvas, condensadas em caixa-alta). Tipografia Barlow Condensed +
-    Barlow, escolhida pelo parentesco com sinalização de segurança.
+    verde-lima, curvas, condensadas em caixa-alta). Títulos em Barlow Condensed
+    (parentesco com sinalização de segurança); texto em Hanken Grotesk.
 16. **Sem seção de depoimentos**: não recebemos avaliações verificáveis. Se a GRO
     quiser, enviar prints de avaliações do Google com autorização dos autores.
 17. **Credenciamento PAM Saúde**: um post anuncia a GRO como credenciada. Ficou fora

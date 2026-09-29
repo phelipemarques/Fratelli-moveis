@@ -50,73 +50,49 @@
     rvs.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  /* ---------- Acordeão das soluções ---------- */
-  var accButtons = document.querySelectorAll('.acc__btn');
-  var views = document.querySelectorAll('[data-view]');
-  // No desktop, o painel ao lado mostra a solução aberta: nome, frase, CTA e registro.
-  function showView(id) {
-    views.forEach(function (v) { v.classList.toggle('is-on', v.getAttribute('data-view') === id); });
-  }
-  function setAcc(btn, open) {
-    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+  /* ---------- Soluções ----------
+     Uma só marcação: no celular é acordeão (abre e fecha); no desktop o CSS
+     põe a lista à esquerda e o painel aberto à direita, e sempre há uma
+     solução aberta. */
+  var desk = window.matchMedia('(min-width: 1024px)');
+  var solButtons = Array.prototype.slice.call(document.querySelectorAll('.sol__btn'));
+  function setSol(btn, open) {
     btn.setAttribute('aria-expanded', String(open));
-    panel.classList.toggle('is-open', open);
-    if (open) showView(btn.getAttribute('aria-controls'));
+    document.getElementById(btn.getAttribute('aria-controls')).classList.toggle('is-open', open);
   }
-  accButtons.forEach(function (btn, i) {
-    setAcc(btn, i === 0); // a primeira solução começa aberta, como exemplo do que há dentro
+  solButtons.forEach(function (btn, i) {
+    setSol(btn, i === 0);
     btn.addEventListener('click', function () {
-      var willOpen = btn.getAttribute('aria-expanded') !== 'true';
-      accButtons.forEach(function (b) { if (b !== btn) setAcc(b, false); });
-      setAcc(btn, willOpen);
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (isOpen && desk.matches) return; // no desktop, clicar no ativo não o fecha
+      solButtons.forEach(function (b) { if (b !== btn) setSol(b, false); });
+      setSol(btn, !isOpen);
     });
   });
+  desk.addEventListener('change', function (mq) {
+    if (mq.matches && !solButtons.some(function (b) { return b.getAttribute('aria-expanded') === 'true'; })) setSol(solButtons[0], true);
+  });
 
-  /* ---------- "Como ajudamos": a curva se desenha com o scroll ---------- */
+  /* ---------- Processo: a linha acompanha a leitura dos passos ---------- */
   var how = document.querySelector('[data-how]');
-  var howSvg = how && how.querySelector('.how__arc');
-  var howLine = how && how.querySelector('.how__line');
+  var stepsBox = how && how.querySelector('.steps');
   var steps = how ? Array.prototype.slice.call(how.querySelectorAll('.step')) : [];
-  var stepAt = []; // fração da curva em que cada passo fica
-
-  function placeNodes() {
-    stepAt = [];
-    if (!howSvg || getComputedStyle(howSvg).display === 'none') {
-      steps.forEach(function (s) { s.style.removeProperty('--node-x'); s.style.removeProperty('--node-y'); });
-      return;
-    }
-    var box = howSvg.getBoundingClientRect();
-    var sx = box.width / 1200;
-    var sy = box.height / 160;
-    var total = howLine.getTotalLength();
-    steps.forEach(function (step) {
-      var sb = step.getBoundingClientRect();
-      var targetX = (sb.left - box.left + 8) / sx; // nó alinhado ao início do texto
-      // busca binária do ponto da curva com esse x
-      var lo = 0, hi = total, pt;
-      for (var k = 0; k < 24; k++) {
-        var mid = (lo + hi) / 2;
-        pt = howLine.getPointAtLength(mid);
-        if (pt.x < targetX) lo = mid; else hi = mid;
-      }
-      stepAt.push(lo / total);
-      step.style.setProperty('--node-x', (pt.x * sx - (sb.left - box.left)) + 'px');
-      step.style.setProperty('--node-y', (pt.y * sy - (sb.top - box.top)) + 'px');
-    });
-  }
+  var howN = how && how.querySelector('[data-how-n]');
 
   function drawProcess() {
     if (!how) return;
-    var r = how.getBoundingClientRect();
     var vh = window.innerHeight;
-    // 0 quando o bloco entra pela base; 1 quando o topo chega a 35% da tela
-    var p = reduce.matches ? 1 : Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.65 + 120)));
+    var r = stepsBox.getBoundingClientRect();
+    var mark = vh * 0.55; // linha de leitura: um pouco abaixo do meio da tela
+    var p = reduce.matches ? 1 : Math.min(1, Math.max(0, (mark - r.top) / r.height));
     how.style.setProperty('--p', p.toFixed(3));
-    var mobile = !stepAt.length;
+    var active = -1;
     steps.forEach(function (s, i) {
-      var threshold = mobile ? (i + 0.5) / steps.length : stepAt[i];
-      s.classList.toggle('is-on', p >= threshold);
+      var on = reduce.matches || s.getBoundingClientRect().top < mark;
+      s.classList.toggle('is-on', on);
+      if (on) active = i;
     });
+    if (howN) howN.textContent = '0' + Math.max(1, active + 1);
   }
 
   /* ---------- Menu móvel ---------- */
@@ -169,7 +145,7 @@
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['inicio', 'solucoes', 'empresas', 'sobre', 'conteudos', 'contato'].forEach(function (id) {
+    ['inicio', 'solucoes', 'empresas', 'sobre', 'conteudos'].forEach(function (id) {
       var s = document.getElementById(id);
       if (s) navIo.observe(s);
     });
@@ -208,8 +184,6 @@
   var year = document.querySelector('[data-year]');
   if (year) year.textContent = String(new Date().getFullYear());
 
-  window.addEventListener('resize', function () { placeNodes(); drawProcess(); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placeNodes(); drawProcess(); });
-  placeNodes();
+  window.addEventListener('resize', drawProcess);
   onScroll();
 })();
