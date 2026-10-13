@@ -36,6 +36,8 @@ assets/fonts/              Manrope variável (latin + latin-ext) e a licença OF
 assets/images/favicon.svg  ícone da aba (proposta, ver pendências)
 assets/images/og-cover.jpg imagem de compartilhamento, 1200×630
 tools/og-cover.html        fonte da imagem de compartilhamento
+tools/build-single-file.py gera a versão em arquivo único
+queiroz-cosechen-visualizacao.html  o site inteiro em um arquivo só (gerado)
 QA.md                      o que foi testado e como
 PENDENCIAS.md              o que falta pedir ao cliente
 ```
@@ -69,6 +71,16 @@ interpretação jurídica que não esteja na publicação.
 **Formulário.** Não envia nada para servidor. Monta o texto e abre
 `wa.me/<número>?text=…` em nova aba; a pessoa revisa e envia pelo próprio
 WhatsApp. Por isso o site não guarda dado pessoal nenhum.
+
+## Versão em arquivo único
+
+`queiroz-cosechen-visualizacao.html` traz CSS, JavaScript, fontes e ícone
+dentro do próprio arquivo: abre com dois cliques, sem servidor, e pode ser
+mandado para aprovação. Depois de editar o site, gere de novo:
+
+```bash
+python3 tools/build-single-file.py
+```
 
 ## Imagem de compartilhamento
 
