@@ -1,5 +1,39 @@
 # Auditoria e refinamento — Vitor Queiroz Cosechen
 
+## Rodada 3 — direção de arte (13/10/2026)
+
+**Problema principal encontrado:** na abertura, as duas capas (sobretudo a
+violeta, o bloco mais brilhante da tela) disputavam atenção com o título.
+Além disso, o perfil do Instagram era linkado 6 vezes, o @ aparecia 9 vezes em
+texto e o “Sobre” repetia o formato já explicado na seção violeta.
+
+| Área | Antes | Depois |
+|---|---|---|
+| Cabeçalho | Faixa opaca separada da abertura | Transparente no topo; translúcido com desfoque leve depois da rolagem; sublinhado animado na navegação; WhatsApp em contorno com ícone de link externo |
+| Abertura | Título e capas com o mesmo peso | Fio de cabeçalho editorial (atuação à esquerda, canal à direita); título ocupa 8 de 12 colunas; texto de apoio em uma frase com o nome; capas menores, sobrepostas, com inclinação de −2,5° e 2°, sombra discreta e reação ao hover |
+| Ritmo | Toda seção abria igual | Fio de seção com legenda e dado factual (“5 publicações · outubro de 2026”, “6 assuntos”) |
+| Conteúdos | Hierarquia variava de card para card | Mesma estrutura em todos: tipo, tema, data → título → contexto → rodapé com ação; hover com elevação de 4 px; títulos dos vídeos agrupados em “Também no perfil”, com a única chamada forte para o Instagram |
+| Temas | Só o número reagia ao hover | Linha inteira clicável quando há publicação; fundo muda, número preenche, seta avança; temas sem post marcados “Em vídeos” |
+| Sobre | Ficha + parágrafo que repetia a seção violeta + bloco de redes | Texto curto + “Para quem as publicações falam” (professores, profissionais da saúde, servidores municipais, sindicatos — públicos que aparecem nos posts e na bio) + ficha de identificação com faixa violeta |
+| Contato | Formulário funcional, visual simples | Campos de 52 px, faixa violeta, erros com marcador “!” além da cor, aviso informativo separado |
+| Rodapé | Três colunas soltas | Assinatura “Direito do servidor público, explicado sem rodeio.”; identificação, navegação e canais em colunas rotuladas; aviso legal no fecho |
+| Repetição | 6 links visíveis ao perfil; @ 9× no HTML | 3 links visíveis ao perfil (fio da abertura, “Ver todas”, rodapé) + dados estruturados; @ 6× (incluindo metadados); Threads só no rodapé e nos dados estruturados |
+| Código | Tokens `--ink-*`, `--violet` | Tokens semânticos: `--bg`, `--surface`, `--text`, `--muted`, `--accent`, `--border`, `--radius`, `--shadow`, `--container`, `--section-space`, `--ease` |
+| SEO | Sem dados estruturados; produção dependia de edição manual | JSON-LD `Person` só com nome, atuação declarada e perfis oficiais; `twitter:image`; `tools/build-production.py` |
+
+**Decisão:** não entrou segunda fonte. Os carrosséis do perfil são 100% sem
+serifa; uma serifada “editorial” afastaria o site da identidade que o público
+já reconhece. O tom de revista veio do contraste de pesos da Manrope, dos fios
+e da diagramação.
+
+**Preservado:** título e assinatura “sem rodeio.”, paleta medida no vídeo,
+textos jurídicos e atribuições da rodada 2, links, formulário → WhatsApp,
+seção violeta, acessibilidade e o `noindex` da prévia.
+
+---
+
+## Rodada 2
+
 Auditoria feita em 13/10/2026 sobre a versão anterior (`index.html` + `assets/`,
 da qual `queiroz-cosechen-visualizacao.html` é gerado). Cada problema foi achado
 lendo o código e rodando o site no navegador; o que não pôde ser verificado está

@@ -1,5 +1,30 @@
 # QA — Vitor Queiroz Cosechen
 
+## Rodada 3 — refinamento de direção de arte (13/10/2026)
+
+Chromium (Playwright), pasta servida por `python3 -m http.server`.
+
+| Item | Como | Resultado |
+|---|---|---|
+| Larguras | 320×640, 360×800, 390×844, 430×932, 768×1024, 1024×768, 1280×800, 1440×900, 1920×1080 | Sem rolagem horizontal, sem texto cortado, sem botão sobreposto, nenhuma área de toque abaixo de 24 px; título da abertura em 4 linhas em todas |
+| Zoom 200% | 640×450, densidade 2 | Sem rolagem horizontal; o menu rola por dentro e o último item é alcançável |
+| Menu mobile | clique, Esc, Tab para fora, clique em link, clique fora | Todos fecham; Esc devolve o foco ao botão; cabeçalho fica opaco com o menu aberto |
+| Âncoras | 4 seções | Títulos abaixo do cabeçalho fixo |
+| Teclado | “Pular para o conteúdo” + 12 Tabs | Foco vai para `<main>`; contorno visível em todos |
+| Formulário | vazio, parcial, completo, janela bloqueada | Erros por campo com `aria-invalid` e `aria-describedby`; contador; texto com acentos, quebras, `&`, aspas, `%`, `#` e emoji idêntico na URL do `wa.me/5545991176434`; link alternativo quando a janela é bloqueada |
+| Movimento reduzido / sem JS | `prefers-reduced-motion`, JS desligado | 0 de 12 cards e temas escondidos; títulos e destaques visíveis |
+| Contraste | WCAG das cores novas | Menor valor 4,9:1 (`--subtle` sobre `--surface`); texto 15,2:1 |
+| Console | todas as rodadas | Nenhum erro |
+| Árvore de acessibilidade | `ariaSnapshot()` | 0 links sem nome |
+| Arquivo único | `file://` | Fonte embutida carregada, 0 requisições externas, `noindex` |
+| Build de produção | sem domínio; com pendência; cópia de teste com OAB fictícia **fora do projeto** | Recusa nos dois primeiros casos; no terceiro gera `index, follow`, canonical, og:url, URLs absolutas, `robots.txt`, `sitemap.xml` |
+
+**Não executados:** links externos (bloqueados nesta rede), Safari/Firefox/aparelhos reais, leitor de tela real, Lighthouse, publicação real.
+
+---
+
+## Rodada 2
+
 Segunda rodada, 13/10/2026, depois da auditoria (`AUDITORIA.md`). Testes com
 Chromium (Playwright), servindo a pasta por `python3 -m http.server`, e o
 arquivo único aberto direto do disco (`file://`).

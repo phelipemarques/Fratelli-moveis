@@ -36,7 +36,8 @@ assets/fonts/              Manrope variável (latin + latin-ext) e a licença OF
 assets/images/favicon.svg  ícone da aba (proposta, ver pendências)
 assets/images/og-cover.jpg imagem de compartilhamento, 1200×630
 tools/og-cover.html        fonte da imagem de compartilhamento
-tools/build-single-file.py gera a versão em arquivo único
+tools/build-single-file.py gera a versão em arquivo único (prévia, noindex)
+tools/build-production.py  gera dist/ para publicar (index, follow, canonical…)
 queiroz-cosechen-visualizacao.html  o site inteiro em um arquivo só (gerado)
 _headers                   cabeçalhos HTTP (segurança e cache) para Netlify / Cloudflare Pages
 AUDITORIA.md               problemas encontrados, por categoria, e o que foi feito
@@ -46,15 +47,22 @@ PENDENCIAS.md              o que falta pedir ao cliente
 
 ## Como editar
 
-**Cores e tipografia.** Todas no topo de `assets/css/main.css`, no bloco
-`TOKENS`. As três cores principais foram medidas nos quadros do vídeo:
+**Tokens.** Todos no topo de `assets/css/main.css`, no bloco `TOKENS`:
+cor (`--bg`, `--bg-deep`, `--surface`, `--text`, `--muted`, `--subtle`,
+`--border`, `--accent`…), tipografia (`--fs-*`), espaço (`--s-*`,
+`--section-space`, `--container`), forma (`--radius`, `--shadow`) e movimento
+(`--ease`, `--t-*`). As cores da marca foram medidas nos quadros do vídeo:
 
 | Token            | Valor     | Origem                                   |
 |------------------|-----------|------------------------------------------|
-| `--ink-1`        | `#1c1c1c` | fundo dos carrosséis                     |
-| `--violet`       | `#2d0cd5` | bloco de destaque atrás das palavras     |
-| `--violet-field` | `#3415d8` | fundo dos carrosséis azuis (PAD)         |
-| `--violet-soft`  | `#b6abff` | violeta legível em texto pequeno (8:1)   |
+| `--bg`           | `#1c1c1c` | fundo dos carrosséis                     |
+| `--accent`       | `#2d0cd5` | bloco de destaque atrás das palavras     |
+| `--accent-field` | `#3415d8` | fundo dos carrosséis azuis (PAD)         |
+| `--accent-soft`  | `#b6abff` | violeta legível em texto pequeno (8:1)   |
+
+**Tipografia.** Uma família só (Manrope). Não há fonte serifada de propósito:
+os carrosséis do perfil são 100% sem serifa, e o tom editorial vem do contraste
+de pesos (800 nos títulos, 350 nos textos de apoio).
 
 **Destaque violeta.** Qualquer trecho dentro de
 `<mark class="hl" data-hl>…</mark>` vira o bloco de destaque e é “passado”
@@ -93,10 +101,15 @@ python3 tools/build-single-file.py
 ## Antes de publicar
 
 1. Resolver os itens 🔴 de `PENDENCIAS.md`.
-2. Em `index.html`, apagar `<meta name="robots" content="noindex, nofollow">`.
-3. Trocar `og:image` por URL absoluta e acrescentar `canonical` e `og:url`
-   com o domínio definitivo (marcados com `<!-- PRODUÇÃO -->`).
-4. Criar `robots.txt` (`User-agent: *`, `Allow: /`, `Sitemap: https://DOMINIO/sitemap.xml`)
-   e `sitemap.xml` com a URL da página.
-5. Publicar a pasta (`index.html`, `assets/`, `_headers`) — não o arquivo único,
-   que é só para aprovação.
+2. Gerar o pacote de produção com o domínio definitivo:
+
+   ```bash
+   python3 tools/build-production.py https://www.dominio-definitivo.com.br
+   ```
+
+   O script cria `dist/` com `index, follow`, `canonical`, `og:url`, URLs
+   absolutas de imagem, `url` nos dados estruturados, `robots.txt` e
+   `sitemap.xml`. **Ele se recusa a rodar** enquanto houver pendência visível na
+   página (como `[nº e seccional a confirmar]`) ou sem domínio informado.
+3. Publicar o conteúdo de `dist/`. O `index.html` da raiz continua `noindex`,
+   como prévia; o arquivo único também é só para aprovação.

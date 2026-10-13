@@ -53,6 +53,7 @@ def main():
     html = re.sub(r'\s*<link rel="preload"[^>]*>', "", html)
     html = re.sub(r'\s*<!-- PRODUÇÃO: trocar por URL absoluta[^>]*-->', "", html)
     html = re.sub(r'\s*<meta property="og:image(?::\w+)?"[^>]*>', "", html)
+    html = re.sub(r'\s*<meta name="twitter:image"[^>]*>', "", html)
     html = html.replace('<meta name="twitter:card" content="summary_large_image">',
                         '<meta name="twitter:card" content="summary">')
 

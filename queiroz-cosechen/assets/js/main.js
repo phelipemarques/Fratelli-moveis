@@ -22,10 +22,14 @@
   var btn = document.querySelector('[data-menu-btn]');
   var nav = document.querySelector('[data-nav]');
 
+  var headerEl = document.querySelector('[data-header]');
+
   function setMenu(open) {
     if (!btn || !nav) return;
     btn.setAttribute('aria-expanded', String(open));
     nav.classList.toggle('is-open', open);
+    // Com o menu aberto o cabeçalho fica opaco, mesmo no topo da página
+    if (headerEl) headerEl.classList.toggle('is-menu-open', open);
   }
 
   if (btn && nav) {
@@ -118,6 +122,27 @@
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.6 });
     marks.forEach(function (m) { io.observe(m); });
+  }
+
+  /* Cards e temas: entrada única, em cascata curta ---------------------- */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if (!root.classList.contains('motion') || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var batch = 0, batchTimer = null;
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        // Elementos que entram juntos atrasam 70 ms um do outro (no máximo 280 ms)
+        entry.target.style.setProperty('--d', Math.min(batch, 4) * 70 + 'ms');
+        batch++;
+        entry.target.classList.add('is-in');
+        rio.unobserve(entry.target);
+      });
+      clearTimeout(batchTimer);
+      batchTimer = setTimeout(function () { batch = 0; }, 120);
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    reveals.forEach(function (el) { rio.observe(el); });
   }
 
   /* Formulário → mensagem no WhatsApp ----------------------------------- */

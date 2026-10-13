@@ -17,6 +17,18 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vitor Queiroz Cosechen — Advogado do Servidor Público e Sindicatos">
   <meta name="twitter:description" content="Direito do servidor público, explicado sem rodeio. Reforma administrativa, PAD, assédio e acidente de trabalho.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vitor Queiroz Cosechen",
+    "jobTitle": "Advogado do Servidor Público e Sindicatos",
+    "sameAs": [
+      "https://www.instagram.com/vitorqcosechen.adv/",
+      "https://www.threads.net/@vitorqcosechen.adv"
+    ]
+  }
+  </script>
 
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTAiIGZpbGw9IiMxYzFjMWMiLz48cmVjdCB4PSIxMCIgeT0iMjAiIHdpZHRoPSI0NCIgaGVpZ2h0PSIyNiIgcng9IjMiIGZpbGw9IiMyZDBjZDUiLz48dGV4dCB4PSIzMiIgeT0iNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJNYW5yb3BlLCBTZWdvZSBVSSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNmZmYiIGxldHRlci1zcGFjaW5nPSItMC41Ij5RQzwvdGV4dD48L3N2Zz4K" type="image/svg+xml">
   <style>
@@ -27,7 +39,9 @@
    ========================================================================== */
 
 /* 1 · FONTES ------------------------------------------------------------- */
-/* Manrope (variável, 200–800), SIL Open Font License 1.1 — assets/fonts/OFL-manrope.txt */
+/* Manrope (variável, 200–800), SIL Open Font License 1.1 — assets/fonts/OFL-manrope.txt.
+   Uma família só, de propósito: os carrosséis do perfil usam apenas sem serifa, e o
+   tom editorial vem do contraste de pesos (800 nos títulos, 300 nos textos de apoio). */
 @font-face {
   font-family: "Manrope";
   font-style: normal;
@@ -49,40 +63,53 @@
 /* Cores medidas nos quadros do vídeo de referência:
    fundo dos carrosséis #1c1c1c · bloco de destaque #2d0cd5 · campo violeta #3415d8 */
 :root {
-  --ink-0: #151515;          /* cabeçalho, contato, rodapé */
-  --ink-1: #1c1c1c;          /* fundo principal (o mesmo dos carrosséis) */
-  --ink-2: #242426;          /* superfícies elevadas */
-  --line: #34343a;           /* fios e divisões */
-  --paper: #f4f4f2;          /* texto principal */
-  --mute: #a8a8ae;           /* texto de apoio — 7:1 sobre --ink-1 */
-  --violet: #2d0cd5;         /* destaque: blocos, botões, fios */
-  --violet-field: #3415d8;   /* campo de cor inteiro (uma seção só) */
-  --violet-soft: #b6abff;    /* violeta legível sobre fundo escuro — 8:1 */
+  /* cor */
+  --bg: #1c1c1c;              /* fundo principal (o mesmo dos carrosséis) */
+  --bg-deep: #161616;         /* seções de fechamento: temas, contato, rodapé */
+  --surface: #232325;         /* superfícies elevadas */
+  --surface-2: #2b2b2f;       /* superfície em hover */
+  --text: #f3f2ef;            /* off-white levemente quente — 15:1 sobre --bg */
+  --muted: #a9a9af;           /* apoio — 7:1 sobre --bg */
+  --subtle: #8f8f96;          /* legendas e placeholders — 4,8:1 sobre --surface */
+  --border: #34343a;
+  --border-strong: #4a4a52;
+  --accent: #2d0cd5;          /* violeta da marca: blocos, botões, fios */
+  --accent-hover: #3a1ae6;
+  --accent-field: #3415d8;    /* campo de cor inteiro (uma seção só) */
+  --accent-soft: #b6abff;     /* violeta legível em texto sobre escuro — 8:1 */
+  --on-accent: #ffffff;
+  --on-accent-muted: rgba(255, 255, 255, .86);
+  --error: #ffb0b0;
+  --error-border: #ff8a8a;
 
+  /* tipografia */
   --font: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
-
-  /* escala tipográfica (razão ~1.25, fluida nos títulos) */
   --fs-xs: 0.8125rem;
   --fs-sm: 0.9375rem;
   --fs-base: 1.0625rem;
   --fs-md: 1.25rem;
-  --fs-lg: clamp(1.4rem, 1.1rem + 1.2vw, 1.9rem);
+  --fs-lg: clamp(1.35rem, 1.1rem + 1vw, 1.8rem);
   --fs-xl: clamp(1.9rem, 1.3rem + 2.6vw, 3.4rem);
-  --fs-hero: clamp(2.1rem, 1.2rem + 4.8vw, 5.5rem);
+  --fs-hero: clamp(2.1rem, 1.05rem + 5.1vw, 6.1rem);
+  --tracking-label: 0.16em;
 
-  /* espaçamento (base 8) */
+  /* espaço (base 8) */
   --s-1: 0.5rem;
   --s-2: 1rem;
   --s-3: 1.5rem;
   --s-4: 2rem;
   --s-5: 3rem;
   --s-6: 4.5rem;
-  --s-7: clamp(4.5rem, 3rem + 6vw, 8.5rem);
-
+  --section-space: clamp(4.5rem, 3rem + 6vw, 8.5rem);
   --gutter: clamp(16px, 4vw, 48px);
-  --max: 1280px;
-  --header-h: 68px;
+  --container: 1280px;
+  --header-h: 72px;
+
+  /* forma */
   --radius: 4px;
+  --radius-sm: 2px;
+  --shadow: 0 22px 44px -26px rgba(0, 0, 0, .75);
+  --shadow-lift: 0 30px 50px -28px rgba(0, 0, 0, .85);
 
   /* movimento: uma curva, três durações */
   --ease: cubic-bezier(0.2, 0, 0, 1);
@@ -99,7 +126,7 @@ html {
   text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 12px);
-  background: var(--ink-1);
+  background: var(--bg);
 }
 
 body {
@@ -108,10 +135,11 @@ body {
   font-size: var(--fs-base);
   line-height: 1.6;
   font-weight: 450;
-  color: var(--paper);
-  background: var(--ink-1);
+  color: var(--text);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "tnum" 0;
   overflow-x: clip;
 }
 
@@ -119,16 +147,17 @@ h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; }
 ol, ul { padding: 0; list-style: none; }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; }
-strong { font-weight: 750; color: var(--paper); }
+strong { font-weight: 750; color: var(--text); }
 button, input, select, textarea { font: inherit; color: inherit; }
+time { font-variant-numeric: tabular-nums; }
 
 :focus-visible {
-  outline: 2px solid var(--violet-soft);
+  outline: 2px solid var(--accent-soft);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
 }
 
-::selection { background: var(--violet); color: #fff; }
+::selection { background: var(--accent); color: var(--on-accent); }
 
 /* Realce de toque no celular na cor da marca, em vez do azul padrão do navegador */
 a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(182, 171, 255, .22); }
@@ -150,37 +179,44 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   transform: translateY(-200%);
   z-index: 100;
   padding: var(--s-1) var(--s-2);
-  background: var(--paper);
-  color: var(--ink-1);
+  background: var(--text);
+  color: var(--bg);
   font-weight: 700;
   border-radius: var(--radius);
   text-decoration: none;
 }
 .skip:focus { transform: none; }
 
+/* Ícones de traço (definidos no <svg> do topo do HTML) */
+.i {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  transition: transform var(--t-std) var(--ease);
+}
+
 /* 4 · LAYOUT ------------------------------------------------------------- */
 .wrap {
   width: 100%;
-  max-width: calc(var(--max) + var(--gutter) * 2);
+  max-width: calc(var(--container) + var(--gutter) * 2);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
 
-.section { padding-block: var(--s-7); }
+.section { padding-block: var(--section-space); }
 
 /* 5 · COMPONENTES -------------------------------------------------------- */
 
-/* Legenda editorial em caixa alta — o mesmo papel do “PEC 32/2020 · REFORMA” dos posts */
+/* Legenda editorial — o mesmo papel do “PEC 32/2020 · REFORMA” dos posts */
 .kicker {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: var(--s-3);
   font-size: var(--fs-xs);
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--violet-soft);
+  color: var(--accent-soft);
 }
 .kicker::before {
   content: "";
@@ -189,25 +225,44 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   background: radial-gradient(circle, currentColor 1px, transparent 1.4px) 0 50% / 6px 2px repeat-x;
   flex: none;
 }
-.kicker--on-violet { color: #fff; }
+.kicker--on-violet { color: var(--on-accent); margin-bottom: var(--s-3); }
 
-/* Destaque em bloco — a assinatura visual do perfil */
-/* O degradê corta o topo e a base da caixa de texto da Manrope (ascendente alto),
+/* Fio de seção: legenda à esquerda, informação factual à direita, como numa revista */
+.section-rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-top: var(--s-2);
+  margin-bottom: var(--s-4);
+  border-top: 1px solid var(--border);
+}
+.section-rule__meta {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Destaque em bloco — a assinatura visual do perfil.
+   O degradê corta o topo e a base da caixa de texto da Manrope (ascendente alto),
    para o bloco ficar do tamanho das letras e não invadir a linha de cima. */
 .hl {
-  color: #fff;
+  color: var(--on-accent);
   padding-inline: 0.16em;
   margin-inline: -0.04em;
   background-color: transparent;
   background-image: linear-gradient(to bottom,
-    transparent 13%, var(--hl-bg, var(--violet)) 13%,
-    var(--hl-bg, var(--violet)) 91%, transparent 91%);
+    transparent 13%, var(--hl-bg, var(--accent)) 13%,
+    var(--hl-bg, var(--accent)) 91%, transparent 91%);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
-.hl--ink { --hl-bg: var(--ink-0); }
+.hl--ink { --hl-bg: var(--bg-deep); }
 
 /* Botões e links */
 .btn {
@@ -219,20 +274,22 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   padding: 0.8rem 1.5rem;
   border: 0;
   border-radius: var(--radius);
-  background: var(--violet);
-  color: #fff;
+  background: var(--accent);
+  color: var(--on-accent);
   font-weight: 700;
   font-size: var(--fs-sm);
   letter-spacing: 0.01em;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color var(--t-quick) var(--ease), transform var(--t-quick) var(--ease);
+  transition: background-color var(--t-quick) var(--ease), box-shadow var(--t-quick) var(--ease), transform var(--t-quick) var(--ease);
 }
-.btn:hover { background: #3a1ae6; }
+.btn:hover { background: var(--accent-hover); }
 .btn:active { transform: translateY(1px); }
-.btn--small { min-height: 40px; padding: 0.5rem 1rem; }
-.btn--ghost { background: transparent; box-shadow: inset 0 0 0 1.5px var(--violet-soft); color: var(--paper); }
-.btn--ghost:hover { background: var(--violet); box-shadow: inset 0 0 0 1.5px var(--violet); }
+.btn:hover .i { transform: translate(2px, -2px); }
+.btn[href^="#"]:hover .i { transform: translateY(3px); }
+.btn--small { min-height: 40px; padding: 0.45rem 0.95rem; font-size: 0.875rem; gap: 0.45rem; }
+.btn--ghost { background: transparent; box-shadow: inset 0 0 0 1px var(--border-strong); color: var(--text); }
+.btn--ghost:hover { background: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
 .btn--full { width: 100%; }
 
 .link-quiet {
@@ -243,14 +300,14 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   padding-bottom: 3px;
   transition: background-size var(--t-std) var(--ease), color var(--t-quick) var(--ease);
 }
-.link-quiet:hover { color: var(--violet-soft); background-size: 30% 1px; }
+.link-quiet:hover { color: var(--accent-soft); background-size: 30% 1px; }
 
 .pending {
   display: inline-block;
   padding: 0.05em 0.4em;
-  border: 1px dashed var(--violet-soft);
-  border-radius: 2px;
-  color: var(--violet-soft);
+  border: 1px dashed var(--accent-soft);
+  border-radius: var(--radius-sm);
+  color: var(--accent-soft);
   font-weight: 600;
 }
 
@@ -266,21 +323,31 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
 .section-head__text {
   margin-top: var(--s-3);
   max-width: 38rem;
-  color: var(--mute);
+  color: var(--muted);
   font-size: var(--fs-md);
+  font-weight: 350;
   line-height: 1.55;
 }
 
-/* Cabeçalho do site */
+/* Cabeçalho do site: integrado à abertura no topo; translúcido depois da rolagem */
 .header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--ink-0);
+  background: transparent;
   border-bottom: 1px solid transparent;
-  transition: border-color var(--t-std) var(--ease);
+  transition: background-color var(--t-std) var(--ease), border-color var(--t-std) var(--ease), -webkit-backdrop-filter var(--t-std) var(--ease), backdrop-filter var(--t-std) var(--ease);
 }
-.header.is-scrolled { border-bottom-color: var(--line); }
+.header.is-scrolled {
+  background: rgba(22, 22, 22, .8);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom-color: var(--border);
+}
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .header.is-scrolled { background: rgba(22, 22, 22, .97); }
+}
+.header.is-menu-open { background: var(--bg-deep); border-bottom-color: var(--border); }
 .header__inner {
   display: flex;
   align-items: center;
@@ -299,26 +366,41 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
 }
 .brand__name { font-weight: 800; letter-spacing: -0.015em; font-size: 1.02rem; }
 .brand__role {
+  margin-top: 2px;
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--mute);
+  color: var(--muted);
   font-weight: 600;
 }
 
 .nav { display: flex; align-items: center; gap: var(--s-4); }
-.nav__list { display: flex; gap: var(--s-3); }
+.nav__list { display: flex; gap: 1.75rem; }
 .nav__list a {
-  font-size: var(--fs-sm);
+  position: relative;
+  display: inline-block;
+  font-size: 0.875rem;
   font-weight: 600;
+  letter-spacing: 0.01em;
   text-decoration: none;
-  color: var(--mute);
-  padding-block: 0.4rem;
-  background: linear-gradient(var(--violet-soft), var(--violet-soft)) 0 100% / 0 2px no-repeat;
-  transition: color var(--t-quick) var(--ease), background-size var(--t-std) var(--ease);
+  color: var(--muted);
+  padding-block: 0.5rem;
+  transition: color var(--t-quick) var(--ease);
+}
+.nav__list a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0.15rem;
+  height: 2px;
+  background: var(--accent-soft);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-std) var(--ease);
 }
 .nav__list a:hover,
-.nav__list a[aria-current="true"] { color: var(--paper); background-size: 100% 2px; }
+.nav__list a[aria-current="true"] { color: var(--text); }
+.nav__list a:hover::after,
+.nav__list a[aria-current="true"]::after { transform: scaleX(1); }
 
 .menu-btn {
   display: none;
@@ -364,82 +446,100 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
 .rail__fill {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, var(--violet-soft) 1.1px, transparent 1.5px) 50% 0 / 2px 7px repeat-y;
+  background: radial-gradient(circle, var(--accent-soft) 1.1px, transparent 1.5px) 50% 0 / 2px 7px repeat-y;
   transform-origin: top;
   transform: scaleY(var(--progress, 0));
 }
 
 /* 6 · SEÇÕES ------------------------------------------------------------- */
 
-/* Abertura */
-.hero { padding-block: clamp(3rem, 2rem + 6vw, 7rem) var(--s-7); }
+/* Abertura: o cabeçalho transparente fica por cima dela */
+.hero {
+  margin-top: calc(-1 * var(--header-h));
+  padding-block: calc(var(--header-h) + clamp(1.5rem, 1rem + 3vw, 3.5rem)) var(--section-space);
+}
 .hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: center;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2.4vw, 2rem);
+  align-items: end;
 }
+.hero__masthead {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 2rem;
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--border);
+}
+.hero__eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+.hero__channel { font-size: var(--fs-sm); color: var(--muted); }
+.hero__channel a { color: var(--text); font-weight: 700; text-decoration: none; background: linear-gradient(var(--accent-soft), var(--accent-soft)) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; }
+.hero__channel a:hover { color: var(--accent-soft); }
+
 .hero__title {
+  grid-column: 1 / 9;
+  grid-row: 2;
+  align-self: start;
+  margin-top: clamp(2rem, 1rem + 4vw, 4.5rem);
   font-size: var(--fs-hero);
   line-height: 0.98;
   letter-spacing: -0.045em;
   font-weight: 800;
 }
 .hero__title .line { display: block; }
-.hero__title .line--hl { margin-top: 0.06em; }
+.hero__title .line--hl { margin-top: 0.08em; }
+/* “sem rodeio.” — a assinatura: bloco um pouco mais generoso que os demais */
+.hl--hero { padding-inline: 0.14em 0.18em; }
+
+.hero__foot {
+  grid-column: 1 / 8;
+  grid-row: 3;
+  display: grid;
+  gap: var(--s-4);
+  margin-top: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+}
 .hero__lead {
-  margin-top: var(--s-4);
-  max-width: 34rem;
+  max-width: 33rem;
   font-size: var(--fs-md);
+  font-weight: 350;
   line-height: 1.55;
-  color: var(--mute);
+  color: var(--muted);
 }
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--s-2) var(--s-4);
-  margin-top: var(--s-5);
 }
 
-.hero__channel {
-  margin-top: var(--s-3);
-  font-size: var(--fs-sm);
-  color: var(--mute);
-}
-.hero__channel a { color: var(--paper); font-weight: 700; text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
-.hero__channel a:hover { color: var(--violet-soft); }
-
+/* Capas redesenhadas: peças editoriais sobrepostas, levemente inclinadas */
 .hero__stack {
+  grid-column: 9 / 13;
+  grid-row: 2 / 4;
+  align-self: end;
   position: relative;
   display: grid;
   grid-template-columns: repeat(10, minmax(0, 1fr));
   align-items: start;
-}
-.hero__curve {
-  position: absolute;
-  inset: -6% -4% auto auto;
-  width: 78%;
-  height: auto;
-  pointer-events: none;
-}
-.hero__curve path {
-  fill: none;
-  stroke: var(--violet);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-dasharray: 0.1 10;
+  padding-bottom: var(--s-1);
 }
 .hero__cap {
   grid-column: 1 / -1;
   grid-row: 2;
   margin-top: var(--s-3);
   font-size: var(--fs-xs);
-  color: var(--mute);
-  letter-spacing: 0.02em;
+  color: var(--subtle);
 }
 
-/* “Slide” — releitura tipográfica de um carrossel 4:5 */
 .slide {
   position: relative;
   grid-row: 1;
@@ -447,75 +547,76 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   container-type: inline-size;
   border-radius: var(--radius);
   text-decoration: none;
-  color: #fff;
+  color: var(--on-accent);
   overflow: hidden;
-  transition: transform var(--t-std) var(--ease);
+  box-shadow: var(--shadow);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform var(--t-std) var(--ease), box-shadow var(--t-std) var(--ease);
 }
-/* Medidas em cqi: tudo dentro do slide escala com a largura dele */
+.slide:hover,
+.slide:focus-visible { transform: rotate(0deg) translateY(-8px); box-shadow: var(--shadow-lift); z-index: 2; }
+/* Medidas em cqi: tudo dentro do slide escala com a largura dele (com fallback em rem) */
 .slide__in {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.75rem;
   gap: 4cqi;
-  padding: 2rem 1.75rem;
+  padding: 1.5rem 1.4rem;
   padding: 10cqi 9cqi;
 }
-.slide:hover { transform: translateY(-6px); }
-.slide--dark .slide__in { justify-content: flex-start; }
 .slide--dark {
+  --tilt: -2.5deg;
   grid-column: 1 / 8;
-  background: var(--ink-2);
-  outline: 1px solid var(--line);
+  background: var(--surface);
+  outline: 1px solid var(--border);
   outline-offset: -1px;
 }
+.slide--dark .slide__in { justify-content: flex-start; }
 .slide--violet {
+  --tilt: 2deg;
   grid-column: 4 / 11;
-  margin-top: 64%;
-  background: var(--violet-field);
+  margin-top: 56%;
+  background: var(--accent-field);
 }
 .slide__tag {
   align-self: flex-start;
   padding: 0.15em 0.4em;
-  background: var(--violet);
-  border-radius: 2px;
+  background: var(--accent);
+  border-radius: var(--radius-sm);
   font-weight: 750;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-size: 6.4cqi;
 }
 .slide__title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-size: 8.6cqi;
   line-height: 1.08;
   letter-spacing: -0.03em;
   font-weight: 750;
   text-wrap: balance;
 }
-.slide__title--xl { font-size: 2rem; font-size: 11.5cqi; font-weight: 800; }
-.slide__sub { font-size: 1.1rem; font-size: 6.2cqi; font-weight: 650; }
+.slide__title--xl { font-size: 1.7rem; font-size: 11.5cqi; font-weight: 800; }
+.slide__sub { font-size: 0.95rem; font-size: 6.2cqi; font-weight: 650; }
 /* Indica que o slide é um link para o post, e não a imagem original */
 .slide__open {
   position: absolute;
-  left: 1.75rem;
+  left: 1.4rem;
   left: 9cqi;
-  bottom: 1.5rem;
+  bottom: 1.2rem;
   bottom: 7cqi;
-  font-size: 0.8rem;
-  font-size: 3.6cqi;
+  font-size: 0.75rem;
+  font-size: 4cqi;
   font-weight: 700;
   letter-spacing: 0.04em;
   padding-bottom: 2px;
   border-bottom: 1px solid currentColor;
   opacity: .85;
-  transition: opacity var(--t-quick) var(--ease);
 }
-.slide:hover .slide__open,
-.slide:focus-visible .slide__open { opacity: 1; }
 
-/* Conteúdos */
-.posts { background: var(--ink-1); }
+/* Conteúdos: biblioteca editorial */
 .posts__grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -526,32 +627,27 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   display: flex;
   flex-direction: column;
   gap: var(--s-2);
-  padding: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  transition: border-color var(--t-std) var(--ease), transform var(--t-std) var(--ease), box-shadow var(--t-std) var(--ease);
 }
-.post__meta {
+.post:hover { border-color: var(--border-strong); transform: translateY(-4px); box-shadow: var(--shadow); }
+.post__head {
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
   gap: 0.35rem 1rem;
   font-size: var(--fs-xs);
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--mute);
 }
-.post__meta span + span { color: var(--violet-soft); }
-.post__meta time { color: var(--mute); }
-.post__excerpt {
-  font-size: var(--fs-sm);
-  font-weight: 650;
-  color: var(--mute);
-  padding-left: 0.75rem;
-  border-left: 2px solid var(--violet);
-}
-.post__source { font-size: var(--fs-sm); color: var(--mute); }
-.post__source a { color: var(--paper); font-weight: 650; text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
-.post__source a:hover { color: var(--violet-soft); }
+.post__type { color: var(--text); }
+.post__topic { color: var(--accent-soft); }
+.post__head time { margin-left: auto; color: var(--subtle); letter-spacing: 0.08em; }
 .post__title {
   font-size: var(--fs-lg);
   line-height: 1.15;
@@ -560,53 +656,69 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   text-wrap: balance;
   max-width: 24ch;
 }
-.post__text { color: var(--mute); max-width: 36rem; }
+.post__text { color: var(--muted); max-width: 36rem; }
 .post__text--small { font-size: var(--fs-sm); }
-.post__link {
+.post__excerpt {
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  color: var(--muted);
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--accent);
+}
+.post__source { font-size: var(--fs-sm); color: var(--muted); }
+.post__source a { color: var(--text); font-weight: 650; text-decoration-color: var(--accent-soft); text-underline-offset: 3px; }
+.post__source a:hover { color: var(--accent-soft); }
+.post__foot {
   margin-top: auto;
-  padding-top: var(--s-2);
-  align-self: flex-start;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+}
+.post__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
   font-weight: 700;
   font-size: var(--fs-sm);
   text-decoration: none;
-  background: linear-gradient(var(--violet-soft), var(--violet-soft)) 0 100% / 100% 2px no-repeat;
-  padding-bottom: 4px;
-  transition: background-size var(--t-std) var(--ease), color var(--t-quick) var(--ease);
+  color: var(--text);
+  transition: color var(--t-quick) var(--ease);
 }
-.post__link:hover { color: var(--violet-soft); background-size: 35% 2px; }
+.post__link .i { color: var(--accent-soft); }
+.post__link:hover { color: var(--accent-soft); }
+.post__link:hover .i { transform: translate(3px, -3px); }
+.post__link--strong { font-size: var(--fs-md); letter-spacing: -0.01em; overflow-wrap: anywhere; }
 
-.post--pec {
-  grid-column: 1 / 8;
-  background: var(--ink-2);
-}
-.post--pec .post__meta { position: absolute; top: clamp(1.5rem, 1rem + 2vw, 2.75rem); left: clamp(1.5rem, 1rem + 2vw, 2.75rem); right: 52%; flex-direction: column; }
+.post--pec { grid-column: 1 / 8; }
 .post--pec .post__title { font-size: clamp(1.7rem, 1.1rem + 2vw, 2.6rem); max-width: 20ch; }
 .post__num {
   align-self: flex-end;
-  margin: -0.12em -0.04em -0.12em 0;
-  font-size: clamp(9rem, 5rem + 9vw, 15rem);
+  margin: -0.18em -0.04em -0.2em 0;
+  font-size: clamp(7rem, 4rem + 8vw, 13rem);
   line-height: 1;
   font-weight: 800;
   letter-spacing: -0.06em;
   color: transparent;
-  -webkit-text-stroke: 2px var(--violet);
+  -webkit-text-stroke: 2px var(--accent);
   pointer-events: none;
   user-select: none;
 }
 
 .post--pad {
   grid-column: 8 / 13;
-  background: var(--violet-field);
+  background: var(--accent-field);
+  border-color: var(--accent-field);
 }
-.post--pad .post__meta,
-.post--pad .post__meta span + span,
-.post--pad .post__meta time { color: rgba(255, 255, 255, .86); }
-.post--pad .post__excerpt { color: #fff; border-left-color: var(--ink-0); }
-.post--pad .post__link { background-image: linear-gradient(#fff, #fff); }
-.post--pad .post__link:hover { color: #fff; }
+.post--pad:hover { border-color: var(--accent-soft); }
+.post--pad .post__type,
+.post--pad .post__topic,
+.post--pad .post__head time { color: var(--on-accent-muted); }
+.post--pad .post__excerpt { color: var(--on-accent); border-left-color: var(--bg-deep); }
+.post--pad .post__foot { border-top-color: rgba(255, 255, 255, .28); }
+.post--pad .post__link, .post--pad .post__link .i { color: var(--on-accent); }
 .post__errors { display: grid; gap: var(--s-3); margin-top: var(--s-1); }
-.post__errors li { display: grid; grid-template-columns: 3.4rem 1fr; gap: var(--s-2); align-items: start; color: rgba(255, 255, 255, .86); font-size: var(--fs-sm); }
-.post__errors strong { color: #fff; display: block; font-size: var(--fs-base); }
+.post__errors li { display: grid; grid-template-columns: 3.4rem 1fr; gap: var(--s-2); align-items: start; color: var(--on-accent-muted); font-size: var(--fs-sm); }
+.post__errors strong { color: var(--on-accent); display: block; font-size: var(--fs-base); }
 .post__errnum {
   font-size: 2.6rem;
   line-height: 0.9;
@@ -616,23 +728,18 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   -webkit-text-stroke: 1.5px rgba(10, 6, 60, .9);
 }
 
-.post--assedio {
-  grid-column: 1 / 6;
-  border: 1px solid var(--line);
-}
+.post--assedio { grid-column: 1 / 6; background: transparent; }
 .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .chips li {
   padding: 0.35rem 0.75rem;
-  background: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   font-weight: 700;
   font-size: var(--fs-sm);
 }
 
-.post--cat {
-  grid-column: 6 / 13;
-  background: var(--ink-2);
-}
+.post--cat { grid-column: 6 / 13; }
 .steps { display: grid; grid-template-columns: 2.75rem 1fr; gap: var(--s-3); margin-top: var(--s-1); }
 .steps__track {
   position: relative;
@@ -648,52 +755,50 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   top: 0; bottom: 0; left: 50%;
   width: 2px;
   transform: translateX(-50%);
-  background: radial-gradient(circle, var(--violet) 1.1px, transparent 1.5px) 50% 0 / 2px 7px repeat-y;
+  background: radial-gradient(circle, var(--accent) 1.1px, transparent 1.5px) 50% 0 / 2px 7px repeat-y;
 }
 .steps__track li {
   position: relative;
   width: 14px; height: 14px;
   border-radius: 50%;
-  background: var(--violet);
+  background: var(--accent);
 }
 .steps__track li.is-current {
   width: 2.75rem; height: 2.75rem;
   display: grid; place-items: center;
   font-weight: 800;
   font-size: 1.1rem;
-  box-shadow: 0 0 0 6px var(--ink-2);
+  box-shadow: 0 0 0 6px var(--surface);
 }
-.steps__track li:last-child { background: var(--ink-2); outline: 2px solid var(--violet); outline-offset: -2px; }
-.steps__label { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--violet-soft); }
+.steps__track li:last-child { background: var(--surface); outline: 2px solid var(--accent); outline-offset: -2px; }
+.steps__label { font-size: var(--fs-xs); font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent-soft); }
 .steps__title { font-size: var(--fs-md); font-weight: 800; letter-spacing: -0.02em; margin: 0.35rem 0 0.6rem; }
 
-.post--mpt {
-  grid-column: 1 / 9;
-  border: 1px dashed var(--violet);
-}
-.post--mpt .post__title { max-width: 30ch; }
+.post--mpt { grid-column: 1 / 7; background: transparent; border-style: dashed; border-color: var(--accent); }
+.post--mpt .post__title { max-width: 26ch; }
 
-.post--more {
-  grid-column: 9 / 13;
-  justify-content: space-between;
-  gap: var(--s-4);
-  background: var(--ink-0);
+.post--more { grid-column: 7 / 13; background: var(--bg-deep); }
+.post--more__title { font-size: var(--fs-md); font-weight: 800; letter-spacing: -0.02em; }
+.reels { display: grid; }
+.reels li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  padding-block: 0.7rem;
+  border-top: 1px solid var(--border);
+  font-weight: 600;
+  font-size: var(--fs-sm);
 }
-.post--more__count { color: var(--mute); max-width: 26ch; }
-.post--more__link {
-  display: flex;
-  flex-direction: column;
-  font-size: var(--fs-lg);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  text-decoration: none;
+.reels li::before {
+  content: "";
+  width: 0; height: 0;
+  margin-top: 0.42em;
+  border-left: 8px solid var(--accent-soft);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
 }
-.post--more__link span:first-child { color: var(--violet-soft); overflow-wrap: anywhere; }
-.post--more__link:hover span:first-child { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
 
-/* Temas */
-.topics { background: var(--ink-0); }
+/* Temas: pauta editorial */
+.topics { background: var(--bg-deep); }
 .topics__inner {
   display: grid;
   grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
@@ -701,40 +806,53 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   align-items: start;
 }
 .section-head--side { position: sticky; top: calc(var(--header-h) + 2rem); margin-bottom: 0; }
-.topics__list { border-bottom: 1px solid var(--line); }
+.topics__list { border-bottom: 1px solid var(--border); }
 .topic {
+  position: relative;
   display: grid;
   grid-template-columns: clamp(4rem, 3rem + 3vw, 6.5rem) minmax(0, 1fr) auto;
   gap: var(--s-3);
-  align-items: baseline;
-  padding-block: var(--s-4);
-  border-top: 1px solid var(--line);
+  align-items: center;
+  padding: var(--s-4) var(--s-2);
+  border-top: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: background-color var(--t-std) var(--ease);
 }
 .topic__num {
+  align-self: start;
   font-size: clamp(2.4rem, 1.6rem + 2.6vw, 4rem);
   line-height: 0.9;
   font-weight: 800;
   letter-spacing: -0.05em;
   color: transparent;
-  -webkit-text-stroke: 1.5px var(--violet-soft);
+  -webkit-text-stroke: 1.5px var(--accent-soft);
   transition: color var(--t-std) var(--ease), -webkit-text-stroke-color var(--t-std) var(--ease);
 }
-.topic:hover .topic__num { color: var(--violet); -webkit-text-stroke-color: var(--violet); }
 .topic__title { font-size: var(--fs-lg); font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; }
-.topic__text { margin-top: 0.4rem; color: var(--mute); max-width: 34rem; }
+.topic__text { margin-top: 0.4rem; color: var(--muted); max-width: 34rem; }
 .topic__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
   font-size: var(--fs-sm);
   font-weight: 700;
   white-space: nowrap;
   text-decoration: none;
-  color: var(--violet-soft);
-  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
-  padding-bottom: 2px;
+  color: var(--accent-soft);
 }
-.topic__link:hover { color: #fff; }
+/* A linha inteira do tema é clicável quando existe uma publicação */
+.topic__link::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
+.topic__link:focus-visible { outline: none; }
+.topic__link:focus-visible::after { outline: 2px solid var(--accent-soft); outline-offset: -2px; }
+.topic__tag { font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--subtle); white-space: nowrap; }
+.topic:has(.topic__link):hover { background: var(--surface); }
+.topic:has(.topic__link):hover .topic__num { color: var(--accent); -webkit-text-stroke-color: var(--accent); }
+.topic:has(.topic__link):hover .topic__link .i { transform: translate(4px, -4px); }
+.topic:has(.topic__link):hover .topic__link { color: var(--text); }
 
 /* Jeito de explicar — o único campo de cor inteiro do site */
-.manifesto { background: var(--violet-field); color: #fff; position: relative; overflow: hidden; }
+.manifesto { background: var(--accent-field); color: var(--on-accent); position: relative; overflow: hidden; }
 .manifesto::after {
   content: "";
   position: absolute;
@@ -751,7 +869,7 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   font-weight: 800;
   max-width: 15ch;
 }
-.manifesto__source { margin-top: var(--s-3); font-size: var(--fs-sm); color: rgba(255, 255, 255, .82); }
+.manifesto__source { margin-top: var(--s-3); font-size: var(--fs-sm); color: var(--on-accent-muted); }
 .manifesto__steps {
   counter-reset: passo;
   display: grid;
@@ -771,82 +889,59 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   font-weight: 800;
   letter-spacing: -0.05em;
   color: transparent;
-  -webkit-text-stroke: 1.5px #fff;
+  -webkit-text-stroke: 1.5px var(--on-accent);
 }
 .manifesto__steps h3 { font-size: var(--fs-md); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-.manifesto__steps p { color: rgba(255, 255, 255, .88); font-size: var(--fs-sm); line-height: 1.6; }
+.manifesto__steps p { color: var(--on-accent-muted); font-size: var(--fs-sm); line-height: 1.6; }
 .refs { display: grid; gap: 0.6rem; margin-top: var(--s-2); }
 .refs li { display: grid; font-size: var(--fs-sm); }
-.refs a { color: #fff; font-weight: 750; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.refs a { color: var(--on-accent); font-weight: 750; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
 .refs a:hover { text-decoration-thickness: 3px; }
-.refs span { color: rgba(255, 255, 255, .86); font-size: var(--fs-xs); }
+.refs span { color: var(--on-accent-muted); font-size: var(--fs-xs); }
 
 /* Sobre */
 .about__inner {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(2rem, 5vw, 5.5rem);
   align-items: start;
 }
+.about__lead {
+  margin-top: var(--s-4);
+  max-width: 36rem;
+  font-size: var(--fs-md);
+  font-weight: 350;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.audience { margin-top: var(--s-5); }
+.audience__title { font-size: var(--fs-xs); font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--subtle); margin-bottom: var(--s-2); }
+.audience__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--border); }
+.audience__list li {
+  padding: var(--s-2) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.audience__list li:nth-child(odd) { padding-right: var(--s-3); }
+
 .about__side { position: sticky; top: calc(var(--header-h) + 2rem); display: grid; gap: var(--s-3); }
 .about__photo img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
 .card-id {
   display: grid;
-  border-top: 2px solid var(--violet);
-  background: var(--ink-2);
-  border-radius: 0 0 var(--radius) var(--radius);
-}
-.card-id > div { padding: var(--s-2) var(--s-3); border-bottom: 1px solid var(--line); }
-.card-id > div:last-child { border-bottom: 0; }
-.card-id dt { font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--mute); }
-.card-id dd { margin-top: 0.3rem; font-weight: 700; font-size: var(--fs-md); letter-spacing: -0.015em; overflow-wrap: anywhere; }
-.card-id a { color: var(--paper); text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
-.card-id a:hover { color: var(--violet-soft); }
-
-.about__copy > p:not(.kicker) { margin-top: var(--s-3); max-width: 38rem; color: var(--mute); }
-.about__copy > p a { color: var(--paper); font-weight: 700; text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
-.about__copy > p a:hover { color: var(--violet-soft); }
-
-.presence { margin-top: var(--s-6); }
-.presence__title { font-size: var(--fs-md); font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--s-2); }
-.presence__title--sub { margin-top: var(--s-5); }
-.presence__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.presence__item {
-  display: grid;
-  gap: 0.15rem;
-  height: 100%;
-  padding: var(--s-3);
-  background: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
   border-radius: var(--radius);
-  text-decoration: none;
-  border-left: 3px solid var(--violet);
-  transition: background-color var(--t-quick) var(--ease);
 }
-.presence__item:hover { background: #2c2c30; }
-.presence__net { font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--violet-soft); }
-.presence__handle { font-size: var(--fs-md); font-weight: 800; letter-spacing: -0.02em; overflow-wrap: anywhere; }
-.presence__desc { font-size: var(--fs-sm); color: var(--mute); }
-
-.reels { display: grid; }
-.reels li {
-  padding-block: 0.8rem;
-  border-top: 1px solid var(--line);
-  font-weight: 650;
-  display: grid;
-  grid-template-columns: 1.6rem 1fr;
-}
-.reels__note { margin-top: var(--s-2); font-size: var(--fs-xs); color: var(--mute); }
-.reels li::before {
-  content: "";
-  width: 0; height: 0;
-  margin-top: 0.42em;
-  border-left: 8px solid var(--violet-soft);
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-}
+.card-id > div { padding: var(--s-3); border-bottom: 1px solid var(--border); }
+.card-id > div:last-child { border-bottom: 0; }
+.card-id dt { font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--subtle); }
+.card-id dd { margin-top: 0.35rem; font-weight: 750; font-size: var(--fs-md); letter-spacing: -0.015em; overflow-wrap: anywhere; }
 
 /* Contato */
-.contact { background: var(--ink-0); }
+.contact { background: var(--bg-deep); }
 .contact__inner {
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
@@ -860,109 +955,130 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   font-weight: 800;
   text-wrap: balance;
 }
-.contact__text { margin-top: var(--s-4); max-width: 32rem; color: var(--mute); font-size: var(--fs-md); }
-.contact__phone {
-  display: inline-grid;
-  margin-top: var(--s-5);
-  text-decoration: none;
-}
-.contact__phone-label { font-size: var(--fs-xs); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: var(--violet-soft); }
+.contact__text { margin-top: var(--s-4); max-width: 32rem; color: var(--muted); font-size: var(--fs-md); font-weight: 350; }
+.contact__phone { display: inline-grid; margin-top: var(--s-5); text-decoration: none; }
+.contact__phone-label { font-size: var(--fs-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; font-weight: 700; color: var(--accent-soft); }
 .contact__phone-num {
   font-size: clamp(1.6rem, 1.1rem + 2vw, 2.5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  background: linear-gradient(var(--violet), var(--violet)) 0 100% / 100% 3px no-repeat;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 100% 3px no-repeat;
   padding-bottom: 4px;
   transition: background-size var(--t-std) var(--ease);
 }
 .contact__phone:hover .contact__phone-num { background-size: 100% 100%; }
+.contact__note { margin-top: var(--s-5); max-width: 32rem; font-size: var(--fs-sm); color: var(--subtle); padding-left: var(--s-2); border-left: 2px solid var(--border-strong); }
 
 .form {
   padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
-  background: var(--ink-1);
-  border: 1px solid var(--line);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
   border-radius: var(--radius);
 }
-.form__title { font-size: var(--fs-md); font-weight: 800; letter-spacing: -0.02em; }
-.form__hint { margin-top: 0.5rem; margin-bottom: var(--s-3); font-size: var(--fs-sm); color: var(--mute); }
-.field { display: grid; gap: 0.4rem; margin-bottom: var(--s-3); }
+.form__title { font-size: var(--fs-lg); font-weight: 800; letter-spacing: -0.02em; }
+.form__hint { margin-top: 0.5rem; margin-bottom: var(--s-4); font-size: var(--fs-sm); color: var(--muted); }
+.field { display: grid; gap: 0.45rem; margin-bottom: var(--s-3); }
 .field label { font-weight: 700; font-size: var(--fs-sm); }
-.field__opt { font-weight: 500; color: var(--mute); }
+.field__opt { font-weight: 500; color: var(--subtle); }
 .field input,
 .field select,
 .field textarea {
   width: 100%;
-  min-height: 48px;
-  padding: 0.7rem 0.85rem;
-  background: var(--ink-2);
-  border: 1px solid var(--line);
+  min-height: 52px;
+  padding: 0.75rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   font-size: 1rem;
-  transition: border-color var(--t-quick) var(--ease);
+  transition: border-color var(--t-quick) var(--ease), background-color var(--t-quick) var(--ease);
 }
-.field textarea { resize: vertical; min-height: 7.5rem; line-height: 1.5; }
+.field textarea { resize: vertical; min-height: 8rem; line-height: 1.5; }
 .field select {
   appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--violet-soft) 50%), linear-gradient(-45deg, transparent 50%, var(--violet-soft) 50%);
+  background-image: linear-gradient(45deg, transparent 50%, var(--accent-soft) 50%), linear-gradient(-45deg, transparent 50%, var(--accent-soft) 50%);
   background-position: calc(100% - 20px) 55%, calc(100% - 14px) 55%;
   background-size: 6px 6px;
   background-repeat: no-repeat;
   padding-right: 2.5rem;
 }
-.field select option { background: var(--ink-2); color: var(--paper); }
+.field select option { background: var(--surface); color: var(--text); }
 .field input::placeholder,
-.field textarea::placeholder { color: #8f8f96; }
+.field textarea::placeholder { color: var(--subtle); }
 .field input:hover,
 .field select:hover,
-.field textarea:hover { border-color: #4c4c55; }
+.field textarea:hover { border-color: var(--border-strong); }
 .field input:focus-visible,
 .field select:focus-visible,
-.field textarea:focus-visible { outline: 2px solid var(--violet-soft); outline-offset: 0; border-color: transparent; }
-.field [aria-invalid="true"] { border-color: #ff8a8a; }
-.field__error { font-size: var(--fs-sm); color: #ffb0b0; font-weight: 600; }
+.field textarea:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 0; border-color: transparent; background-color: var(--surface-2); }
+.field [aria-invalid="true"] { border-color: var(--error-border); }
+.field__error { font-size: var(--fs-sm); color: var(--error); font-weight: 600; }
+.field__error::before { content: "! "; font-weight: 800; }
 .field__row { display: flex; justify-content: space-between; gap: var(--s-2); }
-.field__count { margin-left: auto; font-size: var(--fs-xs); color: var(--mute); font-variant-numeric: tabular-nums; }
-.form__status { margin-top: var(--s-2); font-size: var(--fs-sm); color: var(--mute); min-height: 1.5em; }
+.field__count { margin-left: auto; font-size: var(--fs-xs); color: var(--subtle); font-variant-numeric: tabular-nums; }
+.form .btn--full { margin-top: var(--s-1); }
+.form__status { margin-top: var(--s-2); font-size: var(--fs-sm); color: var(--muted); min-height: 1.5em; }
+.form__status a { color: var(--accent-soft); font-weight: 700; }
 
 /* Rodapé */
-.footer { background: var(--ink-0); border-top: 1px solid var(--line); padding-block: var(--s-6) var(--s-4); }
-.footer__inner {
+.footer { background: var(--bg-deep); border-top: 1px solid var(--border); padding-block: var(--s-6) var(--s-4); }
+.footer__sign {
+  max-width: 18ch;
+  font-size: clamp(1.9rem, 1.2rem + 3vw, 3.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: var(--text);
+}
+.footer__sign .hl { white-space: nowrap; }
+.footer__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 3fr) minmax(0, 3fr);
   gap: var(--s-5) var(--s-4);
+  margin-top: var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--border);
 }
 .footer__name { font-weight: 800; font-size: var(--fs-md); letter-spacing: -0.02em; }
-.footer__role { color: var(--mute); font-size: var(--fs-sm); }
+.footer__role { color: var(--muted); font-size: var(--fs-sm); }
 .footer__oab { margin-top: var(--s-2); font-size: var(--fs-sm); }
-.footer__nav { display: flex; gap: var(--s-6); }
-.footer__nav ul { display: grid; gap: 0.5rem; align-content: start; }
-.footer__nav a { text-decoration: none; color: var(--mute); font-weight: 600; font-size: var(--fs-sm); }
-.footer__nav a:hover { color: var(--paper); }
-.footer__legal {
-  grid-column: 1 / -1;
+.footer__label { font-size: var(--fs-xs); font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--subtle); margin-bottom: var(--s-2); }
+.footer__nav ul { display: grid; gap: 0.15rem; }
+.footer__nav a { display: inline-flex; align-items: center; min-height: 36px; text-decoration: none; color: var(--muted); font-weight: 600; font-size: var(--fs-sm); transition: color var(--t-quick) var(--ease); }
+.footer__nav a:hover { color: var(--text); }
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-1) var(--s-4);
+  margin-top: var(--s-5);
   padding-top: var(--s-3);
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border);
   font-size: var(--fs-xs);
-  color: var(--mute);
+  color: var(--subtle);
 }
 
 /* 7 · MOVIMENTO ---------------------------------------------------------- */
 /* Só existe com html.motion (adicionada quando o usuário não pede movimento reduzido).
-   Sem JavaScript ou com movimento reduzido, tudo aparece no lugar, sem animação. */
+   Sem JavaScript ou com movimento reduzido, tudo aparece no lugar, sem animação.
+   Só transform, opacity e background-size. */
 .motion [data-load] {
   opacity: 0;
-  transform: translateY(0.5em);
+  transform: translateY(12px);
   transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
 }
-.motion .hero__title [data-load] { transform: translateY(0.35em); }
-.motion .slide[data-load] { transform: translateY(28px); }
+.motion .hero__title [data-load] { transform: translateY(0.3em); }
+.motion .slide[data-load] { transform: translateY(24px) rotate(var(--tilt, 0deg)); }
 .motion.is-loaded [data-load] { opacity: 1; transform: none; }
+.motion.is-loaded .slide[data-load] { transform: rotate(var(--tilt, 0deg)); }
 .motion.is-loaded [data-load="2"] { transition-delay: 60ms; }
 .motion.is-loaded [data-load="3"] { transition-delay: 150ms; }
 .motion.is-loaded [data-load="4"] { transition-delay: 240ms; }
-.motion.is-loaded [data-load="5"] { transition-delay: 360ms; }
-.motion.is-loaded [data-load="6"] { transition-delay: 460ms; }
-.motion.is-loaded .slide[data-load]:hover { transition-delay: 0ms; transform: translateY(-6px); }
+.motion.is-loaded [data-load="5"] { transition-delay: 380ms; }
+.motion.is-loaded [data-load="6"] { transition-delay: 480ms; }
+.motion.is-loaded .slide[data-load]:hover,
+.motion.is-loaded .slide[data-load]:focus-visible { transition-delay: 0ms; transform: rotate(0deg) translateY(-8px); }
 
 /* O destaque é “passado” como marca-texto quando entra na tela */
 .motion [data-hl] {
@@ -970,15 +1086,18 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   transition: background-size 700ms var(--ease);
 }
 .motion [data-hl].is-in { background-size: 100% 100%; }
-.motion .hero [data-hl].is-in { transition-delay: 620ms; }
+.motion .hero [data-hl].is-in { transition-delay: 640ms; transition-duration: 760ms; }
 
-/* O fio pontilhado da abertura se desenha uma vez */
-.motion .hero__curve { clip-path: inset(0 0 100% 0); transition: clip-path 1400ms var(--ease) 300ms; }
-.motion.is-loaded .hero__curve { clip-path: inset(0 0 0 0); }
+/* Cards e temas entram uma única vez, com deslocamento curto */
+.motion .reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease), transform 600ms var(--ease), border-color var(--t-std) var(--ease), box-shadow var(--t-std) var(--ease), background-color var(--t-std) var(--ease); transition-delay: var(--d, 0ms); }
+.motion .reveal.is-in { opacity: 1; transform: none; }
+.motion .post.reveal.is-in:hover { transform: translateY(-4px); transition-delay: 0ms; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .slide:hover, .slide:focus-visible, .post:hover { transform: rotate(var(--tilt, 0deg)); }
+  .post:hover { transform: none; }
 }
 
 /* 8 · RESPONSIVO --------------------------------------------------------- */
@@ -986,12 +1105,16 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   .rail { display: block; }
 }
 
+@media (max-width: 1180px) {
+  .hero__title { grid-column: 1 / -1; }
+  .hero__foot { grid-column: 1 / 8; }
+  .hero__stack { grid-column: 8 / 13; grid-row: 3; }
+}
+
 @media (max-width: 1080px) {
   .posts__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .post--pec, .post--cat, .post--mpt { grid-column: 1 / -1; }
-  .post--pad, .post--assedio, .post--more { grid-column: auto; }
-  .post--mpt { grid-column: 1 / 2; }
-  .post--more { grid-column: 2 / 3; }
+  .post--pec, .post--cat { grid-column: 1 / -1; }
+  .post--pad, .post--assedio, .post--mpt, .post--more { grid-column: auto; }
   .topics__inner { grid-template-columns: 1fr; }
   .section-head--side { position: static; margin-bottom: var(--s-2); }
 }
@@ -1006,9 +1129,9 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
     flex-direction: column;
     align-items: stretch;
     gap: var(--s-3);
-    padding: var(--s-3) var(--gutter) var(--s-4);
-    background: var(--ink-0);
-    border-bottom: 1px solid var(--line);
+    padding: var(--s-2) var(--gutter) var(--s-4);
+    background: var(--bg-deep);
+    border-bottom: 1px solid var(--border);
     max-height: calc(100vh - var(--header-h));
     max-height: calc(100dvh - var(--header-h));
     overflow-y: auto;
@@ -1020,38 +1143,37 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   }
   .js .nav.is-open { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
   .js .nav__list { flex-direction: column; gap: 0; }
-  .js .nav__list a { display: block; padding-block: 0.85rem; font-size: var(--fs-md); color: var(--paper); border-bottom: 1px solid var(--line); background: none; }
-  .js .nav .btn { min-height: 52px; }
+  .js .nav__list a { display: block; padding-block: 0.95rem; font-size: var(--fs-lg); font-weight: 750; letter-spacing: -0.02em; color: var(--text); border-bottom: 1px solid var(--border); }
+  .js .nav__list a::after { display: none; }
+  .js .nav__list a[aria-current="true"] { color: var(--accent-soft); }
+  .js .nav .btn { min-height: 52px; font-size: var(--fs-sm); }
+  html:not(.js) .header { background: var(--bg-deep); }
   html:not(.js) .header__inner { flex-wrap: wrap; padding-block: 0.75rem; }
   html:not(.js) .menu-btn { display: none; }
   html:not(.js) .nav { flex-wrap: wrap; gap: var(--s-2); }
 
-  .hero__inner { grid-template-columns: 1fr; }
-  .hero__channel {
-  margin-top: var(--s-3);
-  font-size: var(--fs-sm);
-  color: var(--mute);
-}
-.hero__channel a { color: var(--paper); font-weight: 700; text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
-.hero__channel a:hover { color: var(--violet-soft); }
-
-.hero__stack { max-width: 560px; }
+  .hero__title, .hero__foot { grid-column: 1 / -1; }
+  .hero__stack { grid-column: 1 / -1; grid-row: 4; max-width: 460px; margin-top: var(--s-5); }
   .about__inner, .contact__inner { grid-template-columns: 1fr; }
-  .about__side { position: static; max-width: 480px; order: 2; }
+  .about__side { position: static; max-width: 480px; }
   .manifesto__steps { grid-template-columns: 1fr; gap: var(--s-4); }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+  .footer__id { grid-column: 1 / -1; }
 }
 
 @media (max-width: 640px) {
-  .posts__grid { grid-template-columns: 1fr; }
-  .post--mpt, .post--more { grid-column: 1 / -1; }
+  .hero__masthead { flex-direction: column; gap: 0.35rem; }
   .hero__lead { font-size: var(--fs-base); }
-  .topic { grid-template-columns: 3.6rem minmax(0, 1fr); }
-  .topic__link { grid-column: 2; justify-self: start; }
-  .presence__list { grid-template-columns: 1fr; }
   .hero__actions { flex-direction: column; align-items: stretch; }
   .hero__actions .link-quiet { align-self: flex-start; }
-  .footer__inner { grid-template-columns: 1fr; }
-  .footer__nav { gap: var(--s-5); }
+  .hero__stack { max-width: 340px; }
+  .posts__grid { grid-template-columns: 1fr; }
+  .post--pad, .post--assedio, .post--mpt, .post--more { grid-column: 1 / -1; }
+  .post__head time { margin-left: 0; }
+  .topic { grid-template-columns: 3.4rem minmax(0, 1fr); padding-block: var(--s-3); }
+  .topic__link, .topic__tag { grid-column: 2; justify-self: start; }
+  .audience__list { grid-template-columns: 1fr; }
+  .audience__list li:nth-child(odd) { padding-right: 0; }
   .brand__role { display: none; }
 }
 
@@ -1073,6 +1195,12 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   </script>
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-out" viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 16 16"><path d="M8 3v10M4 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-right" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
   <div class="rail" aria-hidden="true"><span class="rail__fill"></span></div>
@@ -1096,7 +1224,7 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
-        <a class="btn btn--small btn--ghost" href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<span class="sr"> (abre em nova aba)</span></a>
+        <a class="btn btn--small btn--ghost" href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> (abre em nova aba)</span></a>
       </nav>
     </div>
   </header>
@@ -1104,33 +1232,29 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   <main id="conteudo" tabindex="-1">
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="hero__inner wrap">
-        <div class="hero__copy">
-          <p class="kicker" data-load="1">Advogado do servidor público e sindicatos</p>
-          <h1 class="hero__title" id="hero-title">
-            <span class="line" data-load="2">Direito do</span>
-            <span class="line" data-load="2">servidor público,</span>
-            <span class="line" data-load="3">explicado</span>
-            <span class="line line--hl" data-load="4"><mark class="hl" data-hl>sem rodeio.</mark></span>
-          </h1>
-          <p class="hero__lead" data-load="5">
-            Vitor Queiroz Cosechen é advogado do servidor público e de sindicatos. No Instagram,
-            explica reforma administrativa, PAD, assédio e acidente de trabalho a partir das
-            perguntas que os próprios servidores fazem.
-          </p>
-          <div class="hero__actions" data-load="6">
-            <a class="btn" href="#conteudos">Ver as explicações</a>
-            <a class="link-quiet" href="https://wa.me/5545991176434" target="_blank" rel="noopener">Falar pelo WhatsApp<span class="sr"> (abre em nova aba)</span></a>
-          </div>
-          <p class="hero__channel" data-load="6">
-            Perfil oficial no Instagram:
+        <div class="hero__masthead" data-load="1">
+          <p class="hero__eyebrow">Advogado do servidor público e sindicatos</p>
+          <p class="hero__channel">Conteúdo jurídico em
             <a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">@vitorqcosechen.adv<span class="sr"> (abre em nova aba)</span></a>
           </p>
         </div>
 
+        <h1 class="hero__title" id="hero-title">
+          <span class="line" data-load="2">Direito do</span>
+          <span class="line" data-load="2">servidor público,</span>
+          <span class="line" data-load="3">explicado</span>
+          <span class="line line--hl" data-load="4"><mark class="hl hl--hero" data-hl>sem rodeio.</mark></span>
+        </h1>
+
+        <div class="hero__foot" data-load="5">
+          <p class="hero__lead">Vitor Queiroz Cosechen explica reforma administrativa, PAD, assédio, acidente de trabalho e carreira a partir das perguntas que os próprios servidores fazem.</p>
+          <div class="hero__actions">
+            <a class="btn" href="#conteudos">Ver as explicações<svg class="i" aria-hidden="true"><use href="#i-down"/></svg></a>
+            <a class="link-quiet" href="https://wa.me/5545991176434" target="_blank" rel="noopener">Falar pelo WhatsApp<span class="sr"> (abre em nova aba)</span></a>
+          </div>
+        </div>
+
         <figure class="hero__stack" aria-labelledby="stack-cap">
-          <svg class="hero__curve" viewBox="0 0 400 520" aria-hidden="true" focusable="false">
-            <path d="M380 0 V120 Q380 170 330 170 H120 Q60 170 60 230 V520" />
-          </svg>
           <a class="slide slide--dark" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener" data-load="5">
             <span class="slide__in">
               <span class="slide__tag">PEC 32/2020:</span>
@@ -1147,42 +1271,46 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
             </span>
             <span class="sr"> — carrossel sobre PAD no Instagram (abre em nova aba)</span>
           </a>
-          <figcaption class="hero__cap" id="stack-cap">Capas de dois carrosséis do perfil, redesenhadas em texto para o site. Toque para abrir a publicação original.</figcaption>
+          <figcaption class="hero__cap" id="stack-cap">Capas de carrosséis do perfil, redesenhadas em texto para o site.</figcaption>
         </figure>
       </div>
     </section>
     <section class="section posts" id="conteudos" aria-labelledby="posts-title">
       <div class="wrap">
         <header class="section-head">
-          <p class="kicker">Conteúdos em destaque</p>
+          <div class="section-rule"><p class="kicker">Conteúdos em destaque</p><p class="section-rule__meta">5 publicações · outubro de 2026</p></div>
           <h2 class="section-head__title" id="posts-title">Explicações que já estão no perfil, <mark class="hl" data-hl>abertas a qualquer servidor.</mark></h2>
-          <p class="section-head__text">Cinco publicações de outubro de 2026. Os textos abaixo são resumos e trechos feitos para o site; a explicação completa está no post original.</p>
+          <p class="section-head__text">Resumos e trechos feitos para o site. A explicação completa está em cada publicação original.</p>
         </header>
 
         <div class="posts__grid">
 
-          <article class="post post--pec">
-            <div class="post__meta"><span>Carrossel</span><span>Reforma administrativa</span><time datetime="2026-10">Out. 2026</time></div>
+          <article class="post post--pec reveal">
+            <header class="post__head"><span class="post__type">Carrossel</span><span class="post__topic">Reforma administrativa</span><time datetime="2026-10">Out. 2026</time></header>
             <span class="post__num" aria-hidden="true">32</span>
             <h3 class="post__title">O que realmente consta na Reforma Administrativa de Paulo Guedes?</h3>
             <p class="post__text">O carrossel apresenta a PEC 32/2020 como uma proposta que alcança municípios, estados e União — professores, enfermeiros e agentes de saúde no mesmo barco. Um dos pontos é a ampliação da contratação temporária; <strong>na leitura do Vitor, o concurso público deixaria de ser a regra</strong>. A publicação lembra que a PEC não virou emenda constitucional e recomenda ler o texto original.</p>
             <p class="post__source">Norma citada: PEC 32/2020, <a href="https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2262083" target="_blank" rel="noopener">ficha de tramitação na Câmara dos Deputados<span class="sr"> (abre em nova aba)</span></a></p>
-            <a class="post__link" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener">Abrir o carrossel<span class="sr"> sobre a PEC 32/2020 no Instagram (abre em nova aba)</span></a>
+            <footer class="post__foot">
+              <a class="post__link" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener">Ver o carrossel completo<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> sobre a PEC 32/2020 no Instagram (abre em nova aba)</span></a>
+            </footer>
           </article>
 
-          <article class="post post--pad">
-            <div class="post__meta"><span>Carrossel</span><span>Processo administrativo disciplinar</span><time datetime="2026-10-03">Out. 2026</time></div>
+          <article class="post post--pad reveal">
+            <header class="post__head"><span class="post__type">Carrossel</span><span class="post__topic">Processo administrativo disciplinar</span><time datetime="2026-10-03">Out. 2026</time></header>
             <h3 class="post__title">Recebeu notificação de <mark class="hl hl--ink hl--static">PAD</mark>? Não cometa esses erros.</h3>
             <p class="post__excerpt">Dois dos cinco erros apresentados no carrossel</p>
             <ol class="post__errors">
               <li><span class="post__errnum" aria-hidden="true">01</span><span><strong><span class="sr">Erro 1 de 5: </span>Ignorar a notificação.</strong> Quando você responde a um PAD, cada fase tem sua importância.</span></li>
               <li><span class="post__errnum" aria-hidden="true">04</span><span><strong><span class="sr">Erro 4 de 5: </span>Confiar que “não vai dar em nada”.</strong> Vitor relata ter visto vários servidores acharem que a situação não era grave e acabarem demitidos.</span></li>
             </ol>
-            <a class="post__link" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener">Ver os cinco erros<span class="sr"> sobre PAD no Instagram (abre em nova aba)</span></a>
+            <footer class="post__foot">
+              <a class="post__link" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener">Ver os cinco erros<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> sobre PAD no Instagram (abre em nova aba)</span></a>
+            </footer>
           </article>
 
-          <article class="post post--assedio">
-            <div class="post__meta"><span>Carrossel</span><span>Assédio moral</span><time datetime="2026-10">Out. 2026</time></div>
+          <article class="post post--assedio reveal">
+            <header class="post__head"><span class="post__type">Carrossel</span><span class="post__topic">Assédio moral</span><time datetime="2026-10">Out. 2026</time></header>
             <h3 class="post__title">Está sofrendo assédio moral? Como juntar provas <mark class="hl" data-hl>sem se expor.</mark></h3>
             <p class="post__excerpt">Trecho: a primeira das seis provas do carrossel</p>
             <p class="post__text"><strong>Faça um diário.</strong> Anote cada episódio logo depois que acontecer:</p>
@@ -1190,11 +1318,13 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
               <li>data</li><li>hora</li><li>local</li><li>o que foi dito</li><li>quem estava perto</li>
             </ul>
             <p class="post__text post__text--small">Segundo a publicação, anotações feitas na hora pesam mais do que lembranças de meses depois.</p>
-            <a class="post__link" href="https://www.instagram.com/p/DeLBcEWDVIH/" target="_blank" rel="noopener">Ver as seis provas<span class="sr"> sobre assédio moral no Instagram (abre em nova aba)</span></a>
+            <footer class="post__foot">
+              <a class="post__link" href="https://www.instagram.com/p/DeLBcEWDVIH/" target="_blank" rel="noopener">Ver as seis provas<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> sobre assédio moral no Instagram (abre em nova aba)</span></a>
+            </footer>
           </article>
 
-          <article class="post post--cat">
-            <div class="post__meta"><span>Carrossel</span><span>Acidente de trabalho</span><time datetime="2026-10-04">Out. 2026</time></div>
+          <article class="post post--cat reveal">
+            <header class="post__head"><span class="post__type">Carrossel</span><span class="post__topic">Acidente de trabalho</span><time datetime="2026-10-04">Out. 2026</time></header>
             <h3 class="post__title">Foi agredido no trabalho? O que fazer nesse momento.</h3>
             <p class="post__excerpt">Trecho: o quarto dos cinco passos do carrossel</p>
             <div class="steps">
@@ -1207,21 +1337,34 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
                 <p class="post__text">Segundo a publicação, o acidente de trabalho pode gerar direitos ligados ao afastamento e até cálculos diferenciados na aposentadoria. <mark class="hl" data-hl>Não esqueça de fazer.</mark></p>
               </div>
             </div>
-            <a class="post__link" href="https://www.instagram.com/p/DeF3yIGDbfH/" target="_blank" rel="noopener">Ver os cinco passos<span class="sr"> sobre agressão no trabalho no Instagram (abre em nova aba)</span></a>
+            <footer class="post__foot">
+              <a class="post__link" href="https://www.instagram.com/p/DeF3yIGDbfH/" target="_blank" rel="noopener">Ver os cinco passos<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> sobre agressão no trabalho no Instagram (abre em nova aba)</span></a>
+            </footer>
           </article>
 
-          <article class="post post--mpt">
-            <div class="post__meta"><span>Vídeo</span><span>Notícia comentada</span><time datetime="2026-10">Out. 2026</time></div>
+          <article class="post post--mpt reveal">
+            <header class="post__head"><span class="post__type">Vídeo</span><span class="post__topic">Notícia comentada</span><time datetime="2026-10">Out. 2026</time></header>
             <h3 class="post__title">“MPT aciona a Prefeitura do Rio por assédio eleitoral.”</h3>
             <p class="post__text">Manchete exibida no vídeo. As denúncias citadas falam em convocação para campanha durante o expediente e ameaça de demissão no CRAS, CREAS e Conselhos Tutelares. Vitor comenta por que esse tipo de situação é comum e lembra que <strong>apoio político não se cobra</strong>.</p>
-            <a class="post__link" href="https://www.instagram.com/p/DeXYz79ivDr/" target="_blank" rel="noopener">Assistir ao vídeo<span class="sr"> sobre assédio eleitoral no Instagram (abre em nova aba)</span></a>
+            <footer class="post__foot">
+              <a class="post__link" href="https://www.instagram.com/p/DeXYz79ivDr/" target="_blank" rel="noopener">Assistir ao vídeo<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> sobre assédio eleitoral no Instagram (abre em nova aba)</span></a>
+            </footer>
           </article>
 
-          <aside class="post post--more" aria-label="Mais publicações">
-            <p class="post--more__count">Há muito mais no perfil: vídeos curtos, carrosséis e respostas a dúvidas de servidores.</p>
-            <a class="post--more__link" href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">
-              Ver todas em <span>@vitorqcosechen.adv</span><span class="sr"> (abre em nova aba)</span>
-            </a>
+          <aside class="post post--more reveal" aria-labelledby="more-title">
+            <header class="post__head"><span class="post__type">Vídeos</span><span class="post__topic">Também no perfil</span></header>
+            <h3 class="post--more__title" id="more-title">Outros assuntos tratados em vídeo</h3>
+            <ul class="reels">
+              <li>Concurso público vai virar exceção?</li>
+              <li>Contratado por PSS há anos? O TCE-PR disse que isso está errado.</li>
+              <li>O STF vai decidir se o piso vale para toda a sua carreira.</li>
+              <li>Abono de permanência entra no cálculo de 1/3 de férias e 13º.</li>
+              <li>Nunca deixe para tirar a CTC em cima da hora.</li>
+              <li>O que acontece depois que sua ação é julgada?</li>
+            </ul>
+            <footer class="post__foot">
+              <a class="post__link post__link--strong" href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">Ver todas em @vitorqcosechen.adv<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> (abre em nova aba)</span></a>
+            </footer>
           </aside>
         </div>
       </div>
@@ -1229,57 +1372,59 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
     <section class="section topics" id="temas" aria-labelledby="topics-title">
       <div class="wrap topics__inner">
         <header class="section-head section-head--side">
-          <p class="kicker">Temas</p>
+          <div class="section-rule"><p class="kicker">Temas</p><p class="section-rule__meta">6 assuntos</p></div>
           <h2 class="section-head__title" id="topics-title">Do que o perfil trata.</h2>
           <p class="section-head__text">Assuntos que aparecem com frequência nas publicações. Não é uma lista de serviços: para saber se o seu caso é atendido, pergunte pelo WhatsApp.</p>
         </header>
 
         <ol class="topics__list">
-          <li class="topic">
+          <li class="topic reveal">
             <span class="topic__num" aria-hidden="true">01</span>
             <div class="topic__body">
               <h3 class="topic__title">Reforma administrativa</h3>
               <p class="topic__text">PEC 32/2020, estabilidade, concurso público e contratação temporária por PSS.</p>
             </div>
-            <a class="topic__link" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener">Ler sobre a PEC<span class="sr"> 32/2020 no Instagram (abre em nova aba)</span></a>
+            <a class="topic__link" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener"><span class="topic__cta">Carrossel</span><svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> sobre a PEC 32/2020 no Instagram (abre em nova aba)</span></a>
           </li>
-          <li class="topic">
+          <li class="topic reveal">
             <span class="topic__num" aria-hidden="true">02</span>
             <div class="topic__body">
               <h3 class="topic__title">Processo administrativo disciplinar</h3>
               <p class="topic__text">O que fazer ao receber a notificação e por que cada fase do PAD importa.</p>
             </div>
-            <a class="topic__link" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener">Ler sobre PAD<span class="sr"> no Instagram (abre em nova aba)</span></a>
+            <a class="topic__link" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener"><span class="topic__cta">Carrossel</span><svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> sobre PAD no Instagram (abre em nova aba)</span></a>
           </li>
-          <li class="topic">
+          <li class="topic reveal">
             <span class="topic__num" aria-hidden="true">03</span>
             <div class="topic__body">
               <h3 class="topic__title">Assédio no serviço público</h3>
               <p class="topic__text">Assédio moral, como reunir provas e casos de pressão por campanha eleitoral no trabalho.</p>
             </div>
-            <a class="topic__link" href="https://www.instagram.com/p/DeLBcEWDVIH/" target="_blank" rel="noopener">Ler sobre assédio<span class="sr"> moral no Instagram (abre em nova aba)</span></a>
+            <a class="topic__link" href="https://www.instagram.com/p/DeLBcEWDVIH/" target="_blank" rel="noopener"><span class="topic__cta">Carrossel</span><svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> sobre assédio moral no Instagram (abre em nova aba)</span></a>
           </li>
-          <li class="topic">
+          <li class="topic reveal">
             <span class="topic__num" aria-hidden="true">04</span>
             <div class="topic__body">
               <h3 class="topic__title">Acidente de trabalho e saúde</h3>
               <p class="topic__text">Registro de CAT, agressão no ambiente de trabalho e a medicina do trabalho da prefeitura.</p>
             </div>
-            <a class="topic__link" href="https://www.instagram.com/p/DeF3yIGDbfH/" target="_blank" rel="noopener">Ler sobre CAT<span class="sr"> no Instagram (abre em nova aba)</span></a>
+            <a class="topic__link" href="https://www.instagram.com/p/DeF3yIGDbfH/" target="_blank" rel="noopener"><span class="topic__cta">Carrossel</span><svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> sobre CAT no Instagram (abre em nova aba)</span></a>
           </li>
-          <li class="topic">
+          <li class="topic reveal">
             <span class="topic__num" aria-hidden="true">05</span>
             <div class="topic__body">
               <h3 class="topic__title">Remuneração e carreira</h3>
               <p class="topic__text">Piso do magistério, data-base, abono de permanência, férias, licença-prêmio e retroativos.</p>
             </div>
+            <span class="topic__tag">Em vídeos</span>
           </li>
-          <li class="topic">
+          <li class="topic reveal">
             <span class="topic__num" aria-hidden="true">06</span>
             <div class="topic__body">
               <h3 class="topic__title">Aposentadoria</h3>
               <p class="topic__text">Certidão de tempo de contribuição (CTC) e os cálculos que mudam o valor do benefício.</p>
             </div>
+            <span class="topic__tag">Em vídeos</span>
           </li>
         </ol>
       </div>
@@ -1315,67 +1460,44 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
     </section>
     <section class="section about" id="sobre" aria-labelledby="about-title">
       <div class="wrap about__inner">
-        <div class="about__side">
-          <dl class="card-id">
-            <div><dt>Nome profissional</dt><dd>Vitor Queiroz Cosechen</dd></div>
-            <div><dt>Atuação</dt><dd>Advogado do Servidor Público e Sindicatos</dd></div>
-            <div><dt>Inscrição na OAB</dt><dd><span class="pending">[nº e seccional a confirmar]</span></dd></div>
-            <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">@vitorqcosechen.adv<span class="sr"> (abre em nova aba)</span></a></dd></div>
-          </dl>
-        </div>
-
         <div class="about__copy">
-          <p class="kicker">Sobre</p>
+          <div class="section-rule"><p class="kicker">Sobre</p><p class="section-rule__meta">Identificação profissional</p></div>
           <h2 class="section-head__title" id="about-title">Quem explica fala com quem está <mark class="hl" data-hl>dentro do serviço público.</mark></h2>
-          <p>Vitor Queiroz Cosechen é advogado do servidor público e de sindicatos. No perfil <a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">@vitorqcosechen.adv<span class="sr"> (abre em nova aba)</span></a>, publica explicações curtas sobre o que muda na vida de professores, profissionais da saúde e servidores municipais quando sai uma lei, uma decisão ou uma notificação.</p>
-          <p>Os vídeos são gravados em primeira pessoa, de forma simples. Os carrosséis seguem o mesmo desenho — a pergunta, a explicação, o próximo passo — para que o conteúdo seja fácil de reconhecer e de reler.</p>
+          <p class="about__lead">Vitor Queiroz Cosechen é advogado do servidor público e de sindicatos. Publica explicações curtas sobre o que muda na vida de quem trabalha no serviço público quando sai uma lei, uma decisão ou uma notificação.</p>
 
-          <div class="presence">
-            <h3 class="presence__title">Onde acompanhar</h3>
-            <ul class="presence__list">
-              <li>
-                <a class="presence__item" href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">
-                  <span class="presence__net">Instagram</span>
-                  <span class="presence__handle">@vitorqcosechen.adv</span>
-                  <span class="presence__desc">Vídeos e carrosséis sobre direitos do servidor</span>
-                  <span class="sr"> (abre em nova aba)</span>
-                </a>
-              </li>
-              <li>
-                <a class="presence__item" href="https://www.threads.net/@vitorqcosechen.adv" target="_blank" rel="noopener">
-                  <span class="presence__net">Threads</span>
-                  <span class="presence__handle">@vitorqcosechen.adv</span>
-                  <span class="presence__desc">Conta indicada na bio do Instagram</span>
-                  <span class="sr"> (abre em nova aba)</span>
-                </a>
-              </li>
+          <div class="audience">
+            <h3 class="audience__title">Para quem as publicações falam</h3>
+            <ul class="audience__list">
+              <li>Professores</li>
+              <li>Profissionais da saúde</li>
+              <li>Servidores municipais</li>
+              <li>Sindicatos</li>
             </ul>
-
-            <h3 class="presence__title presence__title--sub">Outros assuntos tratados em vídeo</h3>
-            <ul class="reels" aria-label="Títulos de vídeos do perfil">
-              <li>Concurso público vai virar exceção?</li>
-              <li>Contratado por PSS há anos? O TCE-PR disse que isso está errado.</li>
-              <li>O STF vai decidir se o piso vale para toda a sua carreira.</li>
-              <li>Abono de permanência entra no cálculo de 1/3 de férias e 13º.</li>
-              <li>Nunca deixe para tirar a CTC em cima da hora.</li>
-              <li>O que acontece depois que sua ação é julgada?</li>
-            </ul>
-            <p class="reels__note">Títulos dos vídeos como aparecem no perfil.</p>
           </div>
         </div>
+
+        <aside class="about__side" aria-label="Identificação profissional">
+          <dl class="card-id">
+            <div><dt>Nome profissional</dt><dd>Vitor Queiroz Cosechen</dd></div>
+            <div><dt>Atuação declarada</dt><dd>Advogado do Servidor Público e Sindicatos</dd></div>
+            <div><dt>Inscrição na OAB</dt><dd><span class="pending">[nº e seccional a confirmar]</span></dd></div>
+            <div><dt>Canal de conteúdo</dt><dd>Instagram @vitorqcosechen.adv</dd></div>
+          </dl>
+        </aside>
       </div>
     </section>
     <section class="section contact" id="contato" aria-labelledby="contact-title">
       <div class="wrap contact__inner">
         <div class="contact__copy">
-          <p class="kicker">Contato</p>
+          <div class="section-rule"><p class="kicker">Contato</p><p class="section-rule__meta">Canal oficial</p></div>
           <h2 class="contact__title" id="contact-title">Para falar com o Vitor, o canal oficial é <mark class="hl" data-hl>o WhatsApp.</mark></h2>
-          <p class="contact__text">É o número informado na bio do Instagram. Conte em poucas linhas qual é o assunto; documentos e detalhes ficam para a conversa. As publicações do perfil são informativas — a análise de uma situação concreta depende das circunstâncias de cada caso.</p>
+          <p class="contact__text">É o número informado na bio do Instagram. Conte em poucas linhas qual é o assunto; documentos e detalhes ficam para a conversa.</p>
           <a class="contact__phone" href="https://wa.me/5545991176434" target="_blank" rel="noopener">
             <span class="contact__phone-label">WhatsApp</span>
             <span class="contact__phone-num">+55 45 99117-6434</span>
             <span class="sr"> (abre em nova aba)</span>
           </a>
+          <p class="contact__note">As publicações do perfil são informativas. A análise de uma situação concreta depende das circunstâncias de cada caso.</p>
         </div>
 
         <form class="form" id="form-whatsapp" novalidate data-form aria-labelledby="form-title" aria-describedby="form-hint">
@@ -1417,7 +1539,7 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
             </div>
           </div>
 
-          <button class="btn btn--full" type="submit">Abrir no WhatsApp</button>
+          <button class="btn btn--full" type="submit">Abrir no WhatsApp<svg class="i" aria-hidden="true"><use href="#i-out"/></svg></button>
           <p class="form__status" role="status" aria-live="polite" data-form-status></p>
         </form>
       </div>
@@ -1425,26 +1547,38 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   </main>
 
   <footer class="footer">
-    <div class="wrap footer__inner">
-      <div class="footer__id">
-        <p class="footer__name">Vitor Queiroz Cosechen</p>
-        <p class="footer__role">Advogado do Servidor Público e Sindicatos</p>
-        <p class="footer__oab"><span class="pending">OAB [nº e seccional a confirmar]</span></p>
+    <div class="wrap">
+      <p class="footer__sign" aria-hidden="true">Direito do servidor público, explicado <mark class="hl">sem rodeio.</mark></p>
+
+      <div class="footer__grid">
+        <div class="footer__id">
+          <p class="footer__name">Vitor Queiroz Cosechen</p>
+          <p class="footer__role">Advogado do Servidor Público e Sindicatos</p>
+          <p class="footer__oab"><span class="pending">OAB [nº e seccional a confirmar]</span></p>
+        </div>
+        <nav class="footer__nav" aria-label="Rodapé">
+          <p class="footer__label">Site</p>
+          <ul>
+            <li><a href="#conteudos">Conteúdos</a></li>
+            <li><a href="#temas">Temas</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+        <div class="footer__nav">
+          <p class="footer__label">Canais oficiais</p>
+          <ul>
+            <li><a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">Instagram<span class="sr"> (abre em nova aba)</span></a></li>
+            <li><a href="https://www.threads.net/@vitorqcosechen.adv" target="_blank" rel="noopener">Threads<span class="sr"> (abre em nova aba)</span></a></li>
+            <li><a href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<span class="sr"> (abre em nova aba)</span></a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer__nav" aria-label="Rodapé">
-        <ul>
-          <li><a href="#conteudos">Conteúdos</a></li>
-          <li><a href="#temas">Temas</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-        <ul>
-          <li><a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">Instagram<span class="sr"> (abre em nova aba)</span></a></li>
-          <li><a href="https://www.threads.net/@vitorqcosechen.adv" target="_blank" rel="noopener">Threads<span class="sr"> (abre em nova aba)</span></a></li>
-          <li><a href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<span class="sr"> (abre em nova aba)</span></a></li>
-        </ul>
-      </nav>
-      <p class="footer__legal">Conteúdo informativo. Não substitui a análise individual de cada caso, que depende das circunstâncias concretas. © <span data-year>2026</span> Vitor Queiroz Cosechen.</p>
+
+      <div class="footer__bottom">
+        <p>Conteúdo informativo. Não substitui a análise individual de cada caso, que depende das circunstâncias concretas.</p>
+        <p>© <span data-year>2026</span> Vitor Queiroz Cosechen</p>
+      </div>
     </div>
   </footer>
 
@@ -1473,10 +1607,14 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
   var btn = document.querySelector('[data-menu-btn]');
   var nav = document.querySelector('[data-nav]');
 
+  var headerEl = document.querySelector('[data-header]');
+
   function setMenu(open) {
     if (!btn || !nav) return;
     btn.setAttribute('aria-expanded', String(open));
     nav.classList.toggle('is-open', open);
+    // Com o menu aberto o cabeçalho fica opaco, mesmo no topo da página
+    if (headerEl) headerEl.classList.toggle('is-menu-open', open);
   }
 
   if (btn && nav) {
@@ -1569,6 +1707,27 @@ a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(18
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.6 });
     marks.forEach(function (m) { io.observe(m); });
+  }
+
+  /* Cards e temas: entrada única, em cascata curta ---------------------- */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if (!root.classList.contains('motion') || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var batch = 0, batchTimer = null;
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        // Elementos que entram juntos atrasam 70 ms um do outro (no máximo 280 ms)
+        entry.target.style.setProperty('--d', Math.min(batch, 4) * 70 + 'ms');
+        batch++;
+        entry.target.classList.add('is-in');
+        rio.unobserve(entry.target);
+      });
+      clearTimeout(batchTimer);
+      batchTimer = setTimeout(function () { batch = 0; }, 120);
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    reveals.forEach(function (el) { rio.observe(el); });
   }
 
   /* Formulário → mensagem no WhatsApp ----------------------------------- */
