@@ -1,57 +1,51 @@
 # QA — Vitor Queiroz Cosechen
 
-Testes feitos em 13/10/2026, com Chromium (Playwright) servindo a pasta por
-`python3 -m http.server`. O que não foi testado está no fim.
+Segunda rodada, 13/10/2026, depois da auditoria (`AUDITORIA.md`). Testes com
+Chromium (Playwright), servindo a pasta por `python3 -m http.server`, e o
+arquivo único aberto direto do disco (`file://`).
 
-## Referência analisada
-
-Vídeo de 30 s (gravação de tela, 1920×1080), extraído quadro a quadro (1 por
-segundo). Registrado: bio, nome, link do WhatsApp, cinco carrosséis/vídeos
-abertos (endereços na barra do navegador) e os títulos visíveis na grade.
-Cores medidas por amostragem de pixels nos quadros: fundo `#1c1c1c`, destaque
-`#2d0cd5`, campo violeta `#3415d8`.
-
-## Testado
+## Executados
 
 | Item | Como | Resultado |
 |---|---|---|
-| Console e recursos | desktop 1440×900 e mobile 390×844, rolagem da página inteira | Sem erro de console, sem requisição falha, sem resposta 4xx/5xx |
-| Fonte | `document.fonts` após o carregamento | Manrope 200–800 carregada nos dois tamanhos |
-| Rolagem horizontal | 320, 360, 390, 768, 1024, 1280, 1440, 1920 px | `scrollWidth = clientWidth` em todas; nenhum elemento passa da borda |
-| Menu mobile | clique, Esc, clique em link, clique fora | Abre com `aria-expanded=true` e foco no primeiro link; Esc fecha e devolve foco ao botão; link leva à seção e fecha o menu |
-| Âncoras | menu → `#temas` | Seção para logo abaixo do cabeçalho fixo (72 px do topo) |
-| Formulário vazio | envio sem preencher | 3 mensagens de erro, foco no primeiro campo, aviso “Revise os campos…”; não abre WhatsApp |
-| Formulário preenchido | nome, assunto, mensagem | Abre `https://wa.me/5545991176434?text=…` em nova aba, com nome, cargo (se houver), assunto e mensagem; `window.opener` nulo; aviso diz que a mensagem foi **aberta**, não enviada |
-| Contador | digitação | Atualiza “48/600” |
-| Teclado | Tab a partir do topo | 1º Tab = “Pular para o conteúdo”, visível no topo; ordem: marca, menu, WhatsApp, botões da abertura; contorno de foco em todos |
-| Movimento reduzido | `prefers-reduced-motion: reduce` | Sem classe `motion`; títulos com opacidade 1; todos os destaques violeta já visíveis |
-| Sem JavaScript | JS desligado, 390 px | Menu aparece aberto em linha, botão de menu escondido, todo o conteúdo visível |
-| Contraste | cálculo WCAG das combinações principais | Texto `#f4f4f2`/`#1c1c1c` ≈ 15,5:1 · apoio `#a8a8ae`/`#1c1c1c` ≈ 7:1 · `#b6abff`/`#1c1c1c` ≈ 8:1 · branco/`#2d0cd5` ≈ 9,9:1 · placeholder `#8f8f96`/`#242426` ≈ 4,8:1 |
-| Imagem de compartilhamento | captura de `tools/og-cover.html` | 1200×630, 64 KB |
+| Referências quebradas | IDs, âncoras internas, `aria-describedby/labelledby/controls` | 0 IDs repetidos, 0 âncoras sem destino, 0 referências ARIA quebradas |
+| Erros de execução | console, `pageerror`, respostas 4xx/5xx em todas as rodadas | Nenhum |
+| Fontes | `document.fonts` | Manrope carregada no site e no arquivo único |
+| Larguras | 320, 375, 390, 430, 768, 1024, 1280, 1440 px, rolando a página inteira | Sem rolagem horizontal; nenhum elemento passa da borda; nenhum texto cortado; nenhum botão sobreposto; título da abertura em 4 linhas em todas |
+| Áreas de toque | links e botões fora de texto corrido | Nenhum abaixo de 24 px (a marca do cabeçalho tinha 19 px; corrigido para 44 px) |
+| Zoom 200% | viewport 640×450 com densidade 2 | Sem rolagem horizontal; menu cabe na tela e o último item é alcançável |
+| Menu mobile | 390×844 | Abre com `aria-expanded=true` e foco no 1º link; Esc fecha e devolve o foco ao botão; Tab além do último item fecha; clique em link fecha e leva à seção; clique fora fecha |
+| Âncoras | menu → 4 seções, 1440 px e 390 px | O título de cada seção fica abaixo do cabeçalho fixo |
+| Item ativo do menu | rolagem até Contato, campo violeta, Temas, abertura | Contato / nenhum / Temas / nenhum |
+| Pular para o conteúdo | 1º Tab numa página recém-aberta, Enter | Aparece no topo; foco vai para `<main id="conteudo">` |
+| Foco visível | 12 Tabs a partir do conteúdo | Contorno em todos |
+| Formulário vazio | Enter no botão, só teclado | 3 erros, cada um ao lado do seu campo, ligado por `aria-describedby`, com `aria-invalid=true`; foco no 1º campo; aviso no `role=status` |
+| Validação ao corrigir | nome preenchido, mensagem curta | Erro do nome some; o da mensagem aparece |
+| Contador | texto de 87 caracteres | “87 de 600 caracteres” |
+| Codificação | nome com acentos, cargo com travessão, mensagem com quebra de linha, `&`, aspas, `%`, `#` e emoji | URL para `wa.me/5545991176434`; o texto decodificado é idêntico ao digitado; 7 quebras de linha preservadas |
+| Confirmação | após abrir | “O WhatsApp foi aberto em uma nova aba… Nada é enviado até você tocar em enviar por lá.” |
+| Janela bloqueada | `window.open` devolvendo `null` | Aparece o link “Toque aqui para abrir o WhatsApp com a sua mensagem”, com a mesma URL |
+| Movimento reduzido | `prefers-reduced-motion: reduce` | Sem animação; todos os destaques e títulos visíveis de imediato |
+| Sem JavaScript | 390 px | Menu visível em linha, todo o conteúdo visível, sem rolagem horizontal |
+| Árvore de acessibilidade | `ariaSnapshot()` do Chromium | 0 links sem nome; títulos em ordem (1 h1, h2 por seção, h3 dentro) |
+| Contraste | cálculo WCAG | Texto 15,5:1 · apoio 7,2:1 · violeta claro 8,3:1 · branco sobre violeta 9,4–9,9:1 · placeholder 4,8:1 |
+| Metadados | leitura do `<head>` | Title 66 caracteres, description 146, OG e Twitter completos, `noindex` presente (correto para a prévia) |
+| Arquivo único | `file://`, 1440 px | 120 KB, fonte embutida carregada, 0 requisições externas, `noindex` presente |
 
-## Problemas encontrados e corrigidos
+## Corrigido durante os testes
 
-1. **Texto dos slides da abertura minúsculo.** As medidas `cqi` estavam no
-   próprio container; passaram para um elemento interno (`.slide__in`).
-2. **Título da abertura quebrando em 5 linhas a 1440 px.** Escala reduzida e
-   quebras definidas em 4 linhas.
-3. **Bloco violeta invadindo a linha de cima** (a Manrope tem ascendente alto).
-   O destaque passou a ser um degradê recortado na altura das letras.
-4. **Slide escuro escondido atrás do violeta.** Texto alinhado ao topo e slide
-   violeta mais abaixo.
-5. **Numeral “32” sobre o título do card da PEC.** O numeral entrou no fluxo,
-   acima do título.
-6. **`window.open` com `noopener` sempre devolve `null`**, o que mostraria o
-   aviso de falha mesmo com a aba aberta. O vínculo agora é cortado depois.
+- Título quebrando em 5 linhas a 320 px → escala da abertura ajustada.
+- Marca do cabeçalho com 19 px de altura no mobile → 44 px.
+- Contador da seção violeta numerando também os links de referência (03, 04, 05) → seletor de filho direto.
+- Item do menu preso em “Contato” sobre o campo violeta → lógica de seção visível refeita.
+- O primeiro teste do “Pular para o conteúdo” saiu errado por um defeito **do script de teste** (foco herdado do teste anterior); refeito numa página nova.
 
-## Não testado
+## Não executados
 
-- **Links do Instagram e do Threads:** o Instagram é bloqueado pela rede deste
-  ambiente; os endereços não foram abertos. Ver `PENDENCIAS.md`.
-- **WhatsApp de verdade:** a abertura de `wa.me` foi interceptada no teste; o
-  número é o da bio, mas a conversa não foi iniciada.
-- **Safari e Firefox:** só Chromium disponível. Pontos a olhar: `cqi`
-  (Safari 16+), `text-wrap: balance` (sem suporte some sem quebrar nada).
-- **Leitor de tela:** estrutura verificada no código (landmarks, títulos,
-  rótulos, `aria-live`), mas sem teste com NVDA/VoiceOver.
-- **Lighthouse:** não disponível aqui.
+- **Links externos** (Instagram, Threads, WhatsApp, Câmara, STF): a rede deste ambiente bloqueia esses domínios. As URLs foram conferidas só no formato. Ver `PENDENCIAS.md`, item 5.
+- **Envio real pelo WhatsApp:** a abertura foi interceptada no teste.
+- **Safari, Firefox, navegadores móveis reais:** só Chromium disponível. Pontos de atenção já tratados com fallback: `cqi`, `matchMedia`.
+- **Leitor de tela real** (NVDA, VoiceOver, TalkBack): verificado só pela árvore de acessibilidade.
+- **Lighthouse / Core Web Vitals:** ferramenta indisponível; página sem imagens pesadas, 1 fonte de 25 KB (+15 KB latin-ext sob demanda), CSS e JS sem dependências.
+- **Fontes jurídicas oficiais:** Câmara, STF e OAB inacessíveis daqui; verificação feita por buscas em fontes secundárias, registrada em `PENDENCIAS.md`.
+- **Produção:** sem domínio, nada de `canonical`, `og:url`, `robots.txt`, `sitemap.xml` ou cabeçalhos HTTP pôde ser testado no ar.

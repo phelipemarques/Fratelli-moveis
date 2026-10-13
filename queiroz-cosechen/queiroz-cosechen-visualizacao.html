@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vitor Queiroz Cosechen — Advogado do Servidor Público e Sindicatos</title>
-  <meta name="description" content="Vitor Queiroz Cosechen, advogado do servidor público e de sindicatos. Explicações diretas sobre reforma administrativa, PAD, assédio, acidente de trabalho e carreira no serviço público.">
-  <!-- PRODUÇÃO: apagar a linha abaixo quando o site for ao ar no domínio oficial. -->
+  <meta name="description" content="Vitor Queiroz Cosechen, advogado do servidor público e de sindicatos. Conteúdos sobre reforma administrativa, PAD, assédio e acidente de trabalho.">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#1c1c1c">
+  <meta name="color-scheme" content="dark">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Vitor Queiroz Cosechen">
   <meta property="og:title" content="Vitor Queiroz Cosechen — Advogado do Servidor Público e Sindicatos">
-  <meta property="og:description" content="Direito do servidor público, explicado sem rodeio. Reforma administrativa, PAD, assédio, acidente de trabalho e carreira.">
+  <meta property="og:description" content="Direito do servidor público, explicado sem rodeio. Reforma administrativa, PAD, assédio e acidente de trabalho.">
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Vitor Queiroz Cosechen — Advogado do Servidor Público e Sindicatos">
+  <meta name="twitter:description" content="Direito do servidor público, explicado sem rodeio. Reforma administrativa, PAD, assédio e acidente de trabalho.">
 
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTAiIGZpbGw9IiMxYzFjMWMiLz48cmVjdCB4PSIxMCIgeT0iMjAiIHdpZHRoPSI0NCIgaGVpZ2h0PSIyNiIgcng9IjMiIGZpbGw9IiMyZDBjZDUiLz48dGV4dCB4PSIzMiIgeT0iNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJNYW5yb3BlLCBTZWdvZSBVSSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNmZmYiIGxldHRlci1zcGFjaW5nPSItMC41Ij5RQzwvdGV4dD48L3N2Zz4K" type="image/svg+xml">
   <style>
@@ -65,7 +68,7 @@
   --fs-md: 1.25rem;
   --fs-lg: clamp(1.4rem, 1.1rem + 1.2vw, 1.9rem);
   --fs-xl: clamp(1.9rem, 1.3rem + 2.6vw, 3.4rem);
-  --fs-hero: clamp(2.6rem, 1.3rem + 4.6vw, 5.5rem);
+  --fs-hero: clamp(2.1rem, 1.2rem + 4.8vw, 5.5rem);
 
   /* espaçamento (base 8) */
   --s-1: 0.5rem;
@@ -225,6 +228,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn:hover { background: #3a1ae6; }
 .btn:active { transform: translateY(1px); }
 .btn--small { min-height: 40px; padding: 0.5rem 1rem; }
+.btn--ghost { background: transparent; box-shadow: inset 0 0 0 1.5px var(--violet-soft); color: var(--paper); }
+.btn--ghost:hover { background: var(--violet); box-shadow: inset 0 0 0 1.5px var(--violet); }
 .btn--full { width: 100%; }
 
 .link-quiet {
@@ -284,6 +289,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .brand {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 44px;
   text-decoration: none;
   line-height: 1.15;
 }
@@ -392,6 +399,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
   margin-top: var(--s-5);
 }
 
+.hero__channel {
+  margin-top: var(--s-3);
+  font-size: var(--fs-sm);
+  color: var(--mute);
+}
+.hero__channel a { color: var(--paper); font-weight: 700; text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
+.hero__channel a:hover { color: var(--violet-soft); }
+
 .hero__stack {
   position: relative;
   display: grid;
@@ -440,7 +455,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 1rem;
   gap: 4cqi;
+  padding: 2rem 1.75rem;
   padding: 10cqi 9cqi;
 }
 .slide:hover { transform: translateY(-6px); }
@@ -462,37 +479,37 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: var(--violet);
   border-radius: 2px;
   font-weight: 750;
+  font-size: 1.15rem;
   font-size: 6.4cqi;
 }
 .slide__title {
+  font-size: 1.5rem;
   font-size: 8.6cqi;
   line-height: 1.08;
   letter-spacing: -0.03em;
   font-weight: 750;
   text-wrap: balance;
 }
-.slide__title--xl { font-size: 11.5cqi; font-weight: 800; }
-.slide__sub { font-size: 6.2cqi; font-weight: 650; }
-.slide__dots {
+.slide__title--xl { font-size: 2rem; font-size: 11.5cqi; font-weight: 800; }
+.slide__sub { font-size: 1.1rem; font-size: 6.2cqi; font-weight: 650; }
+/* Indica que o slide é um link para o post, e não a imagem original */
+.slide__open {
   position: absolute;
+  left: 1.75rem;
   left: 9cqi;
-  right: 0;
-  bottom: 22cqi;
-  height: 2px;
-  background: radial-gradient(circle, rgba(10, 10, 30, .75) 1.2px, transparent 1.6px) 0 50% / 8px 2px repeat-x;
-}
-.slide__sign {
-  position: absolute;
-  left: 0;
-  right: 0;
+  bottom: 1.5rem;
   bottom: 7cqi;
-  text-align: center;
-  font-size: 3.2cqi;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-size: 3.6cqi;
   font-weight: 700;
-  opacity: .8;
+  letter-spacing: 0.04em;
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentColor;
+  opacity: .85;
+  transition: opacity var(--t-quick) var(--ease);
 }
+.slide:hover .slide__open,
+.slide:focus-visible .slide__open { opacity: 1; }
 
 /* Conteúdos */
 .posts { background: var(--ink-1); }
@@ -521,6 +538,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--mute);
 }
 .post__meta span + span { color: var(--violet-soft); }
+.post__meta time { color: var(--mute); }
+.post__excerpt {
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  color: var(--mute);
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--violet);
+}
+.post__source { font-size: var(--fs-sm); color: var(--mute); }
+.post__source a { color: var(--paper); font-weight: 650; text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
+.post__source a:hover { color: var(--violet-soft); }
 .post__title {
   font-size: var(--fs-lg);
   line-height: 1.15;
@@ -568,7 +596,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: var(--violet-field);
 }
 .post--pad .post__meta,
-.post--pad .post__meta span + span { color: rgba(255, 255, 255, .82); }
+.post--pad .post__meta span + span,
+.post--pad .post__meta time { color: rgba(255, 255, 255, .86); }
+.post--pad .post__excerpt { color: #fff; border-left-color: var(--ink-0); }
 .post--pad .post__link { background-image: linear-gradient(#fff, #fff); }
 .post--pad .post__link:hover { color: #fff; }
 .post__errors { display: grid; gap: var(--s-3); margin-top: var(--s-1); }
@@ -728,8 +758,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   padding-top: var(--s-4);
   background: radial-gradient(circle, rgba(10, 6, 60, .7) 1.2px, transparent 1.6px) 0 0 / 8px 2px repeat-x;
 }
-.manifesto__steps li { counter-increment: passo; }
-.manifesto__steps li::before {
+.manifesto__steps > li { counter-increment: passo; }
+.manifesto__steps > li::before {
   content: "0" counter(passo);
   display: block;
   margin-bottom: var(--s-2);
@@ -741,7 +771,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
   -webkit-text-stroke: 1.5px #fff;
 }
 .manifesto__steps h3 { font-size: var(--fs-md); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-.manifesto__steps p { color: rgba(255, 255, 255, .86); font-size: var(--fs-sm); line-height: 1.6; }
+.manifesto__steps p { color: rgba(255, 255, 255, .88); font-size: var(--fs-sm); line-height: 1.6; }
+.refs { display: grid; gap: 0.6rem; margin-top: var(--s-2); }
+.refs li { display: grid; font-size: var(--fs-sm); }
+.refs a { color: #fff; font-weight: 750; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.refs a:hover { text-decoration-thickness: 3px; }
+.refs span { color: rgba(255, 255, 255, .86); font-size: var(--fs-xs); }
 
 /* Sobre */
 .about__inner {
@@ -750,37 +785,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
   gap: clamp(2rem, 5vw, 5.5rem);
   align-items: start;
 }
-.about__media { position: sticky; top: calc(var(--header-h) + 2rem); }
-.photo-slot {
-  aspect-ratio: 4 / 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: var(--s-3);
-  text-align: center;
+.about__side { position: sticky; top: calc(var(--header-h) + 2rem); display: grid; gap: var(--s-3); }
+.about__photo img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
+.card-id {
+  display: grid;
+  border-top: 2px solid var(--violet);
   background: var(--ink-2);
-  border: 1px dashed var(--violet-soft);
-  border-radius: var(--radius);
+  border-radius: 0 0 var(--radius) var(--radius);
 }
-.photo-slot__label { font-weight: 750; color: var(--violet-soft); }
-.photo-slot__hint { font-size: var(--fs-xs); color: var(--mute); }
+.card-id > div { padding: var(--s-2) var(--s-3); border-bottom: 1px solid var(--line); }
+.card-id > div:last-child { border-bottom: 0; }
+.card-id dt { font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--mute); }
+.card-id dd { margin-top: 0.3rem; font-weight: 700; font-size: var(--fs-md); letter-spacing: -0.015em; overflow-wrap: anywhere; }
+.card-id a { color: var(--paper); text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
+.card-id a:hover { color: var(--violet-soft); }
 
 .about__copy > p:not(.kicker) { margin-top: var(--s-3); max-width: 38rem; color: var(--mute); }
 .about__copy > p a { color: var(--paper); font-weight: 700; text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
 .about__copy > p a:hover { color: var(--violet-soft); }
-
-.facts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--s-3);
-  margin-top: var(--s-5);
-  padding-block: var(--s-3);
-  border-block: 1px solid var(--line);
-}
-.facts dt { font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--mute); }
-.facts dd { margin-top: 0.35rem; font-weight: 700; }
 
 .presence { margin-top: var(--s-6); }
 .presence__title { font-size: var(--fs-md); font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--s-2); }
@@ -810,6 +832,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: grid;
   grid-template-columns: 1.6rem 1fr;
 }
+.reels__note { margin-top: var(--s-2); font-size: var(--fs-xs); color: var(--mute); }
 .reels li::before {
   content: "";
   width: 0; height: 0;
@@ -983,6 +1006,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
     padding: var(--s-3) var(--gutter) var(--s-4);
     background: var(--ink-0);
     border-bottom: 1px solid var(--line);
+    max-height: calc(100vh - var(--header-h));
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
     visibility: hidden;
     opacity: 0;
     transform: translateY(-8px);
@@ -997,9 +1024,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
   html:not(.js) .nav { flex-wrap: wrap; gap: var(--s-2); }
 
   .hero__inner { grid-template-columns: 1fr; }
-  .hero__stack { max-width: 560px; }
+  .hero__channel {
+  margin-top: var(--s-3);
+  font-size: var(--fs-sm);
+  color: var(--mute);
+}
+.hero__channel a { color: var(--paper); font-weight: 700; text-decoration-color: var(--violet-soft); text-underline-offset: 3px; }
+.hero__channel a:hover { color: var(--violet-soft); }
+
+.hero__stack { max-width: 560px; }
   .about__inner, .contact__inner { grid-template-columns: 1fr; }
-  .about__media { position: static; max-width: 420px; }
+  .about__side { position: static; max-width: 480px; order: 2; }
   .manifesto__steps { grid-template-columns: 1fr; gap: var(--s-4); }
 }
 
@@ -1009,10 +1044,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .hero__lead { font-size: var(--fs-base); }
   .topic { grid-template-columns: 3.6rem minmax(0, 1fr); }
   .topic__link { grid-column: 2; justify-self: start; }
-  .facts, .presence__list { grid-template-columns: 1fr; }
+  .presence__list { grid-template-columns: 1fr; }
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .link-quiet { align-self: flex-start; }
   .footer__inner { grid-template-columns: 1fr; }
   .footer__nav { gap: var(--s-5); }
-  .hero__actions .btn { width: 100%; }
   .brand__role { display: none; }
 }
 
@@ -1057,14 +1093,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
-        <a class="btn btn--small" href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<span class="sr"> (abre em nova aba)</span></a>
+        <a class="btn btn--small btn--ghost" href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<span class="sr"> (abre em nova aba)</span></a>
       </nav>
     </div>
   </header>
 
-  <main id="conteudo">
-
-    <!-- 1 · ABERTURA ------------------------------------------------------- -->
+  <main id="conteudo" tabindex="-1">
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="hero__inner wrap">
         <div class="hero__copy">
@@ -1076,14 +1110,18 @@ button, input, select, textarea { font: inherit; color: inherit; }
             <span class="line line--hl" data-load="4"><mark class="hl" data-hl>sem rodeio.</mark></span>
           </h1>
           <p class="hero__lead" data-load="5">
-            Vitor Queiroz Cosechen atua para servidores públicos e sindicatos. No Instagram,
-            explica reforma administrativa, PAD, assédio e acidente de trabalho do jeito que
-            o servidor pergunta — e mostra de onde vem cada regra.
+            Vitor Queiroz Cosechen é advogado do servidor público e de sindicatos. No Instagram,
+            explica reforma administrativa, PAD, assédio e acidente de trabalho a partir das
+            perguntas que os próprios servidores fazem.
           </p>
           <div class="hero__actions" data-load="6">
-            <a class="btn" href="https://wa.me/5545991176434" target="_blank" rel="noopener">Conversar pelo WhatsApp<span class="sr"> (abre em nova aba)</span></a>
-            <a class="link-quiet" href="#conteudos">Ver as explicações</a>
+            <a class="btn" href="#conteudos">Ver as explicações</a>
+            <a class="link-quiet" href="https://wa.me/5545991176434" target="_blank" rel="noopener">Falar pelo WhatsApp<span class="sr"> (abre em nova aba)</span></a>
           </div>
+          <p class="hero__channel" data-load="6">
+            Perfil oficial no Instagram:
+            <a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">@vitorqcosechen.adv<span class="sr"> (abre em nova aba)</span></a>
+          </p>
         </div>
 
         <figure class="hero__stack" aria-labelledby="stack-cap">
@@ -1094,84 +1132,85 @@ button, input, select, textarea { font: inherit; color: inherit; }
             <span class="slide__in">
               <span class="slide__tag">PEC 32/2020:</span>
               <span class="slide__title">O que realmente consta na <mark class="hl hl--static">Reforma Administrativa</mark> de Paulo Guedes?</span>
-              <span class="slide__sign">Queiroz Cosechen</span>
+              <span class="slide__open" aria-hidden="true">Abrir o original</span>
             </span>
-            <span class="sr"> — abrir publicação no Instagram (abre em nova aba)</span>
+            <span class="sr"> — carrossel sobre a PEC 32/2020 no Instagram (abre em nova aba)</span>
           </a>
           <a class="slide slide--violet" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener" data-load="6">
             <span class="slide__in">
               <span class="slide__title slide__title--xl">Recebeu notificação de <mark class="hl hl--ink hl--static">PAD</mark>?</span>
               <span class="slide__sub">Não cometa esses erros.</span>
-              <span class="slide__dots" aria-hidden="true"></span>
-              <span class="slide__sign">Queiroz Cosechen</span>
+              <span class="slide__open" aria-hidden="true">Abrir o original</span>
             </span>
-            <span class="sr"> — abrir publicação no Instagram (abre em nova aba)</span>
+            <span class="sr"> — carrossel sobre PAD no Instagram (abre em nova aba)</span>
           </a>
-          <figcaption class="hero__cap" id="stack-cap">Dois carrosséis publicados em @vitorqcosechen.adv</figcaption>
+          <figcaption class="hero__cap" id="stack-cap">Capas de dois carrosséis do perfil, redesenhadas em texto para o site. Toque para abrir a publicação original.</figcaption>
         </figure>
       </div>
     </section>
-
-    <!-- 2 · CONTEÚDOS ------------------------------------------------------ -->
     <section class="section posts" id="conteudos" aria-labelledby="posts-title">
       <div class="wrap">
         <header class="section-head">
           <p class="kicker">Conteúdos em destaque</p>
           <h2 class="section-head__title" id="posts-title">Explicações que já estão no perfil, <mark class="hl" data-hl>abertas a qualquer servidor.</mark></h2>
-          <p class="section-head__text">Cinco publicações recentes, com o assunto e o que cada uma explica. Os links abrem o post original no Instagram.</p>
+          <p class="section-head__text">Cinco publicações de outubro de 2026. Os textos abaixo são resumos e trechos feitos para o site; a explicação completa está no post original.</p>
         </header>
 
         <div class="posts__grid">
 
           <article class="post post--pec">
-            <div class="post__meta"><span>Carrossel</span><span>Reforma administrativa</span></div>
+            <div class="post__meta"><span>Carrossel</span><span>Reforma administrativa</span><time datetime="2026-10">Out. 2026</time></div>
             <span class="post__num" aria-hidden="true">32</span>
             <h3 class="post__title">O que realmente consta na Reforma Administrativa de Paulo Guedes?</h3>
-            <p class="post__text">A PEC 32/2020 vale para municípios, estados e União — professores, enfermeiros e agentes de saúde estão no mesmo barco. Entre os pontos: mais contratação temporária e o <strong>concurso público deixando de ser regra</strong>. A PEC não virou emenda constitucional, mas a ideia não saiu de cena.</p>
+            <p class="post__text">O carrossel apresenta a PEC 32/2020 como uma proposta que alcança municípios, estados e União — professores, enfermeiros e agentes de saúde no mesmo barco. Um dos pontos é a ampliação da contratação temporária; <strong>na leitura do Vitor, o concurso público deixaria de ser a regra</strong>. A publicação lembra que a PEC não virou emenda constitucional e recomenda ler o texto original.</p>
+            <p class="post__source">Norma citada: PEC 32/2020, <a href="https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2262083" target="_blank" rel="noopener">ficha de tramitação na Câmara dos Deputados<span class="sr"> (abre em nova aba)</span></a></p>
             <a class="post__link" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener">Abrir o carrossel<span class="sr"> sobre a PEC 32/2020 no Instagram (abre em nova aba)</span></a>
           </article>
 
           <article class="post post--pad">
-            <div class="post__meta"><span>Carrossel</span><span>Processo administrativo disciplinar</span></div>
+            <div class="post__meta"><span>Carrossel</span><span>Processo administrativo disciplinar</span><time datetime="2026-10-03">Out. 2026</time></div>
             <h3 class="post__title">Recebeu notificação de <mark class="hl hl--ink hl--static">PAD</mark>? Não cometa esses erros.</h3>
+            <p class="post__excerpt">Dois dos cinco erros apresentados no carrossel</p>
             <ol class="post__errors">
-              <li><span class="post__errnum" aria-hidden="true">01</span><span><strong>Ignorar a notificação.</strong> Quando você responde a um PAD, cada fase tem sua importância.</span></li>
-              <li><span class="post__errnum" aria-hidden="true">04</span><span><strong>Confiar que “não vai dar em nada”.</strong> Há servidores que acharam a situação leve e acabaram demitidos.</span></li>
+              <li><span class="post__errnum" aria-hidden="true">01</span><span><strong><span class="sr">Erro 1 de 5: </span>Ignorar a notificação.</strong> Quando você responde a um PAD, cada fase tem sua importância.</span></li>
+              <li><span class="post__errnum" aria-hidden="true">04</span><span><strong><span class="sr">Erro 4 de 5: </span>Confiar que “não vai dar em nada”.</strong> Vitor relata ter visto vários servidores acharem que a situação não era grave e acabarem demitidos.</span></li>
             </ol>
             <a class="post__link" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener">Ver os cinco erros<span class="sr"> sobre PAD no Instagram (abre em nova aba)</span></a>
           </article>
 
           <article class="post post--assedio">
-            <div class="post__meta"><span>Carrossel</span><span>Assédio moral</span></div>
+            <div class="post__meta"><span>Carrossel</span><span>Assédio moral</span><time datetime="2026-10">Out. 2026</time></div>
             <h3 class="post__title">Está sofrendo assédio moral? Como juntar provas <mark class="hl" data-hl>sem se expor.</mark></h3>
-            <p class="post__text"><strong>Prova 1 de 6: faça um diário.</strong> Anote cada episódio logo depois que acontecer:</p>
+            <p class="post__excerpt">Trecho: a primeira das seis provas do carrossel</p>
+            <p class="post__text"><strong>Faça um diário.</strong> Anote cada episódio logo depois que acontecer:</p>
             <ul class="chips" aria-label="O que anotar">
               <li>data</li><li>hora</li><li>local</li><li>o que foi dito</li><li>quem estava perto</li>
             </ul>
-            <p class="post__text post__text--small">Anotações feitas na hora pesam mais do que lembranças de meses depois.</p>
+            <p class="post__text post__text--small">Segundo a publicação, anotações feitas na hora pesam mais do que lembranças de meses depois.</p>
             <a class="post__link" href="https://www.instagram.com/p/DeLBcEWDVIH/" target="_blank" rel="noopener">Ver as seis provas<span class="sr"> sobre assédio moral no Instagram (abre em nova aba)</span></a>
           </article>
 
           <article class="post post--cat">
-            <div class="post__meta"><span>Carrossel</span><span>Acidente de trabalho</span></div>
+            <div class="post__meta"><span>Carrossel</span><span>Acidente de trabalho</span><time datetime="2026-10-04">Out. 2026</time></div>
             <h3 class="post__title">Foi agredido no trabalho? O que fazer nesse momento.</h3>
-            <div class="steps" aria-label="Passo 4 de 5">
+            <p class="post__excerpt">Trecho: o quarto dos cinco passos do carrossel</p>
+            <div class="steps">
               <ol class="steps__track" aria-hidden="true">
                 <li></li><li></li><li></li><li class="is-current">4</li><li></li>
               </ol>
               <div class="steps__body">
                 <p class="steps__label">Passo 4 de 5</p>
                 <p class="steps__title">Solicite o registro de CAT.</p>
-                <p class="post__text">O acidente de trabalho pode gerar direitos ligados ao afastamento e, em alguns casos, cálculos diferenciados na aposentadoria. <mark class="hl" data-hl>Não esqueça de fazer.</mark></p>
+                <p class="post__text">Segundo a publicação, o acidente de trabalho pode gerar direitos ligados ao afastamento e até cálculos diferenciados na aposentadoria. <mark class="hl" data-hl>Não esqueça de fazer.</mark></p>
               </div>
             </div>
             <a class="post__link" href="https://www.instagram.com/p/DeF3yIGDbfH/" target="_blank" rel="noopener">Ver os cinco passos<span class="sr"> sobre agressão no trabalho no Instagram (abre em nova aba)</span></a>
           </article>
 
           <article class="post post--mpt">
-            <div class="post__meta"><span>Vídeo</span><span>Assédio eleitoral</span></div>
-            <h3 class="post__title">MPT aciona a Prefeitura do Rio por assédio eleitoral.</h3>
-            <p class="post__text">Denúncias falam em convocação para campanha no expediente e ameaça de demissão no CRAS, CREAS e Conselhos Tutelares. No vídeo, Vitor comenta por que esse tipo de situação é comum — e por que <strong>apoio político não se cobra</strong>.</p>
+            <div class="post__meta"><span>Vídeo</span><span>Notícia comentada</span><time datetime="2026-10">Out. 2026</time></div>
+            <h3 class="post__title">“MPT aciona a Prefeitura do Rio por assédio eleitoral.”</h3>
+            <p class="post__text">Manchete exibida no vídeo. As denúncias citadas falam em convocação para campanha durante o expediente e ameaça de demissão no CRAS, CREAS e Conselhos Tutelares. Vitor comenta por que esse tipo de situação é comum e lembra que <strong>apoio político não se cobra</strong>.</p>
             <a class="post__link" href="https://www.instagram.com/p/DeXYz79ivDr/" target="_blank" rel="noopener">Assistir ao vídeo<span class="sr"> sobre assédio eleitoral no Instagram (abre em nova aba)</span></a>
           </article>
 
@@ -1184,8 +1223,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
         </div>
       </div>
     </section>
-
-    <!-- 3 · TEMAS ---------------------------------------------------------- -->
     <section class="section topics" id="temas" aria-labelledby="topics-title">
       <div class="wrap topics__inner">
         <header class="section-head section-head--side">
@@ -1201,7 +1238,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
               <h3 class="topic__title">Reforma administrativa</h3>
               <p class="topic__text">PEC 32/2020, estabilidade, concurso público e contratação temporária por PSS.</p>
             </div>
-            <a class="topic__link" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener">Ler sobre a PEC<span class="sr"> 32/2020 (abre em nova aba)</span></a>
+            <a class="topic__link" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener">Ler sobre a PEC<span class="sr"> 32/2020 no Instagram (abre em nova aba)</span></a>
           </li>
           <li class="topic">
             <span class="topic__num" aria-hidden="true">02</span>
@@ -1209,7 +1246,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
               <h3 class="topic__title">Processo administrativo disciplinar</h3>
               <p class="topic__text">O que fazer ao receber a notificação e por que cada fase do PAD importa.</p>
             </div>
-            <a class="topic__link" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener">Ler sobre PAD<span class="sr"> (abre em nova aba)</span></a>
+            <a class="topic__link" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener">Ler sobre PAD<span class="sr"> no Instagram (abre em nova aba)</span></a>
           </li>
           <li class="topic">
             <span class="topic__num" aria-hidden="true">03</span>
@@ -1217,7 +1254,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
               <h3 class="topic__title">Assédio no serviço público</h3>
               <p class="topic__text">Assédio moral, como reunir provas e casos de pressão por campanha eleitoral no trabalho.</p>
             </div>
-            <a class="topic__link" href="https://www.instagram.com/p/DeLBcEWDVIH/" target="_blank" rel="noopener">Ler sobre assédio<span class="sr"> moral (abre em nova aba)</span></a>
+            <a class="topic__link" href="https://www.instagram.com/p/DeLBcEWDVIH/" target="_blank" rel="noopener">Ler sobre assédio<span class="sr"> moral no Instagram (abre em nova aba)</span></a>
           </li>
           <li class="topic">
             <span class="topic__num" aria-hidden="true">04</span>
@@ -1225,7 +1262,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
               <h3 class="topic__title">Acidente de trabalho e saúde</h3>
               <p class="topic__text">Registro de CAT, agressão no ambiente de trabalho e a medicina do trabalho da prefeitura.</p>
             </div>
-            <a class="topic__link" href="https://www.instagram.com/p/DeF3yIGDbfH/" target="_blank" rel="noopener">Ler sobre CAT<span class="sr"> (abre em nova aba)</span></a>
+            <a class="topic__link" href="https://www.instagram.com/p/DeF3yIGDbfH/" target="_blank" rel="noopener">Ler sobre CAT<span class="sr"> no Instagram (abre em nova aba)</span></a>
           </li>
           <li class="topic">
             <span class="topic__num" aria-hidden="true">05</span>
@@ -1244,8 +1281,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
         </ol>
       </div>
     </section>
-
-    <!-- 4 · JEITO DE EXPLICAR (campo violeta) ----------------------------- -->
     <section class="section manifesto" aria-labelledby="manifesto-title">
       <div class="wrap">
         <p class="kicker kicker--on-violet">Como as explicações são feitas</p>
@@ -1253,7 +1288,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
           Leia o texto.<br>
           <mark class="hl hl--ink" data-hl>Tire suas próprias conclusões.</mark>
         </h2>
-        <p class="manifesto__source">Trecho do carrossel sobre a PEC 32/2020.</p>
+        <p class="manifesto__source">Frases do carrossel sobre a PEC 32/2020.</p>
 
         <ol class="manifesto__steps">
           <li>
@@ -1261,8 +1296,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
             <p>“Concurso público vai virar exceção?” “Recebeu notificação de PAD?” O assunto começa pela dúvida, não pelo número do artigo.</p>
           </li>
           <li>
-            <h3>A fonte, citada</h3>
-            <p>PEC 32/2020, Tema 1218, registro de CAT: cada explicação diz de onde vem a regra, para você conferir no original.</p>
+            <h3>A referência, nomeada</h3>
+            <p>Quando a explicação parte de uma norma ou de um julgamento, a publicação diz qual é — para você procurar o original.</p>
+            <ul class="refs">
+              <li><a href="https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2262083" target="_blank" rel="noopener">PEC 32/2020<span class="sr">, ficha de tramitação na Câmara dos Deputados (abre em nova aba)</span></a> <span>Câmara dos Deputados</span></li>
+              <li><a href="https://portal.stf.jus.br/processos/listarProcessos.asp?classe=RE&amp;numeroProcesso=1326541" target="_blank" rel="noopener">Tema 1218 — RE 1.326.541<span class="sr">, andamento no Supremo Tribunal Federal (abre em nova aba)</span></a> <span>Supremo Tribunal Federal</span></li>
+            </ul>
           </li>
           <li>
             <h3>O próximo passo</h3>
@@ -1271,28 +1310,22 @@ button, input, select, textarea { font: inherit; color: inherit; }
         </ol>
       </div>
     </section>
-
-    <!-- 5 · SOBRE + PRESENÇA DIGITAL ------------------------------------- -->
     <section class="section about" id="sobre" aria-labelledby="about-title">
       <div class="wrap about__inner">
-        <div class="about__media">
-          <!-- PENDENTE: substituir pelo retrato autorizado (ver PENDENCIAS.md, item "Fotografia"). -->
-          <div class="photo-slot" role="img" aria-label="Espaço reservado para a fotografia de Vitor Queiroz Cosechen">
-            <span class="photo-slot__label">[Fotografia do Vitor — a enviar]</span>
-            <span class="photo-slot__hint">Retrato vertical, 4:5, mínimo 1200 px de largura</span>
-          </div>
+        <div class="about__side">
+          <dl class="card-id">
+            <div><dt>Nome profissional</dt><dd>Vitor Queiroz Cosechen</dd></div>
+            <div><dt>Atuação</dt><dd>Advogado do Servidor Público e Sindicatos</dd></div>
+            <div><dt>Inscrição na OAB</dt><dd><span class="pending">[nº e seccional a confirmar]</span></dd></div>
+            <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">@vitorqcosechen.adv<span class="sr"> (abre em nova aba)</span></a></dd></div>
+          </dl>
         </div>
 
         <div class="about__copy">
           <p class="kicker">Sobre</p>
           <h2 class="section-head__title" id="about-title">Quem explica fala com quem está <mark class="hl" data-hl>dentro do serviço público.</mark></h2>
-          <p>Vitor Queiroz Cosechen é advogado do servidor público e de sindicatos. O perfil <a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">@vitorqcosechen.adv<span class="sr"> (abre em nova aba)</span></a>, verificado pelo Instagram, reúne explicações curtas sobre o que muda na vida de professores, profissionais da saúde e servidores municipais quando sai uma lei, uma decisão ou uma notificação.</p>
-          <p>Os vídeos são gravados de forma simples, em primeira pessoa; os carrosséis seguem sempre o mesmo desenho — pergunta, regra, próximo passo — para que o conteúdo seja fácil de reconhecer e de reler.</p>
-
-          <dl class="facts">
-            <div><dt>Atuação declarada</dt><dd>Advogado do Servidor Público e Sindicatos</dd></div>
-            <div><dt>Inscrição na OAB</dt><dd><span class="pending">[nº e seccional a confirmar]</span></dd></div>
-          </dl>
+          <p>Vitor Queiroz Cosechen é advogado do servidor público e de sindicatos. No perfil <a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">@vitorqcosechen.adv<span class="sr"> (abre em nova aba)</span></a>, publica explicações curtas sobre o que muda na vida de professores, profissionais da saúde e servidores municipais quando sai uma lei, uma decisão ou uma notificação.</p>
+          <p>Os vídeos são gravados em primeira pessoa, de forma simples. Os carrosséis seguem o mesmo desenho — a pergunta, a explicação, o próximo passo — para que o conteúdo seja fácil de reconhecer e de reler.</p>
 
           <div class="presence">
             <h3 class="presence__title">Onde acompanhar</h3>
@@ -1309,14 +1342,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
                 <a class="presence__item" href="https://www.threads.net/@vitorqcosechen.adv" target="_blank" rel="noopener">
                   <span class="presence__net">Threads</span>
                   <span class="presence__handle">@vitorqcosechen.adv</span>
-                  <span class="presence__desc">Conta vinculada ao perfil do Instagram</span>
+                  <span class="presence__desc">Conta indicada na bio do Instagram</span>
                   <span class="sr"> (abre em nova aba)</span>
                 </a>
               </li>
             </ul>
 
-            <h3 class="presence__title presence__title--sub">Outros assuntos recentes em vídeo</h3>
-            <ul class="reels">
+            <h3 class="presence__title presence__title--sub">Outros assuntos tratados em vídeo</h3>
+            <ul class="reels" aria-label="Títulos de vídeos do perfil">
               <li>Concurso público vai virar exceção?</li>
               <li>Contratado por PSS há anos? O TCE-PR disse que isso está errado.</li>
               <li>O STF vai decidir se o piso vale para toda a sua carreira.</li>
@@ -1324,18 +1357,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
               <li>Nunca deixe para tirar a CTC em cima da hora.</li>
               <li>O que acontece depois que sua ação é julgada?</li>
             </ul>
+            <p class="reels__note">Títulos dos vídeos como aparecem no perfil.</p>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- 6 · CONTATO -------------------------------------------------------- -->
     <section class="section contact" id="contato" aria-labelledby="contact-title">
       <div class="wrap contact__inner">
         <div class="contact__copy">
           <p class="kicker">Contato</p>
-          <h2 class="contact__title" id="contact-title">Tem uma dúvida sobre a sua situação no serviço público? <mark class="hl" data-hl>Pergunte direto.</mark></h2>
-          <p class="contact__text">O canal informado no perfil oficial é o WhatsApp. Escreva em poucas linhas o que aconteceu; documentos e detalhes ficam para a conversa.</p>
+          <h2 class="contact__title" id="contact-title">Para falar com o Vitor, o canal oficial é <mark class="hl" data-hl>o WhatsApp.</mark></h2>
+          <p class="contact__text">É o número informado na bio do Instagram. Conte em poucas linhas qual é o assunto; documentos e detalhes ficam para a conversa. As publicações do perfil são informativas — a análise de uma situação concreta depende das circunstâncias de cada caso.</p>
           <a class="contact__phone" href="https://wa.me/5545991176434" target="_blank" rel="noopener">
             <span class="contact__phone-label">WhatsApp</span>
             <span class="contact__phone-num">+55 45 99117-6434</span>
@@ -1343,9 +1375,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
           </a>
         </div>
 
-        <form class="form" id="form-whatsapp" novalidate data-form>
-          <h3 class="form__title">Monte sua mensagem</h3>
-          <p class="form__hint" id="form-hint">O site não guarda o que você escreve. O texto abre no seu WhatsApp e você revisa antes de enviar. Evite incluir CPF ou número de processo.</p>
+        <form class="form" id="form-whatsapp" novalidate data-form aria-labelledby="form-title" aria-describedby="form-hint">
+          <h3 class="form__title" id="form-title">Preparar mensagem</h3>
+          <p class="form__hint" id="form-hint">O texto é montado no seu navegador e aberto no WhatsApp para você revisar e enviar. Este site não usa cookies nem ferramentas de análise e não grava o que você escreve. Não inclua CPF, número de processo ou outros dados sensíveis na primeira mensagem.</p>
 
           <div class="field">
             <label for="f-nome">Seu nome</label>
@@ -1374,11 +1406,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
           </div>
 
           <div class="field">
-            <label for="f-msg">O que aconteceu</label>
+            <label for="f-msg">Sua mensagem</label>
             <textarea id="f-msg" name="mensagem" rows="4" required minlength="15" maxlength="600" aria-describedby="e-msg c-msg"></textarea>
             <div class="field__row">
-              <p class="field__error" id="e-msg" hidden>Conte em pelo menos 15 caracteres o que aconteceu.</p>
-              <p class="field__count" id="c-msg" aria-live="polite">0/600</p>
+              <p class="field__error" id="e-msg" hidden>Escreva pelo menos 15 caracteres sobre o assunto.</p>
+              <p class="field__count" id="c-msg">0 de 600 caracteres</p>
             </div>
           </div>
 
@@ -1409,7 +1441,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
           <li><a href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<span class="sr"> (abre em nova aba)</span></a></li>
         </ul>
       </nav>
-      <p class="footer__legal">As publicações têm caráter informativo e não substituem a análise de cada caso. © <span data-year>2026</span> Vitor Queiroz Cosechen.</p>
+      <p class="footer__legal">Conteúdo informativo. Não substitui a análise individual de cada caso, que depende das circunstâncias concretas. © <span data-year>2026</span> Vitor Queiroz Cosechen.</p>
     </div>
   </footer>
 
@@ -1467,9 +1499,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
         setMenu(false);
       }
     });
-    window.matchMedia('(min-width: 901px)').addEventListener('change', function (mq) {
-      if (mq.matches) setMenu(false);
+    // Se o foco sair do menu aberto (Tab depois do último link), o menu fecha:
+    // assim ele nunca fica cobrindo o conteúdo que a pessoa está navegando.
+    nav.addEventListener('focusout', function (e) {
+      if (btn.getAttribute('aria-expanded') !== 'true') return;
+      var next = e.relatedTarget;
+      if (next && !nav.contains(next) && next !== btn) setMenu(false);
     });
+    var desktop = window.matchMedia('(min-width: 901px)');
+    var onDesktop = function (mq) { if (mq.matches) setMenu(false); };
+    if (desktop.addEventListener) desktop.addEventListener('change', onDesktop);
+    else if (desktop.addListener) desktop.addListener(onDesktop); // Safari < 14
   }
 
   /* Cabeçalho com fio + trilho de leitura ------------------------------- */
@@ -1496,15 +1536,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
   if ('IntersectionObserver' in window && links.length) {
     var byId = {};
     links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var visible = {};
+    // Marca a seção que cruza a faixa central da tela; se nenhuma seção do menu
+    // estiver ali (abertura, campo violeta), nenhum item fica marcado.
     var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var a = byId[entry.target.id];
-        if (!a) return;
-        if (entry.isIntersecting) {
-          links.forEach(function (l) { l.removeAttribute('aria-current'); });
-          a.setAttribute('aria-current', 'true');
-        }
-      });
+      entries.forEach(function (entry) { visible[entry.target.id] = entry.isIntersecting; });
+      var current = null;
+      Object.keys(byId).forEach(function (id) { if (visible[id]) current = id; });
+      links.forEach(function (l) { l.removeAttribute('aria-current'); });
+      if (current) byId[current].setAttribute('aria-current', 'true');
     }, { rootMargin: '-45% 0px -50% 0px' });
     Object.keys(byId).forEach(function (id) {
       var el = document.getElementById(id);
@@ -1563,7 +1603,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   if (msg && count) {
     var max = msg.getAttribute('maxlength');
     msg.addEventListener('input', function () {
-      count.textContent = msg.value.length + '/' + max;
+      count.textContent = msg.value.length + ' de ' + max + ' caracteres';
     });
   }
 
@@ -1602,7 +1642,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
       a.textContent = 'Toque aqui para abrir o WhatsApp com a sua mensagem.';
       status.appendChild(a);
     } else {
-      status.textContent = 'Sua mensagem foi aberta no WhatsApp. Revise e toque em enviar por lá.';
+      status.textContent = 'O WhatsApp foi aberto em uma nova aba com a sua mensagem. Nada é enviado até você tocar em enviar por lá.';
     }
   });
 })();

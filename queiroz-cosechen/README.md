@@ -5,9 +5,9 @@ sindicatos. A identidade visual vem do perfil
 [@vitorqcosechen.adv](https://www.instagram.com/vitorqcosechen.adv/), a partir
 do vídeo de referência enviado em 13/10/2026.
 
-> **Status: prévia pronta, não publicar ainda.** Há itens que bloqueiam a
-> publicação (inscrição na OAB, fotografia, aprovação dos textos). Ver
-> [`PENDENCIAS.md`](PENDENCIAS.md).
+> **Status: prévia, não publicar ainda.** Bloqueiam a publicação: inscrição na
+> OAB, revisão jurídica e aprovação dos textos, checklist de publicidade,
+> domínio e conferência dos links. Ver [`PENDENCIAS.md`](PENDENCIAS.md).
 
 Esta pasta é independente do site da Fratelli Móveis que está na raiz do
 repositório: não compartilha arquivos com ele, e o pacote da Fratelli
@@ -38,6 +38,8 @@ assets/images/og-cover.jpg imagem de compartilhamento, 1200×630
 tools/og-cover.html        fonte da imagem de compartilhamento
 tools/build-single-file.py gera a versão em arquivo único
 queiroz-cosechen-visualizacao.html  o site inteiro em um arquivo só (gerado)
+_headers                   cabeçalhos HTTP (segurança e cache) para Netlify / Cloudflare Pages
+AUDITORIA.md               problemas encontrados, por categoria, e o que foi feito
 QA.md                      o que foi testado e como
 PENDENCIAS.md              o que falta pedir ao cliente
 ```
@@ -94,3 +96,7 @@ python3 tools/build-single-file.py
 2. Em `index.html`, apagar `<meta name="robots" content="noindex, nofollow">`.
 3. Trocar `og:image` por URL absoluta e acrescentar `canonical` e `og:url`
    com o domínio definitivo (marcados com `<!-- PRODUÇÃO -->`).
+4. Criar `robots.txt` (`User-agent: *`, `Allow: /`, `Sitemap: https://DOMINIO/sitemap.xml`)
+   e `sitemap.xml` com a URL da página.
+5. Publicar a pasta (`index.html`, `assets/`, `_headers`) — não o arquivo único,
+   que é só para aprovação.

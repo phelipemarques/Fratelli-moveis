@@ -56,6 +56,9 @@ def main():
     html = html.replace('<meta name="twitter:card" content="summary_large_image">',
                         '<meta name="twitter:card" content="summary">')
 
+    # Comentários de desenvolvimento (marcas de PRODUÇÃO, foto futura) não vão para a prévia
+    html = re.sub(r"\s*<!--.*?-->", "", html, flags=re.S)
+
     restos = re.findall(r'(?:src|href)="assets/[^"]*"', html)
     if restos:
         sys.exit("ainda há caminhos para assets/: %s" % restos)

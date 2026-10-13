@@ -51,9 +51,17 @@
         setMenu(false);
       }
     });
-    window.matchMedia('(min-width: 901px)').addEventListener('change', function (mq) {
-      if (mq.matches) setMenu(false);
+    // Se o foco sair do menu aberto (Tab depois do último link), o menu fecha:
+    // assim ele nunca fica cobrindo o conteúdo que a pessoa está navegando.
+    nav.addEventListener('focusout', function (e) {
+      if (btn.getAttribute('aria-expanded') !== 'true') return;
+      var next = e.relatedTarget;
+      if (next && !nav.contains(next) && next !== btn) setMenu(false);
     });
+    var desktop = window.matchMedia('(min-width: 901px)');
+    var onDesktop = function (mq) { if (mq.matches) setMenu(false); };
+    if (desktop.addEventListener) desktop.addEventListener('change', onDesktop);
+    else if (desktop.addListener) desktop.addListener(onDesktop); // Safari < 14
   }
 
   /* Cabeçalho com fio + trilho de leitura ------------------------------- */
@@ -80,15 +88,15 @@
   if ('IntersectionObserver' in window && links.length) {
     var byId = {};
     links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var visible = {};
+    // Marca a seção que cruza a faixa central da tela; se nenhuma seção do menu
+    // estiver ali (abertura, campo violeta), nenhum item fica marcado.
     var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var a = byId[entry.target.id];
-        if (!a) return;
-        if (entry.isIntersecting) {
-          links.forEach(function (l) { l.removeAttribute('aria-current'); });
-          a.setAttribute('aria-current', 'true');
-        }
-      });
+      entries.forEach(function (entry) { visible[entry.target.id] = entry.isIntersecting; });
+      var current = null;
+      Object.keys(byId).forEach(function (id) { if (visible[id]) current = id; });
+      links.forEach(function (l) { l.removeAttribute('aria-current'); });
+      if (current) byId[current].setAttribute('aria-current', 'true');
     }, { rootMargin: '-45% 0px -50% 0px' });
     Object.keys(byId).forEach(function (id) {
       var el = document.getElementById(id);
@@ -147,7 +155,7 @@
   if (msg && count) {
     var max = msg.getAttribute('maxlength');
     msg.addEventListener('input', function () {
-      count.textContent = msg.value.length + '/' + max;
+      count.textContent = msg.value.length + ' de ' + max + ' caracteres';
     });
   }
 
@@ -186,7 +194,7 @@
       a.textContent = 'Toque aqui para abrir o WhatsApp com a sua mensagem.';
       status.appendChild(a);
     } else {
-      status.textContent = 'Sua mensagem foi aberta no WhatsApp. Revise e toque em enviar por lá.';
+      status.textContent = 'O WhatsApp foi aberto em uma nova aba com a sua mensagem. Nada é enviado até você tocar em enviar por lá.';
     }
   });
 })();
