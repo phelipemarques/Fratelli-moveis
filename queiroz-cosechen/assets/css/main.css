@@ -108,6 +108,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 ::selection { background: var(--violet); color: #fff; }
 
+/* Realce de toque no celular na cor da marca, em vez do azul padrão do navegador */
+a, button, select, input, textarea, label { -webkit-tap-highlight-color: rgba(182, 171, 255, .22); }
+
 .sr {
   position: absolute !important; /* utilitário de acessibilidade: precisa vencer qualquer contexto */
   width: 1px; height: 1px;
