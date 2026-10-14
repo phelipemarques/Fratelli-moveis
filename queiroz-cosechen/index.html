@@ -69,7 +69,7 @@
 
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-  <div class="rail" aria-hidden="true"><span class="rail__fill"></span></div>
+  <div class="rail" aria-hidden="true"><span class="rail__fill"></span><span class="rail__dot"></span></div>
 
   <header class="header" data-header>
     <div class="header__inner wrap">
@@ -85,10 +85,10 @@
 
       <nav class="nav" id="nav" aria-label="Principal" data-nav>
         <ul class="nav__list">
-          <li><a href="#conteudos">Conteúdos</a></li>
-          <li><a href="#temas">Temas</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#contato">Contato</a></li>
+          <li><a href="#conteudos"><span class="nav__idx" aria-hidden="true">02</span>Conteúdos</a></li>
+          <li><a href="#temas"><span class="nav__idx" aria-hidden="true">03</span>Temas</a></li>
+          <li><a href="#sobre"><span class="nav__idx" aria-hidden="true">05</span>Sobre</a></li>
+          <li><a href="#contato"><span class="nav__idx" aria-hidden="true">06</span>Contato</a></li>
         </ul>
         <a class="btn btn--small btn--ghost" href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> (abre em nova aba)</span></a>
       </nav>
@@ -100,21 +100,21 @@
     <!-- 1 · ABERTURA ------------------------------------------------------- -->
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="hero__inner wrap">
-        <div class="hero__masthead" data-load="1">
-          <p class="hero__eyebrow">Advogado do servidor público e sindicatos</p>
+        <div class="hero__masthead">
+          <p class="hero__eyebrow"><span class="idx" aria-hidden="true">01</span>Advogado do servidor público e sindicatos</p>
           <p class="hero__channel">Conteúdo jurídico em
             <a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">@vitorqcosechen.adv<span class="sr"> (abre em nova aba)</span></a>
           </p>
         </div>
 
         <h1 class="hero__title" id="hero-title">
-          <span class="line" data-load="2">Direito do</span>
-          <span class="line" data-load="2">servidor público,</span>
-          <span class="line" data-load="3">explicado</span>
-          <span class="line line--hl" data-load="4"><mark class="hl hl--hero" data-hl>sem rodeio.</mark></span>
+          <span class="line"><span class="line__in">Direito do</span></span>
+          <span class="line"><span class="line__in">servidor público,</span></span>
+          <span class="line"><span class="line__in">explicado</span></span>
+          <span class="line line--hl"><span class="line__in"><mark class="hl hl--hero" data-hl>sem rodeio.</mark></span></span>
         </h1>
 
-        <div class="hero__foot" data-load="5">
+        <div class="hero__foot">
           <p class="hero__lead">Vitor Queiroz Cosechen explica reforma administrativa, PAD, assédio, acidente de trabalho e carreira a partir das perguntas que os próprios servidores fazem.</p>
           <div class="hero__actions">
             <a class="btn" href="#conteudos">Ver as explicações<svg class="i" aria-hidden="true"><use href="#i-down"/></svg></a>
@@ -123,7 +123,7 @@
         </div>
 
         <figure class="hero__stack" aria-labelledby="stack-cap">
-          <a class="slide slide--dark" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener" data-load="5">
+          <a class="slide slide--dark" href="https://www.instagram.com/p/DeX9d3KjVAA/" target="_blank" rel="noopener">
             <span class="slide__in">
               <span class="slide__tag">PEC 32/2020:</span>
               <span class="slide__title">O que realmente consta na <mark class="hl hl--static">Reforma Administrativa</mark> de Paulo Guedes?</span>
@@ -131,7 +131,7 @@
             </span>
             <span class="sr"> — carrossel sobre a PEC 32/2020 no Instagram (abre em nova aba)</span>
           </a>
-          <a class="slide slide--violet" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener" data-load="6">
+          <a class="slide slide--violet" href="https://www.instagram.com/p/DeDVl7DjUzm/" target="_blank" rel="noopener">
             <span class="slide__in">
               <span class="slide__title slide__title--xl">Recebeu notificação de <mark class="hl hl--ink hl--static">PAD</mark>?</span>
               <span class="slide__sub">Não cometa esses erros.</span>
@@ -148,8 +148,8 @@
     <section class="section posts" id="conteudos" aria-labelledby="posts-title">
       <div class="wrap">
         <header class="section-head">
-          <div class="section-rule"><p class="kicker">Conteúdos em destaque</p><p class="section-rule__meta">5 publicações · outubro de 2026</p></div>
-          <h2 class="section-head__title" id="posts-title">Explicações que já estão no perfil, <mark class="hl" data-hl>abertas a qualquer servidor.</mark></h2>
+          <div class="section-rule" data-draw><span class="idx" aria-hidden="true">02</span><p class="kicker">Conteúdos em destaque</p><p class="section-rule__meta">5 publicações · outubro de 2026</p></div>
+          <h2 class="section-head__title reveal-clip" id="posts-title">Explicações que já estão no perfil, <mark class="hl" data-hl>abertas a qualquer servidor.</mark></h2>
           <p class="section-head__text">Resumos e trechos feitos para o site. A explicação completa está em cada publicação original.</p>
         </header>
 
@@ -244,8 +244,9 @@
     <section class="section topics" id="temas" aria-labelledby="topics-title">
       <div class="wrap topics__inner">
         <header class="section-head section-head--side">
-          <div class="section-rule"><p class="kicker">Temas</p><p class="section-rule__meta">6 assuntos</p></div>
-          <h2 class="section-head__title" id="topics-title">Do que o perfil trata.</h2>
+          <div class="section-rule" data-draw><span class="idx" aria-hidden="true">03</span><p class="kicker">Temas</p><p class="section-rule__meta">6 assuntos</p></div>
+          <h2 class="section-head__title reveal-clip" id="topics-title">Do que o perfil trata.</h2>
+          <p class="topics__pos" aria-hidden="true"><span data-topic-pos>01</span><span class="topics__pos-total"> / 06</span></p>
           <p class="section-head__text">Assuntos que aparecem com frequência nas publicações. Não é uma lista de serviços: para saber se o seu caso é atendido, pergunte pelo WhatsApp.</p>
         </header>
 
@@ -305,10 +306,10 @@
     <!-- 4 · JEITO DE EXPLICAR (campo violeta) ----------------------------- -->
     <section class="section manifesto" aria-labelledby="manifesto-title">
       <div class="wrap">
-        <p class="kicker kicker--on-violet">Como as explicações são feitas</p>
-        <h2 class="manifesto__title" id="manifesto-title">
-          Leia o texto.<br>
-          <mark class="hl hl--ink" data-hl>Tire suas próprias conclusões.</mark>
+        <p class="kicker kicker--on-violet"><span class="idx" aria-hidden="true">04</span>Como as explicações são feitas</p>
+        <h2 class="manifesto__title" id="manifesto-title" data-manifesto>
+          <span class="line"><span class="line__in">Leia o texto.</span></span>
+          <mark class="hl hl--ink hl--band"><span class="hl__txt">Tire suas próprias conclusões.</span></mark>
         </h2>
         <p class="manifesto__source">Frases do carrossel sobre a PEC 32/2020.</p>
 
@@ -337,8 +338,8 @@
     <section class="section about" id="sobre" aria-labelledby="about-title">
       <div class="wrap about__inner">
         <div class="about__copy">
-          <div class="section-rule"><p class="kicker">Sobre</p></div>
-          <h2 class="section-head__title" id="about-title">Quem explica fala com quem está <mark class="hl" data-hl>dentro do serviço público.</mark></h2>
+          <div class="section-rule" data-draw><span class="idx" aria-hidden="true">05</span><p class="kicker">Sobre</p></div>
+          <h2 class="section-head__title reveal-clip" id="about-title">Quem explica fala com quem está <mark class="hl" data-hl>dentro do serviço público.</mark></h2>
           <p class="about__lead">Vitor Queiroz Cosechen é advogado do servidor público e de sindicatos. Publica explicações curtas sobre o que muda na vida de quem trabalha no serviço público quando sai uma lei, uma decisão ou uma notificação.</p>
 
           <div class="audience">
@@ -358,11 +359,11 @@
                Ver PENDENCIAS.md, item 6. -->
           <p class="about__side-label">Identificação profissional</p>
           <dl class="card-id">
-            <div><dt>Nome profissional</dt><dd>Vitor Queiroz Cosechen</dd></div>
-            <div><dt>Atuação declarada</dt><dd>Advogado do Servidor Público e Sindicatos</dd></div>
+            <div><dt><span class="card-id__n" aria-hidden="true">01</span>Nome profissional</dt><dd>Vitor Queiroz Cosechen</dd></div>
+            <div><dt><span class="card-id__n" aria-hidden="true">02</span>Atuação declarada</dt><dd>Advogado do Servidor Público e Sindicatos</dd></div>
             <!-- PENDENTE: número de inscrição e seccional da OAB, informados pelo próprio advogado. -->
-            <div><dt>Inscrição na OAB</dt><dd><span class="pending">[nº e seccional a confirmar]</span></dd></div>
-            <div><dt>Canal de conteúdo</dt><dd>Instagram @vitorqcosechen.adv</dd></div>
+            <div><dt><span class="card-id__n" aria-hidden="true">03</span>Inscrição na OAB</dt><dd><span class="pending">[nº e seccional a confirmar]</span> <span class="pending-tag">Pendente do cliente</span></dd></div>
+            <div><dt><span class="card-id__n" aria-hidden="true">04</span>Canal de conteúdo</dt><dd>Instagram @vitorqcosechen.adv</dd></div>
           </dl>
         </aside>
       </div>
@@ -372,8 +373,8 @@
     <section class="section contact" id="contato" aria-labelledby="contact-title">
       <div class="wrap contact__inner">
         <div class="contact__copy">
-          <div class="section-rule"><p class="kicker">Contato</p><p class="section-rule__meta">Canal oficial</p></div>
-          <h2 class="contact__title" id="contact-title">Para falar com o Vitor, o canal oficial é <mark class="hl" data-hl>o WhatsApp.</mark></h2>
+          <div class="section-rule" data-draw><span class="idx" aria-hidden="true">06</span><p class="kicker">Contato</p><p class="section-rule__meta">Canal oficial</p></div>
+          <h2 class="contact__title reveal-clip" id="contact-title">Para falar com o Vitor, o canal oficial é <mark class="hl" data-hl>o WhatsApp.</mark></h2>
           <p class="contact__text">É o número informado na bio do Instagram. Conte em poucas linhas qual é o assunto; documentos e detalhes ficam para a conversa.</p>
           <a class="contact__phone" href="https://wa.me/5545991176434" target="_blank" rel="noopener">
             <span class="contact__phone-label">WhatsApp</span>
@@ -431,9 +432,9 @@
 
   <footer class="footer">
     <div class="wrap">
-      <p class="footer__sign" aria-hidden="true">Direito do servidor público, explicado <mark class="hl">sem rodeio.</mark></p>
+      <p class="footer__sign" aria-hidden="true">Direito do servidor público, explicado <mark class="hl" data-hl>sem rodeio.</mark></p>
 
-      <div class="footer__grid">
+      <div class="footer__grid" data-draw>
         <div class="footer__id">
           <p class="footer__name">Vitor Queiroz Cosechen</p>
           <p class="footer__role">Advogado do Servidor Público e Sindicatos</p>

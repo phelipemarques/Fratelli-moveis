@@ -1,5 +1,30 @@
 # QA — Vitor Queiroz Cosechen
 
+## Rodada 5 — sistema visual e motion (14/10/2026)
+
+| Item | Resultado |
+|---|---|
+| Comparação antes × depois | 10 tamanhos × 9 áreas |
+| Larguras 320×568 → 1920×1080 (10) | Sem rolagem horizontal, texto cortado, botão sobreposto; áreas de toque ≥ 24 px |
+| Sequência de entrada | 8 quadros (0–1900 ms): fio → legenda → linhas → marcação → texto → botões → capas, completa em ~1,5 s |
+| CLS | 0,0000 com carga e rolagem completa (1440×900) |
+| Paralaxe | −5,2 px / −9,3 px a 500 px de rolagem; 0 com movimento reduzido |
+| Movimento reduzido | Sem classe `motion`; 0 elementos escondidos; marcação, fio do manifesto e capas no estado final |
+| Sem JavaScript | 0 elementos escondidos; formulário e navegação visíveis |
+| Teclado | Skip-link → `<main>`; Tab e Shift+Tab na ordem; foco visível; Esc fecha o menu e devolve o foco |
+| Menu mobile | Abre, fecha (Esc, link, fora, Tab para fora); item ativo marcado; cabeçalho opaco |
+| Seção ativa | `aria-current` acompanha a rolagem; nenhum item marcado na abertura e no manifesto |
+| Trilho | Indicador acompanha a rolagem (`--rail-y`) |
+| Temas | Marcador de posição muda (04 → 05) ao rolar |
+| Formulário | Erros por campo, contador, texto especial preservado na URL, alternativa com janela bloqueada; rótulo e fio violeta no foco |
+| Estrutura | 0 IDs duplicados, 0 âncoras quebradas, 0 interativos aninhados, 0 links sem nome |
+| Console | 0 erros |
+| Arquivo único | 147 KB, fonte embutida, 0 requisições externas |
+
+**Não executados:** links externos (Instagram, Threads, WhatsApp, Câmara, STF bloqueados nesta rede), Safari/Firefox/aparelhos reais, leitor de tela real, Lighthouse, medição de FPS em aparelho real.
+
+---
+
 ## Rodada 4 — polimento final (14/10/2026)
 
 | Item | Resultado |

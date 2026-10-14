@@ -122,3 +122,11 @@ Não estavam no perfil. Hoje o site não usa cookies, análise, pixels nem
 servidor: o formulário só monta o texto e abre o WhatsApp, e a página diz isso.
 Por isso não criei uma política de privacidade. Se forem adicionados analytics,
 pixel ou formulário com envio, a política passa a ser necessária.
+
+## 🟡 13. Imagem de compartilhamento (OG image) final
+
+Existe uma imagem tipográfica provisória (`assets/images/og-cover.jpg`, gerada a
+partir de `tools/og-cover.html`) com nome, “Direito do servidor público”,
+“sem rodeio.” e as cores do site. A arte final deve ser aprovada pelo Vitor e,
+quando houver retrato autorizado, pode incluí-lo. Ela só passa a valer com o
+domínio definitivo (o build de produção grava a URL absoluta).

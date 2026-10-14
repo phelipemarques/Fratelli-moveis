@@ -71,20 +71,43 @@
   /* Cabeçalho com fio + trilho de leitura ------------------------------- */
   var header = document.querySelector('[data-header]');
   var rail = document.querySelector('.rail');
-  var ticking = false;
+  var hero = document.querySelector('.hero');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero__stack .slide'));
+  // Paralaxe mínima das capas: só desktop largo e só com movimento permitido.
+  // Usa a propriedade CSS translate (separada do transform das capas).
+  var parallaxMQ = window.matchMedia('(min-width: 1181px)');
+  var PARALLAX = [-10, -18]; // px ao longo da altura da abertura: capa escura, capa violeta
+  var railH = 0, heroH = 0, ticking = false;
+
+  function measure() {
+    railH = rail ? rail.clientHeight : 0;
+    heroH = hero ? hero.offsetHeight : 0;
+  }
 
   function onScroll() {
     var y = window.scrollY;
     if (header) header.classList.toggle('is-scrolled', y > 8);
     if (rail) {
       var max = document.documentElement.scrollHeight - window.innerHeight;
-      rail.style.setProperty('--progress', max > 0 ? Math.min(1, y / max).toFixed(4) : '0');
+      var p = max > 0 ? Math.min(1, y / max) : 0;
+      rail.style.setProperty('--progress', p.toFixed(4));
+      rail.style.setProperty('--rail-y', (p * railH).toFixed(1) + 'px');
+    }
+    if (slides.length && heroH) {
+      var on = root.classList.contains('motion') && parallaxMQ.matches && y < heroH;
+      var k = on ? Math.min(1, y / heroH) : 0;
+      slides.forEach(function (el, i) {
+        el.style.setProperty('--py', (k * (PARALLAX[i] || 0)).toFixed(2) + 'px');
+      });
     }
     ticking = false;
   }
-  window.addEventListener('scroll', function () {
+  function requestTick() {
     if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
-  }, { passive: true });
+  }
+  window.addEventListener('scroll', requestTick, { passive: true });
+  window.addEventListener('resize', function () { measure(); requestTick(); }, { passive: true });
+  measure();
   onScroll();
 
   /* Item ativo no menu --------------------------------------------------- */
@@ -122,6 +145,42 @@
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.6 });
     marks.forEach(function (m) { io.observe(m); });
+  }
+
+  /* Desenhos e revelações editoriais: fios de seção, títulos por recorte,
+     manifesto, fio dos passos e fio do rodapé. Cada um acontece uma vez. */
+  var once = Array.prototype.slice.call(document.querySelectorAll('[data-draw], .reveal-clip, [data-manifesto], .manifesto__steps'));
+  if (!root.classList.contains('motion') || !('IntersectionObserver' in window)) {
+    once.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    // Um título 100% recortado por clip-path nunca “intersecta” no Chromium;
+    // por isso o observador olha o elemento pai e marca o título.
+    var targetOf = new Map();
+    var oio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        targetOf.get(entry.target).forEach(function (el) { el.classList.add('is-in'); });
+        oio.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+    once.forEach(function (el) {
+      var watch = el.classList.contains('reveal-clip') ? el.parentElement : el;
+      if (!targetOf.has(watch)) targetOf.set(watch, []);
+      targetOf.get(watch).push(el);
+      oio.observe(watch);
+    });
+  }
+
+  /* Temas: o cabeçalho fixo mostra em qual assunto a leitura está -------- */
+  var pos = document.querySelector('[data-topic-pos]');
+  var topics = Array.prototype.slice.call(document.querySelectorAll('.topic'));
+  if (pos && topics.length && 'IntersectionObserver' in window) {
+    var tio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) pos.textContent = ('0' + (topics.indexOf(entry.target) + 1)).slice(-2);
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    topics.forEach(function (t) { tio.observe(t); });
   }
 
   /* Cards e temas: entrada única, em cascata curta ---------------------- */

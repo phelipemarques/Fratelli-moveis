@@ -1,5 +1,39 @@
 # Auditoria e refinamento — Vitor Queiroz Cosechen
 
+## Rodada 5 — sistema visual e motion (14/10/2026)
+
+Antes × depois renderizados em 1920×1080, 1600×900, 1440×900, 1280×800,
+1024×768, 768×1024, 430×932, 390×844, 360×800 e 320×568 (90 capturas de cada).
+
+**Problemas reais encontrados**
+- Abertura: a capa violeta cobria o fim do título da capa escura (“Paulo Gu…”).
+- Mobile (360–430 px): as capas ocupavam quase uma tela inteira depois dos botões.
+- Não havia um sistema gráfico recorrente além do marca-texto; os fios de seção eram genéricos.
+- Título da abertura entrava com fade simples; manifesto e rodapé não tinham entrada própria.
+- Regressão desta rodada pega na comparação: títulos com revelação por recorte não apareciam (o Chromium considera o `clip-path` do próprio elemento no IntersectionObserver). Corrigido observando o elemento pai.
+
+**Implementado**
+- Assinatura gráfica “ler → marcar → entender”: índice (01–06) + fio + segmento violeta + marcador quadrado, com desenhos diferentes no topo da abertura, fios de seção, manifesto, ficha do Sobre, menu mobile e rodapé.
+- Abertura: guias de 12 colunas a 3,5% de opacidade que somem para baixo; fio do topo que se desenha; título com máscara por linha; “sem rodeio.” com extensão gráfica de 6–14 px; capa violeta deslocada (título da capa escura inteiro legível); paralaxe de no máximo 10/18 px só acima de 1180 px.
+- Sequência de entrada de ~1,5 s: fio → legenda → linhas → marcação → texto → botões → capas.
+- Cabeçalho: item ativo com fio + microquadrado violeta. Trilho de leitura com indicador de posição.
+- Conteúdos: hover com 3 px, borda mais clara, fio violeta no topo e seta; “32” desloca 4 px; PAD com fio pontilhado entre erros; vídeo com título de citação e aspas penduradas.
+- Temas: marcador de posição “04 / 06” no cabeçalho fixo; título desloca 3 px no hover; cabeçalho lateral deixa de ser fixo em telas com menos de 720 px de altura.
+- Manifesto: “Leia o texto.” por máscara → tarja escura se expande → frase aparece; fio que percorre os três passos (só desktop).
+- Sobre: ficha numerada com fio vertical e segmento violeta, nome em 2,35rem, “Pendente do cliente” ao lado da OAB.
+- Formulário: rótulo acende em violeta no foco, fio lateral + anel suave, rótulo e borda em vermelho no erro.
+- Rodapé: espaço negativo maior, assinatura maior, fio que se desenha e marca-texto ao entrar.
+- Menu mobile: índices, item ativo, entrada em sequência curta (40 ms entre itens).
+- Tokens de motion: `--motion-fast/base/slow`, `--ease-standard/enter/exit`, em quatro famílias (A microinteração, B reveal, C editorial, D navegação).
+
+**Considerado e rejeitado**
+- Altura do cabeçalho mudando ao rolar: o cabeçalho é `sticky`, então mudar a altura desloca a página inteira (CLS).
+- Fonte serifada, cursor customizado, spotlight, tilt 3D, marquee: fora do posicionamento.
+- Reveal em parágrafos e stagger em todas as listas: o contraste entre o que se move e o que fica parado é o que dá hierarquia.
+- Usar quadros da gravação como capas ou foto: resolução baixa, interface do Instagram por cima, sem autorização de uso.
+
+---
+
 ## Rodada 4 — polimento final (14/10/2026)
 
 Comparação lado a lado da versão aprovada com a polida, em 1920×1080, 1440×900,
