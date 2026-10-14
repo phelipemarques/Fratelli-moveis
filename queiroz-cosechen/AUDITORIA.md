@@ -1,5 +1,46 @@
 # Auditoria e refinamento — Vitor Queiroz Cosechen
 
+## Rodada 7 — acabamento para produção (14/10/2026)
+
+**Classificação**
+- **Preservar:** abertura, paleta, Manrope, “sem rodeio.”, trilho, índices, capas, Manifesto, Conteúdos, ordem das seções, sistema de motion, cabeçalho.
+- **Refinar:** microcopy do formulário (assunto ≠ serviço), saudação nos links diretos de WhatsApp.
+- **Corrigir:** LCP alto; clique no botão do formulário que não enviava; estilo inline que impediria uma CSP; falta de 404 e de política de segurança no pacote de produção.
+- **Pendência do cliente:** OAB, áreas atendidas, foto, bio, domínio, primeiro contato, OG final, aprovação dos textos.
+
+**Problemas encontrados**
+1. **LCP de 4,2 s** (390 px, 4G lento + CPU 4×) e 1,7 s sem limitação: o maior elemento da primeira dobra é o texto de apoio, e ele só aparecia depois de 900 ms de animação.
+2. **Clique que não enviava:** ao clicar no botão com a mensagem curta, a validação no blur mostrava o erro, o erro empurrava o botão e o clique terminava fora dele. Era preciso clicar duas vezes.
+3. **Formulário com cara de catálogo:** “Assunto” + “Escolha um assunto” sobre a mesma lista dos Temas podia sugerir “atendemos tudo isto”.
+4. **`style="position:absolute"`** no sprite de ícones: incompatível com uma CSP sem `unsafe-inline`.
+5. **Produção sem 404 e sem CSP.**
+
+**Caminho de conversão — escolhida a versão A** (abertura abre o WhatsApp direto)
+- A tem o menor número de passos para quem já sabe que quer conversar, e o WhatsApp é o canal que o próprio Vitor divulga.
+- B (abertura → formulário) mandaria a pessoa para o fim da página (13 telas no celular) antes de qualquer contato: mais fricção sem ganho de qualificação, porque a qualificação acontece na conversa.
+- C (direto + aviso do formulário na abertura) acrescentaria texto e uma terceira opção na área mais disputada da página.
+- A qualificação continua disponível para quem quer: “Preparar mensagem” (fim dos Conteúdos) → formulário → “Abrir mensagem no WhatsApp”. Os nomes diferentes deixam claro que são duas ações diferentes.
+
+**Alterações**
+- Texto de apoio da abertura sem animação (é o LCP e diz quem é o Vitor). Botões e capas continuam entrando.
+- Validação do formulário no envio (e correção ao digitar), sem validação no blur.
+- “Assunto da mensagem” / “Escolha o tema mais próximo” / “Escolha o tema mais próximo da sua situação.”; erro do nome explica o mínimo de 2 letras.
+- Links diretos de WhatsApp com a saudação “Olá, Vitor. Vim pelo site.” (sem dado pessoal).
+- Sprite de ícones com classe em vez de estilo inline.
+- `404.html` no mesmo sistema (noindex), copiada pelo build de produção.
+- CSP gerada no build com hash do script inline; testada sem violações.
+- Ficha do Sobre com o ponto de entrada (comentado) para credenciais confirmadas.
+
+**Consideradas e rejeitadas**
+- WhatsApp flutuante, pop-up, barra fixa, captura de e-mail: redundantes e contra o posicionamento.
+- FAQ: não há perguntas reais com respostas verificadas.
+- Seção “Como começa o contato”: depende de o Vitor descrever o processo real.
+- Trocar `Person` por `Attorney`/`LegalService`: faltam OAB, endereço e área confirmada.
+- Separar a fonte em base64 na produção: pior para cache; a produção já usa arquivo.
+- Analytics: o site afirma que não usa, e continua sem usar.
+
+---
+
 ## Rodada 6 — posicionamento, arquitetura e conversão (14/10/2026)
 
 **O que prejudicava a conversão**

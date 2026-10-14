@@ -29,6 +29,7 @@ python3 -m http.server 8130
 
 ```
 index.html                 a página inteira
+404.html                   página de erro (noindex), mesmo CSS
 assets/css/main.css        estilos, em blocos: fontes, tokens, base, layout,
                            componentes, seções, movimento, responsivo
 assets/js/main.js          menu mobile, trilho de leitura, destaques, formulário
@@ -51,7 +52,7 @@ PENDENCIAS.md              o que falta pedir ao cliente
 cor (`--bg`, `--bg-deep`, `--surface`, `--text`, `--muted`, `--subtle`,
 `--border`, `--accent`…), tipografia (`--fs-*`), espaço (`--s-*`,
 `--section-space`, `--container`), forma (`--radius`, `--shadow`) e movimento
-(`--ease`, `--t-*`). As cores da marca foram medidas nos quadros do vídeo:
+(`--motion-*`, `--ease-*`). As cores da marca foram medidas nos quadros do vídeo:
 
 | Token            | Valor     | Origem                                   |
 |------------------|-----------|------------------------------------------|
@@ -75,8 +76,25 @@ campo violeta.
 do link. Os textos são resumos do que está no próprio post; não acrescente
 interpretação jurídica que não esteja na publicação.
 
-**WhatsApp.** O número aparece em quatro links no `index.html` e na constante
+**WhatsApp.** O número aparece em quatro links diretos no `index.html` (com a
+saudação neutra “Olá, Vitor. Vim pelo site.”, sem dado pessoal) e na constante
 `WHATSAPP` no início de `assets/js/main.js`. Se mudar, mude nos dois.
+
+Dois caminhos, com nomes diferentes de propósito: **“Falar pelo WhatsApp”**
+abre a conversa direto (cabeçalho, abertura, número no contato, rodapé);
+**“Preparar mensagem”** leva ao formulário, que monta o texto com nome,
+cargo, assunto e mensagem e termina em **“Abrir mensagem no WhatsApp”**.
+
+**Fonte em produção.** A Manrope é servida como arquivo (`assets/fonts/`,
+`preload` + cache de 1 ano no `_headers`), não em base64: o arquivo vai para o
+cache do navegador e não pesa no HTML. O base64 só existe no arquivo único de
+prévia, que precisa funcionar sem servidor. O subconjunto latin-ext só é baixado
+se a página usar um caractere dele.
+
+**Segurança.** O build de produção gera no `dist/_headers` uma
+Content-Security-Policy só com recursos do próprio domínio; o script inline do
+`<head>` entra pelo hash, recalculado a cada build. Se o script mudar, basta
+gerar de novo. Não há estilos inline no HTML.
 
 **Formulário.** Não envia nada para servidor. Monta o texto e abre
 `wa.me/<número>?text=…` em nova aba; a pessoa revisa e envia pelo próprio

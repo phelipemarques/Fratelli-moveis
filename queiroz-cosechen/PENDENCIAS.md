@@ -1,5 +1,25 @@
 # Pendências — Vitor Queiroz Cosechen
 
+## PENDÊNCIAS PARA PUBLICAÇÃO
+
+O site **não está pronto para produção** enquanto houver um item 🔴 aberto.
+`tools/build-production.py` se recusa a gerar o pacote enquanto houver
+“[… a confirmar]” visível na página.
+
+- [ ] 🔴 **Número e seccional da OAB** — entra na ficha do Sobre, no rodapé e, se for o caso, nos dados estruturados. *Bloqueador de produção.*
+- [ ] 🔴 **Áreas efetivamente atendidas** — “Quais dessas matérias (reforma administrativa, PAD, assédio, acidente de trabalho, remuneração e carreira, aposentadoria) correspondem à sua atuação profissional?” Só depois disso pode existir “Áreas de atuação” ou “Situações atendidas”.
+- [ ] 🔴 **Aprovação final dos textos**, com revisão jurídica (tabela no item 2) e o checklist de publicidade da OAB (item 3).
+- [ ] 🔴 **Fonte da notícia do MPT** (ou troca do card por outra publicação).
+- [ ] 🔴 **Domínio definitivo** — sem ele não há canonical, og:url, sitemap nem robots.txt de produção.
+- [ ] 🔴 **Conferir os 10 links externos** com um clique (lista no item 5).
+- [ ] 🟡 **Foto profissional real** e autorizada (retrato vertical, mínimo 1200 px). Sem foto, o site funciona; não usar banco de imagens nem IA.
+- [ ] 🟡 **Como funciona o primeiro contato** — “Depois que alguém envia a primeira mensagem, como funciona normalmente o atendimento?” Se houver um processo real, ele pode virar um bloco de até 3 passos acima do formulário. Não publicar suposição.
+- [ ] 🟡 **Bio e credenciais**, só se o Vitor quiser exibir e puder comprovar: formação, pós-graduação, experiência, cargos anteriores relevantes, entidades, cidade/base de atendimento, trajetória. O ponto de entrada está comentado na ficha do Sobre. Nenhum campo vazio vai para o site.
+- [ ] 🟡 **OG image final** (especificação no item 13).
+- [ ] ⚪ **Métricas de acesso** — hoje o site afirma que não usa cookies nem ferramentas de análise, e é verdade. Se o Vitor quiser analytics: escolher a ferramenta, revisar privacidade e consentimento e **atualizar o texto do formulário** antes de instalar.
+
+---
+
 Legenda: 🔴 bloqueia a publicação · 🟡 melhora o resultado · ⚪ decisão do cliente.
 
 Tudo o que está no site saiu do vídeo de referência (perfil, bio e publicações
@@ -135,10 +155,14 @@ servidor: o formulário só monta o texto e abre o WhatsApp, e a página diz iss
 Por isso não criei uma política de privacidade. Se forem adicionados analytics,
 pixel ou formulário com envio, a política passa a ser necessária.
 
-## 🟡 13. Imagem de compartilhamento (OG image) final
+## 🟡 13. Imagem de compartilhamento (OG image) — especificação
 
-Existe uma imagem tipográfica provisória (`assets/images/og-cover.jpg`, gerada a
-partir de `tools/og-cover.html`) com nome, “Direito do servidor público”,
-“sem rodeio.” e as cores do site. A arte final deve ser aprovada pelo Vitor e,
-quando houver retrato autorizado, pode incluí-lo. Ela só passa a valer com o
-domínio definitivo (o build de produção grava a URL absoluta).
+Hoje existe uma versão tipográfica provisória (`assets/images/og-cover.jpg`,
+gerada por `tools/og-cover.html`). A arte final deve seguir:
+
+- **Formato:** 1200 × 630 px, JPG ≤ 300 KB (ou PNG), sem texto a menos de 60 px das bordas.
+- **Conteúdo, nesta ordem de leitura:** “Direito do servidor público, explicado” + “sem rodeio.” no bloco violeta; “Vitor Queiroz Cosechen”; “Advogado do Servidor Público e Sindicatos”. Opcional: @vitorqcosechen.adv.
+- **Visual:** fundo `#1c1c1c`, texto `#f3f2ef`, destaque `#2d0cd5`, Manrope 800; o fio editorial com segmento violeta do topo da abertura. Se houver retrato autorizado, ele entra à direita, em recorte vertical, sem círculo.
+- **Não usar:** balança, martelo, colunas, dourado, “especialista”, números.
+- **URL:** o build de produção grava `https://DOMINIO/assets/images/og-cover.jpg` em `og:image` e `twitter:image`. Nenhuma URL é criada antes do domínio.
+- **Conferência:** depois de publicado, testar o link no WhatsApp e no LinkedIn (os dois guardam cache da imagem).

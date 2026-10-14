@@ -61,7 +61,7 @@
 </head>
 <body>
   <!-- Ícones usados na página (traço simples, herdam a cor do texto) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
     <symbol id="i-out" viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-down" viewBox="0 0 16 16"><path d="M8 3v10M4 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-right" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -90,7 +90,7 @@
           <li><a href="#conteudos"><span class="nav__idx" aria-hidden="true">04</span>Conteúdos</a></li>
           <li><a href="#contato"><span class="nav__idx" aria-hidden="true">06</span>Contato</a></li>
         </ul>
-        <a class="btn btn--small btn--ghost" href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> (abre em nova aba)</span></a>
+        <a class="btn btn--small btn--ghost" href="https://wa.me/5545991176434?text=Ol%C3%A1%2C%20Vitor.%20Vim%20pelo%20site." target="_blank" rel="noopener">WhatsApp<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> (abre em nova aba)</span></a>
       </nav>
     </div>
   </header>
@@ -117,7 +117,7 @@
         <div class="hero__foot">
           <p class="hero__lead">Vitor Queiroz Cosechen é advogado do servidor público e de sindicatos. Nas redes, explica reforma administrativa, PAD, assédio, acidente de trabalho e carreira a partir das perguntas que os próprios servidores fazem.</p>
           <div class="hero__actions">
-            <a class="btn" href="https://wa.me/5545991176434" target="_blank" rel="noopener">Falar pelo WhatsApp<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> (abre em nova aba)</span></a>
+            <a class="btn" href="https://wa.me/5545991176434?text=Ol%C3%A1%2C%20Vitor.%20Vim%20pelo%20site." target="_blank" rel="noopener">Falar pelo WhatsApp<svg class="i" aria-hidden="true"><use href="#i-out"/></svg><span class="sr"> (abre em nova aba)</span></a>
             <a class="link-quiet" href="#conteudos">Ver as explicações</a>
           </div>
         </div>
@@ -173,6 +173,10 @@
             <div><dt>Atuação declarada</dt><dd>Advogado do Servidor Público e Sindicatos</dd></div>
             <!-- PENDENTE: número de inscrição e seccional da OAB, informados pelo próprio advogado. -->
             <div><dt>Inscrição na OAB</dt><dd><span class="pending">[nº e seccional a confirmar]</span> <span class="pending-tag">Pendente do cliente</span></dd></div>
+            <!-- QUANDO CONFIRMADO PELO CLIENTE (e só então), novas linhas entram aqui, no mesmo formato:
+                 <div><dt>Formação</dt><dd>…</dd></div>
+                 <div><dt>Base de atendimento</dt><dd>…</dd></div>
+                 Ver PENDENCIAS.md. Não acrescentar linhas vazias ou “a confirmar”. -->
             <div><dt>Canal de conteúdo</dt><dd>Instagram @vitorqcosechen.adv</dd></div>
           </dl>
         </aside>
@@ -387,7 +391,7 @@
           <div class="section-rule" data-draw><span class="idx" aria-hidden="true">06</span><p class="kicker">Contato</p><p class="section-rule__meta">Canal oficial</p></div>
           <h2 class="contact__title reveal-clip" id="contact-title">Para falar com o Vitor, o canal oficial é <mark class="hl" data-hl>o WhatsApp.</mark></h2>
           <p class="contact__text">É o número informado na bio do Instagram. Conte em poucas linhas qual é o assunto; documentos e detalhes ficam para a conversa.</p>
-          <a class="contact__phone" href="https://wa.me/5545991176434" target="_blank" rel="noopener">
+          <a class="contact__phone" href="https://wa.me/5545991176434?text=Ol%C3%A1%2C%20Vitor.%20Vim%20pelo%20site." target="_blank" rel="noopener">
             <span class="contact__phone-label">WhatsApp</span>
             <span class="contact__phone-num">+55 45 99117-6434</span>
             <span class="sr"> (abre em nova aba)</span>
@@ -402,7 +406,7 @@
           <div class="field">
             <label for="f-nome">Seu nome</label>
             <input id="f-nome" name="nome" type="text" autocomplete="name" required maxlength="80" aria-describedby="e-nome">
-            <p class="field__error" id="e-nome" hidden>Escreva seu nome para a mensagem.</p>
+            <p class="field__error" id="e-nome" hidden>Escreva seu nome, com pelo menos 2 letras.</p>
           </div>
 
           <div class="field">
@@ -411,9 +415,9 @@
           </div>
 
           <div class="field">
-            <label for="f-assunto">Assunto</label>
+            <label for="f-assunto">Assunto da mensagem</label>
             <select id="f-assunto" name="assunto" required aria-describedby="e-assunto">
-              <option value="">Escolha um assunto</option>
+              <option value="">Escolha o tema mais próximo</option>
               <option>Reforma administrativa</option>
               <option>Processo administrativo disciplinar (PAD)</option>
               <option>Assédio no trabalho</option>
@@ -422,7 +426,7 @@
               <option>Aposentadoria</option>
               <option>Outro assunto</option>
             </select>
-            <p class="field__error" id="e-assunto" hidden>Escolha o assunto mais próximo da sua dúvida.</p>
+            <p class="field__error" id="e-assunto" hidden>Escolha o tema mais próximo da sua situação.</p>
           </div>
 
           <div class="field">
@@ -466,7 +470,7 @@
           <ul>
             <li><a href="https://www.instagram.com/vitorqcosechen.adv/" target="_blank" rel="noopener">Instagram<span class="sr"> (abre em nova aba)</span></a></li>
             <li><a href="https://www.threads.net/@vitorqcosechen.adv" target="_blank" rel="noopener">Threads<span class="sr"> (abre em nova aba)</span></a></li>
-            <li><a href="https://wa.me/5545991176434" target="_blank" rel="noopener">WhatsApp<span class="sr"> (abre em nova aba)</span></a></li>
+            <li><a href="https://wa.me/5545991176434?text=Ol%C3%A1%2C%20Vitor.%20Vim%20pelo%20site." target="_blank" rel="noopener">WhatsApp<span class="sr"> (abre em nova aba)</span></a></li>
           </ul>
         </div>
       </div>

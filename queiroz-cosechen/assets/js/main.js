@@ -219,7 +219,9 @@
 
   rules.forEach(function (rule) {
     var input = form.querySelector(rule.field);
-    input.addEventListener('blur', function () { if (input.value) check(rule, true); });
+    // Sem validação no blur: a mensagem de erro aparecendo ao sair do campo empurrava o
+    // botão para baixo no meio do clique, e o envio não acontecia. Os erros aparecem no
+    // envio; depois disso, cada campo marcado se corrige enquanto a pessoa digita.
     input.addEventListener('input', function () { check(rule, false); });
     input.addEventListener('change', function () { check(rule, false); });
   });

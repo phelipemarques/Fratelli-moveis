@@ -15,9 +15,11 @@ Recusa gerar o pacote enquanto houver pendência visível na página
 ser informado na linha de comando.
 
 Uso:   python3 tools/build-production.py https://www.dominio-definitivo.com.br
-Saída: dist/  (index.html, assets/, _headers, robots.txt, sitemap.xml)
+Saída: dist/  (index.html, 404.html, assets/, _headers com CSP, robots.txt, sitemap.xml)
 """
+import base64
 import datetime
+import hashlib
 import os
 import re
 import shutil
@@ -66,7 +68,20 @@ def main():
     with open(os.path.join(DIST, "index.html"), "w") as f:
         f.write(html)
     shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(DIST, "assets"))
-    shutil.copy(os.path.join(ROOT, "_headers"), DIST)
+    shutil.copy(os.path.join(ROOT, "404.html"), DIST)
+
+    # Política de segurança (CSP): só recursos do próprio domínio. O único script
+    # inline executável (o do <head>) entra pelo hash; o JSON-LD não é executado.
+    inline = [m.group(1) for m in re.finditer(r"<script>(.*?)</script>", html, flags=re.S)]
+    hashes = " ".join("'sha256-%s'" % base64.b64encode(hashlib.sha256(x.encode("utf-8")).digest()).decode() for x in inline)
+    csp = ("default-src 'self'; script-src 'self' %s; style-src 'self'; img-src 'self' data:; "
+           "font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; "
+           "form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests") % hashes
+    with open(os.path.join(ROOT, "_headers")) as f:
+        headers = f.read()
+    headers = headers.replace("/*\n", "/*\n  Content-Security-Policy: %s\n" % csp, 1)
+    with open(os.path.join(DIST, "_headers"), "w") as f:
+        f.write(headers)
 
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
         f.write("User-agent: *\nAllow: /\n\nSitemap: %ssitemap.xml\n" % base)

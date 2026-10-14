@@ -1,5 +1,39 @@
 # QA — Vitor Queiroz Cosechen
 
+## Rodada 7 — acabamento para produção (14/10/2026)
+
+**Métricas medidas** (Chromium, servidor local sem gzip; não é medição de campo)
+
+| Cenário | LCP | CLS | Maior interação* | Transferido |
+|---|---|---|---|---|
+| 390×844, 4G lento (1,6 Mbps, 150 ms) + CPU 4× — antes | 4.160 ms | 0 | 160 ms | 122 KB |
+| idem — **depois** | **1.052 ms** | **0** | **80 ms** | 123 KB |
+| 390×844 sem limitação — antes → depois | 1.704 → **132 ms** | 0 | 64 ms | — |
+
+\*Maior duração de evento registrada (Event Timing) ao abrir/fechar o menu e digitar no formulário — aproximação local do INP.
+Pesos com gzip: HTML 8 KB, CSS 12,6 KB, JS 3,8 KB, fonte 24,8 KB (woff2).
+
+| Teste | Resultado |
+|---|---|
+| Comparação pixel a pixel antes × depois | 10 tamanhos × 9 áreas = 90 capturas; só mudou o rótulo/seletor de assunto do formulário (15 capturas) |
+| Larguras 320×568 → 1920×1080 | Sem rolagem horizontal, texto cortado ou alvo pequeno. Sobreposições acusadas durante a rolagem suave (360/1280/1440) somem com a página parada: 0 |
+| Formulário | Vazio; nome com 1 letra; assunto vazio; mensagem curta; 650 digitados → 600 (“600 de 600 caracteres”); Enter envia; Tab/Shift+Tab; `aria-invalid` + mensagem + foco no 1º erro, que fica abaixo do cabeçalho; WhatsApp não abre com erro; válido abre `wa.me/5545991176434` com o texto completo; status não diz “enviado” |
+| Clique com erro (bug corrigido) | 1 clique → erro + foco no campo; antes precisava de 2 |
+| Janela bloqueada | Link alternativo com a mesma URL; formulário mantém o que foi digitado |
+| Zoom 200% e 400% | 640×450 e 320×200: sem rolagem horizontal; menu rola por dentro; último item alcançável |
+| Menu | Abre/fecha, Esc devolve foco, Tab para fora fecha, clique fora fecha, link fecha; aberto + virar desktop → fecha; voltar ao celular → fechado |
+| Seção ativa e trilho | `aria-current` acompanha; indicador do trilho acompanha |
+| Movimento reduzido / sem JS | 0 elementos escondidos |
+| Estrutura | 0 IDs duplicados, 0 âncoras quebradas, 0 interativos aninhados, 0 links sem nome, 0 estilos inline |
+| Links externos | 23 links, 10 URLs únicas, todos `target=_blank` + `rel=noopener` |
+| Privacidade | JS sem localStorage, sessionStorage, cookies, fetch, XHR ou beacon; nada sai do navegador além da abertura do `wa.me` |
+| Produção (cópia de teste com OAB fictícia, fora do projeto) | `index, follow`, canonical, og:url, robots.txt, sitemap.xml, 404.html; CSP aplicada sem nenhuma violação; script inline aceito pelo hash; 404 com estilo e links |
+| Console | 0 erros (fora o 404 proposital no teste da página de erro) |
+
+**Não executados:** abertura real de Instagram, Threads, WhatsApp, Câmara e STF (rede bloqueada); Safari, Firefox e aparelhos reais; leitor de tela real; Lighthouse; medição de campo (CrUX).
+
+---
+
 ## Rodada 6 — posicionamento e conversão (14/10/2026)
 
 | Item | Resultado |
