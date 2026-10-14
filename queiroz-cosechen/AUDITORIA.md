@@ -1,5 +1,44 @@
 # Auditoria e refinamento — Vitor Queiroz Cosechen
 
+## Rodada 4 — polimento final (14/10/2026)
+
+Comparação lado a lado da versão aprovada com a polida, em 1920×1080, 1440×900,
+1024×768, 768×1024, 430×932, 390×844, 360×800 e 320×568.
+
+**Corrigido**
+- 1024×768: o texto de apoio e os botões da abertura ficavam fora da primeira
+  dobra — o bloco se alinhava à base de uma linha do grid esticada pelas capas.
+- 320 px: quatro linhas de texto pequeno antes do título (legenda e canal); o
+  canal voltou a caber em uma linha.
+- Regressão desta rodada pega na comparação: o novo estilo de erro do formulário
+  (`display: flex`) vencia o atributo `hidden` e mostrava os erros ao carregar.
+  Corrigido com `.field__error[hidden]`.
+
+**Refinado**
+- “sem rodeio.”: bloco desenhado com bordas levemente fora de esquadro, entra
+  da esquerda com `transform` (antes `background-size`).
+- Capas da abertura: até 24rem, alinhadas à direita, título da capa escura com
+  menos contraste — apoio, não protagonista.
+- Cabeçalho após rolagem: fundo e desfoque um pouco mais leves.
+- Conteúdos: os textos de assédio moral e da notícia comentada viraram colunas
+  abertas (só fio no topo), quebrando a grade de caixas.
+- Temas: hover só em dispositivos com mouse — fio que acende, descrição com mais
+  contraste, contorno do número em off-white, seta 4 px. Sem fundo, sem número
+  preenchido.
+- Manifesto: passos em 1rem com largura de leitura de 36 caracteres.
+- Sobre: identificação como bloco de créditos (fio violeta, rótulos menores,
+  nome em destaque) com fio no mesmo nível do “Sobre”; marcador quadrado
+  violeta nos públicos.
+- Formulário: separação entre aviso e campos, campos de 50 px, foco com anel
+  suave, erro com faixa lateral e ícone, botão de 56 px.
+- Movimento: linhas de tema entram com 6 px e mais rápido; cards com 12 px.
+
+**Mantido sem mudança:** título e texto da abertura, botões, paleta, Manrope,
+manifesto (conceito e cores), contato, rodapé, links, número, textos jurídicos,
+JSON-LD, `noindex` da prévia.
+
+---
+
 ## Rodada 3 — direção de arte (13/10/2026)
 
 **Problema principal encontrado:** na abertura, as duas capas (sobretudo a

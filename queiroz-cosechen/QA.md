@@ -1,5 +1,23 @@
 # QA — Vitor Queiroz Cosechen
 
+## Rodada 4 — polimento final (14/10/2026)
+
+| Item | Resultado |
+|---|---|
+| Comparação visual antes × depois | 8 tamanhos × 9 áreas (72 capturas de cada versão) |
+| Larguras 320×568 a 1920×1080 | Sem rolagem horizontal, sem texto cortado, sem botão sobreposto, áreas de toque ≥ 24 px, título em 4 linhas |
+| Zoom 200%, menu, âncoras, teclado, skip-link | Passou (mesmos critérios da rodada 3) |
+| Formulário | Nenhum erro visível ao carregar; erros por campo; contador; texto especial preservado na URL do WhatsApp; alternativa com janela bloqueada |
+| Hover dos temas | Fio no topo em escala 1, seta deslocada 4 px |
+| Marcação “sem rodeio.” | Termina em escala 1 após a entrada |
+| Movimento reduzido / sem JS | 0 de 12 cards e temas escondidos |
+| Build de produção | Continua recusando por causa de `[nº e seccional a confirmar]` |
+| Arquivo único | 132 KB, fonte carregada, 0 requisições externas, 0 erros |
+
+**Não executados:** links externos (bloqueados nesta rede), Safari/Firefox e aparelhos reais, leitor de tela real, Lighthouse.
+
+---
+
 ## Rodada 3 — refinamento de direção de arte (13/10/2026)
 
 Chromium (Playwright), pasta servida por `python3 -m http.server`.
