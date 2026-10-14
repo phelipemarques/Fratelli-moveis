@@ -8,6 +8,18 @@ foi inventado. **O site não está pronto para publicar.**
 
 ---
 
+## 🔴 0. Quais assuntos são, de fato, áreas de atuação
+
+A seção Temas lista **assuntos abordados nas publicações** (reforma
+administrativa, PAD, assédio, acidente de trabalho, remuneração e carreira,
+aposentadoria) e diz na própria página que não é uma lista de serviços.
+
+Confirmar com o Vitor quais dessas matérias correspondem efetivamente à atuação
+profissional — e se a atuação para sindicatos tem alguma frente específica que
+ele queira declarar. Só com essa confirmação pode existir uma seção “Como posso
+ajudar”, “Situações atendidas” ou “Áreas de atuação”. O ponto está marcado no
+`index.html`, acima da seção Temas.
+
 ## 🔴 1. Inscrição na OAB
 
 **O que falta:** número de inscrição e seccional (ex.: OAB/PR 00.000).

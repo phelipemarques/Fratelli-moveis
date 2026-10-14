@@ -171,18 +171,6 @@
     });
   }
 
-  /* Temas: o cabeçalho fixo mostra em qual assunto a leitura está -------- */
-  var pos = document.querySelector('[data-topic-pos]');
-  var topics = Array.prototype.slice.call(document.querySelectorAll('.topic'));
-  if (pos && topics.length && 'IntersectionObserver' in window) {
-    var tio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) pos.textContent = ('0' + (topics.indexOf(entry.target) + 1)).slice(-2);
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    topics.forEach(function (t) { tio.observe(t); });
-  }
-
   /* Cards e temas: entrada única, em cascata curta ---------------------- */
   var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
   if (!root.classList.contains('motion') || !('IntersectionObserver' in window)) {

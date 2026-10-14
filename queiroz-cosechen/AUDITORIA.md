@@ -1,5 +1,40 @@
 # Auditoria e refinamento — Vitor Queiroz Cosechen
 
+## Rodada 6 — posicionamento, arquitetura e conversão (14/10/2026)
+
+**O que prejudicava a conversão**
+- Quem é o Vitor só aparecia de verdade na 5ª seção: 10,2 telas de rolagem no celular (390 px), 6,6 no desktop.
+- A ação principal da abertura levava ao conteúdo; o WhatsApp era um link secundário. Não havia nenhum botão de contato no corpo da página antes do formulário.
+- Depois dos conteúdos não havia próximo passo: a leitura terminava e o visitante seguia rolando sem direção.
+- O formulário começava com um parágrafo de quatro linhas sobre privacidade antes do primeiro campo.
+
+**Duas composições testadas (medidas em telas até cada ponto)**
+
+| | Quem é (390 px) | Quem é (1440) | Formulário (390 px) |
+|---|---|---|---|
+| Antes | 10,2 | 6,6 | 12,5 |
+| A — ordem atual refinada | 10,6 | 6,8 | 13,0 |
+| **B — Sobre logo após a abertura** | **1,6** | **1,4** | 13,0 |
+
+Escolhida a **B**: Abertura → Sobre → Temas → Conteúdos → Manifesto → Contato.
+Segue a lógica posicionamento → quem é / para quem → assuntos → prova pelo
+conteúdo → método → contato, sem duplicar a identificação no topo.
+
+**Alterações**
+- Abertura: botão principal “Falar pelo WhatsApp”; “Ver as explicações” como link. Texto de apoio passa a dizer quem é e para quem (“advogado do servidor público e de sindicatos”).
+- Fim dos Conteúdos: “Tem uma situação parecida com algum destes assuntos?” + “Preparar mensagem” (leva ao formulário) ou “Continuar no Instagram”. Sem prometer atendimento.
+- Temas: ressalva curta e visível (“assuntos abordados nas publicações — não uma lista de serviços”), com link para o contato.
+- Sobre: texto mais humano e factual (vídeos gravados por ele, em primeira pessoa, muitos respondendo perguntas dos comentários) em vez de repetir a abertura.
+- Formulário: uma frase em cima (“A mensagem abre no seu WhatsApp e só é enviada quando você confirmar”); privacidade como nota abaixo do botão; botão “Abrir mensagem no WhatsApp”; campo “Cargo e órgão, ou sindicato”.
+- Menu e rodapé na ordem da página; índices renumerados.
+- Impressão: nada fica escondido à espera da rolagem.
+
+**Removido (densidade)**: numeração 01–04 da ficha do Sobre e o marcador “04 / 06” dos Temas — não orientavam, só decoravam.
+
+**Rejeitado**: botão flutuante de WhatsApp no celular (com a nova ordem e o CTA ao fim dos conteúdos, o contato aparece cedo sem tom comercial); renomear Temas para “Áreas de atuação” (afirmação não confirmada).
+
+---
+
 ## Rodada 5 — sistema visual e motion (14/10/2026)
 
 Antes × depois renderizados em 1920×1080, 1600×900, 1440×900, 1280×800,

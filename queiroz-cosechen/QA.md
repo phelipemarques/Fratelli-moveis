@@ -1,5 +1,26 @@
 # QA — Vitor Queiroz Cosechen
 
+## Rodada 6 — posicionamento e conversão (14/10/2026)
+
+| Item | Resultado |
+|---|---|
+| Jornada medida (A × B × antes) | 1440×900, 430×932, 390×844, 360×800 — ver AUDITORIA.md |
+| Antes × depois | 9 tamanhos (1920×1080 → 320×568) × 9 áreas |
+| Larguras | Sem rolagem horizontal, texto cortado ou alvo pequeno nos 9 tamanhos. O verificador acusou 1 sobreposição em 1280/1440 que é o link “Continuar no Instagram” passando sob o cabeçalho fixo durante a rolagem suave; com a página parada, 0 sobreposições |
+| Ordem e navegação | Seções: início, sobre, temas, conteúdos, manifesto, contato; menu na mesma ordem; `aria-current` acompanha |
+| CTA dos conteúdos | “Preparar mensagem” leva a `#contato`, título abaixo do cabeçalho |
+| Abertura | Botão principal “Falar pelo WhatsApp” → `wa.me/5545991176434` |
+| Formulário | Erros, contador, texto especial preservado, janela bloqueada, botão “Abrir mensagem no WhatsApp”, `aria-describedby` = aviso + privacidade |
+| Teclado | Skip-link, Tab, Shift+Tab, Esc, foco visível |
+| Movimento reduzido / sem JS | 0 elementos escondidos |
+| CLS | 0,0000 |
+| Links | 0 `target=_blank` sem `noopener`; 0 âncoras quebradas; 0 IDs duplicados; 0 interativos aninhados |
+| Console | 0 erros |
+
+**Não executados:** abertura real de Instagram, Threads, WhatsApp, Câmara e STF (bloqueados nesta rede); Safari/Firefox/aparelhos reais; leitor de tela real; Lighthouse.
+
+---
+
 ## Rodada 5 — sistema visual e motion (14/10/2026)
 
 | Item | Resultado |
