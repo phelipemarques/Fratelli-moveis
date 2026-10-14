@@ -36,6 +36,20 @@ tools/recortar-instagram.py  gera os recortes a partir das capturas de tela
 tools/og-cover.html        modelo da imagem de compartilhamento
 tools/gerar-og.mjs         gera assets/images/og-cover.jpg (Playwright)
 tools/source/instagram/    as 4 capturas de tela do perfil enviadas como referência
+tools/gerar-arquivo-unico.py  gera maguilas-visualizacao.html
+maguilas-visualizacao.html o site inteiro num arquivo só, para visualizar
+```
+
+## Versão em arquivo único
+
+`maguilas-visualizacao.html` tem CSS, JavaScript, fontes e imagens dentro
+dele (≈1,2 MB). Abre com dois cliques, sem servidor e sem as pastas ao lado —
+serve para mandar ao cliente ver. Não é o arquivo de publicação.
+
+Toda alteração no site deve terminar com:
+
+```bash
+python3 tools/gerar-arquivo-unico.py
 ```
 
 Sem JavaScript a página continua completa: o menu vira uma linha de links, o
