@@ -1,0 +1,7 @@
+# Prévia: o index.html está com noindex. Antes de publicar, trocar SEU-DOMINIO
+# pelo domínio real (ver README, "Sair do modo prévia").
+User-agent: *
+Allow: /
+Disallow: /tools/
+
+Sitemap: https://SEU-DOMINIO/sitemap.xml
