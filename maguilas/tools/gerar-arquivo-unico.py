@@ -4,7 +4,12 @@ Embute CSS, JavaScript, fontes e imagens no próprio HTML (data URI). O
 resultado abre com dois cliques, sem servidor e sem as pastas ao lado.
 
 Não é o arquivo de publicação: o site continua sendo o index.html com as
-pastas. Este é maior e não tem cache separado por arquivo.
+pastas. Este é bem mais pesado (Lighthouse celular ≈ 63 contra ≈ 98 do site
+em pastas), porque tudo precisa chegar antes da primeira pintura.
+
+Para caber em um arquivo só, cada foto vai em uma versão: o WebP de tamanho
+cheio (abre em qualquer navegador atual). As fontes AVIF e as miniaturas de
+192 px ficam só no site em pastas.
 
     python3 tools/gerar-arquivo-unico.py
 """
@@ -14,7 +19,7 @@ import re
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-SAIDA = RAIZ / "maguilas-v3-visualizacao.html"
+SAIDA = RAIZ / "maguilas-v4-visualizacao.html"
 TIPOS = {".webp": "image/webp", ".woff2": "font/woff2", ".svg": "image/svg+xml", ".jpg": "image/jpeg"}
 
 
@@ -39,6 +44,10 @@ def main() -> None:
     html = re.sub(r'\s*<link rel="preload"[^>]*>', "", html)
     # og:image precisa de endereço absoluto do site publicado; aqui ficaria quebrado
     html = re.sub(r'\s*<meta property="og:image[^>]*>', "", html)
+
+    # <picture>: fica só o <img> com o WebP de tamanho cheio
+    html = re.sub(r'<source type="image/avif"[^>]*>', "", html)
+    html = re.sub(r'\s(srcset|sizes)="[^"]*"', "", html)
 
     cache: dict[str, str] = {}
     def imagem(m: re.Match) -> str:

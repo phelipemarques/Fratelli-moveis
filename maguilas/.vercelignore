@@ -1,0 +1,6 @@
+# Só o site vai para o ar. Ferramentas, capturas de origem, documentação e a
+# prévia em arquivo único ficam no repositório.
+tools/
+docs/
+*.md
+maguilas-v*-visualizacao.html

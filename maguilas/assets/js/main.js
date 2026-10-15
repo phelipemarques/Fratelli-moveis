@@ -7,24 +7,36 @@
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasIO = 'IntersectionObserver' in window;
 
-  /* ---------- cabeçalho: ganha fundo depois de rolar ---------- */
+  /* ---------- cabeçalho: ganha fundo depois de rolar ----------
+     Um sentinela de 24 px no topo da página: o observer avisa só quando ele
+     entra ou sai da tela, em vez de rodar código a cada evento de rolagem. */
   var header = document.querySelector('[data-header]');
-  function onScroll() {
-    header.classList.toggle('is-scrolled', window.scrollY > 24);
+  if (hasIO) {
+    var sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:24px;pointer-events:none';
+    document.body.prepend(sentinel);
+    new IntersectionObserver(function (entries) {
+      header.classList.toggle('is-scrolled', !entries[0].isIntersecting);
+    }).observe(sentinel);
+  } else {
+    header.classList.add('is-scrolled');
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
   /* ---------- menu do celular ---------- */
   var toggle = document.querySelector('[data-menu-toggle]');
   var menu = document.querySelector('[data-menu]');
   var mqDesktop = window.matchMedia('(min-width: 960px)');
+  // o painel do celular cobre a página inteira: enquanto está aberto, o que
+  // fica atrás dele sai da ordem do Tab e do leitor de tela (inert)
+  var behindMenu = document.querySelectorAll('.skip-link, main, .footer, [data-dock], [data-preview-pill]');
 
   function setMenu(open, returnFocus) {
     toggle.setAttribute('aria-expanded', String(open));
     toggle.querySelector('.menu-toggle__label').textContent = open ? 'Fechar' : 'Menu';
     menu.classList.toggle('is-open', open);
     document.body.classList.toggle('menu-open', open);
+    behindMenu.forEach(function (el) { el.inert = open; });
     if (open) {
       menu.querySelector('a').focus();
     } else if (returnFocus) {
@@ -59,10 +71,13 @@
         panels[i].hidden = !on;
       });
       var panel = panels[index];
-      if (!reducedMotion) {
-        panel.classList.remove('is-entering');
-        void panel.offsetWidth; // reinicia a animação
-        panel.classList.add('is-entering');
+      // Web Animations: entrada curta só em transform/opacity, sem forçar
+      // recálculo de layout para reiniciar uma animação CSS
+      if (focus && !reducedMotion && panel.animate) {
+        panel.animate(
+          [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }],
+          { duration: 380, easing: 'cubic-bezier(0.16, 0.84, 0.3, 1)' }
+        );
       }
       if (focus) {
         tabs[index].focus({ preventScroll: true });

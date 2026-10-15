@@ -4,23 +4,26 @@
    6. Seções  7. Movimento  8. Prévia
    ========================================================================== */
 
-/* 1. FONTES — variáveis, subconjunto latino, SIL OFL 1.1 ------------------ */
+/* 1. FONTES — SIL OFL 1.1, recortadas por tools/otimizar-fontes.py:
+   só latim e só os pesos que este CSS usa (Oswald 300–600, Inter 400–700,
+   Dancing Script 700). font-display: swap — o texto aparece na fonte do
+   sistema e troca quando a da marca chega; medido: CLS 0,003 nessa troca. */
 @font-face {
   font-family: "Oswald";
-  src: url("../fonts/oswald-latin-wght-normal.woff2") format("woff2");
-  font-weight: 200 700;
+  src: url("../fonts/oswald.b91a0bc6.woff2") format("woff2");
+  font-weight: 300 600;
   font-display: swap;
 }
 @font-face {
   font-family: "Inter";
-  src: url("../fonts/inter-latin-wght-normal.woff2") format("woff2");
-  font-weight: 100 900;
+  src: url("../fonts/inter.8aec7dc9.woff2") format("woff2");
+  font-weight: 400 700;
   font-display: swap;
 }
 @font-face {
   font-family: "Dancing Script";
-  src: url("../fonts/dancing-script-latin-wght-normal.woff2") format("woff2");
-  font-weight: 400 700;
+  src: url("../fonts/dancing-script-700.ed4a7ad5.woff2") format("woff2");
+  font-weight: 700;
   font-display: swap;
 }
 
@@ -64,6 +67,9 @@
 *,
 *::before,
 *::after { box-sizing: border-box; }
+
+picture { display: contents; }
+picture > source { display: none; } /* senão vira um item vazio de grid dentro de <figure> */
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -130,6 +136,7 @@ a:hover { color: var(--gold-2); }
 .skip-link:focus { transform: none; color: var(--bg); }
 
 .icon { width: 1.15em; height: 1.15em; flex: none; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 /* 4. LAYOUT --------------------------------------------------------------- */
 .wrap {
@@ -432,14 +439,14 @@ body.menu-open .header::before { opacity: 1; }
   overflow: hidden;
 }
 
-/* fundo: a própria foto do buffet, desfocada — só cor e luz, não detalhe */
+/* fundo: a foto do buffet reduzida a 24×28 px (126 bytes), já desfocada e
+   escurecida por tools/recortar-instagram.py. Ampliada pelo navegador, vira só
+   cor e luz — sem filter: blur ao vivo, que custava pintura em tela inteira. */
 .hero__ambient {
   position: absolute;
   inset: -12%;
   z-index: -2;
-  background: url("../images/foto-buffet-vitrine.webp") 60% 50% / cover no-repeat;
-  filter: blur(46px) brightness(0.42) saturate(1.35);
-  transform: scale(1.05);
+  background: url("../images/hero-ambiente.webp") 60% 50% / cover no-repeat;
 }
 .hero::before {
   content: "";
@@ -595,12 +602,9 @@ body.menu-open .header::before { opacity: 1; }
   .hero__copy { display: contents; }
   .hero__eyebrow { order: 1; margin-bottom: 1rem; }
   .hero__title { order: 2; }
-  .board { order: 3; }
-  .hero__actions { order: 4; }
-  .hero__lead { order: 5; }
-  .hero__facts { order: 6; }
 
   .board {
+    order: 3;
     align-self: center;
     width: min(100%, 495px); /* a marmita (47%) não passa dos 233 px nativos */
     aspect-ratio: 360 / 300;
@@ -614,9 +618,9 @@ body.menu-open .header::before { opacity: 1; }
   .board__item--buffet figcaption { top: 0.4rem; bottom: auto; }
   .board__item--doce figcaption { left: auto; right: 0.4rem; }
 
-  .hero__actions { margin-top: 1.25rem; }
-  .hero__lead { margin-top: 1.5rem; }
-  .hero__facts { margin-top: 1.25rem; padding-top: 1.25rem; }
+  .hero__actions { order: 4; margin-top: 1.25rem; }
+  .hero__lead { order: 5; margin-top: 1.5rem; }
+  .hero__facts { order: 6; margin-top: 1.25rem; padding-top: 1.25rem; }
   .hero__scroll { display: none; }
 }
 
@@ -931,8 +935,6 @@ body.menu-open .header::before { opacity: 1; }
   .js .menu__panel[hidden] { display: grid; visibility: hidden; }
 }
 
-.js .menu__panel.is-entering { animation: panel-in 0.45s var(--ease-out); }
-@keyframes panel-in { from { opacity: 0; transform: translateY(8px); } }
 
 @media (max-width: 959px) {
   .menu__panel { grid-template-columns: 200px minmax(0, 1fr); }
@@ -1000,7 +1002,7 @@ body.menu-open .header::before { opacity: 1; }
   columns: 3;
   column-gap: 1.25rem;
 }
-.gallery__grid li { break-inside: avoid; margin-bottom: 1.75rem; }
+.gallery__grid li { break-inside: avoid; margin-bottom: 1.75rem; overflow: hidden; }
 .gallery__grid figure { display: grid; gap: 0.7rem; }
 .gallery__grid img {
   width: 100%;
@@ -1009,7 +1011,6 @@ body.menu-open .header::before { opacity: 1; }
   border-radius: 6px;
   transition: transform 0.8s var(--ease-out);
 }
-.gallery__grid li { overflow: hidden; }
 .g-crop img { aspect-ratio: 4 / 3; }
 .g-crop--empadas img { object-position: 50% 88%; }
 .g-crop--shawarma img { object-position: 85% 90%; }
@@ -1173,7 +1174,7 @@ body.menu-open .header::before { opacity: 1; }
 }
 .footer__col ul { display: grid; gap: 0.25rem; }
 .footer__col a { display: inline-block; padding-block: 0.3rem; text-decoration: none; }
-.footer__col p + p { margin-top: 0.75rem; }
+.footer__col p:not(.footer__title) + p { margin-top: 0.75rem; }
 .footer__bottom {
   display: flex;
   flex-wrap: wrap;
@@ -1215,6 +1216,10 @@ body.menu-open .header::before { opacity: 1; }
   }
   .js .dock.is-visible { transform: none; }
   body.menu-open .dock { transform: translateY(110%); }
+}
+/* celular deitado: 76 px fixos seriam 20% da altura — a barra sai de cena */
+@media (max-width: 959px) and (orientation: landscape) and (max-height: 520px) {
+  .js .dock { display: none; }
 }
 .dock__btn {
   display: inline-flex;
@@ -1343,3 +1348,8 @@ body.menu-open .header::before { opacity: 1; }
   .is-preview body.dock-on .preview-pill:not(.is-closed) { display: flex; }
   .preview-pill__more { display: none; }
 }
+
+/* 9. PÁGINA 404 ------------------------------------------------------------ */
+.not-found { display: grid; min-height: 100vh; min-height: 100svh; place-items: center; }
+.not-found__box { display: grid; justify-items: start; gap: 1.5rem; padding-block: 4rem; max-width: 40rem; }
+.not-found .lead { color: var(--text-2); }

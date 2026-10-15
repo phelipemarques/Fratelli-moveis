@@ -1,133 +1,107 @@
-# Maguila's — QA (versão 3)
+# Maguila's — QA (versão 4)
 
-Testes de 15/10/2026, com Chromium (Playwright 1.56) e o site servido
-localmente. A V2 foi servida em paralelo, a partir do commit `9519edd`, para as
-comparações. O que **não** foi testado está no fim.
+Testes de 15/10/2026 com Chromium (Playwright 1.56) e Lighthouse 12, contra o
+site servido por `tools/servidor-local.mjs` (imita a Vercel: brotli, ETag,
+cabeçalhos do `vercel.json`, incluindo a CSP). A V3 foi servida ao lado, do
+commit `a00cd53`. Medições de desempenho em [`PERFORMANCE.md`](PERFORMANCE.md).
 
-## 1. Comida na primeira tela (o objetivo principal da V3)
+Para repetir: `node tools/testar.mjs http://127.0.0.1:8130/` (README).
 
-Mesmas condições nas duas versões: movimento reduzido (nada escondido por
-animação), imagens carregadas, topo da página.
+## 1. Testes automatizados — `tools/testar.mjs`
 
-| Tela | Onde a 1ª foto começa (V2 → V3) | Área de foto na 1ª tela (V2 → V3) | Botão "Ver cardápio" na 1ª tela (V2 → V3) |
+**45 de 45 passaram.**
+
+| Grupo | O que verifica | Resultado |
+|---|---|---|
+| Tamanhos de tela (16) | rolagem lateral, erros de console, imagens quebradas, blocos ocultos, alvos de toque < 24 px | 16/16 sem problema |
+| Menu do celular (7) | Enter abre, foco no 1º link, Tab não escapa para trás (inert), Escape fecha, foco volta, link fecha o menu, conteúdo volta a ser acessível | 7/7 |
+| Abas (14) | →, ←, Home, End, Enter, Espaço; só o painel certo ativo em cada uma das 7; altura da página constante no desktop | 14/14 |
+| Robustez (3) | sem JavaScript as 7 categorias aparecem; com `main.js` bloqueado nada fica invisível; movimento reduzido sem animação de entrada | 3/3 |
+| Links (4) | 0 âncoras quebradas; 0 externos sem `target`/`rel="noopener noreferrer"`; WhatsApp com um número só; `noindex` presente | 4/4 |
+
+## 2. Responsividade
+
+| Tela | Rolagem lateral | Console | Alvos < 24 px | Comida começa em (V3 → V4) | Botão "Ver cardápio" na 1ª tela |
+|---|---|---|---|---|---|
+| 1920×1080 | não | limpo | 0 | — | sim |
+| 1440×900 | não | limpo | 0 | — | sim |
+| 1366×768 | não | limpo | 0 | — | sim |
+| 1280×800 | não | limpo | 0 | — | sim |
+| 1024×768 | não | limpo | 0 | — | sim |
+| 820×1180 | não | limpo | 0 | — | sim |
+| 768×1024 | não | limpo | 0 | 351 → 351 px | sim |
+| 430×932 | não | limpo | 0 | 327 → 327 px | sim |
+| 414×896 | não | limpo | 0 | 327 → 327 px | sim |
+| 393×852 | não | limpo | 0 | 327 → 327 px | sim |
+| 390×844 | não | limpo | 0 | 327 → 327 px | sim |
+| 375×667 | não | limpo | 0 | 280 → 280 px | sim |
+| 360×800 | não | limpo | 0 | 327 → 327 px | sim |
+| 320×568 | não | limpo | 0 | 280 → 280 px | sim |
+| 844×390 (deitado) | não | limpo | 0 | 168 → 168 px | sim |
+| 667×375 (deitado) | não | limpo | 0 | — | — |
+
+Zoom: 200% (1440 px) e 400% (1280 px → 320 px de largura útil) cobertos pelos
+testes de 720 e 320 px, sem rolagem lateral.
+
+## 3. Identidade preservada (comparação pixel a pixel V3 × V4)
+
+Mesmas condições nas duas: movimento reduzido, imagens carregadas, aviso de
+prévia fechado. Diferença = pixels com variação acima de 24 em 255.
+
+| Tela | Primeira tela | Página inteira | Altura da página |
 |---|---|---|---|
-| 320×568 | 760 px (fora da tela) → **280 px** | 0% → **19%** | sim → sim |
-| 360×800 | 687 → **327 px** | 12% → **24%** | sim → sim |
-| 390×844 | 656 → **327 px** | 23%* → **25%** | sim → sim |
-| 430×932 | 661 → **327 px** | 29%* → 25% | sim → sim |
-| 768×1024 | 685 → **351 px** | 24%* → 22% | sim → sim |
-| 844×390 (celular deitado) | 681 (fora) → **168 px** | 0% → **17%** | **não → sim** |
+| 1440×900 | 0,01% | 0,02% | igual (6.121 px) |
+| 768×1024 | 0,01% | 0,02% | igual (7.583 px) |
+| 390×844 | 0,03% | 0,27% | igual (7.237 px) |
+| 320×568 | 0,04% | 0,14% | igual (7.377 px) |
 
-\* Na V2, as fotos do pé da tela entravam cortadas e giradas; a caixa
-de uma foto girada é maior que a foto, o que infla a porcentagem. Medindo só
-a área real das fotos (largura × altura, sem rotação):
+As diferenças vêm da compressão AVIF, das miniaturas de 192 px no celular e
+do novo fundo pré-desfocado da abertura. Capturas lado a lado em
+`docs/comparacao/v3-v4-*`.
 
-| Tela | V2 | V3 |
+## 4. Fluxos de quem usa o celular (390×844)
+
+| Pessoa | Caminho | Toques |
 |---|---|---|
-| 1440×900 | 279 mil px² (21%) | 250 mil px² (19%) |
-| 1280×800 | 279 mil px² (27%) | 250 mil px² (24%) |
-| 1024×768 | 167 mil px² (21%) | 138 mil px² (18%) |
-| 390×844 | 70 mil px² (21%) | **81 mil px² (25%)** |
+| A — quer ver o almoço | "Ver cardápio" → aba "Buffet & grelhados" | 2 |
+| B — quer consultar marmita | "Ver cardápio" → aba "Pratos & marmitas" → "Consultar marmitas no WhatsApp" (abre conversa com a mensagem pronta; nada é enviado sozinho) | 3 |
+| C — quer o endereço | "Como chegar" (o endereço fica visível na tela) | 1 |
+| D — quer ver fotos | Menu → "Galeria" | 2 |
 
-**No desktop, a V3 mostra ~10% menos área de foto que a V2.** O motivo: a V2
-ampliava a marmita de 233 para 280 px (1,2×), e a V3 não amplia nenhuma
-foto. A melhora no desktop é de composição (sem fotos tortas, com
-legendas, anel dourado da marca, comida na frente), não de tamanho. Tamanho
-maior depende das fotos originais (ver `FOTOGRAFIA.md`, P1).
+## 5. Outros testes
 
-## 2. Responsividade, console e toque — 9 resoluções
+- **Âncoras com cabeçalho fixo:** ao navegar para cada seção, o título fica
+  entre 168 e 182 px abaixo do cabeçalho — nenhum escondido.
+- **Barra inferior:** não aparece na abertura, some antes do rodapé (o último
+  link, "Voltar ao topo", fica livre) e não aparece com o menu aberto nem com o
+  celular deitado (seria 20% da altura).
+- **Menu ao girar o aparelho:** abrir no celular e passar para 1024 px fecha o
+  menu e libera a página.
+- **CSP ativa:** console limpo em 390 e 1440 px. Fontes, imagens AVIF e o
+  script funcionam com `default-src 'self'`.
+- **Página 404:** responde 404, com a identidade do site e link para o início.
+- **Prévia em arquivo único:** aberta sozinha por `file://`, em 390 e 1440 px —
+  0 imagens quebradas, 3 fontes ativas, sem erro e sem rolagem lateral.
 
-Rolagem até o fim com as animações ligadas, medindo `scrollWidth` a cada passo.
+## 6. Problemas encontrados durante a V4 e corrigidos
 
-| Resolução | Rolagem horizontal | Console | Alvos < 24 px | Blocos ocultos ao fim |
-|---|---|---|---|---|
-| 1920×1080 | não | limpo | 0 | 0 |
-| 1440×900 | não | limpo | 0 | 0 |
-| 1280×800 | não | limpo | 0 | 0 |
-| 1024×768 | não | limpo | 0 | 0 |
-| 768×1024 | não | limpo | 0 | 0 |
-| 430×932 | não | limpo | 0 | 0 |
-| 390×844 | não | limpo | 0 | 0 |
-| 360×800 | não | limpo | 0 | 0 |
-| 320×568 | não | limpo | 0 | 0 |
-
-Também: celular deitado (844×390) e zoom de 200% (simulado com 720 px a 2×), sem rolagem horizontal.
-
-### Problemas que apareceram e foram corrigidos
-
-| Problema | Correção |
-|---|---|
-| No celular, o texto da abertura ficou centralizado | `align-items: stretch` na coluna do celular. |
-| Legenda "Sobremesas" passava da borda em 320 px | Legendas da composição escondidas abaixo de 360 px. |
-| Legendas cobertas pela marmita ("BUFFET POR QUI…", "…REMESAS") | Legenda do buffet no topo e a das sobremesas à direita. |
-| Celular deitado: botão fora da tela | Layout de duas colunas para telas baixas na horizontal. |
-| Desktop: composição menor que a da V2 | Composição a 600 px a partir de 1280 px, fotos no tamanho nativo. |
-| Composição do tablet ampliava a marmita em 5% | Largura máxima de 495 px no celular/tablet. |
-
-## 3. Cardápio
-
-- **Clique, 1440×900:** as 7 abas selecionam (`aria-selected`), só o painel certo
-  fica visível, e a página fica com **a mesma altura nas 7** (sem salto).
-- **Toque, 390×844:** as 7 abas respondem; a faixa de abas rola para o lado e
-  **fica fixa sob o cabeçalho** enquanto se lê a categoria; ao trocar de aba
-  com a categoria já rolada, a página volta só o necessário para mostrar o
-  início dela.
-- **Teclado:** → → leva a "Pratos & marmitas"; End → Bebidas; Home → Café da
-  manhã; ← no início → Bebidas; Tab sai das abas para o painel.
-- **Fotos:** desktop no tamanho nativo (as de 281 px aparecem com 269 px);
-  celular em miniatura de 96 × 96. Bebidas sem foto, de propósito.
-- **Sem JavaScript:** as 7 categorias empilhadas, abas ocultas.
-
-## 4. Menu, navegação, acessibilidade
-
-- **Menu do celular:** Enter abre e leva o foco a "Início"; Escape fecha e
-  devolve o foco; tocar em "Cardápio" fecha o menu e posiciona a seção 72 px
-  abaixo do topo.
-- **Barra de ação do celular:** aparece depois da abertura, some na
-  Localização e no rodapé e não aparece com o menu aberto. Enquanto está
-  visível, cobre os últimos 76 px da tela, como qualquer barra fixa.
-- **Títulos:** um `h1`; `h2` por seção; `h3` nas ocasiões e nas categorias.
-- **Movimento reduzido:** 0 blocos ocultos; animação da manchete desligada.
-- **`main.js` bloqueado:** 0 de 12 blocos invisíveis; as 7 categorias visíveis.
-- **Contraste dos novos elementos:** legendas da composição (dourado claro
-  sobre preto a 82%) acima de 9:1; textos da linha do dia iguais aos da V2.
-
-## 5. Links e WhatsApp
-
-- 20 âncoras internas, nenhuma quebrada; 17 links externos com
-  `target="_blank"` e `rel="noopener"`.
-- **13 links de WhatsApp, todos para o mesmo número** (`wa.me/5545999566139`),
-  ainda não confirmado. Os botões do cardápio dizem "Consultar … no WhatsApp"
-  e abrem uma mensagem de consulta; "Pedir no WhatsApp" abre um pedido. Nada é
-  enviado sozinho.
-
-## 6. Desempenho — laboratório local, não campo
-
-Rede limitada a ~1,6 Mbps com 150 ms de latência, cache desligado, mediana de 3 execuções.
-
-| | V2 | V3 |
+| Problema | Causa | Correção |
 |---|---|---|
-| LCP 1440×900 | 1,68 s | 1,67 s |
-| LCP 390×844, CPU 4× mais lenta | 1,72 s | 1,70 s |
-| CLS | 0 | 0 |
-| Interação mais lenta (menu + 4 abas, toque, CPU 4×) | 88 ms | 72 ms |
-
-A "interação mais lenta" vem da Event Timing API em laboratório; não é o INP
-de usuários reais. Nenhuma auditoria Lighthouse foi executada.
-
-**Prévia em arquivo único** (`maguilas-v3-visualizacao.html`, 1,05 MB): aberta
-sozinha numa pasta vazia por `file://`, em 1440 e 390 px — 0 imagens
-quebradas, 3 fontes ativas, abas funcionando, sem erro e sem rolagem lateral.
-
-## 7. Comparação visual V2 × V3
-
-Em `docs/comparacao/`, para 1440×900, 768×1024, 390×844 e 320×568:
-`v2-v3-<tela>-primeira-tela.jpg` e `v2-v3-<tela>-pagina.jpg`.
+| Galeria 11–23 px mais alta que na V3 | o `<source>` do AVIF virava um item vazio da grade dentro de `<figure>` | `picture > source { display: none }` |
+| Rodapé 12 px mais alto | títulos passaram de `h2` para `p` e uma regra antiga de espaçamento passou a valer | regra limitada a parágrafos que não são título |
+| Com o menu aberto, "Pular para o conteúdo" ainda recebia foco | ficou fora da lista de elementos inertes | incluído |
+| Nome da marca com rótulo diferente do texto visível (Lighthouse) | `aria-label` no link da marca | `aria-label` removido |
+| A foto do buffet seria baixada duas vezes | pré-carregamento em WebP + `<picture>` escolhendo AVIF | pré-carregamento de imagem removido |
 
 ## Não testado
 
-- Safari/iOS e Firefox; aparelho real.
-- Leitor de tela (VoiceOver, TalkBack, NVDA).
-- Lighthouse e Core Web Vitals de campo.
+- **Safari no iPhone e Chrome em Android de verdade.** Só emulação no
+  Chromium: área segura, barra dinâmica do Safari e desempenho em aparelho
+  intermediário não foram verificados em aparelho.
+- **Firefox.**
+- **Leitor de tela** (VoiceOver, TalkBack, NVDA) — estrutura e foco verificados
+  por teclado e pelo Lighthouse, não com leitor.
+- **INP e Core Web Vitals de usuários reais** — o site não está no ar.
+- **Deploy real na Vercel** — o `vercel.json` foi validado pelo servidor local
+  que aplica os mesmos cabeçalhos, não na Vercel.
 - Se o WhatsApp é do restaurante e se o Google Maps acha o endereço.
-- Publicação.

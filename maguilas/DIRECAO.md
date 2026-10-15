@@ -234,3 +234,11 @@ fica e como chego" de cara.
 
 **Logo.** Continua provisória, em texto. O CSS ganhou a classe `brand__logo`
 para receber o arquivo oficial com uma troca de uma linha (ver README).
+
+## 10. Versão 4 — engenharia, sem mudança visual
+
+A V4 não muda o design: comparada pixel a pixel com a V3, a primeira tela
+difere em menos de 0,05% dos pixels, e a página tem a mesma altura nas quatro
+larguras testadas. O trabalho foi de carregamento (fontes recortadas, AVIF,
+miniaturas, cache), robustez (menu com `inert`, CSP) e publicação (Vercel).
+Detalhes em `PERFORMANCE.md` e `QA.md`.

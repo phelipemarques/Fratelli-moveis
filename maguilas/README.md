@@ -2,11 +2,12 @@
 
 Site de uma página para o Maguila's Restaurante & Grill, em Cascavel/PR.
 
-> **Status: prévia de aprovação — não publicar.** A página está marcada como
-> `noindex` e os dados de contato ainda precisam de confirmação. A lista do que
-> falta está em [`PENDENCIAS.md`](PENDENCIAS.md). O que foi testado está em
-> [`QA.md`](QA.md). As decisões de marca e estrutura estão em
-> [`DIRECAO.md`](DIRECAO.md).
+> **Status: prévia de aprovação — não publicar como site definitivo.** A
+> página está marcada como `noindex` e os dados de contato ainda precisam de
+> confirmação. Pendências: [`PENDENCIAS.md`](PENDENCIAS.md). Testes:
+> [`QA.md`](QA.md). Medições: [`PERFORMANCE.md`](PERFORMANCE.md). Como
+> publicar: [`PUBLICACAO.md`](PUBLICACAO.md). Decisões de marca:
+> [`DIRECAO.md`](DIRECAO.md). Fotos: [`FOTOGRAFIA.md`](FOTOGRAFIA.md).
 
 ## Como rodar
 
@@ -15,38 +16,57 @@ tempo de execução: as fontes estão dentro do projeto.
 
 ```bash
 cd maguilas
-python3 -m http.server 8130
+node tools/servidor-local.mjs . 8130     # imita a Vercel: brotli, cache, cabeçalhos do vercel.json
 # abra http://127.0.0.1:8130
 ```
 
-Qualquer servidor estático serve (`npx serve`, Live Server do VS Code, etc.).
+`python3 -m http.server 8130` também funciona, sem os cabeçalhos.
+
+### Testes automatizados
+
+```bash
+npm i --no-save playwright
+node tools/testar.mjs http://127.0.0.1:8130/
+```
+
+Verifica 16 tamanhos de tela, o menu, as 7 abas, a página sem JavaScript,
+movimento reduzido, links e o `noindex` da prévia. Sai com erro se algo falhar.
 
 ## Estrutura
 
 ```
+— vai para o ar —
 index.html                 a página inteira
+404.html                   página de erro, na identidade do site
 robots.txt, sitemap.xml    SEO — trocar o domínio antes de publicar
-assets/css/style.css       estilos, em 8 blocos: fontes, tokens, base, layout,
-                           componentes, seções, movimento, prévia
-assets/js/main.js          menu do celular, abas do cardápio, revelação ao
-                           rolar, barra de ação do celular, aviso de prévia
-assets/fonts/              Oswald, Inter e Dancing Script (SIL OFL 1.1)
-assets/images/             recortes provisórios dos posts + og-cover + favicon
-tools/recortar-instagram.py  gera os recortes a partir das capturas de tela
-tools/og-cover.html        modelo da imagem de compartilhamento
-tools/gerar-og.mjs         gera assets/images/og-cover.jpg (Playwright)
-tools/source/instagram/    as 4 capturas de tela do perfil enviadas como referência
-tools/gerar-arquivo-unico.py  gera maguilas-v3-visualizacao.html
-maguilas-v3-visualizacao.html o site inteiro num arquivo só, para visualizar
-docs/comparacao/           capturas V2 × V3 em 1440, 768, 390 e 320 px
-DIRECAO.md                 decisões de marca e estrutura (seção 9: versão 3)
-FOTOGRAFIA.md              auditoria das imagens e plano de fotos P1–P5
+vercel.json                cache (fontes 1 ano, imagens 7 dias) e cabeçalhos de
+                           segurança, incluindo CSP e X-Robots-Tag: noindex
+.vercelignore              o que fica fora do deploy
+assets/css/style.css       estilos em blocos: fontes, tokens, base, layout,
+                           componentes, seções, movimento, prévia, 404
+assets/js/main.js          menu do celular, abas, revelação ao rolar,
+                           barra de ação do celular, aviso de prévia
+assets/fonts/              Oswald, Inter e Dancing Script recortadas (SIL OFL 1.1),
+                           com hash no nome
+assets/images/             fotos em AVIF + WebP, miniaturas de 192 px,
+                           fundo da abertura, og-cover, favicon
+
+— fica no repositório —
+maguilas-v4-visualizacao.html  o site inteiro num arquivo só, para mostrar ao cliente
+tools/recortar-instagram.py    recortes das capturas → AVIF, WebP e miniaturas
+tools/otimizar-fontes.py       recorta as fontes e renomeia com hash (requer fonttools)
+tools/gerar-arquivo-unico.py   gera o arquivo único
+tools/servidor-local.mjs       servidor local que imita a Vercel
+tools/testar.mjs               testes de navegador (Playwright)
+tools/og-cover.html, gerar-og.mjs  imagem de compartilhamento
+tools/source/                  capturas do Instagram e fontes originais
+docs/comparacao/               capturas V3 × V4 em 1440, 768, 390 e 320 px
 ```
 
 ## Versão em arquivo único
 
-`maguilas-v3-visualizacao.html` tem CSS, JavaScript, fontes e imagens dentro
-dele (≈1,05 MB). Abre com dois cliques, sem servidor e sem as pastas ao lado —
+`maguilas-v4-visualizacao.html` tem CSS, JavaScript, fontes e imagens dentro
+dele (≈0,96 MB). Abre com dois cliques, sem servidor e sem as pastas ao lado —
 serve para mandar ao cliente ver. Não é o arquivo de publicação.
 
 Toda alteração no site deve terminar com:
@@ -94,8 +114,8 @@ Para incluir preço, quando o restaurante enviar, acrescente
 As imagens atuais são recortes de capturas de tela, em ≈280 px. Quando chegarem
 os originais:
 
-1. Exporte cada foto em WebP, em duas larguras (ex.: 800 e 1600 px), e
-   substitua o `<img>` por `srcset`/`sizes`, mantendo `width`/`height`
+1. Exporte cada foto em AVIF e WebP, em algumas larguras (ex.: 640, 960 e
+   1440 px), e use o mesmo `<picture>` das fotos atuais com `srcset`/`sizes`, mantendo `width`/`height`
    proporcionais para não haver salto de layout.
 2. **Abertura:** a composição `.board` (três fotos sobre o anel dourado) foi
    feita para fotos de ≈280 px. Com a foto P1 de `FOTOGRAFIA.md`, o caminho
@@ -157,16 +177,23 @@ Não incluir `priceRange`, `aggregateRating` nem `review` sem dado real.
 
 ## Publicar
 
-É um site estático. Em qualquer hospedagem estática (Netlify, Vercel, Cloudflare
-Pages, hospedagem comum), publique **o conteúdo da pasta `maguilas/`** como raiz
-do site — `robots.txt` e `sitemap.xml` só funcionam na raiz do domínio. No
-Netlify, isso é o campo *Base directory* = `maguilas`.
+Na Vercel, como site estático: *Root Directory* = `maguilas`, preset
+*Other*, sem comando de build. O passo a passo e o que muda para virar site
+definitivo estão em [`PUBLICACAO.md`](PUBLICACAO.md).
 
-A pasta `tools/` não precisa ir para o ar.
+Se usar o cabeçalho CSP do `vercel.json` e mudar o script curto do `<head>`
+(`document.documentElement.classList.add('js');`), recalcule o hash:
+
+```bash
+printf "%s" "document.documentElement.classList.add('js');" | openssl dgst -sha256 -binary | base64
+```
 
 ## Regerar imagens
 
 ```bash
+# fontes (só se trocar as originais em tools/source/fonts/)
+pip install fonttools brotli && python3 tools/otimizar-fontes.py
+
 # recortes dos posts (só enquanto não houver originais)
 python3 tools/recortar-instagram.py tools/source/instagram
 

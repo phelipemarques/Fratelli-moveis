@@ -4,13 +4,18 @@ PROVISÓRIO. As capturas têm cerca de 281 x 375 px por post; as imagens saem no
 tamanho nativo, sem ampliação. Quando os arquivos originais chegarem, eles
 substituem estes recortes (ver README, "Trocar as fotos").
 
+Cada imagem sai em dois formatos: AVIF (qualidade 70, ~25% menor, para
+navegadores atuais) e WebP (qualidade 88, reserva). As listadas em
+MINIATURAS ganham também uma versão de 192 px de largura, usada onde a tela
+mostra a foto com 96 px (linha do dia e cardápio no celular, 2× de densidade).
+
 Uso:
     python3 tools/recortar-instagram.py <pasta-com-1.webp..4.webp>
 """
 import sys
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageEnhance, ImageFilter
 
 # Grade de cada captura: colunas (x0, x1) e linhas (y0, y1), medidas pelos
 # vãos de 1 px entre os posts.
@@ -52,6 +57,17 @@ POSTS = {
     "post-copos-felicidade": ("4", 1, 1, None),
 }
 
+MINIATURAS = {
+    "post-cafe-cachorro-quente", "post-almoco-prato-feito", "post-tarde-empadao", "post-jantar-pratos",
+    "foto-buffet-cubas", "foto-bife-acebolado", "foto-porcao-peixe-camarao", "foto-pudim",
+}
+
+
+def salvar(img: Image.Image, base: Path) -> None:
+    img.save(base.with_suffix(".avif"), "AVIF", quality=70)
+    img.save(base.with_suffix(".webp"), "WEBP", quality=88, method=6)
+
+
 def main(origem: Path, destino: Path) -> None:
     destino.mkdir(parents=True, exist_ok=True)
     capturas = {n: Image.open(origem / f"{n}.webp").convert("RGB") for n in GRADES}
@@ -62,8 +78,17 @@ def main(origem: Path, destino: Path) -> None:
         img = capturas[n].crop((x0, y0, x1, y1))
         if interno:
             img = img.crop(interno)
-        img.save(destino / f"{nome}.webp", "WEBP", quality=88, method=6)
-        print(f"{nome}.webp  {img.width}x{img.height}")
+        salvar(img, destino / nome)
+        if nome in MINIATURAS:
+            alt = round(img.height * 192 / img.width)
+            salvar(img.resize((192, alt), Image.LANCZOS), destino / f"{nome}-192")
+        print(f"{nome}  {img.width}x{img.height}" + ("  + 192w" if nome in MINIATURAS else ""))
+        if nome == "foto-buffet-vitrine":
+            # fundo da abertura: 24×28 px já desfocado e escurecido; o navegador
+            # amplia e o resultado é só cor e luz, sem filter: blur ao vivo
+            fundo = img.resize((24, 28), Image.LANCZOS).filter(ImageFilter.GaussianBlur(1.6))
+            fundo = ImageEnhance.Color(ImageEnhance.Brightness(fundo).enhance(0.42)).enhance(1.35)
+            fundo.save(destino / "hero-ambiente.webp", "WEBP", quality=60)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
