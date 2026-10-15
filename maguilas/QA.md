@@ -1,5 +1,8 @@
 # Maguila's — QA (versão 4)
 
+> **V5:** resultados novos, incluindo os testes de texto mínimo e área segura,
+> em [`RELATORIO-V5.md`](RELATORIO-V5.md). Este arquivo registra a V4.
+
 Testes de 15/10/2026 com Chromium (Playwright 1.56) e Lighthouse 12, contra o
 site servido por `tools/servidor-local.mjs` (imita a Vercel: brotli, ETag,
 cabeçalhos do `vercel.json`, incluindo a CSP). A V3 foi servida ao lado, do
@@ -9,7 +12,7 @@ Para repetir: `node tools/testar.mjs http://127.0.0.1:8130/` (README).
 
 ## 1. Testes automatizados — `tools/testar.mjs`
 
-**45 de 45 passaram.**
+**44 de 44 passaram.** (A versão anterior deste arquivo dizia 45 — erro de contagem; o script tem 44 verificações. A V5 acrescentou 4: são 48.)
 
 | Grupo | O que verifica | Resultado |
 |---|---|---|

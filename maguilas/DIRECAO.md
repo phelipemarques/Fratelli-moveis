@@ -242,3 +242,27 @@ difere em menos de 0,05% dos pixels, e a página tem a mesma altura nas quatro
 larguras testadas. O trabalho foi de carregamento (fontes recortadas, AVIF,
 miniaturas, cache), robustez (menu com `inert`, CSP) e publicação (Vercel).
 Detalhes em `PERFORMANCE.md` e `QA.md`.
+
+## 11. Versão 5 — acabamento, sem mudança de identidade
+
+A V5 mantém o design da V4: mesma abertura, mesma ordem e comida no mesmo
+ponto da primeira tela no celular. Mudou o que estava errado ou prometia mais
+do que se sabe:
+
+- **Promessas de atendimento.** "Para comer aqui, levar ou pedir pelo
+  WhatsApp" e "Pedir no WhatsApp" afirmavam modalidades que ninguém
+  confirmou. → "Veja o cardápio e consulte pelo WhatsApp" e "Falar
+  no WhatsApp", até o restaurante responder o item 2 de `PENDENCIAS.md`.
+  A mensagem pronta dos botões gerais virou "Olá! Vim pelo site do
+  Maguila's e gostaria de algumas informações."
+- **iPhone deitado.** Logo, título, botões e rodapé ficavam sob o entalhe
+  (16 elementos). → Margens laterais respeitam `env(safe-area-inset-*)`.
+- **Textos de 9,6 px** (subtítulo da marca, legendas das fotos, selo "a
+  confirmar"). → Menor texto agora é 10,6 px.
+- **Prévia em arquivo único.** Tinha 21 `<picture>` sem nenhum `<source>`
+  (o AVIF é retirado para não dobrar o tamanho). → `<picture>` desfeito na
+  prévia. O site em pastas continua com AVIF + WebP e `og:image`; a prévia
+  fica sem `og:image` de propósito, porque um arquivo local não tem endereço
+  para a imagem de compartilhamento.
+
+Números e comparações em `RELATORIO-V5.md`.

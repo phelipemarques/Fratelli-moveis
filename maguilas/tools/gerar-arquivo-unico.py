@@ -19,7 +19,7 @@ import re
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-SAIDA = RAIZ / "maguilas-v4-visualizacao.html"
+SAIDA = RAIZ / "maguilas-v5-visualizacao.html"
 TIPOS = {".webp": "image/webp", ".woff2": "font/woff2", ".svg": "image/svg+xml", ".jpg": "image/jpeg"}
 
 
@@ -42,12 +42,14 @@ def main() -> None:
 
     # pré-carregamentos apontam para arquivos que não vão junto
     html = re.sub(r'\s*<link rel="preload"[^>]*>', "", html)
-    # og:image precisa de endereço absoluto do site publicado; aqui ficaria quebrado
+    # og:image precisa de endereço absoluto do site publicado; um arquivo aberto
+    # localmente não tem endereço, então a prévia sai sem a imagem de compartilhamento
     html = re.sub(r'\s*<meta property="og:image[^>]*>', "", html)
 
-    # <picture>: fica só o <img> com o WebP de tamanho cheio
+    # <picture> perde o sentido sem as fontes AVIF: fica só o <img> com o WebP
     html = re.sub(r'<source type="image/avif"[^>]*>', "", html)
     html = re.sub(r'\s(srcset|sizes)="[^"]*"', "", html)
+    html = html.replace("<picture>", "").replace("</picture>", "")
 
     cache: dict[str, str] = {}
     def imagem(m: re.Match) -> str:

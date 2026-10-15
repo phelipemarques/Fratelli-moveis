@@ -4,10 +4,22 @@ Site de uma página para o Maguila's Restaurante & Grill, em Cascavel/PR.
 
 > **Status: prévia de aprovação — não publicar como site definitivo.** A
 > página está marcada como `noindex` e os dados de contato ainda precisam de
-> confirmação. Pendências: [`PENDENCIAS.md`](PENDENCIAS.md). Testes:
+> confirmação. Pendências: [`PENDENCIAS.md`](PENDENCIAS.md). Relatório da
+> versão atual: [`RELATORIO-V5.md`](RELATORIO-V5.md). Testes da V4:
 > [`QA.md`](QA.md). Medições: [`PERFORMANCE.md`](PERFORMANCE.md). Como
 > publicar: [`PUBLICACAO.md`](PUBLICACAO.md). Decisões de marca:
 > [`DIRECAO.md`](DIRECAO.md). Fotos: [`FOTOGRAFIA.md`](FOTOGRAFIA.md).
+
+## Os três jeitos de entregar
+
+| Arquivo | Para quê |
+|---|---|
+| `maguilas-v5-visualizacao.html` | mostrar ao cliente: abre com dois cliques, sem internet e sem pastas ao lado |
+| `maguilas-v5-producao.zip` | o site pronto para publicar: descompacte e envie a pasta `maguilas-v5/` para a Vercel |
+| esta pasta (`maguilas/`) | o projeto, com ferramentas, testes e documentação |
+
+O zip é gerado por `python3 tools/gerar-zip.py`, que confere se todo arquivo
+citado no HTML e no CSS existe antes de empacotar.
 
 ## Como rodar
 
@@ -29,8 +41,9 @@ npm i --no-save playwright
 node tools/testar.mjs http://127.0.0.1:8130/
 ```
 
-Verifica 16 tamanhos de tela, o menu, as 7 abas, a página sem JavaScript,
-movimento reduzido, links e o `noindex` da prévia. Sai com erro se algo falhar.
+48 verificações: 16 tamanhos de tela, o menu, as 7 abas, a página sem
+JavaScript, movimento reduzido, links, o `noindex` da prévia, tamanho mínimo
+de texto (10,5 px) e o iPhone deitado com entalhe. Sai com erro se algo falhar.
 
 ## Estrutura
 
@@ -52,20 +65,21 @@ assets/images/             fotos em AVIF + WebP, miniaturas de 192 px,
                            fundo da abertura, og-cover, favicon
 
 — fica no repositório —
-maguilas-v4-visualizacao.html  o site inteiro num arquivo só, para mostrar ao cliente
+maguilas-v5-visualizacao.html  o site inteiro num arquivo só, para mostrar ao cliente
 tools/recortar-instagram.py    recortes das capturas → AVIF, WebP e miniaturas
 tools/otimizar-fontes.py       recorta as fontes e renomeia com hash (requer fonttools)
 tools/gerar-arquivo-unico.py   gera o arquivo único
+tools/gerar-zip.py             gera maguilas-v5-producao.zip e confere as referências
 tools/servidor-local.mjs       servidor local que imita a Vercel
 tools/testar.mjs               testes de navegador (Playwright)
 tools/og-cover.html, gerar-og.mjs  imagem de compartilhamento
 tools/source/                  capturas do Instagram e fontes originais
-docs/comparacao/               capturas V3 × V4 em 1440, 768, 390 e 320 px
+docs/comparacao/               capturas V4 × V5 em 1440, 768, 390 e 320 px
 ```
 
 ## Versão em arquivo único
 
-`maguilas-v4-visualizacao.html` tem CSS, JavaScript, fontes e imagens dentro
+`maguilas-v5-visualizacao.html` tem CSS, JavaScript, fontes e imagens dentro
 dele (≈0,96 MB). Abre com dois cliques, sem servidor e sem as pastas ao lado —
 serve para mandar ao cliente ver. Não é o arquivo de publicação.
 
@@ -73,7 +87,12 @@ Toda alteração no site deve terminar com:
 
 ```bash
 python3 tools/gerar-arquivo-unico.py
+python3 tools/gerar-zip.py
 ```
+
+Na prévia, as fotos vão só em WebP (o AVIF dobraria o tamanho) e ficam de
+fora o pré-carregamento e a imagem de compartilhamento, que dependem das
+pastas.
 
 Sem JavaScript a página continua completa: o menu vira uma linha de links, o
 cardápio aparece com todas as categorias e nada fica escondido por animação.
@@ -84,8 +103,19 @@ Todo o texto está no `index.html`, em ordem de leitura, com uma faixa de
 comentário por seção (`01 · ABERTURA`, `02 · O MAGUILA'S`…).
 
 **WhatsApp.** O número aparece nos links como `5545999566139` (55 + DDD +
-número). Para trocar, substitua esse trecho em todo o `index.html` — são 12
+número). Para trocar, substitua esse trecho em todo o `index.html` — são 13
 ocorrências — e também o texto `(45) 99956-6139`.
+
+**Endereço.** Aparece em 4 lugares do `index.html` (abertura, Localização,
+placa de horário, rodapé) e em 2 links do Google Maps (`destination=` e
+`query=`, com espaços como `%20`). Procure por `Aimor`.
+
+**Horário.** Aparece na abertura, na placa da Localização (`sign__days` e
+`sign__hours`) e no rodapé. Procure por `6h`.
+
+**Dado confirmado.** Quando o restaurante confirmar um dado, tire a classe
+`pend` e o `title` daquele trecho. Na placa, tire também o selo
+`<span class="preview-only pend-chip">a confirmar</span>`.
 
 **Cardápio.** Cada categoria é um `<section class="menu__panel">` com uma lista
 `menu__list`. Um item:

@@ -24,6 +24,8 @@ for (const [w, h] of telas) {
     largura = Math.max(largura, await page.evaluate(() => document.documentElement.scrollWidth));
   }
   await page.waitForTimeout(1200);
+  // um bloco revelado no último passo ainda pode estar no meio da transição
+  await page.evaluate(() => Promise.all(document.getAnimations().map(a => a.finished.catch(() => {}))));
   const r = await page.evaluate(() => ({
     cw: document.documentElement.clientWidth,
     quebradas: [...document.images].filter(i => i.complete && !i.naturalWidth).length,
@@ -103,6 +105,36 @@ console.log('5. Links');
   ok(!r.semRel, `links externos sem target/rel corretos: ${r.semRel}`);
   ok(r.numeros.length === 1, `WhatsApp aponta para um número só: ${r.numeros.join(', ')}`);
   ok(await page.evaluate(() => document.querySelector('meta[name="robots"]')?.content.includes('noindex')), 'prévia continua com noindex');
+}
+
+console.log('6. Leitura e área segura');
+for (const [w, h] of [[320, 568], [390, 844], [1440, 900]]) {
+  const page = await (await browser.newContext({ viewport: { width: w, height: h }, reducedMotion: 'reduce' })).newPage();
+  await page.goto(URL, { waitUntil: 'networkidle' });
+  const menor = await page.evaluate(() => {
+    let min = 99, onde = '';
+    const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (tw.nextNode()) {
+      const el = tw.currentNode.parentElement;
+      if (!tw.currentNode.textContent.trim() || !el.getClientRects().length || el.closest('.sr-only, svg')) continue;
+      const fs = parseFloat(getComputedStyle(el).fontSize);
+      if (fs < min) { min = fs; onde = tw.currentNode.textContent.trim().slice(0, 24); }
+    }
+    return { min, onde };
+  });
+  ok(menor.min >= 10.5, `${w}×${h}: menor texto ${menor.min.toFixed(1)} px ("${menor.onde}")`);
+  await page.context().close();
+}
+{
+  // iPhone deitado: entalhe de 47 px nas laterais (env(safe-area-inset-*))
+  const ctx = await browser.newContext({ viewport: { width: 844, height: 390 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+  const page = await ctx.newPage();
+  await (await ctx.newCDPSession(page)).send('Emulation.setSafeAreaInsetsOverride', { insets: { left: 47, right: 47, top: 0, bottom: 21 } });
+  await page.goto(URL, { waitUntil: 'networkidle' });
+  const sob = await page.evaluate(() => [...document.querySelectorAll('.brand, .menu-toggle, .hero__title, .hero__actions .btn, .eyebrow, .visit__street, .footer__grid > *')]
+    .filter(e => { const r = e.getBoundingClientRect(); return r.width && (r.left < 46 || r.right > innerWidth - 46); }).length);
+  ok(!sob, `iPhone deitado: elementos sob o entalhe: ${sob}`);
+  await ctx.close();
 }
 
 await browser.close();
