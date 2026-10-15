@@ -14,7 +14,7 @@ import re
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-SAIDA = RAIZ / "maguilas-visualizacao.html"
+SAIDA = RAIZ / "maguilas-v3-visualizacao.html"
 TIPOS = {".webp": "image/webp", ".woff2": "font/woff2", ".svg": "image/svg+xml", ".jpg": "image/jpeg"}
 
 

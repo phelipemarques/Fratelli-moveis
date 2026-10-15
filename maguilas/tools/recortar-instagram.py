@@ -35,7 +35,6 @@ POSTS = {
     "foto-lanche": ("1", 1, 1, (95, 150, 281, 350)),
     "foto-porcao-peixe-camarao": ("4", 1, 2, (0, 130, 281, 305)),
     "foto-pudim": ("1", 1, 5, (0, 182, 281, 374)),
-    "foto-caipira-morango": ("3", 2, 1, (135, 120, 281, 300)),
     # momentos do dia
     "post-cafe-cachorro-quente": ("4", 2, 3, None),
     "post-almoco-prato-feito": ("4", 2, 2, None),

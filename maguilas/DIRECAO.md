@@ -186,3 +186,51 @@ manchete, e era o elemento que definia o LCP.
 cabeçalho e menu do celular, momentos do dia (continuam com os posts, porque
 não há fotos originais), lógica das abas, barra de ação no celular, rodapé,
 marcadores de prévia.
+
+## 9. Versão 3 — o que mudou e por quê
+
+Sem logo nem fotos originais, a V3 mexeu na composição, não no material.
+Cada item: problema → mudança → ganho.
+
+**Abertura no celular.** A V2 mostrava manchete, texto, botões, horário e
+endereço antes da primeira foto (656 px em 390×844). → A ordem passou a ser
+manchete, fotos, botões, texto, horário. → A comida começa em 327 px e cabe na
+mesma tela que a manchete e o botão, inclusive em 320×568 e com o celular
+deitado.
+
+**Abertura no desktop.** Três fotos tortas e soltas, com a marmita ampliada
+1,2×. → Composição reta, sobre um anel dourado que ecoa o semicírculo da logo,
+com a marmita na frente e legendas em HTML ("Buffet por quilo", "Marmita",
+"Sobremesas"). Nenhuma foto passa do tamanho nativo. → Menos ruído, comida
+identificada, nitidez preservada. A área de foto é ~10% menor que a da V2
+(ver QA, seção 1). Para aumentar, só com as fotos originais.
+
+**O Maguila's.** Quatro cartões com o mesmo formato. → Uma linha do dia
+(Manhã, Almoço, Tarde, Noite) com os posts em tamanho nativo, sem caixas. No
+celular, linha vertical com foto pequena ao lado do texto. → A sequência do dia
+fica visível, e no celular a seção ficou bem mais curta.
+
+**Cardápio.** Lista longa e categoria só no nome da aba. → Título da categoria
+visível com uma linha de apoio; no celular, miniatura ao lado do título e abas
+fixas sob o cabeçalho enquanto se lê a lista; botões que dizem o que
+acontece ("Consultar … no WhatsApp"). Bebidas ficaram sem foto, para não
+destacar o drink alcoólico. → Mais rápido de achar e de saber em que
+categoria se está.
+
+**Buffet.** Texto de apoio, lista de quatro itens e nota diziam a mesma coisa
+de três jeitos. → Três fatos com título curto: "Por quilo", "Grelha na hora",
+"Muda com o dia". → O essencial é lido em segundos.
+
+**Galeria.** Grade de seis posts do mesmo tamanho. → Três colunas alternando
+post inteiro e recorte só da comida (empadas, shawarma, copos), tudo no tamanho
+nativo e identificado como Instagram. → Ritmo, e menos texto ilegível dos
+posts.
+
+**Localização.** O endereço estava numa lista de rótulos. → O endereço virou o
+título da área ("RUA AIMORÉS, 171"), com a referência do Hospital
+Universitário logo abaixo e dois botões: "Traçar rota" e "Falar no WhatsApp".
+A placa de horário continua no lugar da foto da fachada. → Responde "onde
+fica e como chego" de cara.
+
+**Logo.** Continua provisória, em texto. O CSS ganhou a classe `brand__logo`
+para receber o arquivo oficial com uma troca de uma linha (ver README).

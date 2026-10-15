@@ -8,7 +8,7 @@ formato e onde entra no site. Na prévia, todo dado não confirmado aparece com
 
 | # | O quê | Formato | Onde entra |
 |---|---|---|---|
-| 1 | **Logo oficial** | SVG, ou PNG transparente ≥ 600 px de largura; versão para fundo escuro. Se houver, símbolo isolado para o ícone da aba. | Cabeçalho, rodapé, favicon, imagem de compartilhamento. Hoje: marca provisória em texto e um "M" no favicon. |
+| 1 | **Logo oficial** | SVG, ou PNG transparente ≥ 600 px de largura; versão para fundo escuro. Se houver, símbolo isolado para o ícone da aba. | Cabeçalho, rodapé, favicon, imagem de compartilhamento. Hoje: marca provisória em texto e um "M" no favicon. O código já está preparado (classe `brand__logo`). |
 | 2 | **Confirmar o WhatsApp** (45) 99956-6139 | "Sim" ou o número certo; dizer se aceita pedidos e/ou só consultas | 12 links do site (cabeçalho, buffet, cardápio, localização, rodapé, barra do celular). O número veio de 2 posts, não da bio. |
 | 3 | **Confirmar o endereço** | Rua, número, bairro e CEP; confirmar a referência "ao lado do Hospital Universitário" | Abertura, Localização, rodapé, botões de rota. Veio de posts; o bairro (Santo Onofre) foi lido em um post. |
 | 4 | **Confirmar o horário** | Dias e horas; se o buffet tem horário próprio; domingo e feriados | Abertura, Localização, rodapé. A bio diz seg. a sáb., 6h às 23h; um post antigo dizia 6h às 0h. Nada sobre domingo foi escrito no site. |
@@ -19,7 +19,7 @@ formato e onde entra no site. Na prévia, todo dado não confirmado aparece com
 
 | # | O quê | Formato | Onde entra |
 |---|---|---|---|
-| 7 | **Fotos originais**, nesta ordem: (a) um prato completo com carne grelhada, (b) o buffet em plano aberto, (c) uma foto limpa de cada momento do dia | JPG/HEIC do celular ou da câmera, sem texto, sem moldura, ≥ 1600 px no lado maior | (a) protagonista da abertura; (b) seção Buffet; (c) cartões dos momentos, com o texto em HTML ao lado. Hoje: recortes de prints em ~280 px. |
+| 7 | **Fotos originais** — plano completo, com enquadramento, em [`FOTOGRAFIA.md`](FOTOGRAFIA.md) (P1 abertura, P2 buffet e grelha, P3 produtos, P4 ambiente, P5 fachada) | JPG/HEIC original, sem texto nem filtro, ≥ 2000 px no lado maior | Abertura, buffet, cardápio, linha do dia, galeria, localização. Hoje: recortes de prints em ~150 a 280 px. |
 | 8 | Fotos dos produtos que já aparecem nos posts, sem a arte gráfica por cima | Idem | Uma por categoria do cardápio (hoje são recortes de ~150 a 280 px) e galeria. |
 | 9 | **Foto da fachada** | Horizontal, de dia, com a placa visível | Seção Localização, no lugar da placa de horário provisória |
 | 10 | Fotos do salão e do balcão | Horizontal, com luz do dia | Futura seção de ambiente |

@@ -36,16 +36,17 @@ tools/recortar-instagram.py  gera os recortes a partir das capturas de tela
 tools/og-cover.html        modelo da imagem de compartilhamento
 tools/gerar-og.mjs         gera assets/images/og-cover.jpg (Playwright)
 tools/source/instagram/    as 4 capturas de tela do perfil enviadas como referência
-tools/gerar-arquivo-unico.py  gera maguilas-visualizacao.html
-maguilas-visualizacao.html o site inteiro num arquivo só, para visualizar
-docs/comparacao/           capturas antes/depois da versão 2
-DIRECAO.md                 decisões de marca e estrutura (seção 8: versão 2)
+tools/gerar-arquivo-unico.py  gera maguilas-v3-visualizacao.html
+maguilas-v3-visualizacao.html o site inteiro num arquivo só, para visualizar
+docs/comparacao/           capturas V2 × V3 em 1440, 768, 390 e 320 px
+DIRECAO.md                 decisões de marca e estrutura (seção 9: versão 3)
+FOTOGRAFIA.md              auditoria das imagens e plano de fotos P1–P5
 ```
 
 ## Versão em arquivo único
 
-`maguilas-visualizacao.html` tem CSS, JavaScript, fontes e imagens dentro
-dele (≈1,1 MB). Abre com dois cliques, sem servidor e sem as pastas ao lado —
+`maguilas-v3-visualizacao.html` tem CSS, JavaScript, fontes e imagens dentro
+dele (≈1,05 MB). Abre com dois cliques, sem servidor e sem as pastas ao lado —
 serve para mandar ao cliente ver. Não é o arquivo de publicação.
 
 Toda alteração no site deve terminar com:
@@ -83,8 +84,10 @@ Para incluir preço, quando o restaurante enviar, acrescente
    transparente com pelo menos 2× o tamanho de exibição).
 2. No `index.html`, dentro dos dois `<a class="brand">` (cabeçalho e rodapé),
    troque os dois `<span>` por
-   `<img src="assets/images/logo-maguilas.svg" alt="Maguila's Restaurante & Grill" width="…" height="…">`.
-3. Troque também `assets/images/favicon.svg`, que hoje é um "M" provisório.
+   `<img class="brand__logo" src="assets/images/logo-maguilas.svg" alt="Maguila's Restaurante & Grill" width="…" height="…">`.
+   O CSS já tem a classe `brand__logo` (46 px de altura no cabeçalho, 72 px no rodapé).
+3. Troque também `assets/images/favicon.svg`, que hoje é um "M" provisório,
+   e o texto da marca em `tools/og-cover.html` (depois rode `node tools/gerar-og.mjs`).
 
 ## Trocar as fotos
 
@@ -94,13 +97,13 @@ os originais:
 1. Exporte cada foto em WebP, em duas larguras (ex.: 800 e 1600 px), e
    substitua o `<img>` por `srcset`/`sizes`, mantendo `width`/`height`
    proporcionais para não haver salto de layout.
-2. **Abertura:** a composição de três fotos foi feita para o material atual.
-   Com uma boa foto do buffet em alta resolução, o caminho recomendado é
-   colocá-la em tela cheia dentro de `.hero__ambient` (sem o `filter: blur`),
-   remover `.hero__plates` e ajustar `object-position` para não cortar o prato
-   no celular. Manter o `<link rel="preload">` apontando para a nova imagem.
+2. **Abertura:** a composição `.board` (três fotos sobre o anel dourado) foi
+   feita para fotos de ≈280 px. Com a foto P1 de `FOTOGRAFIA.md`, o caminho
+   recomendado é uma foto grande no lugar do `.board` (horizontal no desktop,
+   4:5 no celular, via `<picture>`), mantendo a ordem do celular: manchete →
+   foto → botões. Apontar o `<link rel="preload">` para a nova imagem.
 3. **Fachada:** substitua o bloco `sign` (placa de horário) da seção
-   Localização por um `<img>`, e devolva o horário à lista `info` ao lado.
+   Localização por um `<img>`, e leve o horário para junto do endereço.
 4. **Cardápio e momentos:** com fotos limpas, troque os recortes `foto-*` do
    cardápio e, nos momentos, prefira a foto sem a arte do post.
 

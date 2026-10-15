@@ -65,8 +65,16 @@
         panel.classList.add('is-entering');
       }
       if (focus) {
-        tabs[index].focus();
-        tabs[index].scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: reducedMotion ? 'auto' : 'smooth' });
+        tabs[index].focus({ preventScroll: true });
+        // traz a aba escolhida para a vista dentro da faixa, sem rolar a página
+        var strip = tablist.getBoundingClientRect(), tb = tabs[index].getBoundingClientRect();
+        if (tb.left < strip.left || tb.right > strip.right) {
+          tablist.scrollBy({ left: tb.left - strip.left - 24, behavior: reducedMotion ? 'auto' : 'smooth' });
+        }
+        // no celular as abas ficam fixas no topo: se o início da categoria
+        // ficou escondido atrás delas, rola só o necessário para mostrá-lo
+        var gap = panel.getBoundingClientRect().top - tablist.getBoundingClientRect().bottom;
+        if (gap < 0) window.scrollBy({ top: gap - 12, behavior: reducedMotion ? 'auto' : 'smooth' });
       }
     }
 
@@ -96,13 +104,13 @@
   var revealables = document.querySelectorAll('[data-reveal], .gallery__grid');
 
   // pequeno escalonamento dentro de cada grupo de irmãos
-  document.querySelectorAll('.moments__grid').forEach(function (group) {
+  document.querySelectorAll('.timeline').forEach(function (group) {
     group.querySelectorAll(':scope > [data-reveal]').forEach(function (el, i) {
       el.style.setProperty('--d', (i * 0.09).toFixed(2) + 's');
     });
   });
   document.querySelectorAll('.gallery__grid li').forEach(function (li, i) {
-    li.style.setProperty('--d', ((i % 6) * 0.07).toFixed(2) + 's');
+    li.style.setProperty('--d', ((i % 3) * 0.08).toFixed(2) + 's');
   });
 
   // o CSS só esconde os blocos depois desta classe: se este arquivo falhar,

@@ -109,18 +109,21 @@
           </ul>
         </div>
 
-        <div class="hero__plates" aria-label="Fotos do restaurante">
-          <figure class="plate plate--a">
+        <!-- Composição desenhada para fotos pequenas (≈280 px): nenhuma é ampliada.
+             O círculo dourado ecoa o semicírculo da logo e dá a escala que as fotos não têm. -->
+        <div class="board" role="group" aria-label="Fotos do Maguila's">
+          <span class="board__ring" aria-hidden="true"></span>
+          <figure class="board__item board__item--buffet">
             <img src="assets/images/foto-buffet-vitrine.webp" width="280" height="329" alt="Balcão do buffet com cubas de legumes, abacaxi, batata e frango frito" fetchpriority="high" decoding="async">
-            <figcaption>o buffet</figcaption>
+            <figcaption>Buffet por quilo</figcaption>
           </figure>
-          <figure class="plate plate--b">
+          <figure class="board__item board__item--doce">
             <img src="assets/images/foto-sobremesa-copos.webp" width="280" height="339" alt="Copos de sobremesa com creme, maracujá e uva, com tampa e etiqueta do Maguila's" decoding="async">
-            <figcaption>a sobremesa</figcaption>
+            <figcaption>Sobremesas</figcaption>
           </figure>
-          <figure class="plate plate--c">
-            <img src="assets/images/foto-marmita.webp" width="233" height="272" alt="Marmita com carne grelhada, arroz, feijão, batata frita e tomate" decoding="async">
-            <figcaption>a marmita</figcaption>
+          <figure class="board__item board__item--marmita">
+            <img src="assets/images/foto-marmita.webp" width="233" height="272" alt="Marmita com carne grelhada, arroz, feijão, batata frita e tomate" fetchpriority="high" decoding="async">
+            <figcaption>Marmita</figcaption>
           </figure>
         </div>
       </div>
@@ -131,7 +134,7 @@
       </a>
     </section>
 
-    <!-- ============ 02 · O MAGUILA'S + MOMENTOS DO DIA ============ -->
+    <!-- ============ 02 · O MAGUILA'S + UM DIA NO MAGUILA'S ============ -->
     <section class="intro section" id="sobre" aria-labelledby="sobre-title">
       <div class="wrap">
         <div class="intro__grid">
@@ -147,54 +150,50 @@
           </p>
         </div>
 
-        <p class="kicker" data-reveal>Do primeiro café ao prato do jantar</p>
-
-        <div class="moments__grid">
-          <article class="moment moment--cafe" data-reveal>
-            <figure class="moment__media">
+        <!-- Linha do dia: quatro ocasiões de consumo, na ordem em que acontecem -->
+        <ol class="timeline" aria-label="Um dia no Maguila's">
+          <li class="tl" data-reveal>
+            <p class="tl__when"><span class="tl__dot" aria-hidden="true"></span>Manhã</p>
+            <figure class="tl__media">
               <img src="assets/images/post-cafe-cachorro-quente.webp" width="280" height="375" alt="Post do Maguila's: cachorro-quente com batata palha para o café da manhã" loading="lazy" decoding="async">
             </figure>
-            <div class="moment__body">
-              <p class="moment__when">Manhã</p>
-              <h3 class="moment__title">Café da manhã</h3>
-              <p>Cafezinho, pão francês, pão de queijo, salgados e o cachorro-quente que abre o dia.</p>
+            <div class="tl__body">
+              <h3 class="tl__title">Café da manhã</h3>
+              <p>Cafezinho, pão francês, pão de queijo, salgados e cachorro-quente.</p>
             </div>
-          </article>
-
-          <article class="moment moment--almoco" data-reveal>
-            <figure class="moment__media">
+          </li>
+          <li class="tl tl--main" data-reveal>
+            <p class="tl__when"><span class="tl__dot" aria-hidden="true"></span>Almoço</p>
+            <figure class="tl__media">
               <img src="assets/images/post-almoco-prato-feito.webp" width="281" height="375" alt="Post do Maguila's: prato feito com bife, arroz, feijão preto, batata frita, alface e tomate" loading="lazy" decoding="async">
             </figure>
-            <div class="moment__body">
-              <p class="moment__when">Almoço</p>
-              <h3 class="moment__title">Buffet e prato feito</h3>
-              <p>Buffet por quilo com grelhados na hora. Ou o prato feito do Maguila’s: feijão preto, batata frita, alface e tomate.</p>
+            <div class="tl__body">
+              <h3 class="tl__title">Buffet e prato feito</h3>
+              <p>Buffet por quilo com grelhados na hora, ou o prato feito com feijão preto e fritas.</p>
               <a class="link-arrow" href="#buffet">Conheça o buffet <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
             </div>
-          </article>
-
-          <article class="moment moment--tarde" data-reveal>
-            <figure class="moment__media">
+          </li>
+          <li class="tl" data-reveal>
+            <p class="tl__when"><span class="tl__dot" aria-hidden="true"></span>Tarde</p>
+            <figure class="tl__media">
               <img src="assets/images/post-tarde-empadao.webp" width="281" height="375" alt="Post do Maguila's: empadão de frango para o lanche da tarde" loading="lazy" decoding="async">
             </figure>
-            <div class="moment__body">
-              <p class="moment__when">Tarde</p>
-              <h3 class="moment__title">Lanche da tarde</h3>
-              <p>Empadão de frango, coxinha, empadas, bolos e docinhos para acompanhar o café.</p>
+            <div class="tl__body">
+              <h3 class="tl__title">Lanche da tarde</h3>
+              <p>Empadão de frango, coxinha, empadas, bolos e docinhos para o café.</p>
             </div>
-          </article>
-
-          <article class="moment moment--jantar" data-reveal>
-            <figure class="moment__media">
+          </li>
+          <li class="tl" data-reveal>
+            <p class="tl__when"><span class="tl__dot" aria-hidden="true"></span>Noite</p>
+            <figure class="tl__media">
               <img src="assets/images/post-jantar-pratos.webp" width="281" height="375" alt="Post do Maguila's: três pratos feitos com carne, arroz, salada e fritas para o jantar" loading="lazy" decoding="async">
             </figure>
-            <div class="moment__body">
-              <p class="moment__when">Noite</p>
-              <h3 class="moment__title">Jantar</h3>
+            <div class="tl__body">
+              <h3 class="tl__title">Jantar</h3>
               <p>Várias opções de prato feito para fechar o dia.</p>
             </div>
-          </article>
-        </div>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -209,7 +208,7 @@
             </h2>
           </div>
           <div class="menu__disclaimer">
-            <p>Algumas opções já divulgadas pelo Maguila’s. Disponibilidade e valores: consulte pelo WhatsApp.</p>
+            <p>Opções já divulgadas pelo Maguila’s. Valores e o que tem hoje: consulte pelo WhatsApp.</p>
             <p class="preview-only pend-note">Prévia — o cardápio oficial, com preços, ainda não foi enviado.</p>
           </div>
         </header>
@@ -226,11 +225,15 @@
 
         <div class="menu__panels">
           <section class="menu__panel" id="cat-cafe" role="tabpanel" aria-labelledby="tab-cafe" tabindex="0">
-            <h3 class="menu__cat">Café da manhã</h3>
             <figure class="menu__photo">
               <img src="assets/images/foto-salgados-vitrine.webp" width="149" height="250" alt="Vitrine de salgados fritos e assados do Maguila's" loading="lazy" decoding="async">
+              <figcaption>Salgados da vitrine</figcaption>
             </figure>
             <div class="menu__content">
+              <header class="menu__head">
+                <h3 class="menu__cat">Café da manhã</h3>
+                <p class="menu__intro">Para começar o dia, desde cedo.</p>
+              </header>
               <ul class="menu__list">
                 <li><span class="menu__item">Cafezinho</span><span class="menu__desc">O cafézão para começar o dia.</span></li>
                 <li><span class="menu__item">Café com pão francês</span><span class="menu__desc">O clássico da manhã.</span></li>
@@ -239,17 +242,21 @@
                 <li><span class="menu__item">Salgados fritos e assados</span><span class="menu__desc">Para acompanhar o café.</span></li>
               </ul>
               <a class="btn btn--ghost btn--sm menu__ask" href="https://wa.me/5545999566139?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Maguila%E2%80%99s%20e%20gostaria%20de%20consultar%20as%20op%C3%A7%C3%B5es%20de%20caf%C3%A9%20da%20manh%C3%A3." target="_blank" rel="noopener">
-                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar café da manhã
+                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar café da manhã no WhatsApp
               </a>
             </div>
           </section>
 
           <section class="menu__panel" id="cat-buffet" role="tabpanel" aria-labelledby="tab-buffet" tabindex="0">
-            <h3 class="menu__cat">Buffet &amp; grelhados</h3>
             <figure class="menu__photo">
               <img src="assets/images/foto-buffet-cubas.webp" width="281" height="184" alt="Cubas do buffet com legumes, farofa e molho" loading="lazy" decoding="async">
+              <figcaption>Cubas do buffet</figcaption>
             </figure>
             <div class="menu__content">
+              <header class="menu__head">
+                <h3 class="menu__cat">Buffet &amp; grelhados</h3>
+                <p class="menu__intro">O carro-chefe da casa.</p>
+              </header>
               <ul class="menu__list">
                 <li><span class="menu__item">Buffet por quilo</span><span class="menu__desc">Saladas, pratos quentes, carnes e opções para todos os gostos.</span></li>
                 <li><span class="menu__item">Grelhados na hora</span><span class="menu__desc">Carne preparada na grelha quando você pede.</span></li>
@@ -257,17 +264,21 @@
                 <li><span class="menu__item">Pratos especiais do dia</span><span class="menu__desc">Como a feijoada e o strogonoff.</span></li>
               </ul>
               <a class="btn btn--ghost btn--sm menu__ask" href="https://wa.me/5545999566139?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Maguila%E2%80%99s.%20Qual%20%C3%A9%20o%20buffet%20de%20hoje%3F" target="_blank" rel="noopener">
-                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Perguntar o buffet de hoje
+                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Perguntar o buffet de hoje no WhatsApp
               </a>
             </div>
           </section>
 
           <section class="menu__panel" id="cat-pratos" role="tabpanel" aria-labelledby="tab-pratos" tabindex="0">
-            <h3 class="menu__cat">Pratos &amp; marmitas</h3>
             <figure class="menu__photo">
               <img src="assets/images/foto-bife-acebolado.webp" width="258" height="193" alt="Carne acebolada com polenta frita e salada" loading="lazy" decoding="async">
+              <figcaption>Prato com carne acebolada</figcaption>
             </figure>
             <div class="menu__content">
+              <header class="menu__head">
+                <h3 class="menu__cat">Pratos &amp; marmitas</h3>
+                <p class="menu__intro">Prato feito e marmita para o dia a dia.</p>
+              </header>
               <ul class="menu__list">
                 <li><span class="menu__item">Prato feito do Maguila’s</span><span class="menu__desc">Feijão preto, batata frita, alface e tomate.</span></li>
                 <li><span class="menu__item">Marmita</span><span class="menu__desc">Sabor e praticidade no seu dia.</span></li>
@@ -275,17 +286,21 @@
                 <li><span class="menu__item">Pratos feitos no jantar</span><span class="menu__desc">Várias opções à noite.</span></li>
               </ul>
               <a class="btn btn--ghost btn--sm menu__ask" href="https://wa.me/5545999566139?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Maguila%E2%80%99s%20e%20gostaria%20de%20consultar%20as%20op%C3%A7%C3%B5es%20de%20marmitas." target="_blank" rel="noopener">
-                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar marmitas
+                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar marmitas no WhatsApp
               </a>
             </div>
           </section>
 
           <section class="menu__panel" id="cat-lanches" role="tabpanel" aria-labelledby="tab-lanches" tabindex="0">
-            <h3 class="menu__cat">Lanches &amp; salgados</h3>
             <figure class="menu__photo">
               <img src="assets/images/foto-lanche.webp" width="186" height="200" alt="Hambúrguer com queijo, alface e tomate" loading="lazy" decoding="async">
+              <figcaption>Lanche caprichado</figcaption>
             </figure>
             <div class="menu__content">
+              <header class="menu__head">
+                <h3 class="menu__cat">Lanches &amp; salgados</h3>
+                <p class="menu__intro">Lanches preparados na hora e salgados da vitrine.</p>
+              </header>
               <ul class="menu__list">
                 <li><span class="menu__item">Lanche caprichado</span><span class="menu__desc">Hambúrguer com ingredientes fresquinhos, preparado na hora.</span></li>
                 <li><span class="menu__item">Shawarma</span><span class="menu__desc">De costela ou de bife em tiras.</span></li>
@@ -296,33 +311,41 @@
                 <li><span class="menu__item">Calzone de pizza</span><span class="menu__desc">Recheio caprichado, massa douradinha.</span></li>
               </ul>
               <a class="btn btn--ghost btn--sm menu__ask" href="https://wa.me/5545999566139?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Maguila%E2%80%99s%20e%20gostaria%20de%20consultar%20os%20lanches%20e%20salgados." target="_blank" rel="noopener">
-                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar lanches
+                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar lanches no WhatsApp
               </a>
             </div>
           </section>
 
           <section class="menu__panel" id="cat-porcoes" role="tabpanel" aria-labelledby="tab-porcoes" tabindex="0">
-            <h3 class="menu__cat">Porções</h3>
             <figure class="menu__photo">
               <img src="assets/images/foto-porcao-peixe-camarao.webp" width="281" height="175" alt="Porção de peixe e camarão empanados com limão" loading="lazy" decoding="async">
+              <figcaption>Peixe e camarão</figcaption>
             </figure>
             <div class="menu__content">
+              <header class="menu__head">
+                <h3 class="menu__cat">Porções</h3>
+                <p class="menu__intro">Petiscos para a mesa.</p>
+              </header>
               <ul class="menu__list">
                 <li><span class="menu__item">Porção de peixe e camarão</span><span class="menu__desc">Para dividir na mesa.</span></li>
                 <li><span class="menu__item">Outras porções</span><span class="menu__desc">Pergunte as opções do dia.</span></li>
               </ul>
               <a class="btn btn--ghost btn--sm menu__ask" href="https://wa.me/5545999566139?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Maguila%E2%80%99s%20e%20gostaria%20de%20consultar%20as%20por%C3%A7%C3%B5es." target="_blank" rel="noopener">
-                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar porções
+                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar porções no WhatsApp
               </a>
             </div>
           </section>
 
           <section class="menu__panel" id="cat-doces" role="tabpanel" aria-labelledby="tab-doces" tabindex="0">
-            <h3 class="menu__cat">Doces &amp; sobremesas</h3>
             <figure class="menu__photo">
               <img src="assets/images/foto-pudim.webp" width="281" height="192" alt="Pudim inteiro com calda de caramelo" loading="lazy" decoding="async">
+              <figcaption>Pudim</figcaption>
             </figure>
             <div class="menu__content">
+              <header class="menu__head">
+                <h3 class="menu__cat">Doces &amp; sobremesas</h3>
+                <p class="menu__intro">Bolos, tortas e docinhos da vitrine.</p>
+              </header>
               <ul class="menu__list">
                 <li><span class="menu__item">Pudim</span></li>
                 <li><span class="menu__item">Copo da felicidade</span><span class="menu__desc">Maracujá, morango, Kit Kat, bombom de uva e ninho com uva.</span></li>
@@ -335,24 +358,25 @@
                 <li><span class="menu__item">Salada de frutas</span></li>
               </ul>
               <a class="btn btn--ghost btn--sm menu__ask" href="https://wa.me/5545999566139?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Maguila%E2%80%99s%20e%20gostaria%20de%20consultar%20os%20doces%20e%20sobremesas." target="_blank" rel="noopener">
-                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar doces
+                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar doces no WhatsApp
               </a>
             </div>
           </section>
 
-          <section class="menu__panel" id="cat-bebidas" role="tabpanel" aria-labelledby="tab-bebidas" tabindex="0">
-            <h3 class="menu__cat">Bebidas</h3>
-            <figure class="menu__photo">
-              <img src="assets/images/foto-caipira-morango.webp" width="146" height="180" alt="Caipira de morango com saquê, com gelo e morango" loading="lazy" decoding="async">
-            </figure>
+          <!-- Bebidas sem foto de propósito: a única foto disponível é de um drink alcoólico -->
+          <section class="menu__panel menu__panel--text" id="cat-bebidas" role="tabpanel" aria-labelledby="tab-bebidas" tabindex="0">
             <div class="menu__content">
+              <header class="menu__head">
+                <h3 class="menu__cat">Bebidas</h3>
+                <p class="menu__intro">Do cafezinho às bebidas da mesa.</p>
+              </header>
               <ul class="menu__list">
-                <li><span class="menu__item">Caipira de morango com saquê</span></li>
-                <li><span class="menu__item">Cervejas e drinks</span></li>
                 <li><span class="menu__item">Café e bebidas em geral</span></li>
+                <li><span class="menu__item">Cervejas e drinks</span></li>
+                <li><span class="menu__item">Caipira de morango com saquê</span></li>
               </ul>
               <a class="btn btn--ghost btn--sm menu__ask" href="https://wa.me/5545999566139?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Maguila%E2%80%99s%20e%20gostaria%20de%20consultar%20as%20bebidas." target="_blank" rel="noopener">
-                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar bebidas
+                <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Consultar bebidas no WhatsApp
               </a>
             </div>
           </section>
@@ -369,21 +393,21 @@
             Nosso buffet
             <span class="script script--block">variedade e sabor</span>
           </h2>
-          <p class="lead">
-            É buffet por quilo: você monta o prato do seu jeito. Ao lado, a grelha prepara
-            as carnes na hora.
-          </p>
 
-          <ul class="buffet__list" aria-label="No balcão do buffet">
-            <li>Saladas fresquinhas</li>
-            <li>Pratos quentinhos</li>
-            <li>Carnes suculentas</li>
-            <li>Opções para todos os gostos</li>
-          </ul>
-
-          <p class="note">
-            O buffet muda conforme o dia — feijoada e strogonoff já passaram por aqui.
-          </p>
+          <dl class="buffet__facts">
+            <div>
+              <dt>Por quilo</dt>
+              <dd>Saladas, pratos quentes e carnes. Você monta o prato do seu jeito.</dd>
+            </div>
+            <div>
+              <dt>Grelha na hora</dt>
+              <dd>A carne vai para a grelha quando você pede.</dd>
+            </div>
+            <div>
+              <dt>Muda com o dia</dt>
+              <dd>Feijoada e strogonoff já passaram por aqui.</dd>
+            </div>
+          </dl>
 
           <div class="buffet__actions">
             <a class="btn btn--dark" href="https://wa.me/5545999566139?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Maguila%E2%80%99s.%20Qual%20%C3%A9%20o%20buffet%20de%20hoje%3F" target="_blank" rel="noopener">
@@ -413,10 +437,10 @@
           <h2 class="title-xl" id="galeria-title">
             Direto do <span class="script script--inline">nosso Instagram</span>
           </h2>
-          <p class="gallery__intro">Publicações do perfil do restaurante, do jeito que saíram no feed.</p>
+          <p class="gallery__intro">Publicações do perfil do restaurante. Algumas aparecem recortadas para mostrar só a comida.</p>
           <a class="btn btn--ghost" href="https://www.instagram.com/maguilas_restaurante/" target="_blank" rel="noopener">
             <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
-            @maguilas_restaurante
+            Ver o perfil
           </a>
           <p class="preview-only pend-note">
             Prévia — recortes de capturas de tela, em tamanho original (cerca de 280&nbsp;px).
@@ -424,13 +448,14 @@
           </p>
         </header>
 
+        <!-- Colunas alternando post inteiro e recorte da foto: ritmo sem ampliar nada -->
         <ul class="gallery__grid" aria-label="Publicações do Instagram">
           <li><figure><img src="assets/images/post-coxinha-costela.webp" width="281" height="375" alt="Coxinhas de massa de mandioca com recheio de costela" loading="lazy" decoding="async"><figcaption>Coxinha de mandioca com costela</figcaption></figure></li>
-          <li><figure><img src="assets/images/post-shawarma.webp" width="280" height="353" alt="Shawarma de costela recheado" loading="lazy" decoding="async"><figcaption>Shawarma de costela</figcaption></figure></li>
+          <li class="g-crop g-crop--empadas"><figure><img src="assets/images/post-empadas.webp" width="281" height="374" alt="Empadas douradas em forminhas" loading="lazy" decoding="async"><figcaption>Empadas</figcaption></figure></li>
+          <li class="g-crop g-crop--shawarma"><figure><img src="assets/images/post-shawarma.webp" width="280" height="353" alt="Shawarma de costela recheado" loading="lazy" decoding="async"><figcaption>Shawarma de costela</figcaption></figure></li>
           <li><figure><img src="assets/images/post-docinhos.webp" width="281" height="375" alt="Bandeja de brigadeiros e beijinhos" loading="lazy" decoding="async"><figcaption>Brigadeiro e beijinho</figcaption></figure></li>
-          <li><figure><img src="assets/images/post-empadas.webp" width="281" height="374" alt="Empadas douradas em forminhas" loading="lazy" decoding="async"><figcaption>Empadas</figcaption></figure></li>
-          <li><figure><img src="assets/images/post-copos-felicidade.webp" width="281" height="367" alt="Copos da felicidade de maracujá, morango, Kit Kat e uva" loading="lazy" decoding="async"><figcaption>Copos da felicidade</figcaption></figure></li>
           <li><figure><img src="assets/images/post-cupcake.webp" width="280" height="375" alt="Cupcakes com cobertura branca e confeitos coloridos" loading="lazy" decoding="async"><figcaption>Cupcakes</figcaption></figure></li>
+          <li class="g-crop g-crop--copos"><figure><img src="assets/images/post-copos-felicidade.webp" width="281" height="367" alt="Copos da felicidade de maracujá, morango, Kit Kat e uva" loading="lazy" decoding="async"><figcaption>Copos da felicidade</figcaption></figure></li>
         </ul>
       </div>
     </section>
@@ -444,36 +469,31 @@
             Venha <span class="script script--inline">nos visitar</span>
           </h2>
 
-          <dl class="info">
-            <div class="info__row">
-              <dt><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Endereço</dt>
-              <dd>
-                <address class="pend" title="Visto nos posts do Instagram — confirmar com o restaurante">
-                  Rua Aimorés, 171 · Santo Onofre<br>
-                  Cascavel · Paraná
-                </address>
-                <span class="info__ref pend" title="Referência vista em um post — confirmar">Ao lado do Hospital Universitário</span>
-              </dd>
-            </div>
-            <div class="info__row">
-              <dt><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp</dt>
-              <dd><a class="pend" href="https://wa.me/5545999566139" target="_blank" rel="noopener" title="Número visto nos posts — confirmar com o restaurante">(45) 99956-6139</a></dd>
-            </div>
-            <div class="info__row">
-              <dt><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg> Instagram</dt>
-              <dd><a href="https://www.instagram.com/maguilas_restaurante/" target="_blank" rel="noopener">@maguilas_restaurante</a></dd>
-            </div>
-          </dl>
+          <address class="visit__address pend" title="Visto nos posts do Instagram — confirmar com o restaurante">
+            <span class="visit__street">Rua Aimorés, 171</span>
+            <span class="visit__city">Santo Onofre · Cascavel/PR</span>
+          </address>
+          <p class="visit__ref">
+            <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+            <span class="pend" title="Referência vista em um post — confirmar">Ao lado do Hospital Universitário</span>
+          </p>
 
           <div class="visit__actions">
             <a class="btn btn--dark" href="https://www.google.com/maps/dir/?api=1&amp;destination=Rua%20Aimor%C3%A9s%2C%20171%20-%20Santo%20Onofre%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener">
               <svg class="icon" aria-hidden="true"><use href="#i-route"/></svg>
               Traçar rota
             </a>
-            <a class="btn btn--outline-dark" href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Aimor%C3%A9s%2C%20171%20-%20Santo%20Onofre%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener">
-              Abrir no Google Maps
+            <a class="btn btn--outline-dark" href="https://wa.me/5545999566139" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+              Falar no WhatsApp
             </a>
           </div>
+
+          <ul class="visit__contacts">
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Aimor%C3%A9s%2C%20171%20-%20Santo%20Onofre%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener">Abrir no Google Maps</a></li>
+            <li><a class="pend" href="https://wa.me/5545999566139" target="_blank" rel="noopener" title="Número visto nos posts — confirmar com o restaurante">(45) 99956-6139</a></li>
+            <li><a href="https://www.instagram.com/maguilas_restaurante/" target="_blank" rel="noopener">@maguilas_restaurante</a></li>
+          </ul>
         </div>
 
         <!-- Placa de horário: ocupa o lugar da foto da fachada até ela chegar -->
