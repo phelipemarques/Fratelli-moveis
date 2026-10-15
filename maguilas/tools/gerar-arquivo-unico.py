@@ -37,6 +37,8 @@ def main() -> None:
 
     # pré-carregamentos apontam para arquivos que não vão junto
     html = re.sub(r'\s*<link rel="preload"[^>]*>', "", html)
+    # og:image precisa de endereço absoluto do site publicado; aqui ficaria quebrado
+    html = re.sub(r'\s*<meta property="og:image[^>]*>', "", html)
 
     cache: dict[str, str] = {}
     def imagem(m: re.Match) -> str:

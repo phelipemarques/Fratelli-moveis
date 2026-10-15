@@ -24,10 +24,18 @@ GRADES = {
 # nome de saída: (captura, linha, coluna, recorte interno opcional)
 # O recorte interno tira texto ou o ícone de vídeo do Instagram das fotos limpas.
 POSTS = {
-    # fotos sem arte gráfica (abertura)
+    # fotos sem arte gráfica (abertura; as cubas vão para o cardápio)
     "foto-buffet-vitrine": ("4", 1, 3, (0, 38, 280, 367)),
     "foto-sobremesa-copos": ("2", 1, 3, (0, 36, 280, 375)),
     "foto-buffet-cubas": ("1", 2, 2, (0, 78, 281, 262)),
+    "foto-marmita": ("2", 1, 5, (10, 100, 243, 372)),
+    # só a foto do produto, sem a arte do post (cardápio)
+    "foto-salgados-vitrine": ("3", 1, 2, (132, 50, 281, 300)),
+    "foto-bife-acebolado": ("4", 2, 1, (0, 112, 258, 305)),
+    "foto-lanche": ("1", 1, 1, (95, 150, 281, 350)),
+    "foto-porcao-peixe-camarao": ("4", 1, 2, (0, 130, 281, 305)),
+    "foto-pudim": ("1", 1, 5, (0, 182, 281, 374)),
+    "foto-caipira-morango": ("3", 2, 1, (135, 120, 281, 300)),
     # momentos do dia
     "post-cafe-cachorro-quente": ("4", 2, 3, None),
     "post-almoco-prato-feito": ("4", 2, 2, None),
@@ -37,18 +45,12 @@ POSTS = {
     "post-buffet-almoco": ("3", 1, 3, None),
     "post-buffet-frango": ("3", 2, 4, None),
     # galeria
-    "post-lanche-caprichado": ("1", 1, 1, None),
     "post-coxinha-costela": ("3", 1, 1, None),
-    "post-pudim": ("1", 1, 5, None),
     "post-docinhos": ("1", 2, 1, None),
     "post-cupcake": ("2", 1, 4, None),
-    "post-marmita": ("2", 1, 5, None),
-    "post-porcao-peixe-camarao": ("4", 1, 2, None),
     "post-shawarma": ("3", 2, 3, None),
     "post-empadas": ("1", 1, 2, None),
     "post-copos-felicidade": ("4", 1, 1, None),
-    "post-salgados-vitrine": ("3", 1, 2, None),
-    "post-bife-acebolado": ("4", 2, 1, None),
 }
 
 def main(origem: Path, destino: Path) -> None:

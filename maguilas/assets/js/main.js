@@ -96,7 +96,7 @@
   var revealables = document.querySelectorAll('[data-reveal], .gallery__grid');
 
   // pequeno escalonamento dentro de cada grupo de irmãos
-  document.querySelectorAll('[data-reveal-group], .moments__grid').forEach(function (group) {
+  document.querySelectorAll('.moments__grid').forEach(function (group) {
     group.querySelectorAll(':scope > [data-reveal]').forEach(function (el, i) {
       el.style.setProperty('--d', (i * 0.09).toFixed(2) + 's');
     });
@@ -105,9 +105,10 @@
     li.style.setProperty('--d', ((i % 6) * 0.07).toFixed(2) + 's');
   });
 
-  if (!hasIO || reducedMotion) {
-    revealables.forEach(function (el) { el.classList.add('is-in'); });
-  } else {
+  // o CSS só esconde os blocos depois desta classe: se este arquivo falhar,
+  // ou não houver IntersectionObserver, nada fica invisível
+  if (hasIO && !reducedMotion) {
+    document.documentElement.classList.add('reveal-on');
     var revealIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {

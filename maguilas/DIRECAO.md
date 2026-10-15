@@ -49,22 +49,19 @@ explica a variedade sem virar catálogo e casa com o horário longo da casa.
 Ideia central (proposta, não slogan): *um endereço para vários momentos do
 seu dia*, com o **buffet por quilo e a grelha** como prova principal.
 
-## 3. Estrutura e justificativa
+## 3. Estrutura e justificativa (versão 2)
 
-| # | Seção | Por que existe |
+| # | Seção | Função única |
 |---|---|---|
 | 01 | Abertura | Responde em 5 s: quem é, o que serve, onde, e os dois caminhos (cardápio / como chegar). |
-| 02 | O Maguila's | Apresentação curta e verdadeira + 4 pilares tirados da bio. Sem história inventada. |
-| 03 | Do primeiro café ao jantar | As opções organizadas por momento, com os posts reais de cada um. |
-| 04 | Nosso buffet | O carro-chefe ganha seção própria, em superfície creme para quebrar o ritmo escuro. Botão "Perguntar o buffet de hoje" — o buffet muda e o site não sabe qual é. |
-| 05 | Cardápio | Abas por categoria, só com itens que o restaurante já divulgou, sem preço. Um botão de consulta por categoria. |
-| 06 | Galeria | Curadoria de 12 posts reais, não o mural inteiro. |
-| 07 | Localização | Endereço, horário, WhatsApp, Instagram, rota. Espaço para a foto da fachada. |
+| 02 | O Maguila's + momentos do dia | Apresenta a proposta em uma frase e mostra as quatro ocasiões de consumo com os posts reais. |
+| 03 | Cardápio | Encontrar o que o restaurante já divulgou, por categoria, e consultar pelo WhatsApp. |
+| 04 | Nosso buffet | Vender o carro-chefe, em superfície creme. "Perguntar o buffet de hoje", porque o buffet muda. |
+| 05 | Galeria | Seis publicações do Instagram, com legenda — e só posts que não aparecem em outra seção. |
+| 06 | Localização | Endereço, WhatsApp, Instagram e rota, com a placa de horário no lugar da foto da fachada. |
 | — | Rodapé | Marca, navegação, contato, endereço e horário. |
 
-A seção "O restaurante / ambiente" do briefing foi **incorporada** à 02 e à 07:
-não há fotos do salão que sustentem uma seção própria (o único registro é um
-vídeo de obra). Volta como seção quando houver fotos.
+A seção de ambiente continua fora: não há fotos do salão que a sustentem.
 
 ## 4. Sistema visual
 
@@ -127,3 +124,65 @@ por IA ou tirada de banco de imagens.
 Quando chegarem as fotos originais, a abertura deve passar para uma
 **fotografia de buffet em tela cheia** — a composição atual foi desenhada para
 funcionar com o material que existe hoje, não para ser a versão final.
+
+## 8. Versão 2 — o que mudou e por quê
+
+Sem material novo do cliente (logo, fotos originais e cardápio continuam
+pendentes), a versão 2 mexeu só onde havia ganho demonstrável.
+
+**Jornada.** Comparei a ordem anterior com a sugerida no briefing da v2.
+A sugerida colocava o cardápio, que é texto, logo depois da apresentação e
+empurrava os momentos — a seção mais apetitosa — para depois do buffet.
+Fiquei com uma terceira opção: **fundir "O Maguila's" e "Momentos"** (os quatro
+pilares repetiam a abertura e os momentos) e **subir o cardápio para antes do
+buffet**. Medido na prévia:
+
+| | v1 | v2 |
+|---|---|---|
+| Até o cardápio, 1440×900 | 3.745 px (4,2 telas) | 2.383 px (2,6 telas) |
+| Até o cardápio, 390×844 | 4.527 px (5,4 telas) | 2.575 px (3,1 telas) |
+| Até a localização, 390×844 | 6.421 px | 5.869 px |
+| Altura total, 390×844 | 8.467 px | 7.982 px |
+
+**Ritmo de fundo.** Escuro → escuro quente (cardápio) → creme (buffet) →
+escuro (galeria) → creme (localização) → escuro (rodapé). A localização
+passou para o creme porque é o ponto de chegada da página e porque três
+seções escuras seguidas apagavam o buffet.
+
+**Abertura.** A terceira foto (cubas de farofa e chuchu) era a menos apetitosa
+e foi trocada pela **marmita com carne e fritas**, recortada da foto de um post
+— sem a arte gráfica, em tamanho nativo. Ela agora fica na frente e reforça o
+"grelhado na hora". As legendas manuscritas foram reposicionadas para não
+ficarem atrás das fotos. A manchete e os botões não mudaram.
+
+**Cardápio.** Cada categoria ganhou **uma** foto de produto (seis de sete),
+recortada só da parte fotográfica do post, sem texto por cima, em tamanho
+nativo. Nomes dos itens saíram da caixa alta (menos palavras gritando, leitura
+mais rápida). No desktop, todas as abas ocupam a mesma célula: trocar de
+categoria não muda a altura da página. Texto de abertura reescrito como
+**vitrine** ("Algumas opções já divulgadas… Disponibilidade e valores: consulte
+pelo WhatsApp"), e o "servido todos os dias" do frango saiu.
+
+**Buffet.** As cinco etiquetas viraram uma lista de quatro itens, os mesmos
+quatro do post "Nosso Buffet". A frase "Quer saber o de hoje? É só perguntar"
+saiu porque o botão logo abaixo já diz isso.
+
+**Galeria.** De 12 miniaturas a ~190 px para **6 posts em tamanho nativo**
+(281 px), com legenda em texto, apresentados explicitamente como publicações
+do Instagram. Nenhum deles aparece em outra seção.
+
+**Localização.** O quadro tracejado "Foto da fachada" virou uma **placa de
+horário** (dias, horas, endereço) — informação útil enquanto a foto não chega.
+O horário saiu da lista ao lado para não aparecer duas vezes.
+
+**Robustez.** O CSS só esconde blocos para a animação de entrada depois que o
+`main.js` liga a classe `reveal-on`. Antes, se o arquivo falhasse, metade da
+página ficava invisível.
+
+**Desempenho.** A fonte manuscrita passou a ser pré-carregada: ela compõe a
+manchete, e era o elemento que definia o LCP.
+
+**Mantido sem alteração:** paleta, fontes, manchete, botões da abertura,
+cabeçalho e menu do celular, momentos do dia (continuam com os posts, porque
+não há fotos originais), lógica das abas, barra de ação no celular, rodapé,
+marcadores de prévia.

@@ -38,12 +38,14 @@ tools/gerar-og.mjs         gera assets/images/og-cover.jpg (Playwright)
 tools/source/instagram/    as 4 capturas de tela do perfil enviadas como referência
 tools/gerar-arquivo-unico.py  gera maguilas-visualizacao.html
 maguilas-visualizacao.html o site inteiro num arquivo só, para visualizar
+docs/comparacao/           capturas antes/depois da versão 2
+DIRECAO.md                 decisões de marca e estrutura (seção 8: versão 2)
 ```
 
 ## Versão em arquivo único
 
 `maguilas-visualizacao.html` tem CSS, JavaScript, fontes e imagens dentro
-dele (≈1,2 MB). Abre com dois cliques, sem servidor e sem as pastas ao lado —
+dele (≈1,1 MB). Abre com dois cliques, sem servidor e sem as pastas ao lado —
 serve para mandar ao cliente ver. Não é o arquivo de publicação.
 
 Toda alteração no site deve terminar com:
@@ -97,8 +99,10 @@ os originais:
    colocá-la em tela cheia dentro de `.hero__ambient` (sem o `filter: blur`),
    remover `.hero__plates` e ajustar `object-position` para não cortar o prato
    no celular. Manter o `<link rel="preload">` apontando para a nova imagem.
-3. **Fachada:** substitua o bloco `photo-slot` da seção Localização por um
-   `<img>`.
+3. **Fachada:** substitua o bloco `sign` (placa de horário) da seção
+   Localização por um `<img>`, e devolva o horário à lista `info` ao lado.
+4. **Cardápio e momentos:** com fotos limpas, troque os recortes `foto-*` do
+   cardápio e, nos momentos, prefira a foto sem a arte do post.
 
 ## Sair do modo prévia (antes de publicar)
 

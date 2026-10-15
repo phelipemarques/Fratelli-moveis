@@ -19,9 +19,9 @@ formato e onde entra no site. Na prévia, todo dado não confirmado aparece com
 
 | # | O quê | Formato | Onde entra |
 |---|---|---|---|
-| 7 | **Fotos originais** — a mais importante é o **buffet em plano aberto** | JPG/HEIC do celular ou da câmera, sem texto, sem moldura, ≥ 1600 px no lado maior | Abertura em tela cheia, seção Buffet, momentos do dia, galeria. Hoje: recortes de prints em ~280 px. |
-| 8 | Fotos dos pratos que já aparecem nos posts, sem a arte gráfica por cima | Idem | Momentos do dia e galeria (cachorro-quente, prato feito, empadão, jantar, lanche, coxinha, pudim, marmita, porção, etc.) |
-| 9 | **Foto da fachada** | Horizontal, de dia, com a placa visível | Seção Localização (há um espaço reservado) |
+| 7 | **Fotos originais**, nesta ordem: (a) um prato completo com carne grelhada, (b) o buffet em plano aberto, (c) uma foto limpa de cada momento do dia | JPG/HEIC do celular ou da câmera, sem texto, sem moldura, ≥ 1600 px no lado maior | (a) protagonista da abertura; (b) seção Buffet; (c) cartões dos momentos, com o texto em HTML ao lado. Hoje: recortes de prints em ~280 px. |
+| 8 | Fotos dos produtos que já aparecem nos posts, sem a arte gráfica por cima | Idem | Uma por categoria do cardápio (hoje são recortes de ~150 a 280 px) e galeria. |
+| 9 | **Foto da fachada** | Horizontal, de dia, com a placa visível | Seção Localização, no lugar da placa de horário provisória |
 | 10 | Fotos do salão e do balcão | Horizontal, com luz do dia | Futura seção de ambiente |
 | 11 | **Cardápio oficial** | PDF, foto do cardápio ou planilha: categoria, item, descrição, preço | Seção Cardápio. Hoje: só itens vistos nos posts, sem preço. |
 | 12 | Delivery | Bairros atendidos, taxa, se está no iFood (um post sugere que sim) | Nada foi escrito sobre entrega. Se confirmado, pode entrar na seção Localização. |
