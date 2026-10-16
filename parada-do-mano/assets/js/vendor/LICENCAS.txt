@@ -1,0 +1,2 @@
+gsap 3.15.0 — Standard 'no charge' license: https://gsap.com/standard-license.
+Arquivos copiados sem alteração de node_modules/ por tools/vendor.py.

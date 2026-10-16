@@ -1,6 +1,6 @@
 # Parada do Mano — pendências para confirmar com o restaurante
 
-Atualizado na V4 (16/10/2026). Nada no site foi inventado: o que não foi confirmado
+Atualizado na V5 (16/10/2026). Nada no site foi inventado: o que não foi confirmado
 aparece como "sob consulta" ou como pergunta pelo WhatsApp. Confirmar todos os dados abaixo
 antes de publicar — inclusive os que estão em "O que as referências confirmaram".
 
@@ -85,6 +85,16 @@ exemplo numa cópia descartável; **nenhum item de exemplo está no site**. Pedi
 - V4: textos das categorias reescritos mais curtos; todas as mensagens do WhatsApp começam com
   "Olá! Vim pelo site do Parada do Mano e gostaria de…" (lista completa em `conteudo/contato.json`).
   Elas só abrem uma conversa: não falam em pedido, reserva ou compra.
+
+## ⚪ Animações e 3D (V5)
+
+- As animações da V5 são propostas minhas, inspiradas no vídeo de referência; aprovar o ritmo
+  da abertura (cerca de 2 s) e o efeito de calor no churrasco.
+- **Modelo 3D**: não existe. Se o restaurante quiser um objeto girando como no vídeo de
+  referência, é preciso encomendar ou produzir um `.glb` (sugestões e requisitos em
+  `tools/3d/LEIA-ME.md`: placa da BR-277 em 3D, espeto com carnes ou a logo extrudada — esta
+  última depende da logo em vetor, já pedida acima).
+- Testar num **iPhone e num Android reais** antes de publicar (o laboratório não substitui).
 
 ## Vídeos
 

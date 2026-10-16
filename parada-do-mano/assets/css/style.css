@@ -197,6 +197,19 @@ abbr[title] { text-decoration: none; }
   text-transform: uppercase;
 }
 .display-title > span { display: block; }
+/* linhas de título com máscara (o GSAP sobe cada linha de dentro dela). O título vira
+   grid: em grid as margens não colapsam, então folga e margem negativa se anulam e a
+   altura do título fica exatamente a mesma de antes */
+.has-ln { display: grid; }
+.ln { display: block; overflow: hidden; padding: .08em 0 .06em; margin: -.08em 0 -.06em; }
+.ln > span { display: block; }
+/* caracteres do "Sabor de verdade.": o texto inteiro continua para leitor de tela */
+.ch-wrap { display: inline-block; }
+.ch { display: inline-block; white-space: pre; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 .text-fire { color: var(--c-orange); }
 
 .lead {
@@ -260,6 +273,14 @@ abbr[title] { text-decoration: none; }
 }
 @media (hover: hover) {
   .btn-ghost:hover { border-color: var(--c-cream); }
+}
+
+/* Enquadramento: no modo cine, o GSAP move as variáveis --py (deslocamento) e --ps
+   (escala) conforme a rolagem. São as propriedades translate e scale, separadas do
+   transform: o zoom de passar o mouse e a revelação continuam funcionando. */
+.cine-on .px-photo img {
+  translate: 0 var(--py, 0%);
+  scale: var(--ps, 1);
 }
 
 /* <picture> (AVIF com WebP de reserva) não cria caixa: a imagem segue preenchendo a moldura */
@@ -538,6 +559,19 @@ picture { display: contents; }
 .embers span:nth-child(5) { left: 69%; --dur-e: 10s; --delay-e: 1.6s; }
 .embers span:nth-child(6) { left: 81%; --dur-e: 9.5s; --delay-e: 4.2s; width: 2px; height: 2px; }
 .embers span:nth-child(7) { left: 92%; --dur-e: 13s; --delay-e: 6s; }
+
+/* cortina da abertura (só no computador, só no modo cine): cobre a foto e recolhe
+   para a esquerda, mostrando primeiro a comida. A foto embaixo já está pintada (LCP). */
+.hero-curtain { display: none; }
+@media (min-width: 960px) {
+  .cine .hero-curtain {
+    display: block;
+    position: absolute; inset: 0; z-index: 2;
+    background: var(--c-coal);
+    transform-origin: left center;
+    pointer-events: none;
+  }
+}
 
 .hero-content {
   position: relative; z-index: 3;
@@ -916,6 +950,18 @@ picture { display: contents; }
   color: var(--c-cream);
   box-shadow: inset 0 -3px 0 var(--c-orange);
 }
+/* modo cine: o fundo escuro da aba escolhida é uma peça só (.menu-ink) que desliza
+   de uma aba para a outra; sem ela, vale o fundo de cada aba acima */
+.menu-tabs.has-ink { position: relative; }
+.menu-ink {
+  position: absolute; left: 0; top: 0; z-index: 0;
+  border-radius: 999px;
+  background: var(--c-coal);
+  box-shadow: inset 0 -3px 0 var(--c-orange);
+  pointer-events: none;
+}
+.has-ink .menu-tab { position: relative; z-index: 1; }
+.has-ink .menu-tab[aria-selected="true"] { background: transparent; box-shadow: none; }
 @media (min-width: 960px) {
   .menu-tabs-wrap { margin: 0 0 var(--s-5); }
   .menu-tabs-wrap::before, .menu-tabs-wrap::after { display: none; }
@@ -1194,7 +1240,7 @@ picture { display: contents; }
 .grill-photo img { width: 100%; height: 100%; object-fit: cover; }
 .grill-photo::before {
   content: '';
-  position: absolute; inset: 0; z-index: 1;
+  position: absolute; inset: 0; z-index: 2;
   background: linear-gradient(180deg, var(--c-black) 0%, rgba(5, 4, 3, 0) 22%, rgba(5, 4, 3, 0) 45%, var(--c-black) 100%);
   pointer-events: none;
 }
@@ -1216,7 +1262,7 @@ picture { display: contents; }
   letter-spacing: .16em; text-transform: uppercase; font-size: .8rem;
   color: var(--t-on-dark-soft);
 }
-.grill-caption { right: var(--gutter); top: var(--s-4); }
+.grill-caption { right: var(--gutter); top: var(--s-4); z-index: 3; }
 .grill-side-cap {
   left: 10px; bottom: 10px;
   padding: 5px 11px;
@@ -1264,6 +1310,44 @@ picture { display: contents; }
   color: var(--t-on-dark-soft);
 }
 .spit-price-pending strong { font-size: 1.25rem; }
+
+/* calor sobre a foto: luz alaranjada de baixo para cima; o GSAP aumenta com a rolagem
+   e faz tremular de leve enquanto a seção está na tela. Fica abaixo do degradê
+   que escurece as bordas da foto (::before), para não criar uma borda dura */
+.grill-heat {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(60% 55% at 50% 100%, rgba(255, 130, 28, .55), rgba(218, 89, 21, .18) 45%, transparent 75%);
+  mix-blend-mode: screen;
+  opacity: .35;
+  pointer-events: none;
+}
+.embers-grill { z-index: 2; top: 0; bottom: auto; height: 100%; }
+.embers-grill span { bottom: 18%; }
+/* faixa de palavras em letra vazada, passando de lado */
+.grill-band {
+  position: relative; z-index: 1;
+  overflow: hidden;
+  margin-top: var(--s-5);
+  pointer-events: none;
+}
+.grill-band-track {
+  display: flex; align-items: center; gap: .35em;
+  width: max-content;
+  font-family: var(--f-display);
+  font-size: clamp(3rem, 12vw, 9.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 130, 28, .55);
+}
+.grill-band-track .is-fill { -webkit-text-stroke-color: rgba(255, 243, 226, .32); }
+.grill-band-track i {
+  width: .18em; height: .18em; flex: none;
+  background: var(--c-orange);
+  transform: rotate(45deg);
+}
 
 /* celular: churrasqueira e texto lado a lado, para não empilhar duas fotos grandes */
 @media (min-width: 480px) and (max-width: 959px) {
@@ -1672,7 +1756,7 @@ body.lb-open { overflow: hidden; }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes zoom-out { from { transform: scale(var(--hero-zoom)); } to { transform: scale(1); } }
 @keyframes rise { from { opacity: var(--fade-from); transform: translateY(var(--rise)); } to { opacity: 1; transform: none; } }
-@keyframes line-up { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes line-up { from { transform: translateY(140%); } to { transform: none; } }
 @keyframes glow-breathe {
   0%   { opacity: .75; transform: translate3d(-2%, 0, 0) scale(1); }
   100% { opacity: 1;   transform: translate3d(2%, -3%, 0) scale(1.06); }
@@ -1684,29 +1768,41 @@ body.lb-open { overflow: hidden; }
   100% { opacity: 0; transform: translate3d(18px, -46vh, 0) scale(.4); }
 }
 @keyframes ticker { to { transform: translateX(-50%); } }
+@keyframes curtain-out { from { transform: scaleX(1); } to { transform: scaleX(0); } }
 
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 
   /* Abertura. A foto aparece na hora (é o maior elemento da tela, o LCP) e só
-     assenta com um recuo de zoom; o texto chega em sequência curta. */
-  .js .hero-img { animation: zoom-out var(--dur-xl) var(--ease-out) both; }
-  .js .hero-tag { animation: rise var(--dur-l) var(--ease-out) .1s both; }
+     assenta com um recuo de zoom; o texto chega em sequência curta.
+     Modo cine (GSAP): a mesma entrada fica de reserva, atrasada por --hero-wait.
+     Se o GSAP assumir a tempo, ele marca .cine-ready e estas animações saem;
+     se não chegar (rede ruim, arquivo bloqueado), elas mostram tudo sozinhas. */
+  .js { --hero-wait: 0s; }
+  .js.cine { --hero-wait: 1.1s; }
+  .js .hero-img { animation: zoom-out var(--dur-xl) var(--ease-out) var(--hero-wait) both; }
+  .js .hero-tag { animation: rise var(--dur-l) var(--ease-out) calc(var(--hero-wait) + .1s) both; }
   .js .hero-title .line > span { animation: line-up var(--dur-l) var(--ease-out) both; }
-  .js .hero-title .line:nth-child(1) > span { animation-delay: .15s; }
-  .js .hero-title .line:nth-child(2) > span { animation-delay: .24s; }
-  .js .hero-title .line:nth-child(3) > span { animation-delay: .36s; }
-  .js .hero-sub { animation: rise var(--dur-l) var(--ease-out) .48s both; }
-  .js .hero-actions { animation: rise var(--dur-l) var(--ease-out) .56s both; }
-  .js .hero-facts { animation: rise var(--dur-l) var(--ease-out) .66s both; }
-  .js .hero-marker { animation: rise var(--dur-l) var(--ease-out) .8s both; }
-  .js .hero-glow { animation: fade-in var(--dur-xl) var(--ease-soft) .2s both; }
+  .js .hero-title .line:nth-child(1) > span { animation-delay: calc(var(--hero-wait) + .15s); }
+  .js .hero-title .line:nth-child(2) > span { animation-delay: calc(var(--hero-wait) + .24s); }
+  .js .hero-title .line:nth-child(3) > span { animation-delay: calc(var(--hero-wait) + .36s); }
+  .js .hero-sub { animation: rise var(--dur-l) var(--ease-out) calc(var(--hero-wait) + .48s) both; }
+  .js .hero-actions { animation: rise var(--dur-l) var(--ease-out) calc(var(--hero-wait) + .56s) both; }
+  .js .hero-facts { animation: rise var(--dur-l) var(--ease-out) calc(var(--hero-wait) + .66s) both; }
+  .js .hero-marker { animation: rise var(--dur-l) var(--ease-out) calc(var(--hero-wait) + .8s) both; }
+  .js .hero-glow { animation: fade-in var(--dur-xl) var(--ease-soft) calc(var(--hero-wait) + .2s) both; }
+  .js.cine .hero-curtain { animation: curtain-out var(--dur-xl) var(--ease-in-out) var(--hero-wait) both; }
+  /* o GSAP assumiu: ele controla tudo pelo estilo inline */
+  .cine-ready .hero-img, .cine-ready .hero-tag, .cine-ready .hero-title .line > span,
+  .cine-ready .hero-sub, .cine-ready .hero-actions, .cine-ready .hero-facts,
+  .cine-ready .hero-marker, .cine-ready .hero-glow, .js.cine.cine-ready .hero-curtain { animation: none; }
   .embers span { animation: ember-rise var(--dur-e) linear var(--delay-e) infinite; }
 
   .ticker-track { animation: ticker 48s linear infinite; }
   .ticker:hover .ticker-track { animation-play-state: paused; }
   /* animações contínuas param quando saem da tela (o JS marca .is-paused) */
-  .hero.is-paused .embers span, .hero.is-paused .hero-glow, .ticker.is-paused .ticker-track { animation-play-state: paused; }
+  .hero.is-paused .embers span, .hero.is-paused .hero-glow, .ticker.is-paused .ticker-track,
+  .grill.is-paused .embers span { animation-play-state: paused; }
 
   /* Revelação na rolagem. A classe reveal-ready só entra quando o JS
      confirma que o IntersectionObserver está ativo: sem JS, nada fica escondido. */
@@ -1758,7 +1854,7 @@ body.lb-open { overflow: hidden; }
     transition-duration: .01ms !important;
     transition-delay: 0s !important;
   }
-  .embers { display: none; }
+  .embers, .hero-curtain { display: none; }
   .ticker-track { flex-wrap: wrap; width: auto; justify-content: center; row-gap: 6px; padding-inline: var(--gutter); }
   .ticker-track > :nth-child(n + 15) { display: none; }
 }

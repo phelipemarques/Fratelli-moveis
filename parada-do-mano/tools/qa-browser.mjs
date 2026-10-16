@@ -759,6 +759,75 @@ for (const [w, h] of [[390, 844], [1440, 900]]) {
   await ctx.close();
 }
 
+/* ---------- Modo cinematográfico (GSAP + ScrollTrigger, V5) ---------- */
+for (const [w, h] of [[390, 844], [1440, 900]]) {
+  const ctx = await browser.newContext({ viewport: { width: w, height: h } });
+  const page = await ctx.newPage();
+  const pedidos = []; const erros = [];
+  page.on('request', r => pedidos.push(r.url()));
+  page.on('pageerror', e => erros.push(String(e)));
+  await page.goto(BASE, { waitUntil: 'load' });
+  await page.waitForTimeout(3500);
+  const r = await page.evaluate(() => ({
+    classes: document.documentElement.className,
+    gsap: !!window.gsap, st: window.ScrollTrigger ? window.ScrollTrigger.getAll().length : 0,
+    nome: document.querySelector('h1').getAttribute('aria-label') || document.querySelector('h1').textContent.replace(/\s+/g, ' ').trim(),
+    linhas: [...document.querySelectorAll('.hero-title .line > span, .hero-title .ch')].every(s => { const t = getComputedStyle(s).transform; return t === 'none' || /matrix\(1, 0, 0, 1, 0, 0\)/.test(t); }),
+    textoVisivel: ['.hero-tag', '.hero-sub', '.hero-actions', '.hero-facts'].every(sel => getComputedStyle(document.querySelector(sel)).opacity === '1'),
+    three: [...document.scripts].some(sc => /three/i.test(sc.src)),
+  }));
+  ok(`${w}x${h} cine: GSAP assume a abertura e o ScrollTrigger chega depois da carga`, /cine-ready/.test(r.classes) && r.gsap && r.st > 10, `${r.st} gatilhos de rolagem`);
+  ok(`${w}x${h} cine: abertura termina com título e textos no lugar`, r.linhas && r.textoVisivel, JSON.stringify({ linhas: r.linhas, textos: r.textoVisivel }));
+  ok(`${w}x${h} cine: o título continua "Do fogo à mesa. Sabor de verdade." para leitor de tela`, r.nome === 'Do fogo à mesa. Sabor de verdade.', r.nome);
+  ok(`${w}x${h} cine: Three.js não é carregado (não há modelo 3D)`, !r.three && !pedidos.some(u => /three/i.test(u)), 'nenhum arquivo do Three.js');
+  ok(`${w}x${h} cine: sem erro de JavaScript`, erros.length === 0, erros.join(' | ') || 'nenhum');
+  // indicador da aba e troca de categoria legível em menos de 0,7 s
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; const t = document.querySelector('[data-tablist]'); window.scrollTo(0, t.getBoundingClientRect().top + scrollY - 100); });
+  await page.waitForTimeout(500);
+  await page.locator('#tab-feijoada').click();
+  await page.waitForTimeout(700);
+  const m = await page.evaluate(() => {
+    const ink = document.querySelector('.menu-ink').getBoundingClientRect();
+    const tab = document.getElementById('tab-feijoada').getBoundingClientRect();
+    const partes = [...document.querySelectorAll('#cat-feijoada .menu-body > *')];
+    return { alinhado: Math.abs(ink.left - tab.left) < 2 && Math.abs(ink.width - tab.width) < 2,
+      legivel: partes.every(p => getComputedStyle(p).opacity === '1' && getComputedStyle(p).visibility === 'visible') };
+  });
+  ok(`${w}x${h} cine: indicador desliza até a aba escolhida e o texto está legível em 0,7 s`, m.alinhado && m.legivel, JSON.stringify(m));
+  await ctx.close();
+}
+{
+  // movimento reduzido e economia de dados: nada de GSAP
+  for (const [nome, opts, init] of [
+    ['movimento reduzido', { reducedMotion: 'reduce' }, null],
+    ['economia de dados', {}, () => Object.defineProperty(navigator, 'connection', { get: () => ({ saveData: true, effectiveType: '4g' }) })],
+  ]) {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, ...opts });
+    const page = await ctx.newPage();
+    if (init) await page.addInitScript(init);
+    const pedidos = [];
+    page.on('request', r => pedidos.push(r.url()));
+    await page.goto(BASE, { waitUntil: 'load' });
+    await page.waitForTimeout(2500);
+    const cls = await page.evaluate(() => document.documentElement.className);
+    ok(`cine: com ${nome} o GSAP não é baixado`, !/\bcine\b/.test(cls) && !pedidos.some(u => /vendor\//.test(u)), cls);
+    await ctx.close();
+  }
+  // GSAP bloqueado (arquivo fora do ar): a reserva em CSS mostra tudo
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
+  await page.route(/vendor\//, r => r.abort());
+  await page.goto(BASE, { waitUntil: 'load' });
+  await page.waitForTimeout(3200);
+  const r = await page.evaluate(() => ({
+    cortina: getComputedStyle(document.querySelector('.hero-curtain')).transform,
+    linhas: [...document.querySelectorAll('.hero-title .line > span')].every(s => getComputedStyle(s).transform === 'none' || /matrix\(1, 0, 0, 1, 0, 0\)/.test(getComputedStyle(s).transform)),
+    textos: ['.hero-tag', '.hero-sub', '.hero-actions', '.hero-facts'].every(sel => getComputedStyle(document.querySelector(sel)).opacity === '1'),
+  }));
+  ok('cine: com o GSAP bloqueado, a abertura aparece inteira pela reserva em CSS', /matrix\(0, 0, 0, 1, 0, 0\)/.test(r.cortina) && r.linhas && r.textos, JSON.stringify(r));
+  await ctx.close();
+}
+
 /* ---------- Conteúdo: index.html em dia com conteudo/*.json ---------- */
 {
   const { execFileSync } = require('child_process');

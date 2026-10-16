@@ -1,16 +1,16 @@
-# Parada do Mano — site (V4)
+# Parada do Mano — site (V5)
 
 Site do **Parada do Mano Restaurante e Lanchonete**, BR-277, km 594, Cascavel/PR.
 
 > **Status: prévia de aprovação. Não publicado.** A página tem `noindex, nofollow`, o
 > `robots.txt` bloqueia buscadores e o `vercel.json` manda o cabeçalho `X-Robots-Tag: noindex`.
 > As fotos são as enviadas pelo restaurante, ampliadas, e o rodapé as marca como ilustrativas.
-> Antes de publicar, ver [`PENDENCIAS.md`](PENDENCIAS.md). O que mudou da V3 para a V4, e como
-> foi medido, está em [`RELATORIO-V4.md`](RELATORIO-V4.md).
+> Antes de publicar, ver [`PENDENCIAS.md`](PENDENCIAS.md). As animações cinematográficas da V5, a
+> comparação com a V4 e os testes estão em [`RELATORIO-V5.md`](RELATORIO-V5.md).
 
 ## Abrir
 
-**Sem servidor:** dois cliques em `parada-do-mano-v4-visualizacao.html`. É um arquivo só,
+**Sem servidor:** dois cliques em `parada-do-mano-v5-visualizacao.html`. É um arquivo só,
 com CSS, JavaScript, fontes, fotos e o vídeo da abertura dentro (por isso pesa 6,8 MB).
 Serve para mostrar e aprovar; não é o que vai para o ar.
 
@@ -25,11 +25,11 @@ node tools/servidor.mjs . 8130        # gzip e cache como numa hospedagem
 
 ## O que vai para o ar
 
-`python3 tools/make-zip.py` gera `parada-do-mano-v4-producao.zip`, com a pasta
-`parada-do-mano-v4/` pronta para qualquer hospedagem estática:
+`python3 tools/make-zip.py` gera `parada-do-mano-v5-producao.zip`, com a pasta
+`parada-do-mano-v5/` pronta para qualquer hospedagem estática:
 
 ```
-parada-do-mano-v4/
+parada-do-mano-v5/
   index.html                 a página (HTML semântico, um único h1)
   favicon.ico                ícone da aba (16, 32 e 48 px)
   robots.txt                 bloqueia indexação enquanto for prévia
@@ -37,6 +37,8 @@ parada-do-mano-v4/
   sitemap.xml                só depois de rodar tools/set-domain.py
   assets/css/style.css       tokens (cores, espaços, movimento), seções, animações
   assets/js/main.js          menu, revelação, abas do cardápio, galeria, vídeo — sem bibliotecas
+  assets/js/cinema.js        animações cinematográficas (GSAP), carregadas sob demanda
+  assets/js/vendor/          gsap.min.js e ScrollTrigger.min.js (cópias de node_modules)
   assets/images/             WebP + AVIF em várias larguras, logo, og-cover.jpg
   assets/videos/             abertura em MP4 (H.264) e WebM (VP9), sem som, sem texto
   assets/fonts/              Anton, Barlow, Barlow Condensed (SIL OFL 1.1, licenças ao lado)
@@ -53,17 +55,20 @@ index.html, favicon.ico, robots.txt, vercel.json, assets/   o site (ver acima)
 conteudo/cardapio.json      as 10 categorias do cardápio e os itens (nome, preço...)
 conteudo/contato.json       WhatsApp, Instagram, rota e as mensagens prontas do WhatsApp
 
-parada-do-mano-v4-visualizacao.html   prévia em arquivo único
-parada-do-mano-v4-producao.zip        pacote de produção
+parada-do-mano-v5-visualizacao.html   prévia em arquivo único
+parada-do-mano-v5-producao.zip        pacote de produção
 parada-do-mano-video-vertical.mp4     1080x1920 para Reels, Stories e WhatsApp
 parada-do-mano-video-horizontal.mp4   1920x1080 para Facebook, YouTube e TV
-comparacao/                           capturas V3 | V4 lado a lado (4 tamanhos de tela)
-versoes/                              a V3 (prévia e relatório), guardada para comparação
-RELATORIO-V4.md                       problema → solução → benefício → teste, com medições
+comparacao/                           capturas V4 | V5 lado a lado (4 tamanhos de tela)
+versoes/                              V3 e V4 (prévias e relatórios), guardadas para comparação
+RELATORIO-V5.md                       animações implementadas, comparação com a V4 e testes
 QA.md                                 o que foi testado, como, e o que não foi
 PENDENCIAS.md                         o que falta confirmar com o restaurante
 
 tools/build-content.py        grava no index.html o cardápio e os links de conteudo/
+tools/vendor.py               copia o GSAP de node_modules para assets/js/vendor
+tools/3d/                     cena 3D preparada (não ativa) e o modelo que falta
+tools/fluidez.mjs             quadros por segundo e tarefas longas durante a rolagem
 tools/source/                 fotos tratadas (uma por espaço do site) e a logo
 tools/source/referencias/     prints e fotos enviados, sem alteração
 tools/enhance-photos.py       amplia as fotos enviadas (EDSR); "novas" = fotos de 16/10
@@ -80,6 +85,34 @@ tools/comparar.py             monta as capturas lado a lado de duas medições
 tools/inp-lab.mjs             duração das interações em laboratório (CPU 4x mais lenta)
 tools/fonts-ttf/              cópias TTF das fontes, usadas só pelos scripts de imagem e vídeo
 ```
+
+## Animações (V5)
+
+Duas camadas, para nunca depender de uma biblioteca para mostrar o conteúdo:
+
+1. **Base (CSS + `main.js`)**: revelação na rolagem, entrada da abertura, brasas, faixa. Vale
+   para todo mundo e é o que aparece com movimento reduzido (simplificado), economia de dados,
+   rede 2G/3G ou JavaScript desligado.
+2. **Camada cinematográfica (`cinema.js` + GSAP)**: um script no `<head>` marca a página com
+   `.cine` quando há movimento permitido, sem economia de dados e fora de rede lenta, e pede os
+   arquivos do GSAP em prioridade baixa (a foto da abertura vem primeiro). O `cinema.js` faz a
+   entrada da abertura e, **depois que a página termina de carregar**, traz o ScrollTrigger
+   para os efeitos de rolagem. Se o GSAP não chegar em 1 s, a entrada em CSS (reserva, com a
+   mesma composição) mostra tudo sozinha.
+
+Não há empacotador: são dois arquivos prontos do próprio GSAP, já minificados, servidos de
+`assets/js/vendor/`. Para atualizar a versão:
+
+```bash
+npm install            # dentro de parada-do-mano/ (gsap, three e @types/three)
+python3 tools/vendor.py
+```
+
+O Three.js está instalado, mas **não vai para o site**: não há modelo 3D. A estrutura pronta e
+o modelo que seria necessário estão em `tools/3d/LEIA-ME.md`.
+
+Ajustes rápidos ficam em `assets/js/cinema.js` (durações, distâncias, quais fotos têm
+enquadramento) e nos tokens de movimento do topo de `assets/css/style.css`.
 
 ## Editar o conteúdo
 
@@ -185,9 +218,10 @@ tela ou quando a aba fica em segundo plano. No celular fica a foto.
 ```bash
 node tools/servidor.mjs . 8130 &
 NODE_PATH=$(npm root -g) node tools/qa-browser.mjs capturas/
-NODE_PATH=$(npm root -g) node tools/qa-preview.mjs parada-do-mano-v4-visualizacao.html
-NODE_PATH=$(npm root -g) node tools/medir.mjs http://127.0.0.1:8130/ v4 medidas/
-NODE_PATH=$(npm root -g) node tools/inp-lab.mjs http://127.0.0.1:8130/ V4
+NODE_PATH=$(npm root -g) node tools/qa-preview.mjs parada-do-mano-v5-visualizacao.html
+NODE_PATH=$(npm root -g) node tools/medir.mjs http://127.0.0.1:8130/ v5 medidas/
+NODE_PATH=$(npm root -g) node tools/inp-lab.mjs http://127.0.0.1:8130/ V5
+NODE_PATH=$(npm root -g) node tools/fluidez.mjs http://127.0.0.1:8130/ V5 390 844 4
 ```
 
 Precisa do Playwright com Chromium. Para testar o pacote descompactado:
@@ -205,8 +239,8 @@ Nada foi publicado. Quando houver autorização:
    ```
    Isso põe `canonical`, `og:url`, `og:image` e `twitter:image` absolutos (HTTPS), completa o
    JSON-LD com o endereço e gera o `sitemap.xml`. Funciona no `index.html` do projeto e no do pacote.
-3. `python3 tools/make-zip.py` e descompactar `parada-do-mano-v4-producao.zip`.
-4. Publicar a pasta `parada-do-mano-v4/`:
+3. `python3 tools/make-zip.py` e descompactar `parada-do-mano-v5-producao.zip`.
+4. Publicar a pasta `parada-do-mano-v5/`:
    - **pela linha de comando:** `npx vercel` dentro da pasta descompactada (depois `npx vercel --prod`);
    - **pelo site do Vercel com o repositório:** *Add New → Project*, *Root Directory* `parada-do-mano`,
      *Framework* **Other**, sem comando de build. O `.vercelignore` da pasta deixa de fora
@@ -221,5 +255,5 @@ Nada foi publicado. Quando houver autorização:
    tira o `X-Robots-Tag` do `vercel.json`. Gerar o ZIP de novo e publicar.
 
 Qualquer hospedagem estática serve (Netlify, Cloudflare Pages, hospedagem comum por FTP):
-basta enviar o conteúdo da pasta `parada-do-mano-v4/`. Fora do Vercel, o `vercel.json` é
+basta enviar o conteúdo da pasta `parada-do-mano-v5/`. Fora do Vercel, o `vercel.json` é
 ignorado; configure o cache e o `X-Robots-Tag` no painel da hospedagem.

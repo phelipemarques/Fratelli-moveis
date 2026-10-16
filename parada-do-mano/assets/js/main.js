@@ -149,7 +149,7 @@
     var loops = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) { entry.target.classList.toggle('is-paused', !entry.isIntersecting); });
     });
-    document.querySelectorAll('.hero, .ticker').forEach(function (el) { loops.observe(el); });
+    document.querySelectorAll('.hero, .ticker, .grill').forEach(function (el) { loops.observe(el); });
 
     // item do menu do topo que corresponde à seção na tela
     var navLinks = document.querySelectorAll('.nav-desktop a');
@@ -300,9 +300,13 @@
       });
       current = index;
       if (stepStatus) stepStatus.textContent = pad(index + 1) + ' / ' + pad(tabs.length);
-      if (opts.animate !== false) {
+      // com o GSAP ativo (cinema.js), a transição é dele; senão, a entrada curta daqui
+      if (opts.animate !== false && !root.classList.contains('cine-on')) {
         entrance(panels[index], [{ opacity: 0, transform: 'translateY(' + token('--swap-shift', '8px') + ')' }, { opacity: 1, transform: 'none' }]);
       }
+      tabsRoot.dispatchEvent(new CustomEvent('menu:change', {
+        detail: { index: index, tab: tabs[index], panel: panels[index], animate: opts.animate !== false }
+      }));
       // na carga não mede nada: medir logo depois de mudar o DOM força o navegador
       // a recalcular o layout da página inteira (reflow forçado)
       if (!opts.init) keepTabVisible(tabs[index]);

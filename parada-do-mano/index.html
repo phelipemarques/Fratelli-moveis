@@ -3,7 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+  <script>
+    // js: o JavaScript está ligado. cine: animações com GSAP — só com movimento permitido,
+    // sem economia de dados e fora de rede 2G/3G. As bibliotecas vêm em prioridade baixa
+    // para não disputar banda com a foto da abertura. Sem isso, valem as animações em CSS.
+    (function (d) {
+      var h = d.documentElement, c = navigator.connection || {};
+      h.className = h.className.replace('no-js', 'js');
+      var calmo = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (calmo || c.saveData || /(^|-)2g|3g/.test(c.effectiveType || '')) return;
+      h.classList.add('cine');
+      window.__cineInicio = performance.now();
+      ['assets/js/vendor/gsap.min.js', 'assets/js/vendor/ScrollTrigger.min.js'].forEach(function (u) {
+        var l = d.createElement('link');
+        l.rel = 'preload'; l.as = 'script'; l.href = u; l.fetchPriority = 'low';
+        d.head.appendChild(l);
+      });
+    })(document);
+  </script>
 
   <title>Parada do Mano — Restaurante e Lanchonete na BR-277 | Cascavel/PR</title>
   <meta name="description" content="Café, almoço e janta na BR-277, km 594, em Cascavel/PR: buffet completo, comida caseira, fogão a lenha e churrasco. Espeto corrido aos domingos e feijoada às quartas e sábados. Aberto todos os dias, das 06h às 23h30.">
@@ -36,6 +53,7 @@
 
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/cinema.js" defer></script>
 
   <!-- Dados estruturados: apenas o que foi divulgado pelo restaurante. Confirmar antes de publicar. -->
   <script type="application/ld+json">
@@ -157,6 +175,7 @@
                  data-src-mp4="assets/videos/parada-do-mano-abertura.mp4"
                  data-src-webm="assets/videos/parada-do-mano-abertura.webm"></video>
         </div>
+        <div class="hero-curtain" aria-hidden="true"></div>
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="embers" aria-hidden="true">
           <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -577,14 +596,26 @@
                  sizes="100vw" width="1920" height="1080" loading="lazy" decoding="async"
                  alt="Carnes grelhadas servidas com arroz, feijão e batata frita">
           </picture>
+          <div class="grill-heat" aria-hidden="true"></div>
           <figcaption class="grill-caption">Da brasa para o prato</figcaption>
         </figure>
+        <div class="embers embers-grill" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
         <div class="container grill-title-wrap">
           <p class="eyebrow" data-reveal>Churrasco e fogão a lenha</p>
           <h2 class="display-title" id="churrasco-title" data-reveal style="--d: 1">
             <span>A brasa acende.</span>
             <span class="text-fire">O sabor acontece.</span>
           </h2>
+        </div>
+      </div>
+
+      <!-- Faixa decorativa: palavras que já aparecem na seção, em letra vazada.
+           Com GSAP ela corre de lado conforme a rolagem; sem GSAP fica parada. -->
+      <div class="grill-band" aria-hidden="true">
+        <div class="grill-band-track">
+          <span>Churrasqueira</span><i></i><span class="is-fill">Espeto corrido</span><i></i><span>Fogão a lenha</span><i></i><span class="is-fill">Bons momentos</span><i></i><span>Churrasqueira</span>
         </div>
       </div>
 

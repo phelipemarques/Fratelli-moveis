@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Monta parada-do-mano-v4-producao.zip: só o que o site usa em produção.
+Monta parada-do-mano-v5-producao.zip: só o que o site usa em produção.
 
-Dentro do ZIP fica a pasta parada-do-mano-v4/ com index.html, favicon.ico, robots.txt,
+Dentro do ZIP fica a pasta parada-do-mano-v5/ com index.html, favicon.ico, robots.txt,
 vercel.json (cache e bloqueio de indexação na prévia), sitemap.xml se existir,
 e assets/ (css, js, fontes, imagens WebP+AVIF e o vídeo da abertura).
 Ficam de fora documentação, ferramentas, conteudo/ (já gravado no index.html por
@@ -16,8 +16,8 @@ import re
 import zipfile
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SAIDA = os.path.join(RAIZ, 'parada-do-mano-v4-producao.zip')
-PASTA = 'parada-do-mano-v4'
+SAIDA = os.path.join(RAIZ, 'parada-do-mano-v5-producao.zip')
+PASTA = 'parada-do-mano-v5'
 ARQUIVOS = ['index.html', 'favicon.ico', 'robots.txt', 'vercel.json', 'sitemap.xml']
 PASTAS = ['assets']
 
@@ -59,8 +59,8 @@ def main():
                 if n.startswith('.'):
                     continue
                 rel = os.path.relpath(os.path.join(dirpath, n), RAIZ)
-                # licenças das fontes vão junto (a SIL OFL pede); o resto, só se a página usa
-                if rel in usados or n.startswith('OFL-'):
+                # licenças (fontes: SIL OFL; GSAP) vão junto; o resto, só se a página usa
+                if rel in usados or n.startswith('OFL-') or n.startswith('LICENCAS'):
                     itens.append(rel)
                 else:
                     fora.append(rel)
