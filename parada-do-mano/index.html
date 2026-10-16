@@ -2,7 +2,7 @@
 <html lang="pt-BR" class="no-js">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
   <title>Parada do Mano — Restaurante e Lanchonete na BR-277 | Cascavel/PR</title>
@@ -22,8 +22,12 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Buffet do Parada do Mano com a logo do restaurante">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Parada do Mano — Do fogo à mesa">
+  <meta name="twitter:description" content="Café, almoço e janta na BR-277, km 594, em Cascavel/PR. Buffet, churrasco, espeto corrido aos domingos e feijoada às quartas e sábados.">
+  <meta name="twitter:image:alt" content="Buffet do Parada do Mano com a logo do restaurante">
 
-  <link rel="icon" href="assets/images/logo-48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="assets/images/logo-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="assets/images/logo-192.png">
 
   <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -102,7 +106,7 @@
         </ul>
       </nav>
 
-      <a class="btn btn-fire btn-sm header-cta" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener">
+      <a data-wa="geral" class="btn btn-fire btn-sm header-cta" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener">
         <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp</span>
       </a>
 
@@ -126,7 +130,7 @@
       </nav>
       <div class="mobile-menu-foot">
         <p class="mobile-menu-hours"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> Seg a dom · 06h às 23h30</p>
-        <a class="btn btn-fire btn-block" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener">
+        <a data-wa="geral" class="btn btn-fire btn-block" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener">
           <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Falar no WhatsApp</span>
         </a>
       </div>
@@ -169,8 +173,8 @@
         <p class="hero-sub">Buffet variado, comida caseira e churrasco para quem gosta de comer bem.</p>
         <div class="hero-actions">
           <a class="btn btn-fire hero-cta-main" href="#cardapio"><span>Explorar o cardápio</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-light" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp</span></a>
-          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Parada%20do%20Mano%2C%20BR-277%20km%20594%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Como chegar</span></a>
+          <a data-wa="geral" class="btn btn-light" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp</span></a>
+          <a data-rota class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Parada%20do%20Mano%2C%20BR-277%20km%20594%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Como chegar</span></a>
         </div>
         <ul class="hero-facts" aria-label="Destaques">
           <li><strong>06h–23h30</strong><span>segunda a domingo</span></li>
@@ -266,20 +270,10 @@
     </section>
 
     <!-- ===================== 03 CARDÁPIO =====================
-         Como adicionar itens a uma categoria: dentro do <ul class="menu-items"> do painel,
-         copie o modelo abaixo. Preço só quando confirmado pelo restaurante.
-
-           <li class="menu-item">
-             <span class="menu-item-name">Nome do prato</span>
-             <span class="menu-item-desc">Descrição curta (opcional)</span>
-             <span class="menu-item-price">R$ 00,00</span>
-           </li>
-
-         "menu-facts" guarda só o que foi divulgado pela casa (dias, horários, modalidade).
-         "menu-seen" lista o que aparece nas fotos reais do buffet — sempre com o aviso
-         de que varia conforme o dia. Quando a lista de itens com preço existir, o aviso
-         "menu-pending" some sozinho (CSS).
-    ===================================================== -->
+         As abas e os painéis são gerados a partir de conteudo/cardapio.json por
+         tools/build-content.py. Para mudar texto, foto, item ou preço, edite o JSON
+         e rode o script; não edite o trecho entre os marcadores à mão.
+    ========================================================= -->
     <section class="section menu" id="cardapio" aria-labelledby="cardapio-title">
       <div class="container">
         <header class="menu-head">
@@ -291,6 +285,7 @@
         </header>
 
         <div class="menu-ui" data-tabs>
+          <!-- cardapio:inicio -->
           <div class="menu-tabs-wrap" data-tabs-wrap>
             <div class="menu-tabs" role="tablist" aria-label="Categorias do cardápio" data-tablist hidden>
               <button class="menu-tab" type="button" role="tab" id="tab-cafe" aria-controls="cat-cafe" aria-selected="true">Café da manhã</button>
@@ -318,13 +313,13 @@
                 </picture>
               </figure>
               <div class="menu-body">
-                <p class="menu-count">01 / 10</p>
+                <div class="menu-meta">
+                  <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Todos os dias</li><li>A partir das 06h</li></ul>
+                  <p class="menu-ask">Opções e valores pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Café da manhã</h3>
-                <p class="menu-desc">A casa abre às 06h, todos os dias. Café da manhã para começar bem o dia ou para quem pega a estrada cedo.</p>
-                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Todos os dias</li><li>A partir das 06h</li></ul>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Opções e valores de hoje pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20que%20tem%20no%20caf%C3%A9%20da%20manh%C3%A3." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar o café de hoje</span></a>
+                <p class="menu-desc">Para começar bem o dia ou pegar a estrada cedo. A casa abre às 06h.</p>
+                <a class="btn btn-dark menu-cta" data-wa="cafe" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20o%20que%20tem%20no%20caf%C3%A9%20da%20manh%C3%A3%20de%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar o café de hoje</span></a>
               </div>
             </section>
 
@@ -332,25 +327,26 @@
             <section class="menu-panel" id="cat-buffet" role="tabpanel" aria-labelledby="tab-buffet" tabindex="0">
               <figure class="menu-photo photo-frame">
                 <picture>
-                  <source type="image/avif" srcset="assets/images/buffet-salao-480.avif 480w, assets/images/buffet-salao-640.avif 640w, assets/images/buffet-salao-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
-                  <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-640.webp 640w, assets/images/buffet-salao-800.webp 800w"
+                  <source type="image/avif" data-srcset="assets/images/buffet-salao-480.avif 480w, assets/images/buffet-salao-640.avif 640w, assets/images/buffet-salao-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img data-src="assets/images/buffet-salao-480.webp" data-srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-640.webp 640w, assets/images/buffet-salao-800.webp 800w"
                        sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
                        alt="Buffet do almoço com saladas e pratos quentes">
                 </picture>
+                <noscript><img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-640.webp 640w, assets/images/buffet-salao-800.webp 800w" sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async" alt="Buffet do almoço com saladas e pratos quentes"></noscript>
               </figure>
               <div class="menu-body">
-                <p class="menu-count">02 / 10</p>
+                <div class="menu-meta">
+                  <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Todos os dias</li><li>Comida caseira</li></ul>
+                  <p class="menu-ask">Forma de servir e valores pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Buffet e almoço</h3>
-                <p class="menu-desc">Buffet completo, com variedade todos os dias: comida caseira, pratos quentes e mesa de saladas.</p>
-                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Todos os dias</li><li>Comida caseira</li></ul>
+                <p class="menu-desc">Buffet completo, com comida caseira, pratos quentes e mesa de saladas.</p>
                 <details class="menu-seen">
-                  <summary><span>Já passou pelo nosso buffet</span> <span class="menu-seen-count">6 itens</span></summary>
+                  <summary><span>Já passou pelo buffet</span> <span class="menu-seen-count">6 itens</span></summary>
                   <ul class="menu-tags"><li>Arroz colorido</li><li>Feijão</li><li>Carnes</li><li>Legumes</li><li>Saladas de folhas</li><li>Ovos cozidos</li></ul>
                   <p class="menu-seen-note">Visto nas fotos da casa; o buffet muda conforme o dia.</p>
                 </details>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Forma de servir e valores pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20card%C3%A1pio%20do%20almo%C3%A7o%20de%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar o almoço de hoje</span></a>
+                <a class="btn btn-dark menu-cta" data-wa="buffet" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20as%20op%C3%A7%C3%B5es%20do%20buffet%20de%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar o buffet de hoje</span></a>
               </div>
             </section>
 
@@ -358,20 +354,21 @@
             <section class="menu-panel" id="cat-jantar" role="tabpanel" aria-labelledby="tab-jantar" tabindex="0">
               <figure class="menu-photo photo-frame">
                 <picture>
-                  <source type="image/avif" srcset="assets/images/prato-carnes-480.avif 480w, assets/images/prato-carnes-640.avif 640w, assets/images/prato-carnes-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
-                  <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-640.webp 640w, assets/images/prato-carnes-800.webp 800w"
+                  <source type="image/avif" data-srcset="assets/images/prato-carnes-480.avif 480w, assets/images/prato-carnes-640.avif 640w, assets/images/prato-carnes-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img data-src="assets/images/prato-carnes-480.webp" data-srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-640.webp 640w, assets/images/prato-carnes-800.webp 800w"
                        sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
                        alt="Prato com carnes, arroz, feijão e batata frita">
                 </picture>
+                <noscript><img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-640.webp 640w, assets/images/prato-carnes-800.webp 800w" sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async" alt="Prato com carnes, arroz, feijão e batata frita"></noscript>
               </figure>
               <div class="menu-body">
-                <p class="menu-count">03 / 10</p>
+                <div class="menu-meta">
+                  <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Segunda a domingo</li><li>Até 23h30</li></ul>
+                  <p class="menu-ask">Opções e valores pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Janta</h3>
                 <p class="menu-desc">Comida caseira também à noite, de segunda a domingo.</p>
-                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Segunda a domingo</li><li>Até 23h30</li></ul>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Opções e valores de hoje pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20que%20tem%20para%20o%20jantar%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar a janta de hoje</span></a>
+                <a class="btn btn-dark menu-cta" data-wa="jantar" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20o%20que%20tem%20para%20a%20janta%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar a janta de hoje</span></a>
               </div>
             </section>
 
@@ -379,20 +376,21 @@
             <section class="menu-panel" id="cat-carnes" role="tabpanel" aria-labelledby="tab-carnes" tabindex="0">
               <figure class="menu-photo photo-frame">
                 <picture>
-                  <source type="image/avif" srcset="assets/images/churrasqueira-480.avif 480w, assets/images/churrasqueira-640.avif 640w, assets/images/churrasqueira-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
-                  <img src="assets/images/churrasqueira-480.webp" srcset="assets/images/churrasqueira-480.webp 480w, assets/images/churrasqueira-640.webp 640w, assets/images/churrasqueira-800.webp 800w"
+                  <source type="image/avif" data-srcset="assets/images/churrasqueira-480.avif 480w, assets/images/churrasqueira-640.avif 640w, assets/images/churrasqueira-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img data-src="assets/images/churrasqueira-480.webp" data-srcset="assets/images/churrasqueira-480.webp 480w, assets/images/churrasqueira-640.webp 640w, assets/images/churrasqueira-800.webp 800w"
                        sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
                        alt="Espetos de carne na churrasqueira">
                 </picture>
+                <noscript><img src="assets/images/churrasqueira-480.webp" srcset="assets/images/churrasqueira-480.webp 480w, assets/images/churrasqueira-640.webp 640w, assets/images/churrasqueira-800.webp 800w" sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async" alt="Espetos de carne na churrasqueira"></noscript>
               </figure>
               <div class="menu-body">
-                <p class="menu-count">04 / 10</p>
+                <div class="menu-meta">
+                  <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Churrasqueira</li><li>Fogão a lenha</li></ul>
+                  <p class="menu-ask">Cortes e valores pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Carnes e churrasco</h3>
-                <p class="menu-desc">Carne assada no espeto, na churrasqueira da casa, e panelas no fogão a lenha.</p>
-                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Churrasqueira</li><li>Fogão a lenha</li></ul>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Cortes e valores pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20quais%20carnes%20e%20churrasco%20voc%C3%AAs%20servem." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as carnes</span></a>
+                <p class="menu-desc">Carne no espeto, na churrasqueira da casa, e panelas no fogão a lenha.</p>
+                <a class="btn btn-dark menu-cta" data-wa="carnes" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20quais%20carnes%20voc%C3%AAs%20servem%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as carnes</span></a>
               </div>
             </section>
 
@@ -400,20 +398,21 @@
             <section class="menu-panel" id="cat-espeto" role="tabpanel" aria-labelledby="tab-espeto" tabindex="0">
               <figure class="menu-photo photo-frame">
                 <picture>
-                  <source type="image/avif" srcset="assets/images/post-rodizio-480.avif 480w, assets/images/post-rodizio-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
-                  <img src="assets/images/post-rodizio-480.webp" srcset="assets/images/post-rodizio-480.webp 480w, assets/images/post-rodizio-800.webp 800w"
+                  <source type="image/avif" data-srcset="assets/images/post-rodizio-480.avif 480w, assets/images/post-rodizio-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img data-src="assets/images/post-rodizio-480.webp" data-srcset="assets/images/post-rodizio-480.webp 480w, assets/images/post-rodizio-800.webp 800w"
                        sizes="(min-width: 768px) 40vw, 100vw" width="800" height="640" loading="lazy" decoding="async"
                        alt="Arte do Parada do Mano anunciando o rodízio aos domingos">
                 </picture>
+                <noscript><img src="assets/images/post-rodizio-480.webp" srcset="assets/images/post-rodizio-480.webp 480w, assets/images/post-rodizio-800.webp 800w" sizes="(min-width: 768px) 40vw, 100vw" width="800" height="640" loading="lazy" decoding="async" alt="Arte do Parada do Mano anunciando o rodízio aos domingos"></noscript>
               </figure>
               <div class="menu-body">
-                <p class="menu-count">05 / 10</p>
+                <div class="menu-meta">
+                  <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Domingos</li><li>Variedade de carnes</li></ul>
+                  <p class="menu-ask">Valor por pessoa pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Espeto corrido</h3>
-                <p class="menu-desc">Rodízio aos domingos, com variedade de carnes passando direto da churrasqueira.</p>
-                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Domingos</li><li>Variedade de carnes</li></ul>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Valor por pessoa e horário pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20valor%20e%20o%20hor%C3%A1rio%20do%20espeto%20corrido%20de%20domingo." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar valor do rodízio</span></a>
+                <p class="menu-desc">Rodízio aos domingos, com variedade de carnes direto da churrasqueira.</p>
+                <a class="btn btn-dark menu-cta" data-wa="espeto" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20o%20valor%20e%20o%20hor%C3%A1rio%20do%20espeto%20corrido%20de%20domingo." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar o rodízio</span></a>
               </div>
             </section>
 
@@ -421,20 +420,21 @@
             <section class="menu-panel" id="cat-feijoada" role="tabpanel" aria-labelledby="tab-feijoada" tabindex="0">
               <figure class="menu-photo photo-frame">
                 <picture>
-                  <source type="image/avif" srcset="assets/images/feijoada-buffet-480.avif 480w, assets/images/feijoada-buffet-640.avif 640w, assets/images/feijoada-buffet-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
-                  <img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-640.webp 640w, assets/images/feijoada-buffet-800.webp 800w"
+                  <source type="image/avif" data-srcset="assets/images/feijoada-buffet-480.avif 480w, assets/images/feijoada-buffet-640.avif 640w, assets/images/feijoada-buffet-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img data-src="assets/images/feijoada-buffet-480.webp" data-srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-640.webp 640w, assets/images/feijoada-buffet-800.webp 800w"
                        sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
                        alt="Feijoada com arroz, farofa, couve e laranja">
                 </picture>
+                <noscript><img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-640.webp 640w, assets/images/feijoada-buffet-800.webp 800w" sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async" alt="Feijoada com arroz, farofa, couve e laranja"></noscript>
               </figure>
               <div class="menu-body">
-                <p class="menu-count">06 / 10</p>
+                <div class="menu-meta">
+                  <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Quartas</li><li>Sábados</li></ul>
+                  <p class="menu-ask">Acompanhamentos e valores pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Feijoada</h3>
                 <p class="menu-desc">Dia de feijoada no Parada do Mano: quarta-feira e sábado.</p>
-                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Quartas</li><li>Sábados</li></ul>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Acompanhamentos e valores pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20sobre%20a%20feijoada%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar a feijoada</span></a>
+                <a class="btn btn-dark menu-cta" data-wa="feijoada" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20sobre%20a%20feijoada%20desta%20semana%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar a feijoada</span></a>
               </div>
             </section>
 
@@ -442,24 +442,26 @@
             <section class="menu-panel" id="cat-saladas" role="tabpanel" aria-labelledby="tab-saladas" tabindex="0">
               <figure class="menu-photo photo-frame">
                 <picture>
-                  <source type="image/avif" srcset="assets/images/saladas-buffet-480.avif 480w, assets/images/saladas-buffet-640.avif 640w, assets/images/saladas-buffet-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
-                  <img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-640.webp 640w, assets/images/saladas-buffet-800.webp 800w"
+                  <source type="image/avif" data-srcset="assets/images/saladas-buffet-480.avif 480w, assets/images/saladas-buffet-640.avif 640w, assets/images/saladas-buffet-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img data-src="assets/images/saladas-buffet-480.webp" data-srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-640.webp 640w, assets/images/saladas-buffet-800.webp 800w"
                        sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
                        alt="Mesa de saladas do buffet">
                 </picture>
+                <noscript><img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-640.webp 640w, assets/images/saladas-buffet-800.webp 800w" sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async" alt="Mesa de saladas do buffet"></noscript>
               </figure>
               <div class="menu-body">
-                <p class="menu-count">07 / 10</p>
+                <div class="menu-meta">
+                  <ul class="menu-facts" aria-label="Divulgado pela casa"><li>No buffet</li><li>Todos os dias</li></ul>
+                  <p class="menu-ask">Saladas de hoje pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Saladas</h3>
-                <p class="menu-desc">Uma mesa inteira de saladas no buffet, com travessas montadas com capricho.</p>
+                <p class="menu-desc">Uma mesa inteira de saladas no buffet, montada com capricho.</p>
                 <details class="menu-seen">
-                  <summary><span>Já passou pela nossa mesa</span> <span class="menu-seen-count">6 itens</span></summary>
+                  <summary><span>Já passou pela mesa</span> <span class="menu-seen-count">6 itens</span></summary>
                   <ul class="menu-tags"><li>Rúcula com manga</li><li>Ovos cozidos</li><li>Vagem</li><li>Brócolis</li><li>Tomate</li><li>Beterraba</li></ul>
                   <p class="menu-seen-note">Visto nas fotos da casa; as saladas mudam conforme o dia.</p>
                 </details>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Saladas de hoje pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20as%20saladas%20de%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as saladas</span></a>
+                <a class="btn btn-dark menu-cta" data-wa="saladas" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20quais%20saladas%20tem%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as saladas</span></a>
               </div>
             </section>
 
@@ -467,13 +469,13 @@
             <section class="menu-panel menu-panel-text" id="cat-lanches" role="tabpanel" aria-labelledby="tab-lanches" tabindex="0">
               <div class="menu-mark" aria-hidden="true"><span>Lanchonete</span></div>
               <div class="menu-body">
-                <p class="menu-count">08 / 10</p>
+                <div class="menu-meta">
+                  <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Lanchonete</li><li>06h às 23h30</li></ul>
+                  <p class="menu-ask">Opções e valores pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Lanches e salgados</h3>
-                <p class="menu-desc">O Parada do Mano também é lanchonete. Confira com a nossa equipe os lanches e salgados disponíveis hoje.</p>
-                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Lanchonete</li><li>06h às 23h30</li></ul>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Opções e valores pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20quais%20lanches%20e%20salgados%20voc%C3%AAs%20t%C3%AAm." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar os lanches</span></a>
+                <p class="menu-desc">O Parada do Mano também é lanchonete. Confira os lanches e salgados de hoje.</p>
+                <a class="btn btn-dark menu-cta" data-wa="lanches" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20quais%20lanches%20e%20salgados%20tem%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar os lanches</span></a>
               </div>
             </section>
 
@@ -481,12 +483,12 @@
             <section class="menu-panel menu-panel-text" id="cat-sobremesas" role="tabpanel" aria-labelledby="tab-sobremesas" tabindex="0">
               <div class="menu-mark" aria-hidden="true"><span>Sobremesa</span></div>
               <div class="menu-body">
-                <p class="menu-count">09 / 10</p>
+                <div class="menu-meta">
+                  <p class="menu-ask">Opções de hoje pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Sobremesas</h3>
-                <p class="menu-desc">Consulte as sobremesas disponíveis hoje direto com a nossa equipe.</p>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Opções de hoje pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20se%20voc%C3%AAs%20t%C3%AAm%20sobremesas." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as sobremesas</span></a>
+                <p class="menu-desc">Para fechar a refeição: confira as sobremesas disponíveis hoje.</p>
+                <a class="btn btn-dark menu-cta" data-wa="sobremesas" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20quais%20sobremesas%20tem%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as sobremesas</span></a>
               </div>
             </section>
 
@@ -494,15 +496,16 @@
             <section class="menu-panel menu-panel-text" id="cat-bebidas" role="tabpanel" aria-labelledby="tab-bebidas" tabindex="0">
               <div class="menu-mark" aria-hidden="true"><span>Bebidas</span></div>
               <div class="menu-body">
-                <p class="menu-count">10 / 10</p>
+                <div class="menu-meta">
+                  <p class="menu-ask">Opções e valores pelo WhatsApp</p>
+                </div>
                 <h3 class="menu-title">Bebidas</h3>
-                <p class="menu-desc">Confira com a nossa equipe as bebidas disponíveis para acompanhar o prato.</p>
-                <ul class="menu-items"></ul>
-                <p class="menu-pending">Opções e valores pelo WhatsApp</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20quais%20bebidas%20voc%C3%AAs%20servem." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as bebidas</span></a>
+                <p class="menu-desc">Para acompanhar o prato: confira as bebidas disponíveis.</p>
+                <a class="btn btn-dark menu-cta" data-wa="bebidas" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20quais%20bebidas%20voc%C3%AAs%20servem." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as bebidas</span></a>
               </div>
             </section>
           </div>
+          <!-- cardapio:fim -->
 
           <div class="menu-stepper" data-stepper hidden>
             <button class="step-btn" type="button" data-step="-1"><svg class="icon" aria-hidden="true"><use href="#i-chev-l"/></svg><span>Anterior</span></button>
@@ -523,7 +526,7 @@
           </div>
           <div class="buffet-intro" data-reveal style="--d: 1">
             <p class="lead">Comida caseira e variedade todos os dias: pratos quentes, arroz, feijão e uma mesa inteira de saladas. Cada um monta o prato do seu jeito.</p>
-            <a class="btn btn-fire" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20como%20est%C3%A1%20o%20buffet%20hoje%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar o buffet de hoje</span></a>
+            <a data-wa="buffet-valores" class="btn btn-fire" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20os%20valores%20do%20buffet%20e%20se%20%C3%A9%20livre%20ou%20por%20quilo." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar o buffet de hoje</span></a>
           </div>
         </header>
 
@@ -615,7 +618,7 @@
             <!-- PREÇO: só preencher depois da confirmação do restaurante.
                  Exemplo: <p class="spit-price"><strong>R$ 00,00</strong> por pessoa</p> -->
             <p class="spit-price spit-price-pending"><strong>Valor do rodízio</strong> sob consulta</p>
-            <a class="btn btn-fire" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20valor%20e%20o%20hor%C3%A1rio%20do%20espeto%20corrido%20de%20domingo." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar valor e horário</span></a>
+            <a data-wa="espeto" class="btn btn-fire" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20o%20valor%20e%20o%20hor%C3%A1rio%20do%20espeto%20corrido%20de%20domingo." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar o rodízio</span></a>
           </div>
         </article>
       </div>
@@ -642,7 +645,7 @@
             </ul>
           </div>
           <p class="lead" data-reveal style="--d: 2">Quarta e sábado têm feijoada no Parada do Mano. Pergunte pelo WhatsApp o que acompanha e os valores do dia.</p>
-          <a class="btn btn-fire" data-reveal style="--d: 3" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20sobre%20a%20feijoada%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar a feijoada</span></a>
+          <a data-wa="feijoada" class="btn btn-fire" data-reveal style="--d: 3" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20saber%20sobre%20a%20feijoada%20desta%20semana%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar a feijoada</span></a>
         </div>
       </div>
     </section>
@@ -660,7 +663,7 @@
 
         <ul class="gallery-grid" data-gallery>
           <li class="g-item g-a" data-reveal="photo">
-            <a class="g-link photo-frame" href="assets/images/buffet-salao-1200.webp" data-full="assets/images/buffet-salao-1200.webp">
+            <a class="g-link photo-frame" href="assets/images/buffet-salao-1200.webp" data-full="assets/images/buffet-salao-1200.webp" data-full-sm="assets/images/buffet-salao-800.webp">
               <picture>
                 <source type="image/avif" srcset="assets/images/buffet-salao-480.avif 480w, assets/images/buffet-salao-640.avif 640w, assets/images/buffet-salao-800.avif 800w" sizes="(min-width: 960px) 50vw, 72vw">
                 <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-640.webp 640w, assets/images/buffet-salao-800.webp 800w"
@@ -671,7 +674,7 @@
             </a>
           </li>
           <li class="g-item g-b" data-reveal="photo" style="--d: 1">
-            <a class="g-link photo-frame" href="assets/images/prato-carnes-1200.webp" data-full="assets/images/prato-carnes-1200.webp">
+            <a class="g-link photo-frame" href="assets/images/prato-carnes-1200.webp" data-full="assets/images/prato-carnes-1200.webp" data-full-sm="assets/images/prato-carnes-800.webp">
               <picture>
                 <source type="image/avif" srcset="assets/images/prato-carnes-480.avif 480w, assets/images/prato-carnes-640.avif 640w, assets/images/prato-carnes-800.avif 800w" sizes="(min-width: 960px) 25vw, 72vw">
                 <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-640.webp 640w, assets/images/prato-carnes-800.webp 800w"
@@ -682,7 +685,7 @@
             </a>
           </li>
           <li class="g-item g-c" data-reveal="photo" style="--d: 2">
-            <a class="g-link photo-frame" href="assets/images/saladas-buffet-1200.webp" data-full="assets/images/saladas-buffet-1200.webp">
+            <a class="g-link photo-frame" href="assets/images/saladas-buffet-1200.webp" data-full="assets/images/saladas-buffet-1200.webp" data-full-sm="assets/images/saladas-buffet-800.webp">
               <picture>
                 <source type="image/avif" srcset="assets/images/saladas-buffet-480.avif 480w, assets/images/saladas-buffet-640.avif 640w, assets/images/saladas-buffet-800.avif 800w" sizes="(min-width: 960px) 25vw, 72vw">
                 <img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-640.webp 640w, assets/images/saladas-buffet-800.webp 800w"
@@ -693,7 +696,7 @@
             </a>
           </li>
           <li class="g-item g-d" data-reveal="photo">
-            <a class="g-link photo-frame" href="assets/images/feijoada-buffet-1200.webp" data-full="assets/images/feijoada-buffet-1200.webp">
+            <a class="g-link photo-frame" href="assets/images/feijoada-buffet-1200.webp" data-full="assets/images/feijoada-buffet-1200.webp" data-full-sm="assets/images/feijoada-buffet-800.webp">
               <picture>
                 <source type="image/avif" srcset="assets/images/feijoada-buffet-480.avif 480w, assets/images/feijoada-buffet-640.avif 640w, assets/images/feijoada-buffet-800.avif 800w" sizes="(min-width: 960px) 33vw, 72vw">
                 <img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-640.webp 640w, assets/images/feijoada-buffet-800.webp 800w"
@@ -704,7 +707,7 @@
             </a>
           </li>
           <li class="g-item g-e" data-reveal="photo" style="--d: 1">
-            <a class="g-link photo-frame" href="assets/images/cafe-da-manha-1200.webp" data-full="assets/images/cafe-da-manha-1200.webp">
+            <a class="g-link photo-frame" href="assets/images/cafe-da-manha-1200.webp" data-full="assets/images/cafe-da-manha-1200.webp" data-full-sm="assets/images/cafe-da-manha-800.webp">
               <picture>
                 <source type="image/avif" srcset="assets/images/cafe-da-manha-480.avif 480w, assets/images/cafe-da-manha-640.avif 640w, assets/images/cafe-da-manha-800.avif 800w, assets/images/cafe-da-manha-1200.avif 1200w" sizes="(min-width: 960px) 66vw, 72vw">
                 <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-480.webp 480w, assets/images/cafe-da-manha-640.webp 640w, assets/images/cafe-da-manha-800.webp 800w, assets/images/cafe-da-manha-1200.webp 1200w"
@@ -716,7 +719,7 @@
           </li>
         </ul>
 
-        <a class="insta-link" href="https://www.instagram.com/paradadomano/" target="_blank" rel="noopener" data-reveal>
+        <a data-insta class="insta-link" href="https://www.instagram.com/paradadomano/" target="_blank" rel="noopener" data-reveal>
           <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
           <span>Mais fotos no Instagram <strong>@paradadomano</strong></span>
           <svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
@@ -745,11 +748,11 @@
             </div>
             <div class="contact-row">
               <dt><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</dt>
-              <dd><a href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener">(45) 99825-8916</a></dd>
+              <dd><a data-wa="geral" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener">(45) 99825-8916</a></dd>
             </div>
             <div class="contact-row">
               <dt><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>Instagram</dt>
-              <dd><a href="https://www.instagram.com/paradadomano/" target="_blank" rel="noopener">@paradadomano</a></dd>
+              <dd><a data-insta href="https://www.instagram.com/paradadomano/" target="_blank" rel="noopener">@paradadomano</a></dd>
             </div>
           </dl>
         </div>
@@ -761,8 +764,8 @@
           </div>
           <p class="road-text">Na beira da BR-277, em Cascavel. Abra a rota no celular e siga até o km 594.</p>
           <div class="road-actions">
-            <a class="btn btn-fire btn-block" href="https://www.google.com/maps/search/?api=1&amp;query=Parada%20do%20Mano%2C%20BR-277%20km%20594%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Traçar rota</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn btn-light btn-block" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Falar no WhatsApp</span></a>
+            <a data-rota class="btn btn-fire btn-block" href="https://www.google.com/maps/search/?api=1&amp;query=Parada%20do%20Mano%2C%20BR-277%20km%20594%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Traçar rota</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a data-wa="geral" class="btn btn-light btn-block" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Falar no WhatsApp</span></a>
           </div>
         </aside>
       </div>
@@ -793,7 +796,7 @@
       <div class="footer-info">
         <p>BR-277, km 594 · Cascavel/PR</p>
         <p>Seg a dom · 06h às 23h30</p>
-        <p><a href="https://wa.me/5545998258916" target="_blank" rel="noopener">(45) 99825-8916</a> · <a href="https://www.instagram.com/paradadomano/" target="_blank" rel="noopener">@paradadomano</a></p>
+        <p><a data-wa="geral" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener">(45) 99825-8916</a> · <a data-insta href="https://www.instagram.com/paradadomano/" target="_blank" rel="noopener">@paradadomano</a></p>
       </div>
     </div>
     <div class="container footer-bottom">
@@ -805,16 +808,16 @@
   <!-- Barra de ações do celular -->
   <nav class="action-bar" aria-label="Atalhos" data-action-bar>
     <a href="#cardapio"><svg class="icon" aria-hidden="true"><use href="#i-plate"/></svg><span>Cardápio</span></a>
-    <a class="action-main" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp</span></a>
-    <a href="https://www.google.com/maps/search/?api=1&amp;query=Parada%20do%20Mano%2C%20BR-277%20km%20594%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Rota</span></a>
+    <a data-wa="geral" class="action-main" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp</span></a>
+    <a data-rota href="https://www.google.com/maps/search/?api=1&amp;query=Parada%20do%20Mano%2C%20BR-277%20km%20594%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Rota</span></a>
   </nav>
 
   <!-- Visualização ampliada da galeria -->
   <dialog class="lightbox" data-lightbox aria-label="Foto ampliada">
     <div class="lightbox-inner">
       <figure class="lightbox-figure">
-        <img class="lightbox-img" alt="" data-lightbox-img>
-        <figcaption class="lightbox-cap"><span data-lightbox-cap></span> <span class="lightbox-count" data-lightbox-count></span></figcaption>
+        <img class="lightbox-img" alt="" decoding="async" data-lightbox-img>
+        <figcaption class="lightbox-cap" aria-live="polite"><span data-lightbox-cap></span> <span class="lightbox-count" data-lightbox-count></span></figcaption>
       </figure>
       <button class="lb-btn lb-close" type="button" data-lightbox-close aria-label="Fechar"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
       <button class="lb-btn lb-prev" type="button" data-lightbox-prev aria-label="Foto anterior"><svg class="icon" aria-hidden="true"><use href="#i-chev-l"/></svg></button>

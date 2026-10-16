@@ -56,7 +56,7 @@ FOCO = {
 }
 
 # Logo oficial (recorte do perfil do Instagram, ver enhance-photos.py)
-LOGO = ('logo', (48, 96, 192))
+LOGO = ('logo', (96, 192))
 
 # Imagem de compartilhamento (WhatsApp, Facebook): 1200x630, JPG.
 # Sai da foto de abertura quando ela existir.
@@ -241,12 +241,15 @@ def main():
         logo = Image.open(origem_logo).convert('RGBA')
         for t in tamanhos:
             reduzida = logo.resize((t, t), Image.LANCZOS)
-            reduzida.save(os.path.join(SAIDA, 'logo-%d.png' % t), optimize=True)
-            gerados.add('logo-%d.png' % t)
-            # WebP com transparência: cabeçalho e rodapé (o PNG fica para ícone e compartilhamento)
-            if t in (96, 192):
-                reduzida.save(os.path.join(SAIDA, 'logo-%d.webp' % t), 'WEBP', quality=86, method=6)
-                gerados.add('logo-%d.webp' % t)
+            # WebP com transparência: cabeçalho (96 e 192 para tela densa) e rodapé
+            reduzida.save(os.path.join(SAIDA, 'logo-%d.webp' % t), 'WEBP', quality=86, method=6)
+            gerados.add('logo-%d.webp' % t)
+            # PNG só no tamanho de ícone (aba do navegador grande, tela inicial do celular)
+            if t == 192:
+                reduzida.save(os.path.join(SAIDA, 'logo-%d.png' % t), optimize=True)
+                gerados.add('logo-%d.png' % t)
+        # favicon.ico na raiz do site: 16, 32 e 48 px num arquivo só
+        logo.resize((192, 192), Image.LANCZOS).save(os.path.join(RAIZ, 'favicon.ico'), sizes=[(16, 16), (32, 32), (48, 48)])
     else:
         avisos.append('logo: tools/source/logo.png não encontrado')
 

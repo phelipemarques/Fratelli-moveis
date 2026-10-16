@@ -1,5 +1,5 @@
 /* =====================================================================
-   PARADA DO MANO — comportamento da página (V3)
+   PARADA DO MANO — comportamento da página (V4)
    Sem bibliotecas. Tudo aqui é melhoria progressiva: sem JavaScript o
    conteúdo inteiro continua visível e os links continuam funcionando.
    ===================================================================== */
@@ -8,12 +8,20 @@
 
   var root = document.documentElement;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var EASE_OUT = 'cubic-bezier(.16, 1, .3, 1)';
+
+  // Tokens de movimento: os mesmos do CSS (:root), lidos só quando a primeira
+  // animação acontece, nunca durante a carga
+  var styles = null;
+  function token(name, fallback) {
+    if (!styles) styles = window.getComputedStyle(root);
+    return styles.getPropertyValue(name).trim() || fallback;
+  }
+  function ms(value) { return /ms$/.test(value) ? parseFloat(value) : parseFloat(value) * 1000; }
 
   // Animação curta via Web Animations API: não precisa forçar reflow para reiniciar
-  function entrance(el, frames, ms) {
+  function entrance(el, frames) {
     if (reduceMotion.matches || !el.animate) return;
-    el.animate(frames, { duration: ms, easing: EASE_OUT });
+    el.animate(frames, { duration: ms(token('--dur-s', '.28s')), easing: token('--ease-out', 'ease-out') });
   }
 
   // Roda depois que o quadro foi desenhado: aí o layout já está calculado e ler
@@ -72,6 +80,7 @@
       toggle.setAttribute('aria-expanded', 'true');
       if (label) label.textContent = 'Fechar';
       header.classList.add('menu-open');
+      document.body.classList.add('menu-is-open');
       document.body.style.overflow = 'hidden';
       setOutsideInert(true);
       var first = menu.querySelector('a');
@@ -84,10 +93,11 @@
       toggle.setAttribute('aria-expanded', 'false');
       if (label) label.textContent = 'Menu';
       header.classList.remove('menu-open');
+      document.body.classList.remove('menu-is-open');
       document.body.style.overflow = '';
       setOutsideInert(false);
       var done = function () { if (!menu.classList.contains('is-open')) menu.hidden = true; };
-      if (reduceMotion.matches) done(); else window.setTimeout(done, 320);
+      if (reduceMotion.matches) done(); else window.setTimeout(done, ms(token('--dur-m', '.45s')));
       if (returnFocus !== false) toggle.focus({ preventScroll: true });
     };
 
@@ -98,6 +108,12 @@
     menu.addEventListener('click', function (e) {
       if (e.target.closest('[data-menu-link]')) closeMenu(false);
     });
+
+    // tablet girado com o menu aberto: a tela larga não tem esse menu, então ele fecha
+    // (senão a página ficaria travada, sem rolagem e inerte)
+    var wide = window.matchMedia('(min-width: 1100px)');
+    var onWide = function () { if (wide.matches) closeMenu(false); };
+    if (wide.addEventListener) wide.addEventListener('change', onWide); else wide.addListener(onWide);
 
     document.addEventListener('keydown', function (e) {
       if (menu.hidden) return;
@@ -128,6 +144,12 @@
       });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
     targets.forEach(function (el) { io.observe(el); });
+
+    // brasas, brilho e faixa corrida param quando saem da tela
+    var loops = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { entry.target.classList.toggle('is-paused', !entry.isIntersecting); });
+    });
+    document.querySelectorAll('.hero, .ticker').forEach(function (el) { loops.observe(el); });
 
     // item do menu do topo que corresponde à seção na tela
     var navLinks = document.querySelectorAll('.nav-desktop a');
@@ -204,7 +226,6 @@
   if (tabsRoot) {
     var tablist = tabsRoot.querySelector('[data-tablist]');
     var tabsWrap = tabsRoot.querySelector('[data-tabs-wrap]');
-    var panelsBox = tabsRoot.querySelector('[data-panels]');
     var tabs = Array.prototype.slice.call(tabsRoot.querySelectorAll('[role="tab"]'));
     var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
     var stepper = tabsRoot.querySelector('[data-stepper]');
@@ -234,9 +255,9 @@
       if (!edgeTick) { edgeTick = true; window.requestAnimationFrame(updateEdges); }
     }, { passive: true });
 
-    // Fotos sob demanda: com os painéis empilhados, as fotos das categorias fechadas
-    // carregariam todas juntas. Elas guardam o endereço e só o recebem quando a
-    // categoria (ou a vizinha, para a troca sair instantânea) é aberta.
+    // Fotos sob demanda: as fotos das categorias fechadas guardam o endereço e só o
+    // recebem quando a categoria (ou a vizinha, para a troca sair instantânea) é aberta.
+    // Sem JavaScript, todas aparecem normalmente, uma categoria embaixo da outra.
     var park = function (panel) {
       panel.querySelectorAll('source[srcset]').forEach(function (src) {
         src.setAttribute('data-srcset', src.getAttribute('srcset'));
@@ -280,7 +301,7 @@
       current = index;
       if (stepStatus) stepStatus.textContent = pad(index + 1) + ' / ' + pad(tabs.length);
       if (opts.animate !== false) {
-        entrance(panels[index], [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], 280);
+        entrance(panels[index], [{ opacity: 0, transform: 'translateY(' + token('--swap-shift', '8px') + ')' }, { opacity: 1, transform: 'none' }]);
       }
       // na carga não mede nada: medir logo depois de mudar o DOM força o navegador
       // a recalcular o layout da página inteira (reflow forçado)
@@ -310,10 +331,17 @@
       stepper.addEventListener('click', function (e) {
         var btn = e.target.closest('[data-step]');
         if (!btn) return;
+        var headerH = header ? header.offsetHeight : 0;
+        var listOut = tablist.getBoundingClientRect().top < headerH;
+        var before = stepper.getBoundingClientRect().top;
         activate(current + Number(btn.getAttribute('data-step')));
-        // se o topo do cardápio saiu da tela, traz a categoria nova para a vista
-        if (tablist.getBoundingClientRect().top < 0) {
+        if (listOut) {
+          // o topo do cardápio estava fora da tela: traz a categoria nova para a vista
           tabsRoot.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+        } else {
+          // cada categoria tem a altura do próprio conteúdo: o botão fica parado sob o dedo
+          var shift = stepper.getBoundingClientRect().top - before;
+          if (shift) window.scrollBy(0, shift);
         }
       });
     }
@@ -324,8 +352,6 @@
     current = -1;
     tablist.hidden = false;
     if (stepper) stepper.hidden = false;
-    // painéis empilhados: a área mantém a altura do maior e a página não pula
-    panelsBox.classList.add('is-stacked');
     activate(fromHash > -1 ? fromHash : 0, { animate: false, init: true });
     afterPaint(function () {
       if (fromHash > 0) keepTabVisible(tabs[fromHash]);
@@ -351,15 +377,35 @@
       link.setAttribute('aria-label', (cap ? cap.textContent : 'Foto') + ': ampliar foto');
     });
 
+    // tela pequena recebe a versão de 800 px; a de 1200 px fica para telas grandes
+    var fullSrc = function (link) {
+      var small = link.getAttribute('data-full-sm');
+      return small && window.innerWidth * (window.devicePixelRatio || 1) <= 1100 ? small : link.getAttribute('data-full');
+    };
+    var preload = function (i) {
+      var img = new Image();
+      img.decoding = 'async';
+      img.src = fullSrc(links[(i + links.length) % links.length]);
+    };
+
     var show = function (i, swap) {
       idx = (i + links.length) % links.length;
       var link = links[idx];
       var thumb = link.querySelector('img');
-      lbImg.src = link.getAttribute('data-full');
+      // largura e altura da miniatura: o espaço da foto fica reservado enquanto ela carrega
+      if (thumb) {
+        lbImg.width = thumb.getAttribute('width');
+        lbImg.height = thumb.getAttribute('height');
+      }
+      lbImg.src = fullSrc(link);
       lbImg.alt = thumb ? thumb.alt : '';
       lbCap.textContent = (link.querySelector('.g-cap') || {}).textContent || '';
       lbCount.textContent = (idx + 1) + ' / ' + links.length;
-      if (swap) entrance(lbImg, [{ opacity: 0, transform: 'scale(.985)' }, { opacity: 1, transform: 'none' }], 280);
+      if (swap) entrance(lbImg, [{ opacity: 0, transform: 'scale(' + token('--swap-scale', '.985') + ')' }, { opacity: 1, transform: 'none' }]);
+      // as vizinhas só depois que esta já está na tela: o clique responde primeiro
+      var ahead = idx;
+      var later = window.requestIdleCallback || function (fn) { return window.setTimeout(fn, 200); };
+      later(function () { preload(ahead + 1); preload(ahead - 1); });
     };
 
     links.forEach(function (link, i) {

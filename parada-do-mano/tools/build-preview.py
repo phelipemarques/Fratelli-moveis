@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Parada do Mano — prévia em arquivo único (V3).
+Parada do Mano — prévia em arquivo único (V4).
 
-Gera parada-do-mano-v3-visualizacao.html: folha de estilo, JavaScript, fontes,
+Gera parada-do-mano-v4-visualizacao.html: folha de estilo, JavaScript, fontes,
 imagens e o vídeo da abertura dentro do próprio arquivo. Abre com dois cliques,
 sem servidor e sem as pastas ao lado. Serve para mostrar e aprovar; o site de
 publicação continua sendo o index.html com a pasta assets/ (ver tools/make-zip.py).
@@ -24,9 +24,10 @@ import re
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMAGENS = os.path.join(RAIZ, 'assets', 'images')
-SAIDA = os.path.join(RAIZ, 'parada-do-mano-v3-visualizacao.html')
+SAIDA = os.path.join(RAIZ, 'parada-do-mano-v4-visualizacao.html')
 TIPOS = {'.mp4': 'video/mp4', '.webm': 'video/webm', '.webp': 'image/webp', '.avif': 'image/avif',
-         '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.png': 'image/png'}
+         '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.png': 'image/png',
+         '.ico': 'image/x-icon'}
 
 _cache = {}
 
@@ -63,6 +64,11 @@ def main():
     html = re.sub(r'\s*<link rel="preload"[^>]*>', '', html)
     html = re.sub(r'\s*<link rel="apple-touch-icon"[^>]*>', '', html)
     html = re.sub(r'\s*<source type="image/avif"[^>]*>', '', html)
+    # fotos das categorias fechadas: na prévia tudo já está dentro do arquivo, então
+    # entram direto (sem a cópia de <noscript>)
+    html = re.sub(r'\s*<noscript><img [^>]*></noscript>', '', html)
+    html = html.replace(' data-src="assets/images/', ' src="assets/images/')
+    html = re.sub(r'\sdata-srcset="[^"]*"', '', html)
     html = re.sub(r'\s(srcset|sizes)="[^"]*"', '', html)
 
     # imagens: direto no src, sem depender de JavaScript
@@ -70,8 +76,11 @@ def main():
                   lambda m: 'src="%s"' % uri(os.path.join(IMAGENS, m.group(1))), html)
     html = re.sub(r'href="assets/images/([\w.-]+)" data-full="assets/images/([\w.-]+)"',
                   lambda m: 'href="%s" data-full="%s"' % ((uri(os.path.join(IMAGENS, versao(m.group(2), 800))),) * 2), html)
-    html = re.sub(r'href="(assets/images/logo-48\.png)"',
-                  lambda m: 'href="%s"' % uri(os.path.join(RAIZ, m.group(1))), html)
+    html = re.sub(r'<link rel="icon" href="(favicon\.ico)"',
+                  lambda m: '<link rel="icon" href="%s"' % uri(os.path.join(RAIZ, m.group(1))), html)
+    html = re.sub(r'\s*<link rel="icon" href="assets/images/logo-192\.png"[^>]*>', '', html)
+    # a foto ampliada da galeria já é a de 800 px: a versão "pequena" é a mesma
+    html = re.sub(r'\s*data-full-sm="[^"]*"', '', html)
 
     # vídeo da abertura: só o WebM (menor; Chrome, Edge, Firefox e Safari recente tocam).
     # Onde não tocar, a abertura fica com a foto, como no celular.
@@ -80,7 +89,7 @@ def main():
                   lambda m: 'data-src-webm="%s"' % uri(os.path.join(RAIZ, 'assets', 'videos', m.group(1))), html)
 
     html = html.replace('<html lang="pt-BR" class="no-js">',
-                        '<!-- PRÉVIA EM ARQUIVO ÚNICO (V3), gerada por tools/build-preview.py.\n'
+                        '<!-- PRÉVIA EM ARQUIVO ÚNICO (V4), gerada por tools/build-preview.py.\n'
                         '     Para publicar, use o index.html com a pasta assets/. -->\n'
                         '<html lang="pt-BR" class="no-js">')
 

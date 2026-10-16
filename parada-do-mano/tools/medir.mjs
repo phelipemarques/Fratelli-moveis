@@ -1,4 +1,4 @@
-// Parada do Mano — medição comparável entre versões (V2 x V3).
+// Parada do Mano — medição comparável entre versões (V3 x V4).
 //
 //   NODE_PATH=$(npm root -g) node tools/medir.mjs <url> <rotulo> <pasta-de-saida>
 //
@@ -67,9 +67,16 @@ async function bytesDaVisita(w, h, rolar) {
   return { total, requisicoes: n, html, porTipo: tipos };
 }
 
-res.bytes['390-primeira-tela'] = await bytesDaVisita(390, 844, false);
-res.bytes['390-pagina-inteira'] = await bytesDaVisita(390, 844, true);
-res.bytes['1440-primeira-tela'] = await bytesDaVisita(1440, 900, false);
+// três visitas de cada; vale a mediana (as fotos "lazy" perto da dobra variam de uma para outra)
+async function mediana(w, h, rolar) {
+  const v = [];
+  for (let i = 0; i < 3; i++) v.push(await bytesDaVisita(w, h, rolar));
+  v.sort((a, b) => a.total - b.total);
+  return { ...v[1], execucoes: v.map(x => Math.round(x.total / 1024)) };
+}
+res.bytes['390-primeira-tela'] = await mediana(390, 844, false);
+res.bytes['390-pagina-inteira'] = await mediana(390, 844, true);
+res.bytes['1440-primeira-tela'] = await mediana(1440, 900, false);
 
 for (const [w, h] of [[1440, 900], [768, 1024], [390, 844], [320, 568]]) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h } });
@@ -104,5 +111,5 @@ await browser.close();
 fs.writeFileSync(`${OUT}/${ROTULO}-medidas.json`, JSON.stringify(res, null, 2));
 const m390 = res.medidas['390x844'];
 console.log(`${ROTULO}: cardápio a ${m390.tops.cardapio}px de ${m390.altura}px (390) · ` +
-  `primeira visita 390: ${(res.bytes['390-primeira-tela'].total / 1024).toFixed(0)} KB em ${res.bytes['390-primeira-tela'].requisicoes} req · ` +
+  `primeira visita 390: ${(res.bytes['390-primeira-tela'].total / 1024).toFixed(0)} KB em ${res.bytes['390-primeira-tela'].requisicoes} req (${res.bytes['390-primeira-tela'].execucoes.join(' · ')}) · ` +
   `HTML ${(res.bytes['390-primeira-tela'].html / 1024).toFixed(1)} KB · console ${res.console.length} · falhas ${res.falhas.length}`);

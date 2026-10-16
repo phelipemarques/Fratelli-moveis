@@ -1,7 +1,8 @@
 # Parada do Mano — pendências para confirmar com o restaurante
 
-Atualizado na V3 (16/10/2026). Nada no site foi inventado: o que não foi confirmado
-aparece como "sob consulta" ou como pergunta pelo WhatsApp.
+Atualizado na V4 (16/10/2026). Nada no site foi inventado: o que não foi confirmado
+aparece como "sob consulta" ou como pergunta pelo WhatsApp. Confirmar todos os dados abaixo
+antes de publicar — inclusive os que estão em "O que as referências confirmaram".
 
 ## O que as referências confirmaram
 
@@ -20,8 +21,8 @@ Da bio e das publicações do Instagram @paradadomano:
 
 | # | O que pedir | Onde entra |
 |---|---|---|
-| 1 | **Autorização para publicar** e o **domínio** | rodar `python3 tools/set-domain.py https://dominio` (canonical, og:url, og:image absoluta, JSON-LD, sitemap). Só com autorização: `--publicar` (libera `noindex`, `robots.txt` e o `X-Robots-Tag` do `vercel.json`) |
-| 2 | Confirmar que o **WhatsApp** (45) 99825-8916 é o de atendimento e que o **endereço** BR-277, km 594 basta para chegar (posto ou referência, sentido da pista) | 20 links de WhatsApp, contato, rodapé, dados estruturados, botão de rota |
+| 1 | **Autorização para publicar** e o **domínio** | rodar `python3 tools/set-domain.py https://dominio` (canonical, og:url, og:image e twitter:image absolutas, JSON-LD, sitemap). Só com autorização: `--publicar` (libera `noindex`, `robots.txt` e o `X-Robots-Tag` do `vercel.json`). Passo a passo no README |
+| 2 | Confirmar que o **WhatsApp** (45) 99825-8916 é o de atendimento, que o **horário** (seg a dom, 06h–23h30) continua valendo e que o **endereço** BR-277, km 594 basta para chegar (posto ou referência, sentido da pista) | número e mensagens em `conteudo/contato.json` (20 links), contato, rodapé, dados estruturados, botão de rota |
 | 3 | Confirmar que as **artes dos posts** (feijoada e rodízio) podem ir para o site. Se a foto da feijoada ou das carnes dentro da arte veio de banco de imagens, a licença precisa cobrir uso em site | seção Feijoada, bloco do espeto corrido, cardápio |
 
 ## 🟡 Fotos do site
@@ -49,13 +50,18 @@ fachada) continuam em `tools/source/`, fora do site, para quando o dono quiser u
 
 ## 🟡 Cardápio: o que falta para virar cardápio com itens e preços
 
-Na V3 cada categoria mostra só o que é comprovado: dias e horários divulgados (selos escuros)
-e, no buffet e nas saladas, uma lista expansível do que aparece nas **fotos reais** da casa
-("Já passou pelo nosso buffet"), sempre com o aviso de que varia conforme o dia.
+Cada categoria mostra só o que é comprovado: dias e horários divulgados (etiquetas pretas),
+onde consultar valores (linha laranja) e, no buffet e nas saladas, uma lista expansível do que
+aparece nas fotos da casa ("Já passou pelo buffet"), com o aviso de que varia conforme o dia.
 Lanches, sobremesas e bebidas convidam a consultar a equipe, sem prometer nada.
 
-Para preencher uma categoria com pratos e preços, basta enviar a lista; o modelo
-`<li class="menu-item">` está comentado no `index.html`, logo acima do cardápio.
+Desde a V4 o cardápio fica em **`conteudo/cardapio.json`**. Com a lista do restaurante, cada
+prato vira um item (nome, descrição, categoria, preço, disponibilidade, observação, foto
+opcional) e `python3 tools/build-content.py` atualiza o site. O modelo foi testado com itens de
+exemplo numa cópia descartável; **nenhum item de exemplo está no site**. Pedir ao restaurante:
+
+- a lista por categoria, com os preços **atuais** e o que muda por dia da semana;
+- se sobremesas e bebidas existem como categorias (se não, basta apagar a categoria do JSON).
 
 ## 🟡 Dados comerciais ainda "sob consulta"
 
@@ -76,6 +82,9 @@ Para preencher uma categoria com pratos e preços, basta enviar a lista; o model
 - Os três vídeos (roteiro, ordem das fotos e textos) — ver abaixo.
 - Categorias do cardápio (10), mensagens pré-escritas do WhatsApp, placa "BR 277 / km 594" em CSS,
   barra de atalhos no celular, fontes Anton e Barlow.
+- V4: textos das categorias reescritos mais curtos; todas as mensagens do WhatsApp começam com
+  "Olá! Vim pelo site do Parada do Mano e gostaria de…" (lista completa em `conteudo/contato.json`).
+  Elas só abrem uma conversa: não falam em pedido, reserva ou compra.
 
 ## Vídeos
 

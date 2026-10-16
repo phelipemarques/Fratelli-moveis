@@ -1,0 +1,136 @@
+{
+  "_leia": [
+    "Cardápio do site. Depois de editar, rode: python3 tools/build-content.py",
+    "categorias: as 10 abas, na ordem em que aparecem.",
+    "itens: os pratos. Cada item diz a categoria (o id da aba) a que pertence.",
+    "preco: número (12.9) ou null. Sem preço confirmado pelo restaurante, deixe null.",
+    "imagem: nome do arquivo em assets/images (opcional).",
+    "Não inclua prato, preço, porção ou promoção que o restaurante não confirmou."
+  ],
+
+  "categorias": [
+    {
+      "id": "cafe",
+      "nome": "Café da manhã",
+      "descricao": "Para começar bem o dia ou pegar a estrada cedo. A casa abre às 06h.",
+      "fatos": ["Todos os dias", "A partir das 06h"],
+      "imagem": { "foto": "cafe-da-manha", "alt": "Café da manhã com pães, bolos, salgados, ovos mexidos e frutas" },
+      "consulta": "Opções e valores pelo WhatsApp",
+      "botao": "Perguntar o café de hoje",
+      "whatsapp": "cafe"
+    },
+    {
+      "id": "buffet",
+      "nome": "Buffet e almoço",
+      "descricao": "Buffet completo, com comida caseira, pratos quentes e mesa de saladas.",
+      "fatos": ["Todos os dias", "Comida caseira"],
+      "imagem": { "foto": "buffet-salao", "alt": "Buffet do almoço com saladas e pratos quentes" },
+      "visto": {
+        "titulo": "Já passou pelo buffet",
+        "itens": ["Arroz colorido", "Feijão", "Carnes", "Legumes", "Saladas de folhas", "Ovos cozidos"],
+        "nota": "Visto nas fotos da casa; o buffet muda conforme o dia."
+      },
+      "consulta": "Forma de servir e valores pelo WhatsApp",
+      "botao": "Perguntar o buffet de hoje",
+      "whatsapp": "buffet"
+    },
+    {
+      "id": "jantar",
+      "nome": "Janta",
+      "descricao": "Comida caseira também à noite, de segunda a domingo.",
+      "fatos": ["Segunda a domingo", "Até 23h30"],
+      "imagem": { "foto": "prato-carnes", "alt": "Prato com carnes, arroz, feijão e batata frita" },
+      "consulta": "Opções e valores pelo WhatsApp",
+      "botao": "Perguntar a janta de hoje",
+      "whatsapp": "jantar"
+    },
+    {
+      "id": "carnes",
+      "nome": "Carnes e churrasco",
+      "descricao": "Carne no espeto, na churrasqueira da casa, e panelas no fogão a lenha.",
+      "fatos": ["Churrasqueira", "Fogão a lenha"],
+      "imagem": { "foto": "churrasqueira", "alt": "Espetos de carne na churrasqueira" },
+      "consulta": "Cortes e valores pelo WhatsApp",
+      "botao": "Perguntar as carnes",
+      "whatsapp": "carnes"
+    },
+    {
+      "id": "espeto",
+      "nome": "Espeto corrido",
+      "descricao": "Rodízio aos domingos, com variedade de carnes direto da churrasqueira.",
+      "fatos": ["Domingos", "Variedade de carnes"],
+      "imagem": { "foto": "post-rodizio", "alt": "Arte do Parada do Mano anunciando o rodízio aos domingos" },
+      "consulta": "Valor por pessoa pelo WhatsApp",
+      "botao": "Consultar o rodízio",
+      "whatsapp": "espeto"
+    },
+    {
+      "id": "feijoada",
+      "nome": "Feijoada",
+      "descricao": "Dia de feijoada no Parada do Mano: quarta-feira e sábado.",
+      "fatos": ["Quartas", "Sábados"],
+      "imagem": { "foto": "feijoada-buffet", "alt": "Feijoada com arroz, farofa, couve e laranja" },
+      "consulta": "Acompanhamentos e valores pelo WhatsApp",
+      "botao": "Consultar a feijoada",
+      "whatsapp": "feijoada"
+    },
+    {
+      "id": "saladas",
+      "nome": "Saladas",
+      "descricao": "Uma mesa inteira de saladas no buffet, montada com capricho.",
+      "fatos": ["No buffet", "Todos os dias"],
+      "imagem": { "foto": "saladas-buffet", "alt": "Mesa de saladas do buffet" },
+      "visto": {
+        "titulo": "Já passou pela mesa",
+        "itens": ["Rúcula com manga", "Ovos cozidos", "Vagem", "Brócolis", "Tomate", "Beterraba"],
+        "nota": "Visto nas fotos da casa; as saladas mudam conforme o dia."
+      },
+      "consulta": "Saladas de hoje pelo WhatsApp",
+      "botao": "Perguntar as saladas",
+      "whatsapp": "saladas"
+    },
+    {
+      "id": "lanches",
+      "nome": "Lanches e salgados",
+      "descricao": "O Parada do Mano também é lanchonete. Confira os lanches e salgados de hoje.",
+      "fatos": ["Lanchonete", "06h às 23h30"],
+      "marca": "Lanchonete",
+      "consulta": "Opções e valores pelo WhatsApp",
+      "botao": "Perguntar os lanches",
+      "whatsapp": "lanches"
+    },
+    {
+      "id": "sobremesas",
+      "nome": "Sobremesas",
+      "descricao": "Para fechar a refeição: confira as sobremesas disponíveis hoje.",
+      "fatos": [],
+      "marca": "Sobremesa",
+      "consulta": "Opções de hoje pelo WhatsApp",
+      "botao": "Perguntar as sobremesas",
+      "whatsapp": "sobremesas"
+    },
+    {
+      "id": "bebidas",
+      "nome": "Bebidas",
+      "descricao": "Para acompanhar o prato: confira as bebidas disponíveis.",
+      "fatos": [],
+      "marca": "Bebidas",
+      "consulta": "Opções e valores pelo WhatsApp",
+      "botao": "Perguntar as bebidas",
+      "whatsapp": "bebidas"
+    }
+  ],
+
+  "_modelo_de_item": {
+    "categoria": "buffet",
+    "nome": "Nome do prato",
+    "descricao": "Descrição curta (opcional)",
+    "preco": null,
+    "disponibilidade": "Todos os dias (opcional)",
+    "disponivel": true,
+    "observacao": "Opcional",
+    "imagem": null
+  },
+
+  "itens": []
+}

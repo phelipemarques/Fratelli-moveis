@@ -4,7 +4,7 @@
 Parada do Mano — prepara o site para um domínio real.
 
 Compartilhamento (WhatsApp, Facebook) e buscadores exigem endereços absolutos:
-canonical, og:url, og:image e a imagem dos dados estruturados. Este script grava
+canonical, og:url, og:image, twitter:image e a imagem dos dados estruturados. Este script grava
 essas URLs no index.html e gera o sitemap.xml para o domínio informado.
 
     python3 tools/set-domain.py https://paradadomano.com.br
@@ -34,14 +34,21 @@ def main():
     p = os.path.join(RAIZ, 'index.html')
     html = open(p, encoding='utf-8').read()
 
-    # remove o que uma execução anterior tenha posto
-    html = re.sub(r'\n  <link rel="canonical" href="[^"]*">', '', html)
-    html = re.sub(r'\n  <meta property="og:url" content="[^"]*">', '', html)
+    # remove o que uma execução anterior tenha posto (funciona com o HTML do projeto,
+    # indentado, e com o do pacote, minificado)
+    html = re.sub(r'\n[ \t]*<link rel="canonical" href="[^"]*">', '', html)
+    html = re.sub(r'\n[ \t]*<meta property="og:url" content="[^"]*">', '', html)
+    html = re.sub(r'\n[ \t]*<meta name="twitter:image" content="[^"]*">', '', html)
     html = re.sub(r'<meta property="og:image" content="[^"]*">',
                   '<meta property="og:image" content="%s/assets/images/og-cover.jpg">' % dom, html)
-    html = html.replace('  <meta property="og:type" content="restaurant">',
-                        '  <link rel="canonical" href="%s/">\n  <meta property="og:url" content="%s/">\n'
-                        '  <meta property="og:type" content="restaurant">' % (dom, dom), 1)
+    html, n1 = re.subn(r'(\n[ \t]*)(<meta property="og:type" content="restaurant">)',
+                       lambda m: '%s<link rel="canonical" href="%s/">%s<meta property="og:url" content="%s/">%s%s'
+                       % (m.group(1), dom, m.group(1), dom, m.group(1), m.group(2)), html, count=1)
+    html, n2 = re.subn(r'(\n[ \t]*)(<meta name="twitter:card" content="summary_large_image">)',
+                       lambda m: '%s%s%s<meta name="twitter:image" content="%s/assets/images/og-cover.jpg">'
+                       % (m.group(1), m.group(2), m.group(1), dom), html, count=1)
+    if not (n1 and n2):
+        sys.exit('ERRO: não achei og:type ou twitter:card no index.html')
 
     # dados estruturados: url, imagem e cardápio absolutos
     def ld(m):
@@ -72,7 +79,7 @@ def main():
             regra['headers'] = [h for h in regra['headers'] if h['key'] != 'X-Robots-Tag']
         json.dump(conf, open(v, 'w', encoding='utf-8'), indent=2)
 
-    print('domínio %s gravado (canonical, og:url, og:image, JSON-LD, sitemap.xml)' % dom)
+    print('domínio %s gravado (canonical, og:url, og:image, twitter:image, JSON-LD, sitemap.xml)' % dom)
     print('indexação LIBERADA' if publicar else 'indexação continua bloqueada (prévia)')
 
 

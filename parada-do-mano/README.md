@@ -1,17 +1,18 @@
-# Parada do Mano — site (V3)
+# Parada do Mano — site (V4)
 
 Site do **Parada do Mano Restaurante e Lanchonete**, BR-277, km 594, Cascavel/PR.
 
 > **Status: prévia de aprovação. Não publicado.** A página tem `noindex, nofollow`, o
 > `robots.txt` bloqueia buscadores e o `vercel.json` manda o cabeçalho `X-Robots-Tag: noindex`.
 > As fotos são as enviadas pelo restaurante, ampliadas, e o rodapé as marca como ilustrativas.
-> Antes de publicar, ver [`PENDENCIAS.md`](PENDENCIAS.md). O que mudou da V2 para a V3, e como
-> foi medido, está em [`RELATORIO-V3.md`](RELATORIO-V3.md).
+> Antes de publicar, ver [`PENDENCIAS.md`](PENDENCIAS.md). O que mudou da V3 para a V4, e como
+> foi medido, está em [`RELATORIO-V4.md`](RELATORIO-V4.md).
 
 ## Abrir
 
-**Sem servidor:** dois cliques em `parada-do-mano-v3-visualizacao.html`. É um arquivo só,
-com CSS, JavaScript, fontes, fotos e o vídeo da abertura dentro. Serve para mostrar e aprovar.
+**Sem servidor:** dois cliques em `parada-do-mano-v4-visualizacao.html`. É um arquivo só,
+com CSS, JavaScript, fontes, fotos e o vídeo da abertura dentro (por isso pesa 6,8 MB).
+Serve para mostrar e aprovar; não é o que vai para o ar.
 
 **Com servidor** (o jeito certo de testar o site que vai para o ar):
 
@@ -24,12 +25,13 @@ node tools/servidor.mjs . 8130        # gzip e cache como numa hospedagem
 
 ## O que vai para o ar
 
-`python3 tools/make-zip.py` gera `parada-do-mano-v3-producao.zip`, com a pasta
-`parada-do-mano-v3/` pronta para qualquer hospedagem estática:
+`python3 tools/make-zip.py` gera `parada-do-mano-v4-producao.zip`, com a pasta
+`parada-do-mano-v4/` pronta para qualquer hospedagem estática:
 
 ```
-parada-do-mano-v3/
+parada-do-mano-v4/
   index.html                 a página (HTML semântico, um único h1)
+  favicon.ico                ícone da aba (16, 32 e 48 px)
   robots.txt                 bloqueia indexação enquanto for prévia
   vercel.json                cache por tipo de arquivo + X-Robots-Tag noindex
   sitemap.xml                só depois de rodar tools/set-domain.py
@@ -40,75 +42,106 @@ parada-do-mano-v3/
   assets/fonts/              Anton, Barlow, Barlow Condensed (SIL OFL 1.1, licenças ao lado)
 ```
 
-No ZIP, o HTML e o CSS vão sem comentários e sem indentação; no projeto ficam legíveis.
+O ZIP leva só os arquivos que a página usa (o script lista o que ficou de fora) e
+para com erro se a página citar um arquivo que não existe. HTML e CSS vão sem comentários
+e sem indentação; no projeto ficam legíveis.
 
 ## Estrutura do projeto
 
 ```
-index.html, robots.txt, vercel.json, assets/   o site (ver acima)
+index.html, favicon.ico, robots.txt, vercel.json, assets/   o site (ver acima)
+conteudo/cardapio.json      as 10 categorias do cardápio e os itens (nome, preço...)
+conteudo/contato.json       WhatsApp, Instagram, rota e as mensagens prontas do WhatsApp
 
-parada-do-mano-v3-visualizacao.html   prévia em arquivo único
-parada-do-mano-v3-producao.zip        pacote de produção
+parada-do-mano-v4-visualizacao.html   prévia em arquivo único
+parada-do-mano-v4-producao.zip        pacote de produção
 parada-do-mano-video-vertical.mp4     1080x1920 para Reels, Stories e WhatsApp
 parada-do-mano-video-horizontal.mp4   1920x1080 para Facebook, YouTube e TV
-comparacao/                           capturas V2 | V3 lado a lado (4 tamanhos de tela)
-versoes/v2-visualizacao.html          a V2, guardada para comparação
-RELATORIO-V3.md                       problema → solução → benefício → teste, com medições
+comparacao/                           capturas V3 | V4 lado a lado (4 tamanhos de tela)
+versoes/                              a V3 (prévia e relatório), guardada para comparação
+RELATORIO-V4.md                       problema → solução → benefício → teste, com medições
 QA.md                                 o que foi testado, como, e o que não foi
 PENDENCIAS.md                         o que falta confirmar com o restaurante
 
+tools/build-content.py        grava no index.html o cardápio e os links de conteudo/
 tools/source/                 fotos tratadas (uma por espaço do site) e a logo
 tools/source/referencias/     prints e fotos enviados, sem alteração
 tools/enhance-photos.py       amplia as fotos enviadas (EDSR); "novas" = fotos de 16/10
-tools/prepare-images.py       corta e gera WebP + AVIF em cada largura, a logo e o og-cover
+tools/prepare-images.py       corta e gera WebP + AVIF, a logo, o favicon e o og-cover
 tools/make-film.py            gera o vídeo da abertura e os dois vídeos para redes sociais
 tools/build-preview.py        gera a prévia em arquivo único
 tools/make-zip.py             gera o pacote de produção
-tools/set-domain.py           grava o domínio (canonical, og:url, og:image, JSON-LD, sitemap)
+tools/set-domain.py           grava o domínio (canonical, og:url, og:image, twitter:image, JSON-LD, sitemap)
 tools/servidor.mjs            servidor local com gzip, Range e cabeçalhos de cache
-tools/qa-browser.mjs          125 verificações no Chromium (Playwright), 10 tamanhos de tela
+tools/qa-browser.mjs          bateria de testes no Chromium (Playwright), 13 tamanhos de tela
+tools/qa-preview.mjs          testes da prévia em arquivo único, aberta direto do disco
 tools/medir.mjs               medição comparável entre versões + capturas
+tools/comparar.py             monta as capturas lado a lado de duas medições
+tools/inp-lab.mjs             duração das interações em laboratório (CPU 4x mais lenta)
 tools/fonts-ttf/              cópias TTF das fontes, usadas só pelos scripts de imagem e vídeo
 ```
 
 ## Editar o conteúdo
 
-Todo o texto está no `index.html`. Depois de editar, gere de novo a prévia e o pacote:
+### Cardápio — `conteudo/cardapio.json`
+
+O cardápio não se edita no HTML. Edite o JSON e rode:
 
 ```bash
+python3 tools/build-content.py      # grava o cardápio no index.html
 python3 tools/build-preview.py && python3 tools/make-zip.py
 ```
 
-### Cardápio
+Cada **categoria** (as 10 abas, na ordem do arquivo) tem:
 
-A seção `#cardapio` tem 10 abas. Cada categoria é um `<section class="menu-panel">` com:
+| Campo | O que é |
+|---|---|
+| `id` | identificador curto, sem acento (`buffet`); vira o link `#cat-buffet` |
+| `nome` | nome da aba e do título |
+| `descricao` | uma ou duas frases |
+| `fatos` | etiquetas pretas: só o que a casa divulgou (`"Domingos"`, `"A partir das 06h"`) |
+| `imagem` | `{ "foto": "buffet-salao", "alt": "..." }` — uma foto de `assets/images` |
+| `marca` | palavra grande no lugar da foto, quando a categoria não tem foto |
+| `visto` | lista opcional "Já passou pelo buffet" (o que aparece nas fotos da casa) |
+| `consulta` | a linha laranja: onde consultar valores (`"Valor por pessoa pelo WhatsApp"`) |
+| `botao`, `whatsapp` | texto do botão e a chave da mensagem em `conteudo/contato.json` |
 
-- `.menu-facts` — horário e dias (só o que foi confirmado nas divulgações);
-- `<details class="menu-seen">` (buffet e saladas) — o que aparece nas fotos da casa,
-  com o aviso de que muda conforme o dia;
-- `<ul class="menu-items"></ul>` — vazio de propósito;
-- `.menu-pending` — "Opções e valores de hoje pelo WhatsApp" e o botão com mensagem própria.
+Cada **item** (prato) vai na lista `itens`, com a categoria a que pertence:
 
-Para listar pratos, copie para dentro do `<ul class="menu-items">` o modelo que está no
-comentário logo acima da seção:
-
-```html
-<li class="menu-item">
-  <span class="menu-item-name">Nome do prato</span>
-  <span class="menu-item-desc">Descrição curta (opcional)</span>
-  <span class="menu-item-price">R$ 00,00</span>
-</li>
+```json
+{
+  "categoria": "lanches",
+  "nome": "Nome do prato",
+  "descricao": "Descrição curta (opcional)",
+  "preco": 24.9,
+  "disponibilidade": "Todos os dias (opcional)",
+  "disponivel": true,
+  "observacao": "Opcional",
+  "imagem": null
+}
 ```
 
-Assim que a lista tiver um item, o aviso daquela categoria some sozinho.
-**Prato e preço só depois de confirmados pelo restaurante.** O valor do espeto corrido
-tem um lugar reservado, comentado, dentro do bloco `#espeto`.
+- `preco`: número com ponto (`24.9` vira **R$ 24,90**) ou `null` para não mostrar preço.
+- `disponivel: false` risca o item e mostra "Indisponível no momento".
+- `imagem`: nome de um arquivo em `assets/images` (opcional; vira uma miniatura).
 
-### Horário, telefone, endereço
+O script confere o arquivo: categoria que não existe, preço que não é número, foto que não
+existe e mensagem de WhatsApp que falta param tudo com uma mensagem de erro clara.
+**Prato, preço, porção ou promoção só depois de confirmados pelo restaurante.** Hoje a lista
+`itens` está vazia de propósito, e cada categoria funciona como vitrine com consulta pelo WhatsApp.
 
-Aparecem nos dados estruturados (`<script type="application/ld+json">`, no `<head>`),
-na abertura, na seção `#contato`, no rodapé e nos links de WhatsApp
-(`https://wa.me/5545998258916?text=...`). Procure e troque todas as ocorrências.
+### WhatsApp, Instagram e rota — `conteudo/contato.json`
+
+Todo link de WhatsApp do site tem `data-wa="chave"` e recebe a mensagem daquela chave
+(por exemplo `"buffet": "Olá! Vim pelo site do Parada do Mano e gostaria de saber as opções
+do buffet de hoje."`). Links com `data-rota` e `data-insta` recebem o endereço do Maps e do
+Instagram. Mude o número ou uma mensagem no JSON e rode `python3 tools/build-content.py`:
+todos os links são atualizados e codificados para URL.
+
+### Horário e endereço
+
+Aparecem nos dados estruturados (`<script type="application/ld+json">`, no `<head>`), na
+abertura, em `#contato`, no rodapé e nas etiquetas do cardápio (`conteudo/cardapio.json`).
 
 ### Fotos
 
@@ -116,17 +149,18 @@ na abertura, na seção `#contato`, no rodapé e nos links de WhatsApp
    `tools/source/buffet-salao.jpg`. A lista está em `SLOTS`, no topo de `tools/prepare-images.py`.
 2. `python3 tools/prepare-images.py` (precisa de Pillow com AVIF: `pip install pillow`).
 3. Se o corte não ficou bom, ajuste o ponto de foco em `FOCO`, no mesmo script.
-4. Revise o `alt` da imagem no `index.html` para descrever a foto de verdade.
+4. Revise o `alt` da imagem no `index.html` (ou em `conteudo/cardapio.json`).
 
 Para ampliar fotos novas pequenas: `tools/enhance-photos.py` (precisa de
 `opencv-contrib-python-headless` e do modelo EDSR, ~38 MB, endereço no topo do arquivo;
-o modelo fica em `tools/models/`, fora do Git).
+o modelo fica em `tools/models/`, fora do Git). Foto pequena só deve ser ampliada quando não
+houver original maior.
 
 ### Logo
 
 Recortada do avatar do Instagram (150 px de origem, ampliada). Quando chegar o arquivo
 vetorial ou um PNG grande com fundo transparente, salve como `tools/source/logo.png` e rode
-`tools/prepare-images.py`.
+`tools/prepare-images.py`: saem a logo do cabeçalho e do rodapé, o `favicon.ico` e o `og-cover.jpg`.
 
 ### Vídeos
 
@@ -143,19 +177,22 @@ ffmpeg -i assets/videos/parada-do-mano-abertura.mp4 -c:v libvpx-vp9 -b:v 0 -crf 
 
 O vídeo da abertura só é baixado no computador (960 px ou mais), depois que a página
 terminou de carregar, e nunca com "movimento reduzido", economia de dados ou rede 2G/3G.
-Pausa quando sai da tela ou quando a aba fica em segundo plano. No celular fica a foto.
+O pôster é a própria foto da abertura; se o vídeo falhar, fica a foto. Pausa quando sai da
+tela ou quando a aba fica em segundo plano. No celular fica a foto.
 
 ## Testar
 
 ```bash
 node tools/servidor.mjs . 8130 &
-NODE_PATH=$(npm root -g) node tools/qa-browser.mjs capturas/       # 125 verificações
-NODE_PATH=$(npm root -g) node tools/medir.mjs http://127.0.0.1:8130/ v3 medidas/
+NODE_PATH=$(npm root -g) node tools/qa-browser.mjs capturas/
+NODE_PATH=$(npm root -g) node tools/qa-preview.mjs parada-do-mano-v4-visualizacao.html
+NODE_PATH=$(npm root -g) node tools/medir.mjs http://127.0.0.1:8130/ v4 medidas/
+NODE_PATH=$(npm root -g) node tools/inp-lab.mjs http://127.0.0.1:8130/ V4
 ```
 
-Precisa do Playwright com Chromium. Para testar outro endereço (o pacote descompactado,
-por exemplo): `QA_URL=http://127.0.0.1:8132/ node tools/qa-browser.mjs ...`.
-Resultado da última rodada em `QA.md`.
+Precisa do Playwright com Chromium. Para testar o pacote descompactado:
+`QA_URL=http://127.0.0.1:8134/ node tools/qa-browser.mjs ...`. A bateria também confere se o
+`index.html` está em dia com `conteudo/`. Resultado da última rodada em `QA.md`.
 
 ## Publicar no Vercel (só com autorização do restaurante)
 
@@ -166,12 +203,14 @@ Nada foi publicado. Quando houver autorização:
    ```bash
    python3 tools/set-domain.py https://dominio-do-restaurante.com.br
    ```
-   Isso põe `canonical`, `og:url`, `og:image` absolutos (HTTPS) e o JSON-LD com o endereço,
-   e gera o `sitemap.xml`.
-3. `python3 tools/make-zip.py` e descompactar `parada-do-mano-v3-producao.zip`.
-4. No Vercel: **Add New → Project**, importar o repositório e apontar o *Root Directory*
-   para `parada-do-mano` — ou, sem Git, `npx vercel` dentro da pasta `parada-do-mano-v3/`
-   descompactada. Framework: **Other**; sem comando de build; diretório de saída: a própria pasta.
+   Isso põe `canonical`, `og:url`, `og:image` e `twitter:image` absolutos (HTTPS), completa o
+   JSON-LD com o endereço e gera o `sitemap.xml`. Funciona no `index.html` do projeto e no do pacote.
+3. `python3 tools/make-zip.py` e descompactar `parada-do-mano-v4-producao.zip`.
+4. Publicar a pasta `parada-do-mano-v4/`:
+   - **pela linha de comando:** `npx vercel` dentro da pasta descompactada (depois `npx vercel --prod`);
+   - **pelo site do Vercel com o repositório:** *Add New → Project*, *Root Directory* `parada-do-mano`,
+     *Framework* **Other**, sem comando de build. O `.vercelignore` da pasta deixa de fora
+     ferramentas, conteúdo-fonte, prévias, ZIPs e vídeos de redes sociais.
 5. Conferir o endereço de prévia que o Vercel mostra (o `vercel.json` já manda `noindex`).
 6. Ligar o domínio em **Settings → Domains**.
 7. Só quando o restaurante liberar a página para o Google:
@@ -182,5 +221,5 @@ Nada foi publicado. Quando houver autorização:
    tira o `X-Robots-Tag` do `vercel.json`. Gerar o ZIP de novo e publicar.
 
 Qualquer hospedagem estática serve (Netlify, Cloudflare Pages, hospedagem comum por FTP):
-basta enviar o conteúdo da pasta `parada-do-mano-v3/`. Fora do Vercel, o `vercel.json` é
+basta enviar o conteúdo da pasta `parada-do-mano-v4/`. Fora do Vercel, o `vercel.json` é
 ignorado; configure o cache e o `X-Robots-Tag` no painel da hospedagem.

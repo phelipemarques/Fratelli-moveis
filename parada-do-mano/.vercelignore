@@ -1,0 +1,11 @@
+# Publicação pelo repositório: só o site vai para o ar.
+tools/
+conteudo/
+versoes/
+comparacao/
+capturas/
+qa-shots/
+*.zip
+*-visualizacao.html
+parada-do-mano-video-*.mp4
+*.md

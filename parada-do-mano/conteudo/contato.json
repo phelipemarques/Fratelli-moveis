@@ -1,0 +1,25 @@
+{
+  "_leia": [
+    "Contato e mensagens prontas do WhatsApp. Depois de editar, rode: python3 tools/build-content.py",
+    "Cada link de WhatsApp do site tem data-wa=\"chave\" e recebe a mensagem desta lista.",
+    "As mensagens só abrem uma conversa: não prometem pedido, reserva nem compra."
+  ],
+  "whatsapp": "5545998258916",
+  "instagram": "https://www.instagram.com/paradadomano/",
+  "rota": "https://www.google.com/maps/search/?api=1&query=Parada%20do%20Mano%2C%20BR-277%20km%20594%2C%20Cascavel%20-%20PR",
+
+  "mensagens": {
+    "geral":      "Olá! Vim pelo site do Parada do Mano e gostaria de uma informação.",
+    "cafe":       "Olá! Vim pelo site do Parada do Mano e gostaria de saber o que tem no café da manhã de hoje.",
+    "buffet":     "Olá! Vim pelo site do Parada do Mano e gostaria de saber as opções do buffet de hoje.",
+    "buffet-valores": "Olá! Vim pelo site do Parada do Mano e gostaria de saber os valores do buffet e se é livre ou por quilo.",
+    "jantar":     "Olá! Vim pelo site do Parada do Mano e gostaria de saber o que tem para a janta hoje.",
+    "carnes":     "Olá! Vim pelo site do Parada do Mano e gostaria de saber quais carnes vocês servem hoje.",
+    "espeto":     "Olá! Vim pelo site do Parada do Mano e gostaria de saber o valor e o horário do espeto corrido de domingo.",
+    "feijoada":   "Olá! Vim pelo site do Parada do Mano e gostaria de saber sobre a feijoada desta semana e os valores.",
+    "saladas":    "Olá! Vim pelo site do Parada do Mano e gostaria de saber quais saladas tem hoje.",
+    "lanches":    "Olá! Vim pelo site do Parada do Mano e gostaria de saber quais lanches e salgados tem hoje.",
+    "sobremesas": "Olá! Vim pelo site do Parada do Mano e gostaria de saber quais sobremesas tem hoje.",
+    "bebidas":    "Olá! Vim pelo site do Parada do Mano e gostaria de saber quais bebidas vocês servem."
+  }
+}
