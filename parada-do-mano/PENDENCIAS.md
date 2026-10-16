@@ -24,27 +24,28 @@ Da bio e das publicações do Instagram @paradadomano:
 | 2 | Confirmar que o **WhatsApp** (45) 99825-8916 é o de atendimento e que o **endereço** BR-277, km 594 basta para chegar (posto ou referência, sentido da pista) | 20 links de WhatsApp, contato, rodapé, dados estruturados, botão de rota |
 | 3 | Confirmar que as **artes dos posts** (feijoada e rodízio) podem ir para o site. Se a foto da feijoada ou das carnes dentro da arte veio de banco de imagens, a licença precisa cobrir uso em site | seção Feijoada, bloco do espeto corrido, cardápio |
 
-## 🟡 Fotos: estão no site, mas pedem os arquivos originais
+## 🟡 Fotos do site
 
-As 10 fotos e a logo vieram de prints, com **150 a 750 px**. Foram recortadas, limpas de ruído de
-compressão e ampliadas 4x com o EDSR (`tools/enhance-photos.py`). Ficaram boas para tela, mas os
-originais do celular vão ficar bem mais nítidos — principalmente na abertura e nas fotos grandes.
+Desde 16/10 o site usa as **5 fotos enviadas em 1122×1402** (café da manhã, buffet com salão,
+prato com carnes, feijoada no buffet e mesa de saladas), ampliadas 2x com EDSR e com ajuste leve.
+Elas entram na abertura, nos momentos do dia, no mosaico do buffet, no churrasco, na feijoada,
+no cardápio, na galeria, nos três vídeos e na imagem de compartilhamento. A churrasqueira da
+seção Churrasco é um recorte do fundo da foto do buffet.
 
-| Foto no site | Veio de | Pedir |
-|---|---|---|
-| Arroz e saladas (abertura, buffet, imagem de compartilhamento) | foto enviada, 488×279 | o original do celular |
-| Saladas e ovos | foto enviada, 454×752 | o original |
-| Legumes | foto enviada, 493×279 | o original |
-| Saladas decoradas, pratos quentes | posts do Instagram, ~310 px | os originais |
-| Espeto na brasa, fogão a lenha | post e story do Instagram, ~310 px | os originais ou um vídeo curto |
-| Fachada | post do Instagram, recorte de 197 px (o ônibus com a arte do cantor ficou de fora) | uma foto da fachada sem veículos na frente |
-| **Logo** | avatar do perfil, 150 px | **arquivo vetorial (SVG/PDF/AI) ou PNG grande** |
+As fotos têm cara de **imagens geradas ou retocadas por IA** (o salão e a churrasqueira não batem
+com as fotos reais do Instagram; a das saladas recria uma foto real da casa). Por isso o rodapé diz
+**"Imagens ilustrativas"**. Antes de publicar, o dono precisa aprovar que elas representam o que
+a casa serve — foto de comida que não corresponde ao prato pode gerar reclamação de cliente.
+Se preferir fotos 100 % reais, os originais do celular entram pelo mesmo caminho
+(`tools/source/<nome>.jpg` + `python3 tools/prepare-images.py`).
 
-Como trocar: salvar em `tools/source/<nome>.jpg` (nomes na tabela de `tools/prepare-images.py`)
-e rodar `python3 tools/prepare-images.py`. Para a logo, `tools/source/logo.png` com fundo transparente.
+| Ainda vindo de print do Instagram | Pedir |
+|---|---|
+| Arte do rodízio (recorte sem o preço) | o arquivo da arte, sem o preço, ou foto real dos espetos |
+| **Logo** (avatar do perfil, 150 px) | **arquivo vetorial (SVG/PDF/AI) ou PNG grande** |
 
-**Faltam fotos de:** café da manhã (o cartão do café usa um painel gráfico com "06h"), salão,
-lanches, sobremesas e bebidas.
+As fotos reais tratadas dos prints (arroz, legumes, saladas decoradas, fogão a lenha, espeto,
+fachada) continuam em `tools/source/`, fora do site, para quando o dono quiser usá-las.
 
 ## 🟡 Dados comerciais ainda "sob consulta"
 
@@ -70,7 +71,7 @@ lanches, sobremesas e bebidas.
 
 | Arquivo | Uso | Observação |
 |---|---|---|
-| `assets/video/parada-do-mano-abertura.mp4` / `.webm` | fundo da abertura do site, no computador | sem texto, em loop, 17 s; no celular fica a foto |
+| `assets/video/parada-do-mano-abertura.mp4` / `.webm` | fundo da abertura do site, no computador | sem texto, em loop, 17 s, com as 5 fotos novas; no celular fica a foto |
 | `parada-do-mano-video-vertical.mp4` | Reels, Stories, status do WhatsApp | 1080×1920, 27 s, textos acima da área da legenda do Instagram |
 | `parada-do-mano-video-horizontal.mp4` | Facebook, YouTube, TV do salão | 1920×1080, 27 s |
 

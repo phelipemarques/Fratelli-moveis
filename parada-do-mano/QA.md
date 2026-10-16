@@ -1,6 +1,6 @@
 # Parada do Mano — QA
 
-Segunda rodada, 16/10/2026, depois da entrada das fotos reais, da logo e dos vídeos.
+Terceira rodada, 16/10/2026, depois da troca pelas 5 fotos enviadas em 1122×1402.
 Ferramenta: Chromium 141 (Playwright 1.56) em modo headless, servindo a pasta com
 `python3 -m http.server`. Script: `tools/qa-browser.mjs`.
 **Resultado: 78 de 78 verificações automáticas passaram.**
@@ -11,15 +11,16 @@ Ferramenta: Chromium 141 (Playwright 1.56) em modo headless, servindo a pasta co
 - Seções: abertura · faixa de momentos · O restaurante (café, almoço, jantar + atalhos buffet/churrasco)
   · Buffet (mosaico de 5 fotos) · Churrasco, fogão a lenha e espeto corrido · Feijoada · Cardápio em 10 abas
   · Galeria com foto ampliada · Contato e localização · rodapé · barra de ações no celular.
-- 10 fotos reais e a logo oficial, recortadas das referências enviadas e tratadas por
-  `tools/enhance-photos.py`: redução de ruído de compressão, ampliação 4x com EDSR (super-resolução
-  que reconstrói bordas sem inventar textura) e ajuste leve de contraste só na luminância.
-  Na primeira tentativa o autocontraste por canal esfriou o amarelo do arroz; foi trocado por
-  um ajuste que preserva o tom (comparação lado a lado conferida).
-- Recortes feitos para **não** mostrar: o preço do post do rodízio, os adesivos do story e a arte
-  com o rosto de um cantor no ônibus estacionado na fachada.
-- Vídeo da abertura (960×960, 17 s, loop, 1,8 MB MP4 / 1,6 MB WebM) e dois vídeos com texto para
-  redes (1080×1920 e 1920×1080, 27 s), todos montados com as fotos reais por `tools/make-film.py`.
+- **Fotos (16/10):** as 5 imagens enviadas (café da manhã, buffet com salão, prato com carnes,
+  feijoada, mesa de saladas) foram ampliadas 2x com EDSR (`tools/enhance-photos.py novas`) e
+  receberam o ajuste leve que preserva a cor. Comparação lado a lado conferida (carne grelhada:
+  mais definição, mesma cor). A churrasqueira da seção Churrasco é um recorte do fundo da foto do
+  buffet. Elas substituem todas as fotos tiradas de prints; ficaram de fora do site só a arte do
+  rodízio (recorte sem o preço) e a logo, que continuam vindo do Instagram.
+- O rodapé passou a dizer **"Imagens ilustrativas"** e a galeria virou "Mesa farta" (antes
+  "Comida de verdade"), porque as fotos novas aparentam ser geradas/retocadas por IA.
+- Os três vídeos foram refeitos com as fotos novas por `tools/make-film.py`: abertura (960×960, loop,
+  sem texto) e dois com texto para redes (1080×1920 e 1920×1080, ~28 s).
 - Prévia em arquivo único (`parada-do-mano-visualizacao.html`, 9,7 MB, vídeo embutido) e ZIP de produção
   (`parada-do-mano-site.zip`, 50 arquivos, 6,3 MB).
 

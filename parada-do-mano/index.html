@@ -27,7 +27,7 @@
 
   <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/images/hero-960.webp" imagesrcset="assets/images/hero-640.webp 640w, assets/images/hero-960.webp 960w, assets/images/hero-1440.webp 1440w" imagesizes="(min-width: 960px) 62vw, 100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/hero-960.webp" imagesrcset="assets/images/hero-640.webp 640w, assets/images/hero-960.webp 960w, assets/images/hero-1440.webp 1440w, assets/images/hero-1920.webp 1920w" imagesizes="(min-width: 960px) 62vw, 100vw" fetchpriority="high">
 
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/main.js" defer></script>
@@ -66,7 +66,6 @@
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.8" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="7" r="1.1" fill="currentColor"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4.5 9.5h12v4.5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5V9.5Zm12 1.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.6M8 3.5c-.8 1 .8 2 0 3m3.5-3c-.8 1 .8 2 0 3M15 3.5c-.8 1 .8 2 0 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-plate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
     <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.4-5.4 3.7-8 .4 1.8 1.4 3 2.6 3.6C12 7.6 13 5 15.2 3c-.4 3.1 3.3 5.6 3.3 10.4 0 4.4-2.7 7.6-6.5 7.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
@@ -139,9 +138,9 @@
       <div class="hero-media">
         <div class="hero-photo">
           <img class="hero-img" src="assets/images/hero-960.webp"
-               srcset="assets/images/hero-640.webp 640w, assets/images/hero-960.webp 960w, assets/images/hero-1440.webp 1440w"
-               sizes="(min-width: 960px) 62vw, 100vw" width="1440" height="1152"
-               alt="Buffet do Parada do Mano: arroz colorido, saladas e pratos quentes" fetchpriority="high" decoding="async">
+               srcset="assets/images/hero-640.webp 640w, assets/images/hero-960.webp 960w, assets/images/hero-1440.webp 1440w, assets/images/hero-1920.webp 1920w"
+               sizes="(min-width: 960px) 62vw, 100vw" width="1920" height="1536"
+               alt="Buffet com saladas e pratos quentes, com a churrasqueira acesa ao fundo" fetchpriority="high" decoding="async">
           <!-- Filme curto feito com as fotos do restaurante. Sem som; o JS só carrega no computador,
                sem economia de dados e sem movimento reduzido. No celular fica a foto. -->
           <video class="hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
@@ -206,11 +205,11 @@
           <ol class="day-list">
             <li class="day-item" data-reveal>
               <article class="moment">
-                <div class="moment-photo moment-sun" aria-hidden="true">
-                  <svg class="moment-sun-icon"><use href="#i-cup"/></svg>
-                  <span class="moment-sun-hour">06h</span>
-                  <span class="moment-sun-note">a porta abre</span>
-                </div>
+                <figure class="moment-photo photo-frame">
+                  <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-480.webp 480w, assets/images/cafe-da-manha-800.webp 800w"
+                       sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 92vw" width="800" height="1000" loading="lazy" decoding="async"
+                       alt="Mesa de café da manhã com pães, bolos, pão de queijo, ovos mexidos, frios, frutas e café">
+                </figure>
                 <p class="moment-time"><span class="moment-dot" aria-hidden="true"></span>A partir das 06h</p>
                 <h3 class="moment-title">Café da manhã</h3>
                 <p class="moment-text">Para começar bem o dia — ou para pegar a estrada de barriga cheia.</p>
@@ -219,9 +218,9 @@
             <li class="day-item" data-reveal style="--d: 1">
               <article class="moment">
                 <figure class="moment-photo photo-frame">
-                  <img src="assets/images/buffet-quentes-640.webp" srcset="assets/images/buffet-quentes-640.webp 640w, assets/images/buffet-quentes-960.webp 960w, assets/images/buffet-quentes-1240.webp 1240w"
-                 sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 92vw" width="1240" height="827" loading="lazy" decoding="async"
-                 alt="Panelas do buffet do almoço com arroz, feijão e carnes">
+                  <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-800.webp 800w"
+                       sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 92vw" width="800" height="1000" loading="lazy" decoding="async"
+                       alt="Buffet do almoço com saladas, arroz, feijão e carnes">
                 </figure>
                 <p class="moment-time"><span class="moment-dot" aria-hidden="true"></span>Almoço</p>
                 <h3 class="moment-title">Almoço</h3>
@@ -231,9 +230,9 @@
             <li class="day-item" data-reveal style="--d: 2">
               <article class="moment">
                 <figure class="moment-photo photo-frame">
-                  <img src="assets/images/fogao-lenha-640.webp" srcset="assets/images/fogao-lenha-640.webp 640w, assets/images/fogao-lenha-960.webp 960w, assets/images/fogao-lenha-1240.webp 1240w"
-                 sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 92vw" width="1240" height="827" loading="lazy" decoding="async"
-                 alt="Fogão a lenha aceso com as panelas servidas">
+                  <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-800.webp 800w"
+                       sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 92vw" width="800" height="1000" loading="lazy" decoding="async"
+                       alt="Prato com carnes grelhadas, arroz, feijão, batata frita e salada">
                 </figure>
                 <p class="moment-time"><span class="moment-dot" aria-hidden="true"></span>Até 23h30</p>
                 <h3 class="moment-title">Janta</h3>
@@ -281,35 +280,29 @@
         </header>
 
         <div class="mosaic">
-          <figure class="tile tile-arroz photo-frame" data-reveal="photo">
-            <img src="assets/images/buffet-arroz-800.webp" srcset="assets/images/buffet-arroz-480.webp 480w, assets/images/buffet-arroz-800.webp 800w, assets/images/buffet-arroz-1100.webp 1100w"
-                 sizes="(min-width: 960px) 40vw, 100vw" width="1100" height="1375" loading="lazy" decoding="async"
-                 alt="Arroz colorido com presunto e legumes no buffet, com saladas ao fundo">
-            <figcaption><span>01</span>Arroz e acompanhamentos</figcaption>
-          </figure>
-          <figure class="tile tile-quentes photo-frame" data-reveal="photo" style="--d: 1">
-            <img src="assets/images/buffet-quentes-960.webp" srcset="assets/images/buffet-quentes-640.webp 640w, assets/images/buffet-quentes-960.webp 960w, assets/images/buffet-quentes-1240.webp 1240w"
-                 sizes="(min-width: 960px) 58vw, 100vw" width="1240" height="827" loading="lazy" decoding="async"
-                 alt="Panelas de arroz e feijão e travessas de carne no buffet">
-            <figcaption><span>02</span>Pratos quentes</figcaption>
-          </figure>
-          <figure class="tile tile-decoradas photo-frame" data-reveal="photo">
-            <img src="assets/images/buffet-decoradas-800.webp" srcset="assets/images/buffet-decoradas-480.webp 480w, assets/images/buffet-decoradas-800.webp 800w, assets/images/buffet-decoradas-1200.webp 1200w"
-                 sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1200" loading="lazy" decoding="async"
-                 alt="Travessas de salada decoradas com flores de legumes">
-            <figcaption><span>03</span>Saladas decoradas</figcaption>
+          <figure class="tile tile-salao photo-frame" data-reveal="photo">
+            <img src="assets/images/buffet-salao-800.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-800.webp 800w, assets/images/buffet-salao-1200.webp 1200w"
+                 sizes="(min-width: 960px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async"
+                 alt="Buffet com saladas, arroz colorido, carnes e a churrasqueira ao fundo">
+            <figcaption><span>01</span>Buffet completo</figcaption>
           </figure>
           <figure class="tile tile-saladas photo-frame" data-reveal="photo" style="--d: 1">
-            <img src="assets/images/buffet-saladas-800.webp" srcset="assets/images/buffet-saladas-480.webp 480w, assets/images/buffet-saladas-800.webp 800w, assets/images/buffet-saladas-1200.webp 1200w"
-                 sizes="(min-width: 960px) 33vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async"
-                 alt="Rúcula com manga e ovos cozidos na mesa de saladas">
-            <figcaption><span>04</span>Saladas e ovos</figcaption>
+            <img src="assets/images/saladas-buffet-800.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-800.webp 800w, assets/images/saladas-buffet-1200.webp 1200w"
+                 sizes="(min-width: 960px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async"
+                 alt="Mesa de saladas com rúcula e manga, ovos, pepino, tomate e legumes">
+            <figcaption><span>02</span>Saladas</figcaption>
           </figure>
-          <figure class="tile tile-legumes photo-frame" data-reveal="photo" style="--d: 2">
-            <img src="assets/images/buffet-legumes-960.webp" srcset="assets/images/buffet-legumes-640.webp 640w, assets/images/buffet-legumes-960.webp 960w, assets/images/buffet-legumes-1440.webp 1440w"
-                 sizes="(min-width: 960px) 66vw, 100vw" width="1440" height="960" loading="lazy" decoding="async"
-                 alt="Vagem, brócolis, tomate e legumes cozidos no buffet">
-            <figcaption><span>05</span>Legumes</figcaption>
+          <figure class="tile tile-quentes photo-frame" data-reveal="photo">
+            <img src="assets/images/feijoada-buffet-800.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-800.webp 800w, assets/images/feijoada-buffet-1200.webp 1200w"
+                 sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async"
+                 alt="Panela de feijão com carnes, arroz, farofa, couve e laranja">
+            <figcaption><span>03</span>Comida caseira</figcaption>
+          </figure>
+          <figure class="tile tile-prato photo-frame" data-reveal="photo" style="--d: 1">
+            <img src="assets/images/prato-carnes-800.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-800.webp 800w, assets/images/prato-carnes-1200.webp 1200w"
+                 sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async"
+                 alt="Prato montado com carnes grelhadas, arroz, feijão e batata frita">
+            <figcaption><span>04</span>Prato cheio</figcaption>
           </figure>
         </div>
 
@@ -324,10 +317,10 @@
     <section class="section grill" id="churrasco" aria-labelledby="churrasco-title">
       <div class="grill-stage">
         <figure class="grill-photo" data-reveal="photo">
-          <img src="assets/images/fogao-lenha-1240.webp" srcset="assets/images/fogao-lenha-640.webp 640w, assets/images/fogao-lenha-960.webp 960w, assets/images/fogao-lenha-1240.webp 1240w"
-                 sizes="100vw" width="1240" height="827" loading="lazy" decoding="async"
-                 alt="Fogão a lenha do Parada do Mano com o fogo aceso e as panelas servidas">
-          <figcaption class="grill-caption">Fogão a lenha · Parada do Mano</figcaption>
+          <img src="assets/images/prato-carnes-largo-1440.webp" srcset="assets/images/prato-carnes-largo-960.webp 960w, assets/images/prato-carnes-largo-1440.webp 1440w, assets/images/prato-carnes-largo-1920.webp 1920w"
+               sizes="100vw" width="1920" height="1080" loading="lazy" decoding="async"
+               alt="Carnes grelhadas servidas com arroz, feijão e batata frita">
+          <figcaption class="grill-caption">Da brasa para o prato</figcaption>
         </figure>
         <div class="container grill-title-wrap">
           <p class="eyebrow" data-reveal>Churrasco e fogão a lenha</p>
@@ -344,10 +337,10 @@
           <a class="btn btn-fire" href="#espeto"><span>Ver o espeto corrido</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <figure class="grill-side grill-side-a photo-frame" data-reveal="photo" style="--d: 1">
-          <img src="assets/images/churrasco-espeto-800.webp" srcset="assets/images/churrasco-espeto-480.webp 480w, assets/images/churrasco-espeto-800.webp 800w, assets/images/churrasco-espeto-1200.webp 1200w"
-                 sizes="(min-width: 960px) 42vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async"
-                 alt="Carne no espeto assando sobre a brasa da churrasqueira">
-          <figcaption class="grill-side-cap">Espeto na brasa</figcaption>
+          <img src="assets/images/churrasqueira-800.webp" srcset="assets/images/churrasqueira-480.webp 480w, assets/images/churrasqueira-800.webp 800w"
+               sizes="(min-width: 960px) 42vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+               alt="Churrasqueira com espetos de carne sobre o fogo">
+          <figcaption class="grill-side-cap">Churrasqueira</figcaption>
         </figure>
       </div>
 
@@ -375,9 +368,9 @@
     <section class="section feijoada" id="feijoada" aria-labelledby="feijoada-title">
       <div class="container feijoada-grid">
         <figure class="feijoada-photo photo-frame" data-reveal="photo">
-          <img src="assets/images/feijoada-800.webp" srcset="assets/images/feijoada-480.webp 480w, assets/images/feijoada-800.webp 800w, assets/images/feijoada-1200.webp 1200w"
-                 sizes="(min-width: 960px) 40vw, 100vw" width="1200" height="1600" loading="lazy" decoding="async"
-                 alt="Post oficial: nas quartas e sábado temos feijoada, Parada do Mano, BR 277 km 594, Cascavel PR">
+          <img src="assets/images/feijoada-buffet-800.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-800.webp 800w, assets/images/feijoada-buffet-1200.webp 1200w"
+               sizes="(min-width: 960px) 40vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async"
+               alt="Panela de feijoada com linguiça e carnes, arroz branco, farofa, couve e laranja">
         </figure>
         <div class="feijoada-body">
           <p class="eyebrow" data-reveal>Dia especial</p>
@@ -432,8 +425,12 @@
 
           <div class="menu-panels">
             <!-- 01 Café da manhã -->
-            <section class="menu-panel menu-panel-text" id="cat-cafe" role="tabpanel" aria-labelledby="tab-cafe" tabindex="0">
-              <div class="menu-mark" aria-hidden="true"><span>Café</span></div>
+            <section class="menu-panel" id="cat-cafe" role="tabpanel" aria-labelledby="tab-cafe" tabindex="0">
+              <figure class="menu-photo photo-frame">
+                <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-480.webp 480w, assets/images/cafe-da-manha-800.webp 800w"
+                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                     alt="Café da manhã com pães, bolos, salgados, ovos mexidos e frutas">
+              </figure>
               <div class="menu-body">
                 <p class="menu-count">01 / 10</p>
                 <h3 class="menu-title">Café da manhã</h3>
@@ -447,9 +444,9 @@
             <!-- 02 Buffet e almoço -->
             <section class="menu-panel" id="cat-buffet" role="tabpanel" aria-labelledby="tab-buffet" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/buffet-quentes-640.webp" srcset="assets/images/buffet-quentes-640.webp 640w, assets/images/buffet-quentes-960.webp 960w"
-                 sizes="(min-width: 960px) 34vw, 100vw" width="960" height="640" loading="lazy" decoding="async"
-                 alt="Pratos quentes do buffet do Parada do Mano">
+                <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-800.webp 800w"
+                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                     alt="Buffet do almoço com saladas e pratos quentes">
               </figure>
               <div class="menu-body">
                 <p class="menu-count">02 / 10</p>
@@ -464,9 +461,9 @@
             <!-- 03 Jantar -->
             <section class="menu-panel" id="cat-jantar" role="tabpanel" aria-labelledby="tab-jantar" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/fogao-lenha-640.webp" srcset="assets/images/fogao-lenha-640.webp 640w, assets/images/fogao-lenha-960.webp 960w"
-                 sizes="(min-width: 960px) 34vw, 100vw" width="960" height="640" loading="lazy" decoding="async"
-                 alt="Fogão a lenha servido no Parada do Mano">
+                <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-800.webp 800w"
+                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                     alt="Prato com carnes, arroz, feijão e batata frita">
               </figure>
               <div class="menu-body">
                 <p class="menu-count">03 / 10</p>
@@ -481,9 +478,9 @@
             <!-- 04 Carnes e churrasco -->
             <section class="menu-panel" id="cat-carnes" role="tabpanel" aria-labelledby="tab-carnes" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/churrasco-espeto-480.webp" srcset="assets/images/churrasco-espeto-480.webp 480w, assets/images/churrasco-espeto-800.webp 800w"
-                 sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
-                 alt="Carne no espeto na churrasqueira">
+                <img src="assets/images/churrasqueira-480.webp" srcset="assets/images/churrasqueira-480.webp 480w, assets/images/churrasqueira-800.webp 800w"
+                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                     alt="Espetos de carne na churrasqueira">
               </figure>
               <div class="menu-body">
                 <p class="menu-count">04 / 10</p>
@@ -515,9 +512,9 @@
             <!-- 06 Feijoada -->
             <section class="menu-panel" id="cat-feijoada" role="tabpanel" aria-labelledby="tab-feijoada" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/feijoada-480.webp" srcset="assets/images/feijoada-480.webp 480w, assets/images/feijoada-800.webp 800w"
-                 sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1067" loading="lazy" decoding="async"
-                 alt="Post da feijoada às quartas e sábados">
+                <img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-800.webp 800w"
+                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                     alt="Feijoada com arroz, farofa, couve e laranja">
               </figure>
               <div class="menu-body">
                 <p class="menu-count">06 / 10</p>
@@ -532,9 +529,9 @@
             <!-- 07 Saladas -->
             <section class="menu-panel" id="cat-saladas" role="tabpanel" aria-labelledby="tab-saladas" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/buffet-decoradas-480.webp" srcset="assets/images/buffet-decoradas-480.webp 480w, assets/images/buffet-decoradas-800.webp 800w"
-                 sizes="(min-width: 960px) 34vw, 100vw" width="800" height="800" loading="lazy" decoding="async"
-                 alt="Saladas decoradas do buffet">
+                <img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-800.webp 800w"
+                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                     alt="Mesa de saladas do buffet">
               </figure>
               <div class="menu-body">
                 <p class="menu-count">07 / 10</p>
@@ -600,57 +597,49 @@
         <header class="gallery-head">
           <div data-reveal>
             <p class="eyebrow">Galeria</p>
-            <h2 class="section-title" id="galeria-title">Comida de verdade.</h2>
+            <h2 class="section-title" id="galeria-title">Mesa farta.</h2>
           </div>
-          <p class="lead" data-reveal style="--d: 1">Fotos do Parada do Mano, tiradas das publicações da casa: o buffet, a churrasqueira, o fogão a lenha e a fachada na beira da BR-277.</p>
+          <p class="lead" data-reveal style="--d: 1">O buffet do almoço, a mesa de saladas, a feijoada, o prato cheio e o café da manhã.</p>
         </header>
 
         <ul class="gallery-grid" data-gallery>
           <li class="g-item g-a" data-reveal="photo">
-            <a class="g-link photo-frame" href="assets/images/fachada-780.webp" data-full="assets/images/fachada-780.webp">
-              <img src="assets/images/fachada-480.webp" srcset="assets/images/fachada-480.webp 480w, assets/images/fachada-780.webp 780w"
-                   sizes="(min-width: 960px) 50vw, 100vw" width="780" height="520" loading="lazy" decoding="async" alt="Fachada laranja do Parada do Mano na BR-277">
-              <span class="g-cap">Na BR-277</span>
+            <a class="g-link photo-frame" href="assets/images/buffet-salao-1200.webp" data-full="assets/images/buffet-salao-1200.webp">
+              <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-800.webp 800w, assets/images/buffet-salao-1200.webp 1200w"
+                   sizes="(min-width: 960px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Buffet e salão com a churrasqueira ao fundo">
+              <span class="g-cap">Buffet</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
           </li>
           <li class="g-item g-b" data-reveal="photo" style="--d: 1">
-            <a class="g-link photo-frame" href="assets/images/churrasco-espeto-1200.webp" data-full="assets/images/churrasco-espeto-1200.webp">
-              <img src="assets/images/churrasco-espeto-480.webp" srcset="assets/images/churrasco-espeto-480.webp 480w, assets/images/churrasco-espeto-1200.webp 1200w"
-                   sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Espeto assando na brasa">
-              <span class="g-cap">Churrasqueira</span>
+            <a class="g-link photo-frame" href="assets/images/prato-carnes-1200.webp" data-full="assets/images/prato-carnes-1200.webp">
+              <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-800.webp 800w, assets/images/prato-carnes-1200.webp 1200w"
+                   sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Prato com carnes grelhadas">
+              <span class="g-cap">Prato cheio</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
           </li>
           <li class="g-item g-c" data-reveal="photo" style="--d: 2">
-            <a class="g-link photo-frame" href="assets/images/buffet-decoradas-1200.webp" data-full="assets/images/buffet-decoradas-1200.webp">
-              <img src="assets/images/buffet-decoradas-480.webp" srcset="assets/images/buffet-decoradas-480.webp 480w, assets/images/buffet-decoradas-1200.webp 1200w"
-                   sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1200" loading="lazy" decoding="async" alt="Saladas decoradas com flores de legumes">
+            <a class="g-link photo-frame" href="assets/images/saladas-buffet-1200.webp" data-full="assets/images/saladas-buffet-1200.webp">
+              <img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-800.webp 800w, assets/images/saladas-buffet-1200.webp 1200w"
+                   sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Mesa de saladas">
               <span class="g-cap">Saladas</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
           </li>
           <li class="g-item g-d" data-reveal="photo">
-            <a class="g-link photo-frame" href="assets/images/buffet-saladas-1200.webp" data-full="assets/images/buffet-saladas-1200.webp">
-              <img src="assets/images/buffet-saladas-480.webp" srcset="assets/images/buffet-saladas-480.webp 480w, assets/images/buffet-saladas-1200.webp 1200w"
-                   sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Rúcula com manga e ovos cozidos">
-              <span class="g-cap">Mesa de saladas</span>
+            <a class="g-link photo-frame" href="assets/images/feijoada-buffet-1200.webp" data-full="assets/images/feijoada-buffet-1200.webp">
+              <img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-800.webp 800w, assets/images/feijoada-buffet-1200.webp 1200w"
+                   sizes="(min-width: 960px) 33vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Feijoada no buffet">
+              <span class="g-cap">Feijoada</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
           </li>
           <li class="g-item g-e" data-reveal="photo" style="--d: 1">
-            <a class="g-link photo-frame" href="assets/images/fogao-lenha-1240.webp" data-full="assets/images/fogao-lenha-1240.webp">
-              <img src="assets/images/fogao-lenha-640.webp" srcset="assets/images/fogao-lenha-640.webp 640w, assets/images/fogao-lenha-1240.webp 1240w"
-                   sizes="(min-width: 960px) 50vw, 100vw" width="1240" height="827" loading="lazy" decoding="async" alt="Fogão a lenha aceso com panelas">
-              <span class="g-cap">Fogão a lenha</span>
-              <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
-            </a>
-          </li>
-          <li class="g-item g-f" data-reveal="photo" style="--d: 2">
-            <a class="g-link photo-frame" href="assets/images/buffet-arroz-1100.webp" data-full="assets/images/buffet-arroz-1100.webp">
-              <img src="assets/images/buffet-arroz-480.webp" srcset="assets/images/buffet-arroz-480.webp 480w, assets/images/buffet-arroz-1100.webp 1100w"
-                   sizes="(min-width: 960px) 25vw, 50vw" width="1100" height="1375" loading="lazy" decoding="async" alt="Arroz colorido no buffet">
-              <span class="g-cap">Buffet</span>
+            <a class="g-link photo-frame" href="assets/images/cafe-da-manha-1200.webp" data-full="assets/images/cafe-da-manha-1200.webp">
+              <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-480.webp 480w, assets/images/cafe-da-manha-800.webp 800w, assets/images/cafe-da-manha-1200.webp 1200w"
+                   sizes="(min-width: 960px) 66vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Mesa de café da manhã">
+              <span class="g-cap">Café da manhã</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
           </li>
@@ -736,7 +725,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <p>© 2026 Parada do Mano Restaurante e Lanchonete</p>
+      <p>© 2026 Parada do Mano Restaurante e Lanchonete · Imagens ilustrativas.</p>
       <a class="to-top" href="#inicio">Voltar ao topo <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </footer>

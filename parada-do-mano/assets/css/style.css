@@ -659,33 +659,7 @@ abbr[title] { text-decoration: none; }
 .day-list { display: grid; gap: var(--s-7); }
 .moment { display: flex; flex-direction: column; }
 .moment-photo { aspect-ratio: 4 / 3; margin-bottom: var(--s-4); }
-.moment-sun {
-  position: relative;
-  display: grid; place-content: center; justify-items: center; gap: var(--s-2);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background:
-    radial-gradient(90% 70% at 50% 110%, rgba(245, 166, 35, .9), transparent 70%),
-    var(--c-orange);
-  color: var(--c-coal);
-  text-align: center;
-}
-.moment-sun::before {
-  /* sol nascendo: um arco que sobe quando o cartão entra na tela */
-  content: '';
-  position: absolute; left: 50%; bottom: -55%;
-  width: 90%; aspect-ratio: 1;
-  border-radius: 50%;
-  border: 2px solid rgba(11, 9, 8, .18);
-  transform: translateX(-50%);
-  transition: transform 1.4s var(--ease-out) .3s;
-}
-.reveal-ready .day-item:not(.is-visible) .moment-sun::before { transform: translate(-50%, 18%); }
-.moment-sun-icon { width: 56px; height: 56px; }
-.moment-sun-hour { font-family: var(--f-display); font-size: clamp(4rem, 12vw, 6rem); line-height: .9; }
-.moment-sun-note {
-  font-family: var(--f-label); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: .9rem;
-}
+
 .moment-time {
   order: -1;
   display: flex; align-items: center; gap: var(--s-3);
@@ -826,10 +800,10 @@ abbr[title] { text-decoration: none; }
   gap: 10px;
 }
 .tile { margin: 0; }
-.tile-arroz, .tile-quentes, .tile-legumes { grid-column: span 2; }
-.tile-arroz { aspect-ratio: 1 / 1; }
-.tile-quentes, .tile-legumes { aspect-ratio: 3 / 2; }
-.tile-decoradas, .tile-saladas { aspect-ratio: 4 / 5; }
+.tile-salao, .tile-saladas { grid-column: span 2; }
+.tile-salao { aspect-ratio: 1 / 1; }
+.tile-saladas { aspect-ratio: 4 / 3; }
+.tile-quentes, .tile-prato { aspect-ratio: 4 / 5; }
 .tile figcaption {
   position: absolute; left: 10px; bottom: 10px; z-index: 2;
   display: inline-flex; align-items: center; gap: var(--s-2);
@@ -869,11 +843,10 @@ abbr[title] { text-decoration: none; }
     gap: 14px;
   }
   .tile { aspect-ratio: auto; }
-  .tile-arroz     { grid-column: 1 / 6;  grid-row: 1 / 3; }
-  .tile-quentes   { grid-column: 6 / 13; grid-row: 1; }
-  .tile-decoradas { grid-column: 6 / 9;  grid-row: 2; }
-  .tile-saladas   { grid-column: 9 / 13; grid-row: 2 / 4; }
-  .tile-legumes   { grid-column: 1 / 9;  grid-row: 3; }
+  .tile-salao   { grid-column: 1 / 6;  grid-row: 1 / 4; }
+  .tile-saladas { grid-column: 6 / 13; grid-row: 1 / 3; }
+  .tile-quentes { grid-column: 6 / 9;  grid-row: 3; }
+  .tile-prato   { grid-column: 9 / 13; grid-row: 3; }
   .tile figcaption { left: 16px; bottom: 16px; }
 }
 
@@ -1217,10 +1190,9 @@ abbr[title] { text-decoration: none; }
   gap: 10px;
 }
 .g-item { position: relative; }
-.g-a, .g-e { grid-column: span 2; }
-.g-a .g-link, .g-e .g-link { aspect-ratio: 3 / 2; }
-.g-b .g-link, .g-d .g-link { aspect-ratio: 4 / 5; }
-.g-c .g-link, .g-f .g-link { aspect-ratio: 4 / 5; }
+.g-a, .g-d, .g-e { grid-column: span 2; }
+.g-a .g-link, .g-d .g-link, .g-e .g-link { aspect-ratio: 3 / 2; }
+.g-b .g-link, .g-c .g-link { aspect-ratio: 4 / 5; }
 .g-link {
   display: block;
   height: 100%;
@@ -1270,14 +1242,14 @@ abbr[title] { text-decoration: none; }
     grid-template-areas:
       "a a a a a a b b b c c c"
       "a a a a a a b b b c c c"
-      "d d d e e e e e e f f f"
-      "d d d e e e e e e f f f";
+      "d d d d e e e e e e e e"
+      "d d d d e e e e e e e e";
     grid-auto-rows: clamp(150px, 14vw, 220px);
     gap: 14px;
   }
   .g-item { grid-column: auto; }
   .g-a { grid-area: a; } .g-b { grid-area: b; } .g-c { grid-area: c; }
-  .g-d { grid-area: d; } .g-e { grid-area: e; } .g-f { grid-area: f; }
+  .g-d { grid-area: d; } .g-e { grid-area: e; }
   .g-item .g-link { aspect-ratio: auto; }
 }
 

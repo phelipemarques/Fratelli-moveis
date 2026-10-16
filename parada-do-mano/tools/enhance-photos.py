@@ -16,7 +16,10 @@ mesma da foto. Sem o modelo, cai para Lanczos.
     pip install opencv-contrib-python-headless pillow numpy
     curl -L -o tools/models/EDSR_x4.pb \
       https://raw.githubusercontent.com/Saafke/EDSR_Tensorflow/master/models/EDSR_x4.pb
-    python3 tools/enhance-photos.py
+    curl -L -o tools/models/EDSR_x2.pb \
+      https://raw.githubusercontent.com/Saafke/EDSR_Tensorflow/master/models/EDSR_x2.pb
+    python3 tools/enhance-photos.py           # prints do Instagram (4x)
+    python3 tools/enhance-photos.py novas     # fotos enviadas em 1122x1402 (2x)
 
 Quando o restaurante mandar os arquivos originais em alta, eles entram
 direto em tools/source/<slot>.jpg e este script deixa de ser necessário.
@@ -30,7 +33,7 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageOps
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REF = os.path.join(RAIZ, 'tools', 'source', 'referencias')
 DESTINO = os.path.join(RAIZ, 'tools', 'source')
-MODELO = os.environ.get('EDSR_MODEL', os.path.join(RAIZ, 'tools', 'models', 'EDSR_x4.pb'))
+MODELOS = os.path.join(RAIZ, 'tools', 'models')
 
 # slot de destino: (arquivo de referência, caixa de recorte em px do print)
 RECORTES = {
@@ -48,28 +51,41 @@ RECORTES = {
 
 LOGO = ('instagram-perfil.webp', (254, 50, 404, 200))
 
+# Fotos enviadas em 16/10 em 1122x1402, já limpas: ampliação 2x, sem tirar ruído.
+NOVAS = {
+    'cafe-da-manha':   ('nova-cafe-da-manha.webp', None),
+    'buffet-salao':    ('nova-buffet-salao.webp', None),
+    'prato-carnes':    ('nova-prato-carnes.webp', None),
+    'feijoada-buffet': ('nova-feijoada.webp', None),
+    'saladas-buffet':  ('nova-saladas.webp', None),
+    # a churrasqueira com os espetos, ao fundo da foto do salão
+    'churrasqueira':   ('nova-buffet-salao.webp', (700, 200, 1122, 728)),
+}
+
 
 def carregar(nome, caixa):
     img = Image.open(os.path.join(REF, nome)).convert('RGB')
     return img.crop(caixa) if caixa else img
 
 
-def ampliar(img):
+def ampliar(img, escala=4, limpar=True):
     try:
         import cv2
-        if not os.path.exists(MODELO):
-            raise FileNotFoundError(MODELO)
+        modelo = os.path.join(MODELOS, 'EDSR_x%d.pb' % escala)
+        if not os.path.exists(modelo):
+            raise FileNotFoundError(modelo)
         sr = cv2.dnn_superres.DnnSuperResImpl_create()
-        sr.readModel(MODELO)
-        sr.setModel('edsr', 4)
+        sr.readModel(modelo)
+        sr.setModel('edsr', escala)
         bgr = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
-        # tira os blocos de compressão antes de ampliar, senão eles crescem junto
-        bgr = cv2.fastNlMeansDenoisingColored(bgr, None, 3, 3, 7, 21)
+        if limpar:
+            # tira os blocos de compressão antes de ampliar, senão eles crescem junto
+            bgr = cv2.fastNlMeansDenoisingColored(bgr, None, 3, 3, 7, 21)
         out = sr.upsample(bgr)
-        return Image.fromarray(cv2.cvtColor(out, cv2.COLOR_BGR2RGB)), 'EDSR 4x'
+        return Image.fromarray(cv2.cvtColor(out, cv2.COLOR_BGR2RGB)), 'EDSR %dx' % escala
     except Exception as erro:  # sem OpenCV ou sem o modelo
         print('  (sem EDSR: %s — usando Lanczos)' % erro)
-        return img.resize((img.width * 4, img.height * 4), Image.LANCZOS), 'Lanczos 4x'
+        return img.resize((img.width * escala, img.height * escala), Image.LANCZOS), 'Lanczos %dx' % escala
 
 
 def ajustar(img):
@@ -82,6 +98,15 @@ def ajustar(img):
 
 
 def main():
+    so = sys.argv[1:]
+    if 'novas' in so:
+        for slot, (nome, caixa) in NOVAS.items():
+            img = carregar(nome, caixa)
+            grande, metodo = ampliar(img, 2, limpar=False)
+            grande = ajustar(grande)
+            grande.save(os.path.join(DESTINO, slot + '.jpg'), 'JPEG', quality=92, subsampling=0)
+            print('%-18s %4dx%-4d -> %4dx%-4d  %s' % (slot, img.width, img.height, grande.width, grande.height, metodo), flush=True)
+        return
     for slot, (nome, caixa) in RECORTES.items():
         img = carregar(nome, caixa)
         grande, metodo = ampliar(img)

@@ -36,28 +36,23 @@ SAIDA = os.path.join(RAIZ, 'assets', 'images')
 # (a abertura e o mosaico usam a mesma foto do arroz, em cortes diferentes).
 SLOTS = {
     # Abertura
-    'hero':             ((5, 4),  (640, 960, 1440), 'Foto de abertura', 'buffet-arroz'),
-    # Buffet
-    'buffet-arroz':     ((4, 5),  (480, 800, 1100), 'Arroz e acompanhamentos', None),
-    'buffet-quentes':   ((3, 2),  (640, 960, 1240), 'Pratos quentes', None),
-    'buffet-decoradas': ((1, 1),  (480, 800, 1200), 'Saladas decoradas', None),
-    'buffet-saladas':   ((4, 5),  (480, 800, 1200), 'Saladas e ovos', None),
-    'buffet-legumes':   ((3, 2),  (640, 960, 1440), 'Legumes', None),
-    # Churrasco e fogão a lenha
-    'fogao-lenha':      ((3, 2),  (640, 960, 1240), 'Fogão a lenha', None),
-    'churrasco-espeto': ((4, 5),  (480, 800, 1200), 'Espeto na brasa', None),
-    'post-rodizio':     ((5, 4),  (480, 800, 1200), 'Post do rodízio de domingo', None),
-    # Feijoada: o post oficial inteiro, na proporção em que foi publicado
-    'feijoada':         ((3, 4),  (480, 800, 1200), 'Feijoada — post oficial', 'post-feijoada'),
-    # Galeria
-    'fachada':          ((3, 2),  (480, 780),       'Fachada na BR-277', None),
+    'hero':               ((5, 4),  (640, 960, 1440, 1920), 'Foto de abertura', 'buffet-salao'),
+    # Fotos enviadas em 16/10 (ampliadas 2x por enhance-photos.py novas)
+    'buffet-salao':       ((4, 5),  (480, 800, 1200), 'Buffet e salão', None),
+    'cafe-da-manha':      ((4, 5),  (480, 800, 1200), 'Café da manhã', None),
+    'prato-carnes':       ((4, 5),  (480, 800, 1200), 'Prato com carnes', None),
+    'prato-carnes-largo': ((16, 9), (960, 1440, 1920), 'Prato com carnes', 'prato-carnes'),
+    'feijoada-buffet':    ((4, 5),  (480, 800, 1200), 'Feijoada', None),
+    'saladas-buffet':     ((4, 5),  (480, 800, 1200), 'Saladas', None),
+    'churrasqueira':      ((4, 5),  (480, 800), 'Churrasqueira', None),
+    # Arte oficial do rodízio (recorte sem o preço, de um print do Instagram)
+    'post-rodizio':       ((5, 4),  (480, 800, 1200), 'Post do rodízio de domingo', None),
 }
 
 # Ponto de foco do corte, de 0 a 1 (x, y). Padrão: centro.
 FOCO = {
-    'hero': (0.42, 0.6),
-    'buffet-arroz': (0.4, 0.6),
-    'buffet-saladas': (0.5, 0.58),
+    'hero': (0.5, 0.58),
+    'prato-carnes-largo': (0.5, 0.66),
 }
 
 # Logo oficial (recorte do perfil do Instagram, ver enhance-photos.py)
@@ -65,7 +60,7 @@ LOGO = ('logo', (48, 96, 192, 512))
 
 # Imagem de compartilhamento (WhatsApp, Facebook): 1200x630, JPG.
 # Sai da foto de abertura quando ela existir.
-OG = ('og-cover', 'buffet-arroz')
+OG = ('og-cover', 'buffet-salao')
 
 COR_FUNDO_1 = (23, 17, 13)       # #17110D
 COR_FUNDO_2 = (11, 9, 8)         # #0B0908
@@ -283,7 +278,7 @@ def main():
             for slot in pendentes:
                 f.write('tools/source/%s.jpg   %s\n' % (SLOTS[slot][3] or slot, SLOTS[slot][2]))
 
-    print('fotos reais: %d   quadros provisórios: %d' % (len(reais), len(pendentes)))
+    print('com foto: %d   quadros provisórios: %d' % (len(reais), len(pendentes)))
     for a in avisos:
         print('aviso:', a)
     if pendentes:

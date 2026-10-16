@@ -215,28 +215,28 @@ def roteiro_com_texto(vertical):
         {'tipo': 'cartao', 'dur': 2.6, 'logo': True, 'linhas': [
             L('PARADA DO MANO', 0.11 * k),
             L('RESTAURANTE E LANCHONETE', 0.04 * k, 'barlow-condensed-600', ORANGE, espaco=0.012)]},
-        {'tipo': 'foto', 'foto': 'churrasco-espeto', 'dur': 3.2, 'z0': 1.0, 'z1': 1.18,
-         'de': (0.5, 0.62), 'para': (0.52, 0.48),
+        {'tipo': 'foto', 'foto': 'churrasqueira', 'dur': 3.0, 'z0': 1.0, 'z1': 1.15,
+         'de': (0.5, 0.55), 'para': (0.5, 0.45),
          'linhas': [rot('BR-277 · CASCAVEL/PR'), L('DO FOGO', 0.13 * k), L('À MESA.', 0.13 * k, cor=ORANGE)]},
-        {'tipo': 'foto', 'foto': 'buffet-arroz', 'dur': 3.0, 'z0': 1.04, 'z1': 1.2,
-         'de': (0.36, 0.6), 'para': (0.5, 0.55),
+        {'tipo': 'foto', 'foto': 'buffet-salao', 'dur': 3.2, 'z0': 1.0, 'z1': 1.14,
+         'de': (0.5, 0.6), 'para': (0.5, 0.5),
          'linhas': [rot('ALMOÇO'), L('BUFFET COMPLETO', 0.1 * k), L('com variedade todos os dias', 0.045 * k, 'barlow-600')]},
-        {'tipo': 'foto', 'foto': 'buffet-decoradas', 'dur': 2.8, 'z0': 1.15, 'z1': 1.0,
-         'de': (0.5, 0.45), 'para': (0.5, 0.55),
+        {'tipo': 'foto', 'foto': 'saladas-buffet', 'dur': 2.8, 'z0': 1.12, 'z1': 1.0,
+         'de': (0.45, 0.5), 'para': (0.5, 0.55),
          'linhas': [L('SALADAS', 0.1 * k), L('montadas com capricho', 0.045 * k, 'barlow-600')]},
-        {'tipo': 'foto', 'foto': 'buffet-legumes', 'dur': 2.6, 'z0': 1.0, 'z1': 1.14,
-         'de': (0.35, 0.55), 'para': (0.62, 0.5), 'linhas': []},
-        {'tipo': 'foto', 'foto': 'fogao-lenha', 'dur': 3.0, 'z0': 1.0, 'z1': 1.16,
-         'de': (0.5, 0.62), 'para': (0.5, 0.5),
-         'linhas': [rot('NO ALMOÇO E NA JANTA'), L('FOGÃO A LENHA', 0.1 * k), L('comida caseira de segunda a domingo', 0.045 * k, 'barlow-600')]},
-        {'tipo': 'foto', 'foto': 'buffet-quentes', 'dur': 2.6, 'z0': 1.12, 'z1': 1.0,
-         'de': (0.45, 0.5), 'para': (0.55, 0.5), 'linhas': []},
-        {'tipo': 'cartao', 'fundo': 'laranja', 'dur': 3.2, 'linhas': [
+        {'tipo': 'foto', 'foto': 'cafe-da-manha', 'dur': 2.8, 'z0': 1.0, 'z1': 1.12,
+         'de': (0.45, 0.6), 'para': (0.5, 0.5),
+         'linhas': [rot('A PARTIR DAS 06H'), L('CAFÉ DA MANHÃ', 0.1 * k), L('para começar bem o dia', 0.045 * k, 'barlow-600')]},
+        {'tipo': 'foto', 'foto': 'prato-carnes', 'dur': 3.0, 'z0': 1.0, 'z1': 1.14,
+         'de': (0.5, 0.65), 'para': (0.5, 0.55),
+         'linhas': [rot('NO ALMOÇO E NA JANTA'), L('COMIDA CASEIRA', 0.1 * k), L('de segunda a domingo', 0.045 * k, 'barlow-600')]},
+        {'tipo': 'foto', 'foto': 'feijoada-buffet', 'dur': 3.0, 'z0': 1.12, 'z1': 1.0,
+         'de': (0.5, 0.4), 'para': (0.5, 0.5),
+         'linhas': [rot('QUARTA E SÁBADO'), L('FEIJOADA', 0.12 * k)]},
+        {'tipo': 'cartao', 'fundo': 'laranja', 'dur': 3.0, 'linhas': [
             L('DOMINGO', 0.05 * k, 'barlow-condensed-600', COAL, espaco=0.014),
             L('ESPETO CORRIDO', 0.11 * k, cor=COAL),
-            L(' ', 0.03 * k),
-            L('QUARTA E SÁBADO', 0.05 * k, 'barlow-condensed-600', COAL, espaco=0.014),
-            L('FEIJOADA', 0.11 * k, cor=COAL)]},
+            L('bom churrasco, bons momentos', 0.045 * k, 'barlow-600', COAL)]},
         {'tipo': 'cartao', 'dur': 3.6, 'logo': True, 'linhas': [
             L('SEG A DOM · 06H ÀS 23H30', 0.06 * k),
             L('BR-277, KM 594 · CASCAVEL/PR', 0.045 * k, 'barlow-condensed-600', ORANGE, espaco=0.006),
@@ -246,11 +246,11 @@ def roteiro_com_texto(vertical):
 
 def roteiro_abertura():
     return [
-        {'tipo': 'foto', 'foto': 'churrasco-espeto', 'dur': 3.6, 'z0': 1.0, 'z1': 1.15, 'de': (0.5, 0.6), 'para': (0.5, 0.48)},
-        {'tipo': 'foto', 'foto': 'buffet-arroz', 'dur': 3.4, 'z0': 1.05, 'z1': 1.18, 'de': (0.38, 0.6), 'para': (0.5, 0.55)},
-        {'tipo': 'foto', 'foto': 'fogao-lenha', 'dur': 3.4, 'z0': 1.0, 'z1': 1.15, 'de': (0.5, 0.6), 'para': (0.5, 0.5)},
-        {'tipo': 'foto', 'foto': 'buffet-decoradas', 'dur': 3.2, 'z0': 1.14, 'z1': 1.0, 'de': (0.5, 0.45), 'para': (0.5, 0.55)},
-        {'tipo': 'foto', 'foto': 'buffet-legumes', 'dur': 3.2, 'z0': 1.0, 'z1': 1.12, 'de': (0.35, 0.55), 'para': (0.6, 0.5)},
+        {'tipo': 'foto', 'foto': 'buffet-salao', 'dur': 3.6, 'z0': 1.0, 'z1': 1.14, 'de': (0.5, 0.6), 'para': (0.6, 0.45)},
+        {'tipo': 'foto', 'foto': 'churrasqueira', 'dur': 3.2, 'z0': 1.0, 'z1': 1.12, 'de': (0.5, 0.55), 'para': (0.5, 0.45)},
+        {'tipo': 'foto', 'foto': 'prato-carnes', 'dur': 3.4, 'z0': 1.0, 'z1': 1.14, 'de': (0.5, 0.65), 'para': (0.5, 0.55)},
+        {'tipo': 'foto', 'foto': 'feijoada-buffet', 'dur': 3.2, 'z0': 1.12, 'z1': 1.0, 'de': (0.5, 0.4), 'para': (0.5, 0.5)},
+        {'tipo': 'foto', 'foto': 'saladas-buffet', 'dur': 3.2, 'z0': 1.0, 'z1': 1.12, 'de': (0.45, 0.55), 'para': (0.55, 0.5)},
     ]
 
 

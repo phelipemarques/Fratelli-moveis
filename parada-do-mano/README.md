@@ -3,8 +3,8 @@
 Site do **Parada do Mano Restaurante e Lanchonete**, BR-277, km 594, Cascavel/PR.
 
 > **Status: prévia de aprovação.** Layout, animações, cardápio, contato e vídeo funcionando,
-> com as fotos reais do restaurante (tiradas dos prints do Instagram e tratadas) e a logo
-> oficial. Os dados vieram das divulgações da casa e precisam do ok do dono antes de ir ao ar.
+> com as 5 fotos enviadas em 16/10 (ampliadas 2x) e a logo oficial. As fotos são marcadas como
+> ilustrativas no rodapé. Os dados vieram das divulgações da casa e precisam do ok do dono.
 > A página está com `noindex` e o `robots.txt` bloqueia buscadores.
 > Ver [`PENDENCIAS.md`](PENDENCIAS.md) antes de publicar.
 
@@ -32,7 +32,8 @@ assets/images/                 imagens geradas pelo script (WebP em várias larg
 assets/video/                  vídeo da abertura (MP4 H.264 + WebM VP9), sem texto, em loop
 
 tools/source/referencias/      prints e fotos enviados, sem alteração
-tools/enhance-photos.py        recorta as fotos dos prints, limpa e amplia 4x (EDSR) -> tools/source/
+tools/enhance-photos.py        prints do Instagram: recorta, limpa e amplia 4x (EDSR);
+                               "novas": amplia 2x as fotos enviadas em 1122x1402 -> tools/source/
 tools/source/                  fotos tratadas, uma por espaço do site, e a logo
 tools/prepare-images.py        corta e gera as versões do site; quadro provisório se faltar foto
 tools/make-film.py             gera os três vídeos a partir das fotos

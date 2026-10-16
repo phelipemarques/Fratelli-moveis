@@ -183,10 +183,10 @@ for (const [w, h] of SIZES) {
   await page.locator('.g-b .g-link').click();
   await page.waitForTimeout(600);
   const lb = await page.evaluate(() => ({ open: document.querySelector('[data-lightbox]').open, count: document.querySelector('[data-lightbox-count]').textContent }));
-  ok('galeria: abre a foto ampliada', lb.open && lb.count === '2 / 6', JSON.stringify(lb));
+  ok('galeria: abre a foto ampliada', lb.open && lb.count === '2 / 5', JSON.stringify(lb));
   await page.keyboard.press('ArrowRight');
   const count2 = await page.evaluate(() => document.querySelector('[data-lightbox-count]').textContent);
-  ok('galeria: seta avança', count2 === '3 / 6', count2);
+  ok('galeria: seta avança', count2 === '3 / 5', count2);
   await page.screenshot({ path: `${OUT}/1440x900-galeria-ampliada.png` });
   await page.keyboard.press('Escape');
   await page.waitForTimeout(300);
