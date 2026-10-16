@@ -22,7 +22,7 @@ Ferramenta: Chromium 141 (Playwright 1.56) em modo headless, servindo a pasta co
 - Os três vídeos foram refeitos com as fotos novas por `tools/make-film.py`: abertura (960×960, loop,
   sem texto) e dois com texto para redes (1080×1920 e 1920×1080, ~28 s).
 - Prévia em arquivo único (`parada-do-mano-visualizacao.html`, 9,7 MB, vídeo embutido) e ZIP de produção
-  (`parada-do-mano-site.zip`, 50 arquivos, 6,3 MB).
+  (`parada-do-mano-site.zip`, 45 arquivos, 10 MB).
 
 ## 2. Animações implementadas
 
@@ -104,8 +104,8 @@ sobre creme 6,1:1 (rótulos pequenos das seções claras) · dourado sobre carv�
   mais simples; dá para acrescentar depois que as fotos reais chegarem, se o peso justificar.
 - Animações só em `transform` e `opacity` (a cortina das fotos é um `scaleY`); nenhum `backdrop-filter`
   nem `filter: blur`; nenhuma rolagem sequestrada.
-- Imagens: 37 arquivos, 2,8 MB somando todas as larguras; o navegador baixa só a largura que precisa.
-- Vídeo da abertura: 1,6–1,8 MB, baixado **só no computador**, depois de 1,2 s (não disputa banda com a
+- Imagens: 32 arquivos somando todas as larguras; o navegador baixa só a largura que precisa.
+- Vídeo da abertura: 2,5 MB (MP4 ou WebM), baixado **só no computador**, depois de 1,2 s (não disputa banda com a
   foto da abertura) e nunca com economia de dados ligada ou movimento reduzido.
 
 ## 7. Não verificado

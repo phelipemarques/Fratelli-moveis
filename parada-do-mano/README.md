@@ -79,7 +79,7 @@ Os roteiros (ordem das fotos, tempo de cada cena, textos) ficam em `roteiro_com_
 e `roteiro_abertura()`. Depois de mudar o MP4 da abertura, gere o WebM:
 
 ```bash
-ffmpeg -i assets/video/parada-do-mano-abertura.mp4 -c:v libvpx-vp9 -b:v 0 -crf 38 -an assets/video/parada-do-mano-abertura.webm
+ffmpeg -i assets/video/parada-do-mano-abertura.mp4 -c:v libvpx-vp9 -b:v 0 -crf 44 -an assets/video/parada-do-mano-abertura.webm
 ```
 
 O vídeo da abertura só é carregado no computador (largura de 960 px ou mais), sem

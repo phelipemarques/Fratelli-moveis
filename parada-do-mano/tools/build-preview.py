@@ -11,6 +11,7 @@ continua sendo o index.html com a pasta assets/ (ver tools/make-zip.py).
     python3 tools/build-preview.py
 """
 import base64
+import json
 import os
 import re
 
@@ -32,14 +33,16 @@ def uri(caminho):
 
 
 def maior_versao(nome):
-    """buffet-arroz-480.webp -> buffet-arroz-1200.webp (a maior que existir)."""
+    """buffet-salao-480.webp -> buffet-salao-1200.webp (a maior até 1200 px)."""
     m = re.match(r'(.+)-(\d+)\.webp$', nome)
     if not m:
         return nome
     base = m.group(1)
     larguras = [int(x.group(1)) for x in (re.match(re.escape(base) + r'-(\d+)\.webp$', n)
                                           for n in os.listdir(IMAGENS)) if x]
-    return '%s-%d.webp' % (base, max(larguras))
+    # até 1200 px: suficiente para a prévia e mantém o arquivo leve
+    cabem = [w for w in larguras if w <= 1200] or larguras
+    return '%s-%d.webp' % (base, max(cabem))
 
 
 def main():
@@ -58,10 +61,27 @@ def main():
     html = re.sub(r'\s*<link rel="preload"[^>]*>', '', html)
     # sem srcset: cada imagem entra uma vez, na maior versão
     html = re.sub(r'\s(srcset|sizes)="[^"]*"', '', html)
-    html = re.sub(r'src="assets/images/([\w.-]+)"',
-                  lambda m: 'src="%s"' % uri(os.path.join(IMAGENS, maior_versao(m.group(1)))), html)
+    # A mesma foto aparece em vários lugares da página (abertura, mosaico, cardápio,
+    # galeria). Para não repetir o data URI a cada uso, as fotos entram uma vez num
+    # mapa e um script curto preenche src/href no carregamento.
+    mapa = {}
+
+    def chave(nome):
+        alvo = maior_versao(nome)
+        mapa.setdefault(alvo, uri(os.path.join(IMAGENS, alvo)))
+        return alvo
+
+    html = re.sub(r'<img([^>]*?)\ssrc="assets/images/([\w.-]+\.webp)"',
+                  lambda m: '<img%s data-pv="%s"' % (m.group(1), chave(m.group(2))), html)
+    html = re.sub(r'href="assets/images/([\w.-]+\.webp)" data-full="assets/images/([\w.-]+\.webp)"',
+                  lambda m: 'href="#galeria" data-full-pv="%s"' % chave(m.group(2)), html)
     html = re.sub(r'"assets/images/([\w.-]+)"',
                   lambda m: '"%s"' % uri(os.path.join(IMAGENS, m.group(1))), html)
+    preencher = ('<script>\n(function(){var M=%s;'
+                 'document.querySelectorAll("[data-pv]").forEach(function(e){e.src=M[e.getAttribute("data-pv")];});'
+                 'document.querySelectorAll("[data-full-pv]").forEach(function(e){var u=M[e.getAttribute("data-full-pv")];'
+                 'e.href=u;e.setAttribute("data-full",u);});})();\n</script>\n' % json.dumps(mapa))
+    html = html.replace('<!-- Barra de ações do celular -->', preencher + '  <!-- Barra de ações do celular -->', 1)
 
     # vídeo da abertura: os dois formatos entram embutidos (H.264 e VP9),
     # porque nem todo navegador abre os dois

@@ -259,7 +259,7 @@ def main():
     so = sys.argv[1:] or ['abertura', 'vertical', 'horizontal']
     if 'abertura' in so:
         render(roteiro_abertura(), 960, 960,
-               os.path.join(RAIZ, 'assets', 'video', 'parada-do-mano-abertura.mp4'), loop=True, crf=27)
+               os.path.join(RAIZ, 'assets', 'video', 'parada-do-mano-abertura.mp4'), loop=True, crf=30)
     if 'vertical' in so:
         render(roteiro_com_texto(True), 1080, 1920, os.path.join(RAIZ, 'parada-do-mano-video-vertical.mp4'))
     if 'horizontal' in so:
