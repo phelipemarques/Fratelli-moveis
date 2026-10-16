@@ -1,0 +1,6 @@
+# Python
+__pycache__/
+
+# Capturas locais do tools/qa-browser.mjs
+capturas/
+qa-shots/

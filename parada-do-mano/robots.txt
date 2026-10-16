@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# Prévia de aprovação: liberar a indexação só depois da autorização do restaurante.
