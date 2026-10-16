@@ -1,5 +1,5 @@
 /* =====================================================================
-   PARADA DO MANO — comportamento da página
+   PARADA DO MANO — comportamento da página (V3)
    Sem bibliotecas. Tudo aqui é melhoria progressiva: sem JavaScript o
    conteúdo inteiro continua visível e os links continuam funcionando.
    ===================================================================== */
@@ -8,32 +8,47 @@
 
   var root = document.documentElement;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var EASE_OUT = 'cubic-bezier(.16, 1, .3, 1)';
+
+  // Animação curta via Web Animations API: não precisa forçar reflow para reiniciar
+  function entrance(el, frames, ms) {
+    if (reduceMotion.matches || !el.animate) return;
+    el.animate(frames, { duration: ms, easing: EASE_OUT });
+  }
+
+  // Roda depois que o quadro foi desenhado: aí o layout já está calculado e ler
+  // medidas (scrollY, scrollWidth, getBoundingClientRect) não custa nada
+  function afterPaint(fn) {
+    window.requestAnimationFrame(function () { setTimeout(fn, 0); });
+  }
 
   /* ---------- Cabeçalho: fundo sólido depois do topo ---------- */
   var header = document.querySelector('[data-header]');
   var actionBar = document.querySelector('[data-action-bar]');
   var hero = document.getElementById('inicio');
+  var heroLimit = null; // medido no primeiro quadro de rolagem, nunca durante a carga
   var ticking = false;
 
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
+    if (heroLimit === null) heroLimit = hero ? hero.offsetHeight * 0.6 : 0;
     header.classList.toggle('is-scrolled', y > 24);
-    if (actionBar && hero) {
-      actionBar.classList.toggle('is-visible', y > hero.offsetHeight * 0.6);
-    }
+    if (actionBar) actionBar.classList.toggle('is-visible', y > heroLimit);
     ticking = false;
   }
   window.addEventListener('scroll', function () {
     if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); }
   }, { passive: true });
-  onScroll();
+  window.addEventListener('resize', function () { heroLimit = null; }, { passive: true });
+  // página aberta já rolada (âncora, voltar): a medida espera o primeiro quadro desenhado,
+  // para não obrigar o navegador a calcular o layout no meio do carregamento
+  afterPaint(function () { if (window.scrollY > 0) onScroll(); });
 
   /* ---------- Menu do celular ---------- */
   var toggle = document.querySelector('[data-menu-toggle]');
   var menu = document.querySelector('[data-menu]');
   var label = toggle && toggle.querySelector('.menu-toggle-label');
   var outside = [document.querySelector('main'), document.querySelector('.site-footer'), actionBar];
-  var lastFocus = null;
 
   if (toggle && menu) {
     menu.querySelectorAll('.mobile-menu-nav li').forEach(function (li, i) {
@@ -49,7 +64,6 @@
     };
 
     var openMenu = function () {
-      lastFocus = document.activeElement;
       menu.hidden = false;
       // um quadro depois, para a transição partir do estado fechado
       window.requestAnimationFrame(function () {
@@ -101,7 +115,7 @@
     });
   }
 
-  /* ---------- Revelação na rolagem ---------- */
+  /* ---------- Revelação na rolagem e menu do topo ---------- */
   if ('IntersectionObserver' in window) {
     var targets = document.querySelectorAll('[data-reveal], [data-day]');
     root.classList.add('reveal-ready');
@@ -112,7 +126,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
     targets.forEach(function (el) { io.observe(el); });
 
     // item do menu do topo que corresponde à seção na tela
@@ -121,86 +135,162 @@
     navLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
         var link = byId[entry.target.id];
+        navLinks.forEach(function (a) { a.classList.remove('is-current'); a.removeAttribute('aria-current'); });
+        // na abertura nenhum item fica marcado
         if (!link) return;
-        if (entry.isIntersecting) {
-          navLinks.forEach(function (a) { a.classList.remove('is-current'); a.removeAttribute('aria-current'); });
-          link.classList.add('is-current');
-          link.setAttribute('aria-current', 'location');
-        }
+        link.classList.add('is-current');
+        link.setAttribute('aria-current', 'location');
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    Object.keys(byId).forEach(function (id) {
+    Object.keys(byId).concat(['inicio']).forEach(function (id) {
       var sec = document.getElementById(id);
       if (sec) spy.observe(sec);
     });
   }
 
   /* ---------- Vídeo da abertura ----------
-     Só no computador, sem movimento reduzido e sem economia de dados.
-     A foto continua por baixo: se o vídeo não carregar, nada muda. */
+     Só no computador e só depois que a página terminou de carregar (a foto da
+     abertura, que é o maior elemento da tela, nunca disputa banda com ele).
+     Não carrega com movimento reduzido, economia de dados ou rede lenta.
+     A foto fica por baixo: se o vídeo falhar, a abertura continua igual. */
   var heroVideo = document.querySelector('.hero-video');
-  var wide = window.matchMedia('(min-width: 960px)');
-  var saveData = navigator.connection && navigator.connection.saveData;
-  if (heroVideo && wide.matches && !reduceMotion.matches && !saveData) {
-    // H.264 quando o navegador tiver (decodificação por hardware); senão, VP9
-    var mp4 = heroVideo.canPlayType('video/mp4; codecs="avc1.640028"');
-    heroVideo.src = heroVideo.getAttribute(mp4 ? 'data-src-mp4' : 'data-src-webm') || heroVideo.getAttribute('data-src-mp4');
-    heroVideo.addEventListener('playing', function () { heroVideo.classList.add('is-playing'); });
-    var tryPlay = function () {
-      var p = heroVideo.play();
-      if (p && p.catch) p.catch(function () { /* autoplay bloqueado: fica a foto */ });
+  var conn = navigator.connection || {};
+  var slowNet = /(^|-)2g|3g/.test(conn.effectiveType || '');
+  var canVideo = heroVideo && window.matchMedia('(min-width: 960px)').matches &&
+    !reduceMotion.matches && !conn.saveData && !slowNet;
+
+  if (canVideo) {
+    var startVideo = function () {
+      // H.264 quando o navegador tiver (decodificação por hardware); senão, VP9
+      var mp4 = heroVideo.getAttribute('data-src-mp4');
+      var webm = heroVideo.getAttribute('data-src-webm');
+      var canMp4 = mp4 && heroVideo.canPlayType('video/mp4; codecs="avc1.640028"');
+      heroVideo.src = canMp4 ? mp4 : (webm || mp4);
+      heroVideo.addEventListener('playing', function () { heroVideo.classList.add('is-playing'); });
+      heroVideo.addEventListener('error', function () { heroVideo.removeAttribute('src'); }, { once: true });
+      var visible = true;
+      var tryPlay = function () {
+        if (!visible || document.hidden) return;
+        var p = heroVideo.play();
+        if (p && p.catch) p.catch(function () { /* autoplay bloqueado: fica a foto */ });
+      };
+      // fora da tela ou com a aba em segundo plano, o vídeo pausa
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          visible = entries[0].isIntersecting;
+          if (visible) tryPlay(); else heroVideo.pause();
+        }).observe(heroVideo);
+      }
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) heroVideo.pause(); else tryPlay();
+      });
+      reduceMotion.addEventListener('change', function (mq) {
+        if (mq.matches) { heroVideo.pause(); heroVideo.classList.remove('is-playing'); }
+      });
+      tryPlay();
     };
-    var started = false;
-    // espera a entrada da abertura terminar para não disputar banda com a foto
-    window.setTimeout(function () { started = true; tryPlay(); }, 1200);
-    // fora da tela, o vídeo pausa (economiza bateria); de volta, continua
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        if (!started) return;
-        if (entries[0].isIntersecting) tryPlay(); else heroVideo.pause();
-      }).observe(heroVideo);
-    }
-    reduceMotion.addEventListener('change', function (mq) {
-      if (mq.matches) { heroVideo.pause(); heroVideo.classList.remove('is-playing'); }
-    });
+    var whenIdle = function () {
+      if ('requestIdleCallback' in window) window.requestIdleCallback(startVideo, { timeout: 2500 });
+      else window.setTimeout(startVideo, 800);
+    };
+    if (document.readyState === 'complete') whenIdle();
+    else window.addEventListener('load', whenIdle, { once: true });
   }
 
   /* ---------- Cardápio em abas ---------- */
   var tabsRoot = document.querySelector('[data-tabs]');
   if (tabsRoot) {
     var tablist = tabsRoot.querySelector('[data-tablist]');
+    var tabsWrap = tabsRoot.querySelector('[data-tabs-wrap]');
+    var panelsBox = tabsRoot.querySelector('[data-panels]');
     var tabs = Array.prototype.slice.call(tabsRoot.querySelectorAll('[role="tab"]'));
     var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
     var stepper = tabsRoot.querySelector('[data-stepper]');
+    var stepStatus = tabsRoot.querySelector('[data-step-status]');
     var current = 0;
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
 
-    var scrollTabIntoView = function (tab) {
-      var left = tab.offsetLeft - (tablist.clientWidth - tab.offsetWidth) / 2;
-      tablist.scrollTo({ left: Math.max(0, left), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    // a aba escolhida fica sempre à vista; só rola a lista se ela estiver cortada
+    var keepTabVisible = function (tab) {
+      var listBox = tablist.getBoundingClientRect();
+      var tabBox = tab.getBoundingClientRect();
+      var margin = 28;
+      if (tabBox.left >= listBox.left + margin && tabBox.right <= listBox.right - margin) return;
+      var delta = (tabBox.left + tabBox.width / 2) - (listBox.left + listBox.width / 2);
+      tablist.scrollBy({ left: delta, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    };
+
+    // bordas esmaecidas só onde a lista continua
+    var edgeTick = false;
+    var updateEdges = function () {
+      var max = tablist.scrollWidth - tablist.clientWidth;
+      tabsWrap.classList.toggle('is-scrolled', tablist.scrollLeft > 4);
+      tabsWrap.classList.toggle('is-end', tablist.scrollLeft >= max - 4);
+      edgeTick = false;
+    };
+    tablist.addEventListener('scroll', function () {
+      if (!edgeTick) { edgeTick = true; window.requestAnimationFrame(updateEdges); }
+    }, { passive: true });
+
+    // Fotos sob demanda: com os painéis empilhados, as fotos das categorias fechadas
+    // carregariam todas juntas. Elas guardam o endereço e só o recebem quando a
+    // categoria (ou a vizinha, para a troca sair instantânea) é aberta.
+    var park = function (panel) {
+      panel.querySelectorAll('source[srcset]').forEach(function (src) {
+        src.setAttribute('data-srcset', src.getAttribute('srcset'));
+        src.removeAttribute('srcset');
+      });
+      panel.querySelectorAll('img[src]').forEach(function (img) {
+        img.setAttribute('data-src', img.getAttribute('src'));
+        if (img.hasAttribute('srcset')) img.setAttribute('data-srcset', img.getAttribute('srcset'));
+        img.removeAttribute('srcset');
+        img.removeAttribute('src');
+      });
+    };
+    var wake = function (panel) {
+      if (!panel) return;
+      panel.querySelectorAll('source[data-srcset]').forEach(function (src) {
+        src.setAttribute('srcset', src.getAttribute('data-srcset'));
+        src.removeAttribute('data-srcset');
+      });
+      panel.querySelectorAll('img[data-src]').forEach(function (img) {
+        if (img.hasAttribute('data-srcset')) img.setAttribute('srcset', img.getAttribute('data-srcset'));
+        img.setAttribute('src', img.getAttribute('data-src'));
+        img.removeAttribute('data-src');
+        img.removeAttribute('data-srcset');
+      });
     };
 
     var activate = function (index, opts) {
       opts = opts || {};
-      if (index < 0) index = tabs.length - 1;
-      if (index >= tabs.length) index = 0;
+      index = (index + tabs.length) % tabs.length;
+      wake(panels[index]);
+      if (index === current && !opts.force) {
+        if (opts.focusTab) tabs[index].focus({ preventScroll: true });
+        return;
+      }
       tabs.forEach(function (tab, i) {
         var on = i === index;
         tab.setAttribute('aria-selected', on ? 'true' : 'false');
         tab.tabIndex = on ? 0 : -1;
         panels[i].hidden = !on;
       });
-      var panel = panels[index];
-      panel.classList.remove('is-entering');
-      void panel.offsetWidth; // reinicia a animação curta de entrada
-      panel.classList.add('is-entering');
       current = index;
-      scrollTabIntoView(tabs[index]);
+      if (stepStatus) stepStatus.textContent = pad(index + 1) + ' / ' + pad(tabs.length);
+      if (opts.animate !== false) {
+        entrance(panels[index], [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], 280);
+      }
+      // na carga não mede nada: medir logo depois de mudar o DOM força o navegador
+      // a recalcular o layout da página inteira (reflow forçado)
+      if (!opts.init) keepTabVisible(tabs[index]);
       if (opts.focusTab) tabs[index].focus({ preventScroll: true });
+      // a vizinha da frente e a de trás já ficam carregadas
+      wake(panels[(index + 1) % tabs.length]);
+      wake(panels[(index - 1 + tabs.length) % tabs.length]);
     };
 
-    tablist.hidden = false;
-    if (stepper) stepper.hidden = false;
 
     tabs.forEach(function (tab, i) {
       tab.addEventListener('click', function () { activate(i); });
@@ -216,18 +306,13 @@
       });
     });
 
-    panels.forEach(function (p) {
-      p.addEventListener('animationend', function () { p.classList.remove('is-entering'); });
-    });
-
     if (stepper) {
       stepper.addEventListener('click', function (e) {
         var btn = e.target.closest('[data-step]');
         if (!btn) return;
         activate(current + Number(btn.getAttribute('data-step')));
         // se o topo do cardápio saiu da tela, traz a categoria nova para a vista
-        var top = tablist.getBoundingClientRect().top;
-        if (top < 0) {
+        if (tablist.getBoundingClientRect().top < 0) {
           tabsRoot.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
         }
       });
@@ -235,8 +320,17 @@
 
     // link direto para uma categoria: #cat-feijoada, por exemplo
     var fromHash = panels.findIndex(function (p) { return '#' + p.id === window.location.hash; });
-    activate(fromHash > -1 ? fromHash : 0);
-    tabsRoot.querySelectorAll('.menu-panel').forEach(function (p) { p.classList.remove('is-entering'); });
+    panels.forEach(function (p, i) { if (i !== (fromHash > -1 ? fromHash : 0)) park(p); });
+    current = -1;
+    tablist.hidden = false;
+    if (stepper) stepper.hidden = false;
+    // painéis empilhados: a área mantém a altura do maior e a página não pula
+    panelsBox.classList.add('is-stacked');
+    activate(fromHash > -1 ? fromHash : 0, { animate: false, init: true });
+    afterPaint(function () {
+      if (fromHash > 0) keepTabVisible(tabs[fromHash]);
+      updateEdges();
+    });
   }
 
   /* ---------- Galeria ampliada ---------- */
@@ -253,7 +347,8 @@
     links.forEach(function (link) {
       link.setAttribute('aria-haspopup', 'dialog');
       var cap = link.querySelector('.g-cap');
-      link.setAttribute('aria-label', 'Ampliar foto: ' + (cap ? cap.textContent : ''));
+      // o nome acessível começa pelo texto visível (WCAG 2.5.3)
+      link.setAttribute('aria-label', (cap ? cap.textContent : 'Foto') + ': ampliar foto');
     });
 
     var show = function (i, swap) {
@@ -264,11 +359,7 @@
       lbImg.alt = thumb ? thumb.alt : '';
       lbCap.textContent = (link.querySelector('.g-cap') || {}).textContent || '';
       lbCount.textContent = (idx + 1) + ' / ' + links.length;
-      if (swap) {
-        lbImg.classList.remove('is-swapping');
-        void lbImg.offsetWidth;
-        lbImg.classList.add('is-swapping');
-      }
+      if (swap) entrance(lbImg, [{ opacity: 0, transform: 'scale(.985)' }, { opacity: 1, transform: 'none' }], 280);
     };
 
     links.forEach(function (link, i) {
@@ -289,6 +380,15 @@
       if (e.key === 'ArrowLeft') { e.preventDefault(); show(idx - 1, true); }
       if (e.key === 'ArrowRight') { e.preventDefault(); show(idx + 1, true); }
     });
+    // deslizar o dedo na foto ampliada troca de foto
+    var touchX = null;
+    dialog.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    dialog.addEventListener('touchend', function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      touchX = null;
+      if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1), true);
+    }, { passive: true });
     // clique fora da foto e dos botões fecha
     dialog.addEventListener('click', function (e) {
       if (e.target === dialog || e.target.classList.contains('lightbox-inner')) dialog.close();

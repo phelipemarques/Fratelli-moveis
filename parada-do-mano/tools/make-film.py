@@ -4,7 +4,7 @@
 Parada do Mano — vídeos feitos com as fotos reais do restaurante.
 
 Gera três arquivos:
-  assets/video/parada-do-mano-abertura.mp4   960x960, sem texto, em loop — fundo da abertura do site
+  assets/videos/parada-do-mano-abertura.mp4   960x960, sem texto, em loop — fundo da abertura do site
   parada-do-mano-video-vertical.mp4          1080x1920, com textos — Reels, Stories e status do WhatsApp
   parada-do-mano-video-horizontal.mp4        1920x1080, com textos — Facebook, YouTube, telão
 
@@ -255,11 +255,11 @@ def roteiro_abertura():
 
 
 def main():
-    os.makedirs(os.path.join(RAIZ, 'assets', 'video'), exist_ok=True)
+    os.makedirs(os.path.join(RAIZ, 'assets', 'videos'), exist_ok=True)
     so = sys.argv[1:] or ['abertura', 'vertical', 'horizontal']
     if 'abertura' in so:
         render(roteiro_abertura(), 960, 960,
-               os.path.join(RAIZ, 'assets', 'video', 'parada-do-mano-abertura.mp4'), loop=True, crf=30)
+               os.path.join(RAIZ, 'assets', 'videos', 'parada-do-mano-abertura.mp4'), loop=True, crf=33)
     if 'vertical' in so:
         render(roteiro_com_texto(True), 1080, 1920, os.path.join(RAIZ, 'parada-do-mano-video-vertical.mp4'))
     if 'horizontal' in so:

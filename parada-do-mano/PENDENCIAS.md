@@ -1,7 +1,7 @@
 # Parada do Mano — pendências para confirmar com o restaurante
 
-Atualizado depois do envio das referências (3 fotos do buffet e 2 prints do Instagram).
-Nada no site foi inventado: o que não foi confirmado aparece como "sob consulta".
+Atualizado na V3 (16/10/2026). Nada no site foi inventado: o que não foi confirmado
+aparece como "sob consulta" ou como pergunta pelo WhatsApp.
 
 ## O que as referências confirmaram
 
@@ -20,7 +20,7 @@ Da bio e das publicações do Instagram @paradadomano:
 
 | # | O que pedir | Onde entra |
 |---|---|---|
-| 1 | **Autorização para publicar** e o domínio | `noindex` no `index.html`, `robots.txt`, `og:image` com URL absoluta |
+| 1 | **Autorização para publicar** e o **domínio** | rodar `python3 tools/set-domain.py https://dominio` (canonical, og:url, og:image absoluta, JSON-LD, sitemap). Só com autorização: `--publicar` (libera `noindex`, `robots.txt` e o `X-Robots-Tag` do `vercel.json`) |
 | 2 | Confirmar que o **WhatsApp** (45) 99825-8916 é o de atendimento e que o **endereço** BR-277, km 594 basta para chegar (posto ou referência, sentido da pista) | 20 links de WhatsApp, contato, rodapé, dados estruturados, botão de rota |
 | 3 | Confirmar que as **artes dos posts** (feijoada e rodízio) podem ir para o site. Se a foto da feijoada ou das carnes dentro da arte veio de banco de imagens, a licença precisa cobrir uso em site | seção Feijoada, bloco do espeto corrido, cardápio |
 
@@ -47,6 +47,16 @@ Se preferir fotos 100 % reais, os originais do celular entram pelo mesmo caminho
 As fotos reais tratadas dos prints (arroz, legumes, saladas decoradas, fogão a lenha, espeto,
 fachada) continuam em `tools/source/`, fora do site, para quando o dono quiser usá-las.
 
+## 🟡 Cardápio: o que falta para virar cardápio com itens e preços
+
+Na V3 cada categoria mostra só o que é comprovado: dias e horários divulgados (selos escuros)
+e, no buffet e nas saladas, uma lista expansível do que aparece nas **fotos reais** da casa
+("Já passou pelo nosso buffet"), sempre com o aviso de que varia conforme o dia.
+Lanches, sobremesas e bebidas convidam a consultar a equipe, sem prometer nada.
+
+Para preencher uma categoria com pratos e preços, basta enviar a lista; o modelo
+`<li class="menu-item">` está comentado no `index.html`, logo acima do cardápio.
+
 ## 🟡 Dados comerciais ainda "sob consulta"
 
 | Item | Situação | O que perguntar |
@@ -71,7 +81,7 @@ fachada) continuam em `tools/source/`, fora do site, para quando o dono quiser u
 
 | Arquivo | Uso | Observação |
 |---|---|---|
-| `assets/video/parada-do-mano-abertura.mp4` / `.webm` | fundo da abertura do site, no computador | sem texto, em loop, 17 s, com as 5 fotos novas; no celular fica a foto |
+| `assets/videos/parada-do-mano-abertura.mp4` / `.webm` | fundo da abertura do site, no computador | sem texto, em loop, 17 s, 1,7 MB (MP4) / 1,3 MB (WebM); no celular, com economia de dados, rede lenta ou movimento reduzido fica a foto |
 | `parada-do-mano-video-vertical.mp4` | Reels, Stories, status do WhatsApp | 1080×1920, 27 s, textos acima da área da legenda do Instagram |
 | `parada-do-mano-video-horizontal.mp4` | Facebook, YouTube, TV do salão | 1920×1080, 27 s |
 

@@ -1,25 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Parada do Mano — prévia em arquivo único.
+Parada do Mano — prévia em arquivo único (V3).
 
-Gera parada-do-mano-visualizacao.html: folha de estilo, JavaScript, fontes
-e imagens embutidas no próprio arquivo. Abre com dois cliques, sem servidor
-e sem as pastas ao lado. Serve para mostrar e aprovar; o site de publicação
-continua sendo o index.html com a pasta assets/ (ver tools/make-zip.py).
+Gera parada-do-mano-v3-visualizacao.html: folha de estilo, JavaScript, fontes,
+imagens e o vídeo da abertura dentro do próprio arquivo. Abre com dois cliques,
+sem servidor e sem as pastas ao lado. Serve para mostrar e aprovar; o site de
+publicação continua sendo o index.html com a pasta assets/ (ver tools/make-zip.py).
+
+Diferenças em relação ao site de produção, todas para manter o arquivo leve:
+  - cada imagem entra direto no src, na largura que o HTML usa por padrão
+    (sem srcset e sem AVIF) — as fotos aparecem mesmo com JavaScript desligado;
+  - a foto ampliada da galeria usa a versão de 800 px;
+  - só o WebM do vídeo da abertura entra (é o menor dos dois formatos);
+  - a imagem de compartilhamento (og:image) não é embutida: numa prévia local
+    ela não serve para nada, e em produção ela precisa ser uma URL absoluta.
 
     python3 tools/build-preview.py
 """
 import base64
-import json
 import os
 import re
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMAGENS = os.path.join(RAIZ, 'assets', 'images')
-SAIDA = os.path.join(RAIZ, 'parada-do-mano-visualizacao.html')
-TIPOS = {'.mp4': 'video/mp4', '.webm': 'video/webm', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml',
-         '.woff2': 'font/woff2', '.png': 'image/png'}
+SAIDA = os.path.join(RAIZ, 'parada-do-mano-v3-visualizacao.html')
+TIPOS = {'.mp4': 'video/mp4', '.webm': 'video/webm', '.webp': 'image/webp', '.avif': 'image/avif',
+         '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.png': 'image/png'}
 
 _cache = {}
 
@@ -32,17 +39,12 @@ def uri(caminho):
     return _cache[caminho]
 
 
-def maior_versao(nome):
-    """buffet-salao-480.webp -> buffet-salao-1200.webp (a maior até 1200 px)."""
-    m = re.match(r'(.+)-(\d+)\.webp$', nome)
-    if not m:
-        return nome
-    base = m.group(1)
-    larguras = [int(x.group(1)) for x in (re.match(re.escape(base) + r'-(\d+)\.webp$', n)
-                                          for n in os.listdir(IMAGENS)) if x]
-    # até 1200 px: suficiente para a prévia e mantém o arquivo leve
-    cabem = [w for w in larguras if w <= 1200] or larguras
-    return '%s-%d.webp' % (base, max(cabem))
+def versao(nome, largura):
+    """buffet-salao-1200.webp -> buffet-salao-800.webp, se existir."""
+    m = re.match(r'(.+)-\d+\.webp$', nome)
+    if m and os.path.exists(os.path.join(IMAGENS, '%s-%d.webp' % (m.group(1), largura))):
+        return '%s-%d.webp' % (m.group(1), largura)
+    return nome
 
 
 def main():
@@ -57,46 +59,36 @@ def main():
     html = html.replace('<script src="assets/js/main.js" defer></script>', '')
     html = html.replace('</body>', '<script>\n' + js.replace('</script>', '<\\/script>') + '\n</script>\n</body>')
 
-    # preloads perdem a função: tudo já está dentro do arquivo
+    # o que não faz sentido num arquivo local
     html = re.sub(r'\s*<link rel="preload"[^>]*>', '', html)
-    # sem srcset: cada imagem entra uma vez, na maior versão
+    html = re.sub(r'\s*<link rel="apple-touch-icon"[^>]*>', '', html)
+    html = re.sub(r'\s*<source type="image/avif"[^>]*>', '', html)
     html = re.sub(r'\s(srcset|sizes)="[^"]*"', '', html)
-    # A mesma foto aparece em vários lugares da página (abertura, mosaico, cardápio,
-    # galeria). Para não repetir o data URI a cada uso, as fotos entram uma vez num
-    # mapa e um script curto preenche src/href no carregamento.
-    mapa = {}
 
-    def chave(nome):
-        alvo = maior_versao(nome)
-        mapa.setdefault(alvo, uri(os.path.join(IMAGENS, alvo)))
-        return alvo
+    # imagens: direto no src, sem depender de JavaScript
+    html = re.sub(r'src="assets/images/([\w.-]+)"',
+                  lambda m: 'src="%s"' % uri(os.path.join(IMAGENS, m.group(1))), html)
+    html = re.sub(r'href="assets/images/([\w.-]+)" data-full="assets/images/([\w.-]+)"',
+                  lambda m: 'href="%s" data-full="%s"' % ((uri(os.path.join(IMAGENS, versao(m.group(2), 800))),) * 2), html)
+    html = re.sub(r'href="(assets/images/logo-48\.png)"',
+                  lambda m: 'href="%s"' % uri(os.path.join(RAIZ, m.group(1))), html)
 
-    html = re.sub(r'<img([^>]*?)\ssrc="assets/images/([\w.-]+\.webp)"',
-                  lambda m: '<img%s data-pv="%s"' % (m.group(1), chave(m.group(2))), html)
-    html = re.sub(r'href="assets/images/([\w.-]+\.webp)" data-full="assets/images/([\w.-]+\.webp)"',
-                  lambda m: 'href="#galeria" data-full-pv="%s"' % chave(m.group(2)), html)
-    html = re.sub(r'"assets/images/([\w.-]+)"',
-                  lambda m: '"%s"' % uri(os.path.join(IMAGENS, m.group(1))), html)
-    preencher = ('<script>\n(function(){var M=%s;'
-                 'document.querySelectorAll("[data-pv]").forEach(function(e){e.src=M[e.getAttribute("data-pv")];});'
-                 'document.querySelectorAll("[data-full-pv]").forEach(function(e){var u=M[e.getAttribute("data-full-pv")];'
-                 'e.href=u;e.setAttribute("data-full",u);});})();\n</script>\n' % json.dumps(mapa))
-    html = html.replace('<!-- Barra de ações do celular -->', preencher + '  <!-- Barra de ações do celular -->', 1)
-
-    # vídeo da abertura: os dois formatos entram embutidos (H.264 e VP9),
-    # porque nem todo navegador abre os dois
-    html = re.sub(r'data-src-(mp4|webm)="assets/video/([\w.-]+)"',
-                  lambda m: 'data-src-%s="%s"' % (m.group(1), uri(os.path.join(RAIZ, 'assets', 'video', m.group(2)))), html)
+    # vídeo da abertura: só o WebM (menor; Chrome, Edge, Firefox e Safari recente tocam).
+    # Onde não tocar, a abertura fica com a foto, como no celular.
+    html = re.sub(r'\s*data-src-mp4="[^"]*"', '', html)
+    html = re.sub(r'data-src-webm="assets/videos/([\w.-]+)"',
+                  lambda m: 'data-src-webm="%s"' % uri(os.path.join(RAIZ, 'assets', 'videos', m.group(1))), html)
 
     html = html.replace('<html lang="pt-BR" class="no-js">',
-                        '<!-- PRÉVIA EM ARQUIVO ÚNICO, gerada por tools/build-preview.py.\n'
+                        '<!-- PRÉVIA EM ARQUIVO ÚNICO (V3), gerada por tools/build-preview.py.\n'
                         '     Para publicar, use o index.html com a pasta assets/. -->\n'
                         '<html lang="pt-BR" class="no-js">')
 
     with open(SAIDA, 'w', encoding='utf-8') as f:
         f.write(html)
-    sobrou = sorted(set(re.findall(r'(?:src|href|data-src-mp4|data-src-webm)="(?!data:|#|https?:)([^"]+)"', html)))
-    print('%s — %.1f MB, %d arquivos embutidos' % (os.path.basename(SAIDA), os.path.getsize(SAIDA) / 1e6, len(_cache)))
+    sobrou = sorted(set(re.findall(r'(?:src|href|data-full|data-src-mp4|data-src-webm)="(?!data:|#|https?:)([^"]+)"', html)))
+    print('%s — %.1f MB (%.1f MiB), %d arquivos embutidos' % (
+        os.path.basename(SAIDA), os.path.getsize(SAIDA) / 1e6, os.path.getsize(SAIDA) / 1048576, len(_cache)))
     print('referências locais restantes:', sobrou or 'nenhuma')
 
 

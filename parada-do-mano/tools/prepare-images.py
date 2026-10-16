@@ -36,15 +36,15 @@ SAIDA = os.path.join(RAIZ, 'assets', 'images')
 # (a abertura e o mosaico usam a mesma foto do arroz, em cortes diferentes).
 SLOTS = {
     # Abertura
-    'hero':               ((5, 4),  (640, 960, 1440, 1920), 'Foto de abertura', 'buffet-salao'),
+    'hero':               ((5, 4),  (640, 800, 960, 1440, 1920), 'Foto de abertura', 'buffet-salao'),
     # Fotos enviadas em 16/10 (ampliadas 2x por enhance-photos.py novas)
-    'buffet-salao':       ((4, 5),  (480, 800, 1200), 'Buffet e salão', None),
-    'cafe-da-manha':      ((4, 5),  (480, 800, 1200), 'Café da manhã', None),
-    'prato-carnes':       ((4, 5),  (480, 800, 1200), 'Prato com carnes', None),
+    'buffet-salao':       ((4, 5),  (240, 480, 640, 800, 1200), 'Buffet e salão', None),
+    'cafe-da-manha':      ((4, 5),  (240, 480, 640, 800, 1200), 'Café da manhã', None),
+    'prato-carnes':       ((4, 5),  (240, 480, 640, 800, 1200), 'Prato com carnes', None),
     'prato-carnes-largo': ((16, 9), (960, 1440, 1920), 'Prato com carnes', 'prato-carnes'),
-    'feijoada-buffet':    ((4, 5),  (480, 800, 1200), 'Feijoada', None),
-    'saladas-buffet':     ((4, 5),  (480, 800, 1200), 'Saladas', None),
-    'churrasqueira':      ((4, 5),  (480, 800), 'Churrasqueira', None),
+    'feijoada-buffet':    ((4, 5),  (480, 640, 800, 1200), 'Feijoada', None),
+    'saladas-buffet':     ((4, 5),  (480, 640, 800, 1200), 'Saladas', None),
+    'churrasqueira':      ((4, 5),  (480, 640, 800), 'Churrasqueira', None),
     # Arte oficial do rodízio (recorte sem o preço, de um print do Instagram)
     'post-rodizio':       ((5, 4),  (480, 800, 1200), 'Post do rodízio de domingo', None),
 }
@@ -56,7 +56,7 @@ FOCO = {
 }
 
 # Logo oficial (recorte do perfil do Instagram, ver enhance-photos.py)
-LOGO = ('logo', (48, 96, 192, 512))
+LOGO = ('logo', (48, 96, 192))
 
 # Imagem de compartilhamento (WhatsApp, Facebook): 1200x630, JPG.
 # Sai da foto de abertura quando ela existir.
@@ -204,6 +204,8 @@ def og_provisoria():
 
 def salvar_webp(img, caminho):
     img.save(caminho, 'WEBP', quality=80, method=6)
+    # AVIF: ~50 % menor que o WebP com a mesma aparência; o HTML oferece os dois (<picture>)
+    img.save(caminho[:-5] + '.avif', 'AVIF', quality=52)
 
 
 def main():
@@ -229,7 +231,7 @@ def main():
                             os.path.join(SAIDA, '%s-%d.webp' % (slot, lw)))
             pendentes.append(slot)
 
-    gerados = {'%s-%d.webp' % (slot, lw) for slot, v in SLOTS.items() for lw in v[1]}
+    gerados = {'%s-%d.%s' % (slot, lw, ext) for slot, v in SLOTS.items() for lw in v[1] for ext in ('webp', 'avif')}
 
     # logo oficial em PNG transparente, nos tamanhos do cabeçalho, rodapé e ícone
     nome_logo, tamanhos = LOGO
@@ -238,8 +240,13 @@ def main():
     if origem_logo:
         logo = Image.open(origem_logo).convert('RGBA')
         for t in tamanhos:
-            logo.resize((t, t), Image.LANCZOS).save(os.path.join(SAIDA, 'logo-%d.png' % t), optimize=True)
+            reduzida = logo.resize((t, t), Image.LANCZOS)
+            reduzida.save(os.path.join(SAIDA, 'logo-%d.png' % t), optimize=True)
             gerados.add('logo-%d.png' % t)
+            # WebP com transparência: cabeçalho e rodapé (o PNG fica para ícone e compartilhamento)
+            if t in (96, 192):
+                reduzida.save(os.path.join(SAIDA, 'logo-%d.webp' % t), 'WEBP', quality=86, method=6)
+                gerados.add('logo-%d.webp' % t)
     else:
         avisos.append('logo: tools/source/logo.png não encontrado')
 

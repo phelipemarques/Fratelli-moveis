@@ -1,6 +1,6 @@
 // Parada do Mano — verificação no navegador (Chromium via Playwright).
 //
-//   python3 -m http.server 8130 --bind 127.0.0.1      (na pasta parada-do-mano)
+//   node tools/servidor.mjs . 8130                    (na pasta parada-do-mano)
 //   NODE_PATH=$(npm root -g) node tools/qa-browser.mjs [saida-das-capturas]
 //
 // Testa cada tamanho de tela pedido no briefing, o menu do celular, o
@@ -16,8 +16,8 @@ const fs = require('fs');
 fs.mkdirSync(OUT, { recursive: true });
 
 const SIZES = [
-  [320, 568], [360, 800], [375, 667], [390, 844], [430, 932],
-  [768, 1024], [1440, 900], [1920, 1080],
+  [320, 568], [360, 800], [375, 667], [390, 844], [414, 896], [430, 932],
+  [844, 390], [768, 1024], [1440, 900], [1920, 1080],
 ];
 
 const results = [];
@@ -92,6 +92,11 @@ for (const [w, h] of SIZES) {
   ok(`${tag} conteúdo revelado após rolar`, m.hidden === 0, `${m.hidden} elementos ainda ocultos`);
   ok(`${tag} um único h1`, m.h1 === 1, `${m.h1}`);
   ok(`${tag} foto na primeira tela`, m.heroImgTop < h * 0.5, `foto da abertura de ${m.heroImgTop}px a ${m.heroImgBottom}px`);
+  const cta = await page.evaluate(() => {
+    const r = document.querySelector('.hero-cta-main').getBoundingClientRect();
+    return { top: Math.round(r.top), bottom: Math.round(r.bottom) };
+  });
+  ok(`${tag} botão do cardápio na primeira tela`, cta.bottom <= h, `de ${cta.top} a ${cta.bottom}px (tela: ${h}px)`);
 
   await page.screenshot({ path: `${tag}-pagina.png`.replace(/^/, OUT + '/'), fullPage: true });
   await ctx.close();
@@ -174,6 +179,113 @@ for (const [w, h] of SIZES) {
   await ctx.close();
 }
 
+/* ---------- Cardápio: as dez categorias, altura estável, foto sob demanda ---------- */
+{
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const page = await ctx.newPage();
+  await page.goto(BASE, { waitUntil: 'networkidle' });
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; document.getElementById('cardapio').scrollIntoView(); });
+  await page.waitForTimeout(600);
+  const ids = await page.evaluate(() => [...document.querySelectorAll('[role="tab"]')].map(t => t.id));
+  ok('cardápio: dez categorias', ids.length === 10, ids.join(', '));
+  const alturas = new Set(); const fotos = []; const semFoto = []; const visiveis = [];
+  for (const id of ids) {
+    await page.locator('#' + id).click();
+    await page.waitForTimeout(700);
+    const r = await page.evaluate((id) => {
+      const panel = document.getElementById(document.getElementById(id).getAttribute('aria-controls'));
+      const open = [...document.querySelectorAll('.menu-panel')].filter(p => !p.hidden).map(p => p.id);
+      const img = panel.querySelector('img');
+      const tab = document.getElementById(id).getBoundingClientRect();
+      const list = document.querySelector('[data-tablist]').getBoundingClientRect();
+      return {
+        open, h: Math.round(document.querySelector('[data-panels]').getBoundingClientRect().height),
+        img: img ? (img.complete && img.naturalWidth > 0) : null,
+        tabVisivel: tab.left >= list.left - 1 && tab.right <= list.right + 1,
+        wa: (panel.querySelector('a[href*="wa.me"]') || {}).href || '',
+      };
+    }, id);
+    alturas.add(r.h);
+    if (r.img === false) fotos.push(id);
+    if (!r.wa.includes('text=')) semFoto.push(id + ' sem mensagem de WhatsApp');
+    if (!r.tabVisivel) visiveis.push(id);
+    if (r.open.length !== 1) semFoto.push(id + ' com ' + r.open.length + ' painéis abertos');
+  }
+  ok('cardápio: cada categoria abre sozinha e tem WhatsApp com mensagem própria', semFoto.length === 0, semFoto.join('; ') || '10 de 10');
+  ok('cardápio: foto da categoria carrega quando ela é aberta', fotos.length === 0, fotos.join(', ') || 'todas as que têm foto');
+  ok('cardápio: altura da área não muda entre categorias', alturas.size === 1, [...alturas].join(' / ') + ' px');
+  ok('cardápio: aba escolhida sempre visível na faixa', visiveis.length === 0, visiveis.join(', ') || '10 de 10');
+  const textos = await page.evaluate(() => document.querySelector('#cardapio').innerText);
+  ok('cardápio: nenhum "ainda vão ser publicadas"', !/ainda vai|ainda vão|publicad/i.test(textos));
+  ok('cardápio: nenhum preço afirmado', !/R\$\s*\d/.test(textos), (textos.match(/R\$\s*\d[\d,.]*/g) || []).join(' '));
+  // teclado: Tab sai da aba para o painel; Enter e Espaço na aba mantêm a seleção
+  await page.locator('#tab-feijoada').click();
+  await page.locator('#tab-feijoada').focus();
+  await page.keyboard.press('Tab');
+  const foco = await page.evaluate(() => document.activeElement.id);
+  ok('cardápio: Tab vai da aba para o painel', foco === 'cat-feijoada', foco);
+  await page.locator('#tab-feijoada').focus();
+  await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('Enter');
+  await page.keyboard.press('Space');
+  const sel = await page.evaluate(() => document.querySelector('[aria-selected="true"]').id);
+  ok('cardápio: seta + Enter + Espaço', sel === 'tab-espeto', sel);
+  // lista do que já passou pelo buffet
+  await page.locator('#tab-buffet').click();
+  await page.waitForTimeout(300);
+  await page.locator('#cat-buffet summary').click();
+  const aberto = await page.evaluate(() => document.querySelector('#cat-buffet details').open);
+  ok('cardápio: lista "já passou pelo buffet" abre ao tocar', aberto);
+  await page.locator('[data-tabs]').screenshot({ path: `${OUT}/390x844-cardapio-buffet.png` });
+  await ctx.close();
+}
+
+/* ---------- Âncoras e links externos ---------- */
+{
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const page = await ctx.newPage();
+  await page.goto(BASE, { waitUntil: 'networkidle' });
+  const r = await page.evaluate(() => {
+    const quebradas = [...document.querySelectorAll('a[href^="#"]')].map(a => a.getAttribute('href'))
+      .filter(h => h.length > 1 && !document.getElementById(h.slice(1)));
+    const wa = [...document.querySelectorAll('a[href*="wa.me"]')].map(a => a.href);
+    const waRuins = wa.filter(h => !/^https:\/\/wa\.me\/5545998258916(\?text=[^&]+)?$/.test(h));
+    const msgs = new Set(wa.map(h => (h.split('text=')[1] || '')));
+    const maps = [...document.querySelectorAll('a[href*="google.com/maps"]')].map(a => a.href);
+    const insta = [...document.querySelectorAll('a[href*="instagram.com"]')].map(a => a.href);
+    const externosSemRel = [...document.querySelectorAll('a[target="_blank"]')].filter(a => !/noopener/.test(a.rel)).length;
+    return { quebradas, wa: wa.length, waRuins, msgs: msgs.size, maps: maps.length, mapsOk: maps.every(h => h.includes('query=Parada%20do%20Mano')), insta: insta.length, instaOk: insta.every(h => h === 'https://www.instagram.com/paradadomano/'), externosSemRel };
+  });
+  ok('âncoras internas levam a seções existentes', r.quebradas.length === 0, r.quebradas.join(', ') || 'todas');
+  ok('links de WhatsApp no formato certo', r.waRuins.length === 0, `${r.wa} links, ${r.msgs} mensagens diferentes` + (r.waRuins.length ? ' — ruins: ' + r.waRuins.join(' ') : ''));
+  ok('links de rota e Instagram', r.maps > 0 && r.mapsOk && r.insta > 0 && r.instaOk, `${r.maps} de rota, ${r.insta} de Instagram`);
+  ok('links externos com rel=noopener', r.externosSemRel === 0, `${r.externosSemRel}`);
+  await ctx.close();
+}
+
+/* ---------- Jornadas no celular (390x844) ---------- */
+{
+  const jornadas = [
+    { nome: 'A — o que tem para almoçar', passos: ['.hero-cta-main', '#tab-buffet'], alvo: '#cat-buffet a[href*="wa.me"]', msg: 'almo%C3%A7o' },
+    { nome: 'B — valor do espeto corrido', passos: ['.hero-cta-main', '#tab-espeto'], alvo: '#cat-espeto a[href*="wa.me"]', msg: 'espeto' },
+    { nome: 'C — feijoada', passos: ['.hero-cta-main', '#tab-feijoada'], alvo: '#cat-feijoada a[href*="wa.me"]', msg: 'feijoada' },
+    { nome: 'D — rota até o restaurante', passos: [], alvo: '.hero-actions a[href*="google.com/maps"]', msg: 'maps' },
+  ];
+  for (const j of jornadas) {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    const page = await ctx.newPage();
+    await page.goto(BASE, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(1200);
+    for (const sel of j.passos) { await page.locator(sel).first().click(); await page.waitForTimeout(1300); }
+    const alvo = page.locator(j.alvo).first();
+    await alvo.scrollIntoViewIfNeeded();
+    const r = await alvo.evaluate((el, msg) => ({ href: el.href.includes(msg), visivel: el.getBoundingClientRect().top < innerHeight }), j.msg);
+    const rolagem = await page.evaluate(() => Math.round(window.scrollY));
+    ok(`jornada ${j.nome}: ${j.passos.length + 1} toque(s) até o botão certo`, r.href && r.visivel, `rolagem ${rolagem}px`);
+    await ctx.close();
+  }
+}
+
 /* ---------- Galeria ampliada ---------- */
 {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
@@ -192,6 +304,28 @@ for (const [w, h] of SIZES) {
   await page.waitForTimeout(300);
   const after = await page.evaluate(() => ({ open: document.querySelector('[data-lightbox]').open, focus: document.activeElement.closest('.g-b') !== null }));
   ok('galeria: Escape fecha e devolve o foco', !after.open && after.focus, JSON.stringify(after));
+  await ctx.close();
+}
+
+/* ---------- Galeria no celular: faixa de arrastar + foto ampliada ---------- */
+{
+  const ctx = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true });
+  const page = await ctx.newPage();
+  await page.goto(BASE, { waitUntil: 'networkidle' });
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; document.getElementById('galeria').scrollIntoView(); });
+  await page.waitForTimeout(1200);
+  const faixa = await page.evaluate(() => { const g = document.querySelector('[data-gallery]'); return { rola: g.scrollWidth > g.clientWidth, pagina: document.documentElement.scrollWidth <= innerWidth }; });
+  ok('galeria no celular: faixa rola de lado sem rolar a página', faixa.rola && faixa.pagina, JSON.stringify(faixa));
+  await page.locator('.g-a .g-link').click();
+  await page.waitForTimeout(500);
+  await page.locator('[data-lightbox-next]').click();
+  const c = await page.evaluate(() => ({ open: document.querySelector('[data-lightbox]').open, count: document.querySelector('[data-lightbox-count]').textContent, img: (() => { const r = document.querySelector('.lightbox-img').getBoundingClientRect(); return r.width <= innerWidth && r.height <= innerHeight; })() }));
+  ok('galeria no celular: abre, avança e cabe na tela', c.open && c.count === '2 / 5' && c.img, JSON.stringify(c));
+  await page.screenshot({ path: `${OUT}/360x800-galeria-ampliada.png` });
+  await page.locator('[data-lightbox-close]').click();
+  await page.waitForTimeout(300);
+  const f = await page.evaluate(() => !document.querySelector('[data-lightbox]').open && !!document.activeElement.closest('.g-a'));
+  ok('galeria no celular: fechar devolve o foco à foto', f);
   await ctx.close();
 }
 
@@ -246,13 +380,21 @@ for (const [w, h] of SIZES) {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
   const page = await ctx.newPage();
   await page.goto(BASE, { waitUntil: 'networkidle' });
+  // sem JS na página, a rolagem é feita pelo teste, passo a passo
+  const alturaTotal = await page.evaluate(() => document.body.scrollHeight);
+  for (let y = 0; y < alturaTotal; y += 600) { await page.mouse.wheel(0, 600); await page.waitForTimeout(60); }
+  await page.waitForTimeout(1200);
   const r = await page.evaluate(() => ({
     panels: [...document.querySelectorAll('.menu-panel')].filter(p => getComputedStyle(p).display !== 'none').length,
     hidden: [...document.querySelectorAll('[data-reveal]')].filter(el => getComputedStyle(el).opacity === '0').length,
+    semSrc: [...document.images].filter(i => !i.closest('dialog') && !i.getAttribute('src')).length,
+    quebradas: [...document.images].filter(i => !i.closest('dialog') && i.complete && !i.naturalWidth).length,
     actionBar: getComputedStyle(document.querySelector('.action-bar')).transform,
   }));
   ok('sem JS: as 10 categorias do cardápio aparecem', r.panels === 10, `${r.panels}`);
   ok('sem JS: nenhum conteúdo escondido', r.hidden === 0, `${r.hidden}`);
+  ok('sem JS: todas as imagens têm endereço e carregam', r.semSrc === 0 && r.quebradas === 0, JSON.stringify({ semSrc: r.semSrc, quebradas: r.quebradas }));
+  ok('sem JS: barra de atalhos visível', r.actionBar === 'none', r.actionBar);
   await ctx.close();
 }
 

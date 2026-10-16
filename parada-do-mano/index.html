@@ -10,16 +10,17 @@
   <!-- PRÉVIA DE APROVAÇÃO: trocar por "index, follow" só depois da autorização do restaurante -->
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#0B0908">
+  <!-- canonical, og:url e og:image absolutos entram com tools/set-domain.py quando o domínio existir -->
 
   <meta property="og:type" content="restaurant">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Parada do Mano">
   <meta property="og:title" content="Parada do Mano — Do fogo à mesa">
-  <meta property="og:description" content="Buffet variado, comida caseira e churrasco na BR-277, km 594, em Cascavel/PR.">
-  <!-- og:image precisa de URL absoluta: completar com o domínio final (ver PENDENCIAS.md) -->
+  <meta property="og:description" content="Café, almoço e janta na BR-277, km 594, em Cascavel/PR. Buffet completo, churrasco, espeto corrido aos domingos e feijoada às quartas e sábados.">
   <meta property="og:image" content="assets/images/og-cover.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Buffet do Parada do Mano com a logo do restaurante">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="assets/images/logo-48.png" type="image/png" sizes="48x48">
@@ -27,7 +28,7 @@
 
   <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/images/hero-960.webp" imagesrcset="assets/images/hero-640.webp 640w, assets/images/hero-960.webp 960w, assets/images/hero-1440.webp 1440w, assets/images/hero-1920.webp 1920w" imagesizes="(min-width: 960px) 62vw, 100vw" fetchpriority="high">
+  <link rel="preload" as="image" type="image/avif" imagesrcset="assets/images/hero-640.avif 640w, assets/images/hero-800.avif 800w, assets/images/hero-960.avif 960w, assets/images/hero-1440.avif 1440w, assets/images/hero-1920.avif 1920w" imagesizes="(min-width: 960px) 62vw, 100vw" fetchpriority="high">
 
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/main.js" defer></script>
@@ -53,6 +54,7 @@
       "opens": "06:00",
       "closes": "23:30"
     }],
+    "hasMenu": "#cardapio",
     "sameAs": ["https://www.instagram.com/paradadomano/"]
   }
   </script>
@@ -65,9 +67,9 @@
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.8" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="7" r="1.1" fill="currentColor"/></symbol>
-    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-plate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
     <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.4-5.4 3.7-8 .4 1.8 1.4 3 2.6 3.6C12 7.6 13 5 15.2 3c-.4 3.1 3.3 5.6 3.3 10.4 0 4.4-2.7 7.6-6.5 7.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pot" viewBox="0 0 24 24"><path d="M4 10h16v3.5A6.5 6.5 0 0 1 13.5 20h-3A6.5 6.5 0 0 1 4 13.5V10Zm-1.5 0h19M9 7c0-1 1-1.5 1-2.5M14 7c0-1 1-1.5 1-2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="m14.5 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9.5 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -80,8 +82,8 @@
   <header class="site-header" data-header>
     <div class="container header-inner">
       <!-- Logo oficial recortada do perfil do Instagram (baixa resolução de origem: trocar pelo arquivo vetorial quando vier) -->
-      <a class="brand" href="#inicio" aria-label="Parada do Mano, ir para o início">
-        <img class="brand-logo" src="assets/images/logo-96.png" srcset="assets/images/logo-96.png 1x, assets/images/logo-192.png 2x" width="46" height="46" alt="">
+      <a class="brand" href="#inicio">
+        <img class="brand-logo" src="assets/images/logo-96.webp" srcset="assets/images/logo-96.webp 1x, assets/images/logo-192.webp 2x" width="46" height="46" alt="">
         <span class="brand-text">
           <span class="brand-name">Parada do Mano</span>
           <span class="brand-sub">Restaurante e Lanchonete</span>
@@ -91,10 +93,10 @@
       <nav class="nav-desktop" aria-label="Principal">
         <ul>
           <li><a href="#sobre">O restaurante</a></li>
+          <li><a href="#cardapio">Cardápio</a></li>
           <li><a href="#buffet">Buffet</a></li>
           <li><a href="#churrasco">Churrasco</a></li>
           <li><a href="#feijoada">Feijoada</a></li>
-          <li><a href="#cardapio">Cardápio</a></li>
           <li><a href="#galeria">Galeria</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
@@ -114,10 +116,10 @@
       <nav class="mobile-menu-nav" aria-label="Menu do celular">
         <ol>
           <li><a href="#sobre" data-menu-link><span class="mm-num">01</span>O restaurante</a></li>
-          <li><a href="#buffet" data-menu-link><span class="mm-num">02</span>Buffet</a></li>
-          <li><a href="#churrasco" data-menu-link><span class="mm-num">03</span>Churrasco</a></li>
-          <li><a href="#feijoada" data-menu-link><span class="mm-num">04</span>Feijoada</a></li>
-          <li><a href="#cardapio" data-menu-link><span class="mm-num">05</span>Cardápio</a></li>
+          <li><a href="#cardapio" data-menu-link><span class="mm-num">02</span>Cardápio</a></li>
+          <li><a href="#buffet" data-menu-link><span class="mm-num">03</span>Buffet</a></li>
+          <li><a href="#churrasco" data-menu-link><span class="mm-num">04</span>Churrasco</a></li>
+          <li><a href="#feijoada" data-menu-link><span class="mm-num">05</span>Feijoada</a></li>
           <li><a href="#galeria" data-menu-link><span class="mm-num">06</span>Galeria</a></li>
           <li><a href="#contato" data-menu-link><span class="mm-num">07</span>Contato</a></li>
         </ol>
@@ -133,19 +135,23 @@
 
   <main id="conteudo">
 
-    <!-- ===================== ABERTURA ===================== -->
+    <!-- ===================== 01 ABERTURA ===================== -->
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="hero-media">
         <div class="hero-photo">
-          <img class="hero-img" src="assets/images/hero-960.webp"
-               srcset="assets/images/hero-640.webp 640w, assets/images/hero-960.webp 960w, assets/images/hero-1440.webp 1440w, assets/images/hero-1920.webp 1920w"
-               sizes="(min-width: 960px) 62vw, 100vw" width="1920" height="1536"
-               alt="Buffet com saladas e pratos quentes, com a churrasqueira acesa ao fundo" fetchpriority="high" decoding="async">
-          <!-- Filme curto feito com as fotos do restaurante. Sem som; o JS só carrega no computador,
-               sem economia de dados e sem movimento reduzido. No celular fica a foto. -->
+          <!-- A foto é o pôster do vídeo: aparece na hora e fica se o vídeo não carregar -->
+          <picture>
+            <source type="image/avif" srcset="assets/images/hero-640.avif 640w, assets/images/hero-800.avif 800w, assets/images/hero-960.avif 960w, assets/images/hero-1440.avif 1440w, assets/images/hero-1920.avif 1920w" sizes="(min-width: 960px) 62vw, 100vw">
+            <img class="hero-img" src="assets/images/hero-960.webp"
+                 srcset="assets/images/hero-640.webp 640w, assets/images/hero-800.webp 800w, assets/images/hero-960.webp 960w, assets/images/hero-1440.webp 1440w, assets/images/hero-1920.webp 1920w"
+                 sizes="(min-width: 960px) 62vw, 100vw" width="1920" height="1536"
+                 alt="Buffet com saladas e pratos quentes, com a churrasqueira acesa ao fundo" fetchpriority="high" decoding="async">
+          </picture>
+          <!-- Filme curto das fotos do restaurante, sem som. Só é baixado no computador, depois que a
+               página termina de carregar, sem movimento reduzido, sem economia de dados e fora de rede lenta. -->
           <video class="hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"
-                 data-src-mp4="assets/video/parada-do-mano-abertura.mp4"
-                 data-src-webm="assets/video/parada-do-mano-abertura.webm"></video>
+                 data-src-mp4="assets/videos/parada-do-mano-abertura.mp4"
+                 data-src-webm="assets/videos/parada-do-mano-abertura.webm"></video>
         </div>
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="embers" aria-hidden="true">
@@ -162,8 +168,8 @@
         </h1>
         <p class="hero-sub">Buffet variado, comida caseira e churrasco para quem gosta de comer bem.</p>
         <div class="hero-actions">
-          <a class="btn btn-fire" href="#cardapio"><span>Explorar o cardápio</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-light" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Falar no WhatsApp</span></a>
+          <a class="btn btn-fire hero-cta-main" href="#cardapio"><span>Explorar o cardápio</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-light" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp</span></a>
           <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Parada%20do%20Mano%2C%20BR-277%20km%20594%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Como chegar</span></a>
         </div>
         <ul class="hero-facts" aria-label="Destaques">
@@ -181,12 +187,12 @@
     <!-- Faixa de passagem: só decorativa, o mesmo conteúdo aparece nas seções -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span>Café da manhã</span><i></i><span>Almoço</span><i></i><span>Jantar</span><i></i><span>Buffet</span><i></i><span>Churrasco</span><i></i><span>Espeto corrido aos domingos</span><i></i><span>Feijoada às quartas e sábados</span><i></i>
-        <span>Café da manhã</span><i></i><span>Almoço</span><i></i><span>Jantar</span><i></i><span>Buffet</span><i></i><span>Churrasco</span><i></i><span>Espeto corrido aos domingos</span><i></i><span>Feijoada às quartas e sábados</span><i></i>
+        <span>Café da manhã</span><i></i><span>Almoço</span><i></i><span>Janta</span><i></i><span>Buffet</span><i></i><span>Churrasco</span><i></i><span>Espeto corrido aos domingos</span><i></i><span>Feijoada às quartas e sábados</span><i></i>
+        <span>Café da manhã</span><i></i><span>Almoço</span><i></i><span>Janta</span><i></i><span>Buffet</span><i></i><span>Churrasco</span><i></i><span>Espeto corrido aos domingos</span><i></i><span>Feijoada às quartas e sábados</span><i></i>
       </div>
     </div>
 
-    <!-- ===================== O RESTAURANTE ===================== -->
+    <!-- ===================== 02 O RESTAURANTE ===================== -->
     <section class="section about" id="sobre" aria-labelledby="sobre-title">
       <div class="container">
         <div class="about-head">
@@ -195,7 +201,7 @@
             <h2 class="section-title" id="sobre-title">Uma parada para<br> cada hora do dia.</h2>
           </div>
           <div class="about-intro" data-reveal style="--d: 1">
-            <p class="lead">Café, almoço e janta, de segunda a domingo. Na beira da BR-277, o Parada do Mano recebe quem está na estrada e quem é de Cascavel com buffet completo, comida caseira, fogão a lenha e churrasco.</p>
+            <p class="lead">Café, almoço e janta de segunda a domingo, na beira da BR-277: buffet completo, comida caseira, fogão a lenha e churrasco.</p>
             <p class="about-hours"><span>Abre às</span> <strong>06h</strong> <span class="about-hours-line" aria-hidden="true"></span> <span>fecha às</span> <strong>23h30</strong></p>
           </div>
         </div>
@@ -205,187 +211,61 @@
           <ol class="day-list">
             <li class="day-item" data-reveal>
               <article class="moment">
-                <figure class="moment-photo photo-frame">
-                  <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-480.webp 480w, assets/images/cafe-da-manha-800.webp 800w"
-                       sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 92vw" width="800" height="1000" loading="lazy" decoding="async"
-                       alt="Mesa de café da manhã com pães, bolos, pão de queijo, ovos mexidos, frios, frutas e café">
-                </figure>
                 <p class="moment-time"><span class="moment-dot" aria-hidden="true"></span>A partir das 06h</p>
+                <figure class="moment-photo photo-frame">
+                  <picture>
+                    <source type="image/avif" srcset="assets/images/cafe-da-manha-240.avif 240w, assets/images/cafe-da-manha-480.avif 480w" sizes="(min-width: 960px) 24vw, 120px">
+                    <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-240.webp 240w, assets/images/cafe-da-manha-480.webp 480w" sizes="(min-width: 960px) 24vw, 120px"
+                         width="480" height="600" loading="lazy" decoding="async"
+                         alt="Mesa de café da manhã com pães, bolos, pão de queijo, ovos mexidos e café">
+                  </picture>
+                </figure>
                 <h3 class="moment-title">Café da manhã</h3>
-                <p class="moment-text">Para começar bem o dia — ou para pegar a estrada de barriga cheia.</p>
+                <p class="moment-text">Para começar bem o dia ou seguir viagem.</p>
               </article>
             </li>
-            <li class="day-item" data-reveal style="--d: 1">
+            <li class="day-item day-item-main" data-reveal style="--d: 1">
               <article class="moment">
-                <figure class="moment-photo photo-frame">
-                  <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-800.webp 800w"
-                       sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 92vw" width="800" height="1000" loading="lazy" decoding="async"
-                       alt="Buffet do almoço com saladas, arroz, feijão e carnes">
-                </figure>
                 <p class="moment-time"><span class="moment-dot" aria-hidden="true"></span>Almoço</p>
+                <figure class="moment-photo photo-frame">
+                  <picture>
+                    <source type="image/avif" srcset="assets/images/buffet-salao-240.avif 240w, assets/images/buffet-salao-480.avif 480w, assets/images/buffet-salao-640.avif 640w, assets/images/buffet-salao-800.avif 800w" sizes="(min-width: 960px) 36vw, 120px">
+                    <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-240.webp 240w, assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-640.webp 640w, assets/images/buffet-salao-800.webp 800w"
+                         sizes="(min-width: 960px) 36vw, 120px" width="800" height="1000" loading="lazy" decoding="async"
+                         alt="Buffet do almoço com saladas, arroz, feijão e carnes">
+                  </picture>
+                </figure>
                 <h3 class="moment-title">Almoço</h3>
-                <p class="moment-text">Buffet completo, com variedade todos os dias: comida caseira, saladas e pratos quentes.</p>
+                <p class="moment-text">Buffet completo, com variedade todos os dias.</p>
               </article>
             </li>
             <li class="day-item" data-reveal style="--d: 2">
               <article class="moment">
-                <figure class="moment-photo photo-frame">
-                  <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-800.webp 800w"
-                       sizes="(min-width: 960px) 30vw, (min-width: 640px) 45vw, 92vw" width="800" height="1000" loading="lazy" decoding="async"
-                       alt="Prato com carnes grelhadas, arroz, feijão, batata frita e salada">
-                </figure>
                 <p class="moment-time"><span class="moment-dot" aria-hidden="true"></span>Até 23h30</p>
+                <figure class="moment-photo photo-frame">
+                  <picture>
+                    <source type="image/avif" srcset="assets/images/prato-carnes-240.avif 240w, assets/images/prato-carnes-480.avif 480w" sizes="(min-width: 960px) 24vw, 120px">
+                    <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-240.webp 240w, assets/images/prato-carnes-480.webp 480w" sizes="(min-width: 960px) 24vw, 120px"
+                         width="480" height="600" loading="lazy" decoding="async"
+                         alt="Prato com carnes grelhadas, arroz, feijão, batata frita e salada">
+                  </picture>
+                </figure>
                 <h3 class="moment-title">Janta</h3>
-                <p class="moment-text">Comida caseira também à noite, de segunda a domingo, até 23h30.</p>
+                <p class="moment-text">Comida caseira também à noite.</p>
               </article>
             </li>
           </ol>
         </div>
 
-        <div class="about-links">
-          <a class="feature-link" href="#buffet" data-reveal>
-            <svg class="icon feature-icon" aria-hidden="true"><use href="#i-plate"/></svg>
-            <span class="feature-body">
-              <span class="feature-kicker">Na mesa</span>
-              <span class="feature-title">Buffet</span>
-              <span class="feature-text">Comida caseira e variedade para montar o prato do seu jeito.</span>
-            </span>
-            <svg class="icon icon-arrow feature-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-          <a class="feature-link" href="#churrasco" data-reveal style="--d: 1">
-            <svg class="icon feature-icon" aria-hidden="true"><use href="#i-flame"/></svg>
-            <span class="feature-body">
-              <span class="feature-kicker">Na brasa</span>
-              <span class="feature-title">Churrasco</span>
-              <span class="feature-text">Carnes na churrasqueira e espeto corrido aos domingos.</span>
-            </span>
-            <svg class="icon icon-arrow feature-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-        </div>
+        <nav class="about-links" aria-label="Destaques da casa" data-reveal>
+          <a class="feature-chip" href="#buffet"><svg class="icon" aria-hidden="true"><use href="#i-plate"/></svg><span>Buffet</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="feature-chip" href="#churrasco"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg><span>Churrasco</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="feature-chip" href="#feijoada"><svg class="icon" aria-hidden="true"><use href="#i-pot"/></svg><span>Feijoada</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </nav>
       </div>
     </section>
 
-    <!-- ===================== BUFFET ===================== -->
-    <section class="section buffet" id="buffet" aria-labelledby="buffet-title">
-      <div class="container">
-        <header class="buffet-head">
-          <div data-reveal>
-            <p class="eyebrow eyebrow-dark">O buffet</p>
-            <h2 class="section-title" id="buffet-title">Variedade que<br> enche o prato.</h2>
-          </div>
-          <div class="buffet-intro" data-reveal style="--d: 1">
-            <p class="lead">Buffet completo, com variedade todos os dias: arroz, feijão, pratos quentes, legumes e uma mesa inteira de saladas montadas com capricho. Cada um monta o prato do seu jeito.</p>
-            <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20como%20est%C3%A1%20o%20buffet%20hoje%20e%20os%20valores." target="_blank" rel="noopener"><span>Perguntar o buffet de hoje</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </header>
-
-        <div class="mosaic">
-          <figure class="tile tile-salao photo-frame" data-reveal="photo">
-            <img src="assets/images/buffet-salao-800.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-800.webp 800w, assets/images/buffet-salao-1200.webp 1200w"
-                 sizes="(min-width: 960px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async"
-                 alt="Buffet com saladas, arroz colorido, carnes e a churrasqueira ao fundo">
-            <figcaption><span>01</span>Buffet completo</figcaption>
-          </figure>
-          <figure class="tile tile-saladas photo-frame" data-reveal="photo" style="--d: 1">
-            <img src="assets/images/saladas-buffet-800.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-800.webp 800w, assets/images/saladas-buffet-1200.webp 1200w"
-                 sizes="(min-width: 960px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async"
-                 alt="Mesa de saladas com rúcula e manga, ovos, pepino, tomate e legumes">
-            <figcaption><span>02</span>Saladas</figcaption>
-          </figure>
-          <figure class="tile tile-quentes photo-frame" data-reveal="photo">
-            <img src="assets/images/feijoada-buffet-800.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-800.webp 800w, assets/images/feijoada-buffet-1200.webp 1200w"
-                 sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async"
-                 alt="Panela de feijão com carnes, arroz, farofa, couve e laranja">
-            <figcaption><span>03</span>Comida caseira</figcaption>
-          </figure>
-          <figure class="tile tile-prato photo-frame" data-reveal="photo" style="--d: 1">
-            <img src="assets/images/prato-carnes-800.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-800.webp 800w, assets/images/prato-carnes-1200.webp 1200w"
-                 sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async"
-                 alt="Prato montado com carnes grelhadas, arroz, feijão e batata frita">
-            <figcaption><span>04</span>Prato cheio</figcaption>
-          </figure>
-        </div>
-
-        <p class="note" data-reveal>
-          <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
-          <span>Buffet livre ou por quilo e os valores do dia: confirme pelo WhatsApp antes de vir.</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- ===================== CHURRASCO ===================== -->
-    <section class="section grill" id="churrasco" aria-labelledby="churrasco-title">
-      <div class="grill-stage">
-        <figure class="grill-photo" data-reveal="photo">
-          <img src="assets/images/prato-carnes-largo-1440.webp" srcset="assets/images/prato-carnes-largo-960.webp 960w, assets/images/prato-carnes-largo-1440.webp 1440w, assets/images/prato-carnes-largo-1920.webp 1920w"
-               sizes="100vw" width="1920" height="1080" loading="lazy" decoding="async"
-               alt="Carnes grelhadas servidas com arroz, feijão e batata frita">
-          <figcaption class="grill-caption">Da brasa para o prato</figcaption>
-        </figure>
-        <div class="container grill-title-wrap">
-          <p class="eyebrow" data-reveal>Churrasco e fogão a lenha</p>
-          <h2 class="display-title" id="churrasco-title" data-reveal style="--d: 1">
-            <span>A brasa acende.</span>
-            <span class="text-fire">O sabor acontece.</span>
-          </h2>
-        </div>
-      </div>
-
-      <div class="container grill-body">
-        <div class="grill-copy" data-reveal>
-          <p class="lead">Carne assada no espeto, na churrasqueira, e panela no fogão a lenha. Fogo de verdade, do jeito que a casa divulga: bom churrasco, bons momentos.</p>
-          <a class="btn btn-fire" href="#espeto"><span>Ver o espeto corrido</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-        <figure class="grill-side grill-side-a photo-frame" data-reveal="photo" style="--d: 1">
-          <img src="assets/images/churrasqueira-800.webp" srcset="assets/images/churrasqueira-480.webp 480w, assets/images/churrasqueira-800.webp 800w"
-               sizes="(min-width: 960px) 42vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
-               alt="Churrasqueira com espetos de carne sobre o fogo">
-          <figcaption class="grill-side-cap">Churrasqueira</figcaption>
-        </figure>
-      </div>
-
-      <div class="container">
-        <article class="spit" id="espeto" aria-labelledby="espeto-title">
-          <figure class="spit-photo photo-frame" data-reveal="photo">
-            <img src="assets/images/post-rodizio-800.webp" srcset="assets/images/post-rodizio-480.webp 480w, assets/images/post-rodizio-800.webp 800w, assets/images/post-rodizio-1200.webp 1200w"
-                 sizes="(min-width: 960px) 40vw, 100vw" width="1200" height="960" loading="lazy" decoding="async"
-                 alt="Arte do Parada do Mano anunciando o rodízio aos domingos">
-          </figure>
-          <div class="spit-body" data-reveal style="--d: 1">
-            <p class="spit-day"><span>Aos</span> domingos</p>
-            <h3 class="spit-title" id="espeto-title">Espeto corrido</h3>
-            <p>Rodízio aos domingos, com variedade de carnes passando na mesa direto da churrasqueira.</p>
-            <!-- PREÇO: só preencher depois da confirmação do restaurante.
-                 Exemplo: <p class="spit-price"><strong>R$ 00,00</strong> por pessoa</p> -->
-            <p class="spit-price spit-price-pending"><strong>Valor do rodízio</strong> sob consulta</p>
-            <a class="btn btn-fire" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20valor%20e%20o%20hor%C3%A1rio%20do%20espeto%20corrido%20de%20domingo." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar valor e horário</span></a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===================== FEIJOADA ===================== -->
-    <section class="section feijoada" id="feijoada" aria-labelledby="feijoada-title">
-      <div class="container feijoada-grid">
-        <figure class="feijoada-photo photo-frame" data-reveal="photo">
-          <img src="assets/images/feijoada-buffet-800.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-800.webp 800w, assets/images/feijoada-buffet-1200.webp 1200w"
-               sizes="(min-width: 960px) 40vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async"
-               alt="Panela de feijoada com linguiça e carnes, arroz branco, farofa, couve e laranja">
-        </figure>
-        <div class="feijoada-body">
-          <p class="eyebrow" data-reveal>Dia especial</p>
-          <h2 class="feijoada-title" id="feijoada-title" data-reveal style="--d: 1">Feijoada</h2>
-          <ul class="feijoada-days" data-reveal style="--d: 2" aria-label="Dias da feijoada">
-            <li><abbr title="Quarta-feira">Qua</abbr><span>Quartas</span></li>
-            <li><abbr title="Sábado">Sáb</abbr><span>Sábados</span></li>
-          </ul>
-          <p class="lead" data-reveal style="--d: 2">Quarta e sábado têm feijoada no Parada do Mano. Pergunte pelo WhatsApp o que acompanha e os valores do dia.</p>
-          <a class="btn btn-fire" data-reveal style="--d: 3" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20sobre%20a%20feijoada%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar a feijoada</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== CARDÁPIO =====================
+    <!-- ===================== 03 CARDÁPIO =====================
          Como adicionar itens a uma categoria: dentro do <ul class="menu-items"> do painel,
          copie o modelo abaixo. Preço só quando confirmado pelo restaurante.
 
@@ -395,7 +275,10 @@
              <span class="menu-item-price">R$ 00,00</span>
            </li>
 
-         Quando a lista tiver itens, o aviso "Itens sob consulta" some sozinho (CSS).
+         "menu-facts" guarda só o que foi divulgado pela casa (dias, horários, modalidade).
+         "menu-seen" lista o que aparece nas fotos reais do buffet — sempre com o aviso
+         de que varia conforme o dia. Quando a lista de itens com preço existir, o aviso
+         "menu-pending" some sozinho (CSS).
     ===================================================== -->
     <section class="section menu" id="cardapio" aria-labelledby="cardapio-title">
       <div class="container">
@@ -404,11 +287,11 @@
             <p class="eyebrow eyebrow-dark">Cardápio</p>
             <h2 class="section-title" id="cardapio-title">O que tem<br> no Parada.</h2>
           </div>
-          <p class="lead" data-reveal style="--d: 1">Escolha uma categoria. Os pratos, porções e valores mudam ao longo da semana, então o WhatsApp é o jeito mais rápido de saber o que está servindo hoje.</p>
+          <p class="lead" data-reveal style="--d: 1">Escolha uma categoria. O que vai à mesa muda ao longo da semana — o WhatsApp diz na hora o que está servindo hoje.</p>
         </header>
 
         <div class="menu-ui" data-tabs>
-          <div class="menu-tabs-wrap">
+          <div class="menu-tabs-wrap" data-tabs-wrap>
             <div class="menu-tabs" role="tablist" aria-label="Categorias do cardápio" data-tablist hidden>
               <button class="menu-tab" type="button" role="tab" id="tab-cafe" aria-controls="cat-cafe" aria-selected="true">Café da manhã</button>
               <button class="menu-tab" type="button" role="tab" id="tab-buffet" aria-controls="cat-buffet" aria-selected="false" tabindex="-1">Buffet e almoço</button>
@@ -423,136 +306,174 @@
             </div>
           </div>
 
-          <div class="menu-panels">
+          <div class="menu-panels" data-panels>
             <!-- 01 Café da manhã -->
             <section class="menu-panel" id="cat-cafe" role="tabpanel" aria-labelledby="tab-cafe" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-480.webp 480w, assets/images/cafe-da-manha-800.webp 800w"
-                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
-                     alt="Café da manhã com pães, bolos, salgados, ovos mexidos e frutas">
+                <picture>
+                  <source type="image/avif" srcset="assets/images/cafe-da-manha-480.avif 480w, assets/images/cafe-da-manha-640.avif 640w, assets/images/cafe-da-manha-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-480.webp 480w, assets/images/cafe-da-manha-640.webp 640w, assets/images/cafe-da-manha-800.webp 800w"
+                       sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                       alt="Café da manhã com pães, bolos, salgados, ovos mexidos e frutas">
+                </picture>
               </figure>
               <div class="menu-body">
                 <p class="menu-count">01 / 10</p>
                 <h3 class="menu-title">Café da manhã</h3>
-                <p class="menu-desc">A casa abre às 06h, todos os dias. Café da manhã para começar bem o dia ou para quem está pegando a estrada cedo.</p>
+                <p class="menu-desc">A casa abre às 06h, todos os dias. Café da manhã para começar bem o dia ou para quem pega a estrada cedo.</p>
+                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Todos os dias</li><li>A partir das 06h</li></ul>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Itens e valores sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20que%20tem%20no%20caf%C3%A9%20da%20manh%C3%A3." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Opções e valores de hoje pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20que%20tem%20no%20caf%C3%A9%20da%20manh%C3%A3." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar o café de hoje</span></a>
               </div>
             </section>
 
             <!-- 02 Buffet e almoço -->
             <section class="menu-panel" id="cat-buffet" role="tabpanel" aria-labelledby="tab-buffet" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-800.webp 800w"
-                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
-                     alt="Buffet do almoço com saladas e pratos quentes">
+                <picture>
+                  <source type="image/avif" srcset="assets/images/buffet-salao-480.avif 480w, assets/images/buffet-salao-640.avif 640w, assets/images/buffet-salao-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-640.webp 640w, assets/images/buffet-salao-800.webp 800w"
+                       sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                       alt="Buffet do almoço com saladas e pratos quentes">
+                </picture>
               </figure>
               <div class="menu-body">
                 <p class="menu-count">02 / 10</p>
                 <h3 class="menu-title">Buffet e almoço</h3>
-                <p class="menu-desc">Buffet completo com variedade todos os dias: arroz, feijão, pratos quentes, legumes e saladas.</p>
+                <p class="menu-desc">Buffet completo, com variedade todos os dias: comida caseira, pratos quentes e mesa de saladas.</p>
+                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Todos os dias</li><li>Comida caseira</li></ul>
+                <details class="menu-seen">
+                  <summary><span>Já passou pelo nosso buffet</span> <span class="menu-seen-count">6 itens</span></summary>
+                  <ul class="menu-tags"><li>Arroz colorido</li><li>Feijão</li><li>Carnes</li><li>Legumes</li><li>Saladas de folhas</li><li>Ovos cozidos</li></ul>
+                  <p class="menu-seen-note">Visto nas fotos da casa; o buffet muda conforme o dia.</p>
+                </details>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Forma de servir e valores sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20card%C3%A1pio%20do%20almo%C3%A7o%20de%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Forma de servir e valores pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20card%C3%A1pio%20do%20almo%C3%A7o%20de%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar o almoço de hoje</span></a>
               </div>
             </section>
 
-            <!-- 03 Jantar -->
+            <!-- 03 Janta -->
             <section class="menu-panel" id="cat-jantar" role="tabpanel" aria-labelledby="tab-jantar" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-800.webp 800w"
-                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
-                     alt="Prato com carnes, arroz, feijão e batata frita">
+                <picture>
+                  <source type="image/avif" srcset="assets/images/prato-carnes-480.avif 480w, assets/images/prato-carnes-640.avif 640w, assets/images/prato-carnes-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-640.webp 640w, assets/images/prato-carnes-800.webp 800w"
+                       sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                       alt="Prato com carnes, arroz, feijão e batata frita">
+                </picture>
               </figure>
               <div class="menu-body">
                 <p class="menu-count">03 / 10</p>
                 <h3 class="menu-title">Janta</h3>
-                <p class="menu-desc">Comida caseira também na janta, de segunda a domingo, até 23h30.</p>
+                <p class="menu-desc">Comida caseira também à noite, de segunda a domingo.</p>
+                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Segunda a domingo</li><li>Até 23h30</li></ul>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Itens e valores sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20que%20tem%20para%20o%20jantar%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Opções e valores de hoje pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20que%20tem%20para%20o%20jantar%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar a janta de hoje</span></a>
               </div>
             </section>
 
             <!-- 04 Carnes e churrasco -->
             <section class="menu-panel" id="cat-carnes" role="tabpanel" aria-labelledby="tab-carnes" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/churrasqueira-480.webp" srcset="assets/images/churrasqueira-480.webp 480w, assets/images/churrasqueira-800.webp 800w"
-                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
-                     alt="Espetos de carne na churrasqueira">
+                <picture>
+                  <source type="image/avif" srcset="assets/images/churrasqueira-480.avif 480w, assets/images/churrasqueira-640.avif 640w, assets/images/churrasqueira-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img src="assets/images/churrasqueira-480.webp" srcset="assets/images/churrasqueira-480.webp 480w, assets/images/churrasqueira-640.webp 640w, assets/images/churrasqueira-800.webp 800w"
+                       sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                       alt="Espetos de carne na churrasqueira">
+                </picture>
               </figure>
               <div class="menu-body">
                 <p class="menu-count">04 / 10</p>
                 <h3 class="menu-title">Carnes e churrasco</h3>
-                <p class="menu-desc">Carne assada no espeto, na churrasqueira da casa.</p>
+                <p class="menu-desc">Carne assada no espeto, na churrasqueira da casa, e panelas no fogão a lenha.</p>
+                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Churrasqueira</li><li>Fogão a lenha</li></ul>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Cortes e valores sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20quais%20carnes%20e%20churrasco%20voc%C3%AAs%20servem." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Cortes e valores pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20quais%20carnes%20e%20churrasco%20voc%C3%AAs%20servem." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as carnes</span></a>
               </div>
             </section>
 
             <!-- 05 Espeto corrido -->
             <section class="menu-panel" id="cat-espeto" role="tabpanel" aria-labelledby="tab-espeto" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/post-rodizio-480.webp" srcset="assets/images/post-rodizio-480.webp 480w, assets/images/post-rodizio-800.webp 800w"
-                 sizes="(min-width: 960px) 34vw, 100vw" width="800" height="640" loading="lazy" decoding="async"
-                 alt="Arte do rodízio aos domingos">
+                <picture>
+                  <source type="image/avif" srcset="assets/images/post-rodizio-480.avif 480w, assets/images/post-rodizio-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img src="assets/images/post-rodizio-480.webp" srcset="assets/images/post-rodizio-480.webp 480w, assets/images/post-rodizio-800.webp 800w"
+                       sizes="(min-width: 768px) 40vw, 100vw" width="800" height="640" loading="lazy" decoding="async"
+                       alt="Arte do Parada do Mano anunciando o rodízio aos domingos">
+                </picture>
               </figure>
               <div class="menu-body">
                 <p class="menu-count">05 / 10</p>
                 <h3 class="menu-title">Espeto corrido</h3>
-                <p class="menu-desc">Rodízio aos domingos, com variedade de carnes.</p>
+                <p class="menu-desc">Rodízio aos domingos, com variedade de carnes passando direto da churrasqueira.</p>
+                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Domingos</li><li>Variedade de carnes</li></ul>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Valor por pessoa e horário sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20valor%20e%20o%20hor%C3%A1rio%20do%20espeto%20corrido%20de%20domingo." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Valor por pessoa e horário pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20valor%20e%20o%20hor%C3%A1rio%20do%20espeto%20corrido%20de%20domingo." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar valor do rodízio</span></a>
               </div>
             </section>
 
             <!-- 06 Feijoada -->
             <section class="menu-panel" id="cat-feijoada" role="tabpanel" aria-labelledby="tab-feijoada" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-800.webp 800w"
-                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
-                     alt="Feijoada com arroz, farofa, couve e laranja">
+                <picture>
+                  <source type="image/avif" srcset="assets/images/feijoada-buffet-480.avif 480w, assets/images/feijoada-buffet-640.avif 640w, assets/images/feijoada-buffet-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-640.webp 640w, assets/images/feijoada-buffet-800.webp 800w"
+                       sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                       alt="Feijoada com arroz, farofa, couve e laranja">
+                </picture>
               </figure>
               <div class="menu-body">
                 <p class="menu-count">06 / 10</p>
                 <h3 class="menu-title">Feijoada</h3>
-                <p class="menu-desc">Às quartas e aos sábados.</p>
+                <p class="menu-desc">Dia de feijoada no Parada do Mano: quarta-feira e sábado.</p>
+                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Quartas</li><li>Sábados</li></ul>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Acompanhamentos e valores sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20sobre%20a%20feijoada%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Acompanhamentos e valores pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20sobre%20a%20feijoada%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar a feijoada</span></a>
               </div>
             </section>
 
             <!-- 07 Saladas -->
             <section class="menu-panel" id="cat-saladas" role="tabpanel" aria-labelledby="tab-saladas" tabindex="0">
               <figure class="menu-photo photo-frame">
-                <img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-800.webp 800w"
-                     sizes="(min-width: 960px) 34vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
-                     alt="Mesa de saladas do buffet">
+                <picture>
+                  <source type="image/avif" srcset="assets/images/saladas-buffet-480.avif 480w, assets/images/saladas-buffet-640.avif 640w, assets/images/saladas-buffet-800.avif 800w" sizes="(min-width: 768px) 40vw, 100vw">
+                  <img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-640.webp 640w, assets/images/saladas-buffet-800.webp 800w"
+                       sizes="(min-width: 768px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                       alt="Mesa de saladas do buffet">
+                </picture>
               </figure>
               <div class="menu-body">
                 <p class="menu-count">07 / 10</p>
                 <h3 class="menu-title">Saladas</h3>
-                <p class="menu-desc">Mesa de saladas no buffet: folhas, legumes, ovos e travessas decoradas.</p>
+                <p class="menu-desc">Uma mesa inteira de saladas no buffet, com travessas montadas com capricho.</p>
+                <details class="menu-seen">
+                  <summary><span>Já passou pela nossa mesa</span> <span class="menu-seen-count">6 itens</span></summary>
+                  <ul class="menu-tags"><li>Rúcula com manga</li><li>Ovos cozidos</li><li>Vagem</li><li>Brócolis</li><li>Tomate</li><li>Beterraba</li></ul>
+                  <p class="menu-seen-note">Visto nas fotos da casa; as saladas mudam conforme o dia.</p>
+                </details>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Opções do dia sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20as%20saladas%20de%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Saladas de hoje pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20as%20saladas%20de%20hoje." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as saladas</span></a>
               </div>
             </section>
 
-            <!-- 08 Lanches e salgados (sem foto ainda: painel tipográfico) -->
+            <!-- 08 Lanches e salgados -->
             <section class="menu-panel menu-panel-text" id="cat-lanches" role="tabpanel" aria-labelledby="tab-lanches" tabindex="0">
               <div class="menu-mark" aria-hidden="true"><span>Lanchonete</span></div>
               <div class="menu-body">
                 <p class="menu-count">08 / 10</p>
                 <h3 class="menu-title">Lanches e salgados</h3>
-                <p class="menu-desc">O Parada do Mano também é lanchonete. As opções de lanches e salgados ainda vão ser publicadas aqui.</p>
+                <p class="menu-desc">O Parada do Mano também é lanchonete. Confira com a nossa equipe os lanches e salgados disponíveis hoje.</p>
+                <ul class="menu-facts" aria-label="Divulgado pela casa"><li>Lanchonete</li><li>06h às 23h30</li></ul>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Itens e valores sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20quais%20lanches%20e%20salgados%20voc%C3%AAs%20t%C3%AAm." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Opções e valores pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20quais%20lanches%20e%20salgados%20voc%C3%AAs%20t%C3%AAm." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar os lanches</span></a>
               </div>
             </section>
 
@@ -562,10 +483,10 @@
               <div class="menu-body">
                 <p class="menu-count">09 / 10</p>
                 <h3 class="menu-title">Sobremesas</h3>
-                <p class="menu-desc">As sobremesas da casa ainda vão ser publicadas aqui.</p>
+                <p class="menu-desc">Consulte as sobremesas disponíveis hoje direto com a nossa equipe.</p>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Opções sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20se%20voc%C3%AAs%20t%C3%AAm%20sobremesas." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Opções de hoje pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20se%20voc%C3%AAs%20t%C3%AAm%20sobremesas." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as sobremesas</span></a>
               </div>
             </section>
 
@@ -575,23 +496,158 @@
               <div class="menu-body">
                 <p class="menu-count">10 / 10</p>
                 <h3 class="menu-title">Bebidas</h3>
-                <p class="menu-desc">A lista de bebidas ainda vai ser publicada aqui.</p>
+                <p class="menu-desc">Confira com a nossa equipe as bebidas disponíveis para acompanhar o prato.</p>
                 <ul class="menu-items"></ul>
-                <p class="menu-pending">Opções e valores sob consulta</p>
-                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20quais%20bebidas%20voc%C3%AAs%20servem." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar pelo WhatsApp</span></a>
+                <p class="menu-pending">Opções e valores pelo WhatsApp</p>
+                <a class="btn btn-dark" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20quais%20bebidas%20voc%C3%AAs%20servem." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar as bebidas</span></a>
               </div>
             </section>
           </div>
 
           <div class="menu-stepper" data-stepper hidden>
             <button class="step-btn" type="button" data-step="-1"><svg class="icon" aria-hidden="true"><use href="#i-chev-l"/></svg><span>Anterior</span></button>
+            <p class="step-status" aria-hidden="true" data-step-status>01 / 10</p>
             <button class="step-btn" type="button" data-step="1"><span>Próxima</span><svg class="icon" aria-hidden="true"><use href="#i-chev-r"/></svg></button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== GALERIA ===================== -->
+    <!-- ===================== 04 BUFFET ===================== -->
+    <section class="section buffet" id="buffet" aria-labelledby="buffet-title">
+      <div class="container">
+        <header class="buffet-head">
+          <div data-reveal>
+            <p class="eyebrow">O buffet</p>
+            <h2 class="section-title" id="buffet-title">Variedade que<br> enche o prato.</h2>
+          </div>
+          <div class="buffet-intro" data-reveal style="--d: 1">
+            <p class="lead">Comida caseira e variedade todos os dias: pratos quentes, arroz, feijão e uma mesa inteira de saladas. Cada um monta o prato do seu jeito.</p>
+            <a class="btn btn-fire" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20como%20est%C3%A1%20o%20buffet%20hoje%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Perguntar o buffet de hoje</span></a>
+          </div>
+        </header>
+
+        <div class="mosaic">
+          <figure class="tile tile-salao photo-frame" data-reveal="photo">
+            <picture>
+              <source type="image/avif" srcset="assets/images/buffet-salao-480.avif 480w, assets/images/buffet-salao-640.avif 640w, assets/images/buffet-salao-800.avif 800w, assets/images/buffet-salao-1200.avif 1200w" sizes="(min-width: 960px) 52vw, 100vw">
+              <img src="assets/images/buffet-salao-800.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-640.webp 640w, assets/images/buffet-salao-800.webp 800w, assets/images/buffet-salao-1200.webp 1200w"
+                   sizes="(min-width: 960px) 52vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async"
+                   alt="Buffet com saladas, arroz colorido, carnes e a churrasqueira ao fundo">
+            </picture>
+            <figcaption><span>01</span>Buffet completo</figcaption>
+          </figure>
+          <figure class="tile tile-saladas photo-frame" data-reveal="photo" style="--d: 1">
+            <picture>
+              <source type="image/avif" srcset="assets/images/saladas-buffet-480.avif 480w, assets/images/saladas-buffet-640.avif 640w, assets/images/saladas-buffet-800.avif 800w, assets/images/saladas-buffet-1200.avif 1200w" sizes="(min-width: 960px) 46vw, 50vw">
+              <img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-640.webp 640w, assets/images/saladas-buffet-800.webp 800w, assets/images/saladas-buffet-1200.webp 1200w"
+                   sizes="(min-width: 960px) 46vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async"
+                   alt="Mesa de saladas com rúcula e manga, ovos, pepino, tomate e legumes">
+            </picture>
+            <figcaption><span>02</span>Saladas</figcaption>
+          </figure>
+          <figure class="tile tile-quentes photo-frame" data-reveal="photo" style="--d: 2">
+            <picture>
+              <source type="image/avif" srcset="assets/images/feijoada-buffet-480.avif 480w, assets/images/feijoada-buffet-640.avif 640w, assets/images/feijoada-buffet-800.avif 800w, assets/images/feijoada-buffet-1200.avif 1200w" sizes="(min-width: 960px) 46vw, 50vw">
+              <img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-640.webp 640w, assets/images/feijoada-buffet-800.webp 800w, assets/images/feijoada-buffet-1200.webp 1200w"
+                   sizes="(min-width: 960px) 46vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async"
+                   alt="Panela de feijão com carnes, arroz, farofa, couve e laranja">
+            </picture>
+            <figcaption><span>03</span>Pratos quentes</figcaption>
+          </figure>
+        </div>
+
+        <p class="note" data-reveal>
+          <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+          <span>Buffet livre ou por quilo e os valores do dia: confirme pelo WhatsApp antes de vir.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== 05 CHURRASCO ===================== -->
+    <section class="section grill" id="churrasco" aria-labelledby="churrasco-title">
+      <div class="grill-stage">
+        <figure class="grill-photo" data-reveal="photo">
+          <picture>
+            <source type="image/avif" srcset="assets/images/prato-carnes-largo-960.avif 960w, assets/images/prato-carnes-largo-1440.avif 1440w, assets/images/prato-carnes-largo-1920.avif 1920w" sizes="100vw">
+            <img src="assets/images/prato-carnes-largo-960.webp" srcset="assets/images/prato-carnes-largo-960.webp 960w, assets/images/prato-carnes-largo-1440.webp 1440w, assets/images/prato-carnes-largo-1920.webp 1920w"
+                 sizes="100vw" width="1920" height="1080" loading="lazy" decoding="async"
+                 alt="Carnes grelhadas servidas com arroz, feijão e batata frita">
+          </picture>
+          <figcaption class="grill-caption">Da brasa para o prato</figcaption>
+        </figure>
+        <div class="container grill-title-wrap">
+          <p class="eyebrow" data-reveal>Churrasco e fogão a lenha</p>
+          <h2 class="display-title" id="churrasco-title" data-reveal style="--d: 1">
+            <span>A brasa acende.</span>
+            <span class="text-fire">O sabor acontece.</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="container grill-body">
+        <div class="grill-copy" data-reveal>
+          <p class="lead">Carne no espeto, na churrasqueira, e panela no fogão a lenha. Como a casa diz: bom churrasco, bons momentos.</p>
+        </div>
+        <figure class="grill-side photo-frame" data-reveal="photo" style="--d: 1">
+          <picture>
+            <source type="image/avif" srcset="assets/images/churrasqueira-480.avif 480w, assets/images/churrasqueira-640.avif 640w, assets/images/churrasqueira-800.avif 800w" sizes="(min-width: 960px) 40vw, 100vw">
+            <img src="assets/images/churrasqueira-480.webp" srcset="assets/images/churrasqueira-480.webp 480w, assets/images/churrasqueira-640.webp 640w, assets/images/churrasqueira-800.webp 800w"
+                 sizes="(min-width: 960px) 40vw, 100vw" width="800" height="1000" loading="lazy" decoding="async"
+                 alt="Churrasqueira com espetos de carne sobre o fogo">
+          </picture>
+          <figcaption class="grill-side-cap">Churrasqueira</figcaption>
+        </figure>
+
+        <article class="spit" id="espeto" aria-labelledby="espeto-title">
+          <figure class="spit-photo photo-frame" data-reveal="photo">
+            <picture>
+              <source type="image/avif" srcset="assets/images/post-rodizio-480.avif 480w, assets/images/post-rodizio-800.avif 800w, assets/images/post-rodizio-1200.avif 1200w" sizes="(min-width: 960px) 30vw, 100vw">
+              <img src="assets/images/post-rodizio-480.webp" srcset="assets/images/post-rodizio-480.webp 480w, assets/images/post-rodizio-800.webp 800w, assets/images/post-rodizio-1200.webp 1200w"
+                   sizes="(min-width: 960px) 30vw, 100vw" width="1200" height="960" loading="lazy" decoding="async"
+                   alt="Arte do Parada do Mano anunciando o rodízio aos domingos">
+            </picture>
+          </figure>
+          <div class="spit-body" data-reveal style="--d: 1">
+            <p class="spit-day"><span>Aos</span> domingos</p>
+            <h3 class="spit-title" id="espeto-title">Espeto corrido</h3>
+            <p class="spit-text">Rodízio com variedade de carnes passando na mesa, direto da churrasqueira.</p>
+            <!-- PREÇO: só preencher depois da confirmação do restaurante.
+                 Exemplo: <p class="spit-price"><strong>R$ 00,00</strong> por pessoa</p> -->
+            <p class="spit-price spit-price-pending"><strong>Valor do rodízio</strong> sob consulta</p>
+            <a class="btn btn-fire" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20o%20valor%20e%20o%20hor%C3%A1rio%20do%20espeto%20corrido%20de%20domingo." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar valor e horário</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== 06 FEIJOADA ===================== -->
+    <section class="section feijoada" id="feijoada" aria-labelledby="feijoada-title">
+      <div class="container feijoada-grid">
+        <figure class="feijoada-photo photo-frame" data-reveal="photo">
+          <picture>
+            <source type="image/avif" srcset="assets/images/feijoada-buffet-480.avif 480w, assets/images/feijoada-buffet-640.avif 640w, assets/images/feijoada-buffet-800.avif 800w, assets/images/feijoada-buffet-1200.avif 1200w" sizes="(min-width: 960px) 40vw, 100vw">
+            <img src="assets/images/feijoada-buffet-800.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-640.webp 640w, assets/images/feijoada-buffet-800.webp 800w, assets/images/feijoada-buffet-1200.webp 1200w"
+                 sizes="(min-width: 960px) 40vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async"
+                 alt="Panela de feijoada com linguiça e carnes, arroz branco, farofa, couve e laranja">
+          </picture>
+        </figure>
+        <div class="feijoada-body">
+          <p class="eyebrow" data-reveal>Dia especial</p>
+          <div class="feijoada-headline" data-reveal style="--d: 1">
+            <h2 class="feijoada-title" id="feijoada-title">Feijoada</h2>
+            <ul class="feijoada-days" aria-label="Dias da feijoada">
+              <li><abbr title="Quarta-feira">Qua</abbr><span>Quartas</span></li>
+              <li><abbr title="Sábado">Sáb</abbr><span>Sábados</span></li>
+            </ul>
+          </div>
+          <p class="lead" data-reveal style="--d: 2">Quarta e sábado têm feijoada no Parada do Mano. Pergunte pelo WhatsApp o que acompanha e os valores do dia.</p>
+          <a class="btn btn-fire" data-reveal style="--d: 3" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20sobre%20a%20feijoada%20e%20os%20valores." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Consultar a feijoada</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 07 GALERIA ===================== -->
     <section class="section gallery" id="galeria" aria-labelledby="galeria-title">
       <div class="container">
         <header class="gallery-head">
@@ -599,46 +655,61 @@
             <p class="eyebrow">Galeria</p>
             <h2 class="section-title" id="galeria-title">Mesa farta.</h2>
           </div>
-          <p class="lead" data-reveal style="--d: 1">O buffet do almoço, a mesa de saladas, a feijoada, o prato cheio e o café da manhã.</p>
+          <p class="lead" data-reveal style="--d: 1">O buffet, o prato cheio, as saladas, a feijoada e o café da manhã. Toque para ampliar.</p>
         </header>
 
         <ul class="gallery-grid" data-gallery>
           <li class="g-item g-a" data-reveal="photo">
             <a class="g-link photo-frame" href="assets/images/buffet-salao-1200.webp" data-full="assets/images/buffet-salao-1200.webp">
-              <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-800.webp 800w, assets/images/buffet-salao-1200.webp 1200w"
-                   sizes="(min-width: 960px) 50vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Buffet e salão com a churrasqueira ao fundo">
+              <picture>
+                <source type="image/avif" srcset="assets/images/buffet-salao-480.avif 480w, assets/images/buffet-salao-640.avif 640w, assets/images/buffet-salao-800.avif 800w" sizes="(min-width: 960px) 50vw, 72vw">
+                <img src="assets/images/buffet-salao-480.webp" srcset="assets/images/buffet-salao-480.webp 480w, assets/images/buffet-salao-640.webp 640w, assets/images/buffet-salao-800.webp 800w"
+                     sizes="(min-width: 960px) 50vw, 72vw" width="800" height="1000" loading="lazy" decoding="async" alt="Buffet e salão com a churrasqueira ao fundo">
+              </picture>
               <span class="g-cap">Buffet</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
           </li>
           <li class="g-item g-b" data-reveal="photo" style="--d: 1">
             <a class="g-link photo-frame" href="assets/images/prato-carnes-1200.webp" data-full="assets/images/prato-carnes-1200.webp">
-              <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-800.webp 800w, assets/images/prato-carnes-1200.webp 1200w"
-                   sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Prato com carnes grelhadas">
+              <picture>
+                <source type="image/avif" srcset="assets/images/prato-carnes-480.avif 480w, assets/images/prato-carnes-640.avif 640w, assets/images/prato-carnes-800.avif 800w" sizes="(min-width: 960px) 25vw, 72vw">
+                <img src="assets/images/prato-carnes-480.webp" srcset="assets/images/prato-carnes-480.webp 480w, assets/images/prato-carnes-640.webp 640w, assets/images/prato-carnes-800.webp 800w"
+                     sizes="(min-width: 960px) 25vw, 72vw" width="800" height="1000" loading="lazy" decoding="async" alt="Prato com carnes grelhadas">
+              </picture>
               <span class="g-cap">Prato cheio</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
           </li>
           <li class="g-item g-c" data-reveal="photo" style="--d: 2">
             <a class="g-link photo-frame" href="assets/images/saladas-buffet-1200.webp" data-full="assets/images/saladas-buffet-1200.webp">
-              <img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-800.webp 800w, assets/images/saladas-buffet-1200.webp 1200w"
-                   sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Mesa de saladas">
+              <picture>
+                <source type="image/avif" srcset="assets/images/saladas-buffet-480.avif 480w, assets/images/saladas-buffet-640.avif 640w, assets/images/saladas-buffet-800.avif 800w" sizes="(min-width: 960px) 25vw, 72vw">
+                <img src="assets/images/saladas-buffet-480.webp" srcset="assets/images/saladas-buffet-480.webp 480w, assets/images/saladas-buffet-640.webp 640w, assets/images/saladas-buffet-800.webp 800w"
+                     sizes="(min-width: 960px) 25vw, 72vw" width="800" height="1000" loading="lazy" decoding="async" alt="Mesa de saladas">
+              </picture>
               <span class="g-cap">Saladas</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
           </li>
           <li class="g-item g-d" data-reveal="photo">
             <a class="g-link photo-frame" href="assets/images/feijoada-buffet-1200.webp" data-full="assets/images/feijoada-buffet-1200.webp">
-              <img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-800.webp 800w, assets/images/feijoada-buffet-1200.webp 1200w"
-                   sizes="(min-width: 960px) 33vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Feijoada no buffet">
+              <picture>
+                <source type="image/avif" srcset="assets/images/feijoada-buffet-480.avif 480w, assets/images/feijoada-buffet-640.avif 640w, assets/images/feijoada-buffet-800.avif 800w" sizes="(min-width: 960px) 33vw, 72vw">
+                <img src="assets/images/feijoada-buffet-480.webp" srcset="assets/images/feijoada-buffet-480.webp 480w, assets/images/feijoada-buffet-640.webp 640w, assets/images/feijoada-buffet-800.webp 800w"
+                     sizes="(min-width: 960px) 33vw, 72vw" width="800" height="1000" loading="lazy" decoding="async" alt="Feijoada no buffet">
+              </picture>
               <span class="g-cap">Feijoada</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
           </li>
           <li class="g-item g-e" data-reveal="photo" style="--d: 1">
             <a class="g-link photo-frame" href="assets/images/cafe-da-manha-1200.webp" data-full="assets/images/cafe-da-manha-1200.webp">
-              <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-480.webp 480w, assets/images/cafe-da-manha-800.webp 800w, assets/images/cafe-da-manha-1200.webp 1200w"
-                   sizes="(min-width: 960px) 66vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Mesa de café da manhã">
+              <picture>
+                <source type="image/avif" srcset="assets/images/cafe-da-manha-480.avif 480w, assets/images/cafe-da-manha-640.avif 640w, assets/images/cafe-da-manha-800.avif 800w, assets/images/cafe-da-manha-1200.avif 1200w" sizes="(min-width: 960px) 66vw, 72vw">
+                <img src="assets/images/cafe-da-manha-480.webp" srcset="assets/images/cafe-da-manha-480.webp 480w, assets/images/cafe-da-manha-640.webp 640w, assets/images/cafe-da-manha-800.webp 800w, assets/images/cafe-da-manha-1200.webp 1200w"
+                     sizes="(min-width: 960px) 66vw, 72vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Mesa de café da manhã">
+              </picture>
               <span class="g-cap">Café da manhã</span>
               <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-zoom"/></svg></span>
             </a>
@@ -653,7 +724,7 @@
       </div>
     </section>
 
-    <!-- ===================== CONTATO ===================== -->
+    <!-- ===================== 08 CONTATO ===================== -->
     <section class="section contact" id="contato" aria-labelledby="contato-title">
       <div class="container contact-grid">
         <div class="contact-main">
@@ -666,11 +737,11 @@
           <dl class="contact-list" data-reveal style="--d: 2">
             <div class="contact-row">
               <dt><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Endereço</dt>
-              <dd>BR-277, km 594<br>Cascavel/PR</dd>
+              <dd>BR-277, km 594 · Cascavel/PR</dd>
             </div>
             <div class="contact-row">
               <dt><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Horário</dt>
-              <dd>Segunda a domingo<br>06h às 23h30</dd>
+              <dd>Segunda a domingo, 06h às 23h30</dd>
             </div>
             <div class="contact-row">
               <dt><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</dt>
@@ -688,32 +759,33 @@
             <span class="road-shield"><small>BR</small>277</span>
             <span class="road-km"><small>km</small>594</span>
           </div>
-          <p class="road-text">Na beira da BR-277, em Cascavel. Abra a rota no seu celular e siga até o km 594.</p>
+          <p class="road-text">Na beira da BR-277, em Cascavel. Abra a rota no celular e siga até o km 594.</p>
           <div class="road-actions">
             <a class="btn btn-fire btn-block" href="https://www.google.com/maps/search/?api=1&amp;query=Parada%20do%20Mano%2C%20BR-277%20km%20594%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Traçar rota</span><svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <a class="btn btn-light btn-block" href="https://wa.me/5545998258916?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Parada%20do%20Mano%20e%20gostaria%20de%20uma%20informa%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Falar no WhatsApp</span></a>
-            <a class="btn btn-ghost btn-block" href="https://www.instagram.com/paradadomano/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Ver o Instagram</span></a>
           </div>
         </aside>
       </div>
     </section>
   </main>
 
-  <!-- ===================== RODAPÉ ===================== -->
+  <!-- ===================== 09 RODAPÉ ===================== -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <img class="footer-logo" src="assets/images/logo-192.png" width="96" height="96" alt="Logo do Parada do Mano Restaurante e Lanchonete" loading="lazy" decoding="async">
-        <p class="brand-name">Parada do Mano</p>
-        <p class="footer-tag">Restaurante e Lanchonete · Do fogo à mesa.</p>
+        <img class="footer-logo" src="assets/images/logo-192.webp" width="96" height="96" alt="Logo do Parada do Mano Restaurante e Lanchonete" loading="lazy" decoding="async">
+        <div>
+          <p class="brand-name">Parada do Mano</p>
+          <p class="footer-tag">Restaurante e Lanchonete · Do fogo à mesa.</p>
+        </div>
       </div>
       <nav class="footer-nav" aria-label="Rodapé">
         <ul>
           <li><a href="#sobre">O restaurante</a></li>
+          <li><a href="#cardapio">Cardápio</a></li>
           <li><a href="#buffet">Buffet</a></li>
           <li><a href="#churrasco">Churrasco</a></li>
           <li><a href="#feijoada">Feijoada</a></li>
-          <li><a href="#cardapio">Cardápio</a></li>
           <li><a href="#galeria">Galeria</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
