@@ -30,46 +30,42 @@ ORIGEM = os.path.join(RAIZ, 'tools', 'source')
 FONTES = os.path.join(RAIZ, 'tools', 'fonts-ttf')
 SAIDA = os.path.join(RAIZ, 'assets', 'images')
 
-# slot: (proporção L:A, larguras, título no quadro provisório)
+# slot: (proporção L:A, larguras, título no quadro provisório, foto de origem)
+# A foto de origem é tools/source/<origem>.jpg; quando a origem não é dita,
+# vale o próprio nome do slot. Mais de um slot pode sair da mesma foto
+# (a abertura e o mosaico usam a mesma foto do arroz, em cortes diferentes).
 SLOTS = {
     # Abertura
-    'hero':                ((5, 4),  (640, 960, 1440), 'Foto de abertura: buffet ou churrasco'),
-    # Sobre: os momentos do dia
-    'momento-cafe':        ((4, 5),  (480, 800),       'Café da manhã'),
-    'momento-almoco':      ((4, 5),  (480, 800),       'Almoço'),
-    'momento-jantar':      ((4, 5),  (480, 800),       'Jantar'),
+    'hero':             ((5, 4),  (640, 960, 1440), 'Foto de abertura', 'buffet-arroz'),
     # Buffet
-    'buffet-arroz':        ((4, 5),  (480, 800, 1200), 'Arroz e acompanhamentos'),
-    'buffet-saladas':      ((1, 1),  (480, 800),       'Saladas frescas'),
-    'buffet-legumes':      ((4, 3),  (480, 800),       'Legumes'),
-    'buffet-quentes':      ((3, 2),  (640, 960, 1280), 'Pratos quentes'),
-    'buffet-feijao':       ((1, 1),  (480, 800),       'Feijão'),
-    'buffet-massas':       ((4, 5),  (480, 800),       'Massas'),
-    'buffet-variados':     ((3, 2),  (640, 960),       'Preparações variadas'),
-    # Churrasco
-    'churrasco-brasa':     ((16, 10), (800, 1280, 1920), 'Churrasqueira acesa'),
-    'churrasco-espetos':   ((4, 5),  (480, 800),       'Espetos na brasa'),
-    'churrasco-carnes':    ((1, 1),  (480, 800),       'Carnes servidas'),
-    'post-espeto':         ((4, 5),  (480, 800),       'Post do espeto corrido de domingo'),
-    # Feijoada
-    'feijoada':            ((4, 5),  (480, 800, 1080), 'Feijoada — foto do post oficial'),
+    'buffet-arroz':     ((4, 5),  (480, 800, 1100), 'Arroz e acompanhamentos', None),
+    'buffet-quentes':   ((3, 2),  (640, 960, 1240), 'Pratos quentes', None),
+    'buffet-decoradas': ((1, 1),  (480, 800, 1200), 'Saladas decoradas', None),
+    'buffet-saladas':   ((4, 5),  (480, 800, 1200), 'Saladas e ovos', None),
+    'buffet-legumes':   ((3, 2),  (640, 960, 1440), 'Legumes', None),
+    # Churrasco e fogão a lenha
+    'fogao-lenha':      ((3, 2),  (640, 960, 1240), 'Fogão a lenha', None),
+    'churrasco-espeto': ((4, 5),  (480, 800, 1200), 'Espeto na brasa', None),
+    'post-rodizio':     ((5, 4),  (480, 800, 1200), 'Post do rodízio de domingo', None),
+    # Feijoada: o post oficial inteiro, na proporção em que foi publicado
+    'feijoada':         ((3, 4),  (480, 800, 1200), 'Feijoada — post oficial', 'post-feijoada'),
     # Galeria
-    'galeria-salao':       ((3, 2),  (640, 1200),      'Salão do restaurante'),
-    'galeria-churrasqueira': ((4, 5), (480, 960),      'Churrasqueira'),
-    'galeria-buffet':      ((1, 1),  (480, 960),       'Buffet servido'),
-    'galeria-carnes':      ((4, 5),  (480, 960),       'Carnes'),
-    'galeria-fachada':     ((3, 2),  (640, 1200),      'Fachada na BR-277'),
-    'galeria-preparo':     ((1, 1),  (480, 960),       'Preparo na cozinha'),
+    'fachada':          ((3, 2),  (480, 780),       'Fachada na BR-277', None),
 }
 
 # Ponto de foco do corte, de 0 a 1 (x, y). Padrão: centro.
-# Ex.: 'hero': (0.5, 0.65) puxa o corte para a parte de baixo da foto.
 FOCO = {
+    'hero': (0.42, 0.6),
+    'buffet-arroz': (0.4, 0.6),
+    'buffet-saladas': (0.5, 0.58),
 }
+
+# Logo oficial (recorte do perfil do Instagram, ver enhance-photos.py)
+LOGO = ('logo', (48, 96, 192, 512))
 
 # Imagem de compartilhamento (WhatsApp, Facebook): 1200x630, JPG.
 # Sai da foto de abertura quando ela existir.
-OG = ('og-cover', 'hero')
+OG = ('og-cover', 'buffet-arroz')
 
 COR_FUNDO_1 = (23, 17, 13)       # #17110D
 COR_FUNDO_2 = (11, 9, 8)         # #0B0908
@@ -219,8 +215,8 @@ def main():
     os.makedirs(SAIDA, exist_ok=True)
     reais, pendentes, avisos = [], [], []
 
-    for slot, (proporcao, larguras, titulo) in SLOTS.items():
-        origem = achar_origem(slot)
+    for slot, (proporcao, larguras, titulo, fonte_slot) in SLOTS.items():
+        origem = achar_origem(fonte_slot or slot)
         if origem:
             foto = ImageOps.exif_transpose(Image.open(origem)).convert('RGB')
             foto = cortar(foto, proporcao, FOCO.get(slot, (0.5, 0.5)))
@@ -238,20 +234,54 @@ def main():
                             os.path.join(SAIDA, '%s-%d.webp' % (slot, lw)))
             pendentes.append(slot)
 
-    # imagem de compartilhamento
+    gerados = {'%s-%d.webp' % (slot, lw) for slot, v in SLOTS.items() for lw in v[1]}
+
+    # logo oficial em PNG transparente, nos tamanhos do cabeçalho, rodapé e ícone
+    nome_logo, tamanhos = LOGO
+    origem_logo = achar_origem(nome_logo)
+    logo = None
+    if origem_logo:
+        logo = Image.open(origem_logo).convert('RGBA')
+        for t in tamanhos:
+            logo.resize((t, t), Image.LANCZOS).save(os.path.join(SAIDA, 'logo-%d.png' % t), optimize=True)
+            gerados.add('logo-%d.png' % t)
+    else:
+        avisos.append('logo: tools/source/logo.png não encontrado')
+
+    # imagem de compartilhamento: foto real + logo + nome
     nome_og, slot_og = OG
     origem = achar_origem(slot_og)
     if origem:
         og = cortar(ImageOps.exif_transpose(Image.open(origem)).convert('RGB'),
                     (1200, 630), FOCO.get(slot_og, (0.5, 0.5))).resize((1200, 630), Image.LANCZOS)
+        # véu escuro da esquerda (onde fica o texto) para a direita
+        veu = Image.new('L', (1200, 630))
+        veu.putdata([int(max(0.0, 1 - x / 860) ** 0.8 * 225) for _ in range(630) for x in range(1200)])
+        og = Image.composite(Image.new('RGB', og.size, COR_FUNDO_2), og, veu)
+        d = ImageDraw.Draw(og)
+        if logo:
+            og.paste(logo.resize((170, 170), Image.LANCZOS), (70, 120), logo.resize((170, 170), Image.LANCZOS))
+        d.text((70, 320), 'PARADA DO MANO', font=fonte('anton-400', 92), fill=COR_CREME)
+        d.text((72, 440), 'DO FOGO À MESA · BR-277, KM 594 · CASCAVEL/PR',
+                font=fonte('barlow-condensed-600', 34), fill=COR_LARANJA)
     else:
         og = og_provisoria()
     og.save(os.path.join(SAIDA, nome_og + '.jpg'), 'JPEG', quality=84, optimize=True, progressive=True)
+    gerados.add(nome_og + '.jpg')
 
-    with open(os.path.join(RAIZ, 'tools', 'fotos-pendentes.txt'), 'w', encoding='utf-8') as f:
-        f.write('# Gerado por tools/prepare-images.py — espaços ainda sem foto real\n')
-        for slot in pendentes:
-            f.write('tools/source/%s.jpg   %s\n' % (slot, SLOTS[slot][2]))
+    # apaga versões que nenhum slot usa mais (de cortes ou slots antigos)
+    for nome in os.listdir(SAIDA):
+        if nome not in gerados:
+            os.remove(os.path.join(SAIDA, nome))
+
+    lista = os.path.join(RAIZ, 'tools', 'fotos-pendentes.txt')
+    if not pendentes and os.path.exists(lista):
+        os.remove(lista)
+    if pendentes:
+        with open(lista, 'w', encoding='utf-8') as f:
+            f.write('# Gerado por tools/prepare-images.py — espaços ainda sem foto real\n')
+            for slot in pendentes:
+                f.write('tools/source/%s.jpg   %s\n' % (SLOTS[slot][3] or slot, SLOTS[slot][2]))
 
     print('fotos reais: %d   quadros provisórios: %d' % (len(reais), len(pendentes)))
     for a in avisos:

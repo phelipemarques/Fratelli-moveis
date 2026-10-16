@@ -17,7 +17,7 @@ import re
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMAGENS = os.path.join(RAIZ, 'assets', 'images')
 SAIDA = os.path.join(RAIZ, 'parada-do-mano-visualizacao.html')
-TIPOS = {'.webp': 'image/webp', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml',
+TIPOS = {'.mp4': 'video/mp4', '.webm': 'video/webm', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml',
          '.woff2': 'font/woff2', '.png': 'image/png'}
 
 _cache = {}
@@ -63,6 +63,11 @@ def main():
     html = re.sub(r'"assets/images/([\w.-]+)"',
                   lambda m: '"%s"' % uri(os.path.join(IMAGENS, m.group(1))), html)
 
+    # vídeo da abertura: os dois formatos entram embutidos (H.264 e VP9),
+    # porque nem todo navegador abre os dois
+    html = re.sub(r'data-src-(mp4|webm)="assets/video/([\w.-]+)"',
+                  lambda m: 'data-src-%s="%s"' % (m.group(1), uri(os.path.join(RAIZ, 'assets', 'video', m.group(2)))), html)
+
     html = html.replace('<html lang="pt-BR" class="no-js">',
                         '<!-- PRÉVIA EM ARQUIVO ÚNICO, gerada por tools/build-preview.py.\n'
                         '     Para publicar, use o index.html com a pasta assets/. -->\n'
@@ -70,7 +75,7 @@ def main():
 
     with open(SAIDA, 'w', encoding='utf-8') as f:
         f.write(html)
-    sobrou = sorted(set(re.findall(r'(?:src|href)="(?!data:|#|https?:)([^"]+)"', html)))
+    sobrou = sorted(set(re.findall(r'(?:src|href|data-src-mp4|data-src-webm)="(?!data:|#|https?:)([^"]+)"', html)))
     print('%s — %.1f MB, %d arquivos embutidos' % (os.path.basename(SAIDA), os.path.getsize(SAIDA) / 1e6, len(_cache)))
     print('referências locais restantes:', sobrou or 'nenhuma')
 

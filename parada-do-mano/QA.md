@@ -1,19 +1,27 @@
 # Parada do Mano — QA
 
-Rodada de 16/10/2026. Ferramenta: Chromium 141 (Playwright 1.56) em modo headless,
-servindo a pasta com `python3 -m http.server`. Script: `tools/qa-browser.mjs`.
-**Resultado: 75 de 75 verificações automáticas passaram**, depois das correções listadas abaixo.
+Segunda rodada, 16/10/2026, depois da entrada das fotos reais, da logo e dos vídeos.
+Ferramenta: Chromium 141 (Playwright 1.56) em modo headless, servindo a pasta com
+`python3 -m http.server`. Script: `tools/qa-browser.mjs`.
+**Resultado: 78 de 78 verificações automáticas passaram.**
 
 ## 1. O que foi implementado
 
 - Página única em HTML, CSS e JavaScript puros, sem framework e sem biblioteca de animação.
 - Seções: abertura · faixa de momentos · O restaurante (café, almoço, jantar + atalhos buffet/churrasco)
-  · Buffet (mosaico de 7 fotos) · Churrasco + espeto corrido · Feijoada · Cardápio em 10 abas
+  · Buffet (mosaico de 5 fotos) · Churrasco, fogão a lenha e espeto corrido · Feijoada · Cardápio em 10 abas
   · Galeria com foto ampliada · Contato e localização · rodapé · barra de ações no celular.
-- 22 espaços de foto com quadros provisórios identificados, gerados pelo `tools/prepare-images.py`
-  nas proporções finais. Nenhuma foto de banco, nenhuma imagem gerada simulando comida.
-- Prévia em arquivo único (`parada-do-mano-visualizacao.html`, 1,1 MB) e ZIP de produção
-  (`parada-do-mano-site.zip`, 62 arquivos, 0,7 MB).
+- 10 fotos reais e a logo oficial, recortadas das referências enviadas e tratadas por
+  `tools/enhance-photos.py`: redução de ruído de compressão, ampliação 4x com EDSR (super-resolução
+  que reconstrói bordas sem inventar textura) e ajuste leve de contraste só na luminância.
+  Na primeira tentativa o autocontraste por canal esfriou o amarelo do arroz; foi trocado por
+  um ajuste que preserva o tom (comparação lado a lado conferida).
+- Recortes feitos para **não** mostrar: o preço do post do rodízio, os adesivos do story e a arte
+  com o rosto de um cantor no ônibus estacionado na fachada.
+- Vídeo da abertura (960×960, 17 s, loop, 1,8 MB MP4 / 1,6 MB WebM) e dois vídeos com texto para
+  redes (1080×1920 e 1920×1080, 27 s), todos montados com as fotos reais por `tools/make-film.py`.
+- Prévia em arquivo único (`parada-do-mano-visualizacao.html`, 9,7 MB, vídeo embutido) e ZIP de produção
+  (`parada-do-mano-site.zip`, 50 arquivos, 6,3 MB).
 
 ## 2. Animações implementadas
 
@@ -21,7 +29,7 @@ servindo a pasta com `python3 -m http.server`. Script: `tools/qa-browser.mjs`.
 |---|---|---|---|
 | 01 | Entrada da abertura: fundo imediato → foto com recuo de zoom (1,10 → 1) → etiqueta → título linha a linha subindo de uma máscara → subtítulo → botões → destaques → placa do km | CSS `@keyframes`, só `transform`/`opacity`, ~1,9 s no total; a página é clicável desde o primeiro quadro | desligada |
 | 02 | Revelação na rolagem (subida curta + opacidade; cartões em sequência; fotos com cortina que recolhe e imagem que assenta) | `IntersectionObserver`; a classe que esconde só entra quando o observer existe | conteúdo aparece direto |
-| 03 | Calor da churrasqueira: brilho âmbar que "respira" e 7 brasas pequenas subindo devagar | dois elementos CSS, sem canvas, sem blur | brasas removidas, brilho parado |
+| 03 | Calor da churrasqueira: brilho âmbar que "respira", 7 brasas pequenas subindo devagar e, no computador, o vídeo das fotos reais (espeto, buffet, fogão a lenha) em fusão lenta | CSS + `<video>` carregado só no computador, pausado fora da tela | brasas removidas, brilho parado, vídeo não carrega |
 | 04 | Cartões: zoom leve da foto, elevação, borda/linha laranja, seta que anda | `@media (hover: hover)`; no toque, `:active` dá retorno (escala/cor) | transições instantâneas |
 | 05 | Cardápio: troca imediata de painel com entrada curta (opacidade + 8 px, 0,32 s) | animação CSS reiniciada a cada troca | sem animação |
 | 06 | Galeria: zoom leve, legenda sobe, botão de ampliar aparece; foto ampliada com troca suave | `<dialog>` nativo | instantâneo |
@@ -54,9 +62,12 @@ Interações (Chromium):
 | Cardápio: só uma categoria visível; clique troca; **a página não pula** (scrollY igual antes e depois) | OK |
 | Cardápio: setas, Home e End; `aria-selected` e `tabindex` coerentes; botões Anterior/Próxima | OK |
 | Galeria: abre a foto certa, seta avança, Escape fecha e devolve o foco | OK |
+| Vídeo da abertura toca no computador (WebM no Chromium de teste), pausa quando a abertura sai da tela | OK |
+| No celular o vídeo não é baixado (`src` vazio, fica a foto) | OK |
 | `prefers-reduced-motion: reduce`: sem animação de entrada, sem brasas, faixa parada, nada escondido | OK |
 | JavaScript desligado: as 10 categorias do cardápio aparecem em sequência e nenhum conteúdo fica oculto | OK |
-| Prévia em arquivo único aberta por `file://`: sem erros, fontes e imagens carregadas, abas funcionando | OK |
+| Prévia em arquivo único aberta por `file://`: sem erros, imagens carregadas, vídeo tocando no computador | OK |
+| Vídeos de redes: conferidos por quadros-chave (textos dentro da margem, fora da área da legenda do Instagram no vertical) | OK, depois de 2 correções (abaixo) |
 
 Capturas analisadas visualmente: primeira tela nos 8 tamanhos, página inteira, cada seção em
 1440×900 e 390×844, menu aberto, cardápio, galeria ampliada e movimento reduzido.
@@ -72,6 +83,10 @@ Capturas analisadas visualmente: primeira tela nos 8 tamanhos, página inteira, 
 | Emenda horizontal no degradê dos quadros provisórios | brilho refeito com queda radial suave |
 | Legenda do mosaico no hover: creme sobre laranja queimado com contraste 3,5:1 | hover passa a usar texto preto carvão sobre laranja (8:1) |
 | O próprio teste não revelava as seções: a rolagem suave do site atrasava o `scrollTo` | o teste desliga a rolagem suave só durante a varredura |
+| Vídeo vertical: textos pequenos e baixos demais (a legenda do Instagram cobriria) | textos 30 % maiores e bloco de texto a 20 % da base |
+| Vídeo vertical: "comida caseira de segunda a domingo" passava da borda | cada linha encolhe até caber entre as margens |
+| Imagem de compartilhamento sem véu escuro atrás do nome | degradê refeito; conferido pelos valores dos pixels |
+| `<img src="">` da galeria ampliada fazia o navegador pedir a própria página | atributo removido; o JS preenche ao abrir |
 
 ## 5. Contraste (calculado, WCAG)
 
@@ -88,8 +103,9 @@ sobre creme 6,1:1 (rótulos pequenos das seções claras) · dourado sobre carv�
   mais simples; dá para acrescentar depois que as fotos reais chegarem, se o peso justificar.
 - Animações só em `transform` e `opacity` (a cortina das fotos é um `scaleY`); nenhum `backdrop-filter`
   nem `filter: blur`; nenhuma rolagem sequestrada.
-- **Os pesos de imagem hoje são dos quadros provisórios** (684 KB somando todas as larguras). Com fotos
-  reais o total vai subir; o script já limita as larguras e comprime em WebP qualidade 80.
+- Imagens: 37 arquivos, 2,8 MB somando todas as larguras; o navegador baixa só a largura que precisa.
+- Vídeo da abertura: 1,6–1,8 MB, baixado **só no computador**, depois de 1,2 s (não disputa banda com a
+  foto da abertura) e nunca com economia de dados ligada ou movimento reduzido.
 
 ## 7. Não verificado
 
@@ -100,4 +116,7 @@ sobre creme 6,1:1 (rótulos pequenos das seções claras) · dourado sobre carv�
   verificada pelo script, não por uso com leitor.
 - **Links externos** (WhatsApp, Google Maps, Instagram): a rede deste ambiente bloqueia esses domínios,
   então só o formato dos links foi conferido, não o destino aberto.
-- **Fotos reais**: nenhuma foi enviada; enquadramento, cor e peso finais só podem ser avaliados com elas.
+- **H.264 no navegador de teste**: o Chromium do Playwright não decodifica MP4 (codec proprietário), então
+  o teste tocou o WebM. O MP4 foi conferido com `ffprobe` e por quadros extraídos com `ffmpeg`, não tocando
+  num navegador. Chrome, Edge, Safari e Firefox comuns tocam H.264.
+- **Nitidez das fotos**: a origem tem 150–750 px; a ampliação melhora, mas não substitui o original.

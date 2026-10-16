@@ -136,6 +136,36 @@
     });
   }
 
+  /* ---------- Vídeo da abertura ----------
+     Só no computador, sem movimento reduzido e sem economia de dados.
+     A foto continua por baixo: se o vídeo não carregar, nada muda. */
+  var heroVideo = document.querySelector('.hero-video');
+  var wide = window.matchMedia('(min-width: 960px)');
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if (heroVideo && wide.matches && !reduceMotion.matches && !saveData) {
+    // H.264 quando o navegador tiver (decodificação por hardware); senão, VP9
+    var mp4 = heroVideo.canPlayType('video/mp4; codecs="avc1.640028"');
+    heroVideo.src = heroVideo.getAttribute(mp4 ? 'data-src-mp4' : 'data-src-webm') || heroVideo.getAttribute('data-src-mp4');
+    heroVideo.addEventListener('playing', function () { heroVideo.classList.add('is-playing'); });
+    var tryPlay = function () {
+      var p = heroVideo.play();
+      if (p && p.catch) p.catch(function () { /* autoplay bloqueado: fica a foto */ });
+    };
+    var started = false;
+    // espera a entrada da abertura terminar para não disputar banda com a foto
+    window.setTimeout(function () { started = true; tryPlay(); }, 1200);
+    // fora da tela, o vídeo pausa (economiza bateria); de volta, continua
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        if (!started) return;
+        if (entries[0].isIntersecting) tryPlay(); else heroVideo.pause();
+      }).observe(heroVideo);
+    }
+    reduceMotion.addEventListener('change', function (mq) {
+      if (mq.matches) { heroVideo.pause(); heroVideo.classList.remove('is-playing'); }
+    });
+  }
+
   /* ---------- Cardápio em abas ---------- */
   var tabsRoot = document.querySelector('[data-tabs]');
   if (tabsRoot) {

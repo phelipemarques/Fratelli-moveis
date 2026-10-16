@@ -4,3 +4,6 @@ __pycache__/
 # Capturas locais do tools/qa-browser.mjs
 capturas/
 qa-shots/
+
+# Modelo de super-resolução (38 MB): baixar conforme tools/enhance-photos.py
+tools/models/

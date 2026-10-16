@@ -195,6 +195,33 @@ for (const [w, h] of SIZES) {
   await ctx.close();
 }
 
+/* ---------- Vídeo da abertura ---------- */
+{
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
+  await page.goto(BASE, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(4500);
+  const v = await page.evaluate(() => {
+    const el = document.querySelector('.hero-video');
+    return { src: el.currentSrc.split('/').pop(), playing: el.classList.contains('is-playing'), t: Math.round(el.currentTime * 10) / 10, err: el.error && el.error.code };
+  });
+  ok('vídeo da abertura toca no computador', v.playing && v.t > 0, JSON.stringify(v));
+  await page.screenshot({ path: `${OUT}/1440x900-abertura-video.png` });
+  await page.evaluate(() => window.scrollTo(0, 3000));
+  await page.waitForTimeout(600);
+  const paused = await page.evaluate(() => document.querySelector('.hero-video').paused);
+  ok('vídeo pausa quando a abertura sai da tela', paused);
+  await ctx.close();
+
+  const m = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const mp = await m.newPage();
+  await mp.goto(BASE, { waitUntil: 'networkidle' });
+  await mp.waitForTimeout(2000);
+  const mv = await mp.evaluate(() => document.querySelector('.hero-video').getAttribute('src'));
+  ok('celular não baixa o vídeo (fica a foto)', mv === null, String(mv));
+  await m.close();
+}
+
 /* ---------- Movimento reduzido ---------- */
 {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
