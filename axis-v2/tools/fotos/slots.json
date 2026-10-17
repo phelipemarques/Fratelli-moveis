@@ -1,0 +1,15 @@
+{
+  "_leia": "Um item por espaço de foto do site. Coloque a foto original em tools/fotos/<nome>.jpg (ou .jpeg/.png/.webp), ajuste o 'alt' para descrever a foto de verdade e rode: python3 tools/fotos.py",
+  "hero-musculacao":      { "alt": "Área de musculação da AXIS",                 "widths": [480, 800, 1100], "sizes": "(min-width: 1024px) 18vw, 40vw", "eager": true },
+  "hero-fisioterapia":    { "alt": "Atendimento de fisioterapia na AXIS",        "widths": [480, 800, 1100], "sizes": "(min-width: 1024px) 18vw, 40vw", "eager": true },
+  "hero-pilates":         { "alt": "Aula de pilates na AXIS",                    "widths": [480, 800, 1100], "sizes": "(min-width: 1024px) 18vw, 40vw", "eager": true },
+  "servico-musculacao":   { "alt": "Equipamentos de musculação da AXIS",         "widths": [640, 960, 1400], "sizes": "(min-width: 960px) 30vw, (min-width: 700px) 50vw, 100vw" },
+  "servico-fisioterapia": { "alt": "Fisioterapeuta em atendimento na AXIS",      "widths": [640, 960, 1400], "sizes": "(min-width: 960px) 30vw, (min-width: 700px) 50vw, 100vw" },
+  "servico-pilates":      { "alt": "Prática de Mat Pilates na AXIS",             "widths": [640, 960, 1400], "sizes": "(min-width: 960px) 30vw, (min-width: 700px) 50vw, 100vw" },
+  "fisio-destaque":       { "alt": "Sala de fisioterapia da AXIS",               "widths": [640, 1000, 1600], "sizes": "(min-width: 1024px) 50vw, 100vw" },
+  "estrutura-1":          { "alt": "Ambiente de musculação da AXIS",             "widths": [640, 1000, 1600], "sizes": "(min-width: 900px) 60vw, 100vw", "lightbox": true },
+  "estrutura-2":          { "alt": "Espaço de fisioterapia da AXIS",             "widths": [480, 800, 1200], "sizes": "(min-width: 900px) 34vw, 50vw", "lightbox": true },
+  "estrutura-3":          { "alt": "Espaço de pilates da AXIS",                  "widths": [480, 800, 1200], "sizes": "(min-width: 900px) 34vw, 50vw", "lightbox": true },
+  "estrutura-4":          { "alt": "Equipamentos da AXIS",                       "widths": [480, 800, 1200], "sizes": "(min-width: 900px) 34vw, 50vw", "lightbox": true },
+  "estrutura-5":          { "alt": "Fachada da AXIS na Rua Riachuelo, 2397",     "widths": [480, 800, 1200], "sizes": "(min-width: 900px) 34vw, 50vw", "lightbox": true }
+}

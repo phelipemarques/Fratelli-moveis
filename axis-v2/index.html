@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AXIS Academia e Fisioterapia | Musculação, Fisioterapia e Pilates em Cascavel – PR</title>
+  <meta name="description" content="Musculação, fisioterapia e pilates com acompanhamento profissional no mesmo endereço, em Cascavel – PR. Fale com a AXIS pelo WhatsApp.">
+  <meta name="theme-color" content="#09090b">
+  <!-- PRÉVIA: manter enquanto não houver domínio oficial e autorização
+       de publicação. Apagar esta linha só na publicação definitiva. -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- PRODUÇÃO: descomentar e trocar SEU-DOMINIO pelo endereço definitivo.
+  <link rel="canonical" href="https://SEU-DOMINIO/">
+  <meta property="og:url" content="https://SEU-DOMINIO/">
+  <meta property="og:image" content="https://SEU-DOMINIO/assets/brand/og-cover.jpg">
+  -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="AXIS Academia e Fisioterapia">
+  <meta property="og:title" content="AXIS Academia e Fisioterapia — Cascavel, PR">
+  <meta property="og:description" content="Performance, saúde e recuperação em um só lugar: musculação, fisioterapia e pilates com acompanhamento profissional.">
+  <meta property="og:image" content="assets/brand/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/barlow-condensed-800-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- "motion" só entra sem prefers-reduced-motion. Se a abertura não
+       confirmar em 2,5 s, a classe sai e tudo aparece no estado final. -->
+  <script>
+    (function (h) {
+      h.classList.add('js');
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        h.classList.add('motion');
+        setTimeout(function () { if (!window.__axisIntro) h.classList.remove('motion'); }, 2500);
+      }
+    })(document.documentElement);
+  </script>
+  <!-- GSAP (núcleo) e a abertura carregam antes da primeira pintura, para
+       a timeline começar junto com a página. ScrollTrigger e o resto do
+       site carregam adiados. -->
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/intro.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="js/site.js" defer></script>
+  <script src="js/motion.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["HealthClub", "Physiotherapy"],
+    "name": "AXIS Academia e Fisioterapia",
+    "description": "Musculação, fisioterapia e pilates em Cascavel – PR.",
+    "telephone": "+55 45 99115-9425",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Riachuelo, 2397",
+      "addressLocality": "Cascavel",
+      "addressRegion": "PR",
+      "postalCode": "85813-310",
+      "addressCountry": "BR"
+    },
+    "sameAs": ["https://www.instagram.com/academiaaxis/"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2.5a9.43 9.43 0 0 0-8.1 14.26L2.5 21.5l4.86-1.4A9.43 9.43 0 1 0 12.04 2.5zm0 17.2a7.77 7.77 0 0 1-3.96-1.08l-.28-.17-2.88.83.85-2.8-.19-.29a7.76 7.76 0 1 1 6.46 3.51zm4.26-5.81c-.23-.12-1.38-.68-1.6-.76-.21-.08-.37-.12-.52.12-.16.23-.6.76-.73.91-.14.16-.27.18-.5.06a6.37 6.37 0 0 1-3.16-2.76c-.24-.41.24-.38.68-1.27.08-.16.04-.29-.02-.41-.06-.12-.52-1.26-.72-1.72-.19-.45-.38-.39-.52-.4h-.45a.86.86 0 0 0-.62.29 2.6 2.6 0 0 0-.81 1.94 4.52 4.52 0 0 0 .95 2.4 10.36 10.36 0 0 0 3.96 3.5c1.47.64 2.05.69 2.78.58.45-.07 1.38-.56 1.57-1.1.2-.55.2-1.02.14-1.11-.06-.1-.21-.16-.44-.27z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path class="s" d="M4.5 12h15M13.5 6l6 6-6 6"/></symbol>
+    <symbol id="i-ne" viewBox="0 0 24 24"><path class="s" d="M7 17 17 7M8.5 7H17v8.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path class="s" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect class="s" x="3.5" y="3.5" width="17" height="17" rx="5"/><circle class="s" cx="12" cy="12" r="4"/><circle cx="17.25" cy="6.75" r="1.1"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path class="s" d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle class="s" cx="12" cy="10" r="2.25"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle class="s" cx="12" cy="12" r="8.5"/><path class="s" d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path class="s" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path class="s" d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path class="s" d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></symbol>
+  </svg>
+
+  <!-- ============================================================
+       CABEÇALHO
+       ============================================================ -->
+  <header class="hdr" id="hdr">
+    <div class="hdr__in wrap">
+      <!-- LOGO PROVISÓRIA: nome da marca composto em texto, sem imitar o
+           símbolo. Quando o vetor oficial chegar, trocar os dois spans por
+           <img src="assets/brand/axis-logo.svg" width="…" height="…" alt="">
+           mantendo o aria-label. Ver README, "Logo oficial". -->
+      <a class="brand" href="#top" aria-label="AXIS Academia e Fisioterapia — início">
+        <span class="brand__name" aria-hidden="true">AXIS</span>
+        <span class="brand__sub" aria-hidden="true">Academia <b>&amp;</b> Fisioterapia</span>
+      </a>
+
+      <nav class="hdr__nav" aria-label="Principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#fisioterapia">Fisioterapia</a>
+        <a href="#estrutura">Estrutura</a>
+        <a href="#conteudos">Conteúdos</a>
+        <a href="#contato">Contato</a>
+        <span class="hdr__ind" aria-hidden="true"></span>
+      </nav>
+
+      <a class="btn btn--red btn--sm hdr__cta" data-wa="geral" href="https://wa.me/5545991159425" target="_blank" rel="noopener">
+        <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span>
+      </a>
+
+      <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="hdr__menu-txt">Menu</span>
+        <span class="hdr__menu-ico" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+
+    <!-- Painel do menu (celular e tablet) -->
+    <div class="menu" id="menu" hidden>
+      <nav class="menu__in wrap" aria-label="Menu">
+        <ol class="menu__list">
+          <li><a href="#servicos"><span>01</span>Serviços</a></li>
+          <li><a href="#fisioterapia"><span>02</span>Fisioterapia</a></li>
+          <li><a href="#estrutura"><span>03</span>Estrutura</a></li>
+          <li><a href="#perfis"><span>04</span>Para quem é</a></li>
+          <li><a href="#conteudos"><span>05</span>Conteúdos</a></li>
+          <li><a href="#duvidas"><span>06</span>Dúvidas</a></li>
+          <li><a href="#contato"><span>07</span>Contato</a></li>
+        </ol>
+        <div class="menu__foot">
+          <a class="btn btn--red btn--lg btn--block" data-wa="geral" href="https://wa.me/5545991159425" target="_blank" rel="noopener">
+            <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span>Falar com a AXIS</span>
+          </a>
+          <p>Rua Riachuelo, 2397 · Cascavel – PR · <a href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener">@academiaaxis</a></p>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <div class="scrim" hidden></div>
+
+  <main id="conteudo">
+
+    <!-- ============================================================
+         ABERTURA
+         ============================================================ -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__in wrap">
+        <div class="hero__copy">
+          <p class="kicker hero__kicker">Academia &amp; Fisioterapia — Cascavel, PR</p>
+
+          <h1 class="hero__title" id="hero-title">
+            <span class="ln"><span>Performance,</span></span>
+            <span class="ln"><span>saúde e</span></span>
+            <span class="ln"><span class="hl">recuperação</span></span>
+            <span class="ln"><span>em um só lugar.</span></span>
+          </h1>
+
+          <!-- Linha AXIS: horizontal que sobe na diagonal do traço da marca. -->
+          <svg class="axl hero__axl" viewBox="0 0 320 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22H250L264 2H320" pathLength="1"/></svg>
+
+          <p class="hero__lead">Musculação, fisioterapia e pilates com acompanhamento profissional, no mesmo endereço, para você evoluir com segurança.</p>
+
+          <div class="hero__cta">
+            <a class="btn btn--red btn--lg" data-wa="geral" href="https://wa.me/5545991159425" target="_blank" rel="noopener">
+              <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+              <span class="lbl-long">Falar com a AXIS no WhatsApp</span><span class="lbl-short">Falar no WhatsApp</span>
+            </a>
+            <a class="btn btn--line btn--lg" href="#servicos"><span>Conhecer serviços</span></a>
+          </div>
+        </div>
+
+        <!-- Composição fotográfica: três recortes na diagonal da marca.
+             FOTO: cada recorte recebe uma foto real pelo tools/fotos.py. -->
+        <div class="hero__media" aria-hidden="true">
+          <div class="slice slice--1" data-depth="1">
+            <!-- FOTO:hero-musculacao -->
+            <div class="ph"><span class="ph__tag">Foto real · Musculação</span></div>
+            <!-- /FOTO:hero-musculacao -->
+          </div>
+          <div class="slice slice--2" data-depth="2">
+            <!-- FOTO:hero-fisioterapia -->
+            <div class="ph ph--light"><span class="ph__tag">Foto real · Fisioterapia</span></div>
+            <!-- /FOTO:hero-fisioterapia -->
+          </div>
+          <div class="slice slice--3" data-depth="3">
+            <!-- FOTO:hero-pilates -->
+            <div class="ph ph--mid"><span class="ph__tag">Foto real · Pilates</span></div>
+            <!-- /FOTO:hero-pilates -->
+          </div>
+          <span class="hero__bar"></span>
+        </div>
+
+        <p class="hero__sig" aria-label="Musculação, fisioterapia e pilates">
+          <span aria-hidden="true">Musculação</span><i aria-hidden="true">/</i><span aria-hidden="true">Fisioterapia</span><i aria-hidden="true">/</i><span aria-hidden="true">Pilates</span>
+        </p>
+
+        <a class="hero__scroll" href="#servicos" aria-label="Rolar até os serviços"><span>Role</span><i aria-hidden="true"></i></a>
+      </div>
+    </section>
+    <!-- Dispara a abertura assim que o hero existe, antes da primeira pintura. -->
+    <script>window.AXIS_INTRO && window.AXIS_INTRO();</script>
+
+    <!-- ============================================================
+         01 · SERVIÇOS — três pilares
+         ============================================================ -->
+    <section class="sec svc" id="servicos" aria-labelledby="svc-title">
+      <div class="wrap">
+        <header class="head head--split">
+          <div>
+            <p class="kicker"><b>01</b>Serviços</p>
+            <h2 class="h2" id="svc-title" data-lines>
+              <span class="ln"><span>Três formas</span></span>
+              <span class="ln"><span>de se mover.</span></span>
+              <span class="ln"><span><em>Um só cuidado.</em></span></span>
+            </h2>
+          </div>
+          <p class="lead">Faça uma modalidade ou combine as três. O ponto de partida é sempre entender o seu momento.</p>
+        </header>
+        <svg class="axl axl--rule" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22H1120L1134 2H1200" pathLength="1"/><path class="axl__hot" d="M0 22H1120L1134 2H1200" pathLength="1"/></svg>
+
+        <div class="pillars">
+          <article class="pillar pillar--forca" id="musculacao" aria-labelledby="p1-title">
+            <div class="pillar__media" data-img>
+              <!-- FOTO:servico-musculacao -->
+              <div class="ph"><span class="ph__tag">Foto real · Área de musculação</span></div>
+              <!-- /FOTO:servico-musculacao -->
+            </div>
+            <div class="pillar__body">
+              <p class="pillar__n" aria-hidden="true">01</p>
+              <p class="pillar__mood">Força · energia · treino</p>
+              <h3 class="pillar__title" id="p1-title">Musculação</h3>
+              <p class="pillar__text">Treino orientado e progressão planejada para ganhar força e condicionamento no seu ritmo.</p>
+              <div class="pillar__more" id="mais-musculacao">
+                <ul class="dots">
+                  <li>Força e hipertrofia</li>
+                  <li>Condicionamento físico</li>
+                  <li>Rotina de treino com orientação</li>
+                </ul>
+              </div>
+              <div class="pillar__act">
+                <button class="more" type="button" aria-expanded="true" aria-controls="mais-musculacao">Conhecer musculação<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <a class="link-wa" data-wa="musculacao" href="https://wa.me/5545991159425" target="_blank" rel="noopener" aria-label="Falar sobre musculação pelo WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span class="link-wa__long">Falar sobre musculação</span><span class="link-wa__short">WhatsApp</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pillar pillar--cuidado" id="fisio-servico" aria-labelledby="p2-title">
+            <div class="pillar__media" data-img>
+              <!-- FOTO:servico-fisioterapia -->
+              <div class="ph ph--light"><span class="ph__tag">Foto real · Atendimento de fisioterapia</span></div>
+              <!-- /FOTO:servico-fisioterapia -->
+            </div>
+            <div class="pillar__body">
+              <p class="pillar__n" aria-hidden="true">02</p>
+              <p class="pillar__mood">Cuidado · movimento · acompanhamento</p>
+              <h3 class="pillar__title" id="p2-title">Fisioterapia</h3>
+              <p class="pillar__text">Avaliação e atendimento individual para dor, lesões e recuperação do movimento — com a ponte natural para voltar a treinar.</p>
+              <div class="pillar__more" id="mais-fisio">
+                <ul class="dots">
+                  <li>Ortopédica e coluna</li>
+                  <li>Neurofuncional</li>
+                  <li>Esportiva e respiratória</li>
+                </ul>
+                <a class="link" href="#fisioterapia">Ver a abordagem da fisioterapia</a>
+              </div>
+              <div class="pillar__act">
+                <button class="more" type="button" aria-expanded="true" aria-controls="mais-fisio">Conhecer fisioterapia<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <a class="link-wa" data-wa="fisioterapia" href="https://wa.me/5545991159425" target="_blank" rel="noopener" aria-label="Falar sobre fisioterapia pelo WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span class="link-wa__long">Falar sobre fisioterapia</span><span class="link-wa__short">WhatsApp</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pillar pillar--equilibrio" id="pilates" aria-labelledby="p3-title">
+            <div class="pillar__media" data-img>
+              <!-- FOTO:servico-pilates -->
+              <div class="ph ph--mid"><span class="ph__tag">Foto real · Aula de pilates</span></div>
+              <!-- /FOTO:servico-pilates -->
+              <span class="breath" aria-hidden="true"><i></i><i></i><i></i></span>
+            </div>
+            <div class="pillar__body">
+              <p class="pillar__n" aria-hidden="true">03</p>
+              <p class="pillar__mood">Respiração · controle · equilíbrio</p>
+              <h3 class="pillar__title" id="p3-title">Pilates</h3>
+              <p class="pillar__text">Mat Pilates para fortalecer o centro do corpo, alinhar a postura e ganhar mobilidade com controle de cada movimento.</p>
+              <div class="pillar__more" id="mais-pilates">
+                <ul class="dots">
+                  <li>Praticado no solo, sobre colchonete</li>
+                  <li>Postura e consciência corporal</li>
+                  <li>Mobilidade e respiração</li>
+                </ul>
+              </div>
+              <div class="pillar__act">
+                <button class="more" type="button" aria-expanded="true" aria-controls="mais-pilates">Conhecer pilates<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <a class="link-wa" data-wa="pilates" href="https://wa.me/5545991159425" target="_blank" rel="noopener" aria-label="Falar sobre pilates pelo WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span class="link-wa__long">Falar sobre pilates</span><span class="link-wa__short">WhatsApp</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Complementar, com hierarquia menor. CONFIRMAR COM A AXIS:
+             parceria Gympass/Wellhub (anunciada no Instagram). Programas
+             especiais ficaram fora até confirmação (ver PENDENCIAS). -->
+        <aside class="extra" aria-label="Também na AXIS">
+          <p class="extra__k">Também na AXIS</p>
+          <dl class="extra__list">
+            <div><dt>Avaliação e acompanhamento</dt><dd>O ponto de partida para alinhar objetivos e cuidados, e as revisões que ajustam a rota.</dd></div>
+            <div><dt>Gympass</dt><dd>Parceria anunciada no nosso Instagram. Confirme pelo WhatsApp se o seu plano é aceito.</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         02 · POR QUE A AXIS — manifesto
+         ============================================================ -->
+    <section class="sec why" id="por-que" aria-labelledby="why-title">
+      <div class="wrap">
+        <p class="kicker"><b>02</b>Por que a AXIS</p>
+        <h2 class="why__statement" id="why-title" data-lines>
+          <span class="ln"><span>Treino e tratamento</span></span>
+          <span class="ln"><span>no mesmo endereço.</span></span>
+          <span class="ln"><span><em>Força e cuidado</em> no</span></span>
+          <span class="ln"><span>mesmo time.</span></span>
+        </h2>
+        <ol class="why__list" data-stagger>
+          <li><b>01</b><h3>Integração</h3><p>Academia, fisioterapia e pilates pensados para se complementar.</p></li>
+          <li><b>02</b><h3>Acompanhamento</h3><p>Orientação profissional do primeiro contato às revisões do plano.</p></li>
+          <li><b>03</b><h3>Segurança</h3><p>Exercícios ajustados ao seu momento, respeitando limites e histórico.</p></li>
+          <li><b>04</b><h3>Para cada perfil</h3><p>De quem está começando a quem pratica esporte há anos.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 · FISIOTERAPIA — movimento com propósito
+         ============================================================ -->
+    <section class="physio" id="fisioterapia" aria-labelledby="physio-title">
+      <div class="physio__media" data-img>
+        <!-- FOTO:fisio-destaque -->
+        <div class="ph ph--light"><span class="ph__tag">Foto real · Sala de fisioterapia</span></div>
+        <!-- /FOTO:fisio-destaque -->
+        <svg class="axl physio__axl" viewBox="0 0 24 600" preserveAspectRatio="none" aria-hidden="true"><path d="M22 600V90L2 50V0" pathLength="1"/></svg>
+      </div>
+
+      <div class="physio__body">
+        <p class="physio__n" aria-hidden="true">03</p>
+        <p class="kicker"><b>03</b>Fisioterapia AXIS</p>
+        <h2 class="h2" id="physio-title" data-lines>
+          <span class="ln"><span>Movimento</span></span>
+          <span class="ln"><span><em>com propósito.</em></span></span>
+        </h2>
+        <p class="lead">Cada atendimento começa por uma avaliação. A partir dela, o fisioterapeuta define o cuidado — e, quando faz sentido, a transição para o pilates e o treino acontece aqui mesmo.</p>
+
+        <ol class="approach" data-stagger>
+          <li><b>01</b><h3>Avaliar</h3><p>Entender a queixa, o histórico e os objetivos.</p></li>
+          <li><b>02</b><h3>Cuidar</h3><p>Atendimento individual, conduzido por fisioterapeuta.</p></li>
+          <li><b>03</b><h3>Fortalecer</h3><p>Exercícios para dar base e estabilidade.</p></li>
+          <li><b>04</b><h3>Evoluir</h3><p>Quando indicado, seguir para o pilates ou o treino.</p></li>
+        </ol>
+        <p class="note">Cada caso é único: o plano e o tempo de cada etapa dependem da avaliação.</p>
+
+        <!-- CONFIRMAR COM A AXIS: áreas tiradas dos posts do Instagram. -->
+        <h3 class="physio__k">Áreas de atuação</h3>
+        <dl class="areas">
+          <div><dt>Ortopédica</dt><dd>Coluna, postura, hérnia de disco e lesões ortopédicas.</dd></div>
+          <div><dt>Neurofuncional</dt><dd>Mobilidade e reabilitação, inclusive após AVC.</dd></div>
+          <div><dt>Esportiva</dt><dd>Lesões musculares e decorrentes do esporte.</dd></div>
+          <div><dt>Respiratória</dt><dd>Reabilitação de distúrbios respiratórios.</dd></div>
+        </dl>
+
+        <a class="btn btn--red btn--lg physio__cta" data-wa="fisioterapia" href="https://wa.me/5545991159425" target="_blank" rel="noopener">
+          <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span>Falar sobre fisioterapia</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         04 · ESTRUTURA — galeria
+         ============================================================ -->
+    <section class="sec gal" id="estrutura" aria-labelledby="gal-title">
+      <div class="wrap">
+        <header class="head head--split">
+          <div>
+            <p class="kicker"><b>04</b>Experiência e estrutura</p>
+            <h2 class="h2" id="gal-title" data-lines>
+              <span class="ln"><span>Por dentro</span></span>
+              <span class="ln"><span><em>da AXIS.</em></span></span>
+            </h2>
+          </div>
+          <p class="lead">Espaço para treinar, ser atendido e praticar pilates, no mesmo endereço. A rotina completa está no <a class="link" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener">@academiaaxis</a>.</p>
+        </header>
+
+        <!-- FOTO: a grade cresce com as fotos que existirem. Itens com
+             data-optional ficam escondidos até receberem foto. Com duas
+             fotos ou mais, a galeria abre em tela cheia (lightbox). -->
+        <div class="gal__grid" data-count="3">
+          <figure class="g g--1" data-img>
+            <!-- FOTO:estrutura-1 -->
+            <div class="ph"><span class="ph__tag">Foto real · Ambiente de musculação</span></div>
+            <!-- /FOTO:estrutura-1 -->
+            <figcaption>Musculação</figcaption>
+          </figure>
+          <figure class="g g--2" data-img>
+            <!-- FOTO:estrutura-2 -->
+            <div class="ph ph--light"><span class="ph__tag">Foto real · Fisioterapia</span></div>
+            <!-- /FOTO:estrutura-2 -->
+            <figcaption>Fisioterapia</figcaption>
+          </figure>
+          <figure class="g g--3" data-img>
+            <!-- FOTO:estrutura-3 -->
+            <div class="ph ph--mid"><span class="ph__tag">Foto real · Espaço de pilates</span></div>
+            <!-- /FOTO:estrutura-3 -->
+            <figcaption>Pilates</figcaption>
+          </figure>
+          <figure class="g g--4" data-img data-optional hidden>
+            <!-- FOTO:estrutura-4 -->
+            <div class="ph"><span class="ph__tag">Foto real · Equipamentos</span></div>
+            <!-- /FOTO:estrutura-4 -->
+            <figcaption>Equipamentos</figcaption>
+          </figure>
+          <figure class="g g--5" data-img data-optional hidden>
+            <!-- FOTO:estrutura-5 -->
+            <div class="ph"><span class="ph__tag">Foto real · Fachada</span></div>
+            <!-- /FOTO:estrutura-5 -->
+            <figcaption>Fachada</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         05 · PARA QUEM É
+         ============================================================ -->
+    <section class="sec who" id="perfis" aria-labelledby="who-title">
+      <div class="wrap who__wrap">
+        <header class="head">
+          <p class="kicker"><b>05</b>Para quem é</p>
+          <h2 class="h2" id="who-title" data-lines>
+            <span class="ln"><span>Seu objetivo.</span></span>
+            <span class="ln"><span><em>Seu momento.</em></span></span>
+          </h2>
+          <p class="lead">Por onde começar, de acordo com o que você busca. No contato, a equipe confirma o melhor caminho.</p>
+        </header>
+
+        <div class="who__cols">
+          <div class="who__col">
+            <h3 class="who__k">Objetivos</h3>
+            <ul class="rows" data-stagger>
+              <li><span>Ganhar força e condicionamento</span><em>Musculação</em></li>
+              <li><span>Mais saúde e disposição no dia a dia</span><em>Musculação · Pilates</em></li>
+              <li><span>Cuidar do peso com orientação</span><em>Musculação</em></li>
+              <li><span>Postura e consciência corporal</span><em>Pilates</em></li>
+            </ul>
+          </div>
+          <div class="who__col">
+            <h3 class="who__k">Momentos</h3>
+            <ul class="rows" data-stagger>
+              <li><span>Recuperação de lesão ou dor</span><em>Fisioterapia</em></li>
+              <li><span>Reabilitação neurológica</span><em>Fisioterapia</em></li>
+              <li><span>Começando do zero</span><em>Musculação · Pilates</em></li>
+              <li><span>Terceira idade</span><em>Musculação · Pilates</em></li>
+              <li><span>Prática esportiva</span><em>Musculação · Fisioterapia</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         06 · CONTEÚDOS — revista
+         ============================================================ -->
+    <section class="sec mag" id="conteudos" aria-labelledby="mag-title">
+      <div class="wrap">
+        <header class="head head--split">
+          <div>
+            <p class="kicker"><b>06</b>Revista AXIS</p>
+            <h2 class="h2" id="mag-title" data-lines>
+              <span class="ln"><span>Informação</span></span>
+              <span class="ln"><span><em>que move.</em></span></span>
+            </h2>
+          </div>
+          <p class="lead">Temas publicados pela equipe no Instagram. Conteúdo geral, que não substitui uma avaliação individual.</p>
+        </header>
+
+        <div class="mag__grid">
+          <article class="cover">
+            <div class="cover__art" aria-hidden="true" data-img><span>5</span></div>
+            <div class="cover__body">
+              <p class="tag">Musculação · Em destaque</p>
+              <h3 class="cover__title">5 benefícios da musculação</h3>
+              <ol class="cover__list">
+                <li>Construção de força muscular</li>
+                <li>Melhora da postura</li>
+                <li>Auxílio no processo de emagrecimento</li>
+                <li>Melhor qualidade do sono</li>
+                <li>Mais autoestima</li>
+              </ol>
+              <a class="link" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener">Ver no perfil @academiaaxis</a>
+            </div>
+          </article>
+
+          <!-- Os links levam ao perfil: os endereços de cada post não
+               foram confirmados (ver PENDENCIAS). -->
+          <ul class="mag__list" data-stagger>
+            <li><a class="story" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener"><span class="story__art" aria-hidden="true">H</span><span class="story__txt"><span class="tag">Fisioterapia ortopédica</span><strong>Hérnia de disco: onde entra a fisioterapia</strong></span><svg class="ico" aria-hidden="true"><use href="#i-ne"/></svg></a></li>
+            <li><a class="story" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener"><span class="story__art" aria-hidden="true">2</span><span class="story__txt"><span class="tag">Prevenção</span><strong>Duas dicas para uma postura correta no dia a dia</strong></span><svg class="ico" aria-hidden="true"><use href="#i-ne"/></svg></a></li>
+            <li><a class="story" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener"><span class="story__art" aria-hidden="true">3</span><span class="story__txt"><span class="tag">Neurofuncional</span><strong>3 vantagens da fisioterapia neurofuncional</strong></span><svg class="ico" aria-hidden="true"><use href="#i-ne"/></svg></a></li>
+            <li><a class="story" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener"><span class="story__art" aria-hidden="true">M</span><span class="story__txt"><span class="tag">Pilates</span><strong>Mat Pilates: o que é?</strong></span><svg class="ico" aria-hidden="true"><use href="#i-ne"/></svg></a></li>
+            <li><a class="story" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener"><span class="story__art" aria-hidden="true">3</span><span class="story__txt"><span class="tag">Treino</span><strong>3 erros de iniciantes na academia</strong></span><svg class="ico" aria-hidden="true"><use href="#i-ne"/></svg></a></li>
+            <li><a class="story" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener"><span class="story__art" aria-hidden="true">E</span><span class="story__txt"><span class="tag">Fisioterapia esportiva</span><strong>Fisioterapia nas lesões esportivas</strong></span><svg class="ico" aria-hidden="true"><use href="#i-ne"/></svg></a></li>
+            <li><a class="story" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener"><span class="story__art" aria-hidden="true">R</span><span class="story__txt"><span class="tag">Fisioterapia respiratória</span><strong>O trabalho do fisioterapeuta respiratório</strong></span><svg class="ico" aria-hidden="true"><use href="#i-ne"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         07 · HISTÓRIAS — só o que é real e público
+         ============================================================ -->
+    <!-- DEPOIMENTOS: os espaços reservados da V1 saíram da versão
+         comercial. Com depoimentos reais e autorizados, usar o modelo do
+         README ("Depoimentos"). Nunca inventar nomes ou resultados. -->
+    <section class="sec real" id="historias" aria-labelledby="real-title">
+      <div class="wrap real__wrap">
+        <div>
+          <p class="kicker"><b>07</b>Histórias reais</p>
+          <h2 class="h2" id="real-title" data-lines>
+            <span class="ln"><span>Na rotina</span></span>
+            <span class="ln"><span><em>da AXIS.</em></span></span>
+          </h2>
+        </div>
+        <ul class="real__list" data-stagger>
+          <li>
+            <a class="reel" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener">
+              <span class="reel__play" aria-hidden="true"><svg class="ico"><use href="#i-play"/></svg></span>
+              <span><span class="tag">Série no Instagram</span><strong>“Eu emagreci”</strong><span class="reel__txt">Alunos contam, com as próprias palavras, como construíram a rotina de treino.</span></span>
+            </a>
+          </li>
+          <li>
+            <a class="reel" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener">
+              <span class="reel__play" aria-hidden="true"><svg class="ico"><use href="#i-play"/></svg></span>
+              <span><span class="tag">Vlog no Instagram</span><strong>Vovós no treino</strong><span class="reel__txt">A terceira idade em movimento, no dia a dia da academia.</span></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         08 · JORNADA
+         ============================================================ -->
+    <section class="sec trip" id="jornada" aria-labelledby="trip-title">
+      <div class="wrap">
+        <header class="head head--split">
+          <div>
+            <p class="kicker"><b>08</b>Como começar</p>
+            <h2 class="h2" id="trip-title" data-lines>
+              <span class="ln"><span>Do primeiro contato</span></span>
+              <span class="ln"><span><em>aos próximos passos.</em></span></span>
+            </h2>
+          </div>
+          <p class="lead">Sem formulário e sem compromisso: a conversa começa no WhatsApp.</p>
+        </header>
+
+        <ol class="steps">
+          <li class="steps__track" aria-hidden="true"><span class="steps__fill"></span></li>
+          <li class="step"><span class="step__n">01</span><h3>Conheça a AXIS</h3><p>Veja os serviços e o que combina com o seu objetivo.</p></li>
+          <li class="step"><span class="step__n">02</span><h3>Entre em contato</h3><p>Chame no WhatsApp e conte o que você procura.</p></li>
+          <li class="step"><span class="step__n">03</span><h3>Tire suas dúvidas</h3><p>Formatos, horários e valores, direto com a equipe.</p></li>
+          <li class="step"><span class="step__n">04</span><h3>Combine os próximos passos</h3><p>Defina com a equipe por onde começar.</p></li>
+          <li class="step"><span class="step__n">05</span><h3>Receba as orientações</h3><p>A equipe orienta como funciona o início.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         09 · DÚVIDAS
+         ============================================================ -->
+    <section class="sec faq" id="duvidas" aria-labelledby="faq-title">
+      <div class="wrap faq__wrap">
+        <header class="head">
+          <p class="kicker"><b>09</b>Dúvidas</p>
+          <h2 class="h2" id="faq-title" data-lines>
+            <span class="ln"><span>Perguntas</span></span>
+            <span class="ln"><span><em>frequentes.</em></span></span>
+          </h2>
+          <p class="lead">Não encontrou a sua? <a class="link" data-wa="geral" href="https://wa.me/5545991159425" target="_blank" rel="noopener">Pergunte no WhatsApp</a>.</p>
+        </header>
+
+        <!-- CONFIRMAR COM A AXIS: respostas escritas sem afirmar o que
+             ainda não foi confirmado (ver PENDENCIAS). -->
+        <div class="faq__list">
+          <details class="qa" name="faq">
+            <summary>A AXIS é só academia?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="qa__a"><p>Não. A AXIS reúne musculação, fisioterapia e pilates no mesmo endereço. Dá para fazer uma modalidade ou combinar mais de uma.</p></div>
+          </details>
+          <details class="qa" name="faq">
+            <summary>Como funciona a fisioterapia?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="qa__a"><p>O atendimento começa por uma avaliação com fisioterapeuta, que define o plano para o seu caso. Formatos e valores são informados pelo WhatsApp.</p></div>
+          </details>
+          <details class="qa" name="faq">
+            <summary>Nunca treinei. Posso começar?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="qa__a"><p>Sim. Conte no contato que está começando: a equipe explica como funciona o início e qual modalidade faz mais sentido para você.</p></div>
+          </details>
+          <details class="qa" name="faq">
+            <summary>Que tipo de pilates vocês oferecem?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="qa__a"><p>Mat Pilates, praticado no solo sobre colchonete, com foco em postura, centro do corpo, mobilidade e respiração.</p></div>
+          </details>
+          <details class="qa" name="faq">
+            <summary>Vocês aceitam Gympass?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="qa__a"><p>A parceria foi anunciada no nosso Instagram. Confirme pelo WhatsApp se o seu plano dá acesso à modalidade que você quer.</p></div>
+          </details>
+          <details class="qa" name="faq">
+            <summary>Qual o horário de funcionamento?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <!-- HORÁRIO PENDENTE: substituir pela grade oficial. -->
+            <div class="qa__a"><p>A grade de horários é informada pelo WhatsApp, sempre atualizada.</p></div>
+          </details>
+          <details class="qa" name="faq">
+            <summary>Tocar no botão do WhatsApp já agenda?<svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="qa__a"><p>Não. O botão abre uma conversa com uma mensagem pronta. É um pedido de contato: a equipe responde para tirar dúvidas e combinar os próximos passos.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10 · CONTATO
+         ============================================================ -->
+    <section class="contact" id="contato" aria-labelledby="contact-title">
+      <div class="wrap contact__wrap">
+        <div class="contact__main">
+          <p class="kicker"><b>10</b>Contato</p>
+          <h2 class="contact__title" id="contact-title" data-lines>
+            <span class="ln"><span>Fale com</span></span>
+            <span class="ln"><span><em>a AXIS.</em></span></span>
+          </h2>
+          <p class="lead">Conte o que você procura. A equipe responde pelo WhatsApp para tirar dúvidas e combinar os próximos passos.</p>
+
+          <svg class="axl contact__axl" viewBox="0 0 320 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22H250L264 2H320" pathLength="1"/></svg>
+
+          <a class="btn btn--red btn--xl contact__btn" data-wa="geral" href="https://wa.me/5545991159425" target="_blank" rel="noopener">
+            <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+            <span class="lbl-long">Falar com a AXIS pelo WhatsApp</span><span class="lbl-short">Falar pelo WhatsApp</span>
+            <svg class="ico btn__arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <p class="contact__topics">Ou comece pelo assunto:
+            <a data-wa="musculacao" href="https://wa.me/5545991159425" target="_blank" rel="noopener">Musculação</a>
+            <a data-wa="fisioterapia" href="https://wa.me/5545991159425" target="_blank" rel="noopener">Fisioterapia</a>
+            <a data-wa="pilates" href="https://wa.me/5545991159425" target="_blank" rel="noopener">Pilates</a>
+          </p>
+        </div>
+
+        <div class="contact__side">
+          <ul class="info">
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+              <div>
+                <p class="info__k">Endereço</p>
+                <p>Rua Riachuelo, 2397 · Cascavel – PR<br>CEP 85813-310</p>
+                <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Riachuelo%2C%202397%2C%20Cascavel%20-%20PR%2C%2085813-310" target="_blank" rel="noopener">Como chegar</a>
+              </div>
+            </li>
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>
+              <div>
+                <p class="info__k">Horários</p>
+                <!-- HORÁRIO PENDENTE -->
+                <p>Informados pelo WhatsApp.</p>
+              </div>
+            </li>
+            <li>
+              <svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg>
+              <div>
+                <p class="info__k">Instagram</p>
+                <a class="link" href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener">@academiaaxis</a>
+              </div>
+            </li>
+          </ul>
+          <p class="contact__wa">WhatsApp <a href="https://wa.me/5545991159425" target="_blank" rel="noopener">(45) 99115-9425</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ftr">
+    <div class="wrap ftr__grid">
+      <div>
+        <a class="brand" href="#top" aria-label="AXIS Academia e Fisioterapia — voltar ao início">
+          <span class="brand__name" aria-hidden="true">AXIS</span>
+          <span class="brand__sub" aria-hidden="true">Academia <b>&amp;</b> Fisioterapia</span>
+        </a>
+        <p class="ftr__claim">Força para evoluir.<br>Cuidado para continuar.</p>
+      </div>
+      <nav aria-label="Rodapé">
+        <ul class="ftr__nav">
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#fisioterapia">Fisioterapia</a></li>
+          <li><a href="#estrutura">Estrutura</a></li>
+          <li><a href="#conteudos">Conteúdos</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <ul class="ftr__info">
+        <li><a href="https://wa.me/5545991159425" target="_blank" rel="noopener">WhatsApp <span class="nw">(45) 99115-9425</span></a></li>
+        <li><a href="https://www.instagram.com/academiaaxis/" target="_blank" rel="noopener">Instagram @academiaaxis</a></li>
+        <li>Rua Riachuelo, 2397 · Cascavel – PR</li>
+      </ul>
+    </div>
+    <div class="wrap ftr__bar">
+      <p>© 2026 AXIS Academia e Fisioterapia</p>
+      <a href="#top">Voltar ao topo</a>
+    </div>
+  </footer>
+
+  <a class="dock" id="dock" data-wa="geral" href="https://wa.me/5545991159425" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+    <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span>Falar no WhatsApp</span>
+  </a>
+</body>
+</html>
