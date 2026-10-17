@@ -90,13 +90,14 @@ test('redimensionar no meio da sequência mantém o estado e não gera erros', a
   test.skip(testInfo.project.name === 'mobile', 'um projeto basta');
   const errors = watchErrors(page);
   await ready(page);
-  await scrollToTime(page, 7.6);
+  // compara só com o scrub assentado: a tolerância padrão (1% da timeline) vale ~0,27 volta da tampa
+  await scrollToTime(page, 7.6, 0.0005);
   const before = await state(page);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.waitForTimeout(800);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.waitForTimeout(800);
-  await scrollToTime(page, 7.6);
+  await scrollToTime(page, 7.6, 0.0005);
   const after = await state(page);
   expect(after.capTurns).toBeCloseTo(before.capTurns, 1);
   expect(errors).toEqual([]);

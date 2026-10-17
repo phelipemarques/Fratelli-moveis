@@ -49,7 +49,71 @@ fallback sem WebGL; movimento reduzido.
 
 ## 3. Testes
 
-{{RESULTADOS}}
+Ambiente: contêiner Linux, Chromium headless do Playwright 1.56. **WebGL por
+SwiftShader (CPU, sem GPU)**: os testes provam que a cena desenha, segue a
+rolagem e volta; não medem fluidez em aparelho real. Nos testes de rolagem o
+canvas usa `?dpr=0.3` (só a resolução cai; a lógica é a mesma).
+
+### Playwright (build de produção, `npm test`)
+
+54 testes em dois projetos (desktop 1440×900 e mobile Pixel 7 390×844). Os 15
+"pulados" são testes de um projeto só (roda do mouse e teclado só no desktop;
+menu, toque e barra só no mobile; os 10 tamanhos rodam uma vez).
+
+| Rodada | Resultado | O que mostrou |
+|---|---|---|
+| 1ª | 30 aprovados, 9 falhas | 7 tamanhos com rolagem lateral de 5–14 px (foto da revelação); reverso e redimensionamento travados pela compilação de shaders na primeira aparição da escova e do vidro |
+| 2ª (após correções) | 39 aprovados, 0 falhas | — |
+| 3ª (após a nova transição de cor) | 38 aprovados, 1 falha | o teste de redimensionamento comparava a volta da tampa com precisão maior que a tolerância de assentamento do próprio teste; corrigido o teste (espera o scrub assentar) e rodado 3 vezes isolado: 3 aprovados |
+
+Cobertura: carga sem erros de console; canvas desenhado; sequência completa
+pela rolagem (flor → esmalte → giro → tampa → pincel → marca → escova); rolagem
+reversa até o estado inicial; roda do mouse lenta e rápida; redimensionamento no
+meio da sequência; "Pular apresentação" pelo teclado; movimento reduzido; sem
+WebGL; sem JavaScript; todos os links de WhatsApp (número, mensagem, nova aba);
+Google Maps (URL exata), telefone e Instagram; ausência de preço, avaliação,
+horário e promoção; espaços de foto identificados; título, descrição, JSON-LD,
+`noindex` e robots; filtro e lightbox do portfólio (teclado, toque, contador,
+foco devolvido); menu mobile (Esc, foco); barra inferior sem cobrir o rodapé;
+10 tamanhos (320×568, 360×800, 375×667, 390×844, 414×896, 430×932, 768×1024,
+1024×768, 1440×900, 1920×1080) sem rolagem lateral e sem botão ou título cortado.
+
+### Acessibilidade (axe-core, WCAG 2.0/2.1/2.2 A e AA + boas práticas)
+
+`node scripts/axe.mjs <axe.min.js>` no build de produção, depois de percorrer as seções.
+
+| Cenário | 390×844 | 1440×900 |
+|---|---|---|
+| Com 3D | 0 violações (45 regras aprovadas) | 0 violações (45) |
+| Sem WebGL + movimento reduzido | 0 violações (46) | 0 violações (46) |
+
+Antes da correção da transição de cor: 1 regra violada (contraste, 10 nós,
+1,9–2:1). O axe marca "contraste a revisar" nos textos sobre o canvas 3D e sobre
+degradês, que ele não consegue medir; esses textos ficam sobre fundo escuro e
+véu, revisados nas capturas.
+
+### Lighthouse 12 (laboratório, build de prévia, 3 execuções, mediana)
+
+Chromium headless sem GPU, perfil padrão do Lighthouse (mobile com limitação de CPU e rede).
+
+| Perfil | Desempenho | Acessibilidade | Boas práticas | SEO | LCP | FCP | CLS | TBT | Peso inicial |
+|---|---|---|---|---|---|---|---|---|---|
+| Mobile | 99 (98–99) | 100 | 100 | 66* | 1,93 s | 1,66 s | 0,001 | 65 ms | 176 KB |
+| Desktop | 100 | 100 | 100 | 66* | 0,44 s | 0,38 s | 0,001 | 0 ms | 169 KB |
+
+\* SEO 66 na prévia por causa do `noindex` intencional. O mesmo site gerado com
+`PUBLICAR=1` marcou **SEO 100** (1 execução, mobile).
+
+O peso inicial não inclui o Three.js (~137 KB gzip), que só é baixado depois que
+o texto aparece. INP não foi medido: depende de interação real de visitantes.
+
+### Capturas
+
+`docs/capturas/`: comparação antes/depois nos mesmos instantes e seções
+(`comparacao-1440x900-*.jpg`, `comparacao-390x844-*.jpg`) e todas as capturas da
+V4 (`v4/`): estado inicial, flor parcial e aberta, esmalte surgindo e girando,
+tampa, pincel saindo e revelado, transição para a marca, marca, e as seções
+O salão, Serviços, Cabelos, Portfólio, Agendamento e Contato.
 
 ## 4. Critérios de aceitação
 
