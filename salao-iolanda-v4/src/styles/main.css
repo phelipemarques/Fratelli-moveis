@@ -820,23 +820,6 @@ a {
   background: var(--wine);
   color: var(--offwhite);
 }
-/* com JS, a cor de fundo é do <body> e muda suavemente entre as seções */
-.themed .section,
-.themed .site-footer {
-  background: transparent;
-}
-.themed body {
-  transition: background-color 0.7s var(--ease-io);
-}
-body[data-bg='light'] {
-  background: var(--offwhite);
-}
-body[data-bg='wine'] {
-  background: var(--wine);
-}
-body[data-bg='deep'] {
-  background: var(--black-2);
-}
 .section--deep {
   background: var(--black-2);
 }
