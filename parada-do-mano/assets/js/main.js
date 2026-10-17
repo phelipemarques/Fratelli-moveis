@@ -135,13 +135,22 @@
   if ('IntersectionObserver' in window) {
     var targets = document.querySelectorAll('[data-reveal], [data-day]');
     root.classList.add('reveal-ready');
+    var pendentes = Array.prototype.slice.call(targets);
+    var revelar = function (el) {
+      el.classList.add('is-visible');
+      io.unobserve(el);
+      pendentes.splice(pendentes.indexOf(el), 1);
+    };
     var io = new IntersectionObserver(function (entries) {
+      var algum = false;
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
+        if (entry.isIntersecting && !entry.target.classList.contains('is-visible')) { revelar(entry.target); algum = true; }
       });
+      // rolagem muito rápida (um gesto longo no celular) pode pular um elemento entre dois
+      // quadros sem ele nunca cruzar a tela: o que já ficou para trás também aparece
+      if (algum) {
+        pendentes.slice().forEach(function (el) { if (el.getBoundingClientRect().bottom < 0) revelar(el); });
+      }
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
     targets.forEach(function (el) { io.observe(el); });
 
