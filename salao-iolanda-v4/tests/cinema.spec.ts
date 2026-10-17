@@ -65,7 +65,8 @@ test('rolagem reversa desfaz a animação de forma consistente', async ({ page }
   expect(mid.capTurns).toBe(0);
   expect(mid.polishX).toBe(0);
   expect(mid.brushScale).toBe(0);
-  await scrollToTime(page, 0);
+  // o scrub assenta exatamente no início: comparar só depois de chegar lá
+  await scrollToTime(page, 0, 0.0005);
   const back = await state(page);
   for (const k of ['bloom', 'polishY', 'polishScale', 'capTurns', 'capLift', 'camZ', 'dropSize', 'brushScale', 'mood']) {
     expect(back[k], k).toBeCloseTo(initial[k], 3);

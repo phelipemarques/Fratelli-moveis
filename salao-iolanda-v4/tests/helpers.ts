@@ -38,7 +38,7 @@ export async function ready(page: Page, url = '/?dpr=0.3', { float = false } = {
 }
 
 /** rola até o instante t da timeline e espera o scrub assentar */
-export async function scrollToTime(page: Page, t: number) {
+export async function scrollToTime(page: Page, t: number, tolerance = 0.01) {
   const target = await page.evaluate((t) => {
     const c = window.__cinema!;
     const el = document.querySelector<HTMLElement>('.cinema')!;
@@ -48,7 +48,7 @@ export async function scrollToTime(page: Page, t: number) {
   }, t);
   await expect
     .poll(async () => page.evaluate((f) => Math.abs(window.__cinema!.timeline.progress() - f), target), { timeout: 30_000 })
-    .toBeLessThan(0.01);
+    .toBeLessThan(tolerance);
 }
 
 export const state = (page: Page) => page.evaluate(() => ({ ...window.__cinema!.state }));
