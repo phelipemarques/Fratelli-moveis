@@ -29,6 +29,8 @@ assets/fonts/              Barlow Condensed (700, 800 itálico) e Inter variáve
                            SIL OFL 1.1
 assets/brand/              favicon e imagem de compartilhamento (og-cover.jpg)
 tools/make-zip.py          monta o pacote do Netlify
+tools/build-single-file.py gera axis-visualizacao.html, versão em arquivo
+                           único (tudo embutido) para visualizar ou enviar
 _headers, robots.txt, sitemap.xml
 ```
 
