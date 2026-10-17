@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# PRODUÇÃO: trocar SEU-DOMINIO pelo endereço definitivo.
+Sitemap: https://SEU-DOMINIO/sitemap.xml
