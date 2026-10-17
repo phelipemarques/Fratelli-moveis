@@ -823,7 +823,7 @@ for (const [w, h] of [[390, 844], [1440, 900]]) {
   await page.goto(BASE, { waitUntil: 'load' });
   await page.waitForTimeout(3200);
   const r = await page.evaluate(() => ({
-    cortina: getComputedStyle(document.querySelector('.hero-curtain')).transform,
+    cortina: document.querySelector('.hero-curtain') ? getComputedStyle(document.querySelector('.hero-curtain')).transform : 'sem cortina',
     linhas: [...document.querySelectorAll('.hero-title .line > span')].every(s => getComputedStyle(s).transform === 'none' || /matrix\(1, 0, 0, 1, 0, 0\)/.test(getComputedStyle(s).transform)),
     textos: ['.hero-tag', '.hero-sub', '.hero-actions', '.hero-facts'].every(sel => getComputedStyle(document.querySelector(sel)).opacity === '1'),
   }));
