@@ -765,7 +765,9 @@ html.js:not(.gsap) .sol__panel.is-open .sol__txt { animation: rise 560ms var(--e
   .sol__ruler { position: absolute; left: var(--sp-2xl); right: var(--sp-2xl); bottom: var(--sp-xl); color: var(--on-green-3); }
 
   .js .sol__panel { grid-column: 2; grid-row: 1 / span 5; align-self: stretch; z-index: 1; color: var(--on-green); }
-  .js .sol__panel, .js .sol__panel.is-open { grid-template-rows: 1fr; }
+  .js .sol__panel, .js .sol__panel.is-open { grid-template-rows: 1fr; transition: opacity var(--dur-l) var(--ease-out) 450ms; }
+  /* o texto claro só aparece depois que o palco verde se revelou */
+  .io .sol__stage:not(.is-in) ~ .sol__item .sol__panel { opacity: 0; transition: none; }
   .js .sol__panel:not(.is-open) { visibility: hidden; }
   .js .sol__panel:not(.is-open) .sol__body { transition: none; }
   .sol__body { display: grid; }
@@ -773,7 +775,7 @@ html.js:not(.gsap) .sol__panel.is-open .sol__txt { animation: rise 560ms var(--e
   .js .sol__title { display: block; font-family: var(--display); font-weight: 700; font-size: clamp(3rem, 1.6rem + 2.4vw, 4.5rem); line-height: 0.92; max-width: 10ch; color: var(--on-green); }
 
   /* Empresas */
-  .emp__t { font-size: clamp(4rem, 1rem + 5vw, 7.5rem); max-width: 17ch; }
+  .emp__t { font-size: clamp(4rem, 1rem + 5vw, 7.5rem); max-width: 24ch; }
   .emp__benefits { margin-top: var(--sp-3xl); margin-left: 25%; }
 
   /* Processo horizontal: linha técnica de ponta a ponta, símbolo percorre */
@@ -838,3 +840,10 @@ html.js:not(.gsap) .sol__panel.is-open .sol__txt { animation: rise 560ms var(--e
 @media (min-width: 1920px) {
   :root { --max: 1640px; }
 }
+
+/* ---------- Página 404 ---------- */
+.nf { min-height: 100vh; min-height: 100svh; display: grid; align-items: center; background: var(--paper); }
+.nf__in { display: grid; gap: var(--sp-lg); justify-items: start; padding-block: var(--sp-3xl); }
+.nf .logo { margin-bottom: var(--sp-xl); }
+.nf__brand { font-family: var(--display); font-weight: 700; font-size: 1.375rem; color: var(--green-950); }
+.nf .hero__t { font-size: min(var(--t-hero), 12vw); max-width: 12ch; }

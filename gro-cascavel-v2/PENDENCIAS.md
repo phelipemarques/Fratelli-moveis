@@ -1,4 +1,4 @@
-# Pendências — GRO Cascavel
+# Pendências — GRO Cascavel (V2)
 
 O que falta pedir à GRO. Cada item diz o material, o formato e onde entra.
 
@@ -30,7 +30,10 @@ Nada além disso aparece no site como fato.
      empresa pode confirmar que o atendimento acontece assim;
    - os três benefícios de "Empresas" (Um só contato, Prazos à vista, Resposta
      direta) e a frase "O documento é o começo. A orientação é o que faz ele
-     funcionar."
+     funcionar.";
+   - (V2) a classificação dos temas por assunto ("Gestão de riscos", "Comissão
+     interna", "Documentação") e o item "Onde atende" em Sobre, tirado do texto
+     da própria seção.
 
 ## 🟡 Confirmar ou melhorar
 
@@ -54,7 +57,9 @@ Nada além disso aparece no site como fato.
 9. **"Laudos"** em Medicina do Trabalho vem do post "exames e laudos com
    agilidade". Confirmar quais laudos a GRO emite.
 10. **Direção técnica**: confirmar que Dr. Miguel Farah Filho segue como diretor
-    técnico (nome, CRM e RQE no rodapé, como exige a publicidade médica).
+    técnico e que os dados estão atualizados (nome, Médico do Trabalho, CRM/PR
+    6467, RQE 14420). Aparecem em Sobre e no rodapé, como exige a publicidade
+    médica.
 11. **Links dos conteúdos**: hoje apontam para o perfil do Instagram. Enviar o
     link de cada post, ou decidir se os temas viram artigos no próprio site.
 12. **Mapa**: usa a busca do Google pelo endereço, sem coordenadas inventadas.
@@ -72,5 +77,10 @@ Nada além disso aparece no site como fato.
     quiser, enviar prints de avaliações do Google com autorização dos autores.
 17. **Credenciamento PAM Saúde**: um post anuncia a GRO como credenciada. Ficou fora
     porque não sabemos se segue vigente.
-18. **Sem formulário**: o contato é por WhatsApp, telefone e e-mail. Um formulário
+18. **(V2) Movimento**: o símbolo de quatro folhas foi usado como sistema (cada
+    folha = uma solução; o símbolo percorre a linha do processo). Confirmar que
+    a GRO aprova esse uso da marca.
+19. **(V2) Sem 3D**: não há modelo 3D nem fotografia própria que justificasse
+    Three.js; o movimento é feito com SVG, CSS e GSAP.
+20. **Sem formulário**: o contato é por WhatsApp, telefone e e-mail. Um formulário
     exigiria definir destino das mensagens e texto de consentimento (LGPD).

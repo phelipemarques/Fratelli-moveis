@@ -6,7 +6,7 @@ dois cliques, sem servidor, e pode ser enviado por e-mail ou WhatsApp para
 aprovação. Não é a versão de produção: a política de segurança (CSP) é
 retirada, porque ela proíbe justamente o CSS e o JS embutidos.
 
-Uso, a partir da pasta gro-cascavel:
+Uso, a partir da pasta gro-cascavel-v2:
     python3 tools/gerar-visualizacao.py
 """
 import base64
@@ -14,7 +14,7 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OUT = ROOT / "visualizacao" / "index.html"
+OUT = ROOT / "entrega" / "gro-cascavel-v2-visualizacao.html"
 
 
 def data_uri(path, mime):
@@ -75,17 +75,26 @@ html = html.replace(
 html = html.replace(
     '<link rel="stylesheet" href="assets/css/main.css">', f"<style>\n{css}\n</style>"
 )
-html = html.replace(
-    '<script src="assets/js/main.js" defer></script>', f"<script>\n{js}\n</script>"
+# GSAP e ScrollTrigger entram embutidos antes do main.js (no site, o main.js
+# os carrega de assets/vendor só no desktop; aqui ele os encontra prontos)
+vendor = "".join(
+    f"<script>\n{(ROOT / 'assets/vendor' / n).read_text(encoding='utf-8')}\n</script>\n  "
+    for n in ("gsap.min.js", "ScrollTrigger.min.js")
 )
+assert "</script" not in vendor.replace("</script>\n  ", ""), "script embutido quebraria o HTML"
+html = html.replace(
+    '<script src="assets/js/main.js" defer></script>', f"{vendor}<script>\n{js}\n</script>"
+)
+# A prévia não deve ser indexada por buscadores
+html = html.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n  <meta name="robots" content="noindex, nofollow">', 1)
 html = html.replace(
     "<head>",
     "<head>\n  <!-- Versão de visualização em arquivo único, gerada por tools/gerar-visualizacao.py. "
-    "Para publicar, use a pasta gro-cascavel/, não este arquivo. -->",
+    "Para publicar, use a pasta gro-cascavel-v2/, não este arquivo. -->",
     1,
 )
 
-assert "assets/" not in html.split("</head>")[1].replace("og-gro-cascavel", ""), "ainda há referência a assets/"
+assert "assets/" not in html.split("</head>")[1].replace("og-gro-cascavel", "").replace("assets/vendor/", ""), "ainda há referência a assets/"
 OUT.parent.mkdir(exist_ok=True)
 OUT.write_text(html, encoding="utf-8")
 print(f"{OUT.relative_to(ROOT)}: {OUT.stat().st_size / 1024:.0f} KB")
