@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 450" role="img" aria-label="Símbolo GRO">
+  <defs>
+    <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="40" y1="440" x2="440" y2="20">
+      <stop offset="0" stop-color="#D4DE3A"/>
+      <stop offset="1" stop-color="#5DBB46"/>
+    </linearGradient>
+    <path id="l" d="M0 150C0 62 28 0 104 0H170C170 88 142 150 66 150Z"/>
+  </defs>
+  <g fill="url(#g)">
+    <use href="#l" x="170" y="0"/>
+    <use href="#l" x="0" y="150"/>
+    <use href="#l" x="290" y="150"/>
+    <use href="#l" x="120" y="300"/>
+  </g>
+</svg>

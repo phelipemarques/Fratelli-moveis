@@ -27,3 +27,9 @@ gro-cascavel/visualizacao/
 # Originais das fotos da GRO (pesados); o site usa as versões geradas em assets/images/fotos/
 gro-cascavel/fotos-originais/*
 !gro-cascavel/fotos-originais/LEIA.md
+
+# V2 da GRO: visualização e pacote de entrega são gerados por tools/
+gro-cascavel-v2/visualizacao/
+gro-cascavel-v2/entrega/
+gro-cascavel-v2/fotos-originais/*
+!gro-cascavel-v2/fotos-originais/LEIA.md
