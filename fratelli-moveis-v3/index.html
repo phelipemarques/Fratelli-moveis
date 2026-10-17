@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fratelli Móveis | Móveis Planejados em Cascavel — PR</title>
+<meta name="description" content="Móveis planejados sob medida em Cascavel, Paraná. A Fratelli desenvolve projetos para cozinhas, dormitórios, closets e outros ambientes pensados para cada espaço.">
+<meta name="theme-color" content="#F4F1EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191714" media="(prefers-color-scheme: dark)">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Fratelli Móveis">
+<meta property="og:title" content="Fratelli Móveis | Móveis Planejados em Cascavel — PR">
+<meta property="og:description" content="Móveis planejados sob medida em Cascavel, Paraná. A Fratelli desenvolve projetos para cozinhas, dormitórios, closets e outros ambientes pensados para cada espaço.">
+<!-- DEPOIS DO DEPLOY: as três linhas abaixo precisam da URL real do site.
+     Descomente e troque SEU-DOMINIO pelo endereço que o Netlify devolver
+     (ex.: fratelli-moveis.netlify.app) ou pelo domínio próprio. Sem isso o
+     link compartilhado no WhatsApp sai sem imagem e o Google não sabe qual
+     é o endereço canônico da página. -->
+<!-- <link rel="canonical" href="https://SEU-DOMINIO/"> -->
+<!-- <meta property="og:url" content="https://SEU-DOMINIO/"> -->
+<!-- <meta property="og:image" content="https://SEU-DOMINIO/assets/images/og-cover.jpg"> -->
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Fratelli Móveis",
+  "description": "Móveis planejados sob medida em Cascavel, Paraná.",
+  "telephone": "+5545998423488",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "R. Cacequi, 492 — Canadá",
+    "addressLocality": "Cascavel",
+    "addressRegion": "PR",
+    "addressCountry": "BR"
+  },
+  "sameAs": ["https://www.instagram.com/moveisplanejadosfratelli/"]
+}
+</script>
+<link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/images/hero-sala-1536.webp" imagesrcset="assets/images/hero-sala-640.webp 640w, assets/images/hero-sala-960.webp 960w, assets/images/hero-sala-1200.webp 1200w, assets/images/hero-sala-1536.webp 1536w" imagesizes="100vw" media="(min-width: 741px)">
+
+<link rel="stylesheet" href="css/main.css">
+
+<script>
+  /* Marca o documento antes da primeira pintura: os estados iniciais de
+     animação só existem quando há JavaScript e movimento permitido. */
+  (function () {
+    var el = document.documentElement;
+    el.classList.remove('no-js');
+    el.classList.add('js');
+    try {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        el.classList.add('motion');
+      }
+    } catch (e) { /* sem matchMedia: segue sem animação de entrada */ }
+    if (window.scrollY < 8) { el.classList.add('at-top'); }
+
+    /* Se o script principal não carregar, os estados iniciais das animações
+       ficariam presos e o conteúdo não apareceria. Esta rede é inline de
+       propósito: roda mesmo que js/main.js falhe. */
+    window.setTimeout(function () {
+      if (!window.__fratelliMotion) { el.classList.remove('motion'); }
+    }, 2500);
+  })();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="site-header" id="topo">
+  <div class="site-header__inner">
+    <a class="wordmark" href="#topo" aria-label="Fratelli Móveis, início">
+      <span class="wordmark__name">Fratelli</span>
+      <span class="wordmark__kind">Móveis</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navegação principal">
+      <ul class="site-nav__list">
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#ambientes">Ambientes</a></li>
+        <li><a href="#processo">Processo</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn--outline site-header__cta" href="#contato">
+      Fale com a Fratelli
+      <svg class="btn__seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-movel">
+      <span class="menu-toggle__bars" aria-hidden="true"><i></i><i></i></span>
+      <span class="menu-toggle__text">Menu</span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="menu-movel" inert>
+  <nav class="mobile-menu__panel" aria-label="Navegação principal, versão compacta">
+    <ul class="mobile-menu__list">
+      <li><a href="#projetos"><span class="mobile-menu__idx">01</span>Projetos</a></li>
+      <li><a href="#ambientes"><span class="mobile-menu__idx">02</span>Ambientes</a></li>
+      <li><a href="#processo"><span class="mobile-menu__idx">03</span>Processo</a></li>
+      <li><a href="#sobre"><span class="mobile-menu__idx">04</span>Sobre</a></li>
+      <li><a href="#contato"><span class="mobile-menu__idx">05</span>Contato</a></li>
+    </ul>
+    <p class="mobile-menu__foot">Cascavel, Paraná</p>
+  </nav>
+</div>
+
+<main id="conteudo">
+
+  <!-- ============================ HERO ============================ -->
+  <!-- A fotografia ocupa a tela inteira e começa atrás do cabeçalho, que é
+       transparente no topo. O texto mora no quadrante esquerdo; o véu
+       horizontal carrega o contraste desse lado e deixa a marcenaria da
+       direita acesa. -->
+  <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+    <div class="hero__media" data-hero-media>
+      <picture>
+        <source media="(max-width: 740px)" type="image/webp"
+                srcset="assets/images/hero-sala-retrato-480.webp 480w, assets/images/hero-sala-retrato-600.webp 600w, assets/images/hero-sala-retrato-780.webp 780w"
+                sizes="100vw">
+        <source media="(max-width: 740px)" type="image/jpeg"
+                srcset="assets/images/hero-sala-retrato-780.jpg 780w" sizes="100vw">
+        <source type="image/webp"
+                srcset="assets/images/hero-sala-640.webp 640w, assets/images/hero-sala-960.webp 960w, assets/images/hero-sala-1200.webp 1200w, assets/images/hero-sala-1536.webp 1536w"
+                sizes="100vw">
+        <img src="assets/images/hero-sala-1536.jpg" width="1536" height="1024"
+             alt="Sala de estar com painel de TV, nichos iluminados, ripado de madeira e aparador suspenso com iluminação embutida."
+             fetchpriority="high" decoding="async">
+      </picture>
+    </div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="hero__content" data-hero-content>
+      <p class="hero__eyebrow" data-hero-el>
+        <span class="hero__eyebrow-rule" aria-hidden="true"></span>
+        Ambientes que contam histórias
+      </p>
+
+      <!-- As linhas vêm escritas à mão porque a segunda carrega o trecho em
+           âmbar e itálico, e o divisor automático trabalha só com texto
+           puro. O efeito de revelação é o mesmo dos outros títulos. -->
+      <h1 class="hero__title" id="hero-titulo" data-split>
+        <span class="line"><span class="line__i">Móveis planejados</span></span>
+        <span class="line"><span class="line__i">para o <em class="hero__accent">seu jeito de morar.</em></span></span>
+      </h1>
+
+      <p class="hero__support" data-hero-el>
+        Projetos sob medida, com design, funcionalidade
+        e acabamento impecável.
+      </p>
+
+      <div class="hero__actions" data-hero-el>
+        <a class="btn btn--amber" href="#contato">
+          Falar sobre meu projeto
+          <svg class="btn__seta" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="btn btn--outline" href="#projetos">Ver projetos</a>
+      </div>
+    </div>
+
+    <div class="hero__foot" data-hero-el>
+      <span class="hero__scroll">
+        <svg class="hero__mouse" viewBox="0 0 16 26" aria-hidden="true" focusable="false">
+          <rect x="0.8" y="0.8" width="14.4" height="24.4" rx="7.2"
+                fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <circle class="hero__mouse-dot" cx="8" cy="7" r="1.6" fill="currentColor"/>
+        </svg>
+        <span class="hero__scroll-text">Role para explorar</span>
+      </span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </div>
+  </section>
+
+  <!-- ========================= A ABERTURA ========================= -->
+  <!-- Capítulo tridimensional. O módulo é uma VISUALIZAÇÃO CONCEITUAL
+       de marcenaria, não um móvel instalado pela Fratelli — a etiqueta
+       diz isso em HTML, fora do canvas, onde leitor de tela alcança.
+
+       O conteúdo que importa vive aqui no HTML: título, texto e os dois
+       links. O canvas é camada complementar. Sem WebGL, sem JavaScript
+       ou com movimento reduzido, a seção mostra a fotografia real e o
+       mesmo texto, sem buraco na página. -->
+  <section class="abertura" id="abertura" aria-labelledby="abertura3d-titulo"
+           data-dark-zone data-abertura>
+    <div class="abertura__palco" data-abertura-palco>
+      <canvas class="abertura__canvas" data-abertura-canvas aria-hidden="true"></canvas>
+
+      <!-- Fotografia real. É o fallback quando não há 3D e, quando há,
+           é o destino da transição do último ato. -->
+      <div class="abertura__foto" data-abertura-foto>
+        <picture>
+          <source type="image/webp"
+                  srcset="assets/images/projeto-closet-800.webp 800w, assets/images/projeto-closet-1200.webp 1200w, assets/images/projeto-closet-1540.webp 1540w"
+                  sizes="100vw">
+          <img src="assets/images/projeto-closet-1540.jpg" width="1540" height="866"
+               loading="lazy" decoding="async"
+               alt="Closet com portas de vidro, cabideiros, gaveteiros e prateleiras iluminadas por dentro.">
+        </picture>
+      </div>
+      <div class="abertura__veu" aria-hidden="true"></div>
+    </div>
+
+    <div class="abertura__conteudo">
+      <div class="shell">
+        <div class="abertura__texto">
+          <p class="eyebrow eyebrow--light" data-reveal>Visualização conceitual</p>
+          <h2 class="abertura__titulo" id="abertura3d-titulo" data-split>Cada ambiente começa por dentro.</h2>
+          <p class="abertura__lead" data-reveal>
+            Espessura de painel, altura de prateleira, vão de porta e a luz
+            que mostra o que está guardado. É o que se decide antes de
+            qualquer acabamento aparecer.
+          </p>
+          <p class="abertura__nota" data-reveal>
+            O módulo acima é um desenho conceitual, feito para mostrar
+            proporção e iluminação — não é um móvel instalado.
+          </p>
+          <div class="abertura__acoes" data-reveal>
+            <a class="btn btn--outline" href="#projetos">Pular a introdução</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== ABERTURA ========================== -->
+  <section class="opening" aria-labelledby="abertura-titulo">
+    <div class="shell">
+      <div class="opening__grid">
+        <p class="eyebrow" data-reveal>Como trabalhamos</p>
+        <h2 class="opening__title" id="abertura-titulo" data-split>Seu espaço começa na sua rotina.</h2>
+        <div class="opening__body">
+          <p data-reveal>Antes da marcenaria, vem a medida do dia a dia: por onde se passa, onde se apoia,
+            o que precisa ficar à mão e o que pode desaparecer atrás de uma porta.</p>
+          <p data-reveal>Cada projeto nasce dessa leitura. O móvel acompanha o pé-direito, respeita a passagem
+            e encontra o prumo da parede — em vez de disputar espaço com ela.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================ FILME ============================ -->
+  <!-- O filme é o fundo da faixa, não um elemento dentro dela: sem
+       moldura, sem cartão, sem controles e sem texto dentro do vídeo. O
+       carregamento é adiado — quem manda tocar é o IntersectionObserver
+       em js/main.js, e só quando a faixa se aproxima da tela e o
+       visitante não pediu menos movimento. Se isso não acontecer, o que
+       fica é o poster, que é o primeiro quadro do próprio filme.
+
+       data-dark-zone avisa o cabeçalho de que a faixa por baixo dele é
+       escura, como já fazem a faixa de ambientes e o contato. -->
+  <section class="film" id="filme" aria-labelledby="filme-titulo" data-dark-zone data-film>
+    <video class="film__video"
+           poster="assets/images/fratelli-film-poster.webp"
+           width="1280" height="720"
+           muted loop playsinline preload="metadata"
+           aria-label="Filme visual da Fratelli Móveis mostrando ambientes planejados, marcenaria, cozinhas, dormitórios e closets.">
+      <source src="assets/video/fratelli-brand-film.mp4" type="video/mp4">
+    </video>
+
+    <div class="film__overlay" aria-hidden="true"></div>
+
+    <div class="film__content">
+      <div class="shell">
+        <div class="film__stack">
+          <p class="eyebrow eyebrow--light" data-reveal>Fratelli Móveis</p>
+          <h2 class="film__title" id="filme-titulo" data-split>Ambientes pensados nos detalhes.</h2>
+          <p class="film__lead" data-reveal>
+            Marcenaria sob medida, proporção, luz e acabamento em cada escolha.
+          </p>
+          <div class="film__actions" data-reveal>
+            <a class="btn btn--solid" href="#projetos">Ver projetos</a>
+            <a class="btn btn--ghost" href="#contato">Falar com a Fratelli</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== PROJETOS ========================== -->
+  <section class="projects" id="projetos" aria-labelledby="projetos-titulo">
+    <div class="shell">
+      <header class="section-head">
+        <p class="eyebrow" data-reveal>Projetos</p>
+        <h2 class="section-head__title" id="projetos-titulo" data-split>Ambientes desenhados peça a peça.</h2>
+        <p class="section-head__note" data-reveal>
+          Do desenho em 3D ao ambiente instalado. Cada imagem indica em que
+          etapa foi registrada.
+        </p>
+      </header>
+    </div>
+
+    <div class="shell">
+      <article class="project project--wide" data-reveal-frame>
+        <div class="project__frame frame frame--169" data-parallax-frame>
+          <div class="frame__veil" aria-hidden="true"></div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/projeto-closet-800.webp 800w, assets/images/projeto-closet-1200.webp 1200w, assets/images/projeto-closet-1540.webp 1540w"
+                    sizes="(min-width: 900px) min(92vw, 1320px), 100vw">
+            <img class="frame__img" src="assets/images/projeto-closet-1540.jpg" width="1540" height="866"
+                 loading="lazy" decoding="async"
+                 alt="Closet com portas de vidro, cabideiros, gaveteiros e prateleiras iluminadas por dentro.">
+          </picture>
+          <div class="frame__note frame__note--image">
+            <span class="reserved__tag">Projeto em 3D</span>
+          </div>
+        </div>
+        <div class="project__meta">
+          <h3 class="project__title">Closet</h3>
+          <p class="project__line">Portas de vidro, cabideiro, gaveteiro e prateleira, com iluminação embutida em cada módulo.</p>
+        </div>
+      </article>
+
+      <div class="project-pair">
+        <article class="project project--tall" data-reveal-frame>
+          <div class="project__frame frame frame--45" data-parallax-frame>
+            <div class="frame__veil" aria-hidden="true"></div>
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/images/projeto-dormitorio-480.webp 480w, assets/images/projeto-dormitorio-700.webp 700w, assets/images/projeto-dormitorio-1034.webp 1034w"
+                      sizes="(min-width: 900px) 40vw, 100vw">
+              <img class="frame__img" src="assets/images/projeto-dormitorio-1034.jpg" width="1034" height="1293"
+                   loading="lazy" decoding="async"
+                   alt="Dormitório com painel curvo de madeira clara na cabeceira e criados-mudos de duas gavetas.">
+            </picture>
+            <div class="frame__note frame__note--image">
+              <span class="reserved__tag">Projeto em 3D</span>
+            </div>
+          </div>
+          <div class="project__meta">
+            <h3 class="project__title">Dormitório</h3>
+            <p class="project__line">Painel curvo de parede a parede na cabeceira, em madeira clara, com criados-mudos suspensos.</p>
+          </div>
+        </article>
+
+        <article class="project project--short" data-reveal-frame>
+          <div class="project__frame frame frame--32" data-parallax-frame>
+            <div class="frame__veil" aria-hidden="true"></div>
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/images/projeto-banheiro-640.webp 640w, assets/images/projeto-banheiro-900.webp 900w, assets/images/projeto-banheiro-1312.webp 1312w"
+                      sizes="(min-width: 900px) 52vw, 100vw">
+              <img class="frame__img" src="assets/images/projeto-banheiro-1312.jpg" width="1312" height="875"
+                   loading="lazy" decoding="async"
+                   alt="Banheiro com parede ripada em madeira, bancada suspensa e espelho com iluminação embutida.">
+            </picture>
+            <div class="frame__note frame__note--image">
+              <span class="reserved__tag">Projeto em 3D</span>
+            </div>
+          </div>
+          <div class="project__meta">
+            <h3 class="project__title">Banheiro</h3>
+            <p class="project__line">Parede ripada, bancada suspensa e espelho com luz embutida na moldura.</p>
+          </div>
+        </article>
+      </div>
+
+      <article class="project project--offset" data-reveal-frame>
+        <div class="project__meta project__meta--lead">
+          <h3 class="project__title">Home office</h3>
+          <p class="project__line">Bancada suspensa de parede a parede, painel de madeira com luz embutida e closet de vidro ao lado.</p>
+        </div>
+        <div class="project__frame frame frame--32" data-parallax-frame>
+          <div class="frame__veil" aria-hidden="true"></div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/projeto-home-office-640.webp 640w, assets/images/projeto-home-office-900.webp 900w, assets/images/projeto-home-office-1308.webp 1308w"
+                    sizes="(min-width: 900px) 56vw, 100vw">
+            <img class="frame__img" src="assets/images/projeto-home-office-1308.jpg" width="1308" height="872"
+                 loading="lazy" decoding="async"
+                 alt="Home office com bancada suspensa, painel de madeira iluminado por dentro e closet de portas de vidro ao lado.">
+          </picture>
+          <div class="frame__note frame__note--image">
+            <span class="reserved__tag">Projeto em 3D</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="project-pair">
+        <article class="project project--tall" data-reveal-frame>
+          <div class="project__frame frame frame--45" data-parallax-frame>
+            <div class="frame__veil" aria-hidden="true"></div>
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/images/projeto-painel-tv-480.webp 480w, assets/images/projeto-painel-tv-700.webp 700w, assets/images/projeto-painel-tv-1080.webp 1080w"
+                      sizes="(min-width: 900px) 40vw, 100vw">
+              <img class="frame__img" src="assets/images/projeto-painel-tv-1080.jpg" width="1080" height="1350"
+                   loading="lazy" decoding="async"
+                   alt="Painel de TV instalado, em lâmina de porcelanato branco com moldura laqueada, ripado lateral e bancada suspensa.">
+            </picture>
+            <div class="frame__note frame__note--image">
+              <span class="reserved__tag reserved__tag--built">Projeto executado</span>
+            </div>
+          </div>
+          <div class="project__meta">
+            <h3 class="project__title">Painel de TV</h3>
+            <p class="project__line">Lâmina de porcelanato com moldura laqueada, ripado lateral e bancada suspensa.</p>
+          </div>
+        </article>
+
+        <article class="project project--short" data-reveal-frame>
+          <div class="project__frame frame frame--169" data-parallax-frame>
+            <div class="frame__veil" aria-hidden="true"></div>
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/images/projeto-sala-800.webp 800w, assets/images/projeto-sala-1200.webp 1200w, assets/images/projeto-sala-1554.webp 1554w"
+                      sizes="(min-width: 900px) 52vw, 100vw">
+              <img class="frame__img" src="assets/images/projeto-sala-1554.jpg" width="1554" height="874"
+                   loading="lazy" decoding="async"
+                   alt="Sala de estar em pé-direito duplo, com painel de TV em porcelanato, ripado de madeira e aparador suspenso.">
+            </picture>
+            <div class="frame__note frame__note--image">
+              <span class="reserved__tag">Projeto em 3D</span>
+            </div>
+          </div>
+          <div class="project__meta">
+            <h3 class="project__title">Sala de estar</h3>
+            <p class="project__line">Painel de TV em lâmina de porcelanato, ripado de madeira e aparador suspenso, no pé-direito duplo.</p>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FAIXA ESCURA: AMBIENTES + PROCESSO ===================== -->
+  <div class="band-dark" data-dark-zone>
+
+    <section class="rooms" id="ambientes" aria-labelledby="ambientes-titulo">
+      <div class="shell">
+        <header class="section-head section-head--inverted">
+          <p class="eyebrow eyebrow--light" data-reveal>Ambientes</p>
+          <h2 class="section-head__title" id="ambientes-titulo" data-split>Cada cômodo pede uma medida diferente.</h2>
+        </header>
+      </div>
+
+      <div class="rooms__viewport" data-rooms-viewport>
+        <ul class="rooms__track" data-rooms-track
+            role="region" aria-label="Ambientes, lista rolável na horizontal" tabindex="0">
+          <li class="room" tabindex="0" data-room>
+            <span class="room__index" aria-hidden="true">01</span>
+            <div class="room__frame frame frame--45">
+              <picture>
+                <source type="image/webp" srcset="assets/images/ambiente-cozinha-336.webp 336w"
+                        sizes="(min-width: 900px) 22rem, 15rem">
+                <img class="frame__img" src="assets/images/ambiente-cozinha-336.jpg" width="336" height="420"
+                     loading="lazy" decoding="async" alt="Cozinha instalada, com ilha de borda ripada curva, torre de armários e armário superior de vidro.">
+              </picture>
+              <div class="frame__note frame__note--image">
+                <span class="reserved__tag reserved__tag--built">Projeto executado</span>
+              </div>
+            </div>
+            <h3 class="room__title">Cozinha</h3>
+            <p class="room__line">Bancada, torre quente e circulação livre entre a ilha e os armários.</p>
+          </li>
+          <li class="room" tabindex="0" data-room>
+            <span class="room__index" aria-hidden="true">02</span>
+            <div class="room__frame frame frame--45">
+              <picture>
+                <source type="image/webp" srcset="assets/images/ambiente-dormitorio-480.webp 480w, assets/images/ambiente-dormitorio-704.webp 704w, assets/images/ambiente-dormitorio-1036.webp 1036w"
+                        sizes="(min-width: 900px) 22rem, 15rem">
+                <img class="frame__img" src="assets/images/ambiente-dormitorio-1036.jpg" width="1036" height="1295"
+                     loading="lazy" decoding="async" alt="Dormitório com parede verde, painel de TV, aparador suspenso de gavetas e guarda-roupa de piso a teto.">
+              </picture>
+              <div class="frame__note frame__note--image">
+                <span class="reserved__tag">Projeto em 3D</span>
+              </div>
+            </div>
+            <h3 class="room__title">Dormitório</h3>
+            <p class="room__line">Guarda-roupa no vão exato da parede, sem sobra nem emenda aparente.</p>
+          </li>
+          <li class="room" tabindex="0" data-room>
+            <span class="room__index" aria-hidden="true">03</span>
+            <div class="room__frame frame frame--45">
+              <picture>
+                <source type="image/webp" srcset="assets/images/ambiente-closet-480.webp 480w, assets/images/ambiente-closet-739.webp 739w"
+                        sizes="(min-width: 900px) 22rem, 15rem">
+                <img class="frame__img" src="assets/images/ambiente-closet-739.jpg" width="739" height="924"
+                     loading="lazy" decoding="async" alt="Closet de portas de vidro fumê, com prateleiras, cabideiro e gaveteiro iluminados por dentro.">
+              </picture>
+              <div class="frame__note frame__note--image">
+                <span class="reserved__tag">Projeto em 3D</span>
+              </div>
+            </div>
+            <h3 class="room__title">Closet</h3>
+            <p class="room__line">Altura de cabide, gaveteiro e prateleira medidos pelo que se guarda.</p>
+          </li>
+          <li class="room" tabindex="0" data-room>
+            <span class="room__index" aria-hidden="true">04</span>
+            <div class="room__frame frame frame--45">
+              <picture>
+                <source type="image/webp" srcset="assets/images/ambiente-home-office-480.webp 480w, assets/images/ambiente-home-office-702.webp 702w"
+                        sizes="(min-width: 900px) 22rem, 15rem">
+                <img class="frame__img" src="assets/images/ambiente-home-office-702.jpg" width="702" height="878"
+                     loading="lazy" decoding="async" alt="Home office com bancada suspensa, painel de madeira com luz embutida e closet ao lado.">
+              </picture>
+              <div class="frame__note frame__note--image">
+                <span class="reserved__tag">Projeto em 3D</span>
+              </div>
+            </div>
+            <h3 class="room__title">Home office</h3>
+            <p class="room__line">Bancada na altura de trabalho e fiação resolvida dentro do móvel.</p>
+          </li>
+          <li class="room" tabindex="0" data-room>
+            <span class="room__index" aria-hidden="true">05</span>
+            <div class="room__frame frame frame--45">
+              <picture>
+                <source type="image/webp" srcset="assets/images/ambiente-sala-480.webp 480w, assets/images/ambiente-sala-704.webp 704w, assets/images/ambiente-sala-819.webp 819w"
+                        sizes="(min-width: 900px) 22rem, 15rem">
+                <img class="frame__img" src="assets/images/ambiente-sala-819.jpg" width="819" height="1024"
+                     loading="lazy" decoding="async" alt="Sala de estar com painel claro de parede a parede, nicho iluminado, ripado de madeira e aparador suspenso.">
+              </picture>
+              <div class="frame__note frame__note--image">
+                <span class="reserved__tag">Imagem de referência</span>
+              </div>
+            </div>
+            <h3 class="room__title">Sala de estar</h3>
+            <p class="room__line">Painel de televisão, nichos e apoio alinhados ao eixo do sofá.</p>
+          </li>
+          <li class="room" tabindex="0" data-room>
+            <span class="room__index" aria-hidden="true">06</span>
+            <div class="room__frame frame frame--45">
+              <picture>
+                <source type="image/webp" srcset="assets/images/ambiente-gourmet-480.webp 480w, assets/images/ambiente-gourmet-704.webp 704w, assets/images/ambiente-gourmet-819.webp 819w"
+                        sizes="(min-width: 900px) 22rem, 15rem">
+                <img class="frame__img" src="assets/images/ambiente-gourmet-819.jpg" width="819" height="1024"
+                     loading="lazy" decoding="async" alt="Área gourmet com ilha de borda ripada curva, churrasqueira embutida e abertura para o jardim.">
+              </picture>
+              <div class="frame__note frame__note--image">
+                <span class="reserved__tag">Imagem de referência</span>
+              </div>
+            </div>
+            <h3 class="room__title">Área gourmet</h3>
+            <p class="room__line">Marcenaria preparada para a churrasqueira, a cuba e o uso ao ar livre.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="rooms__foot">
+        <p class="rooms__hint" data-rooms-hint aria-hidden="true">Arraste para o lado</p>
+        <!-- Progresso da faixa. É um indicador visual do quanto da
+             sequência já passou; a contagem em texto fica no próprio
+             cartão de cada ambiente, que já é lido por leitor de tela. -->
+        <div class="rooms__progresso" data-rooms-progresso aria-hidden="true">
+          <span class="rooms__progresso-fill"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="processo" aria-labelledby="processo-titulo">
+      <div class="shell">
+        <header class="section-head section-head--inverted">
+          <p class="eyebrow eyebrow--light" data-reveal>Processo</p>
+          <h2 class="section-head__title" id="processo-titulo" data-split>Da primeira medida à montagem.</h2>
+        </header>
+
+        <ol class="steps" data-steps>
+          <li class="step" data-step>
+            <span class="step__num">01</span>
+            <h3 class="step__title">Conversa e medição</h3>
+            <p class="step__line">Visita ao espaço, levantamento das medidas e entendimento do uso de cada ambiente.</p>
+          </li>
+          <li class="step" data-step>
+            <span class="step__num">02</span>
+            <h3 class="step__title">Projeto e detalhamento</h3>
+            <p class="step__line">Desenho do móvel, definição de materiais, ferragens e acabamentos, com orçamento fechado.</p>
+          </li>
+          <li class="step" data-step>
+            <span class="step__num">03</span>
+            <h3 class="step__title">Produção</h3>
+            <p class="step__line">Corte, usinagem e montagem das peças conforme o detalhamento aprovado.</p>
+          </li>
+          <li class="step" data-step>
+            <span class="step__num">04</span>
+            <h3 class="step__title">Montagem e entrega</h3>
+            <p class="step__line">Instalação no local, ajuste fino de portas e gavetas e revisão final com o cliente.</p>
+          </li>
+          <li class="steps__rail" aria-hidden="true"><span class="steps__rail-fill" data-steps-fill></span></li>
+        </ol>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============================ SOBRE ============================ -->
+  <section class="about" id="sobre" aria-labelledby="sobre-titulo">
+    <div class="shell">
+      <div class="about__grid">
+        <div class="about__text">
+          <p class="eyebrow" data-reveal>Sobre</p>
+          <h2 class="about__title" id="sobre-titulo" data-split>Móveis planejados em Cascavel, no Paraná.</h2>
+          <p class="about__lead" data-reveal>
+            A Fratelli Móveis trabalha com móveis planejados: projeto, produção e montagem
+            sob medida para o espaço de cada cliente.
+          </p>
+          <p class="about__note" data-reveal>
+            Atendimento na R. Cacequi, 492 — Canadá, em Cascavel. O projeto começa
+            com uma conversa e a medição do espaço.
+          </p>
+        </div>
+        <div class="about__aside" data-reveal-frame>
+          <div class="frame frame--45" data-parallax-frame>
+            <div class="frame__veil" aria-hidden="true"></div>
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/images/sobre-showroom-500.webp 500w, assets/images/sobre-showroom-748.webp 748w, assets/images/sobre-showroom-1003.webp 1003w"
+                      sizes="(min-width: 900px) 28vw, 100vw">
+              <img class="frame__img" src="assets/images/sobre-showroom-1003.jpg" width="1003" height="1254"
+                   loading="lazy" decoding="async"
+                   alt="Atendimento da Fratelli Móveis: mesas de trabalho, mostruário de acabamentos e a marca aplicada na parede.">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= AVALIAÇÕES ========================= -->
+  <!-- As avaliações são capturas de tela reais, exibidas como imagem.
+       Nenhum texto foi reescrito, resumido ou criado. O texto de cada
+       uma está repetido no atributo alt, palavra por palavra, para
+       leitores de tela. Gerado por tools/prepare-reviews.py. -->
+  <section class="reviews" id="avaliacoes" aria-labelledby="avaliacoes-titulo">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow" data-reveal>Avaliações</p>
+        <h2 class="section-head__title" id="avaliacoes-titulo" data-split>A confiança de quem já escolheu a Fratelli.</h2>
+        <p class="reviews__score" data-reveal>
+          <span class="reviews__stars" aria-hidden="true"><svg viewBox="0 0 24 24" role="presentation" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg><svg viewBox="0 0 24 24" role="presentation" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg><svg viewBox="0 0 24 24" role="presentation" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg><svg viewBox="0 0 24 24" role="presentation" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg><svg viewBox="0 0 24 24" role="presentation" focusable="false"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg></span>
+          <span><b>5,0</b> de 5 na avaliação dos clientes.</span>
+        </p>
+      </div>
+      <div class="reviews__cols">
+        <ul class="reviews__col">
+          <li class="review" data-reveal>
+            <figure class="review__card">
+              <picture>
+                <source type="image/webp" srcset="assets/images/avaliacao-joseane-996.webp 996w, assets/images/avaliacao-joseane-720.webp 720w, assets/images/avaliacao-joseane-480.webp 480w"
+                        sizes="(min-width: 1320px) 560px, (min-width: 768px) 44vw, 91vw">
+                <img class="review__shot" src="assets/images/avaliacao-joseane-996.jpg"
+                     width="996" height="1188" loading="lazy" decoding="async"
+                     alt="Avaliação de Joseane Terraplanagem 2019, cinco estrelas, há três anos: “Minha experiência a melhor os móveis super modernos acabamento impecável , atendimento top entrega na data prevista .sem contar a qualidade dos matérias dou nota mil super recomendo”. Aspectos positivos: Receptividade, Pontualidade, Qualidade, Profissionalismo e Valor. Serviços: Mobiliário para banheiro, Mobiliário para dormitório, Móveis para quartos infantis, Mobiliário para cozinha, Móveis de sala de estar e Móveis sob medida.">
+              </picture>
+            </figure>
+          </li>
+          <li class="review" data-reveal>
+            <figure class="review__card">
+              <picture>
+                <source type="image/webp" srcset="assets/images/avaliacao-paula-996.webp 996w, assets/images/avaliacao-paula-720.webp 720w, assets/images/avaliacao-paula-480.webp 480w"
+                        sizes="(min-width: 1320px) 560px, (min-width: 768px) 44vw, 91vw">
+                <img class="review__shot" src="assets/images/avaliacao-paula-996.jpg"
+                     width="996" height="249" loading="lazy" decoding="async"
+                     alt="Avaliação de Paula Susana, cinco estrelas, há três anos: “Ótimo atendimento, móveis de alta qualidade, entrega no prazo.”">
+              </picture>
+            </figure>
+          </li>
+        </ul>
+        <ul class="reviews__col">
+          <li class="review" data-reveal>
+            <figure class="review__card">
+              <picture>
+                <source type="image/webp" srcset="assets/images/avaliacao-wagner-996.webp 996w, assets/images/avaliacao-wagner-720.webp 720w, assets/images/avaliacao-wagner-480.webp 480w"
+                        sizes="(min-width: 1320px) 560px, (min-width: 768px) 44vw, 91vw">
+                <img class="review__shot" src="assets/images/avaliacao-wagner-996.jpg"
+                     width="996" height="287" loading="lazy" decoding="async"
+                     alt="Avaliação de Wagner Santos, cinco estrelas, há três anos: “Móveis muito bom, atendimento excelente, acabamentos impecável 🤗 Super recomendo móveis de qualidade 🤝”.">
+              </picture>
+            </figure>
+          </li>
+          <li class="review" data-reveal>
+            <figure class="review__card">
+              <picture>
+                <source type="image/webp" srcset="assets/images/avaliacao-maicon-996.webp 996w, assets/images/avaliacao-maicon-720.webp 720w, assets/images/avaliacao-maicon-480.webp 480w"
+                        sizes="(min-width: 1320px) 560px, (min-width: 768px) 44vw, 91vw">
+                <img class="review__shot" src="assets/images/avaliacao-maicon-996.jpg"
+                     width="996" height="334" loading="lazy" decoding="async"
+                     alt="Avaliação de Maicon Costa, cinco estrelas, há três anos: “Fui muito bem atendido pela Suelen, minha cozinha ficou perfeita, indico de olhos fechados!” Aspectos positivos: Qualidade.">
+              </picture>
+            </figure>
+          </li>
+          <li class="review" data-reveal>
+            <figure class="review__card">
+              <picture>
+                <source type="image/webp" srcset="assets/images/avaliacao-rafael-996.webp 996w, assets/images/avaliacao-rafael-720.webp 720w, assets/images/avaliacao-rafael-480.webp 480w"
+                        sizes="(min-width: 1320px) 560px, (min-width: 768px) 44vw, 91vw">
+                <img class="review__shot" src="assets/images/avaliacao-rafael-996.jpg"
+                     width="996" height="276" loading="lazy" decoding="async"
+                     alt="Avaliação de Rafael Livinali, cinco estrelas, há três anos: “TOP NOTA 10 O PESSOAL, FIZ TODA MINHA CASA COM ELES FICOU MUITO LINDO”.">
+              </picture>
+            </figure>
+          </li>
+          <li class="review" data-reveal>
+            <figure class="review__card">
+              <picture>
+                <source type="image/webp" srcset="assets/images/avaliacao-marcio-995.webp 995w, assets/images/avaliacao-marcio-720.webp 720w, assets/images/avaliacao-marcio-480.webp 480w"
+                        sizes="(min-width: 1320px) 560px, (min-width: 768px) 44vw, 91vw">
+                <img class="review__shot" src="assets/images/avaliacao-marcio-995.jpg"
+                     width="995" height="331" loading="lazy" decoding="async"
+                     alt="Avaliação de marcio batista, cinco estrelas, há três anos: “Maravilhoso”. Aspectos positivos: Receptividade, Pontualidade, Qualidade, Profissionalismo e Valor.">
+              </picture>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== CONTATO =========================== -->
+  <section class="contact" id="contato" aria-labelledby="contato-titulo" data-dark-zone>
+    <div class="shell">
+      <div class="contact__grid">
+        <div class="contact__lead">
+          <p class="eyebrow eyebrow--light" data-reveal>Contato</p>
+          <h2 class="contact__title" id="contato-titulo" data-split>Vamos conversar sobre o seu espaço?</h2>
+          <p class="contact__text" data-reveal>
+            Conte em que ambiente você está pensando e quais medidas já tem em mãos.
+            A partir daí combinamos a visita e o levantamento.
+          </p>
+          <div class="contact__actions" data-reveal>
+            <a class="btn btn--solid" href="https://wa.me/5545998423488?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fratelli%20M%C3%B3veis%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+               target="_blank" rel="noopener"
+               aria-label="Chamar a Fratelli Móveis no WhatsApp, (45) 99842-3488. Abre em uma nova aba.">
+              Chamar no WhatsApp
+            </a>
+            <span class="contact__flag">(45) 99842-3488</span>
+          </div>
+        </div>
+
+        <div class="contact__data" data-reveal>
+          <dl class="contact__list">
+            <div class="contact__row">
+              <dt>Cidade</dt>
+              <dd>Cascavel — Paraná</dd>
+            </div>
+            <div class="contact__row">
+              <dt>WhatsApp</dt>
+              <dd><a class="contact__link" href="https://wa.me/5545998423488?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fratelli%20M%C3%B3veis%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">(45) 99842-3488</a></dd>
+            </div>
+            <div class="contact__row">
+              <dt>Endereço</dt>
+              <dd><a class="contact__link" href="https://www.google.com/maps/dir/?api=1&destination=R.%20Cacequi%2C%20492%20-%20Canad%C3%A1%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener">R. Cacequi, 492 — Canadá</a></dd>
+            </div>
+            <div class="contact__row">
+              <dt>Instagram</dt>
+              <dd><a class="contact__link" href="https://www.instagram.com/moveisplanejadosfratelli/" target="_blank" rel="noopener">@moveisplanejadosfratelli</a></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="contact__map" data-reveal>
+        <div class="map-frame" data-map
+             data-map-src="https://www.google.com/maps?q=R.%20Cacequi%2C%20492%20-%20Canad%C3%A1%2C%20Cascavel%20-%20PR&output=embed"
+             data-map-title="Mapa com a localização da Fratelli Móveis, na R. Cacequi, 492, bairro Canadá, em Cascavel">
+          <p class="map-frame__place">
+            <span>Cascavel</span>
+            <span>Paraná</span>
+          </p>
+        </div>
+        <div class="contact__map-foot">
+          <p class="contact__map-address">R. Cacequi, 492 — Canadá · Cascavel, Paraná</p>
+          <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&destination=R.%20Cacequi%2C%20492%20-%20Canad%C3%A1%2C%20Cascavel%20-%20PR" target="_blank" rel="noopener">Como chegar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-dark-zone>
+  <div class="shell">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <a class="wordmark wordmark--footer" href="#topo" aria-label="Fratelli Móveis, voltar ao topo">
+          <span class="wordmark__name">Fratelli</span>
+          <span class="wordmark__kind">Móveis</span>
+        </a>
+        <p class="site-footer__address">R. Cacequi, 492 — Canadá<br>Cascavel — Paraná</p>
+      </div>
+
+      <div class="site-footer__contact">
+        <a class="contact__link" href="https://wa.me/5545998423488?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fratelli%20M%C3%B3veis%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">WhatsApp (45) 99842-3488</a>
+        <a class="contact__link" href="https://www.instagram.com/moveisplanejadosfratelli/" target="_blank" rel="noopener">@moveisplanejadosfratelli</a>
+      </div>
+      <nav class="site-footer__nav" aria-label="Navegação do rodapé">
+        <ul>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#ambientes">Ambientes</a></li>
+          <li><a href="#processo">Processo</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="site-footer__bottom">
+      <p class="site-footer__legal">© <span data-ano>2026</span> Fratelli Móveis · Cascavel, Paraná</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer onerror="document.documentElement.classList.remove('motion')"></script>
+<!-- Capítulo 3D: módulo próprio, carregado só onde faz sentido. -->
+<script type="module" src="js/3d/boot.js"></script>
+</body>
+</html>
