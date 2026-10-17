@@ -253,6 +253,9 @@ export class Stage {
    */
   bounds() {
     this.apply(0);
+    // a projeção usa a matriz da câmera: atualizar antes (o render faria isso sozinho)
+    this.scene.updateMatrixWorld();
+    this.camera.updateMatrixWorld();
     const box = new THREE.Box3();
     const v = new THREE.Vector3();
     const part = new THREE.Box3();
