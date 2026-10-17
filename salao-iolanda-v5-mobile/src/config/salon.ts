@@ -134,8 +134,9 @@ export const hairHighlights = ['Cortes', 'Penteados', 'Hidratação', 'Progressi
  * Portfólio. Cada item vira um quadro da galeria e do lightbox.
  * Enquanto `src` for null o quadro aparece como espaço reservado, com o aviso
  * "foto autorizada pendente": nenhuma imagem ilustrativa é apresentada como
- * trabalho do salão. Para publicar: coloque o arquivo em public/portfolio/,
- * preencha `src`, `alt` e `caption`, e confirme a autorização da cliente.
+ * trabalho do salão. Para publicar: coloque o original em fotos-originais/,
+ * rode `npm run images`, preencha `src` com o nome-base (ex.: 'fotos/mechas-01'),
+ * `alt` e `caption`, e confirme a autorização da cliente.
  */
 export interface PortfolioItem {
   src: string | null;

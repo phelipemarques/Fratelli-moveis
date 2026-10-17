@@ -100,7 +100,7 @@
               <p class="lede" data-fade>Cuidados com cabelo, unhas, maquiagem e estética em Cascavel.</p>
               <div class="actions" data-fade>
                 <a class="btn" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar meu horário<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
-                <a class="btn btn--ghost" href="#servicos">Conhecer os serviços</a>
+                <a class="btn btn--ghost hide-m" href="#servicos">Conhecer os serviços</a>
               </div>
               <p class="place" data-fade><!--@diamond--> Rua Castro Alves, 2995 · Cascavel/PR</p>
             </article>
@@ -153,13 +153,13 @@
               <p class="lede" data-fade>Cabelo, unhas, maquiagem, depilação e estética no mesmo endereço.</p>
               <div class="actions" data-fade>
                 <a class="btn" href="#servicos">Conhecer os serviços</a>
-                <a class="btn btn--ghost" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar meu horário<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
+                <a class="btn btn--ghost hide-m" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar meu horário<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
               </div>
             </article>
           </div>
 
           <div class="cinema__progress" aria-hidden="true"><span></span></div>
-          <a class="cinema__skip" href="#servicos">Pular apresentação <span aria-hidden="true">↓</span></a>
+          <a class="cinema__skip" href="#servicos" data-skip>Pular apresentação <span aria-hidden="true">↓</span></a>
         </div>
       </section>
 
@@ -312,9 +312,9 @@
     </footer>
 
     <!-- barra de agendamento no mobile -->
-    <nav class="mbar" aria-label="Agendamento rápido">
-      <a class="mbar__wa" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar pelo WhatsApp<span class="sr-only"> (abre em nova aba)</span></a>
-      <a class="mbar__map" href="%MAPS%" target="_blank" rel="noopener" data-maps>Como chegar<span class="sr-only"> (abre o Google Maps)</span></a>
+    <nav class="mbar" aria-label="Agendamento rápido" data-mbar>
+      <a class="mbar__wa" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default"><!--@waicon--><span>Agendar pelo WhatsApp</span><span class="sr-only"> (abre em nova aba)</span></a>
+      <a class="mbar__map" href="%MAPS%" target="_blank" rel="noopener" data-maps><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 1 1 13 0c0 4.9-6.5 11-6.5 11Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>Rota</span><span class="sr-only"> até o salão (abre o Google Maps)</span></a>
     </nav>
 
     <dialog class="lightbox" aria-label="Trabalho do portfólio" data-lightbox>

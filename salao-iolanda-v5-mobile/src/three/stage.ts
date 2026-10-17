@@ -37,6 +37,9 @@ export interface SceneState {
   brushSpin: number;
   brushTiltX: number;
   brushTiltZ: number;
+  // câmera própria do celular (retrato): afastamento extra e subida da composição
+  mDist: number;
+  mLift: number;
   // luz e fundo
   mood: number;
   keyWarmth: number;
@@ -69,6 +72,8 @@ export const initialState = (): SceneState => ({
   brushSpin: 0,
   brushTiltX: 0.35,
   brushTiltZ: 1.1,
+  mDist: 1,
+  mLift: 0.05,
   mood: 0,
   keyWarmth: 0,
 });
@@ -233,6 +238,26 @@ export class Stage {
     }
   }
 
+  /**
+   * Degradação progressiva: se o aparelho não sustenta a taxa de quadros,
+   * baixa a densidade de pixels em degraus e desliga as sombras.
+   * Retorna false quando já está no mínimo.
+   */
+  degrade() {
+    if (this.maxDpr <= 0.75) return false;
+    this.maxDpr = Math.max(0.75, Math.min(this.maxDpr, window.devicePixelRatio || 1) - 0.35);
+    if (this.renderer.shadowMap.enabled) {
+      this.renderer.shadowMap.enabled = false;
+      this.key.castShadow = false;
+    }
+    this.resize(this.width, this.height);
+    return true;
+  }
+
+  get pixelRatio() {
+    return this.renderer.getPixelRatio();
+  }
+
   resize(w: number, h: number) {
     this.width = w;
     this.height = h;
@@ -296,10 +321,10 @@ export class Stage {
 
   private apply(dt: number) {
     const s = this.state;
-    const f = this.framing();
     // mesmo corte do CSS (max-width: 700px): abaixo dele o texto vai para baixo e o
     // objeto fica centralizado; acima (tablet em pé incluído) o texto fica à esquerda
     const portrait = this.width <= 700;
+    const f = this.framing() * (portrait ? s.mDist : 1);
 
     // câmera
     const cam = this.camera;
@@ -314,7 +339,7 @@ export class Stage {
     // na metade de cima, deixando a de baixo para o texto
     const sx = portrait ? 0 : s.shiftX;
     // telas de celular mais baixas (320×568) sobem um pouco mais o objeto
-    const sy = portrait ? 0.17 + Math.min(0.1, Math.max(0, (this.width / this.height - 0.47) * 1.1)) : 0;
+    const sy = portrait ? 0.17 + s.mLift + Math.min(0.1, Math.max(0, (this.width / this.height - 0.47) * 1.1)) : 0;
     cam.setViewOffset(this.width, this.height, -sx * this.width, sy * this.height, this.width, this.height);
     cam.updateProjectionMatrix();
 

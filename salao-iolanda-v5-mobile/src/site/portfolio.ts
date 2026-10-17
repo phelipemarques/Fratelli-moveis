@@ -28,6 +28,7 @@ export function initPortfolio() {
   let list: number[] = [];
   let pos = 0;
   let opener: HTMLElement | null = null;
+  let savedY = 0;
 
   const render = (dir = 0) => {
     const i = list[pos];
@@ -58,8 +59,10 @@ export function initPortfolio() {
     list = cells.filter((c) => !c.hidden).map((c) => Number(c.querySelector<HTMLElement>('.pf__item')!.dataset.index));
     pos = Math.max(0, list.indexOf(Number(btn.dataset.index)));
     opener = btn;
+    savedY = scrollY;
     render();
     dialog.showModal();
+    document.documentElement.classList.add('lb-open');
     dialog.querySelector<HTMLElement>('[data-lb-close]')!.focus();
   });
   dialog.querySelector('[data-lb-prev]')!.addEventListener('click', () => go(-1));
@@ -74,7 +77,19 @@ export function initPortfolio() {
   });
   dialog.addEventListener('close', () => {
     media.replaceChildren();
+    document.documentElement.classList.remove('lb-open');
     opener?.focus({ preventScroll: true });
+    // volta exatamente para onde a pessoa estava na página
+    if (Math.abs(scrollY - savedY) > 1) window.scrollTo(0, savedY);
+  });
+
+  // fotos reais: toque duplo (ou duplo clique) amplia no ponto tocado
+  media.addEventListener('dblclick', (e) => {
+    const img = media.querySelector('img');
+    if (!img) return;
+    const r = img.getBoundingClientRect();
+    img.style.transformOrigin = `${((e.clientX - r.left) / r.width) * 100}% ${((e.clientY - r.top) / r.height) * 100}%`;
+    img.classList.toggle('is-zoomed');
   });
 
   // arraste lateral (toque e caneta)

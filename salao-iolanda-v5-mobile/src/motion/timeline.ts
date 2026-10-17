@@ -96,6 +96,14 @@ export function buildTimeline(state: SceneState, onUpdate: () => void) {
     .to(S, { brushSpin: Math.PI * 2.5, duration: 2.3, ease: 'sine.out' }, MARKS.brush)
     .to(S, { brushTiltZ: -0.62, brushTiltX: 0.12, duration: 2.1, ease: 'power2.inOut' }, MARKS.brush + 0.1);
 
+  // ---------- câmera do celular (só vale em retrato, ver Stage.apply) ----------
+  // a flor aberta é mais larga que a tela: a câmera recua para mostrá-la inteira,
+  // volta a fechar no frasco e recua um pouco quando tampa e pincel se afastam
+  tl.to(S, { mDist: 1.5, mLift: 0, duration: 1.3, ease: 'sine.inOut' }, 0.8)
+    .to(S, { mDist: 1, duration: 1.1, ease: 'sine.inOut' }, 2.3)
+    .to(S, { mDist: 1.16, duration: 1.1, ease: 'sine.inOut' }, MARKS.reveal)
+    .to(S, { mDist: 1, duration: 0.9, ease: 'sine.inOut' }, MARKS.exit);
+
   tl.set({}, {}, MARKS.end);
   return tl;
 }

@@ -10,6 +10,7 @@ import { initTheme } from './site/theme';
 import { initMotion } from './site/motion';
 import { initServices } from './site/services';
 import { initPortfolio } from './site/portfolio';
+import { initMobileBar } from './site/mbar';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,6 +23,7 @@ const forceFallback = new URLSearchParams(location.search).has('sem-webgl');
 initNav();
 initServices();
 initPortfolio();
+initMobileBar();
 initTheme();
 initMotion();
 
@@ -127,7 +129,8 @@ async function start() {
         trigger: cinema,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.8,
+        // no toque a resposta ao dedo precisa ser mais direta que na roda do mouse
+        scrub: matchMedia('(pointer: coarse)').matches ? 0.45 : 0.8,
         animation: tl,
         invalidateOnRefresh: false,
       });
@@ -139,9 +142,22 @@ async function start() {
   reducedMotion.addEventListener('change', applyMotionMode);
 
   // um único laço: o ticker do GSAP (o mesmo que move a timeline)
+  // taxa de quadros real: se, desenhando sem parar, a média passar de ~40 ms
+  // (abaixo de 25 qps), a cena baixa a resolução em degraus
+  let ema = 16;
+  let samples = 0;
+  let lastDrew = false;
   gsap.ticker.add((_time, deltaMs) => {
     if (!onScreen || document.hidden) return;
-    stage.frame(Math.min(deltaMs, 50) / 1000);
+    if (lastDrew && deltaMs < 250) {
+      ema = ema * 0.9 + deltaMs * 0.1;
+      if (++samples > 45 && ema > 40) {
+        samples = 0;
+        ema = 16;
+        if (stage.degrade()) console.info('[cinema] resolução reduzida para', stage.pixelRatio);
+      }
+    }
+    lastDrew = stage.frame(Math.min(deltaMs, 50) / 1000);
   });
 
   // ganchos para os testes automatizados
@@ -155,7 +171,7 @@ async function start() {
         stage.invalidate();
         stage.frame(0);
       },
-      info: () => stage.renderer.info.render,
+      info: () => ({ ...stage.renderer.info.render, pixelRatio: stage.pixelRatio }),
       bounds: () => stage.bounds(),
       setFloat: (on: boolean) => {
         stage.floatEnabled = on;

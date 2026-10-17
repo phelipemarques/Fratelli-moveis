@@ -7,18 +7,36 @@ export function initNav() {
   const panel = document.querySelector<HTMLDialogElement>('#menu-mobile')!;
   const openBtn = document.querySelector<HTMLButtonElement>('[data-menu-open]')!;
 
-  // fundo sólido depois da abertura 3D (sobre a cena o cabeçalho é transparente)
-  const solid = () => header.classList.toggle('is-solid', cinema.getBoundingClientRect().bottom <= header.offsetHeight + 1);
-  solid();
-  addEventListener('scroll', solid, { passive: true });
-  addEventListener('resize', solid, { passive: true });
+  // fundo sólido depois da abertura 3D (sobre a cena o cabeçalho é transparente).
+  // No celular, depois da abertura, o cabeçalho recolhe ao descer e volta ao
+  // subir: só transform, sem mudar o layout.
+  const narrow = matchMedia('(max-width: 700px)');
+  let lastY = scrollY;
+  const onScroll = () => {
+    const pastCinema = cinema.getBoundingClientRect().bottom <= header.offsetHeight + 1;
+    header.classList.toggle('is-solid', pastCinema);
+    const y = scrollY;
+    const down = y > lastY + 4;
+    const up = y < lastY - 4;
+    if (!narrow.matches || !pastCinema || up) header.classList.remove('is-tucked');
+    else if (down && y > cinema.offsetTop + cinema.offsetHeight + 200) header.classList.add('is-tucked');
+    if (down || up) lastY = y;
+  };
+  onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
+  // foco por teclado dentro do cabeçalho sempre o traz de volta
+  header.addEventListener('focusin', () => header.classList.remove('is-tucked'));
 
   const close = () => panel.open && panel.close();
   openBtn.addEventListener('click', () => {
     panel.showModal();
+    // trava a rolagem do fundo enquanto o menu estiver aberto
+    document.documentElement.classList.add('menu-open');
     openBtn.setAttribute('aria-expanded', 'true');
   });
   panel.addEventListener('close', () => {
+    document.documentElement.classList.remove('menu-open');
     openBtn.setAttribute('aria-expanded', 'false');
     openBtn.focus({ preventScroll: true });
   });
@@ -33,6 +51,7 @@ export function initNav() {
       if (!target) return;
       e.preventDefault();
       panel.close();
+      header.classList.remove('is-tucked');
       target.scrollIntoView();
       history.replaceState(null, '', a.hash);
     }),

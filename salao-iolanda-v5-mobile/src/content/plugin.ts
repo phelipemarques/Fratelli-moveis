@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite';
 import { mapsLink, salon, telLink, whatsappLink, messages, type MessageKey } from '../config/salon';
-import { blocks, diamond, jsonLd } from './sections';
+import { blocks, diamond, jsonLd, waIcon } from './sections';
 
 /**
  * Monta o index.html a partir dos dados do salão e cuida do SEO de publicação.
@@ -22,6 +22,7 @@ export function salonContent(): Plugin {
         .replace(/<!--@(\w+)-->/g, (m, name: string) => {
           if (name === 'jsonld') return jsonLd(siteUrl);
           if (name === 'diamond') return diamond();
+          if (name === 'waicon') return waIcon;
           const fn = blocks[name];
           return fn ? fn() : m;
         })

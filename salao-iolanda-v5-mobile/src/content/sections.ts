@@ -19,16 +19,25 @@ export const diamond = (cls = 'dia') =>
   `<svg class="${cls}" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 1 19 10 10 19 1 10Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>`;
 
 
-const waIcon = '<svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>';
+export const waIcon = '<svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>';
 
 export function waButton(label: string, key: MessageKey = 'default', cls = 'btn') {
   return `<a class="${cls}" href="${esc(whatsappLink(key))}" target="_blank" rel="noopener" data-wa="${key}">${waIcon}<span>${esc(label)}</span><span class="sr-only"> (abre o WhatsApp em nova aba)</span></a>`;
 }
 
-/** foto real quando houver; senão, espaço reservado identificado como pendente */
-function photo(src: string | null, alt: string, label: string, cls = '') {
+/** larguras geradas por `npm run images` para cada foto em public/fotos/ */
+const WIDTHS = [480, 960, 1440];
+
+/**
+ * Foto real quando houver; senão, espaço reservado identificado como pendente.
+ * `src` é o nome-base sem extensão em public/fotos/ (ex.: 'fotos/mechas-01');
+ * o build aponta para as variantes WebP -480/-960/-1440 e o navegador escolhe
+ * a menor que atende ao tamanho exibido (`sizes`). Fotos abaixo da dobra: lazy.
+ */
+function photo(src: string | null, alt: string, label: string, cls = '', sizes = '(max-width: 700px) 100vw, 40vw') {
   if (src) {
-    return `<img class="photo ${cls}" src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async" />`;
+    const srcset = WIDTHS.map((w) => `${esc(src)}-${w}.webp ${w}w`).join(', ');
+    return `<img class="photo ${cls}" src="${esc(src)}-960.webp" srcset="${srcset}" sizes="${sizes}" alt="${esc(alt)}" width="960" height="1200" loading="lazy" decoding="async" />`;
   }
   return `<div class="ph ${cls}" role="img" aria-label="Espaço reservado para foto: ${esc(label)}. Foto autorizada pendente.">
       ${diamond('ph__dia')}
@@ -42,7 +51,7 @@ export function servicesHTML() {
     .map(
       (s, i) => `
         <li class="svc" data-svc="${s.id}">
-          <div class="svc__media">${photo(s.photo, s.photoAlt, s.title)}</div>
+          <div class="svc__media">${photo(s.photo, s.photoAlt, s.title, '', i === 0 ? '(max-width: 700px) 100vw, 1px' : '(max-width: 700px) 88px, 1px')}</div>
           <div class="svc__body">
             <p class="svc__n">${diamond()}<span>${pad(i + 1)}</span></p>
             <h3 class="svc__title"><span class="line"><span>${esc(s.title)}</span></span></h3>
@@ -83,7 +92,7 @@ export function portfolioHTML() {
       (it, i) => `
         <li class="pf__cell${shapeClass(it)}" data-category="${esc(it.category)}">
           <button type="button" class="pf__item" data-index="${i}" aria-haspopup="dialog">
-            ${photo(it.src, it.alt, `${it.category} · ${it.caption}`, 'pf__photo')}
+            ${photo(it.src, it.alt, `${it.category} · ${it.caption}`, 'pf__photo', i === 0 ? '(max-width: 700px) 100vw, 25vw' : '(max-width: 700px) 50vw, 25vw')}
             <span class="pf__caption"><span class="pf__cat">${esc(it.category)}</span>${esc(it.caption)}</span>
             <span class="sr-only">Ampliar</span>
           </button>
