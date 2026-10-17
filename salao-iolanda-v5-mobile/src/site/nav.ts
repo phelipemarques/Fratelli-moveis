@@ -10,7 +10,8 @@ export function initNav() {
   // fundo sólido depois da abertura 3D (sobre a cena o cabeçalho é transparente).
   // No celular, depois da abertura, o cabeçalho recolhe ao descer e volta ao
   // subir: só transform, sem mudar o layout.
-  const narrow = matchMedia('(max-width: 700px)');
+  // celular em pé ou deitado (tela baixa): o cabeçalho fixo ocupa muito da altura
+  const narrow = matchMedia('(max-width: 700px), (max-height: 560px)');
   let lastY = scrollY;
   const onScroll = () => {
     const pastCinema = cinema.getBoundingClientRect().bottom <= header.offsetHeight + 1;

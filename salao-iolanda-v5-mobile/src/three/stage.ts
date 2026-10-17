@@ -344,7 +344,7 @@ export class Stage {
     // composição: no desktop o objeto fica à direita do texto; no mobile, centralizado
     // na metade de cima, deixando a de baixo para o texto
     // no tablet em pé o objeto vai mais para a direita, longe do texto
-    const sx = portrait ? 0 : s.shiftX * (this.tabletPortrait ? 1.45 : 1);
+    const sx = portrait ? 0 : s.shiftX * (this.tabletPortrait ? 1.22 : 1);
     // telas de celular mais baixas (320×568) sobem um pouco mais o objeto
     const sy = portrait ? 0.17 + s.mLift + Math.min(0.1, Math.max(0, (this.width / this.height - 0.47) * 1.1)) : 0;
     cam.setViewOffset(this.width, this.height, -sx * this.width, sy * this.height, this.width, this.height);

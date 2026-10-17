@@ -385,7 +385,7 @@ a {
   background: var(--rose-light);
 }
 .btn--small {
-  min-height: 2.6rem;
+  min-height: 2.75rem; /* 44 px: alvo de toque confortável */
   padding: 0 1.15rem;
   font-size: 0.8125rem;
 }
@@ -2018,17 +2018,20 @@ a {
   .chapter {
     top: calc(50% + var(--header-h) / 2);
   }
-  .chapter {
-    width: min(40rem, 60vw);
-  }
+  /* texto estreito como no desktop: o objeto 3D fica livre à direita */
   .chapter .actions {
     flex-wrap: nowrap;
+    gap: 0.5rem;
   }
   .chapter .actions .btn {
     flex: none;
     min-height: 2.75rem;
-    padding: 0 1.1rem;
+    padding: 0 0.95rem;
+    font-size: 0.8125rem;
     white-space: nowrap;
+  }
+  .site-header.is-tucked {
+    transform: translateY(-100%);
   }
 }
 
