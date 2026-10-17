@@ -1,12 +1,14 @@
-# Salão Iolanda — V4
+# Salão Iolanda — V5 Mobile
 
 Site do **Salão Iolanda** (Salão de Beleza e Estética, Rua Castro Alves, 2995 —
 Cascavel/PR) com abertura cinematográfica em 3D real e as seções comerciais:
 o salão, serviços, destaque para cabelos, portfólio, agendamento pelo WhatsApp
 e localização.
 
-Projeto independente nesta pasta. A versão anterior continua intacta em
-`../salao-cinematografico/`, e nada do Parada do Mano foi alterado.
+Projeto independente nesta pasta. A V5 é uma reengenharia **só do celular**
+(até 700 px, com ajustes para tablet em pé e celular deitado) sobre a V4, que
+continua intacta em `../salao-iolanda-v4/`. O desktop é o mesmo da V4.
+Relatório da versão: [`docs/RELATORIO-MOBILE.md`](docs/RELATORIO-MOBILE.md).
 
 **Não publicado.** É uma prévia para aprovação, com `noindex`. Antes de publicar,
 veja [`docs/PENDENCIAS.md`](docs/PENDENCIAS.md) e [`docs/RELATORIO-V4.md`](docs/RELATORIO-V4.md).
@@ -21,6 +23,15 @@ npm run build          # gera dist/ (estático, qualquer hospedagem)
 npm run preview        # serve dist/ em http://localhost:4173
 npm run build:single   # dist-single/index.html: prévia em arquivo único, abre sem servidor
 npm test               # Playwright (faz build + preview sozinho)
+npm run images         # gera as variantes responsivas das fotos (ver abaixo)
+```
+
+### Ferramentas de auditoria mobile
+
+```bash
+node scripts/audit.mjs http://localhost:4173/ saida v5      # alturas, CTAs, sobreposições, overflow, toque, bytes, erros
+node scripts/framing.mjs http://localhost:4173/ saida v5    # enquadramento 3D por fase e tamanho
+node scripts/axe.mjs caminho/axe.min.js                      # acessibilidade (axe-core)
 ```
 
 ### Publicar (quando aprovado)
@@ -52,10 +63,13 @@ aparece só ali; o build monta todos os links.
 ### Colocar as fotos reais (portfólio, serviços, cabelos, ambiente)
 
 1. Use só arquivos originais ou autorizados pelo salão e pelas clientes.
-2. Exporte em WebP ou JPG, lado maior até 1600 px, e salve em `public/portfolio/`.
-3. Em `src/config/salon.ts`, preencha `src`, `alt` e `caption` de cada item
-   (`portfolio`) e `photo` de cada serviço (`services`).
-4. Rode `npm run build`. Enquanto `src` for `null`, o quadro aparece como
+2. Salve os originais (JPG, PNG ou WebP, quanto maior melhor) em `fotos-originais/`.
+3. Rode `npm run images`: gera `public/fotos/<nome>-480.webp`, `-960.webp` e
+   `-1440.webp`, sem ampliar e sem distorcer.
+4. Em `src/config/salon.ts`, preencha `src` com o nome-base (ex.: `'fotos/mechas-01'`),
+   `alt` e `caption` de cada item (`portfolio`) e `photo` de cada serviço (`services`).
+   O HTML sai com `srcset`/`sizes`: o celular baixa a variante pequena.
+5. Rode `npm run build`. Enquanto `src` for `null`, o quadro aparece como
    **"Foto autorizada pendente"**: nenhuma imagem ilustrativa é mostrada como
    trabalho do salão.
 

@@ -1,4 +1,4 @@
-# Pendências — Salão Iolanda V4
+# Pendências — Salão Iolanda V5 Mobile
 
 ## Antes de publicar (do salão)
 
@@ -15,6 +15,18 @@
 | Coloração | Serviços / Cabelos | Não aparece no briefing V4 como destaque; o site mostra **mechas** (destaque do Instagram) e não menciona coloração |
 | Preços, duração, equipe, avaliações, prêmios, estacionamento, acessibilidade do prédio | — | Não exibidos (não informados) |
 | Domínio do site | `SITE_URL` no build | Sem domínio, o build não gera canonical, `og:url` nem sitemap |
+
+## Testes em aparelhos reais (V5 mobile)
+
+Não foi possível usar aparelhos físicos neste ambiente. Os testes rodaram no
+Chromium com emulação de celular (toque, viewport, user agent) e WebGL por CPU.
+**Antes de publicar, abrir em:**
+
+| Navegador | O que conferir |
+|---|---|
+| iOS Safari (iPhone recente e um modelo antigo, ex. SE) | barra de endereço que encolhe (svh), rolagem da abertura com o dedo, `safe-area` da barra inferior, toque duplo no lightbox |
+| Android Chrome (aparelho intermediário) | fluidez da abertura 3D, redução automática de resolução, menu e barra inferior |
+| Samsung Internet | mesmas verificações do Chrome; modo escuro forçado do navegador |
 
 ## Técnicas
 
