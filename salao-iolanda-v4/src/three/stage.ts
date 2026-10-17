@@ -253,7 +253,7 @@ export class Stage {
     // na metade de cima, deixando a de baixo para o texto
     const sx = portrait ? 0 : s.shiftX;
     // telas de celular mais baixas (320×568) sobem um pouco mais o objeto
-    const sy = portrait ? 0.17 + Math.min(0.07, Math.max(0, (this.width / this.height - 0.47) * 0.8)) : 0;
+    const sy = portrait ? 0.17 + Math.min(0.1, Math.max(0, (this.width / this.height - 0.47) * 1.1)) : 0;
     cam.setViewOffset(this.width, this.height, -sx * this.width, sy * this.height, this.width, this.height);
     cam.updateProjectionMatrix();
 
