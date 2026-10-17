@@ -252,7 +252,8 @@ export class Stage {
     // composição: no desktop o objeto fica à direita do texto; no mobile, centralizado
     // na metade de cima, deixando a de baixo para o texto
     const sx = portrait ? 0 : s.shiftX;
-    const sy = portrait ? 0.17 : 0;
+    // telas de celular mais baixas (320×568) sobem um pouco mais o objeto
+    const sy = portrait ? 0.17 + Math.min(0.07, Math.max(0, (this.width / this.height - 0.47) * 0.8)) : 0;
     cam.setViewOffset(this.width, this.height, -sx * this.width, sy * this.height, this.width, this.height);
     cam.updateProjectionMatrix();
 
@@ -279,8 +280,9 @@ export class Stage {
     // escova
     const b = this.brush;
     b.root.visible = s.brushScale > 0.01;
-    b.root.position.set(s.brushX, s.brushY, 0);
-    b.root.scale.setScalar(Math.max(0.001, s.brushScale));
+    // no celular o texto ocupa a metade de baixo: a escova sobe e encolhe um pouco
+    b.root.position.set(portrait ? s.brushX * 0.3 : s.brushX, s.brushY + (portrait ? 0.55 : 0), 0);
+    b.root.scale.setScalar(Math.max(0.001, s.brushScale * (portrait ? 0.82 : 1)));
     b.root.rotation.set(s.brushTiltX, 0, s.brushTiltZ);
     b.spin.rotation.y = s.brushSpin;
 

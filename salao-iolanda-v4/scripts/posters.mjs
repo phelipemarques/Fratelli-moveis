@@ -35,3 +35,21 @@ for (const t of targets) {
 }
 await browser.close();
 console.log('posters ok');
+
+// imagem de compartilhamento (Open Graph): o momento da marca, com o nome em texto
+{
+  const b = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
+  const page = await b.newPage({ viewport: { width: 1200, height: 630 } });
+  await page.goto(`${url}?q=high`, { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => window.__cinema, null, { timeout: 60000 });
+  await page.addStyleTag({ content: '.site-header,.cinema__progress,.cinema__skip,.chapter--brand .actions,.chapter--brand .lede{visibility:hidden!important}' });
+  await page.evaluate(() => {
+    const c = window.__cinema;
+    c.setFloat(false);
+    c.timeline.seek(c.marks.end);
+    c.render();
+  });
+  await page.screenshot({ path: 'public/og.jpg', type: 'jpeg', quality: 86, timeout: 180000 });
+  await b.close();
+  console.log('og ok');
+}

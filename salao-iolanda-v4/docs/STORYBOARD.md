@@ -42,42 +42,39 @@ direita no desktop e centralizado no mobile, separação da tampa em dois tempos
 
 Marca, textos, pote de creme, grade de loja e assinatura do estúdio.
 
-## 2. Roteiro do salão (primeira sequência — implementada)
+## 2. Roteiro da abertura (V4)
 
-Timeline em unidades (≈ 11,8 no total). A rolagem da seção `.cinema`
-(640 vh no desktop, 540 vh no mobile) vira o progresso 0–1.
+Timeline em unidades (16,2 no total). A rolagem da seção `.cinema`
+(860 vh no desktop, 720 vh no mobile) vira o progresso 0–1. As fases 1 a 6
+são as da versão aprovada pelo cliente e foram preservadas; a V4 acrescenta 7 a 9.
 
-| # | Unid. | Cena | Elemento | Movimento | Scroll |
+| # | Unid. | Cena | Elemento | Movimento | Texto |
 |---|---|---|---|---|---|
-| 1 | 0,0–2,6 | Flor | Peônia procedural, 7 camadas, 62 pétalas | Abre de fora para dentro (dobradiça + morph da curvatura); estames dourados aparecem; câmera sobe e olha para dentro; fundo e luz esquentam | scrub, reversível |
-| 2 | 1,5–3,8 | Esmalte surge | Frasco nasce no centro da flor (escala 0,42 → 1) | Sobe entre as pétalas girando ~110°; câmera acompanha; flor desce e vira base | scrub |
-| 3 | 3,6–6,2 | Frasco girando | Frasco oval de vidro | Volta completa; inclina para mostrar o ombro e a base; câmera orbita levemente; termina de frente (rótulo) | scrub |
-| 4 | 6,0–8,0 | Tampa desenrosca | `capPivot` (tampa + haste + pincel) | Câmera fecha na tampa; 2 voltas subindo pelo passo da rosca (0,028/volta) | scrub |
-| 5 | 8,0–9,0 | Pincel sai | Haste e pincel | Sobe em linha reta até a ponta passar da boca do frasco | scrub |
-| 6 | 9,0–11,8 | Revelação | Pincel com esmalte, gota | Tampa e pincel inclinam juntos para a direita; close no pincel; a gota se forma | scrub |
+| 1 | 0,0–2,6 | Flor | Peônia procedural, 7 camadas, 62 pétalas | Abre de fora para dentro; câmera sobe e olha para dentro | Hero: Salão Iolanda · "Seu momento de beleza começa aqui." |
+| 2 | 1,5–3,8 | Esmalte surge | Frasco nasce no centro da flor | Sobe girando; flor desce e vira base | 01 Cuidado |
+| 3 | 3,6–6,2 | Frasco girando | Vidro oval, tampa preta laqueada | Volta completa, inclina e termina de frente | 02 Cor |
+| 4 | 6,0–8,0 | Tampa desenrosca | `capPivot` | 2 voltas subindo pelo passo da rosca | 03 Ritual |
+| 5 | 8,0–9,0 | Pincel sai | Haste e pincel | Sobe reto até a ponta passar da boca | 04 Unhas |
+| 6 | 9,0–11,8 | Revelação | Pincel, gota | Inclina; close; a gota se forma | 04 Unhas |
+| 7 | 11,8–13,4 | **Saída do produto** | Frasco e tampa | Saem pela diagonal superior; câmera recua; fundo vira preto com halo bordô | — |
+| 8 | 12,5– | **Marca** | — | — | "SALÃO *Iolanda*", proposta de valor, serviços e agendamento |
+| 9 | 12,9–15,2 | **Escova redonda** | Escova procedural (cabo laqueado, anel champagne, tambor rosé, 324 cerdas) | Sobe girando no eixo longo e assenta na diagonal | idem |
 
-Texto: 5 capítulos, um por vez, com entrada por linha (máscara) e saída para cima.
-Capítulos não se sobrepõem: cada um sai antes do próximo entrar.
+Depois da abertura, o fundo preto continua na seção "O salão" (sem tela em
+branco) e as cores seguintes mudam suavemente entre preto, off-white e bordô.
 
-### Direção de arte (Salão Iolanda)
+## 3. Site (V4)
 
-Fundo preto profundo com halo atrás do objeto, que muda de tom ao longo da
-sequência: rosé na flor, champagne no frasco, rosé com dourado no pincel.
-Contraluz champagne e rosado recorta o vidro e as pétalas sobre o escuro.
-Texto off-white, destaques em rosé, botões champagne, detalhes em dourado
-discreto. A paleta é provisória até a logo oficial chegar.
+| Seção | Fundo | Movimento |
+|---|---|---|
+| O salão | off-white | título por linhas; foto abre por máscara |
+| Serviços | preto | linhas entram em sequência; no desktop a foto ao lado troca conforme a linha ativa |
+| Cabelos | preto sofisticado | foto grande com máscara e parallax discreto; destaques em escada |
+| Portfólio | off-white | grade assimétrica, quadros em ondas por coluna; filtro; lightbox |
+| Agendamento | bordô | título por linhas; passos e atalhos por serviço |
+| Localização e contato | preto | endereço em tipografia grande, linhas em sequência |
 
-## 3. Próximas fases (não implementadas)
-
-| # | Cena | Objetos | Serviço associado |
-|---|---|---|---|
-| 7 | Saída do esmalte | Frasco sai da composição; câmera atravessa | Unhas |
-| 8 | Escova | Escova girando | Cabelo e finalização |
-| 9 | Secador | Entrada em arco 3D | Cabelo e finalização |
-| 10 | Tesoura + pente | Tesoura abre e fecha | Corte |
-| 11 | Batom + pincel de maquiagem | Batom gira e sobe | Maquiagem |
-| 12 | Produto capilar | Frasco assume o centro | Tratamentos |
-| 13 | Transição para o site | Objetos se reorganizam como índice das categorias; fundo vira a seção de serviços | — |
+Sem pin nas seções e sem sequestro de rolagem.
 
 ## 4. Modelos necessários
 
@@ -85,5 +82,6 @@ discreto. A paleta é provisória até a logo oficial chegar.
 |---|---|---|
 | Peônia (pétalas independentes, estames, sépalas, haste) | Feito | Procedural (`src/three/flower.ts`) |
 | Frasco de esmalte: vidro, líquido, rótulo, rosca, tampa, haste, pincel, gota | Feito | Procedural (`src/three/polish.ts`) |
-| Secador, escova, tesoura, pente, batom, pincel de maquiagem, frasco capilar | Pendente | Procedural simples ou Blender → GLB (Draco/Meshopt) |
-| Logo do salão | Pendente | Cliente |
+| Escova redonda | Feito (V4) | Procedural (`src/three/hairbrush.ts`) |
+| Secador, tesoura, pente, pincel de maquiagem | Não incluídos de propósito (um objeto por vez, após aprovação) | Procedural ou Blender → GLB (Draco/Meshopt) |
+| Logo do salão | Pendente (arquivo) | Cliente |
