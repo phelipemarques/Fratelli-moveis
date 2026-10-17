@@ -110,6 +110,7 @@ a {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 700;
+  max-width: calc(100vw - 2rem);
   transform: translateY(-180%);
   transition: transform 0.25s var(--ease-out);
 }
@@ -1826,6 +1827,14 @@ a {
   }
 
   /* ---------- agendamento: passos compactos, atalhos deslizantes ---------- */
+  /* coluna com largura fixa na tela: a fila de atalhos rola por dentro em vez de alargar a página */
+  .book__grid,
+  .about__grid,
+  .hair__grid,
+  .contact__grid,
+  .svc-wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .book__grid {
     gap: 2rem;
   }
@@ -1966,4 +1975,16 @@ a {
 .lightbox__media img.is-zoomed {
   transform: scale(2);
   cursor: zoom-out;
+}
+.facts a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+/* texto para leitor de tela dentro de fileiras com rolagem própria: fica preso à
+   fileira, senão o posicionamento absoluto escapa e alarga a página no celular */
+.chip,
+.pf__filters,
+.book__chips {
+  position: relative;
 }

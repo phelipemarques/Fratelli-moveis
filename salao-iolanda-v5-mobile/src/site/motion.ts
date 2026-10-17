@@ -21,8 +21,9 @@ export function initMotion() {
 
     // textos e blocos: subida curta
     gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+      // deslocamento curto: o rótulo acima do título não chega a passar por cima dele
       gsap.from(el, {
-        y: 26,
+        y: el.classList.contains('eyebrow') ? 8 : 18,
         opacity: 0,
         duration: 0.9,
         ease: 'power3.out',
@@ -75,7 +76,7 @@ export function initMotion() {
     // portfólio: quadros sobem em ondas, por coluna
     gsap.utils.toArray<HTMLElement>('.pf__cell').forEach((cell, i) => {
       gsap.from(cell.firstElementChild, {
-        yPercent: 12,
+        y: 24,
         opacity: 0,
         duration: 1.1,
         ease: 'power3.out',
