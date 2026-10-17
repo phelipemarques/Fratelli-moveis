@@ -77,12 +77,14 @@ for (const [w, h] of SIZES) {
       }
       return !clipped && (r.right > window.innerWidth + 1 || r.left < -1);
     }).map(el => el.tagName.toLowerCase() + '.' + [...el.classList].join('.'));
-    const hidden = [...document.querySelectorAll('[data-reveal]')].filter(el => getComputedStyle(el).opacity === '0').length;
+    const ocultos = [...document.querySelectorAll('[data-reveal]')].filter(el => getComputedStyle(el).opacity === '0');
+    const hidden = ocultos.length;
+    const quais = ocultos.map(el => (el.className || el.tagName) + ' "' + el.textContent.trim().slice(0, 24) + '" a ' + Math.round(el.getBoundingClientRect().top + scrollY) + 'px');
     const h1 = document.querySelectorAll('h1').length;
     const heroImg = document.querySelector('.hero-img').getBoundingClientRect();
     return {
       scrollW: doc.scrollWidth, innerW: window.innerWidth,
-      broken, notLoaded, wide: wide.slice(0, 8), hidden, h1,
+      broken, notLoaded, wide: wide.slice(0, 8), hidden, quais, h1,
       heroImgTop: Math.round(heroImg.top), heroImgBottom: Math.round(heroImg.bottom),
     };
   });
@@ -92,7 +94,7 @@ for (const [w, h] of SIZES) {
   ok(`${tag} imagens carregadas`, m.broken.length === 0 && m.notLoaded.length === 0, m.broken.concat(m.notLoaded).join(' ') || 'todas');
   ok(`${tag} console limpo`, errors.length === 0, errors.join(' | ') || 'sem erros nem avisos');
   ok(`${tag} requisições`, failed.length === 0, failed.join(' ') || 'nenhuma falha');
-  ok(`${tag} conteúdo revelado após rolar`, m.hidden === 0, `${m.hidden} elementos ainda ocultos`);
+  ok(`${tag} conteúdo revelado após rolar`, m.hidden === 0, `${m.hidden} elementos ainda ocultos` + (m.hidden ? ': ' + m.quais.join('; ') : ''));
   ok(`${tag} um único h1`, m.h1 === 1, `${m.h1}`);
   const cab = await page.evaluate(() => {
     const h = document.querySelector('[data-header]').getBoundingClientRect().height;
@@ -787,6 +789,7 @@ for (const [w, h] of [[390, 844], [1440, 900]]) {
   await page.locator('#tab-feijoada').click();
   await page.waitForTimeout(700);
   const m = await page.evaluate(() => {
+    if (!document.querySelector('.menu-ink')) return { alinhado: false, legivel: false, semIndicador: true };
     const ink = document.querySelector('.menu-ink').getBoundingClientRect();
     const tab = document.getElementById('tab-feijoada').getBoundingClientRect();
     const partes = [...document.querySelectorAll('#cat-feijoada .menu-body > *')];

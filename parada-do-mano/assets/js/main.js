@@ -146,13 +146,23 @@
       entries.forEach(function (entry) {
         if (entry.isIntersecting && !entry.target.classList.contains('is-visible')) { revelar(entry.target); algum = true; }
       });
-      // rolagem muito rápida (um gesto longo no celular) pode pular um elemento entre dois
-      // quadros sem ele nunca cruzar a tela: o que já ficou para trás também aparece
-      if (algum) {
-        pendentes.slice().forEach(function (el) { if (el.getBoundingClientRect().bottom < 0) revelar(el); });
-      }
+      if (algum) varrer(0);
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
     targets.forEach(function (el) { io.observe(el); });
+    // Rolagem muito rápida (um gesto longo no celular, um salto por âncora) pode pular um
+    // elemento entre dois quadros sem ele nunca cruzar a tela. Quando a rolagem para, tudo o
+    // que já está na tela ou ficou para trás aparece. Só lê medidas dos que ainda faltam.
+    var varrer = function (limite) {
+      pendentes.slice().forEach(function (el) {
+        if (el.getBoundingClientRect().top < limite) revelar(el);
+      });
+    };
+    var fimRolagem;
+    window.addEventListener('scroll', function () {
+      if (!pendentes.length) return;
+      window.clearTimeout(fimRolagem);
+      fimRolagem = window.setTimeout(function () { varrer(window.innerHeight * 0.94); }, 200);
+    }, { passive: true });
 
     // brasas, brilho e faixa corrida param quando saem da tela
     var loops = new IntersectionObserver(function (entries) {
