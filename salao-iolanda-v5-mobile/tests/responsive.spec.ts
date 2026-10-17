@@ -28,12 +28,22 @@ test.describe('larguras de tela', () => {
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
         expect(overflow, `rolagem horizontal em #${id}`).toBeLessThanOrEqual(0);
         // nenhum botão ou título da seção passa da borda da tela
+        // fileiras com rolagem própria (filtros, atalhos) podem ter chips além da borda:
+        // nelas o que conta é a fileira caber na tela e rolar
         const out = await page.locator(`#${id} .btn, #${id} .title, #${id} .chip`).evaluateAll((els, vw) =>
           els.filter((e) => {
+            if (e.closest('.pf__filters, .book__chips')) return false;
             const r = e.getBoundingClientRect();
             return r.width > 0 && (r.left < -1 || r.right > vw + 1);
           }).map((e) => e.textContent?.trim().slice(0, 30)), w);
         expect(out, `elementos cortados em #${id}`).toEqual([]);
+        const rows = await page.locator(`#${id} .pf__filters, #${id} .book__chips`).evaluateAll((els, vw) =>
+          els.map((e) => {
+            const r = e.getBoundingClientRect();
+            const scrolls = e.scrollWidth <= e.clientWidth + 1 || getComputedStyle(e).overflowX === 'auto';
+            return r.left >= -1 - 40 && r.right <= vw + 1 + 40 && scrolls;
+          }), w);
+        expect(rows.every(Boolean), `fileira de chips fora da tela em #${id}`).toBe(true);
       }
       await page.locator('#servicos').scrollIntoViewIfNeeded();
       await page.screenshot({ path: testInfo.outputPath(`servicos-${w}x${h}.png`) });
