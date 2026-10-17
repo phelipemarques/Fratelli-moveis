@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Salão Iolanda | Salão de Beleza e Estética em Cascavel/PR</title>
+    <meta name="description" content="Salão Iolanda, salão de beleza e estética em Cascavel/PR. Cabelo, manicure, pedicure, maquiagem, depilação e estética na Rua Castro Alves, 2995. Agende pelo WhatsApp." />
+    <!--@seo-->
+    <meta name="theme-color" content="#100d10" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Salão Iolanda" />
+    <meta property="og:title" content="Salão Iolanda | Salão de Beleza e Estética em Cascavel/PR" />
+    <meta property="og:description" content="Cabelo, unhas, maquiagem, depilação e estética na Rua Castro Alves, 2995, Cascavel/PR. Agende pelo WhatsApp." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Salão Iolanda | Cascavel/PR" />
+    <meta name="twitter:description" content="Salão de beleza e estética em Cascavel/PR. Agende pelo WhatsApp." />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <!--@jsonld-->
+    <script>
+      // classes de capacidade antes da primeira pintura (evita salto de layout)
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reduced-motion');
+      })();
+    </script>
+    <noscript>
+      <style>
+        .cinema { height: auto !important; }
+        .cinema__stage { position: relative !important; }
+        .cinema__fallback { display: block !important; }
+        .cinema__canvas, .cinema__progress, .cinema__skip, .chapter:not(.chapter--hero) { display: none !important; }
+      </style>
+    </noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#servicos">Pular apresentação e ir para os serviços</a>
+
+    <header class="site-header" data-header>
+      <a class="wordmark" href="#inicio" aria-label="Salão Iolanda, início">
+        <!--@diamond-->
+        <span class="wordmark__text">Salão Iolanda</span>
+      </a>
+      <nav class="site-nav" aria-label="Principal">
+        <ul class="site-nav__list" id="menu">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#salao">O salão</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+        <a class="btn btn--small site-nav__cta" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar horário<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-mobile" data-menu-open>
+          <span class="menu-btn__bars" aria-hidden="true"></span>
+          <span class="sr-only">Abrir menu</span>
+        </button>
+      </nav>
+    </header>
+
+    <dialog class="menu-panel" id="menu-mobile" aria-label="Menu">
+      <div class="menu-panel__inner">
+        <button class="menu-panel__close" type="button" data-menu-close><span aria-hidden="true">×</span><span class="sr-only">Fechar menu</span></button>
+        <ul class="menu-panel__list">
+          <li><a href="#inicio" data-menu-link>Início</a></li>
+          <li><a href="#salao" data-menu-link>O salão</a></li>
+          <li><a href="#servicos" data-menu-link>Serviços</a></li>
+          <li><a href="#portfolio" data-menu-link>Portfólio</a></li>
+          <li><a href="#contato" data-menu-link>Contato</a></li>
+        </ul>
+        <div class="menu-panel__foot">
+          <a class="btn" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar horário<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
+          <p>Rua Castro Alves, 2995 · Cascavel/PR</p>
+        </div>
+      </div>
+    </dialog>
+
+    <main>
+      <!-- 01 · abertura 3D -->
+      <section class="cinema" id="inicio" aria-label="Apresentação">
+        <div class="cinema__stage">
+          <canvas class="cinema__canvas" aria-hidden="true"></canvas>
+
+          <div class="cinema__fallback" hidden>
+            <picture>
+              <source media="(max-width: 700px)" srcset="posters/sequencia-mobile.webp" />
+              <img src="posters/sequencia-desktop.webp" alt="Ilustração 3D: frasco de esmalte surgindo do centro de uma peônia aberta, sobre fundo escuro." width="1600" height="1000" decoding="async" />
+            </picture>
+          </div>
+
+          <div class="cinema__chapters">
+            <article class="chapter chapter--hero" data-chapter="0">
+              <p class="brandline" data-fade><!--@diamond--><span>Salão Iolanda</span></p>
+              <h1 class="display">
+                <span class="line"><span>Seu momento</span></span>
+                <span class="line"><span>de beleza</span></span>
+                <span class="line"><span><em>começa aqui.</em></span></span>
+              </h1>
+              <p class="lede" data-fade>Cuidados com cabelo, unhas, maquiagem e estética em Cascavel.</p>
+              <div class="actions" data-fade>
+                <a class="btn" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar meu horário<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
+                <a class="btn btn--ghost" href="#servicos">Conhecer os serviços</a>
+              </div>
+              <p class="place" data-fade><!--@diamond--> Rua Castro Alves, 2995 · Cascavel/PR</p>
+            </article>
+
+            <article class="chapter" data-chapter="1">
+              <p class="eyebrow" data-fade><span class="num">01</span> Cuidado</p>
+              <h2 class="display">
+                <span class="line"><span>Tudo começa</span></span>
+                <span class="line"><span>com <em>delicadeza.</em></span></span>
+              </h2>
+              <p class="lede" data-fade>Um tempo só seu, do primeiro cuidado ao acabamento.</p>
+            </article>
+
+            <article class="chapter" data-chapter="2">
+              <p class="eyebrow" data-fade><span class="num">02</span> Cor</p>
+              <h2 class="display">
+                <span class="line"><span>Brilho em</span></span>
+                <span class="line"><span>cada <em>detalhe.</em></span></span>
+              </h2>
+              <p class="lede" data-fade>Cor, esmaltação e acabamento feitos com atenção.</p>
+            </article>
+
+            <article class="chapter" data-chapter="3">
+              <p class="eyebrow" data-fade><span class="num">03</span> Ritual</p>
+              <h2 class="display">
+                <span class="line"><span>Um ritual</span></span>
+                <span class="line"><span>só <em>seu.</em></span></span>
+              </h2>
+              <p class="lede" data-fade>Cada visita no seu ritmo, sem pressa.</p>
+            </article>
+
+            <article class="chapter" data-chapter="4">
+              <p class="eyebrow" data-fade><span class="num">04</span> Unhas</p>
+              <h2 class="display">
+                <span class="line"><span>O acabamento</span></span>
+                <span class="line"><span>que <em>fica.</em></span></span>
+              </h2>
+              <p class="lede" data-fade>Manicure e pedicure no Salão Iolanda.</p>
+              <div class="actions" data-fade>
+                <a class="btn btn--ghost" href="%WA_UNHAS%" target="_blank" rel="noopener" data-wa="unhas">Agendar unhas<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
+              </div>
+            </article>
+
+            <article class="chapter chapter--brand" data-chapter="5">
+              <p class="eyebrow" data-fade>Salão de Beleza e Estética · Cascavel/PR</p>
+              <h2 class="brand-title">
+                <span class="line"><span>Salão</span></span>
+                <span class="line"><span>Iolanda</span></span>
+              </h2>
+              <p class="lede" data-fade>Cabelo, unhas, maquiagem, depilação e estética no mesmo endereço.</p>
+              <div class="actions" data-fade>
+                <a class="btn" href="#servicos">Conhecer os serviços</a>
+                <a class="btn btn--ghost" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar meu horário<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
+              </div>
+            </article>
+          </div>
+
+          <div class="cinema__progress" aria-hidden="true"><span></span></div>
+          <a class="cinema__skip" href="#servicos">Pular apresentação <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <!-- 02 · o salão -->
+      <section class="section section--light about" id="salao" data-theme="light" aria-labelledby="salao-titulo">
+        <div class="about__grid">
+          <div class="about__text">
+            <p class="eyebrow" data-reveal><!--@diamond--> O salão</p>
+            <h2 class="title" id="salao-titulo" data-split>
+              <span class="line"><span>Beleza e cuidado</span></span>
+              <span class="line"><span>em <em>Cascavel.</em></span></span>
+            </h2>
+            <p class="body" data-reveal>
+              O Salão Iolanda reúne cabelo, manicure, pedicure, maquiagem, depilação e estética
+              em um só endereço, na Rua Castro Alves. Você escolhe o cuidado e combina o horário
+              direto com o salão.
+            </p>
+            <dl class="facts" data-reveal>
+              <div><dt>Endereço</dt><dd>Rua Castro Alves, 2995</dd></div>
+              <div><dt>Cidade</dt><dd>Cascavel — Paraná</dd></div>
+              <div><dt>Instagram</dt><dd><a href="%IG%" target="_blank" rel="noopener">@salaoiolanda</a></dd></div>
+            </dl>
+          </div>
+          <figure class="about__media" data-mask>
+            <div class="ph ph--light" role="img" aria-label="Espaço reservado para foto do ambiente do salão. Foto autorizada pendente.">
+              <!--@diamond-->
+              <span class="ph__tag">Foto autorizada pendente</span>
+              <span class="ph__cap">Ambiente do salão</span>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 03 · serviços -->
+      <section class="section section--dark services" id="servicos" tabindex="-1" data-theme="dark" aria-labelledby="servicos-titulo">
+        <header class="section-head">
+          <p class="eyebrow" data-reveal><!--@diamond--> Serviços</p>
+          <h2 class="title" id="servicos-titulo" data-split>
+            <span class="line"><span>O que você encontra</span></span>
+            <span class="line"><span><em>no salão.</em></span></span>
+          </h2>
+          <p class="body" data-reveal>Valores, duração e disponibilidade são combinados diretamente com o salão pelo WhatsApp.</p>
+        </header>
+        <!--@services-->
+      </section>
+
+      <!-- 04 · cabelos -->
+      <section class="section section--deep hair" id="cabelos" data-theme="deep" aria-labelledby="cabelos-titulo">
+        <div class="hair__grid">
+          <figure class="hair__media" data-mask data-parallax>
+            <div class="ph" role="img" aria-label="Espaço reservado para foto de trabalho de cabelo do salão. Foto autorizada pendente.">
+              <!--@diamond-->
+              <span class="ph__tag">Foto autorizada pendente</span>
+              <span class="ph__cap">Cabelos · trabalho do salão</span>
+            </div>
+          </figure>
+          <div class="hair__text">
+            <p class="eyebrow" data-reveal><!--@diamond--> Destaque</p>
+            <h2 class="title title--xl" id="cabelos-titulo" data-split>
+              <span class="line"><span>Cabelo,</span></span>
+              <span class="line"><span>do corte</span></span>
+              <span class="line"><span>ao <em>penteado.</em></span></span>
+            </h2>
+            <p class="body" data-reveal>Os trabalhos de cabelo são a maior parte do que o salão mostra no Instagram.</p>
+            <!--@hair-->
+            <div class="actions" data-reveal>
+              <a class="btn" href="%WA_CABELO%" target="_blank" rel="noopener" data-wa="cabelo">Agendar cabelo<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
+              <a class="btn btn--ghost" href="#portfolio">Ver trabalhos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · portfólio -->
+      <section class="section section--light portfolio" id="portfolio" data-theme="light" aria-labelledby="portfolio-titulo">
+        <header class="section-head section-head--split">
+          <div>
+            <p class="eyebrow" data-reveal><!--@diamond--> Portfólio</p>
+            <h2 class="title" id="portfolio-titulo" data-split>
+              <span class="line"><span>Trabalhos</span></span>
+              <span class="line"><span>do <em>salão.</em></span></span>
+            </h2>
+          </div>
+          <p class="body" data-reveal>
+            Galeria preparada para fotos autorizadas pelas clientes. Enquanto elas não chegam,
+            os trabalhos publicados estão no Instagram
+            <a href="%IG%" target="_blank" rel="noopener">@salaoiolanda</a>.
+          </p>
+        </header>
+        <div class="pf"><!--@portfolio--></div>
+      </section>
+
+      <!-- 06 · agendamento -->
+      <section class="section section--wine book" id="agendamento" data-theme="wine" aria-labelledby="agendamento-titulo">
+        <div class="book__grid">
+          <div>
+            <p class="eyebrow" data-reveal><!--@diamond--> Agendamento</p>
+            <h2 class="title title--xl" id="agendamento-titulo" data-split>
+              <span class="line"><span>Agende pelo</span></span>
+              <span class="line"><span><em>WhatsApp.</em></span></span>
+            </h2>
+            <p class="body" data-reveal>Escolha o serviço e fale direto com o salão. O horário é combinado e confirmado pela equipe na conversa.</p>
+            <div class="actions" data-reveal>
+              <a class="btn btn--light" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar meu horário<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span></a>
+              <a class="book__phone" href="%TEL%">%PHONE%</a>
+            </div>
+            <!--@bookingChips-->
+          </div>
+          <ol class="steps" data-reveal>
+            <li><span class="steps__n">01</span><span class="steps__t">Escolha o serviço</span><span class="steps__d">Cabelo, unhas, maquiagem, depilação ou estética.</span></li>
+            <li><span class="steps__n">02</span><span class="steps__t">Chame no WhatsApp</span><span class="steps__d">A mensagem já vai pronta; é só enviar.</span></li>
+            <li><span class="steps__n">03</span><span class="steps__t">Combine o horário</span><span class="steps__d">A equipe responde e confirma o melhor horário para você.</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 07 · localização e contato -->
+      <section class="section section--dark contact" id="contato" data-theme="dark" aria-labelledby="contato-titulo">
+        <header class="section-head">
+          <p class="eyebrow" data-reveal><!--@diamond--> Localização e contato</p>
+          <h2 class="title" id="contato-titulo" data-split>
+            <span class="line"><span>Onde</span></span>
+            <span class="line"><span><em>estamos.</em></span></span>
+          </h2>
+        </header>
+        <!--@contact-->
+      </section>
+    </main>
+
+    <footer class="site-footer" data-theme="dark">
+      <div class="site-footer__grid">
+        <a class="wordmark wordmark--lg" href="#inicio" aria-label="Salão Iolanda, voltar ao início">
+          <!--@diamond-->
+          <span class="wordmark__text">Salão Iolanda</span>
+        </a>
+        <nav aria-label="Rodapé">
+          <ul class="site-footer__nav">
+            <li><a href="#salao">O salão</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+        <p class="site-footer__contact">
+          Rua Castro Alves, 2995 · Cascavel/PR<br />
+          <a href="%TEL%">%PHONE%</a> · <a href="%IG%" target="_blank" rel="noopener">@salaoiolanda</a>
+        </p>
+      </div>
+      <p class="site-footer__legal">© Salão Iolanda · Salão de Beleza e Estética · Cascavel/PR. Prévia para aprovação.</p>
+    </footer>
+
+    <!-- barra de agendamento no mobile -->
+    <nav class="mbar" aria-label="Agendamento rápido">
+      <a class="mbar__wa" href="%WA_DEFAULT%" target="_blank" rel="noopener" data-wa="default">Agendar pelo WhatsApp<span class="sr-only"> (abre em nova aba)</span></a>
+      <a class="mbar__map" href="%MAPS%" target="_blank" rel="noopener" data-maps>Como chegar<span class="sr-only"> (abre o Google Maps)</span></a>
+    </nav>
+
+    <dialog class="lightbox" aria-label="Trabalho do portfólio" data-lightbox>
+      <div class="lightbox__frame">
+        <figure class="lightbox__figure">
+          <div class="lightbox__media" data-lb-media></div>
+          <figcaption class="lightbox__caption"><span data-lb-caption></span> <span class="lightbox__count" data-lb-count></span></figcaption>
+        </figure>
+        <button class="lightbox__btn lightbox__prev" type="button" data-lb-prev><span aria-hidden="true">←</span><span class="sr-only">Trabalho anterior</span></button>
+        <button class="lightbox__btn lightbox__next" type="button" data-lb-next><span aria-hidden="true">→</span><span class="sr-only">Próximo trabalho</span></button>
+        <button class="lightbox__close" type="button" data-lb-close><span aria-hidden="true">×</span><span class="sr-only">Fechar</span></button>
+      </div>
+    </dialog>
+  </body>
+</html>
