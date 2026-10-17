@@ -56,9 +56,10 @@ test('jornada 2: ver trabalhos de cabelo', async ({ page }) => {
   await j.tap(page.locator('#menu-mobile a', { hasText: 'Portfólio' }));
   await j.tap(page.locator('.pf__filters .chip', { hasText: 'Cabelos' }));
   const visible = page.locator('.pf__cell:not([hidden])');
-  await expect(visible).toHaveCount(3);
+  const expected = await page.locator('.pf__cell[data-category="Cabelos"]').count();
+  await expect(visible).toHaveCount(expected);
   await expect(visible.first()).toBeInViewport();
-  j.done('2-trabalhos-de-cabelo', { caminho: 'menu → Portfólio → filtro Cabelos', quadros: 3 });
+  j.done('2-trabalhos-de-cabelo', { caminho: 'menu → Portfólio → filtro Cabelos', quadros: expected });
 });
 
 test('jornada 3: descobrir o endereço sem assistir à apresentação', async ({ page }) => {
