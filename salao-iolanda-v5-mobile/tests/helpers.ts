@@ -6,7 +6,8 @@ declare global {
       state: Record<string, number>;
       timeline: { progress(): number; duration(): number; seek(t: number): void };
       marks: Record<string, number>;
-      info(): { calls: number; triangles: number };
+      info(): { calls: number; triangles: number; pixelRatio: number };
+      bounds(): Record<string, { x0: number; y0: number; x1: number; y1: number } | null> & { w: number; h: number };
       setFloat(on: boolean): void;
       render(): void;
     };

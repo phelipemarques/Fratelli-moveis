@@ -130,7 +130,7 @@ test('movimento reduzido: apresentação estática, conteúdo acessível', async
   expect(errors).toEqual([]);
 });
 
-test('sem WebGL: composição estática, marca, botões e navegação funcionando', async ({ page }) => {
+test('sem WebGL: composição estática, marca, botões e navegação funcionando', async ({ page }, testInfo) => {
   const errors = watchErrors(page);
   await page.goto('/?sem-webgl');
   await expect(page.locator('html')).toHaveClass(/no-webgl/);
@@ -140,7 +140,50 @@ test('sem WebGL: composição estática, marca, botões e navegação funcionand
   await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
   await expect(page.locator('.brandline')).toContainText('Salão Iolanda');
   await expect(page.locator('.chapter--hero a[href*="wa.me"]')).toBeVisible();
-  await page.locator('.chapter--hero .btn', { hasText: 'Conhecer os serviços' }).click();
+  if (testInfo.project.name === 'mobile') {
+    // no celular o caminho para os serviços é o menu (o hero mostra só o agendamento)
+    await page.locator('[data-menu-open]').click();
+    await page.locator('#menu-mobile a', { hasText: 'Serviços' }).click();
+  } else {
+    await page.locator('.chapter--hero .btn', { hasText: 'Conhecer os serviços' }).click();
+  }
   await expect(page.locator('#servicos-titulo')).toBeInViewport();
+  expect(errors).toEqual([]);
+});
+
+test('celular: cada fase mostra o objeto principal inteiro (até 5% fora da tela)', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'câmera própria do celular');
+  await ready(page);
+  const phases: [string, number, string][] = [
+    ['botão', 0, 'flor'], ['flor abrindo', 0.9, 'flor'], ['flor aberta', 2.0, 'flor'], ['esmalte surgindo', 3.0, 'frasco'],
+    ['frasco girando', 4.8, 'frasco'], ['tampa', 7.6, 'tampa'], ['pincel saindo', 8.8, 'tampa'], ['pincel revelado', 11.0, 'tampa'],
+    ['escova', 13.4, 'escova'], ['marca', 15.5, 'escova'],
+  ];
+  for (const [name, t, obj] of phases) {
+    const b = await page.evaluate(([t, obj]) => {
+      window.__cinema!.timeline.seek(t as number);
+      const all = window.__cinema!.bounds();
+      return { r: all[obj as string], w: all.w, h: all.h };
+    }, [t, obj] as const);
+    expect(b.r, name).not.toBeNull();
+    const r = b.r!;
+    const area = (r.x1 - r.x0) * (r.y1 - r.y0);
+    const inside = Math.max(0, Math.min(r.x1, b.w) - Math.max(r.x0, 0)) * Math.max(0, Math.min(r.y1, b.h) - Math.max(r.y0, 0));
+    expect(1 - inside / area, `${name}: parte fora da tela`).toBeLessThanOrEqual(0.05);
+  }
+});
+
+test('celular: "Pular apresentação" visível como botão e funciona no meio da sequência', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'pílula do celular');
+  const errors = watchErrors(page);
+  await ready(page);
+  await scrollToTime(page, 6.5);
+  const skip = page.locator('[data-skip]');
+  await expect(skip).toBeVisible();
+  const box = (await skip.boundingBox())!;
+  expect(box.height).toBeGreaterThanOrEqual(44);
+  await skip.tap();
+  await expect(page.locator('#servicos-titulo')).toBeInViewport();
+  await expect.poll(() => page.evaluate(() => window.__cinema!.timeline.progress()), { timeout: 30_000 }).toBeGreaterThan(0.99);
   expect(errors).toEqual([]);
 });

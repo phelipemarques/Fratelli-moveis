@@ -131,20 +131,65 @@ test('menu mobile: abre, navega, fecha com Esc e devolve o foco', async ({ page 
   await expect(page.locator('#portfolio-titulo')).toBeInViewport();
 });
 
-test('barra de agendamento: fixa no mobile, ausente no desktop, sem cobrir o rodapé', async ({ page }, testInfo) => {
+test('barra de agendamento: escondida na primeira tela, aparece no caminho, some onde a página repete os botões', async ({ page }, testInfo) => {
   await open(page);
   const bar = page.locator('.mbar');
-  if (testInfo.project.name === 'mobile') {
-    await expect(bar).toBeVisible();
-    await expect(bar.locator('a[href*="wa.me"]')).toBeVisible();
-    await page.locator('.site-footer__legal').scrollIntoViewIfNeeded();
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    const legal = (await page.locator('.site-footer__legal').boundingBox())!;
-    const barBox = (await bar.boundingBox())!;
-    expect(legal.y + legal.height).toBeLessThanOrEqual(barBox.y + 1);
-  } else {
+  if (testInfo.project.name !== 'mobile') {
     await expect(bar).toBeHidden();
+    return;
   }
+  // primeira tela: o hero já tem o botão de agendamento
+  await expect(bar).toBeHidden();
+  await page.locator('#servicos').scrollIntoViewIfNeeded();
+  await expect(bar).toBeVisible();
+  await expect(bar.locator('a[href*="wa.me"]')).toBeVisible();
+  await expect(bar.locator('a[data-maps]')).toBeVisible();
+  // no contato e no rodapé os mesmos botões já estão na página
+  await page.locator('#contato .contact__actions').scrollIntoViewIfNeeded();
+  await expect(bar).toBeHidden();
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await expect(bar).toBeHidden();
+  const legal = (await page.locator('.site-footer__legal').boundingBox())!;
+  expect(legal.y + legal.height).toBeLessThanOrEqual(page.viewportSize()!.height);
+});
+
+test('lightbox: ao fechar, a página volta exatamente para onde estava', async ({ page }) => {
+  await open(page);
+  await page.locator('.pf__item').nth(3).scrollIntoViewIfNeeded();
+  const before = await page.evaluate(() => scrollY);
+  await page.locator('.pf__item').nth(3).click();
+  await expect(page.locator('[data-lightbox]')).toBeVisible();
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('[data-lightbox]')).toBeHidden();
+  expect(Math.abs((await page.evaluate(() => scrollY)) - before)).toBeLessThanOrEqual(1);
+});
+
+test('menu mobile trava a rolagem do fundo enquanto aberto', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'menu só no mobile');
+  await open(page);
+  await page.locator('[data-menu-open]').click();
+  await expect(page.locator('html')).toHaveClass(/menu-open/);
+  const y = await page.evaluate(() => scrollY);
+  await page.mouse.wheel(0, 800);
+  await page.waitForTimeout(300);
+  expect(await page.evaluate(() => scrollY)).toBe(y);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('html')).not.toHaveClass(/menu-open/);
+});
+
+test('cabeçalho do celular recolhe ao descer e volta ao subir, sem mudar o layout', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'comportamento só do celular');
+  await open(page);
+  await page.locator('#servicos').scrollIntoViewIfNeeded();
+  const header = page.locator('[data-header]');
+  const top = await page.locator('#servicos-titulo').evaluate((e) => e.getBoundingClientRect().top + scrollY);
+  await page.mouse.wheel(0, 600);
+  await expect(header).toHaveClass(/is-tucked/);
+  await page.mouse.wheel(0, -300);
+  await expect(header).not.toHaveClass(/is-tucked/);
+  // posição dos elementos na página não muda (só transform)
+  expect(await page.locator('#servicos-titulo').evaluate((e) => e.getBoundingClientRect().top + scrollY)).toBeCloseTo(top, 0);
 });
 
 test('sem JavaScript: marca, título, serviços e WhatsApp continuam na página', async ({ browser }) => {
