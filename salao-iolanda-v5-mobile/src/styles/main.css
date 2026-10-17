@@ -2018,12 +2018,17 @@ a {
   .chapter {
     top: calc(50% + var(--header-h) / 2);
   }
+  .chapter {
+    width: min(40rem, 60vw);
+  }
   .chapter .actions {
     flex-wrap: nowrap;
   }
   .chapter .actions .btn {
+    flex: none;
     min-height: 2.75rem;
     padding: 0 1.1rem;
+    white-space: nowrap;
   }
 }
 
