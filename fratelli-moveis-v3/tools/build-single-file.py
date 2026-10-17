@@ -12,6 +12,14 @@ NAO e o arquivo de publicacao. O site que vai para o Netlify continua
 sendo o index.html com as pastas — este aqui e maior, nao tem srcset
 (serve sempre a imagem maior) e nao tem os arquivos de apoio.
 
+O capitulo 3D entra aqui tambem. Modulos ES nao podem ser BAIXADOS de
+file:// (o navegador bloqueia por CORS), mas um modulo ESCRITO dentro da
+pagina roda sem problema — desde que nao tenha nenhum `import` dentro.
+Entao os tres arquivos de js/3d/ sao achatados num unico <script
+type="module">: o `export{...}` do Three.js vira um objeto comum, o
+`import * as THREE` do opening.js sai (THREE ja esta no escopo) e o
+`import('./opening.js')` do boot.js vira uma chamada direta.
+
     python3 tools/build-single-file.py
 """
 
@@ -47,6 +55,63 @@ def maior_webp():
         if base not in melhor or larg > melhor[base][0]:
             melhor[base] = (larg, nome)
     return {b: v[1] for b, v in melhor.items()}
+
+
+def modulo_3d():
+    """Os tres arquivos de js/3d/ num unico modulo sem nenhum `import`.
+
+    E a unica forma de a cena rodar a partir de file://: o navegador
+    recusa BAIXAR um modulo dessa origem, mas executa o que esta escrito
+    na propria pagina. Nada aqui muda a cena — so o jeito de ligar as
+    pecas. O pacote de publicacao continua com os tres arquivos
+    separados e com o import dinamico, que e o que mantem os 671 KB do
+    Three.js fora dos aparelhos que nao vao usa-los.
+    """
+    pasta = os.path.join(RAIZ, 'js', '3d')
+
+    def ler(nome):
+        return open(os.path.join(pasta, nome), encoding='utf-8').read()
+
+    # --- Three.js: o `export{a as Nome, ...}` final vira um objeto ---
+    three = ler('three.module.min.js')
+    corte = three.rindex('export{')
+    cabeca, lista = three[:corte], three[corte + len('export{'):].rstrip()
+    assert lista.endswith('};'), 'o export do Three.js nao termina como esperado'
+    pares = []
+    for item in lista[:-2].split(','):
+        item = item.strip()
+        origem, _, destino = item.partition(' as ')
+        pares.append('%s:%s' % (destino or origem, origem))
+    three = cabeca + 'const THREE={' + ','.join(pares) + '};'
+
+    # --- a cena: THREE ja esta no escopo, e nada precisa ser exportado ---
+    cena = ler('opening.js')
+    alvo = "import * as THREE from './three.module.min.js';"
+    assert alvo in cena
+    cena = cena.replace(alvo, '/* THREE ja esta no escopo deste modulo */')
+    assert 'export function criarAbertura' in cena
+    cena = cena.replace('export function criarAbertura', 'function criarAbertura')
+
+    # --- a ligacao: o import dinamico vira chamada direta ---
+    boot = ler('boot.js')
+    alvo = "  import('./opening.js').then(function (mod) {"
+    assert alvo in boot
+    boot = boot.replace(alvo, '  try { (function (mod) {')
+    alvo = """  }).catch(function () {
+    /* Falha ao baixar o m\u00f3dulo: a fotografia continua l\u00e1, a se\u00e7\u00e3o
+       continua inteira, e nada no console assusta o visitante. */
+    secao.setAttribute('data-perfil', 'B');
+  });"""
+    assert alvo in boot, 'o .catch do boot.js nao foi encontrado'
+    boot = boot.replace(alvo, """  }({ criarAbertura: criarAbertura })); } catch (e) {
+    /* Falha ao montar: a fotografia continua l\u00e1, a se\u00e7\u00e3o continua
+       inteira, e nada no console assusta o visitante. */
+    secao.setAttribute('data-perfil', 'B');
+  }""")
+
+    licenca = ler('THREE-LICENSE.txt').strip()
+    return ('/* Three.js r169 — MIT. Licenca completa:\n'
+            + licenca + '\n*/\n' + three + '\n' + cena + '\n' + boot)
 
 
 def main():
@@ -109,18 +174,11 @@ def main():
         html = html.replace('src="assets/video/fratelli-brand-film.mp4"',
                             'src="%s"' % uri(video))
 
-    # ---- o capitulo 3D nao entra na previa ----
-    # Modulos ES nao carregam de file:// — o navegador bloqueia por CORS.
-    # Embutir o Three.js aqui nao resolveria: o `import` interno quebraria
-    # do mesmo jeito. Entao a previa roda o perfil C de proposito: a secao
-    # mostra a fotografia real, com o mesmo texto e a mesma altura.
-    # Para ver a cena tridimensional e preciso servir por HTTP.
+    # ---- o capitulo 3D, achatado num modulo embutido ----
     html = html.replace(
         '<script type="module" src="js/3d/boot.js"></script>',
-        '<!-- O capitulo 3D foi retirado desta previa: modulos ES nao\n'
-        '     carregam de file://. A secao cai no perfil C e mostra a\n'
-        '     fotografia real. Para ver a cena, sirva o pacote por HTTP:\n'
-        '     python3 -m http.server 8080 -->')
+        '<script type="module">\n' + modulo_3d().replace('</script>', '<\\/script>')
+        + '\n</script>')
 
     # ---- icone ----
     html = html.replace('href="assets/images/favicon.svg"',

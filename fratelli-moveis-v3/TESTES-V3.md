@@ -67,3 +67,24 @@ faixa de ambientes nos dois modos.
 - **Perda de contexto WebGL real.** O caminho está escrito e tratado
   (`webglcontextlost` → desmonta → fotografia), mas não forcei o evento.
 - **Navegadores além do Chromium.**
+
+## Prévia de arquivo único, aberta de `file://`
+
+Medido em Chromium (WebGL por software), no arquivo
+`fratelli-moveis-v3-visualizacao.html` aberto direto do disco, sem
+servidor:
+
+| medida | resultado |
+| --- | --- |
+| perfil em 1440×900, ponteiro fino | A — cena montada (`tem-3d`) |
+| perfil em 390×844, toque | B — fotografia, sem Three.js |
+| perfil em 834×1112, toque | B — fotografia, sem Three.js |
+| `prefers-reduced-motion: reduce` | C — fotografia, sem Three.js |
+| erros de página em qualquer um | nenhum |
+| transbordo horizontal | 0 px nos três tamanhos |
+| progresso da sequência em 0/25/50/75/100% | 0.000 / 0.250 / 0.500 / 0.750 / 1.000 |
+| `--passagem` (3D → fotografia) | 0 até 75%, 1 no fim |
+| referências externas no arquivo | nenhuma |
+
+As portas abrem em dobradiça e a luz interna sobe junto, como no pacote
+servido por HTTP: é o mesmo código, só religado sem `import`.

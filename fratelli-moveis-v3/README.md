@@ -12,8 +12,17 @@ em dobradiças reais, com a câmera e a luz conduzidas pela rolagem. Ele só
 monta em desktop com WebGL; em toque, sem WebGL ou com movimento
 reduzido, a seção mostra a fotografia real e o Three.js nem é baixado.
 
-**A prévia de arquivo único não roda o capítulo 3D.** Módulos ES não
-carregam de `file://`. Para ver a cena, sirva o pacote por HTTP:
+**A prévia de arquivo único roda o capítulo 3D.** O navegador recusa
+*baixar* um módulo ES de `file://`, mas executa um módulo escrito dentro
+da própria página. Então `tools/build-single-file.py` achata os três
+arquivos de `js/3d/` num `<script type="module">` sem nenhum `import`: o
+`export{...}` do Three.js vira um objeto comum, o `import * as THREE` sai
+(THREE já está no escopo) e o `import('./opening.js')` vira chamada
+direta. A cena é a mesma — muda só como as peças se ligam.
+
+No pacote de publicação os três arquivos continuam separados, com o
+import dinâmico: é ele que mantém os 671 KB do Three.js fora dos
+aparelhos que não vão usá-los. Para abrir o pacote como ele vai ao ar:
 
 ```
 unzip fratelli-moveis-v3-producao.zip -d site && cd site
