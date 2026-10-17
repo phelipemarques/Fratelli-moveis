@@ -331,6 +331,9 @@ abbr[title] { text-decoration: none; }
 .cine-on .px-photo img {
   translate: 0 var(--py, 0%);
   scale: var(--ps, 1);
+  /* movido pelo JavaScript a cada quadro: em camada própria, o navegador só recompõe a
+     imagem em vez de redesenhá-la (medido: rolagem caía para 53 fps sem isto) */
+  will-change: translate, scale;
 }
 
 /* <picture> (AVIF com WebP de reserva) não cria caixa: a imagem segue preenchendo a moldura */
@@ -1367,10 +1370,10 @@ picture { display: contents; }
 .grill-heat {
   position: absolute; inset: 0; z-index: 1;
   background:
-    radial-gradient(60% 55% at 50% 100%, rgba(255, 130, 28, .55), rgba(218, 89, 21, .18) 45%, transparent 75%);
-  mix-blend-mode: screen;
+    radial-gradient(60% 55% at 50% 100%, rgba(255, 130, 28, .42), rgba(218, 89, 21, .14) 45%, transparent 75%);
   opacity: .35;
   pointer-events: none;
+  will-change: opacity, transform;
 }
 .embers-grill { z-index: 2; top: 0; bottom: auto; height: 100%; }
 .embers-grill span { bottom: 18%; }
@@ -1383,6 +1386,7 @@ picture { display: contents; }
 }
 .grill-band-track {
   display: flex; align-items: center; gap: .35em;
+  will-change: transform; /* letra vazada gigante: redesenhar a cada quadro custa caro */
   width: max-content;
   font-family: var(--f-display);
   font-size: clamp(3rem, 12vw, 9.5rem);
@@ -2860,13 +2864,23 @@ body.lb-open { overflow: hidden; }
       entries.forEach(function (entry) {
         if (entry.isIntersecting && !entry.target.classList.contains('is-visible')) { revelar(entry.target); algum = true; }
       });
-      // rolagem muito rápida (um gesto longo no celular) pode pular um elemento entre dois
-      // quadros sem ele nunca cruzar a tela: o que já ficou para trás também aparece
-      if (algum) {
-        pendentes.slice().forEach(function (el) { if (el.getBoundingClientRect().bottom < 0) revelar(el); });
-      }
+      if (algum) varrer(0);
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
     targets.forEach(function (el) { io.observe(el); });
+    // Rolagem muito rápida (um gesto longo no celular, um salto por âncora) pode pular um
+    // elemento entre dois quadros sem ele nunca cruzar a tela. Quando a rolagem para, tudo o
+    // que já está na tela ou ficou para trás aparece. Só lê medidas dos que ainda faltam.
+    var varrer = function (limite) {
+      pendentes.slice().forEach(function (el) {
+        if (el.getBoundingClientRect().top < limite) revelar(el);
+      });
+    };
+    var fimRolagem;
+    window.addEventListener('scroll', function () {
+      if (!pendentes.length) return;
+      window.clearTimeout(fimRolagem);
+      fimRolagem = window.setTimeout(function () { varrer(window.innerHeight * 0.94); }, 200);
+    }, { passive: true });
 
     // brasas, brilho e faixa corrida param quando saem da tela
     var loops = new IntersectionObserver(function (entries) {
