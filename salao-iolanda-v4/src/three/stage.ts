@@ -213,6 +213,26 @@ export class Stage {
     this.scene.add(this.flower.group, this.polish.root, this.brush.root);
   }
 
+  /**
+   * Compila os shaders de todos os objetos de uma vez, antes da rolagem.
+   * Sem isso, a escova e o vidro compilam na primeira vez que aparecem e a
+   * transição engasga (em celulares e, muito mais, no WebGL por CPU dos testes).
+   */
+  async warmup() {
+    const hidden: THREE.Object3D[] = [];
+    this.scene.traverse((o) => {
+      if (!o.visible) {
+        hidden.push(o);
+        o.visible = true;
+      }
+    });
+    try {
+      await this.renderer.compileAsync(this.scene, this.camera);
+    } finally {
+      hidden.forEach((o) => (o.visible = false));
+    }
+  }
+
   resize(w: number, h: number) {
     this.width = w;
     this.height = h;

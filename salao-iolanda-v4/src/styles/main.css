@@ -932,6 +932,10 @@ body[data-bg='deep'] {
   margin: 0;
   aspect-ratio: 4 / 5;
 }
+/* a foto entra com escala maior que o quadro: o quadro corta, a página não ganha rolagem lateral */
+[data-mask] {
+  overflow: hidden;
+}
 .facts {
   margin: 2.4rem 0 0;
   display: grid;

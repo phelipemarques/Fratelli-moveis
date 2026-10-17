@@ -85,6 +85,7 @@ async function start() {
     showFallback();
     return;
   }
+  await stage.warmup().catch((err) => console.warn('[cinema] pré-compilação falhou', err));
   root.classList.add('webgl-ready');
 
   const cinema = document.querySelector<HTMLElement>('.cinema')!;
