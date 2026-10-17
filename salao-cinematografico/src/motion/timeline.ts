@@ -28,6 +28,9 @@ export const MARKS = {
   end: 11.8,
 } as const;
 
+/** quadro único usado no modo de movimento reduzido e nas imagens de fallback */
+export const STILL_TIME = 3.35;
+
 export function buildTimeline(state: SceneState, onUpdate: () => void) {
   const tl = gsap.timeline({ paused: true, defaults: { ease: 'none' }, onUpdate });
   const S = state;
@@ -72,7 +75,7 @@ export function buildTimeline(state: SceneState, onUpdate: () => void) {
     .to(S, { tgtX: 0.15, tgtY: 3.15, camX: -0.3, camY: 3.35, camZ: 3.4, duration: 1.2, ease: 'power2.inOut' }, MARKS.reveal)
     .to(S, { mood: 3, keyWarmth: 0.4, duration: 1.4 }, MARKS.reveal)
     // close no pincel: a gota se forma na ponta
-    .to(S, { tgtX: 0.12, tgtY: 3.1, camX: -0.5, camY: 3.25, camZ: 2.7, shiftX: 0.12, duration: 1.3, ease: 'sine.inOut' }, MARKS.close)
+    .to(S, { tgtX: 0.22, tgtY: 3.22, camX: -0.45, camY: 3.32, camZ: 3.05, shiftX: 0.1, duration: 1.3, ease: 'sine.inOut' }, MARKS.close)
     .to(S, { dropSize: 0.85, duration: 1.3, ease: 'power1.in' }, MARKS.close + 0.1);
 
   tl.set({}, {}, MARKS.end);

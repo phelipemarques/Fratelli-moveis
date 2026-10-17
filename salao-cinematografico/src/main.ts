@@ -61,7 +61,7 @@ async function start() {
     new Promise((r) => setTimeout(r, 1500)),
   ]);
 
-  const [{ Stage }, { buildTimeline, addChapters, MARKS }] = await Promise.all([
+  const [{ Stage }, { buildTimeline, addChapters, MARKS, STILL_TIME }] = await Promise.all([
     import('./three/stage'),
     import('./motion/timeline'),
   ]);
@@ -105,9 +105,9 @@ async function start() {
     trigger?.kill();
     trigger = null;
     if (still) {
-      // apresentação simplificada: um único quadro com o frasco aberto
+      // apresentação simplificada: um único quadro, o esmalte saindo da flor
       stage.floatEnabled = false;
-      tl.progress(MARKS.end / tl.duration());
+      tl.seek(STILL_TIME);
       gsap.set('[data-chapter]', { clearProps: 'all' });
       gsap.set('[data-chapter="0"] .line > span, [data-chapter="0"] [data-fade]', { clearProps: 'all' });
     } else {
@@ -139,6 +139,7 @@ async function start() {
       timeline: tl,
       state: stage.state,
       marks: MARKS,
+      stillTime: STILL_TIME,
       render: () => {
         stage.invalidate();
         stage.frame(0);

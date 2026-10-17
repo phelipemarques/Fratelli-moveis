@@ -18,11 +18,14 @@ for (const [w, h] of sizes) {
   await page.waitForFunction(() => window.__cinema, null, { timeout: 30000 });
   await page.evaluate(() => window.__cinema.setFloat(false));
   for (const p of progresses) {
+    // rola de verdade e espera o scrub assentar, como um visitante faria
     await page.evaluate((p) => {
-      window.__cinema.timeline.progress(p);
-      window.__cinema.render();
+      const el = document.querySelector('.cinema');
+      window.scrollTo(0, el.offsetTop + (el.offsetHeight - innerHeight) * p);
     }, p);
-    await page.waitForTimeout(250);
+    await page.waitForFunction((p) => Math.abs(window.__cinema.timeline.progress() - p) < 0.002, p, { timeout: 30000 });
+    await page.evaluate(() => window.__cinema.render());
+    await page.waitForTimeout(150);
     await page.screenshot({ path: `${out}/${w}x${h}_${String(Math.round(p * 100)).padStart(3, '0')}.png` });
   }
   if (errors.length) console.log(`${w}x${h} erros:`, errors);
