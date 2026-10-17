@@ -213,7 +213,9 @@ export class Stage {
   private apply(dt: number) {
     const s = this.state;
     const f = this.framing();
-    const portrait = this.width / this.height < 1;
+    // mesmo corte do CSS (max-width: 700px): abaixo dele o texto vai para baixo e o
+    // objeto fica centralizado; acima (tablet em pé incluído) o texto fica à esquerda
+    const portrait = this.width <= 700;
 
     // câmera
     const cam = this.camera;
