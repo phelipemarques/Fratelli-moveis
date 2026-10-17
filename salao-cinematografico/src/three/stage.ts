@@ -41,7 +41,8 @@ export const initialState = (): SceneState => ({
   flowerY: 0,
   flowerScale: 1,
   flowerSpin: 0,
-  polishY: 0.62,
+  // começa escondido dentro do botão; só aparece quando a flor abre
+  polishY: 0.3,
   polishScale: 0.42,
   polishRotX: 0,
   polishRotY: 0,
@@ -57,11 +58,12 @@ export const initialState = (): SceneState => ({
 });
 
 // fundos de cada momento: [topo, base, brilho]
+// paleta escura do Salão Iolanda: preto profundo com halo rosé ou champagne atrás do objeto
 const MOODS: [string, string, string][] = [
-  ['#f6e7e4', '#efd6d6', '#fff7f2'], // manhã rosé
-  ['#f3dfe0', '#e9c6cc', '#fff3f0'], // flor aberta
-  ['#efe3dc', '#e2cfc7', '#fffaf3'], // champagne
-  ['#f4ebe4', '#ead9d2', '#fffdf8'], // off-white quente
+  ['#120c0e', '#070506', '#3a1d27'], // botão: noite rosada
+  ['#160d11', '#080506', '#5b2a3b'], // flor aberta: halo rosé
+  ['#15100e', '#080606', '#4d3828'], // frasco: halo champagne
+  ['#140d10', '#070506', '#55303b'], // pincel: rosé e dourado
 ];
 
 const BG_VERT = /* glsl */ `
@@ -82,10 +84,11 @@ const BG_FRAG = /* glsl */ `
   void main() {
     vec3 col = mix(uBottom, uTop, smoothstep(0.0, 1.0, vUv.y));
     vec2 d = (vUv - uGlowPos) * vec2(uAspect, 1.0);
-    col = mix(col, uGlow, smoothstep(0.75, 0.0, length(d)) * 0.85);
-    float vig = smoothstep(1.25, 0.35, length((vUv - 0.5) * vec2(uAspect * 0.8, 1.0)));
-    col *= mix(0.93, 1.0, vig);
-    col += (hash(gl_FragCoord.xy) - 0.5) * 0.012;
+    col = mix(col, uGlow, smoothstep(0.8, 0.0, length(d)) * 0.9);
+    float vig = smoothstep(1.25, 0.3, length((vUv - 0.5) * vec2(uAspect * 0.8, 1.0)));
+    col *= mix(0.6, 1.0, vig);
+    // grão leve: evita faixas no degradê escuro
+    col += (hash(gl_FragCoord.xy) - 0.5) * 0.004;
     gl_FragColor = vec4(col, 1.0);
     #include <colorspace_fragment>
   }
@@ -123,7 +126,7 @@ export class Stage {
     });
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.NeutralToneMapping;
-    this.renderer.toneMappingExposure = 1.02;
+    this.renderer.toneMappingExposure = 1.05;
     this.renderer.shadowMap.enabled = quality === 'high';
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
 
@@ -132,7 +135,7 @@ export class Stage {
     const studio = studioEnvironment();
     this.envRT = pmrem.fromScene(studio, 0.02);
     this.scene.environment = this.envRT.texture;
-    this.scene.environmentIntensity = 0.9;
+    this.scene.environmentIntensity = 0.8;
     pmrem.dispose();
     studio.traverse((o) => {
       if (o instanceof THREE.Mesh) {
@@ -160,7 +163,8 @@ export class Stage {
     bg.renderOrder = -1000;
     this.scene.add(bg);
 
-    // iluminação de estúdio: principal, preenchimento rosado e contraluz
+    // iluminação de estúdio para fundo escuro: principal, preenchimento rosado baixo
+    // e contraluz forte, que recorta a silhueta do vidro e das pétalas
     this.key = new THREE.DirectionalLight('#fff1e0', 2.8);
     this.key.position.set(-3.2, 5.5, 4.2);
     this.key.castShadow = quality === 'high';
@@ -171,12 +175,14 @@ export class Stage {
     this.key.shadow.bias = -0.0006;
     this.key.shadow.normalBias = 0.025;
     this.key.shadow.radius = 4;
-    this.fill = new THREE.DirectionalLight('#ffd9e2', 0.9);
+    this.fill = new THREE.DirectionalLight('#ffc7d5', 0.55);
     this.fill.position.set(4, 1.5, 3);
-    this.rim = new THREE.DirectionalLight('#ffffff', 1.6);
-    this.rim.position.set(1.5, 3, -5);
-    const hemi = new THREE.HemisphereLight('#fff6f3', '#d9a9b6', 0.35);
-    this.scene.add(this.key, this.key.target, this.fill, this.rim, hemi);
+    this.rim = new THREE.DirectionalLight('#ffe2c4', 3.2);
+    this.rim.position.set(2.5, 3.5, -5);
+    const rim2 = new THREE.DirectionalLight('#ff9fbc', 1.6);
+    rim2.position.set(-3.5, 1.5, -4);
+    const hemi = new THREE.HemisphereLight('#f6dfe2', '#2a1418', 0.25);
+    this.scene.add(this.key, this.key.target, this.fill, this.rim, rim2, hemi);
 
     this.flower = new Flower(quality);
     this.polish = new Polish({ liquid: '#a3284f', name: 'Rosé' }, quality);
@@ -201,7 +207,7 @@ export class Stage {
   /** afastamento extra da câmera em telas verticais, para a composição caber */
   private framing() {
     const a = this.width / this.height;
-    return a >= 1.25 ? 1 : 1 + (1.25 - a) * 0.95;
+    return a >= 1.25 ? 1 : 1 + (1.25 - a) * 1.1;
   }
 
   private apply(dt: number) {
@@ -218,9 +224,10 @@ export class Stage {
     );
     cam.lookAt(s.tgtX, s.tgtY, s.tgtZ);
     cam.fov = portrait ? 36 : 32;
-    // composição: no desktop o objeto fica à direita do texto; no mobile, centralizado e um pouco acima
+    // composição: no desktop o objeto fica à direita do texto; no mobile, centralizado
+    // na metade de cima, deixando a de baixo para o texto
     const sx = portrait ? 0 : s.shiftX;
-    const sy = portrait ? 0.07 : 0;
+    const sy = portrait ? 0.17 : 0;
     cam.setViewOffset(this.width, this.height, -sx * this.width, sy * this.height, this.width, this.height);
     cam.updateProjectionMatrix();
 
@@ -261,7 +268,7 @@ export class Stage {
       this.colB.set(MOODS[i0 + 1][n]);
       (u[k].value as THREE.Color).copy(this.colA).lerp(this.colB, t);
     });
-    (u.uGlowPos.value as THREE.Vector2).set(portrait ? 0.5 : 0.5 + s.shiftX * 0.6, portrait ? 0.6 : 0.55);
+    (u.uGlowPos.value as THREE.Vector2).set(portrait ? 0.5 : 0.5 + s.shiftX * 0.6, portrait ? 0.7 : 0.55);
   }
 
   /** desenha só quando algo mudou, ou continuamente enquanto a flutuação estiver ligada */
@@ -283,19 +290,19 @@ export class Stage {
 }
 
 /**
- * Estúdio para os reflexos: cúpula rosada clara e softboxes em faixa.
+ * Estúdio para os reflexos: cúpula escura e softboxes em faixa.
  * As faixas verticais desenham os brilhos longos no vidro e na tampa.
  */
 function studioEnvironment() {
   const env = new THREE.Scene();
   const dome = new THREE.Mesh(
     new THREE.SphereGeometry(10, 32, 16),
-    new THREE.MeshBasicMaterial({ color: new THREE.Color('#e9d3d1').multiplyScalar(0.85), side: THREE.BackSide }),
+    new THREE.MeshBasicMaterial({ color: new THREE.Color('#3a2a2c').multiplyScalar(0.55), side: THREE.BackSide }),
   );
   env.add(dome);
   const floor = new THREE.Mesh(
     new THREE.CircleGeometry(9, 32),
-    new THREE.MeshBasicMaterial({ color: new THREE.Color('#c9a6a8').multiplyScalar(0.6) }),
+    new THREE.MeshBasicMaterial({ color: new THREE.Color('#2a1a1c').multiplyScalar(0.5) }),
   );
   floor.rotation.x = -Math.PI / 2;
   floor.position.y = -4;
@@ -310,8 +317,8 @@ function studioEnvironment() {
     env.add(m);
   };
   panel(1.4, 7, '#ffffff', 6, [-5.5, 1, 3.5]); // faixa principal, esquerda
-  panel(0.8, 6, '#ffe6ee', 3.5, [5.5, 0.5, 2.5]); // faixa rosada, direita
+  panel(0.8, 6, '#ffd2df', 3.5, [5.5, 0.5, 2.5]); // faixa rosada, direita
   panel(5, 3, '#fff6ec', 3, [0, 7, 1]); // teto
-  panel(2, 6, '#ffffff', 2.5, [1.5, 1, -6]); // contraluz
+  panel(2, 6, '#ffe8d2', 3, [1.5, 1, -6]); // contraluz champagne
   return env;
 }

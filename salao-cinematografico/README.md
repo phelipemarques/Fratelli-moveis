@@ -1,7 +1,10 @@
-# Salão — experiência cinematográfica 3D (prévia da 1ª sequência)
+# Salão Iolanda — experiência cinematográfica 3D (prévia da 1ª sequência)
 
-Projeto independente, dentro desta pasta. Não altera nenhum outro site do
-repositório.
+Salão de beleza em Cascavel/PR. Projeto independente, dentro desta pasta:
+não altera o Parada do Mano nem nenhum outro site do repositório.
+
+**Não publicado.** É uma demonstração para aprovação; dados pendentes
+(logo, DDD/WhatsApp, horários) estão em [`docs/PENDENCIAS.md`](docs/PENDENCIAS.md).
 
 **Status:** Fases 1 a 5 da primeira sequência — flor abrindo → esmalte surgindo
 → frasco girando → tampa desenroscando → pincel saindo — em 3D real, conduzidas
@@ -37,14 +40,16 @@ Playwright. Sem React, sem construtor de sites. Fontes locais via Fontsource
 ```
 index.html                  marcação semântica; o texto existe sem JS
 src/main.ts                 detecção de capacidade, ScrollTrigger, laço único de render
-src/config/salon.ts         dados do salão (todos pendentes)
+src/config/salon.ts         dados do salão (informados + pendências)
 src/three/stage.ts          renderer, câmera, luz de estúdio, fundo, estado animável
 src/three/flower.ts         peônia procedural (7 camadas, 62 pétalas com morph)
 src/three/polish.ts         frasco: bottle, liquid, label, neckThread, cap, applicatorStem, brush, drop
 src/motion/timeline.ts      timeline mestre + capítulos de texto
 src/styles/main.css         identidade visual e layout
 public/posters/             quadros reais da cena para o fallback sem WebGL
-scripts/capture.mjs         captura quadros da timeline em qualquer tamanho
+scripts/frames.mjs          captura quadros posicionando a timeline (revisão quadro a quadro)
+scripts/posters.mjs         gera public/posters/ (fallback sem WebGL)
+scripts/capture.mjs         captura com rolagem real (lento no SwiftShader)
 tests/                      Playwright
 docs/                       storyboard, relatórios e pendências
 ```

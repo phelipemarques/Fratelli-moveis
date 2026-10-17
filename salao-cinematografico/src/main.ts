@@ -5,7 +5,7 @@ import './styles/main.css';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { salon, whatsappLink } from './config/salon';
+import { salon, whatsappLink, mapsLink } from './config/salon';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -155,15 +155,22 @@ async function start() {
 
 function fillSalonData() {
   document.querySelectorAll('[data-salon="name"]').forEach((el) => (el.textContent = salon.name));
-  const link = whatsappLink('Olá! Gostaria de agendar um horário.');
+  document.querySelectorAll('[data-salon="address"]').forEach((el) => (el.textContent = salon.address));
+  document.querySelectorAll('[data-salon="phone"]').forEach((el) => (el.textContent = salon.phoneDisplay));
+  document.querySelectorAll<HTMLAnchorElement>('[data-salon-link="instagram"]').forEach((a) => (a.href = salon.instagram));
+  document.querySelectorAll<HTMLAnchorElement>('[data-salon-link="maps"]').forEach((a) => (a.href = mapsLink()));
+
+  // WhatsApp só com número completo confirmado; o link abre uma conversa, não confirma agendamento
+  const link = whatsappLink('Olá! Gostaria de agendar um horário no Salão Iolanda.');
   const a = document.querySelector<HTMLAnchorElement>('[data-booking-link]');
   if (a && link) {
     a.href = link;
     a.removeAttribute('aria-disabled');
     a.target = '_blank';
     a.rel = 'noopener';
+    a.textContent = 'Conversar pelo WhatsApp';
     const p = document.querySelector('[data-booking-text]');
-    if (p) p.textContent = 'Fale com o salão pelo WhatsApp para escolher o melhor horário.';
+    if (p) p.textContent = 'Abra uma conversa com o salão pelo WhatsApp para combinar o melhor horário.';
   } else if (a) {
     a.addEventListener('click', (e) => e.preventDefault());
   }

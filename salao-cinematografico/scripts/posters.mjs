@@ -25,8 +25,10 @@ for (const t of targets) {
     c.timeline.seek(c.stillTime);
     c.render();
   });
+  // só a cena: esconde cabeçalho e textos que ficam sobre o canvas
+  await page.addStyleTag({ content: '.site-header,.cinema__chapters,.cinema__progress,.cinema__skip{visibility:hidden!important}' });
   const png = `${out}/${t.name}.png`;
-  await page.locator('.cinema__canvas').screenshot({ path: png });
+  await page.locator('.cinema__canvas').screenshot({ path: png, timeout: 180000 });
   execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', png, '-c:v', 'libwebp', '-quality', '82', `${out}/${t.name}.webp`]);
   rmSync(png);
   await page.close();

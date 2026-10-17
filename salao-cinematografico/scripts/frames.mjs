@@ -19,17 +19,11 @@ for (const [w, h] of sizes) {
   await page.waitForFunction(() => window.__cinema, null, { timeout: 60000 });
   await page.evaluate(() => window.__cinema.setFloat(false));
   for (const p of progresses) {
-    // rola até o ponto (texto e barra acompanham) e fixa a timeline nele
-    await page.evaluate((p) => {
-      const el = document.querySelector('.cinema');
-      window.scrollTo(0, el.offsetTop + (el.offsetHeight - innerHeight) * p);
-      const st = window.ScrollTrigger || null;
-      window.__cinema.timeline.progress(p);
-      window.__cinema.render();
-    }, p);
-    await page.waitForTimeout(400);
+    // sem rolar: o scrub do ScrollTrigger brigaria com o progresso fixado e, no
+    // SwiftShader (≈2 s por quadro), cada passo do scrub vira um quadro inteiro.
+    // Textos e barra de progresso também são guiados pela timeline.
     await page.evaluate((p) => { window.__cinema.timeline.progress(p); window.__cinema.render(); }, p);
-    await page.screenshot({ path: `${out}/${w}x${h}_${String(Math.round(p * 100)).padStart(3, '0')}.png` });
+    await page.screenshot({ timeout: 180000, path: `${out}/${w}x${h}_${String(Math.round(p * 100)).padStart(3, '0')}.png` });
   }
   if (errors.length) console.log(`${w}x${h} erros:`, errors);
   await page.close();

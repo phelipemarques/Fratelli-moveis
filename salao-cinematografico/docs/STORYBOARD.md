@@ -57,6 +57,15 @@ Timeline em unidades (≈ 11,8 no total). A rolagem da seção `.cinema`
 | 6 | 9,0–11,8 | Revelação | Pincel com esmalte, gota | Tampa e pincel inclinam juntos para a direita; close no pincel; a gota se forma | scrub |
 
 Texto: 5 capítulos, um por vez, com entrada por linha (máscara) e saída para cima.
+Capítulos não se sobrepõem: cada um sai antes do próximo entrar.
+
+### Direção de arte (Salão Iolanda)
+
+Fundo preto profundo com halo atrás do objeto, que muda de tom ao longo da
+sequência: rosé na flor, champagne no frasco, rosé com dourado no pincel.
+Contraluz champagne e rosado recorta o vidro e as pétalas sobre o escuro.
+Texto off-white, destaques em rosé, botões champagne, detalhes em dourado
+discreto. A paleta é provisória até a logo oficial chegar.
 
 ## 3. Próximas fases (não implementadas)
 

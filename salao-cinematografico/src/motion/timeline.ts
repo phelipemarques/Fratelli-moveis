@@ -87,7 +87,7 @@ export const CHAPTERS: [string, number | null, number | null][] = [
   ['[data-chapter="0"]', null, 0.55],
   ['[data-chapter="1"]', 1.15, 2.85],
   ['[data-chapter="2"]', 3.2, 5.0],
-  ['[data-chapter="3"]', 5.25, 7.4],
+  ['[data-chapter="3"]', 5.55, 7.4],
   ['[data-chapter="4"]', 8.6, null],
 ];
 

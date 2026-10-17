@@ -131,13 +131,31 @@ test('atalho de teclado pula a apresentação', async ({ page }, testInfo) => {
   await expect(page.locator('#servicos-titulo')).toBeInViewport();
 });
 
-test('agendamento: botão sem número fica desativado e explica o motivo', async ({ page }) => {
+test('agendamento: sem número completo, WhatsApp fica desativado e explica o motivo', async ({ page }) => {
   await ready(page);
   const cta = page.locator('[data-booking-link]');
   await expect(cta).toHaveAttribute('aria-disabled', 'true');
-  await expect(page.locator('[data-booking-text]')).toContainText('ainda não foi informado');
+  await expect(page.locator('[data-booking-text]')).toContainText('número completo do salão for confirmado');
+  // nenhum link de conversa montado com número incompleto
+  await expect(page.locator('a[href*="wa.me"], a[href^="tel:"]')).toHaveCount(0);
   await page.locator('.chapter--hero .btn', { hasText: 'Agendar horário' }).click();
   await expect(page.locator('#agendamento')).toBeInViewport();
+});
+
+test('identidade e contatos: só dados informados pelo salão, pendências sinalizadas', async ({ page }) => {
+  await ready(page);
+  await expect(page.locator('.wordmark')).toHaveText('Salão Iolanda');
+  await expect(page).toHaveTitle(/Salão Iolanda/);
+  const booking = page.locator('#agendamento');
+  await expect(booking).toContainText('Rua Castro Alves, 2995 — Cascavel/PR');
+  await expect(booking).toContainText('3224-7223');
+  await expect(booking).toContainText('DDD a confirmar');
+  await expect(booking).toContainText('Horário de atendimento a confirmar');
+  await expect(page.locator('[data-salon-link="instagram"]')).toHaveAttribute('href', 'https://www.instagram.com/salaoiolanda/');
+  await expect(page.locator('[data-salon-link="maps"]')).toHaveAttribute('href', /google\.com\/maps\/search\/.*Castro%20Alves/);
+  // sem preços, promoções ou horários inventados
+  const text = await page.locator('body').innerText();
+  expect(text).not.toMatch(/R\$|promo|desconto|\d{1,2}h\s*(às|-)/i);
 });
 
 test('movimento reduzido: apresentação estática, conteúdo acessível', async ({ page }) => {
@@ -150,7 +168,7 @@ test('movimento reduzido: apresentação estática, conteúdo acessível', async
   expect(h).toBeLessThan(vh * 1.5);
   await expect(page.locator('h1')).toBeVisible();
   await page.locator('#conteudo').scrollIntoViewIfNeeded();
-  await expect(page.locator('.categories li')).toHaveCount(5);
+  await expect(page.locator('.categories li')).toHaveCount(6);
   expect(errors).toEqual([]);
 });
 

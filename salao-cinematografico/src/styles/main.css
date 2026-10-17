@@ -1,19 +1,23 @@
 :root {
-  --rose-50: #fbf2f0;
-  --rose-100: #f4e6e3;
-  --rose-200: #ecd2d2;
-  --rose-500: #c33f67;
-  --rose-700: #93365a;
-  --champagne: #e6c99a;
-  --gold: #b8935a;
-  --cocoa-900: #2b1a17;
-  --cocoa-700: #4a302a;
-  --cocoa-500: #7a5c55;
+  /* paleta Salão Iolanda: preto profundo, rosé, rosa suave, champagne, off-white e dourado discreto.
+     Provisória até a logo oficial chegar; os tons serão conferidos com a marca. */
+  --black: #0d0a0b;
+  --black-2: #161012;
+  --black-3: #211719;
+  --rose: #e3a6b6;
+  --rose-soft: #f2cdd6;
+  --rose-deep: #b8576f;
+  --champagne: #e8d4b4;
+  --gold: #c9a56b;
+  --offwhite: #f6efe9;
+  --ink-2: #c9b8b5;
+  --ink-3: #9d8b88;
+  --line: rgba(246, 239, 233, 0.14);
 
-  --bg: var(--rose-100);
-  --ink: var(--cocoa-900);
-  --ink-soft: var(--cocoa-700);
-  --accent: var(--rose-700);
+  --bg: var(--black);
+  --ink: var(--offwhite);
+  --ink-soft: var(--ink-2);
+  --accent: var(--rose);
 
   --font-display: 'Instrument Serif', 'Times New Roman', serif;
   --font-sans: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -21,7 +25,7 @@
   --gutter: clamp(1rem, 4vw, 3.5rem);
   --header-h: 4.25rem;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 *,
@@ -51,7 +55,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--rose-700);
+  outline: 2px solid var(--rose);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -63,8 +67,8 @@ a {
   top: 1rem;
   z-index: 100;
   padding: 0.75rem 1.1rem;
-  background: var(--cocoa-900);
-  color: var(--rose-50);
+  background: var(--offwhite);
+  color: var(--black);
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
@@ -103,8 +107,8 @@ a {
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #f6b5c7, var(--rose-500) 60%, var(--rose-700));
-  box-shadow: 0 0 0 3px rgba(195, 63, 103, 0.14);
+  background: radial-gradient(circle at 35% 30%, var(--rose-soft), var(--rose) 55%, var(--rose-deep));
+  box-shadow: 0 0 0 3px rgba(227, 166, 182, 0.16);
 }
 .site-nav {
   display: flex;
@@ -130,17 +134,17 @@ a {
   min-height: 2.9rem;
   padding: 0 1.5rem;
   border-radius: 999px;
-  background: var(--cocoa-900);
-  color: var(--rose-50);
+  background: var(--champagne);
+  color: var(--black);
   font-weight: 600;
   font-size: 0.9375rem;
   text-decoration: none;
-  border: 1px solid var(--cocoa-900);
+  border: 1px solid var(--champagne);
   transition: background-color 0.25s, color 0.25s, transform 0.25s var(--ease-out);
 }
 .btn:hover {
-  background: var(--rose-700);
-  border-color: var(--rose-700);
+  background: var(--rose-soft);
+  border-color: var(--rose-soft);
 }
 .btn:active {
   transform: scale(0.98);
@@ -148,12 +152,12 @@ a {
 .btn--ghost {
   background: transparent;
   color: var(--ink);
-  border-color: rgba(43, 26, 23, 0.35);
+  border-color: rgba(246, 239, 233, 0.38);
 }
 .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(246, 239, 233, 0.08);
   color: var(--ink);
-  border-color: var(--cocoa-900);
+  border-color: var(--offwhite);
 }
 .btn--small {
   min-height: 2.5rem;
@@ -162,8 +166,8 @@ a {
 }
 .btn[aria-disabled='true'] {
   background: transparent;
-  color: var(--cocoa-500);
-  border-color: rgba(43, 26, 23, 0.25);
+  color: var(--ink-3);
+  border-color: rgba(246, 239, 233, 0.28);
   border-style: dashed;
   cursor: not-allowed;
 }
@@ -195,7 +199,7 @@ a {
 }
 .display em {
   font-style: italic;
-  color: var(--rose-700);
+  color: var(--rose);
 }
 .display--md {
   font-size: clamp(2.6rem, 5vw, 4.5rem);
@@ -219,7 +223,19 @@ a {
   display: block;
   margin-top: 0.4rem;
   font-size: 0.8125rem;
-  color: var(--cocoa-500);
+  color: var(--ink-3);
+}
+.pending--inline {
+  display: inline-block;
+  margin: 0 0 0 0.4rem;
+  padding: 0.05rem 0.5rem;
+  border: 1px dashed rgba(201, 165, 107, 0.55);
+  border-radius: 999px;
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
 }
 .actions {
   display: flex;
@@ -246,12 +262,12 @@ a {
   width: 100%;
   height: 100%;
   display: block;
-  background: linear-gradient(180deg, #f6e7e4, #efd6d6);
+  background: radial-gradient(ellipse at 65% 55%, #3a2028, var(--black) 70%);
 }
 .cinema__fallback {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #f6e7e4, #efd6d6);
+  background: radial-gradient(ellipse at 65% 55%, #3a2028, var(--black) 70%);
 }
 .cinema__fallback img {
   width: 100%;
@@ -282,12 +298,12 @@ a {
   right: var(--gutter);
   bottom: 1.4rem;
   height: 1px;
-  background: rgba(43, 26, 23, 0.14);
+  background: var(--line);
 }
 .cinema__progress span {
   display: block;
   height: 100%;
-  background: var(--cocoa-900);
+  background: linear-gradient(90deg, var(--gold), var(--rose));
   transform-origin: 0 50%;
   transform: scaleX(0);
 }
@@ -333,13 +349,14 @@ a {
   .actions .btn {
     flex: 1 1 auto;
   }
-  .cinema__chapters::after {
+  /* véu escuro atrás do texto. ::before (sem z-index negativo): pinta acima do
+     canvas e abaixo dos capítulos, que vêm depois na ordem do documento */
+  .cinema__chapters::before {
     content: '';
     position: absolute;
     inset: auto 0 0 0;
-    height: 52%;
-    background: linear-gradient(180deg, rgba(244, 230, 227, 0), rgba(244, 230, 227, 0.88) 55%);
-    z-index: -1;
+    height: 58%;
+    background: linear-gradient(180deg, rgba(13, 10, 11, 0), rgba(13, 10, 11, 0.8) 38%, rgba(13, 10, 11, 0.94) 70%);
   }
   .site-nav > a:not(.btn) {
     display: none;
@@ -382,7 +399,7 @@ a {
 /* ---------- próxima seção (prévia) ---------- */
 .next {
   position: relative;
-  background: var(--rose-50);
+  background: var(--black);
   padding: clamp(5rem, 12vw, 9rem) var(--gutter);
 }
 .next:focus {
@@ -396,14 +413,14 @@ a {
   list-style: none;
   margin: 3rem 0 0;
   padding: 0;
-  border-top: 1px solid rgba(43, 26, 23, 0.16);
+  border-top: 1px solid var(--line);
 }
 .categories li {
   display: flex;
   align-items: baseline;
   gap: 1.25rem;
   padding: 1.1rem 0;
-  border-bottom: 1px solid rgba(43, 26, 23, 0.16);
+  border-bottom: 1px solid var(--line);
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   line-height: 1.1;
@@ -412,7 +429,7 @@ a {
   margin-left: auto;
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  color: var(--cocoa-500);
+  color: var(--ink-2);
   text-align: right;
 }
 .categories__n {
@@ -426,7 +443,41 @@ a {
   margin-top: 4rem;
   padding: clamp(1.5rem, 4vw, 2.5rem);
   border-radius: 1.25rem;
-  background: var(--rose-100);
+  background: var(--black-2);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 900px) {
+  .booking {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: start;
+  }
+}
+.booking .actions {
+  margin-top: 1.4rem;
+}
+.booking__info {
+  margin: 0;
+  display: grid;
+  gap: 1.1rem;
+}
+.booking__info dt {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.booking__info dd {
+  margin: 0.3rem 0 0;
+  color: var(--ink);
+}
+.booking__info a {
+  color: var(--rose);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-underline-offset: 4px;
 }
 .booking h3 {
   margin: 0;
@@ -441,9 +492,9 @@ a {
 .site-footer {
   padding: 2rem var(--gutter);
   font-size: 0.8125rem;
-  color: var(--cocoa-500);
-  background: var(--rose-50);
-  border-top: 1px solid rgba(43, 26, 23, 0.1);
+  color: var(--ink-3);
+  background: var(--black);
+  border-top: 1px solid var(--line);
 }
 .site-footer p {
   margin: 0;

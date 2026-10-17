@@ -36,8 +36,8 @@ const LAYERS: LayerSpec[] = [
   { count: 12, radius: 0.45, length: 1.34, width: 0.72, closedTilt: 0.42, openTilt: 1.58, cupClosed: 0.7, cupOpen: 0.2, delay: 0, colorBase: '#bb5a7b', colorMid: '#f0a9bd', colorTip: '#fcdae3' },
 ];
 
-const SEG_U = 16;
-const SEG_V = 24;
+const SEG_U = 20;
+const SEG_V = 28;
 
 /**
  * Linha central da pétala, integrada como um arco: o ângulo cresce ao longo do
@@ -66,12 +66,12 @@ function petalPoint(
   // largura: base estreita (unha da pétala), topo largo e arredondado
   const w = spec.width * Math.pow(Math.sin(Math.PI * Math.min(0.985, 0.04 + v * 0.96)), 0.5) * (0.45 + 0.55 * v);
   const cup = open ? spec.cupOpen : spec.cupClosed;
-  // deslocamento para dentro (concavidade) + babado na borda superior
+  // deslocamento para dentro (concavidade) + babado largo e macio na borda superior
   let inward = cup * u * u * w;
-  const ruffle = (open ? 0.09 : 0.035) * spec.width;
-  inward -= ruffle * (Math.sin(u * 8.5 + seed) + 0.5 * Math.sin(u * 19 + seed * 2.3)) * Math.pow(v, 2.5);
-  // ponta recortada, com dentes irregulares
-  const notch = 0.05 * spec.length * Math.pow(Math.abs(Math.sin(u * 4.2 + seed * 1.7)), 0.6) * Math.pow(v, 7);
+  const ruffle = (open ? 0.06 : 0.025) * spec.width;
+  inward -= ruffle * (Math.sin(u * 5.2 + seed) + 0.35 * Math.sin(u * 9.5 + seed * 2.3)) * Math.pow(v, 2.2);
+  // ponta levemente ondulada (sem dentes: pétala de peônia tem borda macia)
+  const notch = 0.022 * spec.length * (0.5 + 0.5 * Math.sin(u * 3.1 + seed * 1.7)) * Math.pow(v, 6);
   const phi = line.phis[j];
   // normal interna da linha central no plano yz
   const ny = -Math.sin(phi);
@@ -168,10 +168,14 @@ export class Flower {
     this.group.name = 'flower';
     const petalMat = new THREE.MeshPhysicalMaterial({
       vertexColors: true,
-      roughness: 0.62,
+      roughness: 0.58,
       sheen: 1,
-      sheenRoughness: 0.5,
-      sheenColor: new THREE.Color('#ffc9d8'),
+      sheenRoughness: 0.45,
+      sheenColor: new THREE.Color('#ffd0dc'),
+      // brilho próprio baixo e rosado: imita a luz que atravessa a pétala e
+      // evita sombras mortas sobre o fundo escuro
+      emissive: new THREE.Color('#4a1426'),
+      emissiveIntensity: 0.45,
       side: THREE.DoubleSide,
       envMapIntensity: 0.32,
     });
