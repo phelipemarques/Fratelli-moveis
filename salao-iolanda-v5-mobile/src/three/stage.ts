@@ -329,7 +329,8 @@ export class Stage {
     // mesmo corte do CSS (max-width: 700px): abaixo dele o texto vai para baixo e o
     // objeto fica centralizado; acima (tablet em pé incluído) o texto fica à esquerda
     const portrait = this.width <= 700;
-    const f = this.framing() * (portrait ? s.mDist : 1);
+    // a câmera do celular também vale para o tablet em pé, um pouco mais suave
+    const f = this.framing() * (portrait ? s.mDist : this.tabletPortrait ? 1 + (s.mDist - 1) * 0.8 : 1);
 
     // câmera
     const cam = this.camera;
@@ -373,7 +374,7 @@ export class Stage {
     const b = this.brush;
     b.root.visible = s.brushScale > 0.01;
     // no celular o texto ocupa a metade de baixo: a escova sobe e encolhe um pouco
-    b.root.position.set(portrait ? s.brushX * 0.3 : s.brushX, s.brushY + (portrait ? 0.55 : 0), 0);
+    b.root.position.set(portrait ? s.brushX * 0.3 : this.tabletPortrait ? s.brushX * 0.45 : s.brushX, s.brushY + (portrait ? 0.55 : 0), 0);
     b.root.scale.setScalar(Math.max(0.001, s.brushScale * (portrait ? 0.82 : 1)));
     b.root.rotation.set(s.brushTiltX, 0, s.brushTiltZ);
     b.spin.rotation.y = s.brushSpin;

@@ -10,7 +10,7 @@ const [url = 'http://localhost:5175/', out = 'enquadramento', label = 'v5', shot
 mkdirSync(out, { recursive: true });
 const shotSizes = new Set(shotArg.split(','));
 
-const SIZES = [[320, 568], [360, 800], [375, 667], [390, 844], [393, 852], [414, 896], [430, 932], [768, 1024], [844, 390], [1440, 900]];
+const SIZES = (process.env.SIZES ? process.env.SIZES.split(',').map((s) => s.split('x').map(Number)) : null) ?? [[320, 568], [360, 800], [375, 667], [390, 844], [393, 852], [414, 896], [430, 932], [768, 1024], [844, 390], [1440, 900]];
 // instante → objeto protagonista
 const PHASES = [
   ['01-botao', 0, 'flor'],

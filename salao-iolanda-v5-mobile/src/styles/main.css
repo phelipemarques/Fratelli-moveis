@@ -2008,3 +2008,46 @@ a {
     display: inline;
   }
 }
+
+/* celular deitado (tela baixa e larga): o nome já está no cabeçalho; texto em menos linhas */
+@media (max-height: 560px) and (min-width: 701px) {
+  .chapter .brandline,
+  .chapter .place {
+    display: none;
+  }
+  .chapter {
+    top: calc(50% + var(--header-h) / 2);
+  }
+  .chapter .actions {
+    flex-wrap: nowrap;
+  }
+  .chapter .actions .btn {
+    min-height: 2.75rem;
+    padding: 0 1.1rem;
+  }
+}
+
+/* tablet em pé (701–899 px): serviços em linhas com foto ao lado, não uma foto por tela */
+@media (min-width: 701px) and (max-width: 899px) {
+  .svc {
+    grid-template-columns: 13rem 1fr;
+    gap: 0 1.75rem;
+    align-items: start;
+  }
+  .svc__media {
+    aspect-ratio: 4 / 3;
+  }
+  .svc__media .ph {
+    min-height: 0;
+  }
+  .svc__title {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .lightbox__count {
+    display: block;
+    margin: 0.25rem 0 0;
+  }
+}
