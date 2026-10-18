@@ -1,0 +1,87 @@
+{
+ "quadros": 16,
+ "largura": 480,
+ "altura": 760,
+ "lista": [
+  {
+   "i": 0,
+   "t": 0,
+   "arquivo": "assets/images/sequencia/q-00.webp"
+  },
+  {
+   "i": 1,
+   "t": 0.0667,
+   "arquivo": "assets/images/sequencia/q-01.webp"
+  },
+  {
+   "i": 2,
+   "t": 0.1333,
+   "arquivo": "assets/images/sequencia/q-02.webp"
+  },
+  {
+   "i": 3,
+   "t": 0.2,
+   "arquivo": "assets/images/sequencia/q-03.webp"
+  },
+  {
+   "i": 4,
+   "t": 0.2667,
+   "arquivo": "assets/images/sequencia/q-04.webp"
+  },
+  {
+   "i": 5,
+   "t": 0.3333,
+   "arquivo": "assets/images/sequencia/q-05.webp"
+  },
+  {
+   "i": 6,
+   "t": 0.4,
+   "arquivo": "assets/images/sequencia/q-06.webp"
+  },
+  {
+   "i": 7,
+   "t": 0.4667,
+   "arquivo": "assets/images/sequencia/q-07.webp"
+  },
+  {
+   "i": 8,
+   "t": 0.5333,
+   "arquivo": "assets/images/sequencia/q-08.webp"
+  },
+  {
+   "i": 9,
+   "t": 0.6,
+   "arquivo": "assets/images/sequencia/q-09.webp"
+  },
+  {
+   "i": 10,
+   "t": 0.6667,
+   "arquivo": "assets/images/sequencia/q-10.webp"
+  },
+  {
+   "i": 11,
+   "t": 0.7333,
+   "arquivo": "assets/images/sequencia/q-11.webp"
+  },
+  {
+   "i": 12,
+   "t": 0.8,
+   "arquivo": "assets/images/sequencia/q-12.webp"
+  },
+  {
+   "i": 13,
+   "t": 0.8667,
+   "arquivo": "assets/images/sequencia/q-13.webp"
+  },
+  {
+   "i": 14,
+   "t": 0.9333,
+   "arquivo": "assets/images/sequencia/q-14.webp"
+  },
+  {
+   "i": 15,
+   "t": 1,
+   "arquivo": "assets/images/sequencia/q-15.webp"
+  }
+ ]
+}
