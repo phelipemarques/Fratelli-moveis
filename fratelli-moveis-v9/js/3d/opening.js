@@ -286,6 +286,8 @@ export function criarAbertura(opcoes) {
      ============================================================ */
   var MAPAS = gerarMadeira({
     tamanho: leve ? 512 : 1024,
+    /* O teto real da GPU, não um palpite. */
+    anisotropia: renderer.capabilities.getMaxAnisotropy(),
     /* Quatro folhas independentes num atlas 2x2. Ver grao.js: o que
        diferencia uma peça da outra passou a ser a FOLHA, não um
        deslocamento dentro da mesma folha — era o deslocamento que
@@ -314,9 +316,21 @@ export function criarAbertura(opcoes) {
        a luz do estúdio dentro dela. Usá-los como albedo e depois
        iluminar a cena devolve um render mais escuro que a foto. É uma
        aproximação assumida, não uma medição de albedo. */
+    claro: [159, 123, 101],
+    escuro: [104, 70, 51],
     rugosidade: 0.46,
     rugosidadePoro: 0.72,
-    relevo: 1.0
+    /* Relevo fraco, e de propósito.
+
+       Com 1,0 o móvel inteiro lia como painel RIPADO: a vista de
+       longe mostrava sulcos verticais com luz e sombra próprias, como
+       se o poro tivesse milímetros. Ele tem centésimos. A linha do
+       veio existe sobretudo como COR; o relevo entra só para o brilho
+       não escorregar liso por cima dela.
+
+       Teste de sanidade: a 3 m de distância o poro de uma lâmina
+       envernizada não se vê. Se o render mostra, está errado. */
+    relevo: 0.34
   });
   lixo.push(MAPAS.map, MAPAS.roughnessMap, MAPAS.normalMap);
 
@@ -346,7 +360,7 @@ export function criarAbertura(opcoes) {
      valor acima de zero produz aquele reflexo acinzentado de plástico
      metalizado que é meio caminho do aspecto de massinha. */
   function lamina(folha, tom, extra) {
-    var o = { folha: folha, tingir: tom, normal: 0.30, reflexo: 0.85 };
+    var o = { folha: folha, tingir: tom, normal: 0.16, reflexo: 0.85 };
     if (extra) {
       Object.keys(extra).forEach(function (k) { o[k] = extra[k]; });
     }
@@ -412,11 +426,26 @@ export function criarAbertura(opcoes) {
 
   /* ============================================================
      O módulo
-     1,80 × 2,10 × 0,58 m, painéis de 18 mm. A espessura é modelada,
-     não sugerida: é dela que vem a borda que pega luz.
+
+     2,46 × 2,42 × 0,62 m, painéis de 18 mm, quatro folhas.
+
+     A V8 tinha 1,80 × 2,10 com DUAS folhas de 0,89 m. O render de
+     argila — a mesma cena com um cinza fosco no lugar de todos os
+     materiais — mostrou por que isso nunca ia convencer: uma caixa
+     quase sem aresta interna, com duas folhas quase quadradas e um
+     rodapé. Marcenaria planejada não tem essa proporção. Na referência
+     (tools/ref/27.jpg) são quatro folhas estreitas e altas, perto de
+     1:4, dentro de uma moldura que avança alguns milímetros sobre
+     elas. É a moldura, e a sombra que ela projeta na folha, que diz
+     ao olho que aquilo é um móvel montado e não um volume pintado.
+
+     As duas folhas CENTRAIS abrem; as duas laterais são fixas. É o
+     arranjo da referência, e é o que a aproximação de câmera pede:
+     o vão que se abre fica no meio do quadro.
      ============================================================ */
-  var L = 1.80, A = 2.10, P = 0.58, E = 0.018;
-  var RODAPE = 0.09;                   // recuo da base, como em obra
+  var L = 2.46, A = 2.42, P = 0.62, E = 0.018;
+  var RODAPE = 0.08;                   // recuo da base, como em obra
+  var FOLGA = 0.003;                   // a fresta entre peças
 
   /* O móvel fica na ORIGEM. Quem decide onde ele aparece na tela é o
      alvo da câmera: olhar para a esquerda do móvel joga o móvel para a
@@ -431,7 +460,7 @@ export function criarAbertura(opcoes) {
   movel.add(corpo);
 
   // rodapé recuado: o móvel não nasce do chão, ele pousa
-  corpo.add(painel(L - 0.08, RODAPE, P - 0.07, MAT.deitadaB, 0, RODAPE / 2, -0.02));
+  corpo.add(painel(L - 0.09, RODAPE, P - 0.08, MAT.deitadaB, 0, RODAPE / 2, -0.025));
 
   var y0 = RODAPE;                     // base da caixa
   var Ac = A - RODAPE;                 // altura útil da caixa
@@ -444,114 +473,199 @@ export function criarAbertura(opcoes) {
   // fundo
   corpo.add(painel(L - 2 * E, Ac - 2 * E, E, MAT.fundo, 0, y0 + Ac / 2, -P / 2 + E / 2));
 
-  /* A fita de borda postiça SAIU.
+  /* ---------- As quatro folhas: medidas ----------
+     Tudo o que vem depois — moldura, divisórias, gaveteiro, puxadores
+     — é posicionado a partir daqui, para que nada precise ser
+     reconciliado à mão quando uma medida mudar. */
+  var larguraPorta = (L - 2 * E - 3 * FOLGA) / 4;
+  var alturaPorta = Ac - 2 * E - 2 * FOLGA;
+  var yPorta = y0 + Ac / 2;
+  var zPorta = P / 2 + E / 2 + 0.0015;
+  function xFolha(i) {
+    return -L / 2 + E + i * (larguraPorta + FOLGA) + larguraPorta / 2;
+  }
+  // bordas internas do vão central, entre as folhas 1 e 2
+  var vaoEsq = xFolha(1) - larguraPorta / 2;
+  var vaoDir = xFolha(2) + larguraPorta / 2;
 
-     Ela existia na V8 como substituta do chanfro: uma lasca de 1,5 mm
-     grudada na quina para fingir uma linha de luz. Com o chanfro real
-     (pecas.js) ela virou uma segunda aresta em cima da primeira —
-     mais geometria para um efeito que agora acontece sozinho, e na
-     posição errada. Menos peças, resultado melhor. */
+  /* ---------- A moldura ----------
+
+     Uma faixa de 70 mm em todo o perímetro da frente, avançando 12 mm
+     sobre as folhas. Não é enfeite: é a peça que a V8 não tinha e cuja
+     ausência deixava o móvel sem nenhuma aresta própria na frente. A
+     sombra que ela lança na folha é a primeira coisa que o olho usa
+     para medir profundidade num armário fechado. */
+  var MOLD = 0.070, SALTO = 0.012;
+  var zMold = zPorta + E / 2 + SALTO / 2;
+  corpo.add(painel(MOLD, Ac, SALTO, MAT.moldura, -L / 2 + MOLD / 2, y0 + Ac / 2, zMold));
+  corpo.add(painel(MOLD, Ac, SALTO, MAT.moldura,  L / 2 - MOLD / 2, y0 + Ac / 2, zMold));
+  corpo.add(painel(L - 2 * MOLD, MOLD, SALTO, MAT.moldura, 0, y0 + MOLD / 2, zMold));
+  corpo.add(painel(L - 2 * MOLD, MOLD, SALTO, MAT.moldura, 0, y0 + Ac - MOLD / 2, zMold));
 
   /* ---------- Interior ---------- */
   var interior = new THREE.Group();
   corpo.add(interior);
 
-  var xDiv = -L / 6;                   // divisória: coluna estreita à esquerda
-  interior.add(painel(E, Ac - 2 * E, P - E, MAT.divisoria, xDiv, y0 + Ac / 2, E / 2));
-  var largaEsq = L / 2 + xDiv - E;     // vão estreito (esquerda)
-  var cEsq = (-L / 2 + xDiv) / 2;
-  var largaDir = L / 2 - xDiv - E;     // vão largo (direita)
-  var cDir = (L / 2 + xDiv) / 2;
-
-  // prateleiras do vão estreito
-  var ALTURAS = [0.62, 1.00, 1.38, 1.76];
-  ALTURAS.forEach(function (y, i) {
-    interior.add(painel(largaEsq, E, P - 0.05,
-                        [MAT.deitadaA, MAT.deitadaB, MAT.deitadaC][i % 3], cEsq, y, 0.02));
+  /* Divisórias de corpo, nas bordas do vão central. Elas fecham o vão
+     que as portas revelam: sem isso a abertura mostra uma caixa larga
+     e vazia, e a câmera entra num lugar que não tem paredes. */
+  [vaoEsq, vaoDir].forEach(function (x) {
+    interior.add(painel(E, Ac - 2 * E, P - E, MAT.divisoria, x, y0 + Ac / 2, E / 2));
   });
 
-  // vão largo: prateleira alta + cabideiro
-  interior.add(painel(largaDir, E, P - 0.05, MAT.deitadaB, cDir, 1.76, 0.02));
-  var GEO_BARRA = new THREE.CylinderGeometry(0.014, 0.014, largaDir, 14);
+  var bEsq = vaoEsq + E / 2, bDir = vaoDir - E / 2;   // vão útil, entre divisórias
+  var xDiv = 0.04;                                    // divisória interna do vão
+  var Y_GAV = 0.98;                                   // topo do gaveteiro
+
+  interior.add(painel(E, y0 + Ac - E - Y_GAV, P - E, MAT.divisoria,
+                      xDiv, (Y_GAV + y0 + Ac - E) / 2, E / 2));
+
+  /* Lado do cabideiro (esquerda do vão): prateleira alta, barra logo
+     abaixo, e uma prateleira na metade. */
+  var largCab = xDiv - E / 2 - bEsq;
+  var cCab = (bEsq + xDiv - E / 2) / 2;
+  interior.add(painel(largCab, E, P - 0.06, MAT.deitadaA, cCab, y0 + Ac - 0.30, 0.025));
+  interior.add(painel(largCab, E, P - 0.06, MAT.deitadaB, cCab, 1.46, 0.025));
+
+  var GEO_BARRA = new THREE.CylinderGeometry(0.014, 0.014, largCab, 14);
   lixo.push(GEO_BARRA);
   var barra = new THREE.Mesh(GEO_BARRA, MAT.metal);
   barra.rotation.z = Math.PI / 2;
-  barra.position.set(cDir, 1.63, 0.02);
+  barra.position.set(cCab, y0 + Ac - 0.38, 0.025);
   barra.castShadow = true;
   interior.add(barra);
 
-  /* ---------- Gaveteiro no vão largo ----------
-     Três frentes, com fresta de 3 mm entre elas e puxador embutido.
-     A fresta existe porque marcenaria tem fresta; sem ela as frentes
-     viram um painel só. */
-  var gavetas = [];
-  var GEO_PUX = new THREE.BoxGeometry(1, 1, 1);
-  lixo.push(GEO_PUX);
-  var hGav = 0.21, fresta = 0.003;
-  for (var i = 0; i < 3; i++) {
-    var yg = y0 + 0.06 + i * (hGav + fresta) + hGav / 2;
-    var g = new THREE.Group();
-    g.position.set(cDir, yg, P / 2 - 0.02);
-    var frente = painel(largaDir - 0.012, hGav, E,
-                        [MAT.gavetaA, MAT.gavetaB, MAT.gavetaC][i], 0, 0, 0);
-    g.add(frente);
-    // puxador em perfil, rente ao topo da frente
-    var pux = new THREE.Mesh(GEO_PUX, MAT.metal);
-    pux.scale.set(largaDir * 0.46, 0.012, 0.022);
-    pux.position.set(0, hGav / 2 - 0.028, E / 2 + 0.011);
-    pux.castShadow = true;
-    g.add(pux);
-    interior.add(g);
-    gavetas.push(g);
-  }
-
-  /* ---------- Fitas de luz, sob cada prateleira ---------- */
-  var fitas = [];
-  ALTURAS.forEach(function (y) {
-    var f = painel(largaEsq - 0.04, 0.008, 0.02, MAT.luzFita, cEsq, y - E, P / 2 - 0.10);
-    f.castShadow = false;
-    interior.add(f); fitas.push(f);
+  /* Lado das prateleiras (direita do vão): quatro, passo regular. */
+  var largPrat = bDir - (xDiv + E / 2);
+  var cPrat = (xDiv + E / 2 + bDir) / 2;
+  var ALTURAS = [y0 + Ac - 0.30, 1.86, 1.52, 1.18];
+  ALTURAS.forEach(function (y, i) {
+    interior.add(painel(largPrat, E, P - 0.06,
+                        [MAT.deitadaA, MAT.deitadaB, MAT.deitadaC][i % 3], cPrat, y, 0.025));
   });
-  var fitaAlta = painel(largaDir - 0.04, 0.008, 0.02, MAT.luzFita, cDir, 1.76 - E, P / 2 - 0.10);
-  fitaAlta.castShadow = false;
-  interior.add(fitaAlta); fitas.push(fitaAlta);
+
+  /* ---------- Gaveteiro, duas colunas ----------
+
+     Quatro fiadas em cada coluna, com fresta de 3 mm e puxador
+     FRESADO: a frente é 16 mm mais baixa que o vão e encostada
+     embaixo, de modo que sobra uma sombra contínua no alto de cada
+     gaveta. É como a referência resolve, e tem a vantagem de não
+     precisar de nenhuma peça a mais. Um puxador aplicado ali
+     atravancaria o caminho da câmera. */
+  interior.add(painel(E, Y_GAV - y0 - E, P - E, MAT.divisoria, 0,
+                      (y0 + E + Y_GAV) / 2, E / 2));
+
+  var gavetas = [];
+  var hGav = (Y_GAV - y0 - E - 0.06) / 4;
+  [[bEsq, -E / 2], [E / 2, bDir]].forEach(function (col, ci) {
+    var larg = col[1] - col[0] - 2 * FOLGA;
+    var cx = (col[0] + col[1]) / 2;
+    for (var i = 0; i < 4; i++) {
+      var yg = y0 + E + 0.02 + i * hGav + hGav / 2;
+      var g = new THREE.Group();
+      g.position.set(cx, yg, P / 2 - 0.03);
+      g.add(painel(larg, hGav - 0.016, E,
+                   [MAT.gavetaA, MAT.gavetaB, MAT.gavetaC][(i + ci) % 3],
+                   0, -0.008, 0));
+      interior.add(g);
+      gavetas.push(g);
+    }
+  });
+
+  /* ---------- Fitas de luz ----------
+     Sob o topo de cada lado do vão. Acendem só quando as portas
+     abrem — ver a linha do tempo. */
+  var fitas = [];
+  [[largCab - 0.05, cCab], [largPrat - 0.05, cPrat]].forEach(function (f) {
+    var fita = painel(f[0], 0.008, 0.02, MAT.luzFita, f[1],
+                      y0 + Ac - 0.30 - E, P / 2 - 0.12);
+    fita.castShadow = false;
+    interior.add(fita); fitas.push(fita);
+  });
 
   /* ============================================================
-     As portas e seus pivôs
+     As folhas
 
      O Group fica na BORDA do vão. A malha é deslocada meia largura
      para dentro. Girar o Group em Y descreve o arco de uma dobradiça
      de verdade — a folha varre o espaço, não encolhe.
+
+     A FRESTA. Na V6 as folhas encostavam no corpo e uma na outra: o
+     móvel lia como uma caixa pintada com linhas desenhadas em cima.
+     Marcenaria de verdade tem folga, e é a sombra dentro dela que diz
+     ao olho que são peças separadas, e não um desenho.
      ============================================================ */
-  /* A FRESTA.
 
-     Na V6 as folhas encostavam no corpo e uma na outra: o móvel lia
-     como uma caixa pintada com linhas desenhadas em cima. Marcenaria
-     de verdade tem folga — 3 mm entre folha e folha, 1,5 mm de cada
-     lado contra a lateral. É a sombra dentro dessa folga que diz ao
-     olho que são peças separadas, e não um desenho.
+  /* A folha não é uma chapa lisa.
 
-     É a mudança mais barata e a que mais muda a leitura da peça. */
-  var FOLGA = 0.003;
-  var larguraPorta = L / 2 - E - FOLGA;
-  var zPorta = P / 2 + E / 2 + 0.0015;
+     Na referência cada folha tem um painel REBAIXADO: um quadro de
+     ~85 mm em volta, saliente, e o campo no meio. Quatro tiras finas
+     resolvem — e o que elas trazem não é o desenho, é a sombra que
+     cai do quadro sobre o campo quando a luz vem de lado. Uma chapa
+     lisa não tem como produzir isso, por melhor que seja a textura. */
+  var QUADRO = 0.085, FUNDO_Q = 0.007;
+  function montarFolha(material, larg, alt) {
+    var g = new THREE.Group();
+
+    /* O quadro — quatro peças de verdade, não uma tira colada sobre
+       uma chapa inteira. A primeira tentativa foi a chapa inteira com
+       o quadro SALIENTE por cima, e de longe não aparecia nada: 9 mm
+       de saliência dão menos de dois pixels, e com a luz quase de
+       frente não há sombra para marcá-los.
+
+       Agora o campo central é REBAIXADO. A diferença é que um rebaixo
+       devolve uma linha ESCURA no encontro das peças, e linha escura
+       se lê em qualquer escala — é o mesmo motivo de a fresta entre
+       as folhas funcionar. */
+    g.add(painel(QUADRO, alt, E, material, -larg / 2 + QUADRO / 2, 0, 0));
+    g.add(painel(QUADRO, alt, E, material,  larg / 2 - QUADRO / 2, 0, 0));
+    var meio = larg - 2 * QUADRO;
+    g.add(painel(meio, QUADRO, E, material, 0, -alt / 2 + QUADRO / 2, 0));
+    g.add(painel(meio, QUADRO, E, material, 0,  alt / 2 - QUADRO / 2, 0));
+
+    /* O campo, atrás do plano do quadro. Entra 4 mm por baixo das
+       peças do quadro para não abrir um vazio no canto. */
+    g.add(painel(meio + 0.008, alt - 2 * QUADRO + 0.008, E, material,
+                 0, 0, -FUNDO_Q));
+    return g;
+  }
+
+  /* As duas folhas fixas, nas pontas. Não giram: estão aqui porque
+     sem elas o móvel tem 1,2 m e não 2,46 m, e porque é contra elas
+     que as folhas que abrem se destacam. */
+  [[0, MAT.fixoEsq], [3, MAT.fixoDir]].forEach(function (f) {
+    var folha = montarFolha(f[1], larguraPorta, alturaPorta);
+    folha.position.set(xFolha(f[0]), yPorta, zPorta);
+    corpo.add(folha);
+  });
+
+  /* As duas folhas centrais.
+
+     `sinal` -1 é a da esquerda: dobradiça na aresta ESQUERDA dela, que
+     é a que encosta na folha fixa. Ela abre varrendo para fora e para
+     a esquerda, como na referência. */
   function montarPorta(sinal) {
+    var i = sinal < 0 ? 1 : 2;
     var pivo = new THREE.Group();
-    pivo.position.set(sinal * (L / 2 - E - FOLGA / 2), 0, zPorta);
+    pivo.position.set(xFolha(i) + sinal * larguraPorta / 2, 0, zPorta);
     corpo.add(pivo);
 
-    var folha = painel(larguraPorta, Ac - 2 * E - 2 * FOLGA, E,
-                       sinal < 0 ? MAT.portaEsq : MAT.portaDir,
-                       -sinal * larguraPorta / 2, y0 + Ac / 2, 0);
+    var folha = montarFolha(sinal < 0 ? MAT.portaEsq : MAT.portaDir,
+                            larguraPorta, alturaPorta);
+    folha.position.set(-sinal * larguraPorta / 2, yPorta, 0);
     pivo.add(folha);
 
-    /* Puxador de barra, longo e afastado da folha, como na
-       referência 27. O afastamento não é enfeite: é a sombra entre a
-       barra e a porta que dá volume ao metal. Barra encostada na
-       superfície lê como risco desenhado. */
-    var pux = montarPuxador(THREE, MAT.metal, 0.62, 0.030);
-    pux.position.set(-sinal * (larguraPorta - 0.062),
-                     y0 + Ac / 2 + 0.06, E / 2 + 0.030);
+    /* Puxador de barra, longo e afastado da folha, como na referência.
+       O afastamento não é enfeite: é a sombra entre a barra e a porta
+       que dá volume ao metal. Barra encostada na superfície lê como
+       risco desenhado.
+
+       Fica junto da aresta LIVRE, que é a do meio do móvel — os dois
+       puxadores ficam lado a lado no centro, que é onde a referência
+       os põe e onde a mão de fato pega. */
+    var pux = montarPuxador(THREE, MAT.metal, 0.95, 0.032);
+    pux.position.set(-sinal * (larguraPorta - 0.055),
+                     yPorta - 0.10, E / 2 + 0.032);
     pivo.add(pux);
 
     return pivo;
@@ -615,10 +729,14 @@ export function criarAbertura(opcoes) {
   rasante.position.set(-2.2, 2.0, 6.4);
   luzes.add(rasante);
 
+  /* As duas luzes de dentro ficam nos dois lados do vão central —
+     o único que as portas revelam. Posicionadas a partir das MEDIDAS
+     do interior, não por números soltos: assim continuam no lugar
+     quando o módulo muda de tamanho. */
   var dentroA = new THREE.PointLight(0xFFCC8E, 0.0, 4.2, 2.0);
-  dentroA.position.set(cEsq, 1.48, 0.02);
+  dentroA.position.set(cCab, y0 + Ac - 0.55, 0.04);
   var dentroB = new THREE.PointLight(0xFFCC8E, 0.0, 4.2, 2.0);
-  dentroB.position.set(cDir, 1.02, 0.02);
+  dentroB.position.set(cPrat, 1.30, 0.04);
   luzes.add(dentroA, dentroB);
 
   /* ============================================================

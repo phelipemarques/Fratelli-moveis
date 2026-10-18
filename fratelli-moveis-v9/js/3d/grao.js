@@ -102,8 +102,32 @@ function campos(largura, altura, semente) {
       /* FIGURA: 11 bandas por folha. Uma folha cobre ~0,6 m de porta,
          então são ~18 bandas por metro — a escala da catedral na
          referência, não a do risco. */
-      var d = (u * 1.0 + wx * 0.16) + (v * 0.052 + wy * 0.06);
-      var figura = d * 11.0;
+            /* A distorção agora pode ser GENEROSA, e precisa ser.
+
+         Com 3 bandas por folha e distorção de 0,16, as bandas saíam
+         quase igualmente espaçadas: o espectro mostrava um pico de
+         3962x a mediana em 3 ciclos, contra 125x na fotografia. Um
+         pico estreito é um padrão; madeira é um espectro largo.
+
+         0,44 espalha o espaçamento o bastante para a banda ser
+         irregular sem virar redemoinho. E agora isso é seguro: o
+         normal map não vem mais deste campo, então uma figura larga e
+         torta não empena mais a superfície. */
+      var d = (u * 1.0 + wx * 0.44) + (v * 0.052 + wy * 0.14);
+      /* 3 bandas por folha, e este número veio de uma medição.
+
+         Espectro horizontal da folha, na mesma escala nos dois lados
+         (170 px para ~0,60 m): a fotografia (tools/ref/27.jpg) cai
+         suavemente a partir de 2 ciclos — 283x a mediana em 2, 124x
+         em 3, 72x em 4. É um espectro natural. A textura tinha um
+         PICO isolado em 11 ciclos, 1136x a mediana, com quase nada em
+         volta: a assinatura de um padrão regular, e a razão de o
+         móvel ler como painel ripado de longe por melhor que a folha
+         ficasse de perto.
+
+         Onze era o número de bandas. Com três, a energia volta para a
+         frequência da figura, que é onde a madeira a põe. */
+      var figura = d * 3.0;
       figura = figura - Math.floor(figura);
       /* Onda triangular assimétrica: a passagem do lenho inicial para
          o tardio é abrupta de um lado e lenta do outro, e é essa
@@ -131,21 +155,52 @@ function campos(largura, altura, semente) {
          bandas de poro aberto e bandas quase lisas. Sem ele as linhas
          saem todas iguais do topo à base, que é a cara de impressão
          digital em MDF. */
-            /* 62 linhas por folha ≈ 100 por metro, dentro do que a
-         referência mede (~45 numa face de ~0,35 m). Era 95, e 95 não
-         cabe: com 512 texels por folha sobram 5,4 texels por linha, e
-         o núcleo escuro saía com menos de um décimo de texel. O dump
-         do campo mostra o efeito — as linhas VERTICAIS saíam
-         contínuas e as INCLINADAS saíam picotadas, porque o núcleo
-         passava entre os centros dos pixels. Aliasing, não madeira. */
-      var fase = d * 62.0 + fbm(gC, n, u * 7.0, v * 1.4 + 3, 2) * 0.9;
+            /* 26 linhas por folha ≈ 43 por metro.
+
+         A referência tem ~130 por metro, e esta é uma escolha
+         deliberada de ficar ABAIXO dela. O motivo é medível: no
+         primeiro ato a folha ocupa ~105 px de tela. Com 100 linhas
+         por metro sobram 1,7 px por linha, e aí nenhuma filtragem
+         resolve — nem anisotropia 16, nem mip-map. A cadeia de
+         mip-map é um filtro de caixa, que não elimina um sinal
+         periódico de 1,7 texel; o que sai é batimento com a grade de
+         pixels, e o móvel inteiro lê como painel ripado.
+
+         Isso foi isolado, não suposto: desligando SÓ o mapa de cor o
+         painel fica perfeitamente liso; desligando normal e
+         rugosidade, as ripas continuam. É a cor, e é aliasing.
+
+         Aumentar a resolução da textura não ajudaria: o que decide é
+         a escala na TELA, não no texel. Com 26 linhas sobram 4 px por
+         linha no enquadramento mais distante, e o veio continua
+         legível na aproximação, quando a folha ocupa dez vezes mais.
+
+         Fica registrado como um desvio da referência, com a razão. */
+      var fase = d * 26.0 + fbm(gC, n, u * 7.0, v * 1.4 + 3, 2) * 0.9;
       var crista = Math.abs(Math.sin(fase * Math.PI));
-            /* `onde` varia de linha para linha (em u) e quase nada ao longo
-         da peça (em v). Tem de ser assim: um poro é um vaso que corre
-         o comprimento da tábua inteira. Com variação rápida em v as
-         linhas saíam PICOTADAS, como pontilhado — está no dump
-         anterior, e é um defeito que não existe em madeira. */
-      var onde = fbm(gC, n, u * 16.0 + 23, v * 0.45 + 41, 3);
+            /* `onde` varia de linha para linha (em u) e em TRECHOS ao longo
+         da peça (em v).
+
+         Já esteve nos dois extremos, e os dois estavam errados por
+         motivos diferentes.
+
+         Variando rápido em v (v×2,4) as linhas saíam picotadas — mas
+         aquilo era aliasing, não desenho: o núcleo tinha menos de um
+         texel e sumia entre os centros dos pixels.
+
+         Corrigido o núcleo, passei para v×0,45: linhas contínuas do
+         topo à base. Aí apareceu o defeito OPOSTO, e pior, porque só
+         se vê de longe. Linhas paralelas, contínuas e todas da mesma
+         força batem com a grade de pixels e viram MOIRÉ: a 1440 px a
+         folha tem 110 px para 62 linhas, e o móvel inteiro lia como
+         painel ripado. O render com o mapa de cor desligado sai liso,
+         o que prova de onde vinha.
+
+         Agora v×9: trechos de ~55 texels, que na folha (0,6 × 2,3 m)
+         dão vasos de 20 a 30 cm. É o comprimento que eles têm numa
+         lâmina de verdade, tem texels de sobra para não aliasar, e
+         quebra a coerência que alimentava o moiré. */
+      var onde = fbm(gC, n, u * 4.0 + 23, v * 9.0 + 41, 3);
       /* O expoente varia com `onde`: onde o poro é aberto a linha sai
          mais larga, onde é fechado sai quase um fio. Linhas de
          espessura toda igual são a assinatura de uma textura gerada,
@@ -159,7 +214,15 @@ function campos(largura, altura, semente) {
          penteado — todas as linhas iguais, do topo à base. Na
          referência há meia dúzia de riscos fortes no meio de muitos
          quase apagados. */
-      var peso = fbm(gB, n, u * 11.0 + 71, v * 0.38 + 5, 3);
+            /* As duas modulações do risco variam DEVAGAR em u — 2,6 e 4,0
+         ciclos por folha, a escala da própria figura.
+
+         Estavam em 11 e 16, e o espectro mostrou o estrago: o pico de
+         energia da textura caía num período de 15,5 px (contra 85 px
+         na fotografia), porque a faixa de linhas fortes e a de linhas
+         fracas se alternavam nessa frequência. Não eram as linhas que
+         faziam a ripa — era o RITMO delas. */
+      var peso = fbm(gB, n, u * 2.6 + 71, v * 3.1 + 5, 3);
       risco *= Math.min(1, Math.max(0, (peso - 0.26) / 0.52));
 
       // variação lenta de tom, para dois pontos da peça não se
@@ -180,7 +243,32 @@ function campos(largura, altura, semente) {
          Sem corte e sem deslocamento aqui: a escala é acertada na
          normalização, logo abaixo. */
       var i = y * largura + x;
-      tom[i] = figura * 0.17 + manso * 0.27 + risco * 0.58 + fibra * 0.085;
+      /* O risco perdeu peso: 0,58 punha o núcleo de TODA linha no
+         extremo escuro da escala, e é esse contraste — não a
+         quantidade de linhas — que sobrevive à redução e vira ripa.
+         Com 0,38 a linha continua legível de perto e some de longe,
+         que é o que a madeira faz. */
+      /* O equilíbrio final, e os dois extremos ficaram registrados
+         porque cada um errava de um jeito.
+
+         Com o risco em 0,58 e a figura em 11 ciclos, o móvel lia como
+         painel ripado de longe. Baixar o risco para 0,18 resolveu a
+         ripa e criou o defeito oposto: a folha virou um degradê macio,
+         quase sem veio, mais cetim que madeira.
+
+         A ripa não vinha do risco — vinha da FIGURA estar na
+         frequência errada. Corrigida a figura (3 ciclos, bem
+         distorcida), o risco pode voltar a pesar, porque ele está uma
+         ordem de grandeza acima e some na redução em vez de bater com
+         a grade de pixels. */
+      /* O risco em 0,26, e não mais: a folha tem ~105 px na tela
+         no primeiro ato, para 62 linhas — menos de dois pixels por
+         linha. Nessa escala nenhuma filtragem salva uma linha de alto
+         contraste; ela bate com a grade e vira cotelê em manchas. Com
+         0,26 o veio continua legível na aproximação, quando a folha
+         ocupa dez vezes mais pixels, e de longe se dissolve no tom,
+         que é o que a madeira faz. */
+      tom[i] = figura * 0.38 + manso * 0.24 + risco * 0.30 + fibra * 0.08;
       relevo[i] = risco;
     }
   }

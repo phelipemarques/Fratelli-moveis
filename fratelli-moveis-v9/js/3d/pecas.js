@@ -25,28 +25,48 @@
    5 mil triângulos — irrelevante para qualquer GPU, e as geometrias
    são compartilhadas por medida, então peças iguais custam uma só.
 
-   UV: UMA FOLHA DE LÂMINA POR PEÇA.
+   UV: UM PEDAÇO DA FOLHA POR PEÇA, NA ESCALA CERTA.
 
-   A primeira tentativa deixou a UV em metros e usou `repeat` para
-   controlar a escala. O resultado foi um xadrez: o desenho
-   procedural não fecha nas bordas, então cada ladrilho mostrava a
-   emenda, e a porta virava um mosaico de quadrados.
+   Isto já errou de duas maneiras, e vale guardar as duas.
 
-   Isso também estava errado na física. Uma porta de marcenaria é
-   revestida por UMA folha de lâmina, não por um mosaico. Então o
-   gerador de UV abaixo normaliza a face frontal para 0..1 das
-   dimensões da própria peça: cada painel recebe o desenho inteiro,
-   uma vez, sem emenda nenhuma.
+   A primeira deixou a UV em metros e usou `repeat` para a escala. Deu
+   xadrez: o desenho procedural não fecha nas bordas, então cada
+   ladrilho mostrava a emenda e a porta virava um mosaico.
 
-   O efeito colateral é correto: o veio fica proporcionalmente mais
-   aberto numa porta grande e mais fechado numa prateleira pequena —
-   que é o que acontece quando se corta peças de tamanhos diferentes
-   da mesma folha.
+   A segunda normalizou a face para 0..1 das dimensões da PRÓPRIA
+   peça. Acabou com o xadrez e criou um defeito pior, que levou tempo
+   para ser isolado: numa tira de 85 mm — o quadro da porta — a folha
+   INTEIRA era espremida em 85 mm. São ~26 linhas de veio em 15 px de
+   tela. Aliasing garantido, e o móvel lia como painel ripado mesmo
+   com a textura impecável. Desligando só o mapa de cor o painel
+   ficava liso, o que apontou o caminho; a textura, ampliada, estava
+   certa. Era a UV.
+
+   E estava errado na física, apesar do comentário que dizia o
+   contrário. Cortar uma tira de 85 mm de uma folha dá 85 mm DAQUELA
+   folha — não a folha toda encolhida.
+
+   Agora a UV é medida em metros contra o tamanho de uma folha de
+   lâmina de verdade (FOLHA_L × FOLHA_A), e cada peça fica com a
+   JANELA que lhe cabe, numa posição própria dentro da folha. Uma
+   porta pega quase a folha inteira; uma tira de quadro pega uma faixa
+   estreita dela, com o veio na mesma escala da porta ao lado — que é
+   o que acontece quando as duas saem da mesma chapa.
+
+   Peças maiores que a folha (o tampo de 2,46 m) ficam limitadas a
+   ela: é o caso em que a emenda apareceria, e esticar é o menor dos
+   males num painel que quase não se vê de frente.
    ============================================================ */
 
 import * as THREE from './three.module.min.js';
 
 var CHANFRO = 0.0012;          // 1,2 mm
+
+/* Tamanho de uma folha de lâmina, em metros. Não é um número livre:
+   é contra ele que a escala do veio de TODAS as peças é medida, e é
+   o que faz uma tira de quadro e a porta ao lado parecerem a mesma
+   madeira. */
+var FOLHA_L = 0.70, FOLHA_A = 2.50;
 var cache = {};
 var criadas = [];
 
@@ -76,30 +96,43 @@ export function geoPainel(l, a, p) {
   forma.lineTo(-hx, hy);
   forma.closePath();
 
-  var prof = Math.max(0.0002, p - 2 * b);
-  /* Normaliza a face frontal/traseira para 0..1 da peça. As faces
-     laterais (o chanfro e a espessura) recebem uma UV própria,
-     esticada ao longo da aresta — é lá que o veio aparece
-     travessado, como numa borda cortada de verdade. */
+  /* A janela desta peça dentro da folha: tamanho real em metros, e
+     uma posição estável derivada das próprias medidas — peças de
+     tamanhos diferentes caem em lugares diferentes da folha, e duas
+     peças iguais caem no mesmo lugar, como duas peças cortadas juntas
+     de fato cairiam. */
+  var janelaU = Math.min(1, l / FOLHA_L);
+  var janelaV = Math.min(1, a / FOLHA_A);
+  var semente = Math.abs(Math.sin((l * 37.1 + a * 11.7 + p * 91.3) * 1000));
+  var origemU = (1 - janelaU) * (semente % 1);
+  var origemV = (1 - janelaV) * ((semente * 7.3) % 1);
+
   var geradorUV = {
-    generateTopUV: function (geometria, vertices, a, b, c) {
+    generateTopUV: function (geometria, vertices, a_, b_, c_) {
       function uv(i) {
         return new THREE.Vector2(
-          (vertices[i * 3] + hx) / (2 * hx || 1),
-          (vertices[i * 3 + 1] + hy) / (2 * hy || 1));
+          origemU + (vertices[i * 3] + hx) / (2 * hx || 1) * janelaU,
+          origemV + (vertices[i * 3 + 1] + hy) / (2 * hy || 1) * janelaV);
       }
-      return [uv(a), uv(b), uv(c)];
+      return [uv(a_), uv(b_), uv(c_)];
     },
-    generateSideWallUV: function (geometria, vertices, a, b, c, d) {
+    /* As faces laterais — o chanfro e a espessura. O veio corre ao
+       longo da aresta e aparece travessado na espessura, como numa
+       borda cortada de verdade. A espessura é minúscula, então ocupa
+       uma fatia proporcionalmente minúscula da folha: é isso que faz
+       a fita de borda ter o MESMO veio da face, e não um desenho
+       inteiro comprimido em 18 mm. */
+    generateSideWallUV: function (geometria, vertices, a_, b_, c_, d_) {
+      var fatia = Math.min(0.5, p / FOLHA_A);
       function uv(i) {
         var x = vertices[i * 3], y = vertices[i * 3 + 1], z = vertices[i * 3 + 2];
-        // ao longo da aresta, e a espessura no outro eixo
-        return new THREE.Vector2(
-          (Math.abs(x) > Math.abs(y) ? (x + hx) / (2 * hx || 1)
-                                     : (y + hy) / (2 * hy || 1)),
-          z / Math.max(0.001, prof) * 0.5 + 0.5);
+        var ao = Math.abs(x) > Math.abs(y)
+          ? origemU + (x + hx) / (2 * hx || 1) * janelaU
+          : origemV + (y + hy) / (2 * hy || 1) * janelaV;
+        return new THREE.Vector2(ao,
+          origemV + (z / Math.max(0.001, prof) * 0.5 + 0.5) * fatia);
       }
-      return [uv(a), uv(b), uv(c), uv(d)];
+      return [uv(a_), uv(b_), uv(c_), uv(d_)];
     }
   };
 

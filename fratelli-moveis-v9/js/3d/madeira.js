@@ -33,11 +33,20 @@ import { gerarCanvasMadeira } from './grao.js';
  */
 export function gerarMadeira(o) {
   var canvas = gerarCanvasMadeira(o);
+  var maxAniso = o.anisotropia || 16;
 
   function textura(canvas, espaco) {
     var t = new THREE.CanvasTexture(canvas);
     t.wrapS = t.wrapT = THREE.RepeatWrapping;
-    t.anisotropy = 4;
+    /* Anisotropia no máximo que a GPU oferecer, com teto de 16.
+
+       Era 4, e 4 não basta aqui. O veio tem ~100 linhas por metro:
+       numa lateral vista de raspão, várias linhas caem no mesmo pixel
+       e o resultado é cintilação — faixas claras e escuras que se
+       mexem quando a câmera anda. No render de diagnóstico a lateral
+       direita virava um painel ripado. Isso é aliasing da textura,
+       não desenho da madeira. */
+    t.anisotropy = Math.min(16, maxAniso);
     if (espaco) { t.colorSpace = espaco; }
     return t;
   }
