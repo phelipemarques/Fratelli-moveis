@@ -1,0 +1,469 @@
+{
+ "alvo": "http://localhost:8099/",
+ "quando": "2026-10-18T01:38:42.225Z",
+ "telas": [
+  {
+   "tela": "320",
+   "largura": 320,
+   "altura": 568,
+   "perfil": "B",
+   "materia": true,
+   "transbordo": {
+    "px": 0,
+    "quem": "documento"
+   },
+   "imagens": {
+    "total": 22,
+    "quebradas": []
+   },
+   "limites": {
+    "ini": 568,
+    "fim": 1818
+   },
+   "ida": [
+    {
+     "prog": 0,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 1,
+     "passagem": 1
+    }
+   ],
+   "volta": [
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0,
+     "passagem": 0
+    }
+   ],
+   "erros": [],
+   "recursosQueFalharam": [
+    "assets/video/fratelli-brand-film.mp4"
+   ]
+  },
+  {
+   "tela": "360",
+   "largura": 360,
+   "altura": 740,
+   "perfil": "B",
+   "materia": true,
+   "transbordo": {
+    "px": 0,
+    "quem": "documento"
+   },
+   "imagens": {
+    "total": 22,
+    "quebradas": []
+   },
+   "limites": {
+    "ini": 740,
+    "fim": 2368
+   },
+   "ida": [
+    {
+     "prog": 0,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 1,
+     "passagem": 1
+    }
+   ],
+   "volta": [
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0,
+     "passagem": 0
+    }
+   ],
+   "erros": [],
+   "recursosQueFalharam": [
+    "assets/video/fratelli-brand-film.mp4"
+   ]
+  },
+  {
+   "tela": "390",
+   "largura": 390,
+   "altura": 844,
+   "perfil": "B",
+   "materia": true,
+   "transbordo": {
+    "px": 0,
+    "quem": "documento"
+   },
+   "imagens": {
+    "total": 22,
+    "quebradas": []
+   },
+   "limites": {
+    "ini": 844,
+    "fim": 2701
+   },
+   "ida": [
+    {
+     "prog": 0,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 1,
+     "passagem": 1
+    }
+   ],
+   "volta": [
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0,
+     "passagem": 0
+    }
+   ],
+   "erros": [],
+   "recursosQueFalharam": [
+    "assets/video/fratelli-brand-film.mp4"
+   ]
+  },
+  {
+   "tela": "430",
+   "largura": 430,
+   "altura": 932,
+   "perfil": "B",
+   "materia": true,
+   "transbordo": {
+    "px": 0,
+    "quem": "documento"
+   },
+   "imagens": {
+    "total": 22,
+    "quebradas": []
+   },
+   "limites": {
+    "ini": 932,
+    "fim": 2982
+   },
+   "ida": [
+    {
+     "prog": 0,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 1,
+     "passagem": 1
+    }
+   ],
+   "volta": [
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0,
+     "passagem": 0
+    }
+   ],
+   "erros": [],
+   "recursosQueFalharam": [
+    "assets/video/fratelli-brand-film.mp4"
+   ]
+  },
+  {
+   "tela": "768",
+   "largura": 768,
+   "altura": 1024,
+   "perfil": "B",
+   "materia": true,
+   "transbordo": {
+    "px": 0,
+    "quem": "documento"
+   },
+   "imagens": {
+    "total": 22,
+    "quebradas": []
+   },
+   "limites": {
+    "ini": 1024,
+    "fim": 3277
+   },
+   "ida": [
+    {
+     "prog": 0,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 1,
+     "passagem": 1
+    }
+   ],
+   "volta": [
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0,
+     "passagem": 0
+    }
+   ],
+   "erros": [],
+   "recursosQueFalharam": [
+    "assets/video/fratelli-brand-film.mp4"
+   ]
+  },
+  {
+   "tela": "1440",
+   "largura": 1440,
+   "altura": 900,
+   "perfil": "A",
+   "materia": true,
+   "transbordo": {
+    "px": 0,
+    "quem": "documento"
+   },
+   "imagens": {
+    "total": 22,
+    "quebradas": []
+   },
+   "limites": {
+    "ini": 900,
+    "fim": 4500
+   },
+   "ida": [
+    {
+     "prog": 0,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 1,
+     "passagem": 1
+    }
+   ],
+   "volta": [
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0,
+     "passagem": 0
+    }
+   ],
+   "erros": [],
+   "recursosQueFalharam": [
+    "assets/video/fratelli-brand-film.mp4"
+   ]
+  },
+  {
+   "tela": "1920",
+   "largura": 1920,
+   "altura": 1080,
+   "perfil": "A",
+   "materia": true,
+   "transbordo": {
+    "px": 0,
+    "quem": "documento"
+   },
+   "imagens": {
+    "total": 22,
+    "quebradas": []
+   },
+   "limites": {
+    "ini": 1080,
+    "fim": 5400
+   },
+   "ida": [
+    {
+     "prog": 0,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 1,
+     "passagem": 1
+    }
+   ],
+   "volta": [
+    {
+     "prog": 0.75,
+     "passagem": 0
+    },
+    {
+     "prog": 0.5,
+     "passagem": 0
+    },
+    {
+     "prog": 0.25,
+     "passagem": 0
+    },
+    {
+     "prog": 0,
+     "passagem": 0
+    }
+   ],
+   "erros": [],
+   "recursosQueFalharam": [
+    "assets/video/fratelli-brand-film.mp4"
+   ]
+  }
+ ],
+ "movimentoReduzido": [
+  {
+   "tela": "390",
+   "perfil": "C",
+   "materia": false,
+   "transbordo": {
+    "px": 0,
+    "quem": "documento"
+   },
+   "erros": []
+  },
+  {
+   "tela": "1440",
+   "perfil": "C",
+   "materia": false,
+   "transbordo": {
+    "px": 0,
+    "quem": "documento"
+   },
+   "erros": []
+  }
+ ]
+}
