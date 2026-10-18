@@ -1,0 +1,1004 @@
+{
+ "alvo": "http://localhost:8096/",
+ "quando": "2026-10-18T04:08:05.728Z",
+ "telas": [
+  {
+   "tela": "1920x1080",
+   "perfil": "A",
+   "amostras": [
+    {
+     "momento": "01-fechado",
+     "progresso": 0.06,
+     "rotEsq": 0,
+     "rotDir": 0,
+     "pontaEsqZ": 0.3,
+     "pontaEsqX": -0.002,
+     "pontaDirZ": 0.3,
+     "pontaDirX": 0.002,
+     "frenteZ": 0.29,
+     "ocupaLargura": 30.7,
+     "ocupaAltura": 60.3,
+     "camera": [
+      -2.35,
+      2.34,
+      4.67
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "02-abrindo",
+     "progresso": 0.26,
+     "rotEsq": -0.122,
+     "rotDir": 0.122,
+     "pontaEsqZ": 0.408,
+     "pontaEsqX": -0.008,
+     "pontaDirZ": 0.408,
+     "pontaDirX": 0.008,
+     "frenteZ": 0.29,
+     "ocupaLargura": 37.9,
+     "ocupaAltura": 72.5,
+     "camera": [
+      -1.61,
+      2.1,
+      4.08
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "03-metade",
+     "progresso": 0.44,
+     "rotEsq": -1.232,
+     "rotDir": 1.232,
+     "pontaEsqZ": 1.13,
+     "pontaEsqX": -0.588,
+     "pontaDirZ": 1.13,
+     "pontaDirX": 0.588,
+     "frenteZ": 0.29,
+     "ocupaLargura": 38.9,
+     "ocupaAltura": 74.8,
+     "camera": [
+      -0.98,
+      2.09,
+      4.7
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "04-tela-cheia",
+     "progresso": 0.56,
+     "rotEsq": -1.85,
+     "rotDir": 1.85,
+     "pontaEsqZ": 1.145,
+     "pontaEsqX": -1.123,
+     "pontaDirZ": 1.145,
+     "pontaDirX": 1.123,
+     "frenteZ": 0.29,
+     "ocupaLargura": 62.8,
+     "ocupaAltura": 91.6,
+     "camera": [
+      0.01,
+      1.82,
+      3.98
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "05-interior",
+     "progresso": 0.74,
+     "rotEsq": -1.86,
+     "rotDir": 1.86,
+     "pontaEsqZ": 1.143,
+     "pontaEsqX": -1.131,
+     "pontaDirZ": 1.143,
+     "pontaDirX": 1.131,
+     "frenteZ": 0.29,
+     "ocupaLargura": 100,
+     "ocupaAltura": 100,
+     "camera": [
+      -0.12,
+      1.53,
+      2.38
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "06-transicao",
+     "progresso": 0.97,
+     "rotEsq": -1.86,
+     "rotDir": 1.86,
+     "pontaEsqZ": 1.143,
+     "pontaEsqX": -1.131,
+     "pontaDirZ": 1.143,
+     "pontaDirX": 1.131,
+     "frenteZ": 0.29,
+     "ocupaLargura": 100,
+     "ocupaAltura": 100,
+     "camera": [
+      -0.22,
+      1.45,
+      1.42
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0.185
+    }
+   ],
+   "volta": [
+    {
+     "rotEsq": -1.86,
+     "rotDir": 1.86
+    },
+    {
+     "rotEsq": -1.232,
+     "rotDir": 1.232
+    },
+    {
+     "rotEsq": 0,
+     "rotDir": 0
+    },
+    {
+     "rotEsq": 0,
+     "rotDir": 0
+    }
+   ],
+   "transbordo": 0,
+   "erros": []
+  },
+  {
+   "tela": "1440x900",
+   "perfil": "A",
+   "amostras": [
+    {
+     "momento": "01-fechado",
+     "progresso": 0.06,
+     "rotEsq": 0,
+     "rotDir": 0,
+     "pontaEsqZ": 0.3,
+     "pontaEsqX": -0.002,
+     "pontaDirZ": 0.3,
+     "pontaDirX": 0.002,
+     "frenteZ": 0.29,
+     "ocupaLargura": 30.7,
+     "ocupaAltura": 54.7,
+     "camera": [
+      -2.48,
+      2.48,
+      5.18
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "02-abrindo",
+     "progresso": 0.26,
+     "rotEsq": -0.122,
+     "rotDir": 0.122,
+     "pontaEsqZ": 0.408,
+     "pontaEsqX": -0.008,
+     "pontaDirZ": 0.408,
+     "pontaDirX": 0.008,
+     "frenteZ": 0.29,
+     "ocupaLargura": 37.9,
+     "ocupaAltura": 66,
+     "camera": [
+      -1.67,
+      2.2,
+      4.49
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "03-metade",
+     "progresso": 0.44,
+     "rotEsq": -1.231,
+     "rotDir": 1.231,
+     "pontaEsqZ": 1.129,
+     "pontaEsqX": -0.588,
+     "pontaDirZ": 1.129,
+     "pontaDirX": 0.588,
+     "frenteZ": 0.29,
+     "ocupaLargura": 43.2,
+     "ocupaAltura": 74.8,
+     "camera": [
+      -0.98,
+      2.09,
+      4.7
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "04-tela-cheia",
+     "progresso": 0.56,
+     "rotEsq": -1.85,
+     "rotDir": 1.85,
+     "pontaEsqZ": 1.145,
+     "pontaEsqX": -1.123,
+     "pontaDirZ": 1.145,
+     "pontaDirX": 1.123,
+     "frenteZ": 0.29,
+     "ocupaLargura": 69.8,
+     "ocupaAltura": 91.6,
+     "camera": [
+      0.01,
+      1.82,
+      3.98
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "05-interior",
+     "progresso": 0.74,
+     "rotEsq": -1.86,
+     "rotDir": 1.86,
+     "pontaEsqZ": 1.143,
+     "pontaEsqX": -1.131,
+     "pontaDirZ": 1.143,
+     "pontaDirX": 1.131,
+     "frenteZ": 0.29,
+     "ocupaLargura": 100,
+     "ocupaAltura": 100,
+     "camera": [
+      -0.12,
+      1.53,
+      2.38
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "06-transicao",
+     "progresso": 0.97,
+     "rotEsq": -1.86,
+     "rotDir": 1.86,
+     "pontaEsqZ": 1.143,
+     "pontaEsqX": -1.131,
+     "pontaDirZ": 1.143,
+     "pontaDirX": 1.131,
+     "frenteZ": 0.29,
+     "ocupaLargura": 100,
+     "ocupaAltura": 100,
+     "camera": [
+      -0.22,
+      1.45,
+      1.42
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0.187
+    }
+   ],
+   "volta": [
+    {
+     "rotEsq": -1.86,
+     "rotDir": 1.86
+    },
+    {
+     "rotEsq": -1.231,
+     "rotDir": 1.231
+    },
+    {
+     "rotEsq": 0,
+     "rotDir": 0
+    },
+    {
+     "rotEsq": 0,
+     "rotDir": 0
+    }
+   ],
+   "transbordo": 0,
+   "erros": []
+  },
+  {
+   "tela": "1280x800",
+   "perfil": "A",
+   "amostras": [
+    {
+     "momento": "01-fechado",
+     "progresso": 0.06,
+     "rotEsq": 0,
+     "rotDir": 0,
+     "pontaEsqZ": 0.3,
+     "pontaEsqX": -0.002,
+     "pontaDirZ": 0.3,
+     "pontaDirX": 0.002,
+     "frenteZ": 0.29,
+     "ocupaLargura": 30.7,
+     "ocupaAltura": 54.7,
+     "camera": [
+      -2.48,
+      2.48,
+      5.18
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "02-abrindo",
+     "progresso": 0.26,
+     "rotEsq": -0.122,
+     "rotDir": 0.122,
+     "pontaEsqZ": 0.408,
+     "pontaEsqX": -0.008,
+     "pontaDirZ": 0.408,
+     "pontaDirX": 0.008,
+     "frenteZ": 0.29,
+     "ocupaLargura": 37.9,
+     "ocupaAltura": 66,
+     "camera": [
+      -1.67,
+      2.2,
+      4.49
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "03-metade",
+     "progresso": 0.44,
+     "rotEsq": -1.231,
+     "rotDir": 1.231,
+     "pontaEsqZ": 1.129,
+     "pontaEsqX": -0.588,
+     "pontaDirZ": 1.129,
+     "pontaDirX": 0.588,
+     "frenteZ": 0.29,
+     "ocupaLargura": 43.2,
+     "ocupaAltura": 74.8,
+     "camera": [
+      -0.98,
+      2.09,
+      4.7
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "04-tela-cheia",
+     "progresso": 0.56,
+     "rotEsq": -1.85,
+     "rotDir": 1.85,
+     "pontaEsqZ": 1.145,
+     "pontaEsqX": -1.123,
+     "pontaDirZ": 1.145,
+     "pontaDirX": 1.123,
+     "frenteZ": 0.29,
+     "ocupaLargura": 69.8,
+     "ocupaAltura": 91.6,
+     "camera": [
+      0.01,
+      1.82,
+      3.98
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "05-interior",
+     "progresso": 0.74,
+     "rotEsq": -1.86,
+     "rotDir": 1.86,
+     "pontaEsqZ": 1.143,
+     "pontaEsqX": -1.131,
+     "pontaDirZ": 1.143,
+     "pontaDirX": 1.131,
+     "frenteZ": 0.29,
+     "ocupaLargura": 100,
+     "ocupaAltura": 100,
+     "camera": [
+      -0.12,
+      1.53,
+      2.38
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "06-transicao",
+     "progresso": 0.97,
+     "rotEsq": -1.86,
+     "rotDir": 1.86,
+     "pontaEsqZ": 1.143,
+     "pontaEsqX": -1.131,
+     "pontaDirZ": 1.143,
+     "pontaDirX": 1.131,
+     "frenteZ": 0.29,
+     "ocupaLargura": 100,
+     "ocupaAltura": 100,
+     "camera": [
+      -0.22,
+      1.45,
+      1.42
+     ],
+     "cameraDentroDe": null,
+     "passagem": 0.187
+    }
+   ],
+   "volta": [
+    {
+     "rotEsq": -1.86,
+     "rotDir": 1.86
+    },
+    {
+     "rotEsq": -1.231,
+     "rotDir": 1.231
+    },
+    {
+     "rotEsq": 0,
+     "rotDir": 0
+    },
+    {
+     "rotEsq": 0,
+     "rotDir": 0
+    }
+   ],
+   "transbordo": 0,
+   "erros": []
+  },
+  {
+   "tela": "768x1024",
+   "perfil": "B",
+   "amostras": [
+    {
+     "momento": "01-fechado",
+     "progresso": 0.06,
+     "modo": "2.5D",
+     "pontaEsqZ": 0,
+     "pontaEsqX": 220,
+     "pontaDirZ": 0,
+     "pontaDirX": -220,
+     "frenteZ": 0,
+     "escala": 0.805,
+     "ocupaLargura": 45.1,
+     "ocupaAltura": 42,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "02-abrindo",
+     "progresso": 0.26,
+     "modo": "2.5D",
+     "pontaEsqZ": 86.9,
+     "pontaEsqX": 202.1,
+     "pontaDirZ": 86.9,
+     "pontaDirX": -202.1,
+     "frenteZ": 0,
+     "escala": 0.986,
+     "ocupaLargura": 55.7,
+     "ocupaAltura": 50.9,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "03-metade",
+     "progresso": 0.44,
+     "modo": "2.5D",
+     "pontaEsqZ": 210.8,
+     "pontaEsqX": 62.9,
+     "pontaDirZ": 210.8,
+     "pontaDirX": -62.9,
+     "frenteZ": 0,
+     "escala": 1.127,
+     "ocupaLargura": 64.2,
+     "ocupaAltura": 57.7,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "04-tela-cheia",
+     "progresso": 0.56,
+     "modo": "2.5D",
+     "pontaEsqZ": 215.2,
+     "pontaEsqX": 45.8,
+     "pontaDirZ": 215.2,
+     "pontaDirX": -45.8,
+     "frenteZ": 0,
+     "escala": 1.14,
+     "ocupaLargura": 65,
+     "ocupaAltura": 58.4,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "05-interior",
+     "progresso": 0.74,
+     "modo": "2.5D",
+     "pontaEsqZ": 215.2,
+     "pontaEsqX": 45.7,
+     "pontaDirZ": 215.2,
+     "pontaDirX": -45.7,
+     "frenteZ": 0,
+     "escala": 1.393,
+     "ocupaLargura": 79.8,
+     "ocupaAltura": 70.5,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "06-transicao",
+     "progresso": 0.97,
+     "modo": "2.5D",
+     "pontaEsqZ": 215.2,
+     "pontaEsqX": 45.7,
+     "pontaDirZ": 215.2,
+     "pontaDirX": -45.7,
+     "frenteZ": 0,
+     "escala": 1.356,
+     "ocupaLargura": 77.6,
+     "ocupaAltura": 68.7,
+     "cameraDentroDe": null,
+     "passagem": 0.849
+    }
+   ],
+   "volta": [
+    {
+     "grausEsq": -78
+    },
+    {
+     "grausEsq": -73.4
+    },
+    {
+     "grausEsq": 0
+    },
+    {
+     "grausEsq": 0
+    }
+   ],
+   "transbordo": 0,
+   "erros": []
+  },
+  {
+   "tela": "430x932",
+   "perfil": "B",
+   "amostras": [
+    {
+     "momento": "01-fechado",
+     "progresso": 0.06,
+     "modo": "2.5D",
+     "pontaEsqZ": 0,
+     "pontaEsqX": 165,
+     "pontaDirZ": 0,
+     "pontaDirX": -165,
+     "frenteZ": 0,
+     "escala": 0.806,
+     "ocupaLargura": 59.9,
+     "ocupaAltura": 34.2,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "02-abrindo",
+     "progresso": 0.26,
+     "modo": "2.5D",
+     "pontaEsqZ": 65.1,
+     "pontaEsqX": 151.6,
+     "pontaDirZ": 65.1,
+     "pontaDirX": -151.6,
+     "frenteZ": 0,
+     "escala": 0.986,
+     "ocupaLargura": 74.5,
+     "ocupaAltura": 41.6,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "03-metade",
+     "progresso": 0.44,
+     "modo": "2.5D",
+     "pontaEsqZ": 158.1,
+     "pontaEsqX": 47.1,
+     "pontaDirZ": 158.1,
+     "pontaDirX": -47.1,
+     "frenteZ": 0,
+     "escala": 1.127,
+     "ocupaLargura": 85.9,
+     "ocupaAltura": 47.3,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "04-tela-cheia",
+     "progresso": 0.56,
+     "modo": "2.5D",
+     "pontaEsqZ": 161.4,
+     "pontaEsqX": 34.3,
+     "pontaDirZ": 161.4,
+     "pontaDirX": -34.3,
+     "frenteZ": 0,
+     "escala": 1.14,
+     "ocupaLargura": 86.9,
+     "ocupaAltura": 47.8,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "05-interior",
+     "progresso": 0.74,
+     "modo": "2.5D",
+     "pontaEsqZ": 161.4,
+     "pontaEsqX": 34.3,
+     "pontaDirZ": 161.4,
+     "pontaDirX": -34.3,
+     "frenteZ": 0,
+     "escala": 1.393,
+     "ocupaLargura": 106.9,
+     "ocupaAltura": 58,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "06-transicao",
+     "progresso": 0.97,
+     "modo": "2.5D",
+     "pontaEsqZ": 161.4,
+     "pontaEsqX": 34.3,
+     "pontaDirZ": 161.4,
+     "pontaDirX": -34.3,
+     "frenteZ": 0,
+     "escala": 1.356,
+     "ocupaLargura": 103.9,
+     "ocupaAltura": 56.5,
+     "cameraDentroDe": null,
+     "passagem": 0.851
+    }
+   ],
+   "volta": [
+    {
+     "grausEsq": -78
+    },
+    {
+     "grausEsq": -73.4
+    },
+    {
+     "grausEsq": 0
+    },
+    {
+     "grausEsq": 0
+    }
+   ],
+   "transbordo": 0,
+   "erros": []
+  },
+  {
+   "tela": "390x844",
+   "perfil": "B",
+   "amostras": [
+    {
+     "momento": "01-fechado",
+     "progresso": 0.06,
+     "modo": "2.5D",
+     "pontaEsqZ": 0,
+     "pontaEsqX": 165,
+     "pontaDirZ": 0,
+     "pontaDirX": -165,
+     "frenteZ": 0,
+     "escala": 0.805,
+     "ocupaLargura": 66.1,
+     "ocupaAltura": 37.7,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "02-abrindo",
+     "progresso": 0.26,
+     "modo": "2.5D",
+     "pontaEsqZ": 65.2,
+     "pontaEsqX": 151.6,
+     "pontaDirZ": 65.2,
+     "pontaDirX": -151.6,
+     "frenteZ": 0,
+     "escala": 0.986,
+     "ocupaLargura": 82.1,
+     "ocupaAltura": 45.9,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "03-metade",
+     "progresso": 0.44,
+     "modo": "2.5D",
+     "pontaEsqZ": 158.1,
+     "pontaEsqX": 47.1,
+     "pontaDirZ": 158.1,
+     "pontaDirX": -47.1,
+     "frenteZ": 0,
+     "escala": 1.127,
+     "ocupaLargura": 94.7,
+     "ocupaAltura": 52.2,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "04-tela-cheia",
+     "progresso": 0.56,
+     "modo": "2.5D",
+     "pontaEsqZ": 161.4,
+     "pontaEsqX": 34.3,
+     "pontaDirZ": 161.4,
+     "pontaDirX": -34.3,
+     "frenteZ": 0,
+     "escala": 1.14,
+     "ocupaLargura": 95.8,
+     "ocupaAltura": 52.8,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "05-interior",
+     "progresso": 0.74,
+     "modo": "2.5D",
+     "pontaEsqZ": 161.4,
+     "pontaEsqX": 34.3,
+     "pontaDirZ": 161.4,
+     "pontaDirX": -34.3,
+     "frenteZ": 0,
+     "escala": 1.393,
+     "ocupaLargura": 117.8,
+     "ocupaAltura": 64.1,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "06-transicao",
+     "progresso": 0.97,
+     "modo": "2.5D",
+     "pontaEsqZ": 161.4,
+     "pontaEsqX": 34.3,
+     "pontaDirZ": 161.4,
+     "pontaDirX": -34.3,
+     "frenteZ": 0,
+     "escala": 1.356,
+     "ocupaLargura": 114.6,
+     "ocupaAltura": 62.4,
+     "cameraDentroDe": null,
+     "passagem": 0.849
+    }
+   ],
+   "volta": [
+    {
+     "grausEsq": -78
+    },
+    {
+     "grausEsq": -73.4
+    },
+    {
+     "grausEsq": 0
+    },
+    {
+     "grausEsq": 0
+    }
+   ],
+   "transbordo": 0,
+   "erros": []
+  },
+  {
+   "tela": "360x800",
+   "perfil": "B",
+   "amostras": [
+    {
+     "momento": "01-fechado",
+     "progresso": 0.06,
+     "modo": "2.5D",
+     "pontaEsqZ": 0,
+     "pontaEsqX": 131,
+     "pontaDirZ": 0,
+     "pontaDirX": -131,
+     "frenteZ": 0,
+     "escala": 0.806,
+     "ocupaLargura": 56.6,
+     "ocupaAltura": 31.6,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "02-abrindo",
+     "progresso": 0.26,
+     "modo": "2.5D",
+     "pontaEsqZ": 51.9,
+     "pontaEsqX": 120.3,
+     "pontaDirZ": 51.9,
+     "pontaDirX": -120.3,
+     "frenteZ": 0,
+     "escala": 0.986,
+     "ocupaLargura": 70.6,
+     "ocupaAltura": 38.3,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "03-metade",
+     "progresso": 0.44,
+     "modo": "2.5D",
+     "pontaEsqZ": 125.5,
+     "pontaEsqX": 37.4,
+     "pontaDirZ": 125.5,
+     "pontaDirX": -37.4,
+     "frenteZ": 0,
+     "escala": 1.127,
+     "ocupaLargura": 81.3,
+     "ocupaAltura": 43.6,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "04-tela-cheia",
+     "progresso": 0.56,
+     "modo": "2.5D",
+     "pontaEsqZ": 128.1,
+     "pontaEsqX": 27.3,
+     "pontaDirZ": 128.1,
+     "pontaDirX": -27.3,
+     "frenteZ": 0,
+     "escala": 1.14,
+     "ocupaLargura": 82.3,
+     "ocupaAltura": 44.1,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "05-interior",
+     "progresso": 0.74,
+     "modo": "2.5D",
+     "pontaEsqZ": 128.1,
+     "pontaEsqX": 27.2,
+     "pontaDirZ": 128.1,
+     "pontaDirX": -27.2,
+     "frenteZ": 0,
+     "escala": 1.393,
+     "ocupaLargura": 101.3,
+     "ocupaAltura": 53.6,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "06-transicao",
+     "progresso": 0.97,
+     "modo": "2.5D",
+     "pontaEsqZ": 128.1,
+     "pontaEsqX": 27.2,
+     "pontaDirZ": 128.1,
+     "pontaDirX": -27.2,
+     "frenteZ": 0,
+     "escala": 1.356,
+     "ocupaLargura": 98.5,
+     "ocupaAltura": 52.2,
+     "cameraDentroDe": null,
+     "passagem": 0.849
+    }
+   ],
+   "volta": [
+    {
+     "grausEsq": -78
+    },
+    {
+     "grausEsq": -73.4
+    },
+    {
+     "grausEsq": 0
+    },
+    {
+     "grausEsq": 0
+    }
+   ],
+   "transbordo": 0,
+   "erros": []
+  },
+  {
+   "tela": "320x568",
+   "perfil": "B",
+   "amostras": [
+    {
+     "momento": "01-fechado",
+     "progresso": 0.06,
+     "modo": "2.5D",
+     "pontaEsqZ": 0,
+     "pontaEsqX": 131,
+     "pontaDirZ": 0,
+     "pontaDirX": -131,
+     "frenteZ": 0,
+     "escala": 0.806,
+     "ocupaLargura": 63.7,
+     "ocupaAltura": 44.6,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "02-abrindo",
+     "progresso": 0.26,
+     "modo": "2.5D",
+     "pontaEsqZ": 51.6,
+     "pontaEsqX": 120.4,
+     "pontaDirZ": 51.6,
+     "pontaDirX": -120.4,
+     "frenteZ": 0,
+     "escala": 0.986,
+     "ocupaLargura": 79.4,
+     "ocupaAltura": 53.9,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "03-metade",
+     "progresso": 0.44,
+     "modo": "2.5D",
+     "pontaEsqZ": 125.5,
+     "pontaEsqX": 37.4,
+     "pontaDirZ": 125.5,
+     "pontaDirX": -37.4,
+     "frenteZ": 0,
+     "escala": 1.127,
+     "ocupaLargura": 91.5,
+     "ocupaAltura": 61.4,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "04-tela-cheia",
+     "progresso": 0.56,
+     "modo": "2.5D",
+     "pontaEsqZ": 128.1,
+     "pontaEsqX": 27.3,
+     "pontaDirZ": 128.1,
+     "pontaDirX": -27.3,
+     "frenteZ": 0,
+     "escala": 1.14,
+     "ocupaLargura": 92.6,
+     "ocupaAltura": 62.1,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "05-interior",
+     "progresso": 0.74,
+     "modo": "2.5D",
+     "pontaEsqZ": 128.1,
+     "pontaEsqX": 27.2,
+     "pontaDirZ": 128.1,
+     "pontaDirX": -27.2,
+     "frenteZ": 0,
+     "escala": 1.393,
+     "ocupaLargura": 114,
+     "ocupaAltura": 75.5,
+     "cameraDentroDe": null,
+     "passagem": 0
+    },
+    {
+     "momento": "06-transicao",
+     "progresso": 0.97,
+     "modo": "2.5D",
+     "pontaEsqZ": 128.1,
+     "pontaEsqX": 27.2,
+     "pontaDirZ": 128.1,
+     "pontaDirX": -27.2,
+     "frenteZ": 0,
+     "escala": 1.356,
+     "ocupaLargura": 110.8,
+     "ocupaAltura": 73.5,
+     "cameraDentroDe": null,
+     "passagem": 0.852
+    }
+   ],
+   "volta": [
+    {
+     "grausEsq": -78
+    },
+    {
+     "grausEsq": -73.4
+    },
+    {
+     "grausEsq": 0
+    },
+    {
+     "grausEsq": 0
+    }
+   ],
+   "transbordo": 0,
+   "erros": []
+  }
+ ]
+}
