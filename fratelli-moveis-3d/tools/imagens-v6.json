@@ -1,0 +1,1295 @@
+[
+ {
+  "raiz": "projeto-closet",
+  "origem": "closet.jpg",
+  "original": [
+   1600,
+   943
+  ],
+  "recorte": [
+   1540,
+   866
+  ],
+  "nativo": [
+   1540,
+   866
+  ],
+  "larguras": [
+   1540,
+   1200,
+   900,
+   600,
+   400
+  ],
+  "descartadas": [],
+  "forca": 0.55,
+  "uso": "abertura em 100vw + portfolio em 92vw",
+  "arquivos": [
+   {
+    "nome": "projeto-closet-1540.avif",
+    "w": 1540,
+    "h": 866,
+    "bytes": 37112
+   },
+   {
+    "nome": "projeto-closet-1540.webp",
+    "w": 1540,
+    "h": 866,
+    "bytes": 59606
+   },
+   {
+    "nome": "projeto-closet-1540.jpg",
+    "w": 1540,
+    "h": 866,
+    "bytes": 146224
+   },
+   {
+    "nome": "projeto-closet-1200.avif",
+    "w": 1200,
+    "h": 675,
+    "bytes": 26589
+   },
+   {
+    "nome": "projeto-closet-1200.webp",
+    "w": 1200,
+    "h": 675,
+    "bytes": 44618
+   },
+   {
+    "nome": "projeto-closet-900.avif",
+    "w": 900,
+    "h": 506,
+    "bytes": 18115
+   },
+   {
+    "nome": "projeto-closet-900.webp",
+    "w": 900,
+    "h": 506,
+    "bytes": 31444
+   },
+   {
+    "nome": "projeto-closet-600.avif",
+    "w": 600,
+    "h": 337,
+    "bytes": 10865
+   },
+   {
+    "nome": "projeto-closet-600.webp",
+    "w": 600,
+    "h": 337,
+    "bytes": 20116
+   },
+   {
+    "nome": "projeto-closet-400.avif",
+    "w": 400,
+    "h": 225,
+    "bytes": 6745
+   },
+   {
+    "nome": "projeto-closet-400.webp",
+    "w": 400,
+    "h": 225,
+    "bytes": 12206
+   }
+  ]
+ },
+ {
+  "raiz": "projeto-dormitorio",
+  "origem": "dormitorio.jpg",
+  "original": [
+   1080,
+   1293
+  ],
+  "recorte": [
+   1034,
+   1293
+  ],
+  "nativo": [
+   1034,
+   1293
+  ],
+  "larguras": [
+   1034,
+   820,
+   620,
+   480,
+   360
+  ],
+  "descartadas": [],
+  "forca": 1.0,
+  "uso": "portfolio 40vw + lightbox",
+  "arquivos": [
+   {
+    "nome": "projeto-dormitorio-1034.avif",
+    "w": 1034,
+    "h": 1293,
+    "bytes": 39850
+   },
+   {
+    "nome": "projeto-dormitorio-1034.webp",
+    "w": 1034,
+    "h": 1293,
+    "bytes": 60870
+   },
+   {
+    "nome": "projeto-dormitorio-1034.jpg",
+    "w": 1034,
+    "h": 1293,
+    "bytes": 115539
+   },
+   {
+    "nome": "projeto-dormitorio-820.avif",
+    "w": 820,
+    "h": 1025,
+    "bytes": 28872
+   },
+   {
+    "nome": "projeto-dormitorio-820.webp",
+    "w": 820,
+    "h": 1025,
+    "bytes": 45374
+   },
+   {
+    "nome": "projeto-dormitorio-620.avif",
+    "w": 620,
+    "h": 775,
+    "bytes": 19329
+   },
+   {
+    "nome": "projeto-dormitorio-620.webp",
+    "w": 620,
+    "h": 775,
+    "bytes": 31042
+   },
+   {
+    "nome": "projeto-dormitorio-480.avif",
+    "w": 480,
+    "h": 600,
+    "bytes": 13856
+   },
+   {
+    "nome": "projeto-dormitorio-480.webp",
+    "w": 480,
+    "h": 600,
+    "bytes": 21054
+   },
+   {
+    "nome": "projeto-dormitorio-360.avif",
+    "w": 360,
+    "h": 450,
+    "bytes": 8878
+   },
+   {
+    "nome": "projeto-dormitorio-360.webp",
+    "w": 360,
+    "h": 450,
+    "bytes": 13304
+   }
+  ]
+ },
+ {
+  "raiz": "projeto-banheiro",
+  "origem": "banheiro.jpg",
+  "original": [
+   1600,
+   875
+  ],
+  "recorte": [
+   1312,
+   875
+  ],
+  "nativo": [
+   1312,
+   875
+  ],
+  "larguras": [
+   1312,
+   1040,
+   820,
+   640,
+   440
+  ],
+  "descartadas": [],
+  "forca": 0.65,
+  "uso": "portfolio 52vw + lightbox",
+  "arquivos": [
+   {
+    "nome": "projeto-banheiro-1312.avif",
+    "w": 1312,
+    "h": 875,
+    "bytes": 25231
+   },
+   {
+    "nome": "projeto-banheiro-1312.webp",
+    "w": 1312,
+    "h": 875,
+    "bytes": 42030
+   },
+   {
+    "nome": "projeto-banheiro-1312.jpg",
+    "w": 1312,
+    "h": 875,
+    "bytes": 99468
+   },
+   {
+    "nome": "projeto-banheiro-1040.avif",
+    "w": 1040,
+    "h": 694,
+    "bytes": 18559
+   },
+   {
+    "nome": "projeto-banheiro-1040.webp",
+    "w": 1040,
+    "h": 694,
+    "bytes": 30404
+   },
+   {
+    "nome": "projeto-banheiro-820.avif",
+    "w": 820,
+    "h": 547,
+    "bytes": 13847
+   },
+   {
+    "nome": "projeto-banheiro-820.webp",
+    "w": 820,
+    "h": 547,
+    "bytes": 23074
+   },
+   {
+    "nome": "projeto-banheiro-640.avif",
+    "w": 640,
+    "h": 427,
+    "bytes": 10118
+   },
+   {
+    "nome": "projeto-banheiro-640.webp",
+    "w": 640,
+    "h": 427,
+    "bytes": 17042
+   },
+   {
+    "nome": "projeto-banheiro-440.avif",
+    "w": 440,
+    "h": 293,
+    "bytes": 6303
+   },
+   {
+    "nome": "projeto-banheiro-440.webp",
+    "w": 440,
+    "h": 293,
+    "bytes": 10900
+   }
+  ]
+ },
+ {
+  "raiz": "projeto-home-office",
+  "origem": "home-office.jpg",
+  "original": [
+   1600,
+   872
+  ],
+  "recorte": [
+   1308,
+   872
+  ],
+  "nativo": [
+   1308,
+   872
+  ],
+  "larguras": [
+   1308,
+   1040,
+   820,
+   640,
+   440
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "portfolio 56vw + lightbox",
+  "arquivos": [
+   {
+    "nome": "projeto-home-office-1308.avif",
+    "w": 1308,
+    "h": 872,
+    "bytes": 31932
+   },
+   {
+    "nome": "projeto-home-office-1308.webp",
+    "w": 1308,
+    "h": 872,
+    "bytes": 47902
+   },
+   {
+    "nome": "projeto-home-office-1308.jpg",
+    "w": 1308,
+    "h": 872,
+    "bytes": 88411
+   },
+   {
+    "nome": "projeto-home-office-1040.avif",
+    "w": 1040,
+    "h": 693,
+    "bytes": 23280
+   },
+   {
+    "nome": "projeto-home-office-1040.webp",
+    "w": 1040,
+    "h": 693,
+    "bytes": 36004
+   },
+   {
+    "nome": "projeto-home-office-820.avif",
+    "w": 820,
+    "h": 547,
+    "bytes": 17672
+   },
+   {
+    "nome": "projeto-home-office-820.webp",
+    "w": 820,
+    "h": 547,
+    "bytes": 27646
+   },
+   {
+    "nome": "projeto-home-office-640.avif",
+    "w": 640,
+    "h": 427,
+    "bytes": 13094
+   },
+   {
+    "nome": "projeto-home-office-640.webp",
+    "w": 640,
+    "h": 427,
+    "bytes": 20878
+   },
+   {
+    "nome": "projeto-home-office-440.avif",
+    "w": 440,
+    "h": 293,
+    "bytes": 7945
+   },
+   {
+    "nome": "projeto-home-office-440.webp",
+    "w": 440,
+    "h": 293,
+    "bytes": 13764
+   }
+  ]
+ },
+ {
+  "raiz": "projeto-sala",
+  "origem": "sala.jpg",
+  "original": [
+   1600,
+   874
+  ],
+  "recorte": [
+   1554,
+   874
+  ],
+  "nativo": [
+   1554,
+   874
+  ],
+  "larguras": [
+   1554,
+   1200,
+   900,
+   600,
+   400
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "portfolio 52vw + lightbox",
+  "arquivos": [
+   {
+    "nome": "projeto-sala-1554.avif",
+    "w": 1554,
+    "h": 874,
+    "bytes": 32613
+   },
+   {
+    "nome": "projeto-sala-1554.webp",
+    "w": 1554,
+    "h": 874,
+    "bytes": 45590
+   },
+   {
+    "nome": "projeto-sala-1554.jpg",
+    "w": 1554,
+    "h": 874,
+    "bytes": 106732
+   },
+   {
+    "nome": "projeto-sala-1200.avif",
+    "w": 1200,
+    "h": 675,
+    "bytes": 23339
+   },
+   {
+    "nome": "projeto-sala-1200.webp",
+    "w": 1200,
+    "h": 675,
+    "bytes": 33018
+   },
+   {
+    "nome": "projeto-sala-900.avif",
+    "w": 900,
+    "h": 506,
+    "bytes": 16460
+   },
+   {
+    "nome": "projeto-sala-900.webp",
+    "w": 900,
+    "h": 506,
+    "bytes": 23326
+   },
+   {
+    "nome": "projeto-sala-600.avif",
+    "w": 600,
+    "h": 337,
+    "bytes": 9467
+   },
+   {
+    "nome": "projeto-sala-600.webp",
+    "w": 600,
+    "h": 337,
+    "bytes": 14086
+   },
+   {
+    "nome": "projeto-sala-400.avif",
+    "w": 400,
+    "h": 225,
+    "bytes": 5775
+   },
+   {
+    "nome": "projeto-sala-400.webp",
+    "w": 400,
+    "h": 225,
+    "bytes": 8410
+   }
+  ]
+ },
+ {
+  "raiz": "projeto-painel-tv",
+  "origem": "painel-tv.jpg",
+  "original": [
+   1080,
+   1431
+  ],
+  "recorte": [
+   1080,
+   1350
+  ],
+  "nativo": [
+   1080,
+   1350
+  ],
+  "larguras": [
+   1080,
+   860,
+   640,
+   480,
+   360
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "portfolio 40vw + lightbox",
+  "arquivos": [
+   {
+    "nome": "projeto-painel-tv-1080.avif",
+    "w": 1080,
+    "h": 1350,
+    "bytes": 40526
+   },
+   {
+    "nome": "projeto-painel-tv-1080.webp",
+    "w": 1080,
+    "h": 1350,
+    "bytes": 59568
+   },
+   {
+    "nome": "projeto-painel-tv-1080.jpg",
+    "w": 1080,
+    "h": 1350,
+    "bytes": 121424
+   },
+   {
+    "nome": "projeto-painel-tv-860.avif",
+    "w": 860,
+    "h": 1075,
+    "bytes": 29967
+   },
+   {
+    "nome": "projeto-painel-tv-860.webp",
+    "w": 860,
+    "h": 1075,
+    "bytes": 42814
+   },
+   {
+    "nome": "projeto-painel-tv-640.avif",
+    "w": 640,
+    "h": 800,
+    "bytes": 19981
+   },
+   {
+    "nome": "projeto-painel-tv-640.webp",
+    "w": 640,
+    "h": 800,
+    "bytes": 28352
+   },
+   {
+    "nome": "projeto-painel-tv-480.avif",
+    "w": 480,
+    "h": 600,
+    "bytes": 13576
+   },
+   {
+    "nome": "projeto-painel-tv-480.webp",
+    "w": 480,
+    "h": 600,
+    "bytes": 19526
+   },
+   {
+    "nome": "projeto-painel-tv-360.avif",
+    "w": 360,
+    "h": 450,
+    "bytes": 8963
+   },
+   {
+    "nome": "projeto-painel-tv-360.webp",
+    "w": 360,
+    "h": 450,
+    "bytes": 12886
+   }
+  ]
+ },
+ {
+  "raiz": "ambiente-dormitorio",
+  "origem": "amb-dormitorio.jpg",
+  "original": [
+   1080,
+   1295
+  ],
+  "recorte": [
+   1036,
+   1295
+  ],
+  "nativo": [
+   1036,
+   1295
+  ],
+  "larguras": [
+   1036,
+   820,
+   620,
+   480,
+   360
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "cartao 22rem + lightbox",
+  "arquivos": [
+   {
+    "nome": "ambiente-dormitorio-1036.avif",
+    "w": 1036,
+    "h": 1295,
+    "bytes": 37529
+   },
+   {
+    "nome": "ambiente-dormitorio-1036.webp",
+    "w": 1036,
+    "h": 1295,
+    "bytes": 54170
+   },
+   {
+    "nome": "ambiente-dormitorio-1036.jpg",
+    "w": 1036,
+    "h": 1295,
+    "bytes": 108943
+   },
+   {
+    "nome": "ambiente-dormitorio-820.avif",
+    "w": 820,
+    "h": 1025,
+    "bytes": 26910
+   },
+   {
+    "nome": "ambiente-dormitorio-820.webp",
+    "w": 820,
+    "h": 1025,
+    "bytes": 39318
+   },
+   {
+    "nome": "ambiente-dormitorio-620.avif",
+    "w": 620,
+    "h": 775,
+    "bytes": 16952
+   },
+   {
+    "nome": "ambiente-dormitorio-620.webp",
+    "w": 620,
+    "h": 775,
+    "bytes": 25862
+   },
+   {
+    "nome": "ambiente-dormitorio-480.avif",
+    "w": 480,
+    "h": 600,
+    "bytes": 10956
+   },
+   {
+    "nome": "ambiente-dormitorio-480.webp",
+    "w": 480,
+    "h": 600,
+    "bytes": 16718
+   },
+   {
+    "nome": "ambiente-dormitorio-360.avif",
+    "w": 360,
+    "h": 450,
+    "bytes": 6885
+   },
+   {
+    "nome": "ambiente-dormitorio-360.webp",
+    "w": 360,
+    "h": 450,
+    "bytes": 10322
+   }
+  ]
+ },
+ {
+  "raiz": "ambiente-closet",
+  "origem": "amb-closet.jpg",
+  "original": [
+   1600,
+   924
+  ],
+  "recorte": [
+   739,
+   924
+  ],
+  "nativo": [
+   739,
+   924
+  ],
+  "larguras": [
+   739,
+   600,
+   480,
+   360
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "cartao 22rem + lightbox",
+  "arquivos": [
+   {
+    "nome": "ambiente-closet-739.avif",
+    "w": 739,
+    "h": 924,
+    "bytes": 13301
+   },
+   {
+    "nome": "ambiente-closet-739.webp",
+    "w": 739,
+    "h": 924,
+    "bytes": 20996
+   },
+   {
+    "nome": "ambiente-closet-739.jpg",
+    "w": 739,
+    "h": 924,
+    "bytes": 55823
+   },
+   {
+    "nome": "ambiente-closet-600.avif",
+    "w": 600,
+    "h": 750,
+    "bytes": 10509
+   },
+   {
+    "nome": "ambiente-closet-600.webp",
+    "w": 600,
+    "h": 750,
+    "bytes": 15820
+   },
+   {
+    "nome": "ambiente-closet-480.avif",
+    "w": 480,
+    "h": 600,
+    "bytes": 7870
+   },
+   {
+    "nome": "ambiente-closet-480.webp",
+    "w": 480,
+    "h": 600,
+    "bytes": 12104
+   },
+   {
+    "nome": "ambiente-closet-360.avif",
+    "w": 360,
+    "h": 450,
+    "bytes": 5413
+   },
+   {
+    "nome": "ambiente-closet-360.webp",
+    "w": 360,
+    "h": 450,
+    "bytes": 8606
+   }
+  ]
+ },
+ {
+  "raiz": "ambiente-home-office",
+  "origem": "amb-home-office.jpg",
+  "original": [
+   1600,
+   878
+  ],
+  "recorte": [
+   702,
+   878
+  ],
+  "nativo": [
+   702,
+   878
+  ],
+  "larguras": [
+   702,
+   580,
+   460,
+   360
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "cartao 22rem + lightbox",
+  "arquivos": [
+   {
+    "nome": "ambiente-home-office-702.avif",
+    "w": 702,
+    "h": 878,
+    "bytes": 19077
+   },
+   {
+    "nome": "ambiente-home-office-702.webp",
+    "w": 702,
+    "h": 878,
+    "bytes": 26598
+   },
+   {
+    "nome": "ambiente-home-office-702.jpg",
+    "w": 702,
+    "h": 878,
+    "bytes": 50258
+   },
+   {
+    "nome": "ambiente-home-office-580.avif",
+    "w": 580,
+    "h": 725,
+    "bytes": 13924
+   },
+   {
+    "nome": "ambiente-home-office-580.webp",
+    "w": 580,
+    "h": 725,
+    "bytes": 20736
+   },
+   {
+    "nome": "ambiente-home-office-460.avif",
+    "w": 460,
+    "h": 575,
+    "bytes": 9901
+   },
+   {
+    "nome": "ambiente-home-office-460.webp",
+    "w": 460,
+    "h": 575,
+    "bytes": 15244
+   },
+   {
+    "nome": "ambiente-home-office-360.avif",
+    "w": 360,
+    "h": 450,
+    "bytes": 7026
+   },
+   {
+    "nome": "ambiente-home-office-360.webp",
+    "w": 360,
+    "h": 450,
+    "bytes": 11500
+   }
+  ]
+ },
+ {
+  "raiz": "ambiente-cozinha",
+  "origem": "amb-cozinha.jpg",
+  "original": [
+   368,
+   420
+  ],
+  "recorte": [
+   336,
+   420
+  ],
+  "nativo": [
+   336,
+   420
+  ],
+  "larguras": [
+   336,
+   252
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "cartao 22rem \u2014 abaixo do necessario, ver IMAGENS-V6.md",
+  "arquivos": [
+   {
+    "nome": "ambiente-cozinha-336.avif",
+    "w": 336,
+    "h": 420,
+    "bytes": 4890
+   },
+   {
+    "nome": "ambiente-cozinha-336.webp",
+    "w": 336,
+    "h": 420,
+    "bytes": 7462
+   },
+   {
+    "nome": "ambiente-cozinha-336.jpg",
+    "w": 336,
+    "h": 420,
+    "bytes": 13613
+   },
+   {
+    "nome": "ambiente-cozinha-252.avif",
+    "w": 252,
+    "h": 315,
+    "bytes": 3472
+   },
+   {
+    "nome": "ambiente-cozinha-252.webp",
+    "w": 252,
+    "h": 315,
+    "bytes": 5264
+   }
+  ]
+ },
+ {
+  "raiz": "sobre-showroom",
+  "origem": "showroom.jpg",
+  "original": [
+   1254,
+   1254
+  ],
+  "recorte": [
+   1003,
+   1254
+  ],
+  "nativo": [
+   1003,
+   1254
+  ],
+  "larguras": [
+   1003,
+   800,
+   620,
+   480
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "sobre 28vw + lightbox",
+  "arquivos": [
+   {
+    "nome": "sobre-showroom-1003.avif",
+    "w": 1003,
+    "h": 1254,
+    "bytes": 78583
+   },
+   {
+    "nome": "sobre-showroom-1003.webp",
+    "w": 1003,
+    "h": 1254,
+    "bytes": 125616
+   },
+   {
+    "nome": "sobre-showroom-1003.jpg",
+    "w": 1003,
+    "h": 1254,
+    "bytes": 192673
+   },
+   {
+    "nome": "sobre-showroom-800.avif",
+    "w": 800,
+    "h": 1000,
+    "bytes": 55828
+   },
+   {
+    "nome": "sobre-showroom-800.webp",
+    "w": 800,
+    "h": 1000,
+    "bytes": 90026
+   },
+   {
+    "nome": "sobre-showroom-620.avif",
+    "w": 620,
+    "h": 775,
+    "bytes": 37813
+   },
+   {
+    "nome": "sobre-showroom-620.webp",
+    "w": 620,
+    "h": 775,
+    "bytes": 61050
+   },
+   {
+    "nome": "sobre-showroom-480.avif",
+    "w": 480,
+    "h": 600,
+    "bytes": 24329
+   },
+   {
+    "nome": "sobre-showroom-480.webp",
+    "w": 480,
+    "h": 600,
+    "bytes": 40514
+   }
+  ]
+ },
+ {
+  "raiz": "ambiente-sala",
+  "origem": "ref-sala.jpg",
+  "original": [
+   1536,
+   1024
+  ],
+  "recorte": [
+   819,
+   1024
+  ],
+  "nativo": [
+   819,
+   1024
+  ],
+  "larguras": [
+   819,
+   660,
+   520,
+   400
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "cartao 22rem + lightbox",
+  "arquivos": [
+   {
+    "nome": "ambiente-sala-819.avif",
+    "w": 819,
+    "h": 1024,
+    "bytes": 34986
+   },
+   {
+    "nome": "ambiente-sala-819.webp",
+    "w": 819,
+    "h": 1024,
+    "bytes": 58960
+   },
+   {
+    "nome": "ambiente-sala-819.jpg",
+    "w": 819,
+    "h": 1024,
+    "bytes": 97876
+   },
+   {
+    "nome": "ambiente-sala-660.avif",
+    "w": 660,
+    "h": 825,
+    "bytes": 24399
+   },
+   {
+    "nome": "ambiente-sala-660.webp",
+    "w": 660,
+    "h": 825,
+    "bytes": 39724
+   },
+   {
+    "nome": "ambiente-sala-520.avif",
+    "w": 520,
+    "h": 650,
+    "bytes": 16591
+   },
+   {
+    "nome": "ambiente-sala-520.webp",
+    "w": 520,
+    "h": 650,
+    "bytes": 26938
+   },
+   {
+    "nome": "ambiente-sala-400.avif",
+    "w": 400,
+    "h": 500,
+    "bytes": 10523
+   },
+   {
+    "nome": "ambiente-sala-400.webp",
+    "w": 400,
+    "h": 500,
+    "bytes": 17008
+   }
+  ]
+ },
+ {
+  "raiz": "ambiente-gourmet",
+  "origem": "ref-gourmet.jpg",
+  "original": [
+   1536,
+   1024
+  ],
+  "recorte": [
+   819,
+   1024
+  ],
+  "nativo": [
+   819,
+   1024
+  ],
+  "larguras": [
+   819,
+   660,
+   520,
+   400
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "cartao 22rem + lightbox",
+  "arquivos": [
+   {
+    "nome": "ambiente-gourmet-819.avif",
+    "w": 819,
+    "h": 1024,
+    "bytes": 43114
+   },
+   {
+    "nome": "ambiente-gourmet-819.webp",
+    "w": 819,
+    "h": 1024,
+    "bytes": 76788
+   },
+   {
+    "nome": "ambiente-gourmet-819.jpg",
+    "w": 819,
+    "h": 1024,
+    "bytes": 129339
+   },
+   {
+    "nome": "ambiente-gourmet-660.avif",
+    "w": 660,
+    "h": 825,
+    "bytes": 29634
+   },
+   {
+    "nome": "ambiente-gourmet-660.webp",
+    "w": 660,
+    "h": 825,
+    "bytes": 51092
+   },
+   {
+    "nome": "ambiente-gourmet-520.avif",
+    "w": 520,
+    "h": 650,
+    "bytes": 19652
+   },
+   {
+    "nome": "ambiente-gourmet-520.webp",
+    "w": 520,
+    "h": 650,
+    "bytes": 34008
+   },
+   {
+    "nome": "ambiente-gourmet-400.avif",
+    "w": 400,
+    "h": 500,
+    "bytes": 12408
+   },
+   {
+    "nome": "ambiente-gourmet-400.webp",
+    "w": 400,
+    "h": 500,
+    "bytes": 22088
+   }
+  ]
+ },
+ {
+  "raiz": "hero-sala",
+  "origem": "ref-sala.jpg",
+  "original": [
+   1536,
+   1024
+  ],
+  "recorte": [
+   1536,
+   1024
+  ],
+  "nativo": [
+   1536,
+   1024
+  ],
+  "larguras": [
+   1536,
+   1280,
+   1024,
+   768,
+   560
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "hero 100vw, paisagem",
+  "arquivos": [
+   {
+    "nome": "hero-sala-1536.avif",
+    "w": 1536,
+    "h": 1024,
+    "bytes": 70144
+   },
+   {
+    "nome": "hero-sala-1536.webp",
+    "w": 1536,
+    "h": 1024,
+    "bytes": 123812
+   },
+   {
+    "nome": "hero-sala-1536.jpg",
+    "w": 1536,
+    "h": 1024,
+    "bytes": 210415
+   },
+   {
+    "nome": "hero-sala-1280.avif",
+    "w": 1280,
+    "h": 853,
+    "bytes": 52216
+   },
+   {
+    "nome": "hero-sala-1280.webp",
+    "w": 1280,
+    "h": 853,
+    "bytes": 88050
+   },
+   {
+    "nome": "hero-sala-1024.avif",
+    "w": 1024,
+    "h": 683,
+    "bytes": 36537
+   },
+   {
+    "nome": "hero-sala-1024.webp",
+    "w": 1024,
+    "h": 683,
+    "bytes": 61614
+   },
+   {
+    "nome": "hero-sala-768.avif",
+    "w": 768,
+    "h": 512,
+    "bytes": 21918
+   },
+   {
+    "nome": "hero-sala-768.webp",
+    "w": 768,
+    "h": 512,
+    "bytes": 36838
+   },
+   {
+    "nome": "hero-sala-560.avif",
+    "w": 560,
+    "h": 373,
+    "bytes": 12820
+   },
+   {
+    "nome": "hero-sala-560.webp",
+    "w": 560,
+    "h": 373,
+    "bytes": 21556
+   }
+  ]
+ },
+ {
+  "raiz": "hero-sala-retrato",
+  "origem": "ref-sala.jpg",
+  "original": [
+   1536,
+   1024
+  ],
+  "recorte": [
+   840,
+   1024
+  ],
+  "nativo": [
+   840,
+   1024
+  ],
+  "larguras": [
+   780,
+   620,
+   500,
+   390
+  ],
+  "descartadas": [],
+  "forca": 0.0,
+  "uso": "hero 100vw, retrato",
+  "arquivos": [
+   {
+    "nome": "hero-sala-retrato-780.avif",
+    "w": 780,
+    "h": 951,
+    "bytes": 30534
+   },
+   {
+    "nome": "hero-sala-retrato-780.webp",
+    "w": 780,
+    "h": 951,
+    "bytes": 53388
+   },
+   {
+    "nome": "hero-sala-retrato-780.jpg",
+    "w": 780,
+    "h": 951,
+    "bytes": 95816
+   },
+   {
+    "nome": "hero-sala-retrato-620.avif",
+    "w": 620,
+    "h": 756,
+    "bytes": 21497
+   },
+   {
+    "nome": "hero-sala-retrato-620.webp",
+    "w": 620,
+    "h": 756,
+    "bytes": 36062
+   },
+   {
+    "nome": "hero-sala-retrato-500.avif",
+    "w": 500,
+    "h": 610,
+    "bytes": 15000
+   },
+   {
+    "nome": "hero-sala-retrato-500.webp",
+    "w": 500,
+    "h": 610,
+    "bytes": 24862
+   },
+   {
+    "nome": "hero-sala-retrato-390.avif",
+    "w": 390,
+    "h": 475,
+    "bytes": 9770
+   },
+   {
+    "nome": "hero-sala-retrato-390.webp",
+    "w": 390,
+    "h": 475,
+    "bytes": 16010
+   }
+  ]
+ }
+]
