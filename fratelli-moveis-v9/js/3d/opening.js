@@ -58,7 +58,18 @@ export function criarAbertura(opcoes) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, leve ? 1.5 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.06;
+  /* Exposição medida, não escolhida.
+
+     Com 1,06 o móvel fechado ficava com mediana de luminosidade 45 —
+     escuro demais para uma peça que é o assunto da tela. A referência
+     fotografada está em 127, mas ela é um quarto com janela; aqui o
+     fundo é escuro de propósito, porque é sobre ele que o texto branco
+     da seção precisa ler (ver TESTES-V8, a varredura de contraste).
+
+     1,45 põe a mediana perto de 65: a madeira ganha corpo sem clarear
+     o fundo a ponto de estragar o contraste do texto, o que é
+     verificado de novo pelo teste de sobreposição. */
+  renderer.toneMappingExposure = 1.45;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = leve ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
 
@@ -175,7 +186,7 @@ export function criarAbertura(opcoes) {
     alt: 2.3,
     prof: 0.5,        // profundidade da caixa sintética (modo manual)
     cheio: 0.52,      // quanto da tela o canto mais extremo deve ocupar
-    desvio: 1.45      // quanto o olhar se afasta do centro da peça
+    desvio: 1.45      // reescrito pela timeline, em proporção à largura
   };
 
   var CAIXA = new THREE.Box3();
@@ -708,11 +719,15 @@ export function criarAbertura(opcoes) {
   chave.castShadow = true;
   chave.shadow.mapSize.set(leve ? 1024 : 2048, leve ? 1024 : 2048);
   chave.shadow.radius = leve ? 2 : 5;      // borda macia: sombra de ambiente, não de sol a pino
+  /* O volume da sombra tem de conter o móvel COM AS PORTAS ABERTAS.
+     Os valores anteriores (±3,2) foram dimensionados para um módulo de
+     1,80 m; com 2,46 m de largura e quase 2,9 m de profundidade aberto,
+     a folha direita saía do volume e a sombra dela era cortada. */
   chave.shadow.camera.near = 0.5;
-  chave.shadow.camera.far = 18;
-  chave.shadow.camera.left = -3.2;
-  chave.shadow.camera.right = 3.2;
-  chave.shadow.camera.top = 3.6;
+  chave.shadow.camera.far = 22;
+  chave.shadow.camera.left = -4.0;
+  chave.shadow.camera.right = 4.0;
+  chave.shadow.camera.top = 3.8;
   chave.shadow.camera.bottom = -0.6;
   chave.shadow.bias = -0.0010;
   chave.shadow.normalBias = 0.018;
@@ -777,8 +792,22 @@ export function criarAbertura(opcoes) {
      O móvel fechado, inteiro, reconhecível. A câmera faz um dolly
      curto e vai ficando mais frontal. Nada abre antes de o visitante
      entender que ali existem duas portas. */
-  tl.fromTo(enq, { cheio: 0.62, desvio: 1.30 },
-                 { cheio: 0.72, desvio: 1.20, duration: 0.15, ease: 'power1.out' }, 0)
+  /* O DESVIO É PROPORCIONAL À LARGURA DO MÓDULO.
+
+     Os números do primeiro ato (1,30 e 1,20) foram escolhidos quando o
+     módulo tinha 1,80 m. Com 2,46 m a peça passou a invadir a coluna
+     de texto, e o teste de sobreposição pegou: a nota pequena caiu
+     para 3,35:1 em 1440×900 e 4,49:1 em 1280×800, abaixo dos 4,5
+     exigidos. O móvel não ficou maior na tela — ele ficou mais LARGO,
+     e a borda esquerda chegou onde não devia.
+
+     Ligando o desvio a `L`, a margem que o texto tem deixa de depender
+     de alguém lembrar de reajustar um número solto quando as medidas
+     da peça mudarem. */
+  var DESVIO = L / 1.80;             // 1,0 na largura em que os números nasceram
+
+  tl.fromTo(enq, { cheio: 0.62, desvio: 1.30 * DESVIO },
+                 { cheio: 0.72, desvio: 1.20 * DESVIO, duration: 0.15, ease: 'power1.out' }, 0)
     .fromTo(orbita, { theta: -0.30, phi: 1.30, fov: 40 },
                     { theta: -0.20, phi: 1.31, fov: 40, duration: 0.15,
                       ease: 'power1.out' }, 0)
@@ -795,7 +824,7 @@ export function criarAbertura(opcoes) {
                                           ease: 'power1.in' }, 0.15)
     .fromTo(pivoDir.rotation, { y: 0 }, { y: ABRE_DIR * 0.34, duration: 0.25,
                                           ease: 'power1.in' }, 0.15)
-    .to(enq,    { cheio: 0.82, desvio: 0.62, duration: 0.25, ease: 'sine.inOut' }, 0.15)
+    .to(enq,    { cheio: 0.82, desvio: 0.62 * DESVIO, duration: 0.25, ease: 'sine.inOut' }, 0.15)
     .to(orbita, { theta: -0.10, phi: 1.33, duration: 0.25, ease: 'sine.inOut' }, 0.15)
 
   /* ATO 3 — ABERTURA COMPLETA (40–60%)

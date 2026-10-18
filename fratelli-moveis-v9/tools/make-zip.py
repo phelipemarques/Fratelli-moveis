@@ -6,14 +6,14 @@ Entra no ZIP apenas o que o site usa em produção. Ficam de fora a
 documentação, os scripts de preparo de imagem e os arquivos de origem.
 
 Uso: python3 tools/make-zip.py
-Saida: fratelli-moveis-v8-producao.zip na raiz do projeto
+Saida: fratelli-moveis-v9-producao.zip na raiz do projeto
 """
 import os
 import sys
 import zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SAIDA = os.path.join(ROOT, "fratelli-moveis-v8-producao.zip")
+SAIDA = os.path.join(ROOT, "fratelli-moveis-v9-producao.zip")
 
 ARQUIVOS = ["index.html", "404.html", "robots.txt", "sitemap.xml", "_headers"]
 PASTAS = ["css", "js", "assets/fonts", "assets/images", "assets/video"]

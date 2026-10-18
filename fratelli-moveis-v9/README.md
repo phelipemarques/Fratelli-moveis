@@ -1,21 +1,23 @@
-# Fratelli Móveis — V8
+# Fratelli Móveis — V9
 
 Móveis planejados em Cascavel, Paraná. Site estático: HTML, CSS e
 JavaScript, sem framework e sem etapa de build.
 
-Esta é a **V8**, construída a partir da V7.1. A V3 continua inteira em
+Esta é a **V9**, construída a partir da V8. A V3 continua inteira em
 `fratelli-moveis-v3/` e a V2 em `fratelli-moveis-v2/` — nenhuma foi
 alterada.
 
-A V6 acrescenta um capítulo tridimensional (Three.js r169, MIT) logo
-depois do hero: um módulo de marcenaria **conceitual** cujas portas abrem
-em dobradiças reais, com a câmera e a luz conduzidas pela rolagem. Ele só
+Logo depois do hero há um capítulo tridimensional (Three.js r169, MIT):
+um armário de marcenaria **conceitual** de quatro folhas, cujas duas
+folhas centrais abrem em dobradiças reais para fora, com a câmera e a
+luz conduzidas pela rolagem. Ele não representa um projeto executado
+pela Fratelli Móveis, e a própria página diz isso. Ele só
 monta em desktop com WebGL; em toque, sem WebGL ou com movimento
 reduzido, a seção mostra a fotografia real e o Three.js nem é baixado.
 
 **A prévia de arquivo único roda o capítulo 3D.** O navegador recusa
 *baixar* um módulo ES de `file://`, mas executa um módulo escrito dentro
-da própria página. Então `tools/build-single-file.py` achata os seis
+da própria página. Então `tools/build-single-file.py` achata os
 arquivos de `js/3d/` num `<script type="module">` sem nenhum `import`: o
 `export{...}` do Three.js vira um objeto comum, cada arquivo entra
 dentro da sua própria função (recebendo o que importava, devolvendo o
@@ -23,7 +25,7 @@ que exportava) e cada `import('./x.js')` do `boot.js` vira
 `Promise.resolve(MOD_x)` — o que deixa o `boot.js`, com toda a decisão
 de perfil, palavra por palavra como no pacote.
 
-No pacote de publicação os seis arquivos continuam separados, com os
+No pacote de publicação os arquivos continuam separados, com os
 imports dinâmicos: é ele que mantém os 671 KB do Three.js fora dos
 aparelhos que não vão usá-los. Para abrir o pacote como ele vai ao ar:
 
@@ -52,9 +54,14 @@ e abra `http://localhost:8080`.
 - AVIF em todas as fotografias (−46% de bytes nos casos reais);
 - correção de três defeitos da V3 — ver `RELATORIO-V6.md`, seção 1.
 
-Documentos: `RELATORIO-V6.md` (o que foi feito), `TESTES-V6.md` (o que
-foi medido), `IMAGENS-V6.md` (a auditoria das fotografias),
+Documentos: `RELATORIO-V9.md` (o que foi feito e por quê),
+`TESTES-V9.md` (o que foi medido, e o que **não** foi),
+`AUDITORIA-IMAGENS.md` (a auditoria das fotografias),
 `PENDENCIAS.md` (o que falta e depende de você).
+
+Provas em imagem: `tools/provas/` — os seis estados do módulo, o
+ANTES/DEPOIS contra a V8, o render de argila que mostrou a falta de
+estrutura, e a lâmina lado a lado com a fotografia de referência.
 
 ## Estrutura
 
@@ -119,7 +126,7 @@ publicação, nesta ordem:
 2. preencher a `<loc>` do `sitemap.xml`;
 3. só então trocar o `robots` para `index, follow`.
 
-Antes disso há dois bloqueios reais, descritos em `RELATORIO-V8.md`:
+Antes disso há dois bloqueios reais, descritos em `RELATORIO-V9.md`:
 a validação em GPU de verdade e a confirmação das duas fotografias não
 identificadas. Enquanto eles existirem, o site **não está pronto para
 ir ao ar**.

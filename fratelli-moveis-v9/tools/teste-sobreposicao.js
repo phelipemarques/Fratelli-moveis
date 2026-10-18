@@ -95,6 +95,29 @@ async function medir(navegador, [nome, w, h, toque], semWebGL) {
       limites.ini + (limites.fim - limites.ini) * f);
     await pagina.waitForTimeout(1150);
 
+    /* ESPERA O TEXTO PARAR DE ANIMAR.
+
+       Terceira correção no próprio instrumento, e a mais sorrateira.
+       Em 1920×1080 no progresso 0 o teste devolvia 16,6:1 numa
+       execução e 2,1:1 na seguinte, no MESMO código. Olhando o par de
+       fotografias: no quadro "com cena" o texto ainda estava no meio
+       da entrada, translúcido; no quadro "sem cena", tirado 120 ms
+       depois, já estava inteiro. O teste comparava dois momentos
+       diferentes e culpava a cena pela diferença.
+
+       Agora espera a opacidade dos blocos ficar igual em duas
+       leituras seguidas antes de medir qualquer coisa. Um instrumento
+       que erra sete vezes para mais ou para menos conforme o humor da
+       máquina não serve para aprovar nem para reprovar nada. */
+    await pagina.waitForFunction(() => {
+      const secao = document.querySelector('[data-abertura]');
+      const agora = [...secao.querySelectorAll('.abertura__texto > *')]
+        .map(el => getComputedStyle(el).opacity).join('|');
+      const parado = window.__opacidadeAnterior === agora;
+      window.__opacidadeAnterior = agora;
+      return parado;
+    }, { timeout: 6000, polling: 220 }).catch(() => {});
+
     /* --- 1. geometria + quais blocos estão visíveis --- */
     const estado = await pagina.evaluate(() => {
       const secao = document.querySelector('[data-abertura]');

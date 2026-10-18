@@ -15,7 +15,7 @@ sendo o index.html com as pastas — este aqui e maior, nao tem srcset
 O capitulo 3D entra aqui tambem. Modulos ES nao podem ser BAIXADOS de
 file:// (o navegador bloqueia por CORS), mas um modulo ESCRITO dentro da
 pagina roda sem problema — desde que nao tenha nenhum `import` dentro.
-Entao os seis arquivos de js/3d/ sao achatados num unico <script
+Entao os arquivos de js/3d/ sao achatados num unico <script
 type="module">: o `export{...}` do Three.js vira um objeto comum, os
 `import` de topo saem (tudo ja esta no mesmo escopo) e cada
 `import('./x.js')` do boot.js vira `Promise.resolve({...})` — o que
@@ -30,7 +30,7 @@ import os
 import re
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SAIDA = os.path.join(RAIZ, 'fratelli-moveis-v8-visualizacao.html')
+SAIDA = os.path.join(RAIZ, 'fratelli-moveis-v9-visualizacao.html')
 
 
 def uri(caminho):
@@ -59,7 +59,7 @@ def maior_webp():
 
 
 def modulo_3d():
-    """Os seis arquivos de js/3d/ num unico modulo sem nenhum `import`.
+    """Os arquivos de js/3d/ num unico modulo sem nenhum `import`.
 
     E a unica forma de as cenas rodarem a partir de file://: o
     navegador recusa BAIXAR um modulo dessa origem, mas executa o que
@@ -76,7 +76,7 @@ def modulo_3d():
     `Promise.resolve(MOD_x)`. O `.then`, o `.catch` e toda a decisao
     de perfil continuam palavra por palavra como no pacote.
 
-    O pacote de publicacao continua com os seis arquivos separados e
+    O pacote de publicacao continua com os arquivos separados e
     com os imports dinamicos, que e o que mantem os 671 KB do Three.js
     fora dos aparelhos que nao vao usa-los.
     """
@@ -126,7 +126,12 @@ def modulo_3d():
                    ', '.join('%s: %s' % (x, x) for x in saidas),
                    ', '.join(valores)))
 
-    for nome in ('grao.js', 'madeira.js', 'opening.js', 'mobile25.js', 'materia.js'):
+    # A ORDEM IMPORTA: cada arquivo so pode ser embrulhado depois dos
+    # que ele importa, porque recebe os modulos deles como argumento.
+    # `pecas.js` entrou na V9 (a geometria chanfrada) e precisa vir
+    # antes de `opening.js`, que o usa.
+    for nome in ('grao.js', 'madeira.js', 'pecas.js', 'opening.js',
+                 'mobile25.js', 'materia.js'):
         partes.append(embrulhar(nome))
 
     # --- a ligacao: cada import dinamico vira o modulo ja pronto ---

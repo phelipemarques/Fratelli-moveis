@@ -68,6 +68,51 @@ for a origem, e que não atribui a obra à Fratelli.
 
 ---
 
+## 🟡 O módulo 3D — o que a V9 não fechou
+
+A V9 refez a geometria e a madeira do módulo contra as fotografias de
+referência (`tools/ref/`). O relatório traz os números; aqui fica o que
+continua aberto.
+
+### O desenho do veio é mais arrumado que o da madeira
+
+Medido pelo espectro horizontal da folha, na mesma escala dos dois
+lados: a fotografia concentra 125× a mediana em 3 ciclos; a textura
+gerada, 672×. Está na frequência certa — era um pico de 1136× em 11
+ciclos antes —, mas continua mais regular do que madeira é. Na prática:
+as linhas de poro saem parecidas demais umas com as outras.
+
+Fechar isso pede um gerador menos periódico, não um ajuste de número.
+
+### O poro está abaixo da densidade real, de propósito
+
+26 linhas por folha (~43/m) contra ~130/m na referência. No primeiro
+ato a folha ocupa ~105 px de tela, e 130 linhas/m dariam 1,7 px por
+linha — aliasing que nenhuma filtragem resolve. Aumentar a resolução da
+textura não ajuda: quem decide é a escala na tela.
+
+A saída real seria uma textura de detalhe que entra junto com a
+aproximação da câmera. Não foi feita.
+
+### A anisotropia foi lida em WebGL por software
+
+O ambiente de teste reporta 16, e é com isso que o veio foi calibrado.
+Num aparelho real o número e o resultado podem ser outros — e o veio é
+justamente o que mais depende disso. **Primeiro item a conferir numa
+GPU de verdade.**
+
+### Blender não foi usado
+
+Não está disponível neste ambiente. Tudo é Three.js em tempo real.
+
+### O celular continua no 2.5D
+
+A composição 2.5D não acompanhou a mudança do módulo: ela ainda desenha
+uma caixa de duas folhas. Ela é consistente consigo mesma e passa nos
+testes de contraste e de abertura, mas não é o mesmo móvel que o
+desktop mostra. As opções (Three.js simplificado no celular, ou uma
+sequência pré-renderizada) continuam em aberto.
+
 ## 🟡 Material que melhora o resultado
 
 ### Resolução da fotografia de cozinha

@@ -678,12 +678,24 @@ a {
   background:
     linear-gradient(to bottom, rgba(14,13,12,0.46) 0, rgba(14,13,12,0) 220px),
     linear-gradient(90deg,
-      rgba(14,13,12,0.94) 0,
+      rgba(14,13,12,0.97) 0,
       /* O platô escuro vai até o FIM da coluna, não até 72% dela: as
          linhas terminam na borda direita do texto, e era exatamente
-         ali que o degradê já havia afrouxado. */
-      rgba(14,13,12,0.90) var(--veu-fim),
-      rgba(14,13,12,0.24) calc(var(--veu-fim) + 16rem),
+         ali que o degradê já havia afrouxado.
+
+         0,96 no fim da coluna, e não 0,90. Com o módulo da V9 — mais
+         largo, mais claro e com moldura clara na borda esquerda — a
+         varredura devolvia 4,2 a 4,5:1 na nota e no lead em 1440 e
+         1920, ou seja, em cima da linha dos 4,5. Pior: o número
+         mudava entre execuções, porque ali o texto fica sobre a
+         FRONTEIRA da peça e meio pixel de diferença troca o fundo.
+
+         Um limite que só passa com sorte não passou. O platô mais
+         firme tira a decisão do acaso, e custa pouco: ele só pesa
+         sobre a coluna de texto, e afrouxa inteiro assim que o texto
+         recua. */
+      rgba(14,13,12,0.96) var(--veu-fim),
+      rgba(14,13,12,0.26) calc(var(--veu-fim) + 16rem),
       rgba(14,13,12,0.06) 100%);
 }
 
@@ -2873,15 +2885,26 @@ html.motion .hero__media {
    bastar sozinho o tempo todo em que há cena rodando. */
 .abertura.tem-3d .abertura__acoes .btn,
 .abertura.tem-25d .abertura__acoes .btn {
-  background-color: rgba(14, 13, 12, 0.97);
-  backdrop-filter: blur(6px);
+  /* OPACO, não 97%.
+
+     Com 0,97 o botão deixa passar 3% do que está atrás. Em quase toda
+     parte isso é invisível; sobre a madeira clara do último ato, num
+     celular de 430 px, derruba o contraste para 4,50:1 — exatamente em
+     cima do mínimo da WCAG AA. A V8 entregou assim e eu registrei como
+     "empate com o limite". Empate não é aprovação, e o custo de
+     resolver é um valor alfa.
+
+     Com fundo opaco o contraste do botão passa a ser uma propriedade
+     DELE, igual em qualquer tela e em qualquer ato, em vez de depender
+     do que a cena puser atrás. */
+  background-color: #0E0D0C;
   border-color: rgba(244, 241, 236, 0.42);
 }
 .abertura.tem-3d .abertura__acoes .btn:hover,
 .abertura.tem-3d .abertura__acoes .btn:focus-visible,
 .abertura.tem-25d .abertura__acoes .btn:hover,
 .abertura.tem-25d .abertura__acoes .btn:focus-visible {
-  background-color: rgba(14, 13, 12, 0.96);
+  background-color: #121110;
   border-color: var(--accent-light, #D7A86A);
 }
 

@@ -11,24 +11,42 @@
 <meta name="description" content="Móveis planejados sob medida em Cascavel, Paraná. A Fratelli desenvolve projetos para cozinhas, dormitórios, closets e outros ambientes pensados para cada espaço.">
 <meta name="theme-color" content="#F4F1EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#191714" media="(prefers-color-scheme: dark)">
-<meta name="robots" content="index, follow">
+<!-- ===================== INDEXAÇÃO =====================
+     NÃO indexar enquanto o endereço final não existir.
+
+     Com `index, follow` ativo e sem `canonical`, o Google pode
+     registrar o endereço provisório do Netlify como a página oficial
+     da Fratelli — e depois disputar com o domínio de verdade. Quem
+     ganha essa disputa não se escolhe.
+
+     NA PUBLICAÇÃO, nesta ordem:
+       1. preencher as três linhas de URL mais abaixo;
+       2. preencher a <loc> do sitemap.xml;
+       3. só então trocar esta linha por `index, follow`.
+     ==================================================== -->
+<meta name="robots" content="noindex, nofollow">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Fratelli Móveis">
 <meta property="og:title" content="Fratelli Móveis | Móveis Planejados em Cascavel — PR">
 <meta property="og:description" content="Móveis planejados sob medida em Cascavel, Paraná. A Fratelli desenvolve projetos para cozinhas, dormitórios, closets e outros ambientes pensados para cada espaço.">
-<!-- DEPOIS DO DEPLOY: as três linhas abaixo precisam da URL real do site.
-     Descomente e troque SEU-DOMINIO pelo endereço que o Netlify devolver
-     (ex.: fratelli-moveis.netlify.app) ou pelo domínio próprio. Sem isso o
-     link compartilhado no WhatsApp sai sem imagem e o Google não sabe qual
-     é o endereço canônico da página. -->
+<!-- NA PUBLICAÇÃO: descomente as três linhas e troque SEU-DOMINIO pelo
+     endereço real (o que o Netlify devolver, ou o domínio próprio).
+
+     Continuam comentadas de propósito: Open Graph exige URL ABSOLUTA, e
+     inventar um domínio aqui produziria um link de pré-visualização que
+     aponta para lugar nenhum — pior do que não ter imagem. Enquanto
+     estiverem assim, o robots acima mantém a página fora do índice. -->
 <!-- <link rel="canonical" href="https://SEU-DOMINIO/"> -->
 <!-- <meta property="og:url" content="https://SEU-DOMINIO/"> -->
 <!-- <meta property="og:image" content="https://SEU-DOMINIO/assets/images/og-cover.jpg"> -->
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sala de estar com painel de TV, ripado de madeira e aparador suspenso, projeto da Fratelli Móveis.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fratelli Móveis | Móveis Planejados em Cascavel — PR">
+<meta name="twitter:description" content="Móveis planejados sob medida em Cascavel, Paraná. Projetos para cozinhas, dormitórios, closets e outros ambientes pensados para cada espaço.">
 
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJGcmF0ZWxsaSBNw7N2ZWlzIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiMxOTE3MTQiLz4KICA8ZyBmaWxsPSIjRjRGMUVDIj4KICAgIDxyZWN0IHg9IjIwIiB5PSIxNiIgd2lkdGg9IjUiIGhlaWdodD0iMzIiLz4KICAgIDxyZWN0IHg9IjIwIiB5PSIxNiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjUiLz4KICAgIDxyZWN0IHg9IjIwIiB5PSIyOSIgd2lkdGg9IjE3IiBoZWlnaHQ9IjUiLz4KICA8L2c+CiAgPHJlY3QgeD0iMjAiIHk9IjUyIiB3aWR0aD0iMjQiIGhlaWdodD0iMS41IiBmaWxsPSIjQjI3QTQyIi8+Cjwvc3ZnPgo=" type="image/svg+xml">
 
@@ -86,7 +104,15 @@
   --ink-3:         #2D2923;
 
   --slate:         #575047;            /* texto de apoio sobre fundo claro */
-  --slate-light:   #A79E92;            /* texto de apoio sobre fundo escuro */
+  /* Clareado de #A79E92 para #B8B1A8.
+
+     Medido com a cena escondida, sobre o fundo escuro da abertura, o
+     tom antigo dava 3,83:1 — abaixo dos 4,5:1 que a WCAG AA pede para
+     texto pequeno. Não era a cena cobrindo o texto: era o próprio
+     tom. O novo dá 5,16:1 no mesmo fundo, mantendo a matiz quente e a
+     saturação. É o tom de apoio do site inteiro sobre fundo escuro —
+     a nota da abertura, o rodapé, as legendas das faixas escuras. */
+  --slate-light:   #BEB7AE;            /* texto de apoio sobre fundo escuro */
 
   --accent:        #B27A42;            /* fio, marcador, detalhe */
   --accent-ink:    #8A5628;            /* destaque legível sobre fundo claro */
@@ -648,6 +674,21 @@ a {
 /* A fotografia real. Sem 3D ela é o fundo. Com 3D ela entra no último
    ato, revelada por uma máscara que sobe — não um fade para preto. */
 .abertura__foto { position: absolute; inset: 0; }
+
+/* `<picture>` é inline por padrão, e uma altura em porcentagem não
+   resolve contra um pai de altura automática: a fotografia vinha
+   saindo com a altura INTRÍNSECA dela, não a do palco. Medido em
+   390x844: a imagem renderizava 390x219 — uma faixa no topo — em vez
+   de cobrir a tela. No desktop o erro passava despercebido porque
+   1440 de largura dá 810 de altura, quase a tela inteira.
+
+   Vale para qualquer <picture> que precise preencher um quadro. */
+.abertura__foto picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .abertura__foto img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: 50% 48%;
@@ -674,15 +715,71 @@ a {
   opacity: calc(1 - var(--passagem));
 }
 
+/* O véu da coluna de texto.
+
+   Medido: com o tom de apoio corrigido, a nota da abertura dava 4,9:1
+   sobre o véu sozinho — mas caía a 4,1:1 quando o piso e a sombra da
+   cena 3D clareavam o fundo por baixo dela. Não era o móvel passando
+   por cima: era o chão da cena levantando o preto.
+
+   Então o lado esquerdo pesa mais ENQUANTO o texto está lá, e
+   afrouxa quando ele recua — justamente para não embaçar o momento em
+   que o móvel toma a tela. O contraste deixa de depender do que a
+   cena está desenhando atrás. */
 .abertura__veu {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease-out);
+  /* As paradas acompanham a COLUNA DE TEXTO, não a largura da tela.
+
+     Era aqui o erro que sobrava: em porcentagem do viewport, a parte
+     escura do véu é sempre a mesma fração — mas o texto é centrado
+     com teto de largura, então quanto maior a tela, mais à DIREITA
+     ele vai parar. Medido: em 1440 o texto cai na faixa forte do véu
+     e dá 16:1; em 1920 ele desliza para a faixa fraca e o piso da
+     cena aparece por trás, derrubando para 2,5:1. Mesma regra, duas
+     leituras opostas.
+
+     `--veu-fim` é o fim real da coluna: metade da tela, menos metade
+     do shell, mais a sarjeta, mais a medida do texto. Em 1920 dá
+     956 px; em 1440, 716 px. Nos dois casos o texto inteiro fica
+     dentro da parte escura. */
+  --veu-fim: calc(50% - var(--shell-max) / 2 + var(--gutter) + 36rem);
   background:
     linear-gradient(to bottom, rgba(14,13,12,0.46) 0, rgba(14,13,12,0) 220px),
     linear-gradient(90deg,
-      rgba(14,13,12,0.80) 0%, rgba(14,13,12,0.58) 30%,
-      rgba(14,13,12,0.24) 62%, rgba(14,13,12,0.06) 100%);
+      rgba(14,13,12,0.97) 0,
+      /* O platô escuro vai até o FIM da coluna, não até 72% dela: as
+         linhas terminam na borda direita do texto, e era exatamente
+         ali que o degradê já havia afrouxado.
+
+         0,96 no fim da coluna, e não 0,90. Com o módulo da V9 — mais
+         largo, mais claro e com moldura clara na borda esquerda — a
+         varredura devolvia 4,2 a 4,5:1 na nota e no lead em 1440 e
+         1920, ou seja, em cima da linha dos 4,5. Pior: o número
+         mudava entre execuções, porque ali o texto fica sobre a
+         FRONTEIRA da peça e meio pixel de diferença troca o fundo.
+
+         Um limite que só passa com sorte não passou. O platô mais
+         firme tira a decisão do acaso, e custa pouco: ele só pesa
+         sobre a coluna de texto, e afrouxa inteiro assim que o texto
+         recua. */
+      rgba(14,13,12,0.96) var(--veu-fim),
+      rgba(14,13,12,0.26) calc(var(--veu-fim) + 16rem),
+      rgba(14,13,12,0.06) 100%);
+}
+
+/* Quando o texto recua, o véu afrouxa: ele existia para o texto, e
+   segurar esse peso embaçaria o momento em que o móvel toma a tela. */
+.abertura.texto-recuado .abertura__veu {
+  background:
+    linear-gradient(to bottom, rgba(14,13,12,0.46) 0, rgba(14,13,12,0) 220px),
+    linear-gradient(90deg,
+      rgba(14,13,12,0.60) 0,
+      rgba(14,13,12,0.44) var(--veu-fim),
+      rgba(14,13,12,0.14) calc(var(--veu-fim) + 16rem),
+      rgba(14,13,12,0.04) 100%);
 }
 
 .abertura__conteudo {
@@ -2218,10 +2315,12 @@ html.motion .hero__media {
   place-items: center;
   perspective: 1500px;
   perspective-origin: 50% 40%;
-  /* A peça mora no terço de cima: embaixo fica o texto, e os dois não
-     podem disputar o mesmo espaço numa tela de 390 px. */
-  align-content: start;
-  padding-top: clamp(3rem, 12vh, 7rem);
+  /* A peça é centrada aqui e SUBIDA pelo JS, em pixels. Fazer isso com
+     `align-content: start` + padding dava uma âncora que mudava com a
+     altura da tela, e aí a escala do zoom crescia para fora do palco:
+     medido em 390x844, a peça chegava a 589 px de largura com o topo
+     em -86. Um translate em pixels é previsível. */
+  place-items: center;
   pointer-events: none;
   contain: layout paint;
 }
@@ -2480,11 +2579,27 @@ html.motion .hero__media {
   transform: translateZ(-40px);
 }
 
-/* Telas muito estreitas: a peça encolhe por medida, não por scale, e
-   continua legível em 320 px. */
+/* A peça encolhe e cresce por MEDIDA, não por scale: assim a
+   espessura dos painéis e a altura do puxador continuam proporcionais
+   em vez de virarem borrões ampliados.
+
+   Em 320 px ela encolhe para caber. Em tablet (perfil B numa tela
+   larga) ela cresce — com 330 px fixos, medido em 768x1024, o móvel
+   ocupava 60% da largura e parecia um objeto pequeno no meio de muito
+   espaço vazio, que é exatamente o que esta versão veio corrigir. */
 @media (max-width: 380px) {
   .m25 { --larg: 262px; --alt: 306px; --prof: 84px; }
   .m25__puxador { height: 44px; }
+}
+
+/* O salto de tamanho mora em 900 px, e nao em 600, porque e em 900
+   que a COMPOSIÇÃO muda: abaixo disso o texto fica no rodapé e a peça
+   em cima; acima, lado a lado. Com o salto em 600 px, um tablet de
+   768 ganhava a peça grande com a coreografia estreita e as duas
+   coisas colidiam — medido, a folga entre móvel e texto era de 1 px. */
+@media (min-width: 900px) {
+  .m25 { --larg: 440px; --alt: 513px; --prof: 141px; }
+  .m25__puxador { height: 74px; width: 4px; }
 }
 
 /* Sem WebGL e sem movimento: a composição não é montada pelo JS, e
@@ -2788,6 +2903,105 @@ html.motion .hero__media {
   .materia { --giro: 16; --incl: 3; --aprox: 1; --brilho: 0.82; }
   .materia__luz { display: none; }
   .materia__passo { opacity: 1; transform: none; }
+}
+
+/* ============ A COLUNA DE TEXTO CEDE A VEZ (V7.1) ============
+
+   Do ato 3 em diante o armário ocupa a tela inteira. O texto da
+   abertura não pode continuar ali: seria lido sobre painéis em
+   movimento. Ele recua, e volta sozinho quando a rolagem volta.
+
+   `visibility: hidden` ao fim da transição tira os elementos
+   apagados do caminho do Tab — texto invisível e focável é pior do
+   que texto ausente. O botão "Pular a introdução" está de fora desta
+   regra de propósito: é a saída da sequência e precisa continuar
+   alcançável do começo ao fim.
+   ============================================================ */
+
+.abertura__texto > *:not(.abertura__acoes) {
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out),
+              visibility 0s linear var(--dur-slow);
+}
+
+.abertura.texto-recuado .abertura__texto > *:not(.abertura__acoes) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(-1.5rem, 0, 0);
+}
+
+/* Na volta, o texto reaparece imediatamente: o atraso do
+   `visibility` só vale para sumir. */
+.abertura:not(.texto-recuado) .abertura__texto > *:not(.abertura__acoes) {
+  transition-delay: 0s;
+  visibility: visible;
+}
+
+/* O botão de pular NÃO recua — é a saída da sequência. Mas ele fica
+   exatamente onde a madeira cresce, e um botão de contorno sobre
+   madeira clara some.
+
+   Medido: contraste de 1,4:1 contra o fundo real em 768x1024, e
+   10% dos pixels atrás dele vinham da cena. Então, quando o texto
+   recua, ele ganha fundo próprio — deixa de ser um contorno e vira
+   uma pastilha sólida. Fica mais legível do que estava, não menos. */
+/* O fundo do botão NÃO depende do texto ter recuado.
+
+   Essa era a amarração errada: em 1920 o texto ainda não recuou aos
+   60% da sequência (há folga de sobra à esquerda), mas o móvel já
+   cresceu o bastante para passar atrás do botão. Medido: 4,10:1,
+   sem fundo nenhum, porque a regra esperava o recuo.
+
+   O botão é o único elemento que nunca recua — logo ele tem de se
+   bastar sozinho o tempo todo em que há cena rodando. */
+.abertura.tem-3d .abertura__acoes .btn,
+.abertura.tem-25d .abertura__acoes .btn {
+  /* OPACO, não 97%.
+
+     Com 0,97 o botão deixa passar 3% do que está atrás. Em quase toda
+     parte isso é invisível; sobre a madeira clara do último ato, num
+     celular de 430 px, derruba o contraste para 4,50:1 — exatamente em
+     cima do mínimo da WCAG AA. A V8 entregou assim e eu registrei como
+     "empate com o limite". Empate não é aprovação, e o custo de
+     resolver é um valor alfa.
+
+     Com fundo opaco o contraste do botão passa a ser uma propriedade
+     DELE, igual em qualquer tela e em qualquer ato, em vez de depender
+     do que a cena puser atrás. */
+  background-color: #0E0D0C;
+  border-color: rgba(244, 241, 236, 0.42);
+}
+.abertura.tem-3d .abertura__acoes .btn:hover,
+.abertura.tem-3d .abertura__acoes .btn:focus-visible,
+.abertura.tem-25d .abertura__acoes .btn:hover,
+.abertura.tem-25d .abertura__acoes .btn:focus-visible {
+  background-color: #121110;
+  border-color: var(--accent-light, #D7A86A);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abertura__texto > *:not(.abertura__acoes) { transition: none; }
+  .abertura.texto-recuado .abertura__texto > *:not(.abertura__acoes) {
+    opacity: 1; visibility: visible; transform: none;
+  }
+}
+
+/* O véu cede quando a fotografia entra.
+
+   O véu existe para o texto da abertura ser legível sobre a cena — e
+   no celular ele é pesado, porque lá o texto mora no rodapé. Mas no
+   último ato o texto já recuou, e o que o véu está escondendo passa a
+   ser justamente a fotografia que a sequência inteira estava
+   apresentando. Ele afrouxa junto com a passagem, mantendo só o
+   suficiente para o cabeçalho continuar legível. */
+.abertura.tem-3d .abertura__veu,
+.abertura.tem-25d .abertura__veu {
+  opacity: calc(1 - 0.72 * var(--passagem, 0));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abertura.tem-3d .abertura__veu,
+  .abertura.tem-25d .abertura__veu { opacity: 1; }
 }
 
 </style>
@@ -5012,71 +5226,286 @@ function fbm(g, n, x, y, oitavas) {
   return soma / total;
 }
 
-/* ---------- O campo de altura da madeira ----------
+/* ---------- Os campos da madeira ----------
 
-   Três coisas acontecem aqui, e a ordem importa:
+   DOIS CAMPOS, não um — e é esta a segunda correção da V9.
 
-   1. O domínio é ESTICADO na vertical (y * 0.055 contra x * 2.1). É o
-      que faz o veio correr ao longo da peça em vez de formar manchas.
-   2. O domínio é DISTORCIDO por outro ruído antes de virar anel. Sem
-      isso saem listras paralelas de papel de parede; com isso sai a
-      figura em catedral que a lâmina faseada tem.
-   3. O anel é uma onda triangular, não um seno: a passagem do lenho
-      inicial para o tardio é abrupta de um lado e lenta do outro, e é
-      essa assimetria que o olho lê como madeira.
+   Até aqui existia UM campo de altura, e dele saíam as três texturas:
+   cor, rugosidade e relevo. Parece econômico e está errado na física.
+
+   Numa lâmina de nogueira, a CATEDRAL é cor: o lenho tardio é mais
+   escuro que o inicial, mas a superfície é plana — ela passou por uma
+   lixadeira calibrada e por verniz. O que tem relevo é só o PORO:
+   alguns centésimos de milímetro de vale.
+
+   Derivar o normal do campo inteiro fazia o mapa herdar a ondulação
+   larga da figura. O render disso está fotografado: o painel parecia
+   cobre derretido, uma chapa empenada, e quanto melhor ficava o
+   desenho pior ficava a superfície. Não era exagero de `normalScale`
+   — era relevo na frequência errada.
+
+   Agora:
+
+     TOM      figura + variação lenta + risco  → vira a cor
+     RELEVO   só o risco                       → vira normal e rugosidade
+
+   A figura continua visível, e a superfície volta a ser plana.
 */
-function campo(largura, altura, semente) {
+function campos(largura, altura, semente) {
   var rnd = embaralhar(semente);
   var n = 64;
   var gA = grade(n, rnd), gB = grade(n, rnd), gC = grade(n, rnd);
-  var h = new Float32Array(largura * altura);
+  var tom = new Float32Array(largura * altura);
+  var relevo = new Float32Array(largura * altura);
 
   for (var y = 0; y < altura; y++) {
     var v = y / altura;
     for (var x = 0; x < largura; x++) {
       var u = x / largura;
 
-      /* Distorção do domínio. A amplitude é BAIXA de propósito: com
-         0,62 saía uma figura de zebrano, listrada e berrante. Lâmina
-         de marcenaria fina é quase reta, com a catedral aparecendo
-         só aqui e ali. */
-      var wx = fbm(gA, n, u * 3.0, v * 1.1, 4) - 0.5;
-      var wy = fbm(gB, n, u * 2.2 + 11, v * 0.9 + 7, 3) - 0.5;
+      /* Distorção do domínio: é ela que entorta a banda e produz o
+         arco da catedral. Discreta de propósito — lâmina de marcenaria
+         fina é quase reta, com a catedral aparecendo só aqui e ali.
+         Com 0,42 saía uma figura de madeira de oliveira, redemoinhada. */
+      var wx = fbm(gA, n, u * 1.7, v * 0.85, 4) - 0.5;
+      var wy = fbm(gB, n, u * 1.3 + 11, v * 0.6 + 7, 3) - 0.5;
 
-      // anéis de crescimento, esticados ao longo de y
-      var d = (u * 2.1 + wx * 0.34) + (v * 0.048 + wy * 0.12);
-      /* 16 anéis, não 27. Com 27 a peça fica listrada de perto: no
-         ato do detalhe, a câmera a 1,3 m, aquilo lia como veludo
-         cotelê em vez de madeira. Menos anéis, mais largos, e a
-         variação lenta (`manso`) passa a mandar na aparência. */
-      var anel = d * 16.0;
-      var t = anel - Math.floor(anel);
-      // onda triangular assimétrica
-      t = t < 0.34 ? t / 0.34 : 1 - (t - 0.34) / 0.66;
+      /* FIGURA: 11 bandas por folha. Uma folha cobre ~0,6 m de porta,
+         então são ~18 bandas por metro — a escala da catedral na
+         referência, não a do risco. */
+            /* A distorção agora pode ser GENEROSA, e precisa ser.
 
-      // poro: riscos finos, muito alongados no sentido do veio
-      var poro = fbm(gC, n, u * 42.0, v * 1.6 + 3, 2);
-      poro = Math.pow(Math.max(0, poro - 0.42) / 0.58, 1.6);
+         Com 3 bandas por folha e distorção de 0,16, as bandas saíam
+         quase igualmente espaçadas: o espectro mostrava um pico de
+         3962x a mediana em 3 ciclos, contra 125x na fotografia. Um
+         pico estreito é um padrão; madeira é um espectro largo.
+
+         0,44 espalha o espaçamento o bastante para a banda ser
+         irregular sem virar redemoinho. E agora isso é seguro: o
+         normal map não vem mais deste campo, então uma figura larga e
+         torta não empena mais a superfície. */
+      var d = (u * 1.0 + wx * 0.44) + (v * 0.052 + wy * 0.14);
+      /* 3 bandas por folha, e este número veio de uma medição.
+
+         Espectro horizontal da folha, na mesma escala nos dois lados
+         (170 px para ~0,60 m): a fotografia (tools/ref/27.jpg) cai
+         suavemente a partir de 2 ciclos — 283x a mediana em 2, 124x
+         em 3, 72x em 4. É um espectro natural. A textura tinha um
+         PICO isolado em 11 ciclos, 1136x a mediana, com quase nada em
+         volta: a assinatura de um padrão regular, e a razão de o
+         móvel ler como painel ripado de longe por melhor que a folha
+         ficasse de perto.
+
+         Onze era o número de bandas. Com três, a energia volta para a
+         frequência da figura, que é onde a madeira a põe. */
+      var figura = d * 3.0;
+      figura = figura - Math.floor(figura);
+      /* Onda triangular assimétrica: a passagem do lenho inicial para
+         o tardio é abrupta de um lado e lenta do outro, e é essa
+         assimetria que o olho lê como madeira. */
+      figura = figura < 0.34 ? figura / 0.34 : 1 - (figura - 0.34) / 0.66;
+
+      /* RISCO: o poro — as linhas finas e escuras que o olho chama
+         de "veio".
+
+         A primeira tentativa afiou um fBm por limiar. Medido no dump
+         da textura: não sobrava quase nada. Um fBm de ruído de valor
+         com duas oitavas tem desvio padrão perto de 0,1 em torno de
+         0,5, então `max(0, n - 0,47)` deixa passar um fiapo, e elevar
+         ao quadrado apaga o resto. A textura saía sem UMA linha —
+         um cetim marrom, que é exatamente o que a bancada mostrou.
+
+         Agora o risco é uma crista de SENO no mesmo domínio
+         distorcido da figura: `|sin|` elevado dá vales estreitos em
+         posições previsíveis, e a distorção se encarrega de curvá-los
+         junto com a catedral. ~95 linhas por folha ≈ 150 por metro;
+         contadas na referência (tools/ref/26.jpg), ~45 numa face de
+         cerca de 0,35 m.
+
+         O `onde` liga e desliga trechos: madeira de verdade tem
+         bandas de poro aberto e bandas quase lisas. Sem ele as linhas
+         saem todas iguais do topo à base, que é a cara de impressão
+         digital em MDF. */
+            /* 26 linhas por folha ≈ 43 por metro.
+
+         A referência tem ~130 por metro, e esta é uma escolha
+         deliberada de ficar ABAIXO dela. O motivo é medível: no
+         primeiro ato a folha ocupa ~105 px de tela. Com 100 linhas
+         por metro sobram 1,7 px por linha, e aí nenhuma filtragem
+         resolve — nem anisotropia 16, nem mip-map. A cadeia de
+         mip-map é um filtro de caixa, que não elimina um sinal
+         periódico de 1,7 texel; o que sai é batimento com a grade de
+         pixels, e o móvel inteiro lê como painel ripado.
+
+         Isso foi isolado, não suposto: desligando SÓ o mapa de cor o
+         painel fica perfeitamente liso; desligando normal e
+         rugosidade, as ripas continuam. É a cor, e é aliasing.
+
+         Aumentar a resolução da textura não ajudaria: o que decide é
+         a escala na TELA, não no texel. Com 26 linhas sobram 4 px por
+         linha no enquadramento mais distante, e o veio continua
+         legível na aproximação, quando a folha ocupa dez vezes mais.
+
+         Fica registrado como um desvio da referência, com a razão. */
+      var fase = d * 26.0 + fbm(gC, n, u * 7.0, v * 1.4 + 3, 2) * 0.9;
+      var crista = Math.abs(Math.sin(fase * Math.PI));
+            /* `onde` varia de linha para linha (em u) e em TRECHOS ao longo
+         da peça (em v).
+
+         Já esteve nos dois extremos, e os dois estavam errados por
+         motivos diferentes.
+
+         Variando rápido em v (v×2,4) as linhas saíam picotadas — mas
+         aquilo era aliasing, não desenho: o núcleo tinha menos de um
+         texel e sumia entre os centros dos pixels.
+
+         Corrigido o núcleo, passei para v×0,45: linhas contínuas do
+         topo à base. Aí apareceu o defeito OPOSTO, e pior, porque só
+         se vê de longe. Linhas paralelas, contínuas e todas da mesma
+         força batem com a grade de pixels e viram MOIRÉ: a 1440 px a
+         folha tem 110 px para 62 linhas, e o móvel inteiro lia como
+         painel ripado. O render com o mapa de cor desligado sai liso,
+         o que prova de onde vinha.
+
+         Agora v×9: trechos de ~55 texels, que na folha (0,6 × 2,3 m)
+         dão vasos de 20 a 30 cm. É o comprimento que eles têm numa
+         lâmina de verdade, tem texels de sobra para não aliasar, e
+         quebra a coerência que alimentava o moiré. */
+      var onde = fbm(gC, n, u * 4.0 + 23, v * 9.0 + 41, 3);
+      /* O expoente varia com `onde`: onde o poro é aberto a linha sai
+         mais larga, onde é fechado sai quase um fio. Linhas de
+         espessura toda igual são a assinatura de uma textura gerada,
+         e o olho pega isso antes de saber por quê. */
+            /* O expoente fica entre 2 e 4,4: dá um núcleo de ~1,5 texel,
+         que a grade consegue desenhar. Com 4,5 a 11,5 a linha era
+         mais fina que um texel e virava pontilhado. */
+      var risco = Math.pow(1 - crista, 1.8 + onde * 3.2);
+      /* Peso e presença vêm de ruídos DIFERENTES. Com um só, linha
+         grossa e linha escura andavam sempre juntas e o conjunto saía
+         penteado — todas as linhas iguais, do topo à base. Na
+         referência há meia dúzia de riscos fortes no meio de muitos
+         quase apagados. */
+            /* As duas modulações do risco variam DEVAGAR em u — 2,6 e 4,0
+         ciclos por folha, a escala da própria figura.
+
+         Estavam em 11 e 16, e o espectro mostrou o estrago: o pico de
+         energia da textura caía num período de 15,5 px (contra 85 px
+         na fotografia), porque a faixa de linhas fortes e a de linhas
+         fracas se alternavam nessa frequência. Não eram as linhas que
+         faziam a ripa — era o RITMO delas. */
+      var peso = fbm(gB, n, u * 2.6 + 71, v * 3.1 + 5, 3);
+      risco *= Math.min(1, Math.max(0, (peso - 0.26) / 0.52));
 
       // variação lenta de tom, para dois pontos da peça não se
       // parecerem exatamente
       var manso = fbm(gA, n, u * 0.8 + 31, v * 0.5 + 17, 3);
 
-      /* Os pesos decidem se aquilo vira madeira ou papel de parede.
-         O anel entra discreto (0,30): ele dá a direção, não o
-         espetáculo. A variação lenta pesa mais que o anel, que é o que
-         faz dois pontos da peça serem parecidos sem serem iguais. */
-      h[y * largura + x] = Math.min(1, Math.max(0,
-        /* O -0,10 compensa a média: dar mais peso ao `manso`, que
-           orbita 0,5, clareia a peça inteira. Sem o desconto o móvel
-           sai bege lavado em vez de nogueira. */
-        t * 0.26 + poro * 0.12 + manso * 0.52 - 0.10));
+      /* FIBRA: ruído fino, alongado no sentido do veio, com amplitude
+         pequena. Não desenha nada que se possa apontar — e é
+         justamente por isso que entra. Sem ela o espaço ENTRE as
+         linhas fica um degradê perfeitamente liso, e superfície lisa
+         demais é metade do aspecto de massinha. A referência, ampliada,
+         é fibrosa em toda parte. */
+      var fibra = fbm(gB, n, u * 150.0 + 61, v * 22.0 + 13, 2) - 0.5;
+
+      /* A figura e a variação lenta carregam o tom; o risco entra com
+         pouco, porque ele é fino e escuro, não uma faixa.
+
+         Sem corte e sem deslocamento aqui: a escala é acertada na
+         normalização, logo abaixo. */
+      var i = y * largura + x;
+      /* O risco perdeu peso: 0,58 punha o núcleo de TODA linha no
+         extremo escuro da escala, e é esse contraste — não a
+         quantidade de linhas — que sobrevive à redução e vira ripa.
+         Com 0,38 a linha continua legível de perto e some de longe,
+         que é o que a madeira faz. */
+      /* O equilíbrio final, e os dois extremos ficaram registrados
+         porque cada um errava de um jeito.
+
+         Com o risco em 0,58 e a figura em 11 ciclos, o móvel lia como
+         painel ripado de longe. Baixar o risco para 0,18 resolveu a
+         ripa e criou o defeito oposto: a folha virou um degradê macio,
+         quase sem veio, mais cetim que madeira.
+
+         A ripa não vinha do risco — vinha da FIGURA estar na
+         frequência errada. Corrigida a figura (3 ciclos, bem
+         distorcida), o risco pode voltar a pesar, porque ele está uma
+         ordem de grandeza acima e some na redução em vez de bater com
+         a grade de pixels. */
+      /* O risco em 0,26, e não mais: a folha tem ~105 px na tela
+         no primeiro ato, para 62 linhas — menos de dois pixels por
+         linha. Nessa escala nenhuma filtragem salva uma linha de alto
+         contraste; ela bate com a grade e vira cotelê em manchas. Com
+         0,26 o veio continua legível na aproximação, quando a folha
+         ocupa dez vezes mais pixels, e de longe se dissolve no tom,
+         que é o que a madeira faz. */
+      tom[i] = figura * 0.38 + manso * 0.24 + risco * 0.30 + fibra * 0.08;
+      relevo[i] = risco;
     }
   }
-  return h;
+
+  /* ---------- Normalização: a correção que faltava ----------
+
+     Os componentes somados nunca chegam perto de 0 nem de 1. O
+     `manso` é um fBm, que orbita 0,5 com variação pequena; a figura é
+     triangular, média 0,5. Somados com esses pesos, o campo ficava
+     entre ~0,34 e ~0,54 — 20% da escala.
+
+     Consequência MEDIDA: a textura de cor saía com faixa de luma de
+     10 níveis, quando a fotografia de referência tem 51. Os tons
+     `claro` e `escuro`, escolhidos com cuidado, nunca eram
+     alcançados — o material era um marrom chapado, e nenhum ajuste
+     de luz corrigia isso, porque não havia variação para a luz
+     revelar.
+
+     Estica por PERCENTIL (5% e 95%), não por mínimo e máximo: um
+     pixel extremo solitário não pode definir a escala de uma peça
+     inteira.
+
+     5 e 95, e não 2 e 98, porque é nesses percentis que a faixa da
+     referência foi medida: assim o p05 da textura cai exatamente no
+     tom `escuro` e o p95 no `claro`. Com 2 e 98 a textura saía com
+     faixa de 38 contra os 52 medidos — perto, e ainda assim mais
+     lavada que a fotografia. O que estoura nos 5% das pontas é o
+     núcleo das linhas de poro, que satura no tom escuro; é o que a
+     própria madeira faz.
+
+     Só o TOM é normalizado. O relevo não: ele deve mesmo ser quase
+     todo zero, com picos esparsos — é um risco, não uma paisagem. */
+  var ordenado = Array.prototype.slice.call(tom);
+  ordenado.sort(function (a, b) { return a - b; });
+  var lo = ordenado[Math.floor(ordenado.length * 0.05)];
+  var hi = ordenado[Math.floor(ordenado.length * 0.95)];
+  var faixa = Math.max(1e-4, hi - lo);
+  for (var j = 0; j < tom.length; j++) {
+    tom[j] = Math.min(1, Math.max(0, (tom[j] - lo) / faixa));
+  }
+
+  return { tom: tom, relevo: relevo };
 }
 
-/* ---------- Dos campos para as três texturas ---------- */
+/* ---------- Dos campos para as três texturas ----------
+
+   ATLAS DE FOLHAS — a correção do emendão.
+
+   Até agora cada peça recebia a MESMA textura com um `offset`
+   diferente, para que duas peças vizinhas não mostrassem o mesmo
+   desenho. Isso tinha um defeito que só apareceu no render: com
+   `RepeatWrapping` e `repeat` igual a 1, um `offset` de 0,30 põe a
+   emenda da textura — que não é cíclica — DENTRO do painel. O
+   resultado é uma faixa horizontal atravessando as duas portas e a
+   lateral, na mesma altura. Está na fotografia do diagnóstico; é o
+   defeito mais visível da peça parada.
+
+   A troca: o canvas passa a ser um ATLAS de folhas independentes,
+   lado a lado. Cada peça usa UMA folha inteira (`repeat` 1/n,
+   `offset` num múltiplo exato de 1/n), então a janela cai sempre
+   dentro de uma folha e nunca atravessa uma emenda.
+
+   Elas continuam sendo folhas diferentes — é o que a lâmina faseada
+   de verdade faz —, só que agora são desenhos de fato distintos, e
+   não a mesma folha deslizada.
+*/
 
 function paraCanvas(largura, altura, pintar) {
   var c = document.createElement('canvas');
@@ -5101,41 +5530,72 @@ function misturar(a, b, t) {
  * cena 3D sem baixar os 671 KB do Three.js.
  *
  * @param {object} o  claro/escuro em [r,g,b] 0-255, rugosidade base e de
- *                    poro, força do relevo, semente e tamanho.
+ *                    poro, força do relevo, semente, tamanho do atlas e
+ *                    `folhas` (o atlas é folhas × folhas).
  */
 function gerarCanvasMadeira(o) {
   var N = o.tamanho || 512;
-  var h = campo(N, N, o.semente || 7);
+  var F = o.folhas || 2;               // atlas F × F
+  var S = Math.floor(N / F);           // lado de uma folha
+
+  /* Uma semente por folha: desenhos independentes, não a mesma folha
+     deslocada. */
+  var folhas = [];
+  for (var i = 0; i < F * F; i++) {
+    folhas.push(campos(S, S, (o.semente || 7) + i * 7919));
+  }
+
+  /* Lê o atlas pela folha a que o pixel pertence, com as coordenadas
+     PRESAS dentro dela. É o que impede o Sobel de atravessar a
+     fronteira entre duas folhas e inventar um relevo que não existe
+     no desenho. */
+  function amostraAtlas(campo, x, y) {
+    /* O Sobel pede x-1 e x+1, que saem do atlas nas bordas. Prende
+       nos dois extremos: fora da folha, repete a borda dela. */
+    var fx = Math.min(F - 1, Math.max(0, Math.floor(x / S)));
+    var fy = Math.min(F - 1, Math.max(0, Math.floor(y / S)));
+    var lx = Math.min(S - 1, Math.max(0, x - fx * S));
+    var ly = Math.min(S - 1, Math.max(0, y - fy * S));
+    return folhas[fy * F + fx][campo][ly * S + lx];
+  }
+
+  var AT = N; // o atlas sempre fecha em F*S; usa F*S como lado real
+  AT = F * S;
 
   var claro = o.claro, escuro = o.escuro;
-  var cor = paraCanvas(N, N, function (px) {
-    for (var i = 0, p = 0; i < h.length; i++, p += 4) {
-      var c = misturar(claro, escuro, h[i]);
-      px[p] = c[0]; px[p + 1] = c[1]; px[p + 2] = c[2]; px[p + 3] = 255;
+  var cor = paraCanvas(AT, AT, function (px) {
+    for (var y = 0; y < AT; y++) {
+      for (var x = 0; x < AT; x++) {
+        var c = misturar(claro, escuro, amostraAtlas('tom', x, y));
+        var p = (y * AT + x) * 4;
+        px[p] = c[0]; px[p + 1] = c[1]; px[p + 2] = c[2]; px[p + 3] = 255;
+      }
     }
   });
 
   var rBase = o.rugosidade, rPoro = o.rugosidadePoro;
-  var rug = paraCanvas(N, N, function (px) {
-    for (var i = 0, p = 0; i < h.length; i++, p += 4) {
-      // o poro (altura alta) espalha mais luz que o campo liso
-      var v = Math.round(255 * (rBase + (rPoro - rBase) * h[i]));
-      px[p] = px[p + 1] = px[p + 2] = v; px[p + 3] = 255;
+  var rug = paraCanvas(AT, AT, function (px) {
+    for (var y = 0; y < AT; y++) {
+      for (var x = 0; x < AT; x++) {
+        // o poro espalha mais luz que o verniz liso entre os riscos
+        var v = Math.round(255 * (rBase + (rPoro - rBase) * amostraAtlas('relevo', x, y)));
+        var p = (y * AT + x) * 4;
+        px[p] = px[p + 1] = px[p + 2] = v; px[p + 3] = 255;
+      }
     }
   });
 
-  /* Normal por Sobel sobre o MESMO campo de altura. É isso que faz o
-     brilho acompanhar o veio em vez de brigar com ele. */
+  /* Normal por Sobel sobre o campo de RELEVO — o risco, só ele. É
+     isso que faz o brilho correr ao longo do veio sem empenar o
+     painel. Ver o comentário em `campos`. */
   var k = (o.relevo === undefined ? 1.0 : o.relevo) * 2.6;
-  var nrm = paraCanvas(N, N, function (px) {
-    for (var y = 0; y < N; y++) {
-      for (var x = 0; x < N; x++) {
-        var xm = (x - 1 + N) % N, xp = (x + 1) % N;
-        var ym = (y - 1 + N) % N, yp = (y + 1) % N;
-        var dx = (h[y * N + xp] - h[y * N + xm]) * k;
-        var dy = (h[yp * N + x] - h[ym * N + x]) * k;
+  var nrm = paraCanvas(AT, AT, function (px) {
+    for (var y = 0; y < AT; y++) {
+      for (var x = 0; x < AT; x++) {
+        var dx = (amostraAtlas('relevo', x + 1, y) - amostraAtlas('relevo', x - 1, y)) * k;
+        var dy = (amostraAtlas('relevo', x, y + 1) - amostraAtlas('relevo', x, y - 1)) * k;
         var len = Math.sqrt(dx * dx + dy * dy + 1);
-        var p = (y * N + x) * 4;
+        var p = (y * AT + x) * 4;
         px[p]     = Math.round((-dx / len * 0.5 + 0.5) * 255);
         px[p + 1] = Math.round((-dy / len * 0.5 + 0.5) * 255);
         px[p + 2] = Math.round((1 / len * 0.5 + 0.5) * 255);
@@ -5144,7 +5604,7 @@ function gerarCanvasMadeira(o) {
     }
   });
 
-  return { cor: cor, rugosidade: rug, normal: nrm };
+  return { cor: cor, rugosidade: rug, normal: nrm, folhas: F };
 }
 
   return { gerarCanvasMadeira: gerarCanvasMadeira };
@@ -5183,11 +5643,20 @@ const MOD_madeira = (function (THREE, gerarCanvasMadeira) {
  */
 function gerarMadeira(o) {
   var canvas = gerarCanvasMadeira(o);
+  var maxAniso = o.anisotropia || 16;
 
   function textura(canvas, espaco) {
     var t = new THREE.CanvasTexture(canvas);
     t.wrapS = t.wrapT = THREE.RepeatWrapping;
-    t.anisotropy = 4;
+    /* Anisotropia no máximo que a GPU oferecer, com teto de 16.
+
+       Era 4, e 4 não basta aqui. O veio tem ~100 linhas por metro:
+       numa lateral vista de raspão, várias linhas caem no mesmo pixel
+       e o resultado é cintilação — faixas claras e escuras que se
+       mexem quando a câmera anda. No render de diagnóstico a lateral
+       direita virava um painel ripado. Isso é aliasing da textura,
+       não desenho da madeira. */
+    t.anisotropy = Math.min(16, maxAniso);
     if (espaco) { t.colorSpace = espaco; }
     return t;
   }
@@ -5195,33 +5664,56 @@ function gerarMadeira(o) {
   return {
     map: textura(canvas.cor, THREE.SRGBColorSpace),
     roughnessMap: textura(canvas.rugosidade),
-    normalMap: textura(canvas.normal)
+    normalMap: textura(canvas.normal),
+    folhas: canvas.folhas,
+    lado: canvas.cor.width / canvas.folhas
   };
 }
 
 /**
  * Material de madeira a partir de um trio de mapas.
  *
- * `repete` e `giro` existem porque o veio tem DIREÇÃO: numa lateral em
- * pé ele corre na vertical; numa prateleira deitada, na horizontal. Sem
+ * `folha` escolhe QUAL folha do atlas esta peça usa (0 .. folhas²-1).
+ * Não é mais um deslocamento livre: a janela cai exatamente sobre uma
+ * folha, com uma folga de dois texels nas bordas.
+ *
+ * Por que não é mais livre: com `offset` arbitrário e
+ * `RepeatWrapping`, a emenda da textura — que não é cíclica — caía
+ * DENTRO do painel, e aparecia como uma faixa atravessando a porta.
+ * Ver o comentário no topo de grao.js.
+ *
+ * `giro` existe porque o veio tem DIREÇÃO: numa lateral em pé ele
+ * corre na vertical; numa prateleira deitada, na horizontal. Sem
  * girar a textura, a prateleira sai com o veio atravessado, que é o
- * erro que mais denuncia marcenaria falsa.
+ * erro que mais denuncia marcenaria falsa. O giro acontece em torno
+ * do centro da própria janela, então continua dentro da mesma folha.
  *
  * As texturas são clonadas: a imagem é a mesma na memória da GPU, só o
  * enquadramento muda.
  */
 function materialMadeira(mapas, opcoes) {
   var o = opcoes || {};
-  var rx = o.repete ? o.repete[0] : 1;
-  var ry = o.repete ? o.repete[1] : 1;
+  var F = mapas.folhas || 1;
+  var lado = mapas.lado || 512;
+  var i = (o.folha || 0) % (F * F);
+
+  /* Dois texels de folga de cada lado: o mip-map mistura texels
+     vizinhos, e sem essa folga a folha do lado vazaria numa linha
+     fina na borda do painel. */
+  var escala = (1 / F) * (1 - 4 / lado);
+  var cx = ((i % F) + 0.5) / F;
+  var cy = (Math.floor(i / F) + 0.5) / F;
 
   function ajustar(t) {
     var c = t.clone();
     c.needsUpdate = true;
-    c.repeat.set(rx, ry);
+    c.repeat.set(escala, escala);
     c.center.set(0.5, 0.5);
     c.rotation = o.giro || 0;
-    c.offset.set(o.desloca ? o.desloca[0] : 0, o.desloca ? o.desloca[1] : 0);
+    /* O Three.js monta a janela em torno de 0,5 + offset; para
+       centrá-la na folha i o deslocamento é a diferença entre os dois
+       centros. */
+    c.offset.set(cx - 0.5, cy - 0.5);
     return c;
   }
 
@@ -5240,7 +5732,208 @@ function materialMadeira(mapas, opcoes) {
 
   return { gerarMadeira: gerarMadeira, materialMadeira: materialMadeira };
 })(THREE, MOD_grao.gerarCanvasMadeira);
-const MOD_opening = (function (THREE, gerarMadeira, materialMadeira) {
+const MOD_pecas = (function (THREE) {
+/* ============================================================
+   Fratelli Móveis — painéis com canto chanfrado (V9)
+
+   Até a V8 cada peça era um `BoxGeometry` escalado. Isso dá uma
+   aresta matematicamente perfeita: zero largura, zero highlight. É a
+   razão número um do aspecto de massinha — um canto real sempre
+   devolve uma linha de luz, porque sempre tem um chanfro, nem que
+   seja de um milímetro.
+
+   Medido na fotografia de referência (tools/ref/26.jpg):
+
+     face do painel    luminosidade 38%
+     topo chanfrado    luminosidade 65%, com pico em 255
+
+   Ou seja: o chanfro é quase o DOBRO do brilho da face, e carrega um
+   realce especular. Nenhum ajuste de material produz isso sem a
+   geometria estar lá.
+
+   Aqui cada painel é um `ExtrudeGeometry` com bisel de 1,2 mm e dois
+   segmentos — um chanfro levemente quebrado, não um arredondamento
+   gordo. Marcenaria planejada tem aresta precisa; o que ela não tem é
+   aresta infinitamente afiada.
+
+   CUSTO: ~100 triângulos por painel contra 12. Com ~50 painéis são
+   5 mil triângulos — irrelevante para qualquer GPU, e as geometrias
+   são compartilhadas por medida, então peças iguais custam uma só.
+
+   UV: UM PEDAÇO DA FOLHA POR PEÇA, NA ESCALA CERTA.
+
+   Isto já errou de duas maneiras, e vale guardar as duas.
+
+   A primeira deixou a UV em metros e usou `repeat` para a escala. Deu
+   xadrez: o desenho procedural não fecha nas bordas, então cada
+   ladrilho mostrava a emenda e a porta virava um mosaico.
+
+   A segunda normalizou a face para 0..1 das dimensões da PRÓPRIA
+   peça. Acabou com o xadrez e criou um defeito pior, que levou tempo
+   para ser isolado: numa tira de 85 mm — o quadro da porta — a folha
+   INTEIRA era espremida em 85 mm. São ~26 linhas de veio em 15 px de
+   tela. Aliasing garantido, e o móvel lia como painel ripado mesmo
+   com a textura impecável. Desligando só o mapa de cor o painel
+   ficava liso, o que apontou o caminho; a textura, ampliada, estava
+   certa. Era a UV.
+
+   E estava errado na física, apesar do comentário que dizia o
+   contrário. Cortar uma tira de 85 mm de uma folha dá 85 mm DAQUELA
+   folha — não a folha toda encolhida.
+
+   Agora a UV é medida em metros contra o tamanho de uma folha de
+   lâmina de verdade (FOLHA_L × FOLHA_A), e cada peça fica com a
+   JANELA que lhe cabe, numa posição própria dentro da folha. Uma
+   porta pega quase a folha inteira; uma tira de quadro pega uma faixa
+   estreita dela, com o veio na mesma escala da porta ao lado — que é
+   o que acontece quando as duas saem da mesma chapa.
+
+   Peças maiores que a folha (o tampo de 2,46 m) ficam limitadas a
+   ela: é o caso em que a emenda apareceria, e esticar é o menor dos
+   males num painel que quase não se vê de frente.
+   ============================================================ */
+
+
+var CHANFRO = 0.0012;          // 1,2 mm
+
+/* Tamanho de uma folha de lâmina, em metros. Não é um número livre:
+   é contra ele que a escala do veio de TODAS as peças é medida, e é
+   o que faz uma tira de quadro e a porta ao lado parecerem a mesma
+   madeira. */
+var FOLHA_L = 0.70, FOLHA_A = 2.50;
+var cache = {};
+var criadas = [];
+
+function chave(l, a, p) {
+  return l.toFixed(4) + '|' + a.toFixed(4) + '|' + p.toFixed(4);
+}
+
+/**
+ * Geometria de um painel chanfrado, centrada na origem.
+ * Medidas em metros: largura (x), altura (y), espessura (z).
+ */
+function geoPainel(l, a, p) {
+  var k = chave(l, a, p);
+  if (cache[k]) { return cache[k]; }
+
+  /* O bisel não pode comer mais que a própria peça: uma fita de borda
+     de 1,5 mm levaria um chanfro maior que ela mesma e viraria um
+     losango. */
+  var b = Math.min(CHANFRO, l * 0.22, a * 0.22, p * 0.34);
+
+  var forma = new THREE.Shape();
+  var hx = l / 2 - b, hy = a / 2 - b;
+  var prof = Math.max(0.0002, p - 2 * b);
+  forma.moveTo(-hx, -hy);
+  forma.lineTo(hx, -hy);
+  forma.lineTo(hx, hy);
+  forma.lineTo(-hx, hy);
+  forma.closePath();
+
+  /* A janela desta peça dentro da folha: tamanho real em metros, e
+     uma posição estável derivada das próprias medidas — peças de
+     tamanhos diferentes caem em lugares diferentes da folha, e duas
+     peças iguais caem no mesmo lugar, como duas peças cortadas juntas
+     de fato cairiam. */
+  var janelaU = Math.min(1, l / FOLHA_L);
+  var janelaV = Math.min(1, a / FOLHA_A);
+  var semente = Math.abs(Math.sin((l * 37.1 + a * 11.7 + p * 91.3) * 1000));
+  var origemU = (1 - janelaU) * (semente % 1);
+  var origemV = (1 - janelaV) * ((semente * 7.3) % 1);
+
+  var geradorUV = {
+    generateTopUV: function (geometria, vertices, a_, b_, c_) {
+      function uv(i) {
+        return new THREE.Vector2(
+          origemU + (vertices[i * 3] + hx) / (2 * hx || 1) * janelaU,
+          origemV + (vertices[i * 3 + 1] + hy) / (2 * hy || 1) * janelaV);
+      }
+      return [uv(a_), uv(b_), uv(c_)];
+    },
+    /* As faces laterais — o chanfro e a espessura. O veio corre ao
+       longo da aresta e aparece travessado na espessura, como numa
+       borda cortada de verdade. A espessura é minúscula, então ocupa
+       uma fatia proporcionalmente minúscula da folha: é isso que faz
+       a fita de borda ter o MESMO veio da face, e não um desenho
+       inteiro comprimido em 18 mm. */
+    generateSideWallUV: function (geometria, vertices, a_, b_, c_, d_) {
+      var fatia = Math.min(0.5, p / FOLHA_A);
+      function uv(i) {
+        var x = vertices[i * 3], y = vertices[i * 3 + 1], z = vertices[i * 3 + 2];
+        var ao = Math.abs(x) > Math.abs(y)
+          ? origemU + (x + hx) / (2 * hx || 1) * janelaU
+          : origemV + (y + hy) / (2 * hy || 1) * janelaV;
+        return new THREE.Vector2(ao,
+          origemV + (z / Math.max(0.001, prof) * 0.5 + 0.5) * fatia);
+      }
+      return [uv(a_), uv(b_), uv(c_), uv(d_)];
+    }
+  };
+
+  var geo = new THREE.ExtrudeGeometry(forma, {
+    UVGenerator: geradorUV,
+    depth: prof,
+    bevelEnabled: true,
+    bevelThickness: b,
+    bevelSize: b,
+    bevelOffset: 0,
+    bevelSegments: 2,
+    curveSegments: 1,
+    steps: 1
+  });
+  /* O ExtrudeGeometry nasce com a face de trás em z = -bevelThickness.
+     Recentra para a peça poder ser posicionada pelo meio, como era
+     com o BoxGeometry. */
+  geo.translate(0, 0, -(prof / 2));
+  geo.computeVertexNormals();
+
+  cache[k] = geo;
+  criadas.push(geo);
+  return geo;
+}
+
+/** Descarta tudo que foi criado. Chamado no `descartar()` da cena. */
+function limparPecas() {
+  criadas.forEach(function (g) { g.dispose(); });
+  criadas.length = 0;
+  cache = {};
+}
+
+/* ============================================================
+   Puxador de barra, em perfil
+
+   A referência (tools/ref/27.jpg) mostra barras verticais finas e
+   compridas, afastadas da folha por dois pés. É a sombra entre a
+   barra e a porta que dá volume ao metal — uma barra encostada na
+   superfície lê como um risco desenhado.
+   ============================================================ */
+function montarPuxador(THREE_, material, altura, afast) {
+  var g = new THREE_.Group();
+  var raio = 0.0085;
+
+  var barra = new THREE_.Mesh(
+    new THREE_.CylinderGeometry(raio, raio, altura, 20, 1), material);
+  barra.castShadow = true;
+  g.add(barra);
+  criadas.push(barra.geometry);
+
+  /* Os pés: cilindros curtos, deitados, ligando a barra à folha. */
+  var geoPe = new THREE_.CylinderGeometry(raio * 0.62, raio * 0.62, afast, 12, 1);
+  criadas.push(geoPe);
+  [-1, 1].forEach(function (s) {
+    var pe = new THREE_.Mesh(geoPe, material);
+    pe.rotation.x = Math.PI / 2;
+    pe.position.set(0, s * (altura / 2 - 0.045), -afast / 2);
+    pe.castShadow = true;
+    g.add(pe);
+  });
+
+  return g;
+}
+
+  return { geoPainel: geoPainel, limparPecas: limparPecas, montarPuxador: montarPuxador };
+})(THREE);
+const MOD_opening = (function (THREE, gerarMadeira, materialMadeira, geoPainel, limparPecas, montarPuxador) {
 /* ============================================================
    Fratelli Móveis — a cena de marcenaria (V6)
 
@@ -5276,6 +5969,7 @@ const MOD_opening = (function (THREE, gerarMadeira, materialMadeira) {
 
 
 
+
 function criarAbertura(opcoes) {
   var canvas = opcoes.canvas;
   var palco  = opcoes.palco;
@@ -5299,7 +5993,18 @@ function criarAbertura(opcoes) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, leve ? 1.5 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.06;
+  /* Exposição medida, não escolhida.
+
+     Com 1,06 o móvel fechado ficava com mediana de luminosidade 45 —
+     escuro demais para uma peça que é o assunto da tela. A referência
+     fotografada está em 127, mas ela é um quarto com janela; aqui o
+     fundo é escuro de propósito, porque é sobre ele que o texto branco
+     da seção precisa ler (ver TESTES-V8, a varredura de contraste).
+
+     1,45 põe a mediana perto de 65: a madeira ganha corpo sem clarear
+     o fundo a ponto de estragar o contraste do texto, o que é
+     verificado de novo pelo teste de sobreposição. */
+  renderer.toneMappingExposure = 1.45;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = leve ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
 
@@ -5313,18 +6018,53 @@ function criarAbertura(opcoes) {
      altura de uma janela. Vai para o PMREM e vira o envMap da cena.
      Custa um canvas de 128px e uma passada de convolução, uma vez.
      ============================================================ */
+  /* ============================================================
+     O AMBIENTE
+
+     A V8 usava um degradê vertical de 128x64. Isso dá ao material um
+     céu e um chão, mas nada para refletir: um chanfro só acende se
+     houver uma FONTE com forma. Numa foto de produto essa forma é a
+     janela, ou o softbox.
+
+     Aqui o equirretangular ganha uma janela alta e larga à
+     esquerda-frente, um rebatedor fraco à direita e um teto claro.
+     É isso que produz a linha de luz contínua ao longo do canto
+     chanfrado — o detalhe que a referência mostra e que nenhum ajuste
+     de roughness inventa.
+
+     128x64 continua sendo barato: o PMREM convolui uma vez, no
+     carregamento, e o resultado vira o envMap da cena inteira.
+     ============================================================ */
   function ambiente() {
+    var L = 256, A = 128;
     var c = document.createElement('canvas');
-    c.width = 128; c.height = 64;
+    c.width = L; c.height = A;
     var ctx = c.getContext('2d');
-    var g = ctx.createLinearGradient(0, 0, 0, 64);
-    g.addColorStop(0.00, '#3A332B');
-    g.addColorStop(0.34, '#C9BCA8');
-    g.addColorStop(0.46, '#F6F0E6');   // a "janela"
-    g.addColorStop(0.62, '#8E8375');
-    g.addColorStop(1.00, '#1C1915');
+
+    // céu/teto -> parede -> piso
+    var g = ctx.createLinearGradient(0, 0, 0, A);
+    g.addColorStop(0.00, '#E8E3DA');
+    g.addColorStop(0.34, '#BCB4A8');
+    g.addColorStop(0.52, '#8A8278');
+    g.addColorStop(0.70, '#4A443C');
+    g.addColorStop(1.00, '#1A1714');
     ctx.fillStyle = g;
-    ctx.fillRect(0, 0, 128, 64);
+    ctx.fillRect(0, 0, L, A);
+
+    /* A janela. Retângulo claro, com borda suave: é a fonte que o
+       chanfro vai espelhar. Fica à frente-esquerda, de onde a luz
+       chave também vem — reflexo e sombra têm de concordar. */
+    function painelLuz(x, y, w, h, brilho) {
+      var r = ctx.createRadialGradient(x + w / 2, y + h / 2, 1,
+                                       x + w / 2, y + h / 2, Math.max(w, h) * 0.62);
+      r.addColorStop(0, 'rgba(255,252,246,' + brilho + ')');
+      r.addColorStop(0.55, 'rgba(255,250,242,' + (brilho * 0.55) + ')');
+      r.addColorStop(1, 'rgba(255,250,242,0)');
+      ctx.fillStyle = r;
+      ctx.fillRect(x - w * 0.4, y - h * 0.4, w * 1.8, h * 1.8);
+    }
+    painelLuz(L * 0.08, A * 0.16, L * 0.26, A * 0.40, 1.0);   // janela
+    painelLuz(L * 0.62, A * 0.22, L * 0.20, A * 0.26, 0.34);  // rebatedor
 
     var tex = new THREE.CanvasTexture(c);
     tex.mapping = THREE.EquirectangularReflectionMapping;
@@ -5336,6 +6076,7 @@ function criarAbertura(opcoes) {
     tex.dispose();
     return alvo.texture;
   }
+
   cena.environment = ambiente();
 
   /* ---------- Câmera numa órbita de verdade ----------
@@ -5380,7 +6121,7 @@ function criarAbertura(opcoes) {
     alt: 2.3,
     prof: 0.5,        // profundidade da caixa sintética (modo manual)
     cheio: 0.52,      // quanto da tela o canto mais extremo deve ocupar
-    desvio: 1.45      // quanto o olhar se afasta do centro da peça
+    desvio: 1.45      // reescrito pela timeline, em proporção à largura
   };
 
   var CAIXA = new THREE.Box3();
@@ -5490,17 +6231,52 @@ function criarAbertura(opcoes) {
      Materiais
      ============================================================ */
   var MAPAS = gerarMadeira({
-    tamanho: leve ? 256 : 512,
+    tamanho: leve ? 512 : 1024,
+    /* O teto real da GPU, não um palpite. */
+    anisotropia: renderer.capabilities.getMaxAnisotropy(),
+    /* Quatro folhas independentes num atlas 2x2. Ver grao.js: o que
+       diferencia uma peça da outra passou a ser a FOLHA, não um
+       deslocamento dentro da mesma folha — era o deslocamento que
+       punha a emenda no meio do painel. */
+    folhas: 2,
     semente: 20261018,
-    /* Nogueira clara, dessaturada. A V6 começou com [168,132,96] sobre
-       [74,52,35] e o móvel saiu laranja de plástico: contraste demais
-       entre lenho inicial e tardio. Aproximar os dois tons é o que
-       transforma listra em veio. */
-    claro: [143, 117, 92],
-    escuro: [84, 65, 50],
-    rugosidade: 0.58,
-    rugosidadePoro: 0.80,
-    relevo: 1.0
+    /* Nogueira medida na referência (tools/ref/26.jpg).
+
+       Os dois tons não foram escolhidos: foram LIDOS. Recorte de
+       600×600 px na face frontal, pixels ordenados por luminosidade,
+       média dos percentis 2–8 e 92–98:
+
+         escuro  #684633   H=21°  S=51%  luma 76
+         médio   #85624F   H=22°  S=40%  luma 105
+         claro   #9F7B65   H=22°  S=36%  luma 129
+
+       A tentativa anterior usava #A6765C e #553C2F — mais saturados e
+       mais afastados um do outro. O lado a lado com a fotografia
+       mostrou o custo: a textura saía alaranjada, cor de pinho
+       envernizado, enquanto a nogueira da referência é um marrom
+       acinzentado. A faixa larga demais também endurecia as linhas,
+       que saíam pretas em vez de escuras.
+
+       CONVENÇÃO, e vale dizer: estes valores são o que a CÂMERA
+       registrou, não o albedo puro da madeira — a fotografia já traz
+       a luz do estúdio dentro dela. Usá-los como albedo e depois
+       iluminar a cena devolve um render mais escuro que a foto. É uma
+       aproximação assumida, não uma medição de albedo. */
+    claro: [159, 123, 101],
+    escuro: [104, 70, 51],
+    rugosidade: 0.46,
+    rugosidadePoro: 0.72,
+    /* Relevo fraco, e de propósito.
+
+       Com 1,0 o móvel inteiro lia como painel RIPADO: a vista de
+       longe mostrava sulcos verticais com luz e sombra próprias, como
+       se o poro tivesse milímetros. Ele tem centésimos. A linha do
+       veio existe sobretudo como COR; o relevo entra só para o brilho
+       não escorregar liso por cima dela.
+
+       Teste de sanidade: a 3 m de distância o poro de uma lâmina
+       envernizada não se vê. Se o render mostra, está errado. */
+    relevo: 0.34
   });
   lixo.push(MAPAS.map, MAPAS.roughnessMap, MAPAS.normalMap);
 
@@ -5512,65 +6288,67 @@ function criarAbertura(opcoes) {
 
   /* Uma lâmina diferente para cada peça.
 
-     Era este o maior denunciador da V6: `repete: [1, 2.4]` fazia a
-     textura LADRILHAR dentro da porta, e a emenda aparecia como duas
-     linhas horizontais atravessando o painel. Nenhuma marcenaria tem
-     isso.
+     A V6 usava `repete: [1, 2.4]`: a textura LADRILHAVA dentro da
+     porta e a emenda aparecia como duas linhas horizontais
+     atravessando o painel. A correção de então foi `repete: [1,1]`
+     com um `desloca` diferente por peça — e isso trocou duas emendas
+     por uma, porque com `RepeatWrapping` o deslocamento leva a
+     emenda para DENTRO do painel. A fotografia de diagnóstico mostra
+     a faixa atravessando as duas portas na mesma altura.
 
-     Agora `repete` fica em 1 ou menos — cada face usa UMA janela da
-     textura, nunca duas — e cada peça recebe um `desloca` diferente,
-     então duas peças vizinhas nunca mostram o mesmo desenho. É o que
-     uma lâmina faseada faz de verdade: folhas distintas da mesma
-     tora.
+     Agora cada peça aponta para uma FOLHA do atlas (grao.js): a
+     janela cai inteira dentro de um desenho fechado, e não existe
+     emenda nenhuma para aparecer. Peças vizinhas continuam
+     diferentes — como folhas distintas da mesma tora —, só que agora
+     são desenhos de fato distintos.
 
-     O `tingir` também varia de leve entre as peças. Lâmina natural
-     não sai toda do mesmo tom, e um móvel em que tudo tem exatamente
-     a mesma cor lê como plástico. */
-  function lamina(desloca, tom, extra) {
-    var o = { repete: [0.82, 0.78], desloca: desloca, tingir: tom,
-              normal: 0.26, reflexo: 0.30 };
+     `metalness` é ZERO em toda madeira. Ela é dielétrica; qualquer
+     valor acima de zero produz aquele reflexo acinzentado de plástico
+     metalizado que é meio caminho do aspecto de massinha. */
+  function lamina(folha, tom, extra) {
+    var o = { folha: folha, tingir: tom, normal: 0.16, reflexo: 0.85 };
     if (extra) {
       Object.keys(extra).forEach(function (k) { o[k] = extra[k]; });
     }
     return madeira(o);
   }
 
+  /* As tintas são quase neutras de propósito.
+
+     Na V8 elas iam de 0xC4B7A4 a 0xE6DCCC — um multiplicador forte,
+     que empurrava o albedo para longe do medido e devolvia a cor que
+     a textura já deveria ter. Agora a cor certa está no albedo, e a
+     tinta serve só para diferenciar uma folha da outra em ±4%, como
+     lâminas da mesma tora diferem. */
   var MAT = {
-    /* Laterais, em pé: veio na vertical. */
-    ladoEsq: lamina([0.04, 0.11], 0xC9BCA9),
-    ladoDir: lamina([0.63, 0.47], 0xD1C5B2),
-    /* Portas: duas folhas vizinhas, desenhos próximos mas distintos —
-       como um par casado sairia da mesma tora. */
-    portaEsq: lamina([0.22, 0.30], 0xD6CABA, { normal: 0.30, reflexo: 0.42 }),
-    portaDir: lamina([0.31, 0.68], 0xD2C6B6, { normal: 0.30, reflexo: 0.42 }),
-    /* Divisória e peças internas em pé. */
-    divisoria: lamina([0.78, 0.19], 0xC4B7A4),
+    ladoEsq:   lamina(0, 0xF2ECE4),
+    ladoDir:   lamina(1, 0xFAF4EC),
+    portaEsq:  lamina(2, 0xFFFAF2, { reflexo: 1.0 }),
+    portaDir:  lamina(3, 0xFBF5ED, { reflexo: 1.0 }),
+    fixoEsq:   lamina(1, 0xFCF6EE, { reflexo: 1.0 }),
+    fixoDir:   lamina(0, 0xF6F0E8, { reflexo: 1.0 }),
+    moldura:   lamina(3, 0xF4EEE6, { reflexo: 0.92 }),
+    divisoria: lamina(1, 0xEFE9E1),
     /* Peças deitadas: o giro de 90° põe o veio no sentido do
        comprimento, como a lâmina é aplicada de verdade. */
-    deitadaA: lamina([0.12, 0.55], 0xCBBFAE, { giro: Math.PI / 2, normal: 0.20, reflexo: 0.24 }),
-    deitadaB: lamina([0.57, 0.08], 0xC6BAA8, { giro: Math.PI / 2, normal: 0.20, reflexo: 0.24 }),
-    deitadaC: lamina([0.88, 0.41], 0xD0C4B1, { giro: Math.PI / 2, normal: 0.20, reflexo: 0.24 }),
-    /* Frentes de gaveta: três folhas seguidas, como num gaveteiro
-       casado. */
-    gavetaA: lamina([0.25, 0.52], 0xD4C8B8, { normal: 0.28, reflexo: 0.40 }),
-    gavetaB: lamina([0.25, 0.60], 0xD2C6B6, { normal: 0.28, reflexo: 0.40 }),
-    gavetaC: lamina([0.25, 0.68], 0xD6CABA, { normal: 0.28, reflexo: 0.40 }),
-    /* Fundo: mais claro e mais fosco, para o interior não virar um
-       buraco preto quando a porta abre. */
-    fundo:   lamina([0.45, 0.33], 0xCFC4B4, { repete: [0.9, 0.9], normal: 0.12, reflexo: 0.14 }),
-    /* Fita de borda: o mesmo material com o veio travessado e mais
-       brilho. É o que acende no canto vivo quando a luz raspa. */
-    borda:   madeira({ repete: [0.22, 0.22], desloca: [0.5, 0.5], giro: Math.PI / 2,
-                       tingir: 0xE6DCCC, normal: 0.16, reflexo: 0.78 }),
+    deitadaA:  lamina(0, 0xF5EFE7, { giro: Math.PI / 2, reflexo: 0.72 }),
+    deitadaB:  lamina(2, 0xEFE9E1, { giro: Math.PI / 2, reflexo: 0.72 }),
+    deitadaC:  lamina(3, 0xF8F2EA, { giro: Math.PI / 2, reflexo: 0.72 }),
+    gavetaA:   lamina(1, 0xF7F1E9, { reflexo: 0.95 }),
+    gavetaB:   lamina(2, 0xF3EDE5, { reflexo: 0.95 }),
+    gavetaC:   lamina(3, 0xFBF5ED, { reflexo: 0.95 }),
+    /* Fundo: um pouco mais claro e bem mais fosco, para o interior
+       não virar um buraco preto quando a porta abre. */
+    fundo:     lamina(0, 0xFFFBF4, { normal: 0.22, reflexo: 0.30 }),
 
+    /* Latão escovado, como na referência 27. `metalness` alto aqui é
+       correto — isto É metal, ao contrário da madeira. */
     metal: new THREE.MeshStandardMaterial({
-      color: 0x9E9182, roughness: 0.28, metalness: 0.82, envMapIntensity: 1.1
+      color: 0xB08D5B, roughness: 0.33, metalness: 0.92, envMapIntensity: 1.25
     }),
-    /* O piso. Não é cenário: é o que tira a peça do vazio preto. Bem
-       escuro, com rugosidade média, para devolver um reflexo vago do
-       móvel em vez de uma sombra flutuando no nada. */
+    /* O piso. Não é cenário: é o que tira a peça do vazio preto. */
     piso: new THREE.MeshStandardMaterial({
-      color: 0x15130F, roughness: 0.52, metalness: 0.0, envMapIntensity: 0.5
+      color: 0x17140F, roughness: 0.48, metalness: 0.0, envMapIntensity: 0.6
     }),
     /* A fita de LED: emissiva, baixa, sem bloom. É luz de marcenaria,
        não de ficção científica. */
@@ -5581,13 +6359,11 @@ function criarAbertura(opcoes) {
   };
   lixo.push(MAT.metal, MAT.piso, MAT.luzFita);
 
-  /* ---------- Geometria base, compartilhada ---------- */
-  var CUBO = new THREE.BoxGeometry(1, 1, 1);
-  lixo.push(CUBO);
-
+  /* ---------- Painéis com canto chanfrado ----------
+     Cada medida vira uma geometria própria, reaproveitada por todas
+     as peças iguais. Ver pecas.js para o porquê do chanfro. */
   function painel(l, a, p, material, x, y, z) {
-    var m = new THREE.Mesh(CUBO, material);
-    m.scale.set(l, a, p);
+    var m = new THREE.Mesh(geoPainel(l, a, p), material);
     m.position.set(x, y, z);
     m.castShadow = true;
     m.receiveShadow = true;
@@ -5596,11 +6372,26 @@ function criarAbertura(opcoes) {
 
   /* ============================================================
      O módulo
-     1,80 × 2,10 × 0,58 m, painéis de 18 mm. A espessura é modelada,
-     não sugerida: é dela que vem a borda que pega luz.
+
+     2,46 × 2,42 × 0,62 m, painéis de 18 mm, quatro folhas.
+
+     A V8 tinha 1,80 × 2,10 com DUAS folhas de 0,89 m. O render de
+     argila — a mesma cena com um cinza fosco no lugar de todos os
+     materiais — mostrou por que isso nunca ia convencer: uma caixa
+     quase sem aresta interna, com duas folhas quase quadradas e um
+     rodapé. Marcenaria planejada não tem essa proporção. Na referência
+     (tools/ref/27.jpg) são quatro folhas estreitas e altas, perto de
+     1:4, dentro de uma moldura que avança alguns milímetros sobre
+     elas. É a moldura, e a sombra que ela projeta na folha, que diz
+     ao olho que aquilo é um móvel montado e não um volume pintado.
+
+     As duas folhas CENTRAIS abrem; as duas laterais são fixas. É o
+     arranjo da referência, e é o que a aproximação de câmera pede:
+     o vão que se abre fica no meio do quadro.
      ============================================================ */
-  var L = 1.80, A = 2.10, P = 0.58, E = 0.018;
-  var RODAPE = 0.09;                   // recuo da base, como em obra
+  var L = 2.46, A = 2.42, P = 0.62, E = 0.018;
+  var RODAPE = 0.08;                   // recuo da base, como em obra
+  var FOLGA = 0.003;                   // a fresta entre peças
 
   /* O móvel fica na ORIGEM. Quem decide onde ele aparece na tela é o
      alvo da câmera: olhar para a esquerda do móvel joga o móvel para a
@@ -5615,7 +6406,7 @@ function criarAbertura(opcoes) {
   movel.add(corpo);
 
   // rodapé recuado: o móvel não nasce do chão, ele pousa
-  corpo.add(painel(L - 0.08, RODAPE, P - 0.07, MAT.deitadaB, 0, RODAPE / 2, -0.02));
+  corpo.add(painel(L - 0.09, RODAPE, P - 0.08, MAT.deitadaB, 0, RODAPE / 2, -0.025));
 
   var y0 = RODAPE;                     // base da caixa
   var Ac = A - RODAPE;                 // altura útil da caixa
@@ -5628,141 +6419,200 @@ function criarAbertura(opcoes) {
   // fundo
   corpo.add(painel(L - 2 * E, Ac - 2 * E, E, MAT.fundo, 0, y0 + Ac / 2, -P / 2 + E / 2));
 
-  /* ---------- Fita de borda nos cantos vivos da frente ----------
-     Uma lasca de 1,5 mm na quina de cada painel que termina na frente.
-     Não aparece em prosa nenhuma; aparece quando a luz raspa. */
-  function fitaBorda(l, a, x, y) {
-    var m = painel(l, a, 0.0015, MAT.borda, x, y, P / 2 + 0.0012);
-    m.castShadow = false;
-    return m;
+  /* ---------- As quatro folhas: medidas ----------
+     Tudo o que vem depois — moldura, divisórias, gaveteiro, puxadores
+     — é posicionado a partir daqui, para que nada precise ser
+     reconciliado à mão quando uma medida mudar. */
+  var larguraPorta = (L - 2 * E - 3 * FOLGA) / 4;
+  var alturaPorta = Ac - 2 * E - 2 * FOLGA;
+  var yPorta = y0 + Ac / 2;
+  var zPorta = P / 2 + E / 2 + 0.0015;
+  function xFolha(i) {
+    return -L / 2 + E + i * (larguraPorta + FOLGA) + larguraPorta / 2;
   }
-  corpo.add(fitaBorda(E, Ac, -L / 2 + E / 2, y0 + Ac / 2));
-  corpo.add(fitaBorda(E, Ac,  L / 2 - E / 2, y0 + Ac / 2));
-  corpo.add(fitaBorda(L, E, 0, y0 + Ac - E / 2));
+  // bordas internas do vão central, entre as folhas 1 e 2
+  var vaoEsq = xFolha(1) - larguraPorta / 2;
+  var vaoDir = xFolha(2) + larguraPorta / 2;
+
+  /* ---------- A moldura ----------
+
+     Uma faixa de 70 mm em todo o perímetro da frente, avançando 12 mm
+     sobre as folhas. Não é enfeite: é a peça que a V8 não tinha e cuja
+     ausência deixava o móvel sem nenhuma aresta própria na frente. A
+     sombra que ela lança na folha é a primeira coisa que o olho usa
+     para medir profundidade num armário fechado. */
+  var MOLD = 0.070, SALTO = 0.012;
+  var zMold = zPorta + E / 2 + SALTO / 2;
+  corpo.add(painel(MOLD, Ac, SALTO, MAT.moldura, -L / 2 + MOLD / 2, y0 + Ac / 2, zMold));
+  corpo.add(painel(MOLD, Ac, SALTO, MAT.moldura,  L / 2 - MOLD / 2, y0 + Ac / 2, zMold));
+  corpo.add(painel(L - 2 * MOLD, MOLD, SALTO, MAT.moldura, 0, y0 + MOLD / 2, zMold));
+  corpo.add(painel(L - 2 * MOLD, MOLD, SALTO, MAT.moldura, 0, y0 + Ac - MOLD / 2, zMold));
 
   /* ---------- Interior ---------- */
   var interior = new THREE.Group();
   corpo.add(interior);
 
-  var xDiv = -L / 6;                   // divisória: coluna estreita à esquerda
-  interior.add(painel(E, Ac - 2 * E, P - E, MAT.divisoria, xDiv, y0 + Ac / 2, E / 2));
-  interior.add(fitaBorda(E, Ac - 2 * E, xDiv, y0 + Ac / 2));
-
-  var largaEsq = L / 2 + xDiv - E;     // vão estreito (esquerda)
-  var cEsq = (-L / 2 + xDiv) / 2;
-  var largaDir = L / 2 - xDiv - E;     // vão largo (direita)
-  var cDir = (L / 2 + xDiv) / 2;
-
-  // prateleiras do vão estreito
-  var ALTURAS = [0.62, 1.00, 1.38, 1.76];
-  ALTURAS.forEach(function (y, i) {
-    interior.add(painel(largaEsq, E, P - 0.05,
-                        [MAT.deitadaA, MAT.deitadaB, MAT.deitadaC][i % 3], cEsq, y, 0.02));
-    interior.add(fitaBorda(largaEsq, E, cEsq, y));
+  /* Divisórias de corpo, nas bordas do vão central. Elas fecham o vão
+     que as portas revelam: sem isso a abertura mostra uma caixa larga
+     e vazia, e a câmera entra num lugar que não tem paredes. */
+  [vaoEsq, vaoDir].forEach(function (x) {
+    interior.add(painel(E, Ac - 2 * E, P - E, MAT.divisoria, x, y0 + Ac / 2, E / 2));
   });
 
-  // vão largo: prateleira alta + cabideiro
-  interior.add(painel(largaDir, E, P - 0.05, MAT.deitadaB, cDir, 1.76, 0.02));
-  interior.add(fitaBorda(largaDir, E, cDir, 1.76));
+  var bEsq = vaoEsq + E / 2, bDir = vaoDir - E / 2;   // vão útil, entre divisórias
+  var xDiv = 0.04;                                    // divisória interna do vão
+  var Y_GAV = 0.98;                                   // topo do gaveteiro
 
-  var GEO_BARRA = new THREE.CylinderGeometry(0.014, 0.014, largaDir, 14);
+  interior.add(painel(E, y0 + Ac - E - Y_GAV, P - E, MAT.divisoria,
+                      xDiv, (Y_GAV + y0 + Ac - E) / 2, E / 2));
+
+  /* Lado do cabideiro (esquerda do vão): prateleira alta, barra logo
+     abaixo, e uma prateleira na metade. */
+  var largCab = xDiv - E / 2 - bEsq;
+  var cCab = (bEsq + xDiv - E / 2) / 2;
+  interior.add(painel(largCab, E, P - 0.06, MAT.deitadaA, cCab, y0 + Ac - 0.30, 0.025));
+  interior.add(painel(largCab, E, P - 0.06, MAT.deitadaB, cCab, 1.46, 0.025));
+
+  var GEO_BARRA = new THREE.CylinderGeometry(0.014, 0.014, largCab, 14);
   lixo.push(GEO_BARRA);
   var barra = new THREE.Mesh(GEO_BARRA, MAT.metal);
   barra.rotation.z = Math.PI / 2;
-  barra.position.set(cDir, 1.63, 0.02);
+  barra.position.set(cCab, y0 + Ac - 0.38, 0.025);
   barra.castShadow = true;
   interior.add(barra);
 
-  /* ---------- Gaveteiro no vão largo ----------
-     Três frentes, com fresta de 3 mm entre elas e puxador embutido.
-     A fresta existe porque marcenaria tem fresta; sem ela as frentes
-     viram um painel só. */
-  var gavetas = [];
-  var GEO_PUX = new THREE.BoxGeometry(1, 1, 1);
-  lixo.push(GEO_PUX);
-  var hGav = 0.21, fresta = 0.003;
-  for (var i = 0; i < 3; i++) {
-    var yg = y0 + 0.06 + i * (hGav + fresta) + hGav / 2;
-    var g = new THREE.Group();
-    g.position.set(cDir, yg, P / 2 - 0.02);
-    var frente = painel(largaDir - 0.012, hGav, E,
-                        [MAT.gavetaA, MAT.gavetaB, MAT.gavetaC][i], 0, 0, 0);
-    g.add(frente);
-    // puxador em perfil, rente ao topo da frente
-    var pux = new THREE.Mesh(GEO_PUX, MAT.metal);
-    pux.scale.set(largaDir * 0.46, 0.012, 0.022);
-    pux.position.set(0, hGav / 2 - 0.028, E / 2 + 0.011);
-    pux.castShadow = true;
-    g.add(pux);
-    interior.add(g);
-    gavetas.push(g);
-  }
-
-  /* ---------- Fitas de luz, sob cada prateleira ---------- */
-  var fitas = [];
-  ALTURAS.forEach(function (y) {
-    var f = painel(largaEsq - 0.04, 0.008, 0.02, MAT.luzFita, cEsq, y - E, P / 2 - 0.10);
-    f.castShadow = false;
-    interior.add(f); fitas.push(f);
+  /* Lado das prateleiras (direita do vão): quatro, passo regular. */
+  var largPrat = bDir - (xDiv + E / 2);
+  var cPrat = (xDiv + E / 2 + bDir) / 2;
+  var ALTURAS = [y0 + Ac - 0.30, 1.86, 1.52, 1.18];
+  ALTURAS.forEach(function (y, i) {
+    interior.add(painel(largPrat, E, P - 0.06,
+                        [MAT.deitadaA, MAT.deitadaB, MAT.deitadaC][i % 3], cPrat, y, 0.025));
   });
-  var fitaAlta = painel(largaDir - 0.04, 0.008, 0.02, MAT.luzFita, cDir, 1.76 - E, P / 2 - 0.10);
-  fitaAlta.castShadow = false;
-  interior.add(fitaAlta); fitas.push(fitaAlta);
+
+  /* ---------- Gaveteiro, duas colunas ----------
+
+     Quatro fiadas em cada coluna, com fresta de 3 mm e puxador
+     FRESADO: a frente é 16 mm mais baixa que o vão e encostada
+     embaixo, de modo que sobra uma sombra contínua no alto de cada
+     gaveta. É como a referência resolve, e tem a vantagem de não
+     precisar de nenhuma peça a mais. Um puxador aplicado ali
+     atravancaria o caminho da câmera. */
+  interior.add(painel(E, Y_GAV - y0 - E, P - E, MAT.divisoria, 0,
+                      (y0 + E + Y_GAV) / 2, E / 2));
+
+  var gavetas = [];
+  var hGav = (Y_GAV - y0 - E - 0.06) / 4;
+  [[bEsq, -E / 2], [E / 2, bDir]].forEach(function (col, ci) {
+    var larg = col[1] - col[0] - 2 * FOLGA;
+    var cx = (col[0] + col[1]) / 2;
+    for (var i = 0; i < 4; i++) {
+      var yg = y0 + E + 0.02 + i * hGav + hGav / 2;
+      var g = new THREE.Group();
+      g.position.set(cx, yg, P / 2 - 0.03);
+      g.add(painel(larg, hGav - 0.016, E,
+                   [MAT.gavetaA, MAT.gavetaB, MAT.gavetaC][(i + ci) % 3],
+                   0, -0.008, 0));
+      interior.add(g);
+      gavetas.push(g);
+    }
+  });
+
+  /* ---------- Fitas de luz ----------
+     Sob o topo de cada lado do vão. Acendem só quando as portas
+     abrem — ver a linha do tempo. */
+  var fitas = [];
+  [[largCab - 0.05, cCab], [largPrat - 0.05, cPrat]].forEach(function (f) {
+    var fita = painel(f[0], 0.008, 0.02, MAT.luzFita, f[1],
+                      y0 + Ac - 0.30 - E, P / 2 - 0.12);
+    fita.castShadow = false;
+    interior.add(fita); fitas.push(fita);
+  });
 
   /* ============================================================
-     As portas e seus pivôs
+     As folhas
 
      O Group fica na BORDA do vão. A malha é deslocada meia largura
      para dentro. Girar o Group em Y descreve o arco de uma dobradiça
      de verdade — a folha varre o espaço, não encolhe.
+
+     A FRESTA. Na V6 as folhas encostavam no corpo e uma na outra: o
+     móvel lia como uma caixa pintada com linhas desenhadas em cima.
+     Marcenaria de verdade tem folga, e é a sombra dentro dela que diz
+     ao olho que são peças separadas, e não um desenho.
      ============================================================ */
-  /* A FRESTA.
 
-     Na V6 as folhas encostavam no corpo e uma na outra: o móvel lia
-     como uma caixa pintada com linhas desenhadas em cima. Marcenaria
-     de verdade tem folga — 3 mm entre folha e folha, 1,5 mm de cada
-     lado contra a lateral. É a sombra dentro dessa folga que diz ao
-     olho que são peças separadas, e não um desenho.
+  /* A folha não é uma chapa lisa.
 
-     É a mudança mais barata e a que mais muda a leitura da peça. */
-  var FOLGA = 0.003;
-  var larguraPorta = L / 2 - E - FOLGA;
-  var zPorta = P / 2 + E / 2 + 0.0015;
-  var GEO_PUXV = new THREE.CylinderGeometry(0.0105, 0.0105, 0.46, 16);
-  lixo.push(GEO_PUXV);
+     Na referência cada folha tem um painel REBAIXADO: um quadro de
+     ~85 mm em volta, saliente, e o campo no meio. Quatro tiras finas
+     resolvem — e o que elas trazem não é o desenho, é a sombra que
+     cai do quadro sobre o campo quando a luz vem de lado. Uma chapa
+     lisa não tem como produzir isso, por melhor que seja a textura. */
+  var QUADRO = 0.085, FUNDO_Q = 0.007;
+  function montarFolha(material, larg, alt) {
+    var g = new THREE.Group();
 
+    /* O quadro — quatro peças de verdade, não uma tira colada sobre
+       uma chapa inteira. A primeira tentativa foi a chapa inteira com
+       o quadro SALIENTE por cima, e de longe não aparecia nada: 9 mm
+       de saliência dão menos de dois pixels, e com a luz quase de
+       frente não há sombra para marcá-los.
+
+       Agora o campo central é REBAIXADO. A diferença é que um rebaixo
+       devolve uma linha ESCURA no encontro das peças, e linha escura
+       se lê em qualquer escala — é o mesmo motivo de a fresta entre
+       as folhas funcionar. */
+    g.add(painel(QUADRO, alt, E, material, -larg / 2 + QUADRO / 2, 0, 0));
+    g.add(painel(QUADRO, alt, E, material,  larg / 2 - QUADRO / 2, 0, 0));
+    var meio = larg - 2 * QUADRO;
+    g.add(painel(meio, QUADRO, E, material, 0, -alt / 2 + QUADRO / 2, 0));
+    g.add(painel(meio, QUADRO, E, material, 0,  alt / 2 - QUADRO / 2, 0));
+
+    /* O campo, atrás do plano do quadro. Entra 4 mm por baixo das
+       peças do quadro para não abrir um vazio no canto. */
+    g.add(painel(meio + 0.008, alt - 2 * QUADRO + 0.008, E, material,
+                 0, 0, -FUNDO_Q));
+    return g;
+  }
+
+  /* As duas folhas fixas, nas pontas. Não giram: estão aqui porque
+     sem elas o móvel tem 1,2 m e não 2,46 m, e porque é contra elas
+     que as folhas que abrem se destacam. */
+  [[0, MAT.fixoEsq], [3, MAT.fixoDir]].forEach(function (f) {
+    var folha = montarFolha(f[1], larguraPorta, alturaPorta);
+    folha.position.set(xFolha(f[0]), yPorta, zPorta);
+    corpo.add(folha);
+  });
+
+  /* As duas folhas centrais.
+
+     `sinal` -1 é a da esquerda: dobradiça na aresta ESQUERDA dela, que
+     é a que encosta na folha fixa. Ela abre varrendo para fora e para
+     a esquerda, como na referência. */
   function montarPorta(sinal) {
+    var i = sinal < 0 ? 1 : 2;
     var pivo = new THREE.Group();
-    pivo.position.set(sinal * (L / 2 - E - FOLGA / 2), 0, zPorta);
+    pivo.position.set(xFolha(i) + sinal * larguraPorta / 2, 0, zPorta);
     corpo.add(pivo);
 
-    var folha = painel(larguraPorta, Ac - 2 * E - 2 * FOLGA, E,
-                       sinal < 0 ? MAT.portaEsq : MAT.portaDir,
-                       -sinal * larguraPorta / 2, y0 + Ac / 2, 0);
+    var folha = montarFolha(sinal < 0 ? MAT.portaEsq : MAT.portaDir,
+                            larguraPorta, alturaPorta);
+    folha.position.set(-sinal * larguraPorta / 2, yPorta, 0);
     pivo.add(folha);
 
-    // fita de borda na quina livre da folha — a que o giro traz para a luz
-    var q = painel(0.0015, Ac - 2 * E - 2 * FOLGA, E, MAT.borda,
-                   -sinal * (larguraPorta - 0.0008), y0 + Ac / 2, 0);
-    q.castShadow = false;
-    pivo.add(q);
+    /* Puxador de barra, longo e afastado da folha, como na referência.
+       O afastamento não é enfeite: é a sombra entre a barra e a porta
+       que dá volume ao metal. Barra encostada na superfície lê como
+       risco desenhado.
 
-    /* Puxador em perfil, não um tubo de arame. Dois elementos: a
-       barra e dois pés que a afastam da folha — é a sombra entre a
-       barra e a porta que dá volume ao metal. */
-    var barraPux = new THREE.Mesh(GEO_PUXV, MAT.metal);
-    barraPux.position.set(-sinal * (larguraPorta - 0.058), y0 + Ac / 2 + 0.10,
-                          E / 2 + 0.026);
-    barraPux.castShadow = true;
-    pivo.add(barraPux);
-    [-0.19, 0.19].forEach(function (dy) {
-      var pe = new THREE.Mesh(CUBO, MAT.metal);
-      pe.scale.set(0.012, 0.012, 0.026);
-      pe.position.set(-sinal * (larguraPorta - 0.058),
-                      y0 + Ac / 2 + 0.10 + dy, E / 2 + 0.013);
-      pe.castShadow = true;
-      pivo.add(pe);
-    });
+       Fica junto da aresta LIVRE, que é a do meio do móvel — os dois
+       puxadores ficam lado a lado no centro, que é onde a referência
+       os põe e onde a mão de fato pega. */
+    var pux = montarPuxador(THREE, MAT.metal, 0.95, 0.032);
+    pux.position.set(-sinal * (larguraPorta - 0.055),
+                     yPorta - 0.10, E / 2 + 0.032);
+    pivo.add(pux);
 
     return pivo;
   }
@@ -5778,7 +6628,9 @@ function criarAbertura(opcoes) {
      verdade, com rugosidade média, devolve um reflexo vago do móvel
      e um pouco da luz de dentro quando as portas abrem. É o que põe
      a peça EM UM LUGAR. */
-  var GEO_CHAO = new THREE.PlaneGeometry(22, 22);
+  /* 120 m e não 22: a 22 a BORDA do piso entrava em quadro no ato 1
+     e lia como uma linha de horizonte diagonal atravessando a cena. */
+  var GEO_CHAO = new THREE.PlaneGeometry(120, 120);
   lixo.push(GEO_CHAO);
   var chao = new THREE.Mesh(GEO_CHAO, MAT.piso);
   chao.rotation.x = -Math.PI / 2;
@@ -5802,11 +6654,15 @@ function criarAbertura(opcoes) {
   chave.castShadow = true;
   chave.shadow.mapSize.set(leve ? 1024 : 2048, leve ? 1024 : 2048);
   chave.shadow.radius = leve ? 2 : 5;      // borda macia: sombra de ambiente, não de sol a pino
+  /* O volume da sombra tem de conter o móvel COM AS PORTAS ABERTAS.
+     Os valores anteriores (±3,2) foram dimensionados para um módulo de
+     1,80 m; com 2,46 m de largura e quase 2,9 m de profundidade aberto,
+     a folha direita saía do volume e a sombra dela era cortada. */
   chave.shadow.camera.near = 0.5;
-  chave.shadow.camera.far = 18;
-  chave.shadow.camera.left = -3.2;
-  chave.shadow.camera.right = 3.2;
-  chave.shadow.camera.top = 3.6;
+  chave.shadow.camera.far = 22;
+  chave.shadow.camera.left = -4.0;
+  chave.shadow.camera.right = 4.0;
+  chave.shadow.camera.top = 3.8;
   chave.shadow.camera.bottom = -0.6;
   chave.shadow.bias = -0.0010;
   chave.shadow.normalBias = 0.018;
@@ -5823,10 +6679,14 @@ function criarAbertura(opcoes) {
   rasante.position.set(-2.2, 2.0, 6.4);
   luzes.add(rasante);
 
+  /* As duas luzes de dentro ficam nos dois lados do vão central —
+     o único que as portas revelam. Posicionadas a partir das MEDIDAS
+     do interior, não por números soltos: assim continuam no lugar
+     quando o módulo muda de tamanho. */
   var dentroA = new THREE.PointLight(0xFFCC8E, 0.0, 4.2, 2.0);
-  dentroA.position.set(cEsq, 1.48, 0.02);
+  dentroA.position.set(cCab, y0 + Ac - 0.55, 0.04);
   var dentroB = new THREE.PointLight(0xFFCC8E, 0.0, 4.2, 2.0);
-  dentroB.position.set(cDir, 1.02, 0.02);
+  dentroB.position.set(cPrat, 1.30, 0.04);
   luzes.add(dentroA, dentroB);
 
   /* ============================================================
@@ -5867,8 +6727,22 @@ function criarAbertura(opcoes) {
      O móvel fechado, inteiro, reconhecível. A câmera faz um dolly
      curto e vai ficando mais frontal. Nada abre antes de o visitante
      entender que ali existem duas portas. */
-  tl.fromTo(enq, { cheio: 0.50, desvio: 1.52 },
-                 { cheio: 0.60, desvio: 1.42, duration: 0.15, ease: 'power1.out' }, 0)
+  /* O DESVIO É PROPORCIONAL À LARGURA DO MÓDULO.
+
+     Os números do primeiro ato (1,30 e 1,20) foram escolhidos quando o
+     módulo tinha 1,80 m. Com 2,46 m a peça passou a invadir a coluna
+     de texto, e o teste de sobreposição pegou: a nota pequena caiu
+     para 3,35:1 em 1440×900 e 4,49:1 em 1280×800, abaixo dos 4,5
+     exigidos. O móvel não ficou maior na tela — ele ficou mais LARGO,
+     e a borda esquerda chegou onde não devia.
+
+     Ligando o desvio a `L`, a margem que o texto tem deixa de depender
+     de alguém lembrar de reajustar um número solto quando as medidas
+     da peça mudarem. */
+  var DESVIO = L / 1.80;             // 1,0 na largura em que os números nasceram
+
+  tl.fromTo(enq, { cheio: 0.62, desvio: 1.30 * DESVIO },
+                 { cheio: 0.72, desvio: 1.20 * DESVIO, duration: 0.15, ease: 'power1.out' }, 0)
     .fromTo(orbita, { theta: -0.30, phi: 1.30, fov: 40 },
                     { theta: -0.20, phi: 1.31, fov: 40, duration: 0.15,
                       ease: 'power1.out' }, 0)
@@ -5885,7 +6759,7 @@ function criarAbertura(opcoes) {
                                           ease: 'power1.in' }, 0.15)
     .fromTo(pivoDir.rotation, { y: 0 }, { y: ABRE_DIR * 0.34, duration: 0.25,
                                           ease: 'power1.in' }, 0.15)
-    .to(enq,    { cheio: 0.70, desvio: 0.78, duration: 0.25, ease: 'sine.inOut' }, 0.15)
+    .to(enq,    { cheio: 0.82, desvio: 0.62 * DESVIO, duration: 0.25, ease: 'sine.inOut' }, 0.15)
     .to(orbita, { theta: -0.10, phi: 1.33, duration: 0.25, ease: 'sine.inOut' }, 0.15)
 
   /* ATO 3 — ABERTURA COMPLETA (40–60%)
@@ -6054,7 +6928,10 @@ function criarAbertura(opcoes) {
 
   dimensionar();
   posicionarCamera();
+  window.__render = function () { renderer.render(cena, camera); };
+  window.__rend = renderer;
   window.__sonda = { pivoEsq: pivoEsq, pivoDir: pivoDir, corpo: corpo, movel: movel,
+                     renderer: renderer,
                      camera: camera, cena: cena, orbita: orbita, alvo: alvo,
                      THREE: THREE, L: L, A: A, P: P, E: E, Ac: Ac, y0: y0,
                      larguraPorta: larguraPorta };
@@ -6068,6 +6945,48 @@ function criarAbertura(opcoes) {
     },
     /* Quanto do Ato 5 já aconteceu: o site usa para a passagem. */
     foco: function () { return estado.foco; },
+
+    /* Onde o móvel está NA TELA, em pixels de CSS.
+
+       O site precisa disso para decidir se o texto ainda cabe ao lado
+       da cena. Um retângulo do DOM não serve: o móvel não é um
+       elemento, é um desenho dentro de um canvas. Então os oito
+       cantos do Box3 são projetados pela mesma câmera que desenha o
+       quadro, e o retângulo que os envolve é a área que ele realmente
+       ocupa.
+
+       Os cantos atrás da câmera são descartados: a projeção deles
+       explode e inventaria uma área que não existe. Se sobrarem menos
+       de dois, a câmera está dentro da peça — e aí o móvel ocupa tudo,
+       que é o que a função devolve. */
+    retanguloNaTela: function () {
+      var r = palco.getBoundingClientRect();
+      if (!r.width || !r.height) { return null; }
+      camera.updateMatrixWorld();
+      var cantos = cantosDaCaixa(CAIXA.min, CAIXA.max);
+      var x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity, bons = 0;
+      for (var i = 0; i < cantos.length; i++) {
+        _rel.copy(cantos[i]).applyMatrix4(camera.matrixWorldInverse);
+        if (_rel.z > -camera.near) { continue; }    // atrás da câmera
+        bons++;
+        _rel.copy(cantos[i]).project(camera);
+        if (_rel.x < x0) { x0 = _rel.x; }
+        if (_rel.x > x1) { x1 = _rel.x; }
+        if (_rel.y < y0) { y0 = _rel.y; }
+        if (_rel.y > y1) { y1 = _rel.y; }
+      }
+      if (bons < 2) {
+        return { left: r.left, top: r.top, right: r.right, bottom: r.bottom,
+                 width: r.width, height: r.height };
+      }
+      var esq = r.left + (x0 * 0.5 + 0.5) * r.width;
+      var dir = r.left + (x1 * 0.5 + 0.5) * r.width;
+      // NDC cresce para cima; a tela cresce para baixo
+      var topo = r.top + (0.5 - y1 * 0.5) * r.height;
+      var base = r.top + (0.5 - y0 * 0.5) * r.height;
+      return { left: esq, top: topo, right: dir, bottom: base,
+               width: dir - esq, height: base - topo };
+    },
     redimensionar: dimensionar,
     descartar: function () {
       vivo = false;
@@ -6079,13 +6998,14 @@ function criarAbertura(opcoes) {
       tl.kill();
       if (cena.environment) { cena.environment.dispose(); }
       lixo.forEach(function (o) { if (o && o.dispose) { o.dispose(); } });
+      limparPecas();
       renderer.dispose();
     }
   };
 }
 
   return { criarAbertura: criarAbertura };
-})(THREE, MOD_madeira.gerarMadeira, MOD_madeira.materialMadeira);
+})(THREE, MOD_madeira.gerarMadeira, MOD_madeira.materialMadeira, MOD_pecas.geoPainel, MOD_pecas.limparPecas, MOD_pecas.montarPuxador);
 const MOD_mobile25 = (function (gerarCanvasMadeira) {
 /* ============================================================
    Fratelli Móveis — o capítulo 2.5D (perfil B)
@@ -6149,6 +7069,11 @@ function criar25D(opcoes) {
   try {
     canvas = gerarCanvasMadeira({
       tamanho: 256,
+      /* UMA folha só: aqui o canvas vira `background-image` esticado
+         pela face inteira, então um atlas apareceria como quatro
+         desenhos colados. O atlas existe para a cena WebGL, onde cada
+         peça escolhe a sua janela. */
+      folhas: 1,
       semente: 20261018,
       claro: [172, 136, 99],
       escuro: [76, 54, 36],
@@ -6234,11 +7159,18 @@ function criar25D(opcoes) {
        0,80 – 1,00  transformação: entrega para a fotografia
   */
   var ultimo = -1;
+  var larguraUltima = 0;
 
   function progresso(p) {
     p = Math.min(1, Math.max(0, p));
-    if (Math.abs(p - ultimo) < 0.0015) { return; }
+    /* O atalho de "nada mudou" precisa soltar quando a JANELA muda:
+       a composição larga e a estreita são diferentes, e sem isto um
+       redimensionamento deixaria a peça na composição errada até o
+       próximo movimento de rolagem. */
+    var w = window.innerWidth || 1;
+    if (Math.abs(p - ultimo) < 0.0015 && w === larguraUltima) { return; }
     ultimo = p;
+    larguraUltima = w;
 
     var a1 = suave(ato(p, 0.00, 0.22));
     var a2 = saida(ato(p, 0.22, 0.58));
@@ -6250,23 +7182,60 @@ function criar25D(opcoes) {
        eixo da fotografia que vem depois. */
     var incl  = ip(9, 2.5, a1) - a3 * 2.0;
     var giro  = ip(-19, -13, a1) + a2 * 4.0 + a3 * 6.0 - a4 * 1.2;
-    /* A aproximação do celular.
+    /* ---------- A aproximação, em duas composições ----------
 
-       Antes ia de 0,80 a 1,18: o armário continuava um objeto
-       pequeno no meio da tela. Agora vai de 0,78 a 1,92 — no ato da
-       descoberta o interior ocupa praticamente toda a largura
-       disponível, que é o que o desktop faz com o dolly da câmera.
+       Este capítulo não roda só em celular. Ele é o perfil B, e o
+       perfil B também atende DESKTOP SEM WEBGL — que é uma máquina
+       larga, com o texto à ESQUERDA e não embaixo.
 
-       O teto de 1,92 não é arbitrário: acima disso a peça encosta nas
-       bordas em 320 px e a composição começa a cortar o interior, que
-       é justamente o que não pode acontecer. A conta está em
-       --larg/--alt do CSS, e o palco tem `overflow: clip`, então
-       nenhuma escala vira rolagem horizontal. */
-    var zoom  = ip(0.78, 1.02, a1) + a2 * 0.30 + a3 * 0.60 - a4 * 0.14;
-    var sobe  = ip(26, 4, a1) - a2 * 10 - a3 * 26;
+       Tratar os dois igual foi o defeito: a peça nascia centrada no
+       palco e, numa tela de 1440, o centro do palco é exatamente onde
+       mora a coluna de texto. Medido, a nota "O módulo acima é um
+       desenho conceitual" ficava atravessada pela madeira já no
+       primeiro quadro.
+
+       Então há duas composições, decididas pela largura real:
+
+       LARGA (>= 900 px)  a peça mora à DIREITA e caminha para o centro
+                          conforme o texto cede — o mesmo gesto que o
+                          `desvio` faz na cena WebGL. Não sobe: ali o
+                          texto divide a altura, não o rodapé.
+
+       ESTREITA           a peça mora em cima, o texto embaixo, e ela
+                          sobe para liberar o rodapé.
+
+       As escalas saem de medida, não de gosto. Na estreita a peça tem
+       330x385 px: 1,14 dá 376 px de largura (a tela quase inteira sem
+       as portas saírem) e 1,45 dá 558 px de altura (o interior domina
+       e o que é cortado são as PORTAS, não o vão). Na larga ela tem
+       440x513: 1,67 dá 857 px de altura numa tela de 900. */
+    var tela = window.innerWidth || 1;
+    var alturaTela = window.innerHeight || 1;
+    var larga = tela >= 900;
+
+    var zoom, sobe, lado;
+    if (larga) {
+      /* A escala final sai da ALTURA da tela, não de um número fixo:
+         o alvo é o móvel ocupar ~92% dela no ato da descoberta. */
+      var cheiaLarga = Math.min(2.1, (alturaTela * 0.92) / 513);
+      zoom = ip(0.58, 0.68, a1) + a2 * 0.16 + a3 * (cheiaLarga - 0.84) - a4 * 0.08;
+      sobe = -(a2 * 6 + a3 * 10);
+      /* Sai da direita e caminha para o centro enquanto o texto cede.
+         Em 1440 isso são 302 px — o bastante para a peça inteira ficar
+         fora da coluna de texto nos dois primeiros atos. */
+      lado = (tela * 0.21) * (1 - a3);
+    } else {
+      zoom = ip(0.78, 0.92, a1) + a2 * 0.22 + a3 * 0.31 - a4 * 0.10;
+      /* No ato da descoberta a peça DESCE de volta (−58 em vez de
+         somar): subida demais deixava o vão no terço de cima com a
+         metade de baixo da tela vazia. */
+      sobe = -(ip(60, 96, a1) + a2 * 30 - a3 * 58 + a4 * 6);
+      lado = 0;
+    }
 
     camera.style.transform =
-      'translate3d(0,' + sobe.toFixed(2) + 'px,0) scale(' + zoom.toFixed(4) + ')';
+      'translate3d(' + lado.toFixed(1) + 'px,' + sobe.toFixed(1) + 'px,0) scale('
+      + zoom.toFixed(4) + ')';
     movel.style.transform =
       'rotateX(' + incl.toFixed(2) + 'deg) rotateY(' + giro.toFixed(2) + 'deg)';
 
@@ -6309,8 +7278,21 @@ function criar25D(opcoes) {
     return a4;
   }
 
+  /* Primeiro quadro, antes de qualquer rolagem.
+
+     Sem isto a peça fica no estado padrão do CSS — centrada no palco e
+     sem escala — até o ScrollTrigger disparar o primeiro onUpdate. Num
+     desktop sem WebGL esse estado padrão é exatamente em cima da
+     coluna de texto, e era ele que aparecia no quadro de 0%. */
+  progresso(0);
+
   return {
     progresso: progresso,
+
+    /* A mesma pergunta que a cena WebGL responde projetando o Box3:
+       onde a peça está na tela. Aqui ela É um elemento, então o
+       retângulo do DOM é a resposta exata. */
+    retanguloNaTela: function () { return movel.getBoundingClientRect(); },
     descartar: function () {
       if (raiz.parentNode) { raiz.parentNode.removeChild(raiz); }
     }
@@ -6565,6 +7547,53 @@ function criarMateria(opcoes) {
      scrub, um `progresso(p)` e uma `--passagem`. A diferença entre os
      perfis está só em quantas alturas de tela a sequência ocupa e em
      qual classe a seção ganha. */
+  /* ---------- A colisão entre a cena e o texto ----------
+
+     `alvos` são os blocos que recuam. O botão de pular fica de fora:
+     ele é a saída da sequência e continua alcançável sempre.
+
+     A folga é medida na HORIZONTAL quando os dois dividem a altura
+     (desktop, texto à esquerda e móvel à direita) e na VERTICAL
+     quando o texto mora embaixo (celular). Medir só a interseção de
+     retângulos daria "não colide" no instante em que a madeira
+     encosta na primeira letra. */
+  var blocosTexto = Array.prototype.slice.call(
+    secao.querySelectorAll('.abertura__texto > *:not(.abertura__acoes)'));
+
+  function uniaoTexto() {
+    var e = Infinity, t = Infinity, d = -Infinity, b = -Infinity, achou = false;
+    for (var i = 0; i < blocosTexto.length; i++) {
+      var r = blocosTexto[i].getBoundingClientRect();
+      if (!r.width || !r.height) { continue; }
+      achou = true;
+      if (r.left < e) { e = r.left; }
+      if (r.top < t) { t = r.top; }
+      if (r.right > d) { d = r.right; }
+      if (r.bottom > b) { b = r.bottom; }
+    }
+    return achou ? { left: e, top: t, right: d, bottom: b } : null;
+  }
+
+  var recuado = false;
+
+  function avaliarTexto(cena) {
+    if (!cena.retanguloNaTela) { return; }
+    var cx = cena.retanguloNaTela();
+    var tx = uniaoTexto();
+    if (!cx || !tx) { return; }
+
+    /* Quanto de respiro existe entre os dois. Negativo = encostando. */
+    var folgaH = Math.max(tx.left - cx.right, cx.left - tx.right);
+    var folgaV = Math.max(tx.top - cx.bottom, cx.top - tx.bottom);
+    var folga = Math.max(folgaH, folgaV);
+
+    // histerese: entrar é fácil, sair exige folga de sobra
+    if (!recuado && folga < 24) { recuado = true; }
+    else if (recuado && folga > 72) { recuado = false; }
+
+    secao.classList.toggle('texto-recuado', recuado);
+  }
+
   function montar(cena, classe, alturas) {
     secao.classList.add(classe);
 
@@ -6585,16 +7614,41 @@ function criarMateria(opcoes) {
         var f = cena.foco ? cena.foco() : (self.progress - 0.80) / 0.20;
         secao.style.setProperty('--passagem',
           Math.min(1, Math.max(0, f)).toFixed(3));
+
+        /* O texto recua quando o móvel chega perto dele — e quem
+           decide isso é a GEOMETRIA, não um número de progresso.
+
+           A V7.1 usava `progress > 0.44`. Esse número foi escolhido
+           olhando o desktop com WebGL, onde a câmera mantém o móvel à
+           direita nos dois primeiros atos. Num desktop SEM WebGL a
+           cena 2.5D nasce centrada no palco, e aí ela já está em cima
+           do texto em 0% — muito antes de 0,44. Medido em 1440x900
+           sem WebGL: a nota "O módulo acima é um desenho conceitual"
+           ficava atravessada pela madeira desde o primeiro quadro.
+
+           Agora a cena diz onde está (`retanguloNaTela`) e a decisão
+           é por sobreposição real, com histerese para não piscar:
+           recua quando a folga cai abaixo de 24 px, volta só quando
+           passa de 72 px. */
+        avaliarTexto(cena);
       },
       onRefresh: function () { if (cena.redimensionar) { cena.redimensionar(); } }
     });
 
     function desmontar() {
       secao.classList.remove(classe);
+      secao.classList.remove('texto-recuado');
+      recuado = false;
       secao.style.setProperty('--passagem', '1');
       if (st) { st.kill(); }
       if (cena) { cena.descartar(); }
     }
+
+    /* Desenha o primeiro quadro e decide o recuo do texto JÁ, sem
+       esperar a primeira rolagem: o estado inicial precisa estar
+       certo no instante em que a seção aparece. */
+    cena.progresso(st.progress || 0);
+    avaliarTexto(cena);
 
     /* Ver a nota em materia.js: dois pins que chegam por import
        dinâmico precisam ser reordenados e remedidos depois que ambos
@@ -6602,7 +7656,8 @@ function criarMateria(opcoes) {
     if (window.ScrollTrigger.sort) { window.ScrollTrigger.sort(); }
     window.ScrollTrigger.refresh();
 
-    window.__fratelliAbertura = { desmontar: desmontar, st: st, perfil: escolhido };
+    window.__fratelliAbertura = { desmontar: desmontar, st: st, perfil: escolhido,
+                                  cena: cena };
     return desmontar;
   }
 
