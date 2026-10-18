@@ -44,7 +44,7 @@ De perto, com a iluminação real do site
 **53% e 59% da referência.** Não é aprovação; é a medida honesta de
 onde está. As causas e os caminhos estão em `RELATORIO-3D.md` §6.
 
-### Quatro correções no próprio instrumento
+### Cinco correções no próprio instrumento
 
 Nenhuma delas era defeito da página, e todas me fizeram perseguir a
 coisa errada por um tempo:
@@ -55,6 +55,7 @@ coisa errada por um tempo:
 | extrusão girada ao contrário | painel ripado nascia deslocado e com as ripas viradas para a parede | `rotateX(−90°)` em vez de `+90°` |
 | distância de câmera errada | câmera dentro da peça | multiplicava o ângulo pelo aspect em vez de `tan(vfov/2) × aspect` |
 | medição de arquivo velho | geometria mudava e o número não | o servidor tinha caído e eu havia suprimido o `stderr` |
+| contraste de 1,08:1 num botão de 12:1 | só em 1280×800, só numa parada | o teste torna o glifo transparente para ler o fundo; devolver a cor dispara a **transição do CSS**, e a parada seguinte media no meio dela |
 
 A terceira correção gerou o `window.__fratelli3D` com `enq.congelado`,
 que é o modo de desenvolvimento que o briefing pede na seção 08.
@@ -131,9 +132,24 @@ continua, e entrou uma determinística por **progresso da sequência**
 (26%). O briefing pede exatamente isso — "texto começa a recuar ANTES
 da invasão visual" — e geometria sozinha reage tarde.
 
-Depois da correção, em 1280×800, 1440×900 e 390×844: **nenhum bloco
-abaixo do mínimo da WCAG AA**, pior contraste da página 5,41:1, zero
-transbordo, zero erro de página.
+### Resultado, nas 11 larguras
+
+| tela | transbordo | pior contraste da página |
+| --- | --- | --- |
+| 320×568 | 0 px | 5,41:1 |
+| 360×800 | 0 px | 5,41:1 |
+| 375×667 | 0 px | 5,41:1 |
+| 390×844 | 0 px | 5,41:1 |
+| 414×896 | 0 px | 5,41:1 |
+| 430×932 | 0 px | 5,41:1 |
+| 768×1024 | 0 px | 5,41:1 |
+| 1024×768 | 0 px | 5,41:1 |
+| 1280×800 | 0 px | 5,41:1 |
+| 1440×900 | 0 px | 5,41:1 |
+| 1920×1080 | 0 px | 5,41:1 |
+
+**99 estados, nenhum bloco abaixo do mínimo da WCAG AA.** Zero
+transbordo horizontal, zero erro de página.
 
 ---
 

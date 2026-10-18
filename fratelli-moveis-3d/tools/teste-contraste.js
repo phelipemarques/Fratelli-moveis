@@ -77,6 +77,11 @@ const PARADAS = 8;
             op *= +getComputedStyle(n).opacity;
           }
           if (op < 0.9) return false;
+          /* Glifo transparente nao e falha de contraste: e texto
+             invisivel, e o filtro de opacidade acima ja cobre o caso
+             legitimo. Aqui pega o residuo de transicao. */
+          const m = cs.color.match(/[\d.]+/g);
+          if (m && m.length === 4 && +m[3] < 0.5) return false;
           if (r.width <= 2 || r.height <= 2) return false;
           const topo = Math.max(CABECALHO, 0), base = innerHeight;
           const vh = Math.min(base, r.bottom) - Math.max(topo, r.top);
@@ -121,6 +126,14 @@ const PARADAS = 8;
          Tornando so o glifo transparente, o fundo verdadeiro fica. */
       await p.evaluate(() => window.__alvos.forEach(el => {
         el.dataset.corAntes = el.style.color || '';
+        /* A TRANSICAO PRECISA MORRER DURANTE A TROCA.
+
+           Sem isto, devolver a cor do glifo dispara a transicao do
+           CSS, e a parada seguinte mede o elemento no MEIO dela: o
+           teste leu `rgba(0,0,0,0)` num botao e devolveu 1,08:1 para
+           um elemento que, com a cor dele, da 12:1. Quinta vez que um
+           defeito deste teste se disfarca de defeito da pagina. */
+        el.style.setProperty('transition', 'none', 'important');
         el.style.setProperty('color', 'transparent', 'important');
         el.style.setProperty('text-shadow', 'none', 'important');
       }));
@@ -130,6 +143,9 @@ const PARADAS = 8;
         el.style.removeProperty('color'); el.style.removeProperty('text-shadow');
         if (el.dataset.corAntes) el.style.color = el.dataset.corAntes;
         delete el.dataset.corAntes;
+        /* devolve a transicao so depois que a cor ja esta no lugar */
+        el.offsetHeight;
+        el.style.removeProperty('transition');
       }));
       amostras.push({ marca, blocos });
     }
